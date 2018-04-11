@@ -9,7 +9,8 @@ let mix = require('laravel-mix');
  | for your Laravel application. By default, we are compiling the Sass
  | file for the application as well as bundling up all the JS files.
  |
+ // .sass('resources/assets/sass/app.scss', 'public/css')
  */
 
 mix.js('resources/assets/js/app.js', 'public/js')
-   .sass('resources/assets/sass/app.scss', 'public/css');
+   .sass('resources/assets/scss/main.scss', 'public/css');
