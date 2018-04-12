@@ -141,7 +141,7 @@ class AccountMovementController extends Controller
         ];
         return response()->json($data2,'200');
     }
-    public function Anull(Request $request,Profile $profile,$InvoiceReference)
+    public function Anull(Request $request)
     {
 
         // $accountMovement = AccountMovement::where('reference',$InvoiceReference)->first();
@@ -150,6 +150,6 @@ class AccountMovementController extends Controller
         // }
         // return response()->json(2,'200');
 
-        return response()->json('',200);
+        return response()->json('200',200);
     }
 }

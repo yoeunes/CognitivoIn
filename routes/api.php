@@ -20,4 +20,4 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 //  Route::get('PaymentDue/{slug}/{type}/{partnerName}/{partnerTaxID}', 'SchedualsController@PaymentDue');
   Route::post('PaymentDue/{slug}', 'SchedualsController@PaymentDue');
   Route::post('ReceivePayment/{slug}', 'AccountMovementController@ReceivePayment');
-  Route::get('Anull/{slug}/{InvoiceReference}', 'AccountMovementController@ReceivePayment');
+  Route::post('Anull', 'AccountMovementController@Anull');
