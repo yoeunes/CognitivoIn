@@ -1,9 +1,6 @@
-
-
 @extends('layouts.app')
 
-
-@section('content')
+@section('main')
 
     <div id="page-container" class="sidebar-o side-scroll page-header-modern main-content-boxed">
         <!-- Side Overlay-->
@@ -118,7 +115,8 @@
                     <div class="content-header-section sidebar-mini-visible-b">
                         <!-- Logo -->
                         <span class="content-header-item font-w700 font-size-xl float-left animated fadeIn">
-                            <span class="text-dual-primary-dark">c</span><span class="text-primary">b</span>
+                            <img src="/img/logo/cognitivo-64.svg" width="32" alt="">
+                            {{-- <span class="text-dual-primary-dark">c</span><span class="text-primary">b</span> --}}
                         </span>
                         <!-- END Logo -->
                     </div>
@@ -135,9 +133,10 @@
 
                         <!-- Logo -->
                         <div class="content-header-item">
-                            <a class="link-effect font-w700" href="">
-                                <i class="si si-fire text-primary"></i>
-                                <span class="font-size-xl text-dual-primary-dark">code</span><span class="font-size-xl text-primary">base</span>
+                            <a href="">
+                                <img src="/img/logo/cognitivo-64.svg" width="36" alt="">
+                                {{-- <i class="si si-fire text-primary"></i> --}}
+                                {{-- <span class="font-size-xl text-dual-primary-dark">code</span><span class="font-size-xl text-primary">base</span> --}}
                             </a>
                         </div>
                         <!-- END Logo -->
@@ -157,21 +156,12 @@
                     <!-- Visible only in normal mode -->
                     <div class="sidebar-mini-hidden-b text-center">
                         <a class="img-link" href="">
-                            <img class="img-avatar" src="assets/img/avatars/avatar0.jpg" alt="">
+                            <img class="img-avatar" src="{{ Auth::user()->profile->avatar }}" alt="Logo">
                         </a>
                         <ul class="list-inline mt-10">
                             <li class="list-inline-item">
-                                <a class="link-effect text-dual-primary-dark font-size-xs font-w600 text-uppercase" href="">J. Smith</a>
-                            </li>
-                            <li class="list-inline-item">
-                                <!-- Layout API, functionality initialized in Codebase() -> uiApiLayout() -->
-                                <a class="link-effect text-dual-primary-dark" data-toggle="layout" data-action="sidebar_style_inverse_toggle" href="javascript:void(0)">
-                                    <i class="si si-drop"></i>
-                                </a>
-                            </li>
-                            <li class="list-inline-item">
-                                <a class="link-effect text-dual-primary-dark" href="">
-                                    <i class="si si-logout"></i>
+                                <a class="link-effect text-dual-primary-dark font-size-xs font-w600 text-uppercase" href="">
+                                    {{ Auth::user()->profile->alias }}
                                 </a>
                             </li>
                         </ul>
@@ -185,25 +175,87 @@
                     <ul class="nav-main">
                         <li>
                             <a class="active" href="">
-                                <i class="si si-cup"></i>
+                                <i class="si si-pie-chart"></i>
                                 <span class="sidebar-mini-hide">Dashboard</span>
                             </a>
                         </li>
+                        <li>
+                            <a class="active" href="">
+                                <i class="fa fa-gears"></i>
+                                <span class="sidebar-mini-hide">Profile</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="active" href="">
+                                <i class="fa fa-location-arrow"></i>
+                                <span class="sidebar-mini-hide">Stores</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="active" href="">
+                                <i class="si si-box-open"></i>
+                                <span class="sidebar-mini-hide">Products & Services</span>
+                            </a>
+                        </li>
                         <li class="nav-main-heading">
-                            <span class="sidebar-mini-visible">HD</span>
-                            <span class="sidebar-mini-hidden">Heading</span>
+                            <span class="sidebar-mini-visible">
+                                <i class="si si-home"></i>
+                            </span>
+                            <span class="sidebar-mini-hidden">Modules</span>
                         </li>
                         <li>
                             <a class="nav-submenu" data-toggle="nav-submenu" href="#">
-                                <i class="si si-puzzle"></i>
-                                <span class="sidebar-mini-hide">Dropdown</span>
+                                <i class="fa fa-paper-plane"></i>
+                                <span class="sidebar-mini-hide">Sales</span>
                             </a>
                             <ul>
                                 <li>
-                                    <a href="javascript:void(0)">Link #1</a>
+                                    <a @click="" href="javascript:void(0)">Opportunities</a>
                                 </li>
                                 <li>
-                                    <a href="javascript:void(0)">Link #2</a>
+                                    <a @click="" href="javascript:void(0)">Orders</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a class="nav-submenu" data-toggle="nav-submenu" href="#">
+                                <i class="fa fa-shopping-cart"></i>
+                                <span class="sidebar-mini-hide">Purchase</span>
+                            </a>
+                            <ul>
+                                <li>
+                                    <a @click="" href="javascript:void(0)">Opportunities</a>
+                                </li>
+                                <li>
+                                    <a @click="" href="javascript:void(0)">Orders</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a class="nav-submenu" data-toggle="nav-submenu" href="#">
+                                <i class="fa fa-boxes"></i>
+                                <span class="sidebar-mini-hide">Stock</span>
+                            </a>
+                            <ul>
+                                <li>
+                                    <a @click="" href="javascript:void(0)">Opportunities</a>
+                                </li>
+                                <li>
+                                    <a @click="" href="javascript:void(0)">Orders</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a class="nav-submenu" data-toggle="nav-submenu" href="#">
+                                <i class="fa fa-briefcase"></i>
+                                <span class="sidebar-mini-hide">Finance</span>
+                            </a>
+                            <ul>
+                                <li>
+                                    <a @click="" href="javascript:void(0)">Opportunities</a>
+                                </li>
+                                <li>
+                                    <a @click="" href="javascript:void(0)">Orders</a>
                                 </li>
                             </ul>
                         </li>
@@ -237,51 +289,6 @@
                 </button>
                 <!-- END Open Search Section -->
 
-                <!-- Color Themes (used just for demonstration) -->
-                <!-- Themes functionality initialized in Codebase() -> uiHandleTheme() -->
-                <div class="btn-group" role="group">
-                    <button type="button" class="btn btn-circle btn-dual-secondary" id="page-header-themes-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <i class="fa fa-paint-brush"></i>
-                    </button>
-                    <div class="dropdown-menu min-width-150" aria-labelledby="page-header-themes-dropdown">
-                        <h6 class="dropdown-header text-center">Color Themes</h6>
-                        <div class="row no-gutters text-center mb-5">
-                            <div class="col-4 mb-5">
-                                <a class="text-default" data-toggle="theme" data-theme="default" href="javascript:void(0)">
-                                    <i class="fa fa-2x fa-circle"></i>
-                                </a>
-                            </div>
-                            <div class="col-4 mb-5">
-                                <a class="text-elegance" data-toggle="theme" data-theme="assets/css/themes/elegance.min.css" href="javascript:void(0)">
-                                    <i class="fa fa-2x fa-circle"></i>
-                                </a>
-                            </div>
-                            <div class="col-4 mb-5">
-                                <a class="text-pulse" data-toggle="theme" data-theme="assets/css/themes/pulse.min.css" href="javascript:void(0)">
-                                    <i class="fa fa-2x fa-circle"></i>
-                                </a>
-                            </div>
-                            <div class="col-4 mb-5">
-                                <a class="text-flat" data-toggle="theme" data-theme="assets/css/themes/flat.min.css" href="javascript:void(0)">
-                                    <i class="fa fa-2x fa-circle"></i>
-                                </a>
-                            </div>
-                            <div class="col-4 mb-5">
-                                <a class="text-corporate" data-toggle="theme" data-theme="assets/css/themes/corporate.min.css" href="javascript:void(0)">
-                                    <i class="fa fa-2x fa-circle"></i>
-                                </a>
-                            </div>
-                            <div class="col-4 mb-5">
-                                <a class="text-earth" data-toggle="theme" data-theme="assets/css/themes/earth.min.css" href="javascript:void(0)">
-                                    <i class="fa fa-2x fa-circle"></i>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="dropdown-divider"></div>
-                        <button type="button" class="btn btn-sm btn-block btn-alt-secondary mb-10" data-toggle="layout" data-action="sidebar_style_inverse_toggle">Sidebar Style</button>
-                    </div>
-                </div>
-                <!-- END Color Themes -->
             </div>
             <!-- END Left Section -->
 
@@ -290,7 +297,7 @@
                 <!-- User Dropdown -->
                 <div class="btn-group" role="group">
                     <button type="button" class="btn btn-rounded btn-dual-secondary" id="page-header-user-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        J. Smith<i class="fa fa-angle-down ml-5"></i>
+                        {{ Auth::user()->profile->name }}<i class="fa fa-angle-down ml-5"></i>
                     </button>
                     <div class="dropdown-menu dropdown-menu-right min-width-150" aria-labelledby="page-header-user-dropdown">
                         <a class="dropdown-item" href="">
@@ -369,43 +376,16 @@
     <!-- END Header -->
 
     <!-- Main Container -->
-    <main id="main-container">
-        <!-- Page Content -->
-        <div class="content">
-            <div class="block">
-                <div class="block-header block-header-default">
-                    <h3 class="block-title">Blank <small>Get Started</small></h3>
-                    <div class="block-options">
-                        <button type="button" class="btn-block-option" data-toggle="block-option" data-action="fullscreen_toggle"></button>
-                        <button type="button" class="btn-block-option" data-toggle="block-option" data-action="pinned_toggle">
-                            <i class="si si-pin"></i>
-                        </button>
-                        <button type="button" class="btn-block-option" data-toggle="block-option" data-action="state_toggle" data-action-mode="demo">
-                            <i class="si si-refresh"></i>
-                        </button>
-                        <button type="button" class="btn-block-option" data-toggle="block-option" data-action="content_toggle"></button>
-                        <button type="button" class="btn-block-option" data-toggle="block-option" data-action="close">
-                            <i class="si si-close"></i>
-                        </button>
-                    </div>
-                </div>
-                <div class="block-content">
-                    <p>Create your own awesome project!</p>
-                </div>
-            </div>
-        </div>
-        <!-- END Page Content -->
-    </main>
+    @yield('content')
     <!-- END Main Container -->
 
     <!-- Footer -->
     <footer id="page-footer" class="opacity-0">
         <div class="content py-20 font-size-xs clearfix">
             <div class="float-right">
-                <a class="font-w600" href="https://goo.gl/po9Usv" target="_blank">Codebase</a> &copy; <span class="js-year-copy"></span>
+                <a class="font-w600" href="mailto:hola@cognitivo.in" target="_blank">Cognitivo</a> &copy; <span class="js-year-copy"></span>
             </div>
             <div class="float-left">
-
             </div>
         </div>
     </footer>

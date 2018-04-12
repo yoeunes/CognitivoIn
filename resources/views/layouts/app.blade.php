@@ -42,7 +42,10 @@
 </head>
 <body>
 
-    @yield('main')
+    <div id="app">
+        @yield('main')
+    </div>
+
 
     <!-- Codebase Core JS -->
     <script src="{{ mix('/js/app.js') }}"></script>
