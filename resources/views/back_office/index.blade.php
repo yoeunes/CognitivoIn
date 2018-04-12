@@ -210,6 +210,9 @@
                             </a>
                             <ul>
                                 <li>
+                                    <a @click="" href="javascript:void(0)">Customers</a>
+                                </li>
+                                <li>
                                     <a @click="" href="javascript:void(0)">Opportunities</a>
                                 </li>
                                 <li>
@@ -223,11 +226,10 @@
                                 <span class="sidebar-mini-hide">Purchase</span>
                             </a>
                             <ul>
+                                <a @click="" href="javascript:void(0)">Suppliers</a>
+
                                 <li>
-                                    <a @click="" href="javascript:void(0)">Opportunities</a>
-                                </li>
-                                <li>
-                                    <a @click="" href="javascript:void(0)">Orders</a>
+                                    <a @click="" href="javascript:void(0)">Purchases</a>
                                 </li>
                             </ul>
                         </li>
@@ -238,10 +240,13 @@
                             </a>
                             <ul>
                                 <li>
-                                    <a @click="" href="javascript:void(0)">Opportunities</a>
+                                    <a @click="" href="javascript:void(0)">Stock Levels</a>
                                 </li>
                                 <li>
-                                    <a @click="" href="javascript:void(0)">Orders</a>
+                                    <a @click="" href="javascript:void(0)">Inventories</a>
+                                </li>
+                                <li>
+                                    <a @click="" href="javascript:void(0)">Movements</a>
                                 </li>
                             </ul>
                         </li>
@@ -252,10 +257,16 @@
                             </a>
                             <ul>
                                 <li>
-                                    <a @click="" href="javascript:void(0)">Opportunities</a>
+                                    <a @click="" href="javascript:void(0)">Accounts</a>
                                 </li>
                                 <li>
-                                    <a @click="" href="javascript:void(0)">Orders</a>
+                                    <a @click="" href="javascript:void(0)">Account Recievables</a>
+                                </li>
+                                <li>
+                                    <a @click="" href="javascript:void(0)">Account Payables</a>
+                                </li>
+                                <li>
+                                    <a @click="" href="javascript:void(0)">Account Movements</a>
                                 </li>
                             </ul>
                         </li>
