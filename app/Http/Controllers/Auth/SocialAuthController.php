@@ -22,7 +22,7 @@ class SocialAuthController extends Controller
     * @var array
     */
     protected $providers = [
-        'facebook',
+        'facebook', //456254078071283
         'google',
         'twitter'
     ];
@@ -152,16 +152,16 @@ class SocialAuthController extends Controller
     {
         return in_array($driver, $this->providers) && config()->has("services.{$driver}");
     }
+
     public function Login($email,$password)
     {
         if (Auth::attempt(['email' => $email, 'password' => $password]))
         {
-            $user=User::where('email',$email)->first();
-
+            $user = User::where('email',$email)->first();
             return response()->json([$user->profile->slug]);
-
         }
-        else {
+        else
+        {
             return response()->json([false]);
         }
     }
