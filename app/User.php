@@ -4,14 +4,15 @@ namespace App;
 
 use App\Profile;
 use App\ProfilePost;
+use Laravel\Passport\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
-use Illuminate\Foundation\Auth\User as Authenticatable;
 use Lab404\Impersonate\Models\Impersonate;
 use Overtrue\LaravelFollow\Traits\CanFollow;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
-    use Notifiable, CanFollow;
+    use HasApiTokens, Notifiable, CanFollow;
 
     protected $primaryKey = 'profile_id';
     /**
