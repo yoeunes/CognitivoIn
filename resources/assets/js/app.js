@@ -8,9 +8,9 @@
 require('./bootstrap');
 require('./components/bootstrap');
 
-import Vue from 'vue';
 import VueRouter from 'vue-router';
-import VueResource from 'vue-resource'
+import VueResource from 'vue-resource';
+import Vue from 'vue';
 
 window.Vue = require('vue');
 window.Vue.use(VueResource);
@@ -20,7 +20,6 @@ window.Vue.use(VueResource);
  * the page. Then, you may begin adding components to this application
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
-
 
 Vue.component(
     'passport-clients',
@@ -34,6 +33,8 @@ Vue.component(
     'passport-personal-access-tokens',
     require('./components/passport/PersonalAccessTokens.vue')
 );
+
+const router = new VueRouter({ routes })
 
 const app = new Vue({
     el: '#app'

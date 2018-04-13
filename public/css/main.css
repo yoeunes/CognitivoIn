@@ -19013,7 +19013,7 @@ button.bg-earth-lighter:focus {
 @font-face {
   font-family: "simple-line-icons";
   src: url(/fonts/Simple-Line-Icons.eot?f33df365d6d0255b586f2920355e94d7);
-  src: url(/fonts/Simple-Line-Icons.eot?f33df365d6d0255b586f2920355e94d7#iefix) format("embedded-opentype"), url(/fonts/Simple-Line-Icons.woff2?0cb0b9c589c0624c9c78dd3d83e946f6) format("woff2"), url(/fonts/Simple-Line-Icons.ttf?d2285965fe34b05465047401b8595dd0) format("truetype"), url(/fonts/Simple-Line-Icons.woff?78f07e2c2a535c26ef21d95e41bd7175) format("woff"), url(/fonts/Simple-Line-Icons.svg?73a932562a1e314703469d0a352fcda9#simple-line-icons) format("svg");
+  src: url(/fonts/Simple-Line-Icons.eot?f33df365d6d0255b586f2920355e94d7#iefix) format("embedded-opentype"), url(/fonts/Simple-Line-Icons.woff2?0cb0b9c589c0624c9c78dd3d83e946f6) format("woff2"), url(/fonts/Simple-Line-Icons.ttf?d2285965fe34b05465047401b8595dd0) format("truetype"), url(/fonts/Simple-Line-Icons.woff?78f07e2c2a535c26ef21d95e41bd7175) format("woff"), url(/fonts/Simple-Line-Icons.svg?2fe2efe63441d830b1acd106c1fe8734#simple-line-icons) format("svg");
   font-weight: normal;
   font-style: normal;
 }
@@ -23247,7 +23247,7 @@ readers do not read off random characters that represent icons */
   font-style: normal;
   font-weight: 400;
   src: url(/fonts/fa-regular-400.eot?288d8fc16cc08395dda47e8fc2b956ae);
-  src: url(/fonts/fa-regular-400.eot?288d8fc16cc08395dda47e8fc2b956ae?#iefix) format("embedded-opentype"), url(/fonts/fa-regular-400.woff2?bb370ac441e38f6640b9c56a46fca469) format("woff2"), url(/fonts/fa-regular-400.woff?8af1e57ef22a403d43b9ed99df2379ba) format("woff"), url(/fonts/fa-regular-400.ttf?b61fdaf2e2b2198645683eba1ad1e061) format("truetype"), url(/fonts/fa-regular-400.svg?088679716e8529a37548c0fc6df779ac#fontawesome) format("svg");
+  src: url(/fonts/fa-regular-400.eot?288d8fc16cc08395dda47e8fc2b956ae?#iefix) format("embedded-opentype"), url(/fonts/fa-regular-400.woff2?bb370ac441e38f6640b9c56a46fca469) format("woff2"), url(/fonts/fa-regular-400.woff?8af1e57ef22a403d43b9ed99df2379ba) format("woff"), url(/fonts/fa-regular-400.ttf?b61fdaf2e2b2198645683eba1ad1e061) format("truetype"), url(/fonts/fa-regular-400.svg?db3b272c3b7383ec8effda0aba2da288#fontawesome) format("svg");
 }
 
 .far {
@@ -23265,7 +23265,7 @@ readers do not read off random characters that represent icons */
   font-style: normal;
   font-weight: 900;
   src: url(/fonts/fa-solid-900.eot?a469c599193ad5ccf58b4c1441ff0fe2);
-  src: url(/fonts/fa-solid-900.eot?a469c599193ad5ccf58b4c1441ff0fe2?#iefix) format("embedded-opentype"), url(/fonts/fa-solid-900.woff2?3d32b39f82b110399a35a0d6438f094a) format("woff2"), url(/fonts/fa-solid-900.woff?da6cb261ef1ade88111001687c30b88e) format("woff"), url(/fonts/fa-solid-900.ttf?e9a29cf6e60b19c9dc98c81b4b9fae4c) format("truetype"), url(/fonts/fa-solid-900.svg?00f4f2c2b51eadc83dc8660a27f948ec#fontawesome) format("svg");
+  src: url(/fonts/fa-solid-900.eot?a469c599193ad5ccf58b4c1441ff0fe2?#iefix) format("embedded-opentype"), url(/fonts/fa-solid-900.woff2?3d32b39f82b110399a35a0d6438f094a) format("woff2"), url(/fonts/fa-solid-900.woff?da6cb261ef1ade88111001687c30b88e) format("woff"), url(/fonts/fa-solid-900.ttf?e9a29cf6e60b19c9dc98c81b4b9fae4c) format("truetype"), url(/fonts/fa-solid-900.svg?be7173c296839a822883c8b716d6054d#fontawesome) format("svg");
 }
 
 .fa,
@@ -23284,7 +23284,7 @@ readers do not read off random characters that represent icons */
   font-style: normal;
   font-weight: normal;
   src: url(/fonts/fa-brands-400.eot?53821e384bc98da26b7048d142396507);
-  src: url(/fonts/fa-brands-400.eot?53821e384bc98da26b7048d142396507?#iefix) format("embedded-opentype"), url(/fonts/fa-brands-400.woff2?0bd887b8f10fc0f9b38c59f328f271da) format("woff2"), url(/fonts/fa-brands-400.woff?2476c7530e75b883ecb3b45d87c240cb) format("woff"), url(/fonts/fa-brands-400.ttf?0312860ab91f13c46eb525ad156c2005) format("truetype"), url(/fonts/fa-brands-400.svg?8195b080e349f869c01f2ec477324b5c#fontawesome) format("svg");
+  src: url(/fonts/fa-brands-400.eot?53821e384bc98da26b7048d142396507?#iefix) format("embedded-opentype"), url(/fonts/fa-brands-400.woff2?0bd887b8f10fc0f9b38c59f328f271da) format("woff2"), url(/fonts/fa-brands-400.woff?2476c7530e75b883ecb3b45d87c240cb) format("woff"), url(/fonts/fa-brands-400.ttf?0312860ab91f13c46eb525ad156c2005) format("truetype"), url(/fonts/fa-brands-400.svg?77b9501e2289b4429faf300aeb42b10b#fontawesome) format("svg");
 }
 
 .fab {

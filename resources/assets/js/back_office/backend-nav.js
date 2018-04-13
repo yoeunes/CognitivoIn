@@ -1,7 +1,7 @@
+var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
 
-Vue.component('backend-nav',
-{
-    el: 'body',
+Vue.component('backend-nav',{
+    // props: ['profile'],
     data () {
         return {
             html: '<h1>Loading...</h1>'
@@ -9,17 +9,20 @@ Vue.component('backend-nav',
     },
     methods:
     {
-        showCustomers(){
+        showCustomers()
+        {
             this.$http.get('/PaymentDue/Cognitivo').then(response => {
                 this.html = response.data;
             });
         },
-        showItems(){
+        showItems()
+        {
             this.$http.get('/route').then(response => {
                 this.html = response.data;
             });
         },
-        showOpportunities(){
+        showOpportunities()
+        {
             this.$http.get('/route').then(response => {
                 this.html = response.data;
             });
@@ -31,8 +34,9 @@ Vue.component('backend-nav',
             });
         }
     },
+
     mounted() {
-        this.$http.get('/route').then(response => {
+        this.$http.get('/').then(response => {
             this.html = response.data;
         });
     }

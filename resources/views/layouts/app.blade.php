@@ -41,11 +41,11 @@
     <!-- END Stylesheets -->
 </head>
 <body>
-
     <div id="app">
-        @yield('main')
+        <div>
+            @yield('main')
+        </div>
     </div>
-
 
     <!-- Codebase Core JS -->
     <script src="{{ mix('/js/app.js') }}"></script>
