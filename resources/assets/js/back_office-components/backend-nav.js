@@ -1,5 +1,4 @@
 import Vue from 'vue';
-// var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
 
 Vue.component('backend-nav',{
     // props: ['profile'],
@@ -15,6 +14,11 @@ Vue.component('backend-nav',{
             this.$http.get('/api/back-office/dashboard').then(response => {
                 this.html = response.data;
             });
+
+            // axios.get('/api/back-office/dashboard')
+            // .then(function (response) {
+            //     this.html = response;
+            // });
         },
         viewProfile: function ()
         {
@@ -60,7 +64,7 @@ Vue.component('backend-nav',{
         }
     },
     mounted() {
-      //do something after mounting vue instance
-      this.html = '<h1>Loading...</h1>';
+        //do something after mounting vue instance
+        this.html = '<h1>Loading...</h1>';
     }
 });
