@@ -1,18 +1,18 @@
-import Vue from 'vue';
 
-Vue.use(require('vue-resource'));
-
-new Vue({
+Vue.component('backend-nav',
+{
     el: 'body',
-
-    data: {
-        html: '<p>Loading...</p>'
+    data () {
+        return {
+            html: '<h1>Loading...</h1>'
+        };
     },
-    methods(){
+    methods:
+    {
         showCustomers(){
-            this.$http.get('/route').then(response => {
+            this.$http.get('/PaymentDue/Cognitivo').then(response => {
                 this.html = response.data;
-            });    
+            });
         },
         showItems(){
             this.$http.get('/route').then(response => {
@@ -24,13 +24,14 @@ new Vue({
                 this.html = response.data;
             });
         },
-        showCarts(){
+        showCarts: function (detail)
+        {
             this.$http.get('/route').then(response => {
                 this.html = response.data;
             });
         }
     },
-    ready() {
+    mounted() {
         this.$http.get('/route').then(response => {
             this.html = response.data;
         });

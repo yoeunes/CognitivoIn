@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('main')
-
+ <backend-nav inline-template>
     <div id="page-container" class="sidebar-o side-scroll page-header-modern main-content-boxed">
         <!-- Side Overlay-->
         <aside id="side-overlay">
@@ -209,8 +209,9 @@
                                 <span class="sidebar-mini-hide">Sales</span>
                             </a>
                             <ul>
+
                                 <li>
-                                    <a @click="" href="javascript:void(0)">Customers</a>
+                                    <a @click="showCustomers()" href="javascript:void(0)">Customers</a>
                                 </li>
                                 <li>
                                     <a @click="" href="javascript:void(0)">Opportunities</a>
@@ -387,7 +388,11 @@
     <!-- END Header -->
 
     <!-- Main Container -->
-    @yield('content')
+    
+    <div v-html="html">
+
+    </div>
+
     <!-- END Main Container -->
 
     <!-- Footer -->
@@ -402,5 +407,5 @@
     </footer>
     <!-- END Footer -->
 </div>
-
+</backend-nav>
 @endsection

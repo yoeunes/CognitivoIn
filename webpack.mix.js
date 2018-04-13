@@ -13,4 +13,15 @@ let mix = require('laravel-mix');
  */
 
 mix.js('resources/assets/js/app.js', 'public/js')
-   .sass('resources/assets/scss/main.scss', 'public/css');
+   .sass('resources/assets/scss/main.scss', 'public/css').webpackConfig({
+    resolve: {
+        modules: [
+            path.resolve(__dirname, 'vendor/laravel/spark-aurelius/resources/assets/js'),
+            'node_modules',
+          
+        ],
+        alias: {
+            'vue$': 'vue/dist/vue.js'
+        }
+    }
+});;

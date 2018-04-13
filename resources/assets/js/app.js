@@ -6,8 +6,14 @@
  */
 
 require('./bootstrap');
+require('./components/bootstrap');
+
+import Vue from 'vue';
+import VueRouter from 'vue-router';
+import VueResource from 'vue-resource'
 
 window.Vue = require('vue');
+window.Vue.use(VueResource);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -15,7 +21,6 @@ window.Vue = require('vue');
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-// Vue.component('backend-nav', require('./back_office/navigation.vue'));
 
 Vue.component(
     'passport-clients',
