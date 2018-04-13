@@ -58,5 +58,9 @@ Vue.component('backend-nav',{
                 this.html = response.data;
             });
         }
+    },
+    mounted() {
+      //do something after mounting vue instance
+      this.html = '<h1>Loading...</h1>';
     }
 });
