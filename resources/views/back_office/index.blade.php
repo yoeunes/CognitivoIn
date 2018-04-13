@@ -3,6 +3,9 @@
 @section('main')
     <backend-nav inline-template>
         <div>
+            {{-- <passport-clients></passport-clients>
+            <passport-authorized-clients></passport-authorized-clients>
+            <passport-personal-access-tokens></passport-personal-access-tokens> --}}
             <div id="page-container" class="sidebar-o side-scroll page-header-modern main-content-boxed">
                 <!-- Side Overlay-->
                 <aside id="side-overlay">
@@ -107,7 +110,6 @@
                                     <!-- Logo -->
                                     <span class="content-header-item font-w700 font-size-xl float-left animated fadeIn">
                                         <img src="/img/logo/cognitivo-64.svg" width="32" alt="">
-                                        {{-- <span class="text-dual-primary-dark">c</span><span class="text-primary">b</span> --}}
                                     </span>
                                     <!-- END Logo -->
                                 </div>
@@ -126,8 +128,6 @@
                                     <div class="content-header-item">
                                         <a href="">
                                             <img src="/img/logo/cognitivo-64.svg" width="36" alt="">
-                                            {{-- <i class="si si-fire text-primary"></i> --}}
-                                            {{-- <span class="font-size-xl text-dual-primary-dark">code</span><span class="font-size-xl text-primary">base</span> --}}
                                         </a>
                                     </div>
                                     <!-- END Logo -->
@@ -165,26 +165,26 @@
                             <div class="content-side content-side-full">
                                 <ul class="nav-main">
                                     <li>
-                                        <a class="active" href="">
+                                        <a @click="viewDashboard()" href="#">
                                             <i class="si si-pie-chart"></i>
                                             <span class="sidebar-mini-hide">Dashboard</span>
                                         </a>
                                     </li>
                                     <li>
-                                        <a class="active" href="">
-                                            <i class="fa fa-gears"></i>
-                                            <span class="sidebar-mini-hide">Profile</span>
+                                        <a @click="viewProfile()" href="#">
+                                            <i class="si si-home"></i>
+                                            <span class="sidebar-mini-hide">Company Profile</span>
                                         </a>
                                     </li>
                                     <li>
-                                        <a class="active" href="">
-                                            <i class="fa fa-location-arrow"></i>
-                                            <span class="sidebar-mini-hide">Stores</span>
+                                        <a @click="viewStores()" href="#">
+                                            <i class="si si-pointer"></i>
+                                            <span class="sidebar-mini-hide">Shops &amp; Locations</span>
                                         </a>
                                     </li>
                                     <li>
-                                        <a class="active" href="">
-                                            <i class="si si-box-open"></i>
+                                        <a @click="viewItems()" href="#">
+                                            <i class="si si-diamond"></i>
                                             <span class="sidebar-mini-hide">Products & Services</span>
                                         </a>
                                     </li>
@@ -196,30 +196,30 @@
                                     </li>
                                     <li>
                                         <a class="nav-submenu" data-toggle="nav-submenu" href="#">
-                                            <i class="fa fa-paper-plane"></i>
+                                            <i class="si si-paper-plane"></i>
                                             <span class="sidebar-mini-hide">Sales</span>
                                         </a>
                                         <ul>
-
                                             <li>
-                                                <a @click="showCustomers()" href="javascript:void(0)">Customers</a>
+                                                <a @click="viewCustomers()" href="#">Customers</a>
                                             </li>
                                             <li>
-                                                <a @click="" href="javascript:void(0)">Opportunities</a>
+                                                <a @click="viewOpportunities()" href="#">Opportunities</a>
                                             </li>
                                             <li>
-                                                <a @click="" href="javascript:void(0)">Orders</a>
+                                                <a @click="viewOrders()" href="#">Orders</a>
                                             </li>
                                         </ul>
                                     </li>
                                     <li>
                                         <a class="nav-submenu" data-toggle="nav-submenu" href="#">
-                                            <i class="fa fa-shopping-cart"></i>
+                                            <i class="si si-basket"></i>
                                             <span class="sidebar-mini-hide">Purchase</span>
                                         </a>
                                         <ul>
-                                            <a @click="" href="javascript:void(0)">Suppliers</a>
-
+                                            <li>
+                                                <a @click="" href="javascript:void(0)">Suppliers</a>
+                                            </li>
                                             <li>
                                                 <a @click="" href="javascript:void(0)">Purchases</a>
                                             </li>
@@ -227,7 +227,7 @@
                                     </li>
                                     <li>
                                         <a class="nav-submenu" data-toggle="nav-submenu" href="#">
-                                            <i class="fa fa-boxes"></i>
+                                            <i class="si si-puzzle"></i>
                                             <span class="sidebar-mini-hide">Stock</span>
                                         </a>
                                         <ul>
@@ -244,7 +244,7 @@
                                     </li>
                                     <li>
                                         <a class="nav-submenu" data-toggle="nav-submenu" href="#">
-                                            <i class="fa fa-briefcase"></i>
+                                            <i class="si si-wallet"></i>
                                             <span class="sidebar-mini-hide">Finance</span>
                                         </a>
                                         <ul>

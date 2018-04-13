@@ -8,12 +8,18 @@
 require('./bootstrap');
 require('./components/bootstrap');
 
+window.Vue = require('vue');
+
+import Vue from 'vue';
+import VueSweetalert2 from 'vue-sweetalert2';
 import VueRouter from 'vue-router';
 import VueResource from 'vue-resource';
-import Vue from 'vue';
+import Buefy from 'buefy';
+import 'buefy/lib/buefy.css';
 
-window.Vue = require('vue');
 window.Vue.use(VueResource);
+Vue.use(VueSweetalert2);
+Vue.use(Buefy);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -33,8 +39,6 @@ Vue.component(
     'passport-personal-access-tokens',
     require('./components/passport/PersonalAccessTokens.vue')
 );
-
-const router = new VueRouter({ routes })
 
 const app = new Vue({
     el: '#app'

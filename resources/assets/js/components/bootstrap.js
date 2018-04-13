@@ -1,1 +1,1 @@
-require('./../back_office/bootstrap');
+require('./../back_office-components/bootstrap');
