@@ -14,56 +14,40 @@ Vue.component('backend-nav',{
             this.$http.get('/back-office/dashboard').then(response => {
                    this.html = response.data;
                });
-
-            // axios.get('/back-office/dashboard')
-            // .then(function (response) {
-            //
-            //     this.html = response;
-            // })
-            // .catch(error => {
-            //     console.log(error)
-            // });
-
         },
         viewProfile: function ()
         {
-            this.$http.get('/api/back-office/profiles').then(response => {
+            this.$http.get('/back-office/profile').then(response => {
                 this.html = response.data;
             });
         },
         viewStores: function ()
         {
-            this.$http.get('/api/back-office/stores').then(response => {
+            this.$http.get('/back-office/locations').then(response => {
                 this.html = response.data;
             });
         },
         viewItems: function ()
         {
-            this.$http.get('/api/back-office/items').then(response => {
+            this.$http.get('/back-office/items').then(response => {
                 this.html = response.data;
             });
         },
         viewCustomers()
         {
-            this.$http.get('api/sales/customers').then(response => {
-                this.html = response.data;
-            });
-        },
-        viewItems()
-        {
-            this.$http.get('/route').then(response => {
+            this.$http.get('/back-office/sales/customers').then(response => {
                 this.html = response.data;
             });
         },
         viewOpportunities()
         {
-            this.$http.get('/route').then(response => {
+            this.$http.get('/back-office/sales/opportunities').then(response => {
                 this.html = response.data;
             });
         },
-        viewCarts: function (detail)
+        viewOrders: function (detail)
         {
-            this.$http.get('/route').then(response => {
+            this.$http.get('/back-office/sales/orders').then(response => {
                 this.html = response.data;
             });
         }

@@ -19,8 +19,8 @@ Route::group(['middleware' => 'auth'], function ()
     Route::prefix('back-office')->group(function ()
     {
         Route::get('dashboard', 'BackOfficeController@showDashboard');
-        Route::get('profiles', 'BackOfficeController@showProfile');
-        Route::get('stores', 'BackOfficeController@showStore');
+        Route::get('profile', 'BackOfficeController@showProfile');
+        Route::get('locations', 'BackOfficeController@showStore');
         Route::get('items', 'BackOfficeController@showItems');
 
         Route::prefix('sales')->group(function ()
@@ -47,6 +47,6 @@ Route::group(['middleware' => 'auth'], function ()
         });
     });
 });
-Auth::routes();
 
+Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
