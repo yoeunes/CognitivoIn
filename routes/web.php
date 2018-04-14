@@ -16,6 +16,7 @@ Route::get('/', function () {
 });
 Route::group(['middleware' => 'auth'], function ()
 {
+
     Route::prefix('back-office')->group(function ()
     {
         Route::get('dashboard', 'BackOfficeController@showDashboard');
@@ -49,4 +50,5 @@ Route::group(['middleware' => 'auth'], function ()
 });
 
 Auth::routes();
+    Route::resource('profile', 'ProfileController');
 Route::get('/home', 'HomeController@index')->name('home');
