@@ -12,6 +12,7 @@ use App\ItemReview;
 use App\ItemProperty;
 use App\ItemFaq;
 
+use Cviebrock\EloquentSluggable\Sluggable;
 use Laravel\Scout\Searchable;
 
 use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
@@ -19,7 +20,7 @@ use Spatie\MediaLibrary\HasMedia\HasMedia;
 
 class Item extends Model implements HasMedia
 {
-    use SoftDeletes, CanBeLiked;
+    use SoftDeletes, CanBeLiked, Sluggable, SoftDeletes;
     use HasMediaTrait;
     use Searchable;
     use \Spatie\Tags\HasTags;

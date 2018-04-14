@@ -54,6 +54,6 @@ Vue.component('backend-nav',{
     },
     mounted() {
         //do something after mounting vue instance
-        this.html = '<h1>Loading...</h1>';
+        this.html = '<h1> Loading... </h1>';
     }
 });
