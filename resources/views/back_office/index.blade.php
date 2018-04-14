@@ -23,10 +23,10 @@
 
                                 <!-- User Info -->
                                 <div class="content-header-item">
-                                    <a class="img-link mr-5" href="">
+                                    <a class="img-link mr-5" href="#">
                                         <img class="img-avatar img-avatar32" src="assets/img/avatars/avatar0.jpg" alt="">
                                     </a>
-                                    <a class="align-middle link-effect text-primary-dark font-w600" href="">Admin</a>
+                                    <a class="align-middle link-effect text-primary-dark font-w600" href="#">Admin</a>
                                 </div>
                                 <!-- END User Info -->
                             </div>
@@ -126,7 +126,7 @@
 
                                     <!-- Logo -->
                                     <div class="content-header-item">
-                                        <a href="">
+                                        <a href="#">
                                             <img src="/img/logo/cognitivo-64.svg" width="36" alt="">
                                         </a>
                                     </div>
@@ -146,12 +146,12 @@
 
                                 <!-- Visible only in normal mode -->
                                 <div class="sidebar-mini-hidden-b text-center">
-                                    <a class="img-link" href="">
+                                    <a class="img-link" href="#">
                                         <img class="img-avatar" src="{{ Auth::user()->profile->avatar }}" alt="Logo">
                                     </a>
                                     <ul class="list-inline mt-10">
                                         <li class="list-inline-item">
-                                            <a class="link-effect text-dual-primary-dark font-size-xs font-w600 text-uppercase" href="">
+                                            <a class="link-effect text-dual-primary-dark font-size-xs font-w600 text-uppercase" href="#">
                                                 {{ Auth::user()->profile->alias }}
                                             </a>
                                         </li>
@@ -165,33 +165,30 @@
                             <div class="content-side content-side-full">
                                 <ul class="nav-main">
                                     <li>
-                                        <a @click="viewDashboard()" href="#">
+                                        <a @click="Dashboard()" href="#">
                                             <i class="si si-pie-chart"></i>
                                             <span class="sidebar-mini-hide">Dashboard</span>
                                         </a>
                                     </li>
                                     <li>
-                                        <a @click="viewProfile()" href="#">
+                                        <a @click="Profile()" href="#">
                                             <i class="si si-home"></i>
                                             <span class="sidebar-mini-hide">Company Profile</span>
                                         </a>
                                     </li>
                                     <li>
-                                        <a @click="viewStores()" href="#">
+                                        <a @click="Stores()" href="#">
                                             <i class="si si-pointer"></i>
                                             <span class="sidebar-mini-hide">Shops &amp; Locations</span>
                                         </a>
                                     </li>
                                     <li>
-                                        <a @click="viewItems()" href="#">
+                                        <a @click="Items()" href="#">
                                             <i class="si si-diamond"></i>
                                             <span class="sidebar-mini-hide">Products & Services</span>
                                         </a>
                                     </li>
                                     <li class="nav-main-heading">
-                                        <span class="sidebar-mini-visible">
-                                            <i class="si si-home"></i>
-                                        </span>
                                         <span class="sidebar-mini-hidden">Modules</span>
                                     </li>
                                     <li>
@@ -201,13 +198,16 @@
                                         </a>
                                         <ul>
                                             <li>
-                                                <a @click="viewCustomers()" href="#">Customers</a>
+                                                <a @click="SalesDashboard()" href="#">Dashboard</a>
                                             </li>
                                             <li>
-                                                <a @click="viewOpportunities()" href="#">Opportunities</a>
+                                                <a @click="Customers()" href="#">Customers</a>
                                             </li>
                                             <li>
-                                                <a @click="viewOrders()" href="#">Orders</a>
+                                                <a @click="Opportunities()" href="#">Opportunities</a>
+                                            </li>
+                                            <li>
+                                                <a @click="Orders()" href="#">Orders</a>
                                             </li>
                                         </ul>
                                     </li>
@@ -218,10 +218,13 @@
                                         </a>
                                         <ul>
                                             <li>
-                                                <a @click="" href="javascript:void(0)">Suppliers</a>
+                                                <a @click="PurchaseDashboard()" href="#">Dashboard</a>
                                             </li>
                                             <li>
-                                                <a @click="" href="javascript:void(0)">Purchases</a>
+                                                <a @click="Suppliers()" href="#">Suppliers</a>
+                                            </li>
+                                            <li>
+                                                <a @click="Purchases()" href="#">Purchases</a>
                                             </li>
                                         </ul>
                                     </li>
@@ -232,13 +235,16 @@
                                         </a>
                                         <ul>
                                             <li>
-                                                <a @click="" href="javascript:void(0)">Stock Levels</a>
+                                                <a @click="StockDashboard()" href="#">Dashboard</a>
                                             </li>
                                             <li>
-                                                <a @click="" href="javascript:void(0)">Inventories</a>
+                                                <a @click="StockLevels" href="#">Stock Levels</a>
                                             </li>
                                             <li>
-                                                <a @click="" href="javascript:void(0)">Movements</a>
+                                                <a @click="StockAdjustments" href="#">Adjustments</a>
+                                            </li>
+                                            <li>
+                                                <a @click="Movements()" href="#">Movements</a>
                                             </li>
                                         </ul>
                                     </li>
@@ -249,16 +255,19 @@
                                         </a>
                                         <ul>
                                             <li>
-                                                <a @click="" href="javascript:void(0)">Accounts</a>
+                                                <a @click="viewFinanceDashboard()" href="#">Dashboard</a>
                                             </li>
                                             <li>
-                                                <a @click="" href="javascript:void(0)">Account Recievables</a>
+                                                <a @click="" href="#">Accounts</a>
                                             </li>
                                             <li>
-                                                <a @click="" href="javascript:void(0)">Account Payables</a>
+                                                <a @click="" href="#">Account Recievables</a>
                                             </li>
                                             <li>
-                                                <a @click="" href="javascript:void(0)">Account Movements</a>
+                                                <a @click="" href="#">Account Payables</a>
+                                            </li>
+                                            <li>
+                                                <a @click="" href="#">Account Movements</a>
                                             </li>
                                         </ul>
                                     </li>
@@ -303,27 +312,27 @@
                                     {{ Auth::user()->profile->name }}<i class="fa fa-angle-down ml-5"></i>
                                 </button>
                                 <div  id="dropdown" class="dropdown-menu dropdown-menu-right min-width-150" aria-labelledby="page-header-user-dropdown">
-                                    <a class="dropdown-item" href="">
+                                    <a class="dropdown-item" href="#">
                                         <i class="si si-user mr-5"></i> Profile
                                     </a>
-                                    <a class="dropdown-item d-flex align-items-center justify-content-between" href="">
+                                    <a class="dropdown-item d-flex align-items-center justify-content-between" href="#">
                                         <span><i class="si si-envelope-open mr-5"></i> Inbox</span>
                                         <span class="badge badge-primary">3</span>
                                     </a>
-                                    <a class="dropdown-item" href="">
+                                    <a class="dropdown-item" href="#">
                                         <i class="si si-note mr-5"></i> Invoices
                                     </a>
                                     <div class="dropdown-divider"></div>
 
                                     <!-- Toggle Side Overlay -->
                                     <!-- Layout API, functionality initialized in Codebase() -> uiApiLayout() -->
-                                    <a class="dropdown-item" href="javascript:void(0)" data-toggle="layout" data-action="side_overlay_toggle">
+                                    <a class="dropdown-item" href="#" data-toggle="layout" data-action="side_overlay_toggle">
                                         <i class="si si-wrench mr-5"></i> Settings
                                     </a>
                                     <!-- END Side Overlay -->
 
                                     <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="">
+                                    <a class="dropdown-item" href="#">
                                         <i class="si si-logout mr-5"></i> Sign Out
                                     </a>
                                 </div>

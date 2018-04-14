@@ -9,43 +9,43 @@ Vue.component('backend-nav',{
     },
     methods:
     {
-        viewDashboard: function ()
+        Dashboard(): function ()
         {
             this.$http.get('/back-office/dashboard').then(response => {
                    this.html = response.data;
                });
         },
-        viewProfile: function ()
+        Profile: function ()
         {
             this.$http.get('/back-office/profile').then(response => {
                 this.html = response.data;
             });
         },
-        viewStores: function ()
+        Stores: function ()
         {
             this.$http.get('/back-office/locations').then(response => {
                 this.html = response.data;
             });
         },
-        viewItems: function ()
+        Items: function ()
         {
             this.$http.get('/back-office/items').then(response => {
                 this.html = response.data;
             });
         },
-        viewCustomers()
+        Customers()
         {
             this.$http.get('/back-office/sales/customers').then(response => {
                 this.html = response.data;
             });
         },
-        viewOpportunities()
+        Opportunities()
         {
             this.$http.get('/back-office/sales/opportunities').then(response => {
                 this.html = response.data;
             });
         },
-        viewOrders: function (detail)
+        Orders: function (detail)
         {
             this.$http.get('/back-office/sales/orders').then(response => {
                 this.html = response.data;
