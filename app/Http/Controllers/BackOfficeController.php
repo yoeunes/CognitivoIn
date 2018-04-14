@@ -17,8 +17,13 @@ class BackOfficeController extends Controller
         // return view('home');
     }
 
-    public function showDashboard()
+    public function indexDashboard()
     {
         return view('back_office.dashboard');
+    }
+
+    public function indexProfile()
+    {
+        return view('back_office.profile');
     }
 }

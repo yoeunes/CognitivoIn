@@ -19,14 +19,14 @@ Route::group(['middleware' => 'auth'], function ()
 
     Route::prefix('back-office')->group(function ()
     {
-        Route::get('dashboard', 'BackOfficeController@showDashboard');
-        Route::get('profile', 'BackOfficeController@showProfile');
-        Route::get('locations', 'BackOfficeController@showStore');
-        Route::get('items', 'BackOfficeController@showItems');
+        Route::get('dashboard', 'BackOfficeController@indexDashboard');
+        Route::get('profile', 'BackOfficeController@indexProfile');
+        Route::get('locations', 'BackOfficeController@indexStore');
+        Route::get('items', 'BackOfficeController@indexItems');
 
         Route::prefix('sales')->group(function ()
         {
-            Route::get('stores', 'BackOfficeController@showStore');
+            Route::get('customers', 'BackOfficeController@showStore');
             Route::get('items', 'BackOfficeController@showItems');
             Route::get('stores', 'BackOfficeController@showStore');
             Route::get('items', 'BackOfficeController@showItems');
