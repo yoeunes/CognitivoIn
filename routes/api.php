@@ -20,36 +20,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::group(['middleware' => 'auth:api'], function ()
 {
-    Route::prefix('back-office')->group(function ()
-    {
-        Route::get('dashboard', 'BackOfficeController@showDashboard');
-        Route::get('profiles', 'BackOfficeController@showProfile');
-        Route::get('stores', 'BackOfficeController@showStore');
-        Route::get('items', 'BackOfficeController@showItems');
 
-        Route::prefix('sales')->group(function ()
-        {
-            Route::get('stores', 'BackOfficeController@showStore');
-            Route::get('items', 'BackOfficeController@showItems');
-            Route::get('stores', 'BackOfficeController@showStore');
-            Route::get('items', 'BackOfficeController@showItems');
-        });
-
-        Route::prefix('purchase')->group(function ()
-        {
-
-        });
-
-        Route::prefix('stock')->group(function ()
-        {
-
-        });
-
-        Route::prefix('finance')->group(function ()
-        {
-
-        });
-    });
 });
 
 

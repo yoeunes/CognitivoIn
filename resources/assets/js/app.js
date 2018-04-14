@@ -5,8 +5,6 @@
  * building robust, powerful web applications using Vue and Laravel.
  */
 
-require('./bootstrap');
-require('./components/bootstrap');
 
 window.Vue = require('vue');
 
@@ -16,6 +14,10 @@ import VueRouter from 'vue-router';
 import VueResource from 'vue-resource';
 import Buefy from 'buefy';
 import 'buefy/lib/buefy.css';
+
+
+require('./bootstrap');
+require('./components/bootstrap');
 
 window.Vue.use(VueResource);
 Vue.use(VueSweetalert2);

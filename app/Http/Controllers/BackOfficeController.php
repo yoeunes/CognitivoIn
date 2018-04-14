@@ -13,7 +13,7 @@ class BackOfficeController extends Controller
      */
     public function index()
     {
-        return view('back_office.index');
+        return view('back_office.dashboard');
         // return view('home');
     }
 

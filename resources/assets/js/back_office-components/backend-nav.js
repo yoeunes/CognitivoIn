@@ -1,4 +1,4 @@
-import Vue from 'vue';
+//import Vue from 'vue';
 
 Vue.component('backend-nav',{
     // props: ['profile'],
@@ -11,14 +11,19 @@ Vue.component('backend-nav',{
     {
         viewDashboard: function ()
         {
-            this.$http.get('/api/back-office/dashboard').then(response => {
-                this.html = response.data;
-            });
+            this.$http.get('/back-office/dashboard').then(response => {
+                   this.html = response.data;
+               });
 
-            // axios.get('/api/back-office/dashboard')
+            // axios.get('/back-office/dashboard')
             // .then(function (response) {
+            //
             //     this.html = response;
+            // })
+            // .catch(error => {
+            //     console.log(error)
             // });
+
         },
         viewProfile: function ()
         {
