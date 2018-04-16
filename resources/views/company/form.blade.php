@@ -51,6 +51,11 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="form-group">
+                                <div class="col-xs-12 col-sm-6 col-sm-offset-3">
+                                    <button class="btn btn-block btn-success" type="submit">Create Profile</button>
+                                </div>
+                            </div>
                             {{-- <div class="form-group">
                                 <div class="col-xs-12">
                                     <div class="form-material">
@@ -92,11 +97,7 @@
                 </div>
             </div>
         </div> --}}
-        <div class="form-group">
-            <div class="col-xs-12 col-sm-6 col-sm-offset-3">
-                <button class="btn btn-block btn-success" type="submit">Create Profile</button>
-            </div>
-        </div>
+    
     </form>
     <!-- END Register Form -->
 </div>

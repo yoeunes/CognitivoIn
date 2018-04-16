@@ -9,7 +9,7 @@ Vue.component('backend-nav',{
     },
     methods:
     {
-        Dashboard(): function ()
+        Dashboard: function ()
         {
             this.$http.get('/back-office/dashboard').then(response => {
                    this.html = response.data;

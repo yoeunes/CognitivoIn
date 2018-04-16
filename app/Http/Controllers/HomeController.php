@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Profile;
 class HomeController extends Controller
 {
     /**
@@ -21,9 +21,10 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Profile $profile)
     {
+        
         return view('back_office.index');
-        // return view('home');
+      //   return view('home');
     }
 }

@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\User;
 use App\Profile;
-use App\ProfileFollower;
+use App\followables;
 use \Overtrue\LaravelFollow\Traits\CanFollow;
 
 class ProfileController extends Controller
@@ -29,7 +29,7 @@ class ProfileController extends Controller
     */
     public function create()
     {
-        
+
         return view('company.form'); //->with('countries', $countries);
     }
 
@@ -41,7 +41,7 @@ class ProfileController extends Controller
     */
     public function store(Request $request)
     {
-        dd(1);
+
         //Create Company code. User Profile gets created automatically from User Registration.
         //Assign type = 2 for Company
         $company = new Profile();
@@ -54,17 +54,17 @@ class ProfileController extends Controller
         $company->save();
 
         //Laravel Follow
-        Auth::user()->profile->follow($company);
+        //Auth::user()->profile->follow($company);
 
         //Stream follow
 
-        $follower= ProfileFollower::where('profile_id',Auth::user()->profile_id)->
-        where('followable_id',$company->id)->first();
-
-        if (isset($follower)) {
-            $follower->role=1;
-            $follower->save();
-        }
+        // $follower= followables::where('user',Auth::user()->profile_id)->
+        // where('followable_id',$company->id)->first();
+        //
+        // if (isset($follower)) {
+        //     $follower->role=1;
+        //     $follower->save();
+        // }
 
         // $social = new ProfileFollower();
         // $social->profile_id = $profile->id;
@@ -83,7 +83,8 @@ class ProfileController extends Controller
     */
     public function show(Profile $profile)
     {
-        return view('social.profile')->with('profile', $profile);
+
+        return view('social.web')->with('profile', $profile);
     }
 
     /**

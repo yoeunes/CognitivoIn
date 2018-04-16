@@ -76,4 +76,4 @@ Route::group(['middleware' => 'auth'], function ()
 });
 
 Route::resource('profile', 'ProfileController');
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/{profile?}', 'HomeController@index')->name('home');

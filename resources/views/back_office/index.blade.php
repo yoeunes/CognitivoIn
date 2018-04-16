@@ -155,6 +155,7 @@
                                                 {{ Auth::user()->profile->alias }}
                                             </a>
                                         </li>
+
                                     </ul>
                                 </div>
                                 <!-- END Visible only in normal mode -->
@@ -308,6 +309,31 @@
                         <div class="content-header-section">
                             <!-- User Dropdown -->
                             <div class="btn-group" role="group">
+                                <li>
+                                    <a href="{{ route('profile.create') }}">
+                                        <span class="text-primary"><i class="si si-plus pull-right"></i>Create Company</span>
+                                    </a>
+                                </li>
+                                @php
+                                $listOfCompanies = App\Profile::GetProfiles()->get();
+
+                                @endphp
+
+                                @isset($listOfCompanies)
+                                    @if ($listOfCompanies->count() > 0)
+                                        @foreach ($listOfCompanies->sortBy('name') as $company)
+                                            <li>
+                                                <a href="{{ route('home', $company)}}">
+                                                    @if (request()->route('profile') != null && $company->slug == request()->route('profile')->slug)
+                                                        <i class="si si-briefcase pull-right"></i> <b>{{ mb_strimwidth($company->name, 0, 20, "...") }}</b>
+                                                    @else
+                                                        <i class="si si-briefcase pull-right"></i> {{ $company->name }}
+                                                    @endif
+                                                </a>
+                                            </li>
+                                        @endforeach
+                                    @endif
+                                @endisset
                                 <button type="button" class="btn btn-rounded btn-dual-secondary" id="page-header-user-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     {{ Auth::user()->profile->name }}<i class="fa fa-angle-down ml-5"></i>
                                 </button>

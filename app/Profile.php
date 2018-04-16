@@ -107,9 +107,9 @@ class Profile extends Model implements HasMedia
     public function scopeGetProfiles($query)
     {
         return $query
-        ->join('profile_followers', 'profile_followers.followable_id', '=', 'profiles.id')
-        ->where('profile_followers.role', "!=", "'Follower'")
-        ->where('profile_followers.profile_id', '=', Auth::user()->profile_id)
+        // ->join('followables', 'followables.followable_id', '=', 'profiles.id')
+        // ->where('followables.role', "!=", "'Follower'")
+        // ->where('followables.user_id', '=', Auth::user()->profile_id)
         ->select('profiles.name', 'profiles.id', 'profiles.slug');
     }
 
