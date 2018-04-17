@@ -20,7 +20,17 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::group(['middleware' => 'auth:api'], function ()
 {
+  // group by slug
+  // back-office/list-items/{location_slug?} //with stock and price list
+  // back-office/list-customers
+  // back-office/list-suppliers
+  // back-office/list-currrency
+  // back-office/list-account-receivables/{customer_ID}
+  // back-office/list-account-payables/{supplier_ID}
 
+  // back-office/make-sales //Note: Multiple
+  // back-office/receive-payment //Note: Multiple
+  // back-office/make-payment //Note: Multiple
 });
 
 
