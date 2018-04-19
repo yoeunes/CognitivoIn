@@ -138,10 +138,42 @@ class SchedualsController extends Controller
             ,'InvoiceDate' => '2018/12/05'
             ,'Deadline' => '2018/12/25'
             ,'Values' =>$values
-          ]];
+            ]];
 
 
-          return response()->json($data2,'200');
+            return response()->json($data2,'200');
 
+          }
+          public function ReceivePayment(Request $request,$profile)
+          {
+            $data=$request[0];
+            $scheduals=new Scheduals();
+            $scheduals->relationship_id=$data['relationship_id'];
+            $scheduals->currency_id=$data['currency_id'];
+            $scheduals->rate=$data['rate'];
+            $scheduals->date=Carbon::now();
+            $scheduals->date_exp=Carbon::now();
+            $scheduals->debit=$data['total_amount'];
+            $scheduals->save();
+
+            $scheduals=new Scheduals();
+            $scheduals->relationship_id=$data['relationship_id'];
+            $scheduals->currency_id=$data['currency_id'];
+            $scheduals->rate=$data['rate'];
+            $scheduals->date=Carbon::now();
+            $scheduals->date_exp=Carbon::now();
+            $scheduals->credit=$data['amount'];
+            $scheduals->save();
+
+
+
+
+            $data2 = [];
+
+            $data2[] = [
+              'PaymentReference' => $scheduals->id,
+              'ResponseType' => 1
+            ];
+            return response()->json($data2,'200');
+          }
         }
-      }

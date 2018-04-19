@@ -88,50 +88,6 @@ class AccountMovementController extends Controller
 
     public function ReceivePayment(Request $request,$profile)
     {
-        //
-        // if ($type==1)
-        // {
-        //     $relationship =  Relationship::join('profiles', 'relationships.supplier_id', 'profiles.id')
-        //     ->where('supplier_id', $profile)
-        //     ->where('supplier_accepted', true)->where(function ($q) use ($partnerName,$partnerTaxID)
-        //     {
-        //         $q->where('name', $partnerName)
-        //         ->orWhere('taxid', $partnerTaxID);
-        //
-        //     })->select('relationships.id')->first();
-        // }
-        // else
-        // {
-        //     $relationship =  Relationship::join('profiles', 'relationships.customer_id', 'profiles.id')
-        //     ->where('customer_id', $profile)
-        //     ->where('customer_accepted', true)->where(function ($q) use ($partnerName,$partnerTaxID)
-        //     {
-        //         $q->where('name', $partnerName)
-        //         ->orWhere('taxid', $partnerTaxID);
-        //     })->select('relationships.id')->first();
-        // }
-        //
-        // $currency=Currency::where('code',$CurrencyCode)->first();
-        // if (isset($relationship) and isset($currency)) {
-        //     $accountmovement = new AccountMovement();
-        //     $accountmovement -> currency_id = $currency->id;
-        //     $accountmovement -> currency_rate = $currency->exchange_rate;
-        //     $accountmovement -> user_id = $profile;
-        //     $accountmovement -> type_id = 1;
-        //
-        //     $accountmovement -> date = Carbon::now();
-        //     if ($type==1) {
-        //         $accountmovement -> credit = $Value;
-        //     }
-        //     else {
-        //         $accountmovement -> debit = $Value;
-        //     }
-        //     $accountmovement -> reference =$InvoiceReference;
-        //     $accountmovement->save();
-        //     return response()->json($accountmovement,'200');
-        //
-        // }
-        // return response()->json(null,'200');
 
         $data2 = [];
 
