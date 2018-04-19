@@ -23,8 +23,8 @@ class HomeController extends Controller
      */
     public function index(Profile $profile)
     {
-        
-        return view('back_office.index');
+
+      return view('back_office.index');
       //   return view('home');
     }
 }
