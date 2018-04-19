@@ -146,8 +146,8 @@ class SchedualsController extends Controller
           }
           public function ReceivePayment(Request $request,$profile)
           {
-            return response()->json($request->data[0]->currency_id);
-            $data=$request[0];
+        
+            $data=$request;
             $scheduals=new Scheduals();
             $scheduals->relationship_id=$data['relationship_id'];
             $scheduals->currency_id=$data['currency_id'];
