@@ -146,7 +146,7 @@ class SchedualsController extends Controller
           }
           public function ReceivePayment(Request $request,$profile)
           {
-        
+
             $data=$request;
             $scheduals=new Scheduals();
             $scheduals->relationship_id=$data['relationship_id'];
@@ -163,7 +163,7 @@ class SchedualsController extends Controller
             $scheduals->rate=$data['rate'];
             $scheduals->date=Carbon::now();
             $scheduals->date_exp=Carbon::now();
-            $scheduals->credit=$data['"amount"'];
+            $scheduals->credit=$data['amount'];
             $scheduals->save();
 
 
