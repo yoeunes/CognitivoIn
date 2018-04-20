@@ -25,6 +25,7 @@ Route::group(['middleware' => 'auth:api'], function ()
   {
     Route::get('back-office/list-items/{location_slug?}', 'Api\ApiController@list_items');
     Route::get('back-office/list-customers', 'Api\ApiController@list_customers');
+    Route::post('back-office/customers', 'Api\ApiController@customers');
     Route::get('back-office/list-suppliers', 'Api\ApiController@list_suppliers');
     Route::get('back-office/list-currency', 'Api\ApiController@list_currency');
     Route::get('back-office/list-account-receivables/{customer_ID}', 'Api\ApiController@list_account_receivables');

@@ -315,7 +315,7 @@
                                     </a>
                                 </li>
                                 @php
-                                $listOfCompanies = App\Profile::GetProfiles()->get();
+                                $listOfCompanies = App\Profile::GetProfiles()->where('type',2)->get();
 
                                 @endphp
 

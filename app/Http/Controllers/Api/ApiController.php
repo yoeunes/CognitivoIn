@@ -13,61 +13,73 @@ use Illuminate\Http\Request;
 
 class ApiController extends Controller
 {
-    public function list_items(Profile $profile,$location_slug)
-    {
-        // if (isset($location_slug)) {
-        //     $items =Item::GetItems($profile->id)
-        //     ->join('item_movements', 'items.id', 'item_movements.item_id')
-        //     ->where('location_id',$location_slug)
-        //     ->groupBy('item_movements.item_id')
-        //     ->get();
-        // }
-        // else {
-    
-            $items =Item::GetItems($profile->id)
-            ->get();
+  public function list_items(Profile $profile,$location_slug)
+  {
+    // if (isset($location_slug)) {
+    //     $items =Item::GetItems($profile->id)
+    //     ->join('item_movements', 'items.id', 'item_movements.item_id')
+    //     ->where('location_id',$location_slug)
+    //     ->groupBy('item_movements.item_id')
+    //     ->get();
+    // }
+    // else {
+
+    $items =Item::GetItems($profile->id)
+    ->get();
     //    }
 
-        return response()->json($items);
-    }
-    public function list_customers(Profile $profile)
-    {
+    return response()->json($items);
+  }
+  public function list_customers(Profile $profile)
+  {
 
-        $customers = Relationship::GetCustomers()->get();
+    $customers = Relationship::GetCustomers()->get();
 
-        return response()->json($customers);
-    }
-    public function list_suppliers(Profile $profile)
-    {
-        $suppliers = Relationship::GetSuppliers()->get();
+    return response()->json($customers);
+  }
+  public function list_suppliers(Profile $profile)
+  {
+    $suppliers = Relationship::GetSuppliers()->get();
 
-        return response()->json($suppliers);
-    }
-    public function list_currency(Profile $profile)
-    {
-        $suppliers = Currency::get();
+    return response()->json($suppliers);
+  }
+  public function list_currency(Profile $profile)
+  {
+    $suppliers = Currency::get();
 
-        return response()->json($suppliers);
-    }
-    public function list_account_receivables(Profile $profile,$customer_ID)
-    {
-        $suppliers = Scheduals::
-        Join('relationships','relationships.id','=','scheduals.relationship_id')
-        ->where('relationships.customer_id',$customer_ID)
-        ->get();
+    return response()->json($suppliers);
+  }
+  public function list_account_receivables(Profile $profile,$customer_ID)
+  {
+    $suppliers = Scheduals::
+    Join('relationships','relationships.id','=','scheduals.relationship_id')
+    ->where('relationships.customer_id',$customer_ID)
+    ->get();
 
-        return response()->json($suppliers);
-    }
-    public function list_account_payables(Profile $profile,$supplier_ID)
-    {
-        $suppliers = Scheduals::
-        Join('relationships','relationships.id','=','scheduals.relationship_id')
-        ->where('relationships.supplier_id',$supplier_ID)
-        ->get();
+    return response()->json($suppliers);
+  }
+  public function list_account_payables(Profile $profile,$supplier_ID)
+  {
+    $suppliers = Scheduals::
+    Join('relationships','relationships.id','=','scheduals.relationship_id')
+    ->where('relationships.supplier_id',$supplier_ID)
+    ->get();
 
-        return response()->json($suppliers);
-    }
-
+    return response()->json($suppliers);
+  }
+  public function customers(Profile $profile,Request $request)
+  {
+    $relationship= new Relationship();
+    $relationship->supplier_id = $profile->id;
+    $relationship->customer_taxid=$request['taxid'];
+    $relationship->customer_alias=$request['alias'];
+    $relationship->customer_address=$request['address'];
+    $relationship->customer_telephone=$request['telephone'];
+    $relationship->customer_email=$request['email'];
+    $relationship->supplier_accepted=true;
+    $relationship->save();
+    return response()->json($relationship);
+  }
 
 
 

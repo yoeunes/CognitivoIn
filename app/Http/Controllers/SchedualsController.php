@@ -178,11 +178,13 @@ class SchedualsController extends Controller
       $accountmovement->currency_id=$currency->id;
       $accountmovement->currency_rate=$currency->exchange_rate;
       $accountmovement->date=Carbon::now();
-      if ($data['Type']==1) {
+      if ($data['Type']==1)
+      {
         $accountmovement->credit=$data['Value'];
         $accountmovement->debit=0;
       }
-      else {
+      else
+      {
         $accountmovement->credit=0;
         $accountmovement->debit=$data['Value'];
       }
