@@ -30,7 +30,7 @@ Route::group(['middleware' => 'auth:api'], function ()
     Route::get('back-office/list-account-receivables/{customer_ID}', 'Api\ApiController@list_account_receivables');
     Route::get('back-office/list-account-payables/{supplier_id}', 'Api\ApiController@list_account_payables');
 
-    Route::post('back-office/ReceivePayment', 'SchedualsController@ReceivePayment');
+
   });
   // group by slug
   // back-office/list-items/{location_slug?} //with stock and price list
@@ -46,6 +46,6 @@ Route::group(['middleware' => 'auth:api'], function ()
 
 
 //  Route::get('PaymentDue/{slug}/{type}/{partnerName}/{partnerTaxID}', 'SchedualsController@PaymentDue');
-Route::get('PaymentDue/{slug}', 'SchedualsController@PaymentDue');
-Route::post('ReceivePayment/{slug}', 'AccountMovementController@ReceivePayment');
+Route::post('PaymentDue/{profile}', 'SchedualsController@PaymentDue');
+Route::post('ReceivePayment/{profile}', 'SchedualsController@ReceivePayment');
 Route::post('Anull', 'AccountMovementController@Anull');

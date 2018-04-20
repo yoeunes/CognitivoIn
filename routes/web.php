@@ -29,47 +29,47 @@ Route::group(['middleware' => 'auth'], function ()
 
     Route::prefix('back-office')->group(function ()
     {
-        Route::get('/', 'BackOffice.Controller@index');
-        Route::get('dashboard', 'BackOffice.Controller@index');
-        Route::get('profile', 'BackOffice.Controller@indexProfile');
+        Route::get('/', 'BackOfficeController@index');
+        Route::get('dashboard', 'BackOfficeController@index');
+        Route::get('profile', 'BackOfficeController@indexProfile');
         Route::get('locations', 'BackOfficeController@indexStore');
         Route::get('items', 'BackOfficeController@indexItems');
 
         Route::prefix('sales')->group(function ()
         {
-            Route::get('dashboard', 'BackOffice.Controller@dashboardSales');
+            Route::get('dashboard', 'BackOfficeController@dashboardSales');
             Route::resources([
-                'customers' => 'BackOffice.CustomerController',
-                'opportunities' => 'BackOffice.OpportunityController',
-                'orders' => 'BackOffice.OrderController',
+                'customers' => 'BackOfficeCustomerController',
+                'opportunities' => 'BackOfficeOpportunityController',
+                'orders' => 'BackOfficeOrderController',
             ]);
         });
 
         Route::prefix('purchase')->group(function ()
         {
-            Route::get('dashboard', 'BackOffice.Controller@dashboardPurchase');
+            Route::get('dashboard', 'BackOfficeController@dashboardPurchase');
             Route::resources([
-                'suppliers' => 'BackOffice.SupplierController',
-                'orders' => 'BackOffice.PurchaseController',
+                'suppliers' => 'BackOfficeSupplierController',
+                'orders' => 'BackOfficePurchaseController',
             ]);
         });
 
         Route::prefix('stock')->group(function ()
         {
-            Route::get('dashboard', 'BackOffice.Controller@dashboardStock');
+            Route::get('dashboard', 'BackOfficeController@dashboardStock');
             Route::resources([
-                'movements' => 'BackOffice.StockMovementController',
+                'movements' => 'BackOfficeStockMovementController',
             ]);
         });
 
         Route::prefix('finance')->group(function ()
         {
-            Route::get('dashboard', 'BackOffice.Controller@dashboardFinance');
+            Route::get('dashboard', 'BackOfficeController@dashboardFinance');
             Route::resources([
-                'accounts' => 'BackOffice.AccountController',
-                'account-receivables' => 'BackOffice.AccountReceivableController',
-                'account-payables' => 'BackOffice.AccountPayableController',
-                'account-movements' => 'BackOffice.AccountMovementController',
+                'accounts' => 'BackOfficeAccountController',
+                'account-receivables' => 'BackOfficeAccountReceivableController',
+                'account-payables' => 'BackOfficeAccountPayableController',
+                'account-movements' => 'BackOfficeAccountMovementController',
             ]);
         });
     });

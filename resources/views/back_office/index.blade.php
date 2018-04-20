@@ -235,18 +235,18 @@
                                             <span class="sidebar-mini-hide">Stock</span>
                                         </a>
                                         <ul>
-                                            <li>
+                                            {{-- <li>
                                                 <a @click="StockDashboard()" href="#">Dashboard</a>
                                             </li>
                                             <li>
-                                                <a @click="StockLevels" href="#">Stock Levels</a>
+                                                <a @click="StockLevels()" href="#">Stock Levels</a>
                                             </li>
                                             <li>
-                                                <a @click="StockAdjustments" href="#">Adjustments</a>
+                                                <a @click="StockAdjustments()" href="#">Adjustments</a>
                                             </li>
                                             <li>
                                                 <a @click="Movements()" href="#">Movements</a>
-                                            </li>
+                                            </li> --}}
                                         </ul>
                                     </li>
                                     <li>
