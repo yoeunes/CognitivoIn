@@ -151,6 +151,9 @@ class SchedualsController extends Controller
 
 
       $data=$request[0];
+      if (!isset($data)) {
+        $data=$request;
+      }
 
       if ($data['Type']==1) {
         $relationship=Relationship::GetCustomers()
