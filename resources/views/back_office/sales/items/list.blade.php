@@ -24,9 +24,9 @@
     </div>
 
     <div class="col-1">
-      <div class="m-btn-group btn-group-sm m-btn-group--pill btn-group" role="group" aria-label="...">
+      <div role="group" aria-label="...">
 
-        <a @click="onEdit(invoice.id)" class="m-btn btn btn-secondary"><i class="la la-pencil m--font-brand"></i></a>
+        <a @click="onEdit(invoice.id)" ></a>
         <a @click="onDelete(invoice)" class="m-btn btn btn-secondary"><i class="la la-trash m--font-danger"></i></a>
         <a @click="onAnull(invoice)" class="m-btn btn btn-secondary"><i class="la la-close m--font-danger"></i></a>
       </div>

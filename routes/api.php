@@ -25,7 +25,8 @@ Route::group(['middleware' => 'auth:api'], function ()
   {
     Route::get('back-office/list-items/{skip}', 'Api\ApiController@list_items');
     Route::get('back-office/list-items/by-id/{id}', 'Api\ApiController@list_itemsByID');
-    Route::get('back-office/list-customers', 'Api\ApiController@list_customers');
+    Route::get('back-office/list-customers/{skip}', 'Api\ApiController@list_customers');
+    Route::get('back-office/list-customers/by-id/{id}', 'Api\ApiController@list_customersByID');
     Route::post('back-office/customers', 'Api\ApiController@customers');
     Route::get('back-office/list-suppliers', 'Api\ApiController@list_suppliers');
     Route::get('back-office/list-currency', 'Api\ApiController@list_currency');

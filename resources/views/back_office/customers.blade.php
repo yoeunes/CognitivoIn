@@ -8,16 +8,16 @@
   </a>
 </div>
 
-    <infinity  baseurl="back-office/list-items" inline-template>
+    <infinity  baseurl="back-office/list-customers" inline-template>
         <div>
 
            <div v-if="$parent.$parent.showList">
 
-                @include('back_office/sales/items/list')
+                @include('back_office/sales/customers/list')
             </div>
             <div v-else>
 
-                @include('back_office/sales/items/form')
+                @include('back_office/sales/customers/form')
             </div>
         </div>
     </infinity>

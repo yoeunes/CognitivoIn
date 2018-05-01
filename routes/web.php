@@ -42,12 +42,11 @@ Route::group(['middleware' => 'auth'], function ()
         Route::prefix('sales')->group(function ()
         {
             Route::get('dashboard', 'BackOfficeController@dashboardSales');
-            Route::resource('items', 'ItemController');
             Route::resources([
                 'customers' => 'BackOfficeCustomerController',
                 'opportunities' => 'BackOfficeOpportunityController',
-                'orders' => 'BackOfficeOrderController'
-
+                'orders' => 'BackOfficeOrderController',
+                'items' => 'ItemController'
             ]);
         });
 

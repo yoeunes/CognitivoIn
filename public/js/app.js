@@ -54311,70 +54311,70 @@ __webpack_require__(58);
 
 Vue.component('backend-nav', {
 
-    // props: ['profile'],
-    data: function data() {
-        return {
-            html: '<h1>Loading...</h1>',
-            showItem: 0
-        };
+  // props: ['profile'],
+  data: function data() {
+    return {
+      html: '<h1>Loading...</h1>',
+      showItem: 0,
+      showCutomer: 0
+    };
+  },
+
+  methods: {
+    Dashboard: function Dashboard() {
+      var _this = this;
+
+      this.$http.get('/back-office/dashboard').then(function (response) {
+        _this.html = response.data;
+      });
+    },
+    Profile: function Profile() {
+      var _this2 = this;
+
+      this.$http.get('/back-office/profile').then(function (response) {
+        _this2.html = response.data;
+      });
+    },
+    Stores: function Stores() {
+      var _this3 = this;
+
+      this.$http.get('/back-office/locations').then(function (response) {
+        _this3.html = response.data;
+      });
+    },
+    Items: function Items() {
+      this.showItem = 1;
+      // this.$http.get('/back-office/items').then(response => {
+      //     this.html = response.bodyText;
+      //     console.log(response)
+      // });
+    },
+    Customers: function Customers() {
+      this.showCustomer = 1;
+      // this.$http.get('/back-office/sales/customers').then(response => {
+      //   this.html = response.data;
+      // });
+    },
+    Opportunities: function Opportunities() {
+      var _this4 = this;
+
+      this.$http.get('/back-office/sales/opportunities').then(function (response) {
+        _this4.html = response.data;
+      });
     },
 
-    methods: {
-        Dashboard: function Dashboard() {
-            var _this = this;
+    Orders: function Orders(detail) {
+      var _this5 = this;
 
-            this.$http.get('/back-office/dashboard').then(function (response) {
-                _this.html = response.data;
-            });
-        },
-        Profile: function Profile() {
-            var _this2 = this;
-
-            this.$http.get('/back-office/profile').then(function (response) {
-                _this2.html = response.data;
-            });
-        },
-        Stores: function Stores() {
-            var _this3 = this;
-
-            this.$http.get('/back-office/locations').then(function (response) {
-                _this3.html = response.data;
-            });
-        },
-        Items: function Items() {
-            this.showItem = 1;
-            // this.$http.get('/back-office/items').then(response => {
-            //     this.html = response.bodyText;
-            //     console.log(response)
-            // });
-        },
-        Customers: function Customers() {
-            var _this4 = this;
-
-            this.$http.get('/back-office/sales/customers').then(function (response) {
-                _this4.html = response.data;
-            });
-        },
-        Opportunities: function Opportunities() {
-            var _this5 = this;
-
-            this.$http.get('/back-office/sales/opportunities').then(function (response) {
-                _this5.html = response.data;
-            });
-        },
-
-        Orders: function Orders(detail) {
-            var _this6 = this;
-
-            this.$http.get('/back-office/sales/orders').then(function (response) {
-                _this6.html = response.data;
-            });
-        }
-    },
-    mounted: function mounted() {
-        //do something after mounting vue instance
-        this.html = '<h1> Loading... </h1>';
+      this.$http.get('/back-office/sales/orders').then(function (response) {
+        _this5.html = response.data;
+      });
     }
+  },
+  mounted: function mounted() {
+    //do something after mounting vue instance
+    this.html = '<h1> Loading... </h1>';
+  }
 });
 
 /***/ }),

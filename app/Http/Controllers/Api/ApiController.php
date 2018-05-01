@@ -38,16 +38,29 @@ class ApiController extends Controller
 
     $items =Item::GetItems($profile->id)
     ->where('id',$id)
-    
+
       ->get();
 
 
     return response()->json($items);
   }
-  public function list_customers(Profile $profile)
+  public function list_customers(Profile $profile,$skip)
   {
 
-    $customers = Relationship::GetCustomers()->get();
+    $customers = Relationship::GetCustomers()->skip($skip)
+      ->take(100)->get();
+
+    return response()->json($customers);
+  }
+  public function list_customersByID(Profile $profile,$id)
+  {
+
+
+    $customers =Relationship::GetCustomers($profile->id)
+    ->where('id',$id)
+
+      ->get();
+
 
     return response()->json($customers);
   }
