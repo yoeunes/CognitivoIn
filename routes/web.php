@@ -27,13 +27,15 @@ Route::group(['middleware' => 'auth'], function ()
         'profile' => 'ProfileController'
     ]);
 
-    Route::prefix('back-office')->group(function ()
+    Route::prefix('back-office/{profile?}')->group(function ()
     {
         Route::get('/', 'BackOfficeController@index');
-        Route::get('dashboard', 'BackOfficeController@index');
+        Route::get('dashboard', 'BackOfficeController@index')->name('dashboard');
         Route::get('profile', 'BackOfficeController@indexProfile');
         Route::get('locations', 'BackOfficeController@indexStore');
-        Route::get('items', 'BackOfficeController@indexItems');
+
+        Route::get('selectitems', 'BackOfficeController@indexItems');
+
 
         Route::prefix('sales')->group(function ()
         {
@@ -42,6 +44,7 @@ Route::group(['middleware' => 'auth'], function ()
                 'customers' => 'BackOfficeCustomerController',
                 'opportunities' => 'BackOfficeOpportunityController',
                 'orders' => 'BackOfficeOrderController',
+                'items' => 'ItemController',
             ]);
         });
 

@@ -1,10 +1,12 @@
 //import Vue from 'vue';
 
 Vue.component('backend-nav',{
+    //template:'<infinity  baseurl="commercial/items" inline-template><div><div v-if="$parent.showList">@include("back_office/items/list")</div><div v-else>@include("back_office/items/form")</div></div></infinity>',
     // props: ['profile'],
     data () {
         return {
-            html: '<h1>Loading...</h1>'
+            html: '<h1>Loading...</h1>',
+            showItem:0
         };
     },
     methods:
@@ -29,9 +31,11 @@ Vue.component('backend-nav',{
         },
         Items: function ()
         {
-            this.$http.get('/back-office/items').then(response => {
-                this.html = response.data;
-            });
+            this.showItem=1;
+            // this.$http.get('/back-office/items').then(response => {
+            //     this.html = response.bodyText;
+            //     console.log(response)
+            // });
         },
         Customers()
         {

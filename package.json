@@ -23,7 +23,9 @@
     "dependencies": {
         "buefy": "^0.6.5",
         "pngquant-bin": "^4.0.0",
+        "vue-infinite-loading": "^2.3.1",
         "vue-router": "^3.0.1",
+        "vue-sweetalert": "^0.1.18",
         "vue-sweetalert2": "^1.2.4"
     }
 }

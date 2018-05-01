@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Profile;
 use Illuminate\Http\Request;
 
 class BackOfficeController extends Controller
@@ -11,7 +12,7 @@ class BackOfficeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Profile $profile)
     {
         return view('back_office.index');
         // return view('home');
@@ -25,5 +26,10 @@ class BackOfficeController extends Controller
     public function indexProfile()
     {
         return view('back_office.profile');
+    }
+
+    public function indexItems()
+    {
+        return view('back_office.items');
     }
 }

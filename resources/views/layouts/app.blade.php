@@ -43,7 +43,9 @@
 <body>
     <div id="app">
         <div>
+            <model   inline-template>
             @yield('main')
+          </model>
         </div>
     </div>
 
