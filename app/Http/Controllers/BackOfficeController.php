@@ -12,7 +12,7 @@ class BackOfficeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Profile $profile)
+    public function index()
     {
         return view('back_office.index');
         // return view('home');

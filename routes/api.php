@@ -23,7 +23,8 @@ Route::group(['middleware' => 'auth:api'], function ()
 
   Route::prefix('{profile}')->group(function ()
   {
-    Route::get('back-office/list-items/{location_slug?}', 'Api\ApiController@list_items');
+    Route::get('back-office/list-items/{skip}', 'Api\ApiController@list_items');
+    Route::get('back-office/list-items/by-id/{id}', 'Api\ApiController@list_itemsByID');
     Route::get('back-office/list-customers', 'Api\ApiController@list_customers');
     Route::post('back-office/customers', 'Api\ApiController@customers');
     Route::get('back-office/list-suppliers', 'Api\ApiController@list_suppliers');

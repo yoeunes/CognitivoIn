@@ -27,24 +27,27 @@ Route::group(['middleware' => 'auth'], function ()
         'profile' => 'ProfileController'
     ]);
 
-    Route::prefix('back-office/{profile?}')->group(function ()
-    {
-        Route::get('/', 'BackOfficeController@index');
-        Route::get('dashboard', 'BackOfficeController@index')->name('dashboard');
-        Route::get('profile', 'BackOfficeController@indexProfile');
-        Route::get('locations', 'BackOfficeController@indexStore');
+    Route::get('/', 'BackOfficeController@index');
+    Route::get('dashboard', 'BackOfficeController@index')->name('dashboard');
+    Route::get('profile', 'BackOfficeController@indexProfile');
+    Route::get('locations', 'BackOfficeController@indexStore');
 
-        Route::get('selectitems', 'BackOfficeController@indexItems');
+    Route::get('selectitems', 'BackOfficeController@indexItems');
+
+    Route::prefix('back-office/{profile}')->group(function ()
+    {
+
 
 
         Route::prefix('sales')->group(function ()
         {
             Route::get('dashboard', 'BackOfficeController@dashboardSales');
+            Route::resource('items', 'ItemController');
             Route::resources([
                 'customers' => 'BackOfficeCustomerController',
                 'opportunities' => 'BackOfficeOpportunityController',
-                'orders' => 'BackOfficeOrderController',
-                'items' => 'ItemController',
+                'orders' => 'BackOfficeOrderController'
+
             ]);
         });
 

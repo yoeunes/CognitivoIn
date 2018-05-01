@@ -13,7 +13,7 @@ use Illuminate\Http\Request;
 
 class ApiController extends Controller
 {
-  public function list_items(Profile $profile,$location_slug)
+  public function list_items(Profile $profile,$skip)
   {
     // if (isset($location_slug)) {
     //     $items =Item::GetItems($profile->id)
@@ -25,8 +25,22 @@ class ApiController extends Controller
     // else {
 
     $items =Item::GetItems($profile->id)
-    ->get();
+    ->skip($skip)
+      ->take(100)
+      ->get();
     //    }
+
+    return response()->json($items);
+  }
+  public function list_itemsByID(Profile $profile,$id)
+  {
+
+
+    $items =Item::GetItems($profile->id)
+    ->where('id',$id)
+    
+      ->get();
+
 
     return response()->json($items);
   }

@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Overtrue\LaravelFollow\Traits\CanBeLiked;
 use App\Profile;
 use App\ItemImage;
-use App\ItemTag;
+//use App\ItemTag;
 use App\ItemReview;
 use App\ItemProperty;
 use App\ItemFaq;
@@ -18,7 +18,7 @@ use Laravel\Scout\Searchable;
 // use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 // use Spatie\MediaLibrary\HasMedia\HasMedia;
 
-class Item extends Model 
+class Item extends Model
 {
     use SoftDeletes, CanBeLiked;
 //    use HasMediaTrait;
@@ -82,10 +82,10 @@ class Item extends Model
         return $this->hasMany(ItemReview::class);
     }
 
-    public function tags()
-    {
-        return $this->hasMany(ItemTag::class);
-    }
+    // public function tags()
+    // {
+    //     return $this->hasMany(ItemTag::class);
+    // }
 
     public function targets()
     {

@@ -421,9 +421,7 @@
 
         @include('back_office/items')
     </div>
-    <div v-else>
-    else
-    </div>
+  
 
 </div>
 

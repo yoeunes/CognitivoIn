@@ -16,18 +16,18 @@ class Controller extends BaseController
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        return view('back_office.dashboard');
-    }
-
-    public function indexDashboard()
-    {
-        return view('back_office.dashboard');
-    }
-
-    public function indexProfile()
-    {
-        return view('back_office.profile');
-    }
+    // public function index()
+    // {
+    //     return view('back_office.dashboard');
+    // }
+    //
+    // public function indexDashboard()
+    // {
+    //     return view('back_office.dashboard');
+    // }
+    //
+    // public function indexProfile()
+    // {
+    //     return view('back_office.profile');
+    // }
 }

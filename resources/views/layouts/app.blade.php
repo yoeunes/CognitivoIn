@@ -44,8 +44,10 @@
     <div id="app">
         <div>
             <model   inline-template>
-            @yield('main')
-          </model>
+                <div>
+                    @yield('main')
+                </div>
+            </model>
         </div>
     </div>
 

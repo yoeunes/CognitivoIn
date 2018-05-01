@@ -44,7 +44,7 @@ Vue.component('infinity',
         infiniteHandler($state)
         {
             var app = this;
-            axios.get('/api/' + this.profile + '/' + this.baseurl + '/' + app.skip + '',
+            axios.get('/api/cognitivo' + '/' + this.baseurl + '/' + app.skip + '',
             {
                 params:
                 {
@@ -53,8 +53,10 @@ Vue.component('infinity',
             })
             .then(({ data }) =>
             {
+
                 if (data.length > 0)
                 {
+                  console.log(data);
                     for (let i = 0; i < data.length; i++)
                     {
                         app.list.push(data[i]);
@@ -73,17 +75,18 @@ Vue.component('infinity',
         {
             var app = this;
 
-            app.$parent.showList = false;
+            app.$parent.$parent.showList = false;
+             console.log(data);
             $.ajax({
-                url: '/api/' + app.taxpayer +  '/' +  app.baseurl + '/by-id/' + data,
+                url: '/api/cognitivo' + '/' + this.baseurl + '/by-id' + '/'  + data,
                 headers: {'X-CSRF-TOKEN': CSRF_TOKEN},
                 type: 'get',
                 dataType: 'json',
                 async: true,
                 success: function(data)
                 {
-                  console.log('/api/' + app.profile  + '/' +  app.baseurl + '/by-id/' + data);
-                    app.$children[0].onEdit(data[0]);
+                  console.log(data);
+                app.$children[0].onEdit(data[0]);
 
                 },
                 error: function(xhr, status, error)
