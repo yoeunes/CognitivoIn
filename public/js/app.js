@@ -54316,7 +54316,7 @@ Vue.component('backend-nav', {
     return {
       html: '<h1>Loading...</h1>',
       showItem: 0,
-      showCutomer: 0
+      showCustomer: 0
     };
   },
 
@@ -54343,14 +54343,20 @@ Vue.component('backend-nav', {
       });
     },
     Items: function Items() {
+
       this.showItem = 1;
+      this.showCustomer = 0;
+
       // this.$http.get('/back-office/items').then(response => {
       //     this.html = response.bodyText;
       //     console.log(response)
       // });
     },
     Customers: function Customers() {
+
       this.showCustomer = 1;
+      this.showItem = 0;
+
       // this.$http.get('/back-office/sales/customers').then(response => {
       //   this.html = response.data;
       // });
@@ -54463,31 +54469,11 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('item-form', {
         console.log(error);
         console.log(error.response);
       });
-    },
-
-    getCurrencies: function getCurrencies(data) {
-      var _this = this;
-
-      var app = this;
-      __WEBPACK_IMPORTED_MODULE_2_axios___default.a.get('/api/' + app.$parent.taxpayer + '/get_currency').then(function (_ref) {
-        var data = _ref.data;
-
-        app.currencies = [];
-        for (var i = 0; i < data.length; i++) {
-          app.currencies.push({ name: data[i]['name'], id: data[i]['id'], isoCode: data[i]['code'] });
-          if (data[i]['code'] == _this.taxpayerCurrency) {
-            app.currency_id = data[i]['id'];
-          }
-        }
-      });
     }
 
   },
 
-  mounted: function mounted() {
-
-    this.getCurrencies();
-  }
+  mounted: function mounted() {}
 });
 
 /***/ }),
@@ -54550,6 +54536,7 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('infinity', {
     methods: {
         infiniteHandler: function infiniteHandler($state) {
             var app = this;
+            console.log('/api/cognitivo' + '/' + this.baseurl + '/' + app.skip + '');
             __WEBPACK_IMPORTED_MODULE_3_axios___default.a.get('/api/cognitivo' + '/' + this.baseurl + '/' + app.skip + '', {
                 params: {
                     page: app.list.length / 100 + 1

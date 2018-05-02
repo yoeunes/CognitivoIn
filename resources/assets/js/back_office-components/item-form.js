@@ -97,32 +97,7 @@ Vue.component('item-form',
         console.log(error);
         console.log(error.response);
       });
-    },
-
-
-
-
-
-    getCurrencies: function(data)
-    {
-      var app = this;
-      axios.get('/api/' + app.$parent.taxpayer + '/get_currency' ,
-    )
-    .then(({ data }) =>
-    {
-      app.currencies = [];
-      for(let i = 0; i < data.length; i++)
-      {
-        app.currencies.push({ name:data[i]['name'], id:data[i]['id'], isoCode:data[i]['code']});
-        if (data[i]['code'] == this.taxpayerCurrency)
-        {
-          app.currency_id = data[i]['id'];
-        }
-      }
-    });
-
-
-  }
+    }
 
 
 },
@@ -131,6 +106,6 @@ mounted: function mounted()
 {
 
 
-  this.getCurrencies();
+  
 }
 });

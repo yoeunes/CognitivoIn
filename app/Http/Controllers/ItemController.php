@@ -24,19 +24,35 @@ class ItemController extends Controller
     return view('company.stock.items.list')->with('items', $items);
   }
 
-  public function getItems($profile_id)
+  public function list_items(Profile $profile,$skip)
   {
-    $items = Item::GetItems($profile_id)->get();
-    return response()->json($items);
-  }
-
-  public function getitem(Profile $profile,$frase)
-  {
+    // if (isset($location_slug)) {
+    //     $items =Item::GetItems($profile->id)
+    //     ->join('item_movements', 'items.id', 'item_movements.item_id')
+    //     ->where('location_id',$location_slug)
+    //     ->groupBy('item_movements.item_id')
+    //     ->get();
+    // }
+    // else {
 
     $items =Item::GetItems($profile->id)
-    ->where('name', 'LIKE', "%$frase%")
+    ->skip($skip)
+      ->take(100)
+      ->get();
+    //    }
 
-    ->get();
+    return response()->json($items);
+  }
+  public function list_itemsByID(Profile $profile,$id)
+  {
+
+
+    $items =Item::GetItems($profile->id)
+    ->where('id',$id)
+
+      ->get();
+
+
     return response()->json($items);
   }
 
@@ -59,8 +75,9 @@ class ItemController extends Controller
   public function store(Request $request, Profile $profile)
   {
 
-      $item = $request->id == 0 ? new Item() : Item::where('id', $request->id)->first();
-    
+      $item = $request->id == 0 ? new Item()
+      : Item::where('id', $request->id)->first();
+
 
     $item->profile_id = $profile->id;
 

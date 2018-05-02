@@ -421,9 +421,9 @@
 
         @include('back_office/items')
     </div>
-    <div v-else="showCustomer===1">
+    <div v-else-if="showCustomer===1">
 
-        @include('back_office/customers')
+         @include('back_office/customers')
     </div>
 
 

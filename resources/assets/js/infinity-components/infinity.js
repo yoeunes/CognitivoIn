@@ -44,6 +44,7 @@ Vue.component('infinity',
         infiniteHandler($state)
         {
             var app = this;
+            console.log('/api/cognitivo' + '/' + this.baseurl + '/' + app.skip + '');
             axios.get('/api/cognitivo' + '/' + this.baseurl + '/' + app.skip + '',
             {
                 params:
@@ -56,7 +57,7 @@ Vue.component('infinity',
 
                 if (data.length > 0)
                 {
-                  console.log(data);
+                    console.log(data);
                     for (let i = 0; i < data.length; i++)
                     {
                         app.list.push(data[i]);
@@ -76,7 +77,7 @@ Vue.component('infinity',
             var app = this;
 
             app.$parent.$parent.showList = false;
-             console.log(data);
+            console.log(data);
             $.ajax({
                 url: '/api/cognitivo' + '/' + this.baseurl + '/by-id' + '/'  + data,
                 headers: {'X-CSRF-TOKEN': CSRF_TOKEN},
@@ -85,8 +86,8 @@ Vue.component('infinity',
                 async: true,
                 success: function(data)
                 {
-                  console.log(data);
-                app.$children[0].onEdit(data[0]);
+                    console.log(data);
+                    app.$children[0].onEdit(data[0]);
 
                 },
                 error: function(xhr, status, error)
@@ -121,7 +122,7 @@ Vue.component('infinity',
                 }
             });
         },
-        onAnull: function(data)
+            onAnull: function(data)
         {
             //SweetAlert message and confirmation.
             var app = this;
@@ -150,6 +151,7 @@ Vue.component('infinity',
     },
     mounted: function mounted()
     {
+
 
     }
 });

@@ -6,7 +6,7 @@ import axios from 'axios';
 Vue.component('customer-form',
 {
 
-  props: ['currency'],
+
   data() {
     return {
 
@@ -36,18 +36,18 @@ Vue.component('customer-form',
     {
       console.log(data)
       var app = this;
-      app.customer_alias=app.customer_alias;
-      app.customer_taxid=app.customer_taxid;
-      app.customer_address=app.customer_address;
-      app.customer_telephone=app.customer_telephone;
-      app.customer_email=app.customer_email;
-      app.customer_telephone=app.customer_telephone;
-      app.supplier_alias=app.supplier_alias;
-      app.supplier_taxid=app.supplier_taxid;
-      app.supplier_address=app.supplier_address;
-      app.supplier_telephone=app.supplier_telephone;
-      app.supplier_email=app.supplier_email;
-      app.supplier_telephone=app.supplier_telephone;
+      app.customer_alias=data.customer_alias;
+      app.customer_taxid=data.customer_taxid;
+      app.customer_address=data.customer_address;
+      app.customer_telephone=data.customer_telephone;
+      app.customer_email=data.customer_email;
+      app.customer_telephone=data.customer_telephone;
+      app.supplier_alias=data.supplier_alias;
+      app.supplier_taxid=data.supplier_taxid;
+      app.supplier_address=data.supplier_address;
+      app.supplier_telephone=data.supplier_telephone;
+      app.supplier_email=data.supplier_email;
+      app.supplier_telephone=data.supplier_telephone;
       app.$parent.$parent.showList = false;
     },
 
@@ -84,7 +84,7 @@ Vue.component('customer-form',
 
       axios({
         method: 'post',
-        url: '/back-office/cognitivo/sales/items',
+        url: '/back-office/cognitivo/sales/customers',
         responseType: 'json',
         data: json
 
@@ -122,6 +122,6 @@ mounted: function mounted()
 {
 
 
-  this.getCurrencies();
+
 }
 });

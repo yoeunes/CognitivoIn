@@ -46,6 +46,7 @@ Route::group(['middleware' => 'auth'], function ()
                 'customers' => 'BackOfficeCustomerController',
                 'opportunities' => 'BackOfficeOpportunityController',
                 'orders' => 'BackOfficeOrderController',
+                'pipelines' => 'PipelineController',
                 'items' => 'ItemController'
             ]);
         });

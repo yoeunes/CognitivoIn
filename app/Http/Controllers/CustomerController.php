@@ -18,21 +18,24 @@ class CustomerController extends Controller
     $customers = Relationship::GetCustomers()->get();
     return view('company.sales.customer.list')->with('customers',$customers);
   }
-  public function getCustomers(Profile $profile,$frase)
+  public function list_customers(Profile $profile,$skip)
   {
 
-    $customers = Relationship::GetCustomers()
-    ->where('customer_alias', 'LIKE', "%$frase%")
-    ->orwhere('customer_taxid', 'LIKE', "$frase%")
+    $customers = Relationship::GetCustomers()->skip($skip)
+      ->take(100)->get();
 
-    ->get();
     return response()->json($customers);
   }
-  public function getAllCustomer(Profile $profile)
+  public function list_customersByID(Profile $profile,$id)
   {
 
-    $customers = Relationship::GetCustomers()
+
+    $customers =Relationship::GetCustomers($profile->id)
+    ->where('id',$id)
+
       ->get();
+
+
     return response()->json($customers);
   }
   /**
@@ -53,7 +56,9 @@ class CustomerController extends Controller
   */
   public function store(Request $request ,Profile $profile)
   {
-    $relationship= new Relationship();
+    $relationship = $request->id == 0 ? new Relationship()
+    : Relationship::where('id', $request->id)->first();
+
 
     $relationship->supplier_id = $profile->id;
     $relationship->customer_taxid=$request->taxid;
