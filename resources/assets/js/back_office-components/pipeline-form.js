@@ -82,7 +82,7 @@ Vue.component('pipeline-form',
 
 
 
-  }
+  
 
 
 },

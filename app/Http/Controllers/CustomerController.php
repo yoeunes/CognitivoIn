@@ -56,16 +56,17 @@ class CustomerController extends Controller
   */
   public function store(Request $request ,Profile $profile)
   {
+
     $relationship = $request->id == 0 ? new Relationship()
     : Relationship::where('id', $request->id)->first();
 
 
     $relationship->supplier_id = $profile->id;
-    $relationship->customer_taxid=$request->taxid;
-    $relationship->customer_alias=$request->alias;
-    $relationship->customer_address=$request->address;
-    $relationship->customer_telephone=$request->telephone;
-    $relationship->customer_email=$request->email;
+    $relationship->customer_taxid=$request->customer_taxid;
+    $relationship->customer_alias=$request->customer_alias;
+    $relationship->customer_address=$request->customer_address;
+    $relationship->customer_telephone=$request->customer_telephone;
+    $relationship->customer_email=$request->customer_email;
     $relationship->supplier_accepted=true;
 
     $relationship->save();

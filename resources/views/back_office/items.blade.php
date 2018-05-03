@@ -8,7 +8,7 @@
   </a>
 </div>
 
-    <infinity  baseurl="back-office/list-items"  inline-template>
+    <infinity-item  baseurl="back-office/list-items"  inline-template>
         <div>
 
            <div v-if="$parent.$parent.showList">

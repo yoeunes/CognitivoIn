@@ -5,7 +5,7 @@ import VueSweetAlert from 'vue-sweetalert';
 import InfiniteLoading from 'vue-infinite-loading';
 import axios from 'axios';
 
-Vue.component('infinity',
+Vue.component('infinity-customer',
 {
     props: ['profile', 'baseurl'],
     data() {

@@ -416,7 +416,7 @@
 <!-- Main Container -->
 
 <div>
-@{{ showCustomer }}
+
     <div v-if="showItem===1">
 
         @include('back_office/items')

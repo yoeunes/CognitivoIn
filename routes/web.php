@@ -43,9 +43,9 @@ Route::group(['middleware' => 'auth'], function ()
         {
             Route::get('dashboard', 'BackOfficeController@dashboardSales');
             Route::resources([
-                'customers' => 'BackOfficeCustomerController',
-                'opportunities' => 'BackOfficeOpportunityController',
-                'orders' => 'BackOfficeOrderController',
+                'customers' => 'CustomerController',
+                'opportunities' => 'OpportunityController',
+                'orders' => 'OrderController',
                 'pipelines' => 'PipelineController',
                 'items' => 'ItemController'
             ]);

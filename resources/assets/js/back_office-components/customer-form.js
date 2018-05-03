@@ -36,6 +36,7 @@ Vue.component('customer-form',
     {
       console.log(data)
       var app = this;
+        app.id=data.id;
       app.customer_alias=data.customer_alias;
       app.customer_taxid=data.customer_taxid;
       app.customer_address=data.customer_address;
@@ -48,13 +49,13 @@ Vue.component('customer-form',
       app.supplier_telephone=data.supplier_telephone;
       app.supplier_email=data.supplier_email;
       app.supplier_telephone=data.supplier_telephone;
-      app.$parent.$parent.showList = false;
+      app.$parent.$parent.$parent.showList = false;
     },
 
     onReset: function(isnew)
     {
       var app = this;
-
+      app.id=null;
       app.customer_alias=null;
       app.customer_taxid=null;
       app.customer_address=null;
@@ -69,7 +70,7 @@ Vue.component('customer-form',
       app.supplier_telephone=null;
       if (isnew == false)
       {
-        app.$parent.$parent.showList = true;
+        app.$parent.$parent.$parent.showList = true;
       }
     },
 
@@ -113,7 +114,7 @@ Vue.component('customer-form',
 
 
 
-  }
+
 
 
 },

@@ -60,10 +60,9 @@ Vue.component('item-form',
       app.currency_id = null;
       app.unit_price = null;
       app.unit_cost = null;
-      if (isnew == false)
-      {
-        app.$parent.$parent.showList = true;
-      }
+      
+      app.$parent.$parent.$parent.showList = true;
+
     },
 
     //Takes Json and uploads it into Sales INvoice API for inserting. Since this is a new, it should directly insert without checking.
@@ -100,12 +99,12 @@ Vue.component('item-form',
     }
 
 
-},
+  },
 
-mounted: function mounted()
-{
+  mounted: function mounted()
+  {
 
 
-  
-}
+
+  }
 });
