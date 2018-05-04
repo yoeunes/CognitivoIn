@@ -6,7 +6,7 @@ import axios from 'axios';
 Vue.component('item-form',
 {
 
-  props: ['currency'],
+  props: ['currency','profile'],
   data() {
     return {
 
@@ -60,7 +60,7 @@ Vue.component('item-form',
       app.currency_id = null;
       app.unit_price = null;
       app.unit_cost = null;
-      
+
       app.$parent.$parent.$parent.showList = true;
 
     },
@@ -76,7 +76,7 @@ Vue.component('item-form',
 
       axios({
         method: 'post',
-        url: '/back-office/cognitivo/sales/items',
+        url: '/back-office/'+ this.profile +'/sales/items',
         responseType: 'json',
         data: json
 

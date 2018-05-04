@@ -20,6 +20,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::group(['middleware' => 'auth:api'], function ()
 {});
+  Route::get('getCustomers/{profile}', 'CustomerController@getAllCustomer');
 
   Route::prefix('{profile}')->group(function ()
   {
@@ -28,15 +29,17 @@ Route::group(['middleware' => 'auth:api'], function ()
     Route::get('back-office/list-customers/{skip}', 'CustomerController@list_customers');
     Route::get('back-office/list-customers/by-id/{id}', 'CustomerController@list_customersByID');
     Route::get('back-office/list-pipelines/{skip}', 'PipelineController@list_pipelines');
-      Route::get('back-office/list-pipelines/all', 'PipelineController@get_pipelines');
+    Route::get('back-office/list-pipelines/all', 'PipelineController@get_pipelines');
+
     Route::get('back-office/list-pipelines/by-id/{id}', 'PipelineController@list_pipelinesByID');
 
     Route::get('back-office/list-pipelinestages/{skip}', 'PipelineStageController@list_pipelinestages');
+    Route::get('back-office/list-stages/all', 'PipelineStageController@get_pipelinestages');
     Route::get('back-office/list-pipelinestages/by-id/{id}', 'PipelineStageController@list_pipelinestagesByID');
 
 
-    Route::get('back-office/list-opportunities/{skip}', 'PipelineController@list_opportunities');
-    Route::get('back-office/list-opportunities/by-id/{id}', 'PipelineController@list_opportunitiesByID');
+    Route::get('back-office/list-opportunities/{skip}', 'OpportunityController@list_opportunities');
+    Route::get('back-office/list-opportunities/by-id/{id}', 'OpportunityController@list_opportunitiesByID');
 
 
     Route::post('back-office/customers', 'Api\ApiController@customers');
@@ -60,7 +63,7 @@ Route::group(['middleware' => 'auth:api'], function ()
   // back-office/make-payment //Note: Multiple
 
 
-//  Route::get('PaymentDue/{slug}/{type}/{partnerName}/{partnerTaxID}', 'SchedualsController@PaymentDue');
-Route::post('PaymentDue/{profile}', 'SchedualsController@PaymentDue');
-Route::post('ReceivePayment/{profile}', 'SchedualsController@ReceivePayment');
-Route::post('Anull', 'AccountMovementController@Anull');
+  //  Route::get('PaymentDue/{slug}/{type}/{partnerName}/{partnerTaxID}', 'SchedualsController@PaymentDue');
+  Route::post('PaymentDue/{profile}', 'SchedualsController@PaymentDue');
+  Route::post('ReceivePayment/{profile}', 'SchedualsController@ReceivePayment');
+  Route::post('Anull', 'AccountMovementController@Anull');

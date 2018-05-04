@@ -6,7 +6,7 @@ import axios from 'axios';
 Vue.component('customer-form',
 {
 
-
+    props: ['profile'],
   data() {
     return {
 
@@ -36,7 +36,7 @@ Vue.component('customer-form',
     {
       console.log(data)
       var app = this;
-        app.id=data.id;
+      app.id=data.id;
       app.customer_alias=data.customer_alias;
       app.customer_taxid=data.customer_taxid;
       app.customer_address=data.customer_address;
@@ -85,7 +85,7 @@ Vue.component('customer-form',
 
       axios({
         method: 'post',
-        url: '/back-office/cognitivo/sales/customers',
+        url: '/back-office/'+ this.profile +'/sales/customers',
         responseType: 'json',
         data: json
 

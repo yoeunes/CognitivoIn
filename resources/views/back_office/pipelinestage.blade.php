@@ -4,11 +4,11 @@
     <div class="block-content block-content-full">
       <div class="h1 font-w700 text-success"><i class="fa fa-plus"></i></div>
     </div>
-    <div class="block-content block-content-full block-content-mini bg-gray-lighter text-success font-w600">Add New Pipeline</div>
+    <div class="block-content block-content-full block-content-mini bg-gray-lighter text-success font-w600">Add New Pipeline Stage</div>
   </a>
 </div>
 
-  <infinity  baseurl="back-office/list-pipelines" inline-template>
+  <infinity-pipelinestage profile="{{ request()->route('profile') }}" baseurl="back-office/list-pipelinestages" inline-template>
         <div>
 
            <div v-if="$parent.$parent.showList">
@@ -20,4 +20,4 @@
                 @include('back_office/sales/pipelinestages/form')
             </div>
         </div>
-    </infinity>
+    </infinity-pipelinestage>

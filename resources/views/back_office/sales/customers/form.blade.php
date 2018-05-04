@@ -1,4 +1,4 @@
-<customer-form inline-template>
+<customer-form profile="{{ request()->route('profile') }}" inline-template>
   <div>
     <div class="row">
       <div class="form-group">

@@ -18,7 +18,13 @@ class PipelineStageController extends Controller
     {
 
     }
+    public function get_pipelinestages(Profile $profile)
+    {
 
+      $pipelinestages = PipelineStage::get();
+
+      return response()->json($pipelinestages);
+    }
     public function list_pipelinestages(Profile $profile,$skip)
     {
 
@@ -31,7 +37,7 @@ class PipelineStageController extends Controller
     {
 
 
-      $pipelinestage = $pipelinestages::where('id',$id)
+      $pipelinestage = PipelineStage::where('id',$id)
         ->get();
 
 
@@ -64,6 +70,8 @@ class PipelineStageController extends Controller
         $pipelinestage->pipeline_id = $request->pipeline_id;
 
         $pipelinestage->name = $request->name;
+
+        $pipelinestage->completed = 1;
 
         $pipelinestage->sequence =  $request->sequence == null ? 1 : $request->sequence;
 

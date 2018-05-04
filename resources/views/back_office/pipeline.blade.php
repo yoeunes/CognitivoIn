@@ -8,16 +8,16 @@
   </a>
 </div>
 
-  <infinity  baseurl="back-office/list-pipelines" inline-template>
+  <infinity-pipeline profile="{{ request()->route('profile') }}" baseurl="back-office/list-pipelines" inline-template>
         <div>
 
            <div v-if="$parent.$parent.showList">
 
-          @include('back_office/sales/pipelines/list')
+          @include('back_office/sales/pipeline/list')
             </div>
             <div v-else>
 
-                @include('back_office/sales/pipelines/form')
+                @include('back_office/sales/pipeline/form')
             </div>
         </div>
-    </infinity>
+    </infinity-pipeline>

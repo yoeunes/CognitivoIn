@@ -52,7 +52,7 @@ class LoginController extends Controller
       $createdUser = $this->createUser($user);
       Auth::login($createdUser,true);
 
-      return redirect()->route('/');
+      return redirect()->route('/dashboard');
   }
 
   public function createUser($user)

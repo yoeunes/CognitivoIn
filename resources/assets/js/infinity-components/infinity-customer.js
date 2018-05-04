@@ -44,8 +44,8 @@ Vue.component('infinity-customer',
         infiniteHandler($state)
         {
             var app = this;
-            console.log('/api/cognitivo' + '/' + this.baseurl + '/' + app.skip + '');
-            axios.get('/api/cognitivo' + '/' + this.baseurl + '/' + app.skip + '',
+
+            axios.get('/api/'+ this.profile  + '/' + this.baseurl + '/' + app.skip + '',
             {
                 params:
                 {
@@ -79,7 +79,7 @@ Vue.component('infinity-customer',
             app.$parent.$parent.showList = false;
             console.log(data);
             $.ajax({
-                url: '/api/cognitivo' + '/' + this.baseurl + '/by-id' + '/'  + data,
+                url: '/api/'+ this.profile + '' + '/' + this.baseurl + '/by-id' + '/'  + data,
                 headers: {'X-CSRF-TOKEN': CSRF_TOKEN},
                 type: 'get',
                 dataType: 'json',

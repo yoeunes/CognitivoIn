@@ -47,10 +47,7 @@ class OpportunityController extends Controller
 
 
        $opportunities = Opportunity::Mine()
-        ->select('opportunities.id', 'opportunities.description', 'opportunities.deadline_date', 'opportunities.value',
-        'relationships.customer_alias', 'relationships.customer_taxid')
-
-      ->where('id',$id)
+        ->where('opportunities.id',$id)
 
         ->get();
 
@@ -90,14 +87,14 @@ class OpportunityController extends Controller
 
         ->first();
         $opportunity->relationship_id = $customers->id;
-        $opportunity->stage_id = $request->stage_id;
+        $opportunity->pipeline_stage_id = $request->stage_id;
         $opportunity->deadline_date = $request->deadline_date;
         $opportunity->description = $request->description;
         $opportunity->status = 1;
         $opportunity->value = $request->value;
         $opportunity->save();
 
-        return redirect()->route('opportunities.index', $profile);
+    return response()->json('ok',200);
     }
 
     /**

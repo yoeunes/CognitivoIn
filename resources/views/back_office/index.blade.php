@@ -205,7 +205,19 @@
                                                 <a @click="Customers()" href="#">Customers</a>
                                             </li>
                                             <li>
-                                                <a @click="Opportunities()" href="#">Opportunities</a>
+                                                <a  class="nav-submenu" data-toggle="nav-submenu" href="#">Opportunities</a>
+                                                <ul>
+                                                    <li>
+                                                        <a @click="Pipeline()" href="#">Pipeline</a>
+                                                    </li>
+                                                    <li>
+                                                        <a @click="PipelineStage()" href="#">Pipeline Stage</a>
+                                                    </li>
+                                                    <li>
+                                                        <a @click="Opportunities()" href="#">Opportunity</a>
+                                                    </li>
+
+                                                </ul>
                                             </li>
                                             <li>
                                                 <a @click="Orders()" href="#">Orders</a>
@@ -323,8 +335,9 @@
                     @if ($listOfCompanies->count() > 0)
                         @foreach ($listOfCompanies->sortBy('name') as $company)
                             <li>
-                                <a href="{{ route('dashboard', $company)}}">
-                                    @if (request()->route('profile') != null && $company->slug == request()->route('profile')->slug)
+
+                                <a href="{{ route('home', $company)}}">
+                                    @if (request()->route('profile') != null)
                                         <i class="si si-briefcase pull-right"></i> <b>{{ mb_strimwidth($company->name, 0, 20, "...") }}</b>
                                     @else
                                         <i class="si si-briefcase pull-right"></i> {{ $company->name }}
@@ -423,9 +436,20 @@
     </div>
     <div v-else-if="showCustomer===1">
 
-         @include('back_office/customers')
+        @include('back_office/customers')
     </div>
+    <div v-else-if="showPipeline===1">
 
+        @include('back_office/pipeline')
+    </div>
+    <div v-else-if="showPipelineStage===1">
+
+        @include('back_office/pipelinestage')
+    </div>
+    <div v-else-if="showOpportunity===1">
+
+        @include('back_office/opportunity')
+    </div>
 
 </div>
 

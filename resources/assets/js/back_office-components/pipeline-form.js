@@ -5,7 +5,7 @@ import axios from 'axios';
 
 Vue.component('pipeline-form',
 {
-
+  props: ['profile'],
   data() {
     return {
 
@@ -25,20 +25,21 @@ Vue.component('pipeline-form',
     {
       console.log(data)
       var app = this;
+        app.id=data.id;
       app.name=data.name;
 
-      app.$parent.$parent.showList = false;
+      app.$parent.$parent.$parent.showList = false;
     },
 
     onReset: function(isnew)
     {
       var app = this;
-
+      app.id=null;
       app.name=null;
 
       if (isnew == false)
       {
-        app.$parent.$parent.showList = true;
+        app.$parent.$parent.$parent.showList = true;
       }
     },
 
@@ -53,7 +54,7 @@ Vue.component('pipeline-form',
 
       axios({
         method: 'post',
-        url: '/back-office/cognitivo/sales/pipelines',
+        url: '/back-office/'+ this.profile +'/sales/pipelines',
         responseType: 'json',
         data: json
 
@@ -82,7 +83,7 @@ Vue.component('pipeline-form',
 
 
 
-  
+
 
 
 },

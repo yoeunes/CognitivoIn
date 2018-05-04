@@ -3,7 +3,7 @@ import VueSweetAlert from 'vue-sweetalert';
 import axios from 'axios';
 
 
-Vue.component('pipelinestage-form',
+Vue.component('opportunity-form',
 {
 
   props: ['profile'],
@@ -11,11 +11,13 @@ Vue.component('pipelinestage-form',
     return {
 
       id: 0,
-      name:'',
-      sequence:'',
-      pipeline_id:'',
-      pipelines:[]
-
+      relationship_id:'',
+      description:'',
+      deadline_date:'',
+      value:'',
+      stage_id:'',
+      stages:[],
+      customers:[]
 
     }
   },
@@ -30,9 +32,11 @@ Vue.component('pipelinestage-form',
       console.log(data)
       var app = this;
       app.id=data.id;
-      app.name=data.name;
-      app.sequence=data.sequence;
-      app.pipeline_id=data.pipeline_id;
+      app.relationship_id=data.relationship_id;
+      app.description=data.description;
+      app.deadline_date=data.deadline_date;
+      app.value=data.value;
+      app.stage_id=data.pipeline_stage_id
       app.$parent.$parent.$parent.showList = false;
     },
 
@@ -40,9 +44,12 @@ Vue.component('pipelinestage-form',
     {
       var app = this;
       app.id=null;
-      app.name=null;
-      app.sequence=null;
-      app.pipeline_id=null;
+      app.relationship_id=null;
+      app.description=null;
+      app.deadline_date=null;
+
+      app.value=null;
+        app.stage_id=null;
       if (isnew == false)
       {
         app.$parent.$parent.$parent.showList = true;
@@ -60,7 +67,7 @@ Vue.component('pipelinestage-form',
 
       axios({
         method: 'post',
-        url: '/back-office/'+ this.profile +'/sales/pipelinestages',
+        url: '/back-office/'+ this.profile +'/sales/opportunities',
         responseType: 'json',
         data: json
 
@@ -81,38 +88,54 @@ Vue.component('pipelinestage-form',
         console.log(error.response);
       });
     },
-    getPipelines: function(data)
+    getStages: function(data)
     {
       var app = this;
-      axios.get('/api/'+ this.profile +'/back-office/list-pipelines/all/',
+      axios.get('/api/'+ this.profile +'/back-office/list-stages/all/',
     )
     .then(({ data }) =>
     {
-      app.pipelines = [];
+      app.stages = [];
       for(let i = 0; i < data.length; i++)
       {
-        app.pipelines.push({ name:data[i]['name'], id:data[i]['id'] });
+        app.stages.push({ name:data[i]['name'], id:data[i]['id'] });
       }
     });
 
-  }
-
-
-
-
-
-
-
-
-
-
-
-},
-
-mounted: function mounted()
-{
-
-  this.getPipelines();
+  },
+  getCustomers: function(data)
+  {
+    var app = this;
+    axios.get('/api/getCustomers/'+ this.profile +'/',
+  )
+  .then(({ data }) =>
+  {
+    app.customers = [];
+    for(let i = 0; i < data.length; i++)
+    {
+      app.customers.push({ name:data[i]['customer_alias'], id:data[i]['id'] });
+    }
+  });
 
 }
+
+
+
+
+
+
+
+
+
+
+
+  },
+
+  mounted: function mounted()
+  {
+
+    this.getStages();
+    this.getCustomers();
+
+  }
 });

@@ -22,8 +22,15 @@ class CustomerController extends Controller
   {
 
     $customers = Relationship::GetCustomers()->skip($skip)
-      ->take(100)->get();
+    ->take(100)->get();
 
+    return response()->json($customers);
+  }
+  public function getAllCustomer(Profile $profile)
+  {
+
+    $customers = Relationship::GetCustomers()
+    ->get();
     return response()->json($customers);
   }
   public function list_customersByID(Profile $profile,$id)
@@ -33,7 +40,7 @@ class CustomerController extends Controller
     $customers =Relationship::GetCustomers($profile->id)
     ->where('id',$id)
 
-      ->get();
+    ->get();
 
 
     return response()->json($customers);
@@ -72,7 +79,7 @@ class CustomerController extends Controller
     $relationship->save();
 
 
-  return response()->json('ok',200);
+    return response()->json('ok',200);
   }
   public function save_customer(Request $request ,Profile $profile)
   {

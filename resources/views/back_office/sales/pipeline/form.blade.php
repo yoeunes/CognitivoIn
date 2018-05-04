@@ -1,17 +1,7 @@
-<pipeline-form inline-template>
+<pipeline-form profile="{{ request()->route('profile') }}" inline-template>
 <div>
         <div class="row">
-          <div class="form-group">
-              <div class="col-xs-12">
-                  <div class="form-material form-material-primary">
-                      <select v-model="pipeline_id" required class="custom-select" >
-                            <option v-for="pipeline in pipelines" :value="pipeline.id">@{{ pipeline.name }}</option>
-                        </select>
 
-                      <label for="product-name">name</label>
-                  </div>
-              </div>
-          </div>
             <div class="form-group">
                 <div class="col-xs-12">
                     <div class="form-material form-material-primary">

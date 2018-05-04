@@ -12,6 +12,7 @@ import Vue from 'vue';
 import VueSweetalert2 from 'vue-sweetalert2';
 import VueRouter from 'vue-router';
 import VueResource from 'vue-resource';
+//import SearchBox from './components/searchbox.vue';
 import Buefy from 'buefy';
 import 'buefy/lib/buefy.css';
 
@@ -42,6 +43,16 @@ Vue.component(
     require('./components/passport/PersonalAccessTokens.vue')
 );
 
-const app = new Vue({
-    el: '#app'
-});
+const routes = [
+    {
+        path: '/',
+        components: {
+            //SearchBox:SearchBox
+
+        }
+    },
+];
+
+const router = new VueRouter({ routes });
+
+const app = new Vue({ router }).$mount('#app');

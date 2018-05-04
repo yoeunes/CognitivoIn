@@ -5,7 +5,7 @@ import VueSweetAlert from 'vue-sweetalert';
 import InfiniteLoading from 'vue-infinite-loading';
 import axios from 'axios';
 
-Vue.component('infinity-item',
+Vue.component('infinity-pipeline',
 {
     props: ['profile', 'baseurl'],
     data() {

@@ -8,7 +8,7 @@
   </a>
 </div>
 
-    <infinity-item  baseurl="back-office/list-items"  inline-template>
+    <infinity-item  baseurl="back-office/list-items"  profile="{{ request()->route('profile') }}" inline-template>
         <div>
 
            <div v-if="$parent.$parent.showList">
@@ -20,4 +20,4 @@
                 @include('back_office/sales/items/form')
             </div>
         </div>
-    </infinity>
+    </infinity-item>
