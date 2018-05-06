@@ -17,8 +17,7 @@ class CreateCurrencyRelationshipsTable extends Migration
             $table->increments('id');
             $table->integer('profile_id')->unsigned()->index();
             $table->foreign('profile_id')->references('id')->on('profiles');
-            $table->integer('currency_id')->unsigned();
-            $table->foreign('currency_id')->references('id')->on('currencies');
+            $table->string('currency', 3);
             $table->boolean('is_favorite')->default(false);
             $table->timestamps();
             $table->softDeletes();

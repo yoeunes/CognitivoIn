@@ -32,8 +32,7 @@ class CreateOrdersTable extends Migration
             $table->integer('buyer_profile_id')->unsigned()->nullable();
             $table->integer('agent_profile_id')->unsigned()->nullable();
 
-            $table->integer('currency_id')->unsigned();
-            $table->foreign('currency_id')->references('id')->on('currencies');
+            $table->string('currency', 3);
             $table->decimal('currency_rate', 20, 5);
 
             $table->tinyInteger('classification')->unsigned()->nullable();

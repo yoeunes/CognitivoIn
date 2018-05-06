@@ -26,11 +26,10 @@ class CreateRecurringSchedualsTable extends Migration
             $table->integer('relationship_id')->unsigned()->index();
             $table->foreign('relationship_id')->references('id')->on('relationships');
 
-            $table->integer('currency_id')->unsigned();
-            $table->foreign('currency_id')->references('id')->on('currencies');
+            $table->string('currency', 3);
 
-            $table->integer('user_id')->unsigned()->index();
-            $table->foreign('user_id')->references('id')->on('profiles');
+            $table->integer('profile_id')->unsigned()->index();
+            $table->foreign('profile_id')->references('id')->on('profiles');
 
             $table->decimal('debit', 20, 2)->default(0);
             $table->decimal('credit', 20, 2)->default(0);

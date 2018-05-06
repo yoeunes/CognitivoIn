@@ -38,10 +38,8 @@ class CreateSchedualsTable extends Migration
             // $table->integer('user_id')->unsigned()->index();
             // $table->foreign('user_id')->references('id')->on('profiles');
 
-            $table->integer('currency_id')->unsigned();
-            $table->foreign('currency_id')->references('id')->on('currencies');
-
-            $table->decimal('rate',  20, 2);
+            $table->string('currency', 3);
+            $table->decimal('currency_rate', 20, 5);
 
             $table->tinyInteger('classification')->unsigned()->nullable();
 

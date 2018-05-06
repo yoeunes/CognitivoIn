@@ -150,10 +150,10 @@ return [
         /*
         * Package Service Providers...
         */
-        \Torann\Currency\CurrencyServiceProvider::class,
         Overtrue\LaravelFollow\FollowServiceProvider::class,
         Laravel\Scout\ScoutServiceProvider::class,
         ScoutEngines\Elasticsearch\ElasticsearchProvider::class,
+        Swap\Laravel\SwapServiceProvider::class,
 
         /*
         * Application Service Providers...
@@ -211,7 +211,6 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
-        'Currency' => \Torann\Currency\Facades\Currency::class,
+        'Swap' => Swap\Laravel\Facades\Swap::class,
     ],
-
 ];

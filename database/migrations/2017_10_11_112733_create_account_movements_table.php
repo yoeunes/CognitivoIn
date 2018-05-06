@@ -35,10 +35,8 @@ class CreateAccountMovementsTable extends Migration
             //1 = Cash, 2 = Check, 3 = CreditCard, 4 = WireTransfer, 5 = Refund or Credit Note
             //$table->foreign('type_id')->references('id')->on('payment_types')->onDelete('cascade');
 
-            $table->integer('currency_id')->unsigned();
-            $table->foreign('currency_id')->references('id')->on('currencies');
-
-            $table->decimal('currency_rate',  20, 2);
+            $table->string('currency', 3);
+            $table->decimal('currency_rate', 20, 5);
 
             $table->date('date');
 

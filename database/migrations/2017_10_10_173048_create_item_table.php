@@ -31,8 +31,7 @@ class CreateItemTable extends Migration
             $table->text('short_description')->nullable();
             $table->longText('long_description')->nullable();
 
-            $table->integer('currency_id')->unsigned()->nullable();
-            $table->foreign('currency_id')->references('id')->on('currencies');
+            $table->string('currency', 3);
 
             $table->decimal('unit_price', 20, 2)->unsigned()->nullable();
             $table->decimal('unit_cost', 20, 2)->unsigned()->nullable();

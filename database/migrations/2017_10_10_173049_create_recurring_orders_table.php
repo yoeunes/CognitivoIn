@@ -28,8 +28,7 @@ class CreateRecurringordersTable extends Migration
             $table->integer('tax_id')->unsigned()->nullable();
             $table->foreign('tax_id')->references('id')->on('taxes');
 
-            $table->integer('currency_id')->unsigned();
-            $table->foreign('currency_id')->references('id')->on('currencies');
+            $table->string('currency', 3);
 
             $table->integer('item_id')->unsigned()->index();
             $table->foreign('item_id')->references('id')->on('items')->onDelete('cascade');

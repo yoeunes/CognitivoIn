@@ -23,8 +23,7 @@ class CreateAccountsTable extends Migration
             $table->integer('bank_relationship_id')->unsigned()->nullable();
             $table->foreign('bank_relationship_id')->references('id')->on('bank_relationships')->onDelete('cascade');
 
-            $table->integer('currency_id')->unsigned();
-            $table->foreign('currency_id')->references('id')->on('currencies');
+            $table->string('currency', 3);
 
             $table->string('name');
             $table->string('number')->nullable();
