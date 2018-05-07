@@ -11,98 +11,9 @@ use Illuminate\Http\Request;
 
 class SyncController extends Controller
 {
-    public function convert_date($date)
-    {
-        $trans_date = $date;
 
-        preg_match('/(\d{10})(\d{3})/', $date, $matches);
 
-        $trans_date = Carbon::createFromTimestamp($matches[1]);
-        // Log::info('fecha: '. $trans_date);
-        return $trans_date;
-    }
 
-    public function syncItems(Request $request, Profile $profile)
-    {
-
-        $collection = collect();
-
-        if ($request->all() != [])
-        {
-            $items = $request->all();
-            $collection = collect($items);
-        }
-
-        $collection = json_decode($collection->toJson());
-        $counter = 0;
-        foreach ($collection as $key => $element)
-        {
-            $this->createOrUpdate_Item($element);
-            $counter += 1;
-        }
-
-        return response()->json('Sucess, ' . $counter . ' records updated.');
-    }
-    public function createOrUpdate_Item($data)
-    {
-        $profile = request()->route('profile');
-
-        $item = Item::GetItems($profile)->where('name', $data->name)->where('sku', $data->code)->first();
-
-        if (!isset($item))
-        {
-            $item = new Item();
-            $item->profile_id = $profile->id;
-
-            $item->name = mb_strimwidth($data->name, 0, 187, '...');
-            $item->sku = $data->code;
-            $item->short_description = $data->comment;
-            $item->unit_price = $data->unit_price;
-
-            $item->currency_id =$data->currency_code;
-            $item->save();
-            $data->cloud_id=$item->id;
-        }
-
-        return $item;
-    }
-
-    public function syncCustomer(Request $request, Profile $profile)
-    {
-
-        $collection = collect();
-
-        if ($request->all() !=  []) {
-            $items = $request->all();
-            $collection = collect($items);
-        }
-
-        $collection = json_decode($collection->toJson());
-
-        foreach ($collection as $key  => $element)
-        {
-            $item = Relationship::GetCustomers()
-            ->where('customer_alias', $element->name)
-            ->where('customer_taxid', $element->govcode)
-            ->first();
-
-            if (!isset($item))
-            {
-                $relationship = new Relationship();
-
-                $relationship->supplier_id = $profile->id;
-                $relationship->supplier_accepted = true;
-
-                $relationship->customer_taxid = $element->govcode;
-                $relationship->customer_alias = $element->name;
-                $relationship->customer_address = $element->address;
-                $relationship->customer_telephone = $element->telephone;
-                $relationship->customer_email = $element->email;
-                $relationship->save();
-            }
-        }
-        return response()->json('Sucess');
-    }
     public function uploadOrder (Request $request, Profile $profile)
     {
         $data = collect();
@@ -195,39 +106,7 @@ class SyncController extends Controller
         }
     }
 
-    public function checkCreateRelationships($profile, $data)
-    {
-        $customers = Relationship::GetCustomers()
-        ->where('customer_alias', $data->customer->name)
-        ->where('customer_taxid', $data->customer->govcode)
-        ->first();
-
-        if (isset($customers))
-        {
-            return $customers;
-        }
-        else
-        {
-
-            $relationship = new Relationship();
-
-            $relationship->supplier_id = $profile->id;
-            $relationship->supplier_accepted = true;
-
-            if ($data->customer != null)
-            {
-                $relationship->customer_taxid = $data->customer->govcode;
-                $relationship->customer_alias = $data->customer->name;
-                $relationship->customer_address = $data->customer->address;
-                $relationship->customer_telephone = $data->customer->telephone;
-                $relationship->customer_email = $data->customer->email;
-            }
-
-            $relationship->save();
-
-            return $relationship;
-        }
-    }
+  
 
     public function syncTransactionStatus(Request $request, Profile $profile)
     {
@@ -279,7 +158,7 @@ class SyncController extends Controller
         return response()->json($orders);
     }
 
-    
+
 
 
 }
