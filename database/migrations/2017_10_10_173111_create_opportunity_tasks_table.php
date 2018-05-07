@@ -6,7 +6,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Query\Expression;
 use Illuminate\Support\Facades\DB;
 
-class CreateOpportunityActivitiesTable extends Migration
+class CreateOpportunityTasksTable extends Migration
 {
     /**
     * Run the migrations.
@@ -41,11 +41,8 @@ class CreateOpportunityActivitiesTable extends Migration
             $table->timestamps();
             $table->softDeletes();
 
-            $table->integer('created_by')->unsigned()->index();
-            $table->foreign('created_by')->references('id')->on('profiles');
-
-            $table->integer('assigned_to')->unsigned()->index()->nullable();
-            $table->foreign('assigned_to')->references('id')->on('profiles');
+            $table->integer('created_by')->unsigned()->nullable();
+            $table->integer('assigned_to')->unsigned()->nullable();
         });
     }
 

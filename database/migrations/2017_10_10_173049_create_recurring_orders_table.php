@@ -19,30 +19,33 @@ class CreateRecurringordersTable extends Migration
         {
             $table->increments('id');
 
-            $table->integer('relationship_id')->unsigned()->index();
+            $table->unsignedInteger('relationship_id')->index();
             $table->foreign('relationship_id')->references('id')->on('relationships');
 
-            $table->integer('user_id')->unsigned()->index();
+            $table->unsignedInteger('user_id')->index();
             $table->foreign('user_id')->references('id')->on('profiles');
 
-            $table->integer('vat_id')->unsigned()->nullable();
+            $table->unsignedInteger('vat_id')->nullable();
             $table->foreign('vat_id')->references('id')->on('vats')->onDelete('cascade');
 
-            $table->string('currency', 3);
-
-            $table->integer('item_id')->unsigned()->index();
+            $table->unsignedInteger('item_id')->index();
             $table->foreign('item_id')->references('id')->on('items')->onDelete('cascade');
+
+            $table->string('currency', 3);
 
             $table->text('comment')->nullable();
 
             $table->string('contract_number')->nullable();
+            $table->integer('contract_id')->unsigned()->nullable()->comment('nullable = cash. non null = credit.');
+            $table->foreign('contract_id')->references('id')->on('contracts')->onDelete('cascade');
 
-            $table->decimal('unit_price', 20, 2)->nullable();
+            $table->unsignedDecimal('unit_price', 20, 2)->nullable();
 
             $table->dateTime('start_date')->nullable();
             $table->dateTime('end_date')->nullable();
-            $table->integer('bill_cycle')->default(30)->unsigned();
-            $table->integer('bill_on')->default(1);
+
+            $table->unsignedTinyInteger('bill_every')->default(30)->unsigned();
+            $table->unsignedTinyInteger('bill_on')->default(1);
 
             $table->string('note_for_customer')->nullable();
             $table->string('note_for_billing')->nullable();

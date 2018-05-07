@@ -17,9 +17,12 @@ class CreateProfilePostsTable extends Migration
             $table->increments('id');
             $table->integer('profile_id')->unsigned()->index();
             $table->foreign('profile_id')->references('id')->on('profiles');
+
             $table->integer('author_id')->unsigned()->nullable();
             $table->foreign('author_id')->references('id')->on('profiles');
+
             $table->text('post');
+
             $table->timestamps();
             $table->softDeletes();
         });
