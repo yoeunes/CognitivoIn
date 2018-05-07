@@ -15,6 +15,7 @@ class CreateProfilePostsTable extends Migration
     {
         Schema::create('profile_posts', function (Blueprint $table) {
             $table->increments('id');
+
             $table->integer('profile_id')->unsigned()->index();
             $table->foreign('profile_id')->references('id')->on('profiles');
 
