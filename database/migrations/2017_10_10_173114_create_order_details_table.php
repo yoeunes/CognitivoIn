@@ -23,17 +23,17 @@ class CreateOrderDetailsTable extends Migration
             $table->integer('order_id')->unsigned()->index();
             $table->foreign('order_id')->references('id')->on('orders')->onDelete('cascade');
 
-            $table->integer('user_id')->unsigned()->index()->nullable();
-            $table->foreign('user_id')->references('id')->on('profiles');
-
             $table->integer('cart_id')->unsigned()->nullable();
             $table->foreign('cart_id')->references('id')->on('carts');
 
-            $table->integer('item_id')->unsigned();
+            $table->integer('item_id')->unsigned()->index();
             $table->foreign('item_id')->references('id')->on('items')->onDelete('cascade');
 
-            $table->integer('tax_id')->unsigned()->nullable();
-            $table->foreign('tax_id')->references('id')->on('taxes');
+            $table->integer('item_promotion_id')->unsigned()->nullable();
+            $table->foreign('item_promotion_id')->references('id')->on('item_promotions')->onDelete('cascade');
+
+            $table->integer('vat_id')->unsigned()->nullable();
+            $table->foreign('vat_id')->references('id')->on('vats')->onDelete('cascade');
 
             $table->string('item_sku')->nullable();
             $table->string('item_name');

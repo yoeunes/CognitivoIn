@@ -27,7 +27,7 @@ class CreateLaravelFollowTables extends Migration
             $table->string('followable_type')->index();
             $table->string('relation')->default('follow')->comment('folllow/like/subscribe/favorite/');
 
-            $table->unsignedTinyInteger('role')->unsigned()->default(5)->comment('
+            $table->unsignedTinyInteger('role')->default(5)->comment('
             1 Admin: Complete control over Company Profile. By default person who creates the profile is Admin.
             2 Manager: Mid level control over Company profile
             3 Employee: No control over Company Profile, but can make internal posts and available on other sites such as Rocket or MateriaGris

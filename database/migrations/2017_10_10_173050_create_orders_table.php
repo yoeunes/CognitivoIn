@@ -32,6 +32,9 @@ class CreateOrdersTable extends Migration
             $table->integer('buyer_profile_id')->unsigned()->nullable();
             $table->integer('agent_profile_id')->unsigned()->nullable();
 
+            $table->integer('contract_id')->unsigned()->nullable()->comment('nullable = cash. non null = credit.');
+            $table->foreign('contract_id')->references('id')->on('contracts')->onDelete('cascade');
+
             $table->string('currency', 3);
             $table->decimal('currency_rate', 20, 5);
 
@@ -41,9 +44,11 @@ class CreateOrdersTable extends Migration
 
             $table->integer('code')->nullable();
             $table->date('code_expiry')->nullable();
+
             $table->string('number')->nullable();
 
-            $table->integer('credit_days')->default(0)->nullable();
+            //$table->integer('credit_days')->default(0)->nullable();
+
             $table->dateTime('date')->nullable();
             $table->dateTime('date_deliver_by')->nullable();
 

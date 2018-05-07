@@ -32,10 +32,17 @@ class CreateCartsTable extends Migration
             $table->integer('item_id')->unsigned();
             $table->foreign('item_id')->references('id')->on('items');
 
+            $table->integer('item_promotion_id')->unsigned()->index()->nullable();
+            $table->foreign('item_promotion_id')->references('id')->on('item_promotions')->onDelete('cascade');
+
             $table->integer('status')->unsigned()->default(1)->comment('0 = OnHold; 1 = Pending; 2 = Proccessed; 3 = Rejected');
 
             $table->decimal('quantity', 20, 5)->default(1)->nullable();
             $table->decimal('unit_price', 20, 5)->nullable();
+
+            $table->integer('vat_id')->unsigned()->index()->nullable();
+            $table->foreign('vat_id')->references('id')->on('vats')->onDelete('cascade');
+
             $table->string('comment')->nullable();
 
             $table->timestamps();

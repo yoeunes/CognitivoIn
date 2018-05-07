@@ -58,7 +58,7 @@ class SyncController extends Controller
             $item->sku = $data->code;
             $item->short_description = $data->comment;
             $item->unit_price = $data->unit_price;
-            $currency=Currency::first();
+            $currency = Currency::first();
             $item->currency_id =$currency->id;
             $item->save();
             $data->cloud_id=$item->id;
@@ -116,7 +116,6 @@ class SyncController extends Controller
 
         foreach ($collection as $key => $data)
         {
-
             //Check to see if Reference exists in System.
             $order = Order::FromCustomers()->where('ref_id', $data->my_id)->select('orders.id')->first();
 
@@ -137,7 +136,6 @@ class SyncController extends Controller
         }
 
         return response()->json($collection);
-
     }
 
     // This function will create or update an existing Order with the new data inserted.
@@ -149,15 +147,18 @@ class SyncController extends Controller
         $order->is_printed = $data->number != "" ? true : false;
         $order->trans_date =$this->convert_date($data->trans_date);
         $order->credit_days = $data->credit_days;
-        $branch=Location::where('profile_id',$profile->id)->where('name',$data->branch_name)->first();
+        $branch = Location::where('profile_id', $profile->id)->where('name', $data->branch_name)->first();
+
         if (!isset($branch)) {
             $branch = new Location();
             $branch->profile_id=$profile->id;
             $branch->name=$data->branch_name;
             $branch->save();
         }
+
         $order->location_id =$branch->id;
-        $currency=Currency::first();
+        $currency = Currency::first();
+
         if (!isset($currency)) {
             currency()->create([
                 'name' => 'U.S. Dollar',
@@ -168,7 +169,8 @@ class SyncController extends Controller
                 'active' => 1,
             ]);
         }
-        $currency=Currency::first();
+
+        $currency = Currency::first();
         $order->currency_id =$currency->id;
         $order->currency_rate = $data->currency_rate;
         $order->comment = $data->comment;
@@ -201,13 +203,7 @@ class SyncController extends Controller
             $detail->save();
             $data_detail->ref_id=$detail->id;
         }
-
-        
     }
-
-
-
-
 
     public function checkCreateRelationships($profile, $data)
     {
@@ -218,8 +214,6 @@ class SyncController extends Controller
 
         if (isset($customers))
         {
-
-
             return $customers;
         }
         else
@@ -241,10 +235,8 @@ class SyncController extends Controller
 
             $relationship->save();
 
-
             return $relationship;
         }
-
     }
 
     public function syncTransactionStatus(Request $request, Profile $profile)
@@ -296,5 +288,4 @@ class SyncController extends Controller
         ->get();
         return response()->json($orders);
     }
-
 }
