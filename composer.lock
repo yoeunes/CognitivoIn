@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "835b2ea3d3a9a8b07f1824497cb07207",
+    "content-hash": "7fb1b4384c9f9b00a952e2fd843a15d0",
     "packages": [
         {
             "name": "cache/adapter-common",
@@ -2254,16 +2254,16 @@
         },
         {
             "name": "laravel/scout",
-            "version": "v3.0.14",
+            "version": "v4.0.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/scout.git",
-                "reference": "154beb9255cef7e341c5838824ed1234e71e194d"
+                "reference": "297d9c5ef94c3f70e9c76b87a02d4b527698956e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/scout/zipball/154beb9255cef7e341c5838824ed1234e71e194d",
-                "reference": "154beb9255cef7e341c5838824ed1234e71e194d",
+                "url": "https://api.github.com/repos/laravel/scout/zipball/297d9c5ef94c3f70e9c76b87a02d4b527698956e",
+                "reference": "297d9c5ef94c3f70e9c76b87a02d4b527698956e",
                 "shasum": ""
             },
             "require": {
@@ -2273,12 +2273,12 @@
                 "illuminate/pagination": "~5.4",
                 "illuminate/queue": "~5.4",
                 "illuminate/support": "~5.4",
-                "php": ">=5.6.4"
+                "php": ">=7.0"
             },
             "require-dev": {
                 "algolia/algoliasearch-client-php": "^1.10",
-                "mockery/mockery": "~0.9",
-                "phpunit/phpunit": "~5.0"
+                "mockery/mockery": "~1.0",
+                "phpunit/phpunit": "~6.0"
             },
             "suggest": {
                 "algolia/algoliasearch-client-php": "Required to use the Algolia engine (^1.10)."
@@ -2315,7 +2315,7 @@
                 "laravel",
                 "search"
             ],
-            "time": "2018-01-26T22:15:03+00:00"
+            "time": "2018-03-16T18:00:44+00:00"
         },
         {
             "name": "laravel/tinker",
@@ -5953,21 +5953,21 @@
         },
         {
             "name": "tamayo/laravel-scout-elastic",
-            "version": "3.0.8",
+            "version": "3.0.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ErickTamayo/laravel-scout-elastic.git",
-                "reference": "97deb01452f947b3c515545c2ee65804f1a59853"
+                "reference": "a8e5be767ba8d747d3a46c0b9805a25cfb9860d1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ErickTamayo/laravel-scout-elastic/zipball/97deb01452f947b3c515545c2ee65804f1a59853",
-                "reference": "97deb01452f947b3c515545c2ee65804f1a59853",
+                "url": "https://api.github.com/repos/ErickTamayo/laravel-scout-elastic/zipball/a8e5be767ba8d747d3a46c0b9805a25cfb9860d1",
+                "reference": "a8e5be767ba8d747d3a46c0b9805a25cfb9860d1",
                 "shasum": ""
             },
             "require": {
                 "elasticsearch/elasticsearch": "^5.0",
-                "laravel/scout": "^3.0",
+                "laravel/scout": "^3.0|^4.0",
                 "php": ">=5.6.4"
             },
             "require-dev": {
@@ -5999,7 +5999,7 @@
                 "laravel",
                 "scout"
             ],
-            "time": "2017-10-24T15:43:54+00:00"
+            "time": "2018-04-22T02:42:44+00:00"
         },
         {
             "name": "tijsverkoyen/css-to-inline-styles",

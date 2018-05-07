@@ -18,17 +18,19 @@ class RelationshipScope implements Scope
     public function apply(Builder $builder, Model $model)
     {
         $profile = request()->route('profile');
-
-        $builder
-        ->where(function($q) use($profile)
+        if (isset($profile))
         {
-            $q->where('customer_id', $profile->id)
-            ->where('customer_accepted', 1)
-        })
-        ->orWhere(function($q) use($profile)
-        {
-            $q->where('supplier_id', $profile->id)
-            ->where('supplier_accepted', 1)
-        });
+            $builder
+            ->where(function($q) use($profile)
+            {
+                $q->where('customer_id', $profile->id)
+                ->where('customer_accepted', 1);
+            })
+            ->orWhere(function($q) use($profile)
+            {
+                $q->where('supplier_id', $profile->id)
+                ->where('supplier_accepted', 1);
+            });
+        }
     }
 }

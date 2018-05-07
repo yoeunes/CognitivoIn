@@ -7,7 +7,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Overtrue\LaravelFollow\Traits\CanBeLiked;
 use App\Profile;
 use App\ItemImage;
-//use App\ItemTag;
 use App\ItemReview;
 use App\ItemProperty;
 use App\ItemFaq;
@@ -21,9 +20,7 @@ use Laravel\Scout\Searchable;
 class Item extends Model
 {
     use SoftDeletes, CanBeLiked;
-//    use HasMediaTrait;
     use Searchable;
-    use \Spatie\Tags\HasTags;
 
     protected $table = 'items';
 
@@ -57,19 +54,15 @@ class Item extends Model
     {
         return $this->belongsTo(Profile::class, 'user_id');
     }
+
     public function cart()
     {
-        return $this->belongsTo(Cart::class,'id');
+        return $this->belongsTo(Cart::class);
     }
 
     public function faqs()
     {
         return $this->hasMany(ItemFaq::class);
-    }
-
-    public function images()
-    {
-        return $this->hasMany(ItemImage::class);
     }
 
     public function properties()
@@ -81,11 +74,6 @@ class Item extends Model
     {
         return $this->hasMany(ItemReview::class);
     }
-
-    // public function tags()
-    // {
-    //     return $this->hasMany(ItemTag::class);
-    // }
 
     public function targets()
     {

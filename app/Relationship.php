@@ -5,16 +5,24 @@ use App\Scopes\RelationshipScope;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
+use Laravel\Scout\Searchable;
 use App\Profile;
 
 class Relationship extends Model
 {
+    use Searchable;
+
+    //Filters records belonging to me.
     protected static function boot()
     {
         parent::boot();
-
-        //Filters records belonging to me.
         static::addGlobalScope(new RelationshipScope);
+    }
+
+    public function toSearchableArray()
+    {
+        return $this->only('customer_alias', 'customer_taxid', 'customer_geoloc', 'customer_address', 'customer_telephone', 'customer_email',
+        'supplier_alias', 'supplier_taxid', 'supplier_geoloc', 'supplier_address', 'supplier_telephone', 'supplier_email');
     }
 
     public function scopeGetCustomers($query)

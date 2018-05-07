@@ -27,13 +27,48 @@ class RelationshipController extends Controller
 
     public function createCustomer(Request $request, Profile $profile)
     {
+        $relationship = new Relationship();
+        $relationship->supplier_id = $profile->id;
+        $relationship->supplier_accepted = true;
 
+        $relationship->customer_taxid = $request['taxid'];
+        $relationship->customer_alias = $request['alias'];
+        $relationship->customer_address = $request['address'];
+        $relationship->customer_telephone = $request['telephone'];
+        $relationship->customer_email = $request['email'];
+        $relationship->save();
+
+        return response()->json($relationship);
     }
 
     public function editCustomer(Request $request, Profile $profile)
     {
 
     }
+
+    public function list_customers(Profile $profile,$skip)
+    {
+        $customers = Relationship::GetCustomers()->skip($skip)
+        ->take(100)->get();
+
+        return response()->json($customers);
+    }
+
+    public function list_customersByID(Profile $profile,$id)
+    {
+        $customers = Relationship::GetCustomers($profile->id)
+        ->where('id',$id)
+        ->get();
+
+        return response()->json($customers);
+    }
+
+    public function list_suppliers(Profile $profile)
+    {
+        $suppliers = Relationship::GetSuppliers()->get();
+        return response()->json($suppliers);
+    }
+
 
     public function syncCustomer(Request $request, Profile $profile)
     {

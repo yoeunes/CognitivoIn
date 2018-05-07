@@ -11,6 +11,24 @@ use Illuminate\Http\Request;
 
 class ItemController extends Controller
 {
+    public function list_items(Profile $profile,$skip)
+    {
+        $items = Item::GetItems($profile->id)
+        ->skip($skip)
+        ->take(100)
+        ->get();
+
+        return response()->json($items);
+    }
+
+    public function list_itemsByID(Profile $profile,$id)
+    {
+        $items =Item::GetItems($profile->id)
+        ->where('id',$id)
+        ->get();
+
+        return response()->json($items);
+    }
 
     public function syncItems(Request $request, Profile $profile)
     {
@@ -39,11 +57,7 @@ class ItemController extends Controller
     // TODO: Use Elastic Search for this function to improve velocity and usage.
     public function search(Profile $profile, $query)
     {
-        return Item::where('profile_id', $profile->id)
-        ->where(function($q) use($query) {
-            $q->where('name', $query)
-            ->orWhere('sku', $query);
-        })->get();
+        return Item::search($query)->where('profile_id', $profile->id)->get();
     }
 
     public function getItem($itemID)
