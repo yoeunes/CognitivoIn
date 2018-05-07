@@ -220,7 +220,7 @@
                                                 </ul>
                                             </li>
                                             <li>
-                                                <a @click="Orders()" href="#">Orders</a>
+                                                <a @click="Orders()">Orders</a>
                                             </li>
                                         </ul>
                                     </li>
@@ -449,6 +449,10 @@
     <div v-else-if="showOpportunity===1">
 
         @include('back_office/opportunity')
+    </div>
+    <div v-else-if="showOrders===1">
+
+        @include('back_office/orders')
     </div>
 
 </div>

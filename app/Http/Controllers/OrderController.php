@@ -25,7 +25,14 @@ class OrderController extends Controller
 
         return view('company.sales.orders.list')->with('orders', $orders);
     }
+    public function list_orders(Profile $profile,$skip)
+    {
 
+      $orders = Order::with('details')->skip($skip)
+        ->take(100)->get();
+
+      return response()->json($orders);
+    }
     /**
     * Show the form for creating a new resource.
     *
@@ -62,7 +69,7 @@ class OrderController extends Controller
                 $order->is_impex=0;
                 $order->is_printed=0;
                 $order->is_archived=0;
-            
+
                 $order->save();
 
                 $orderstatus = new OrderStatus();

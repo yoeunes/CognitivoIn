@@ -10,7 +10,8 @@ Vue.component('backend-nav',{
       showCustomer:0,
       showPipeline:0,
       showPipelineStage:0,
-      showOpportunity:0
+      showOpportunity:0,
+      showOrders:0,
     };
   },
   methods:
@@ -88,11 +89,18 @@ Vue.component('backend-nav',{
       this.showPipelineStage=0;
       this.showOpportunity=1;
     },
-    Orders: function (detail)
+    Orders()
     {
-      this.$http.get('/back-office/sales/orders').then(response => {
-        this.html = response.data;
-      });
+
+      this.showPipeline=0;
+      this.showCustomer=0;
+      this.showItem=0;
+      this.showPipelineStage=0;
+      this.showOpportunity=0;
+      this.showOrders=1;
+      // this.$http.get('/back-office/sales/orders').then(response => {
+      //   this.html = response.data;
+      // });
     }
   },
   mounted() {

@@ -58,8 +58,8 @@ class SyncController extends Controller
             $item->sku = $data->code;
             $item->short_description = $data->comment;
             $item->unit_price = $data->unit_price;
-            $currency = Currency::first();
-            $item->currency_id =$currency->id;
+
+            $item->currency_id =$data->currency_code;
             $item->save();
             $data->cloud_id=$item->id;
         }
@@ -157,21 +157,11 @@ class SyncController extends Controller
         }
 
         $order->location_id =$branch->id;
-        $currency = Currency::first();
 
-        if (!isset($currency)) {
-            currency()->create([
-                'name' => 'U.S. Dollar',
-                'code' => 'USD',
-                'symbol' => '$',
-                'format' => '$1,0.00',
-                'exchange_rate' => 1.00000000,
-                'active' => 1,
-            ]);
         }
 
-        $currency = Currency::first();
-        $order->currency_id =$currency->id;
+        //$currency = Currency::first();
+        $order->currency_id =$data->currency_code;
         $order->currency_rate = $data->currency_rate;
         $order->comment = $data->comment;
 
@@ -288,4 +278,8 @@ class SyncController extends Controller
         ->get();
         return response()->json($orders);
     }
+
+    
+
+
 }

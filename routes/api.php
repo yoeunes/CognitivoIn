@@ -25,13 +25,15 @@ Route::group(['middleware' => 'auth:api'], function ()
   Route::prefix('{profile}')->group(function ()
   {
     Route::get('back-office/list-items/{skip}', 'ItemController@list_items');
+    Route::get('back-office/get-items', 'ItemController@get_items');
     Route::get('back-office/list-items/by-id/{id}', 'ItemController@list_itemsByID');
     Route::get('back-office/list-customers/{skip}', 'CustomerController@list_customers');
     Route::get('back-office/list-customers/by-id/{id}', 'CustomerController@list_customersByID');
     Route::get('back-office/list-pipelines/{skip}', 'PipelineController@list_pipelines');
     Route::get('back-office/list-pipelines/all', 'PipelineController@get_pipelines');
 
-    Route::get('back-office/list-pipelines/by-id/{id}', 'PipelineController@list_pipelinesByID');
+    Route::get('back-office/list-orders/{skip}', 'OrderController@list_orders');
+    Route::get('back-office/list-orders/by-id/{id}', 'OrderController@list_ordersByID');
 
     Route::get('back-office/list-pipelinestages/{skip}', 'PipelineStageController@list_pipelinestages');
     Route::get('back-office/list-stages/all', 'PipelineStageController@get_pipelinestages');
@@ -47,6 +49,10 @@ Route::group(['middleware' => 'auth:api'], function ()
     Route::get('back-office/list-currency', 'Api\ApiController@list_currency');
     Route::get('back-office/list-account-receivables/{customer_ID}', 'Api\ApiController@list_account_receivables');
     Route::get('back-office/list-account-payables/{supplier_id}', 'Api\ApiController@list_account_payables');
+
+    Route::post('syncitem', 'Api\SyncController@syncItems');
+    Route::post('synccustomer', 'Api\SyncController@syncCustomer');
+    Route::post('synctransaction', 'Api\SyncController@uploadOrder');
 
 
   });

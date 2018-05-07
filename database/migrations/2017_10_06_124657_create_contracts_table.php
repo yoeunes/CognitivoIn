@@ -20,7 +20,7 @@ class CreateContractsTable extends Migration
             $table->string('name');
 
             $table->timestamps();
-            $table->softDelete();
+            $table->softDeletes();
         });
     }
 

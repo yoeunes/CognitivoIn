@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
+
 class CreateVatsTable extends Migration
 {
     /**
@@ -21,7 +22,7 @@ class CreateVatsTable extends Migration
             $table->string('name');
 
             $table->timestamps();
-            $table->softDelete();
+            $table->softDeletes();
         });
     }
 

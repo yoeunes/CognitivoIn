@@ -173,9 +173,9 @@ class SchedualsController extends Controller
       $accountmovement->user_id=$relationship->id;
       $accountmovement->account_id=$data['AccountID'];
       $accountmovement->type_id=$data['Type'];
-      $currency=Currency::where('code',$data['CurrencyCode'])
-      ->orderBy('created_at', 'desc')->first();
-      $accountmovement->currency_id=$currency->id;
+      // $currency=Currency::where('code',$data['CurrencyCode'])
+      // ->orderBy('created_at', 'desc')->first();
+      $accountmovement->currency_id=$data['currency_code'];
       $accountmovement->currency_rate=$currency->exchange_rate;
       $accountmovement->date=Carbon::now();
       if ($data['Type']==1)
