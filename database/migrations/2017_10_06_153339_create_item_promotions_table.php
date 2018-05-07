@@ -17,14 +17,14 @@ class CreateItemPromotionsTable extends Migration
             $table->increments('id');
             $table->unsignedTinyInteger('type')->comment('Enum based promotion type');
 
-            $table->morphs('inputs');
+            $table->nullableMorphs('input');
             $table->unsignedDecimal('input_value', 8, 2);
 
-            $table->morphs('outputs');
+            $table->nullableMorphs('output');
             $table->unsignedDecimal('output_value', 8, 2);
 
-            $table->morphs('start_date');
-            $table->morphs('end_date');
+            $table->date('start_date');
+            $table->date('end_date');
 
             $table->timestamps();
             $table->softDeletes();

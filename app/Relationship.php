@@ -1,6 +1,7 @@
 <?php
 namespace App;
 
+use App\Scopes\RelationshipScope;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
@@ -8,12 +9,19 @@ use App\Profile;
 
 class Relationship extends Model
 {
+    protected static function boot()
+    {
+        parent::boot();
+
+        //Filters records belonging to me.
+        static::addGlobalScope(new RelationshipScope);
+    }
 
     public function scopeGetCustomers($query)
     {
         return $query
         ->where('supplier_id', request()->route('profile')->id)
-        ->where('supplier_accepted', true)
+        //->where('customer_accepted', true) //No need for this as Global Scope handles this filter.
         ->with('customer');
     }
 
@@ -21,7 +29,7 @@ class Relationship extends Model
     {
         return $query
         ->where('customer_id', request()->route('profile')->id)
-        ->where('customer_accepted', true)
+        //->where('customer_accepted', true) //No need for this as Global Scope handles this filter.
         ->with('supplier');
     }
 

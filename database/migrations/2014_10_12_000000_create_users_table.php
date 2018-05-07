@@ -77,8 +77,9 @@ class CreateUsersTable extends Migration
             $table->tinyInteger('industry')->nullable();
             $table->tinyInteger('sub_industry')->nullable();
 
-            $table->tinyInteger('show_prices_only_to')->default(5)
+            $table->tinyInteger('show_prices_to')->default(5)
             ->comment('Mark the highest role number allowed, example if 5 then all users can see. If 1 then only Admins can see the price.');
+
             $table->boolean('show_products')->default(true);
 
             $table->timestamps();

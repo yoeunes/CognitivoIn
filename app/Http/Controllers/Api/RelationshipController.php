@@ -9,19 +9,38 @@ use Carbon\Carbon;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class SyncController extends Controller
+class RelationshipController extends Controller
 {
+    //Customer Controller
+    public function searchCustomer(Profile $profile, $query)
+    {
+        $customers = Relationship::GetCustomers()
+        ->where('customer_alias', $query)
+        ->orWhere('customer_taxid', $query)
+        ->first();
+    }
 
+    public function listCustomers(Request $request, Profile $profile)
+    {
 
+    }
 
+    public function createCustomer(Request $request, Profile $profile)
+    {
 
+    }
+
+    public function editCustomer(Request $request, Profile $profile)
+    {
+
+    }
 
     public function syncCustomer(Request $request, Profile $profile)
     {
-
         $collection = collect();
 
-        if ($request->all() !=  []) {
+        if ($request->all() != [])
+        {
             $items = $request->all();
             $collection = collect($items);
         }
@@ -47,13 +66,13 @@ class SyncController extends Controller
                 $relationship->customer_address = $element->address;
                 $relationship->customer_telephone = $element->telephone;
                 $relationship->customer_email = $element->email;
+
                 $relationship->save();
             }
         }
-        return response()->json('Sucess');
+
+        return response()->json('Sucess', 200);
     }
-
-
 
     public function checkCreateRelationships($profile, $data)
     {
@@ -68,7 +87,6 @@ class SyncController extends Controller
         }
         else
         {
-
             $relationship = new Relationship();
 
             $relationship->supplier_id = $profile->id;
@@ -84,16 +102,7 @@ class SyncController extends Controller
             }
 
             $relationship->save();
-
             return $relationship;
         }
     }
-
-
-
-  
-
-
-
-
 }

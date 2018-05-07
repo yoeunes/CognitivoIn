@@ -9,11 +9,10 @@ use Carbon\Carbon;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class SyncController extends Controller
+class TransactionController extends Controller
 {
 
-
-
+    // TODO: Make chunks of data. learn from debehaber
     public function uploadOrder (Request $request, Profile $profile)
     {
         $data = collect();
@@ -27,15 +26,11 @@ class SyncController extends Controller
 
         foreach ($collection as $key => $data)
         {
-            //Check to see if Reference exists in System.
-            $order = Order::FromCustomers()->where('ref_id', $data->my_id)->select('orders.id')->first();
+            //Check to see if cloud id exists in system
+            $order = Order::mySales()->where('id', $data->cloud_id)->with('details')->first();
 
             //If Exists == false, create Order, link Relationship and use.
-            if(isset($order))
-            {
-                $order = Order::where('id',$order->id)->with('details')->first();
-            }
-            else
+            if(isset($order) == false)
             {
                 $order = new Order();
                 $order->relationship_id = $this->checkCreateRelationships($profile, $data)->id;
@@ -62,17 +57,15 @@ class SyncController extends Controller
 
         if (!isset($branch)) {
             $branch = new Location();
-            $branch->profile_id=$profile->id;
-            $branch->name=$data->branch_name;
+            $branch->profile_id = $profile->id;
+            $branch->name = $data->branch_name;
             $branch->save();
         }
 
-        $order->location_id =$branch->id;
-
-        }
+        $order->location_id = $branch->id;
 
         //$currency = Currency::first();
-        $order->currency_id =$data->currency_code;
+        $order->currency_id = $data->currency_code;
         $order->currency_rate = $data->currency_rate;
         $order->comment = $data->comment;
 
@@ -106,7 +99,7 @@ class SyncController extends Controller
         }
     }
 
-  
+
 
     public function syncTransactionStatus(Request $request, Profile $profile)
     {
