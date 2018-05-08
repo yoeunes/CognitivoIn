@@ -23,6 +23,7 @@
     <meta property="og:url" content="">
     <meta property="og:image" content="">
     <meta property="og:image" content="">
+
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <!-- Icons -->
@@ -41,14 +42,16 @@
     <!-- END Stylesheets -->
 </head>
 <body>
-    <div id="app">
-        <div>
-            <model inline-template>
-                <div>
-                    @yield('main')
-                </div>
-            </model>
-        </div>
+    <div id="app" class="main-content-boxed">
+        <main id="main-container">
+            <div>
+                <model inline-template>
+                    <div>
+                        @yield('main')
+                    </div>
+                </model>
+            </div>
+        </main>
     </div>
 
     <!-- Codebase Core JS -->
