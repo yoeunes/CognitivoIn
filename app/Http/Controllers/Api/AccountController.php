@@ -117,7 +117,7 @@ class AccountController extends Controller
       $accountmovement->type_id=$data['Type'];
       // $currency=Currency::where('code',$data['CurrencyCode'])
       // ->orderBy('created_at', 'desc')->first();
-      $accountmovement->currency_id=$data['currency_code'];
+      $accountmovement->currency=$data['currency_code'];
       $accountmovement->currency_rate=1;
       $accountmovement->date=Carbon::now();
       if ($data['Type']==1)
