@@ -146,6 +146,14 @@ class ProfileController extends Controller
 
     }
 
+    public function get_companys()
+    {
+        $companys=Profile::GetProfiles()->where('type',2)->get();
+
+        return response()->json($companys);
+
+    }
+
 
 
 }

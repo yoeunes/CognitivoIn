@@ -26,6 +26,7 @@ Route::get('login/{email}/{password}', 'Auth\SocialAuthController@Login');
 
 Route::get('getCustomers/{profile}', 'CustomerController@getAllCustomer');
 
+Route::get('getCompanys', 'ProfileController@get_companys');
 Route::prefix('{profile}')->group(function ()
 {
     Route::prefix('back-office')->group(function ()
