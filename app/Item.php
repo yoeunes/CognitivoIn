@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Overtrue\LaravelFollow\Traits\CanBeLiked;
+use Naoray\LaravelReviewable\Traits\HasReviews;
 use App\Profile;
 use App\ItemImage;
 use App\ItemReview;
@@ -19,7 +20,7 @@ use Laravel\Scout\Searchable;
 
 class Item extends Model
 {
-    use SoftDeletes, CanBeLiked;
+    use SoftDeletes, CanBeLiked, HasReviews;
     use Searchable;
 
     protected $table = 'items';

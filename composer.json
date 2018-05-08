@@ -16,6 +16,7 @@
         "laravel/passport": "^6.0",
         "laravel/scout": "3.*",
         "laravel/tinker": "^1.0",
+        "naoray/laravel-reviewable": "^1.1",
         "nasyrov/laravel-enums": "^1.1",
         "overtrue/laravel-follow": "^1.1",
         "php-http/guzzle6-adapter": "^1.1",
