@@ -307,10 +307,6 @@
                             <!-- User Dropdown -->
                             <div class="btn-group" role="group">
 
-                                @php
-                                $listOfCompanies = App\Profile::GetProfiles()->where('type', 2)->get();
-                                @endphp
-
                                 <button type="button" class="btn btn-rounded btn-dual-secondary" id="page-header-user-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     {{ Auth::user()->profile->name }}<i class="fa fa-angle-down ml-5"></i>
                                 </button>
