@@ -12,101 +12,92 @@ use Illuminate\Http\Request;
 class RelationshipController extends Controller
 {
     //Customer Controller
-    public function searchCustomer(Profile $profile, $query)
+    public function search(Profile $profile, $query)
     {
         $customers = Relationship::GetCustomers()
         ->where('customer_alias', $query)
         ->orWhere('customer_taxid', $query)
-        ->first();
+        ->get();
     }
 
-    public function listCustomers(Request $request, Profile $profile)
+    public function list_customers(Request $request, Profile $profile)
     {
-
-    }
-
-    public function createCustomer(Request $request, Profile $profile)
-    {
-        $relationship = new Relationship();
-        $relationship->supplier_id = $profile->id;
-        $relationship->supplier_accepted = true;
-
-        $relationship->customer_taxid = $request['taxid'];
-        $relationship->customer_alias = $request['alias'];
-        $relationship->customer_address = $request['address'];
-        $relationship->customer_telephone = $request['telephone'];
-        $relationship->customer_email = $request['email'];
-        $relationship->save();
-
-        return response()->json($relationship);
-    }
-
-    public function editCustomer(Request $request, Profile $profile)
-    {
-
-    }
-
-    public function list_customers(Profile $profile,$skip)
-    {
-        $customers = Relationship::GetCustomers()->skip($skip)
-        ->take(100)->get();
-
-        return response()->json($customers);
-    }
-
-    public function list_customersByID(Profile $profile,$id)
-    {
-        $customers = Relationship::GetCustomers($profile->id)
-        ->where('id',$id)
+        $customers = Relationship::GetCustomers()
+        ->skip($skip)
+        ->take(100)
         ->get();
 
         return response()->json($customers);
     }
-
-    public function list_suppliers(Profile $profile)
+    public function getCustomer(Profile $profile,$id)
     {
-        $suppliers = Relationship::GetSuppliers()->get();
-        return response()->json($suppliers);
+        $customers =Relationship::find($id)
+        
+
+        return response()->json($customers);
     }
 
-
-    public function syncCustomer(Request $request, Profile $profile)
+    public function syncCustomers(Request $request, Profile $profile)
     {
         $collection = collect();
 
         if ($request->all() != [])
         {
-            $items = $request->all();
-            $collection = collect($items);
+            $customers = $request->all();
+            $collection = collect($customers);
         }
 
         $collection = json_decode($collection->toJson());
+        $counter = 0;
 
-        foreach ($collection as $key  => $element)
+        $processedCustomers = new Collection();
+
+
+        foreach ($collection as $element)
         {
-            $item = Relationship::GetCustomers()
-            ->where('customer_alias', $element->name)
-            ->where('customer_taxid', $element->govcode)
-            ->first();
 
-            if (!isset($item))
-            {
-                $relationship = new Relationship();
-
-                $relationship->supplier_id = $profile->id;
-                $relationship->supplier_accepted = true;
-
-                $relationship->customer_taxid = $element->govcode;
-                $relationship->customer_alias = $element->name;
-                $relationship->customer_address = $element->address;
-                $relationship->customer_telephone = $element->telephone;
-                $relationship->customer_email = $element->email;
-
-                $relationship->save();
-            }
+            $processedCustomers->push($this->createOrUpdate_Customer($element));
+            $counter += 1;
         }
 
-        return response()->json('Sucess', 200);
+        //Return CloudID back to Client Application for processing.
+        return response()->json($processedCustomers, 200);
+    }
+
+    public function createOrUpdateCustomer(Request $request, $data)
+    {
+        $profile = request()->route('profile');
+
+        $relationship = Relationship::GetCustomers()->where('id', $data->cloud_id)->first();
+
+        if (isset($item) == false)
+        {
+            $relationship = Relationship::GetCustomers()
+            ->where('customer_alias', $query)
+            ->orWhere('customer_taxid', $query)->first() ?? new Relationship();
+        }
+
+
+        $relationship->supplier_id = $profile->id;
+        $relationship->supplier_accepted = true;
+
+        $relationship->customer_taxid = $data->taxid;
+        $relationship->customer_alias = $data->alias;
+        $relationship->customer_address = $data->address;
+        $relationship->customer_telephone = $data->telephone;
+        $relationship->customer_email = $data->email;
+        $relationship->save();
+        $data->cloud_id = $relationship->id;
+        return response()->json($relationship);
+    }
+
+
+
+
+    public function list_suppliers(Profile $profile)
+    {
+        $suppliers = Relationship::GetSuppliers()->get();
+        return response()->json($suppliers);
     }
 
     public function checkCreateRelationships($profile, $data)

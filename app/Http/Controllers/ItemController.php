@@ -6,7 +6,6 @@ use App\Item;
 use App\ItemReview;
 use App\ItemFaq;
 use App\Profile;
-use App\Currency;
 use Illuminate\Http\Request;
 use Auth;
 
@@ -73,26 +72,26 @@ class ItemController extends Controller
         $item = $request->id == 0 ? new Item() : Item::where('id', $request->id)->first();
         $item->profile_id = $profile->id;
 
-        $currency = null;
-        $currencies = Currency::GetCurrencies();
+        //$currency = null;
+        // $currencies = Currency::GetCurrencies();
+        //
+        // if (count($currencies) == 0)
+        // {
+        //     $currency = new Currency();
+        //     $currency->name ='US Dollar';
+        //     $currency->code ='USD';
+        //     $currency->symbol ='$';
+        //     $currency->format ='$1.0.00';
+        //     $currency->exchange_rate = 0;
+        //     $currency->active = 0;
+        //     $currency->save();
+        // }
+        // else
+        // {
+        //     $currency = $currencies->first();
+        // }
 
-        if (count($currencies) == 0)
-        {
-            $currency = new Currency();
-            $currency->name ='US Dollar';
-            $currency->code ='USD';
-            $currency->symbol ='$';
-            $currency->format ='$1.0.00';
-            $currency->exchange_rate = 0;
-            $currency->active = 0;
-            $currency->save();
-        }
-        else
-        {
-            $currency = $currencies->first();
-        }
-
-        $item->currency_id = $currency->id;
+        $item->currency = 'PRY';
         $item->sku = $request->sku;
         $item->name = $request->name;
         $item->short_description = $request->short_description;

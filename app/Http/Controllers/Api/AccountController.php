@@ -31,49 +31,113 @@ class AccountController extends Controller
     }
 
 
-    public function uploadOrder (Request $request, Profile $profile)
-    {
-        $data = collect();
 
-        if ($request->all() != [])
-        {
-            $data = collect($request->all());
-        }
-
-        $collection = json_decode($data->toJson());
-
-        foreach ($collection as $key => $data)
-        {
-            //Check to see if Reference exists in System.
-            $order = Order::FromCustomers()->where('ref_id', $data->my_id)->select('orders.id')->first();
-
-            //If Exists == false, create Order, link Relationship and use.
-            if(isset($order))
-            {
-                $order = Order::where('id',$order->id)->with('details')->first();
-            }
-            else
-            {
-                $order = new Order();
-                $order->relationship_id = $this->checkCreateRelationships($profile, $data)->id;
-            }
-
-            //fill up data regardless if exists or not. this will allow new data to prevail.
-            $data->customer->cloud_id=$order->relationship_id;
-            $this->loadData_Order($order, $data);
-        }
-
-        return response()->json($collection);
-    }
 
     public function get_CustomerSchedual(Request $request, Profile $profile)
     {
         //return payment schedual. history of unpaid debt. by Customer TaxID
+        $data=$request[0];
+
+        if ($data['Type']==1) {
+          $relationship=Relationship::GetCustomers()
+          ->where('customer_alias',$data['PartnerName'])
+          ->orWhere('customer_taxid',$data['PartnerTaxID'])->first();
+
+        }
+        else {
+          $relationship=Relationship::GetSuppliers()
+          ->where('supplier_alias',$data['PartnerName'])
+          ->orWhere('supplier_taxid',$data['PartnerTaxID'])->first();
+        }
+
+        $schedules=Scheduals::where('relationship_id',$relationship->id)
+        ->join('currencies', 'currencies.id', 'scheduals.currency_id')
+        ->leftjoin('account_movements', 'scheduals.id', 'account_movements.schedual_id')
+        ->groupBy('scheduals.currency_id')
+        ->select(DB::raw('max(currencies.code) as code'),
+        DB::raw('sum(scheduals.debit) as value'),
+        DB::raw('max(scheduals.debit) as max_value'),
+        DB::raw('max(scheduals.id) as InvoiceNumber'),
+        DB::raw('max(scheduals.date) as InvoiceDate'),
+        DB::raw('max(scheduals.date_exp) as Deadline'),
+        DB::raw('max(scheduals.reference) as Reference')
+        )->get();
+
+
+        $data2 = [];
+        $values = [];
+        for ($i=0; $i <count($schedules) ; $i++)
+        {
+          $values[$i] = [
+            'CurrencyCode' => $schedules[$i]->code ,
+            'Value' => $schedules[$i]->value ,
+            'MaxValue' => $schedules[$i]->max_value,
+            'ReferenceCode' => $schedules[$i]->reference,
+            'InvoiceNumber' => $schedules[$i]->InvoiceNumber,
+            'InvoiceDate' => $schedules[$i]->InvoiceDate,
+            'Deadline' => $schedules[$i]->Deadline,
+          ];
+        }
+
+        $data2[] = [
+          'ReferenceName' => $data['PartnerName'],
+          'ReferenceTaxID' => $data['PartnerTaxID'],
+          'Details' => $values ];
+
+
+          return response()->json($data2,'200');
     }
 
     public function recievePayment(Request $request, Profile $profile)
     {
         //Store payment information recieved by client application
+        $data=$request[0];
+      if (!isset($data)) {
+        $data=$request;
+      }
+
+      if ($data['Type']==1) {
+        $relationship=Relationship::GetCustomers()
+        ->where('customer_alias',$data['PartnerName'])
+        ->orWhere('customer_taxid',$data['PartnerTaxID'])->first();
+
+      }
+      else {
+        $relationship=Relationship::GetSuppliers()
+        ->where('supplier_alias',$data['PartnerName'])
+        ->orWhere('supplier_taxid',$data['PartnerTaxID'])->first();
+      }
+
+
+      $accountmovement=new AccountMovement();
+      $accountmovement->schedual_id=$data['InvoiceReference'];
+      $accountmovement->user_id=$relationship->id;
+      $accountmovement->account_id=$data['AccountID'];
+      $accountmovement->type_id=$data['Type'];
+      // $currency=Currency::where('code',$data['CurrencyCode'])
+      // ->orderBy('created_at', 'desc')->first();
+      $accountmovement->currency_id=$data['currency_code'];
+      $accountmovement->currency_rate=$currency->exchange_rate;
+      $accountmovement->date=Carbon::now();
+      if ($data['Type']==1)
+      {
+        $accountmovement->credit=$data['Value'];
+        $accountmovement->debit=0;
+      }
+      else
+      {
+        $accountmovement->credit=0;
+        $accountmovement->debit=$data['Value'];
+      }
+      $accountmovement->save();
+
+      $data2 = [];
+
+      $data2[] = [
+        'PaymentReference' => $accountmovement->id,
+        'ResponseType' => 1
+      ];
+      return response()->json($data2,'200');
     }
 
     public function annullPayment(Request $request, Profile $profile)

@@ -29,6 +29,10 @@ Route::prefix('{profile}')->group(function ()
 {
     Route::prefix('back-office')->group(function ()
     {
+        Route::resources([
+            'movements' => 'BackOfficeStockMovementController',
+        ]);
+
         Route::get('list-items/{skip}', 'ItemController@list_items');
 
         Route::get('get-items', 'ItemController@get_items');
@@ -51,20 +55,23 @@ Route::prefix('{profile}')->group(function ()
         Route::get('list-opportunities/{skip}', 'OpportunityController@list_opportunities');
         Route::get('list-opportunities/by-id/{id}', 'OpportunityController@list_opportunitiesByID');
 
-        Route::post('customers', 'Api\ApiController@customers');
+
         Route::get('list-suppliers', 'Api\ApiController@list_suppliers');
         Route::get('list-currency', 'Api\ApiController@list_currency');
+
         Route::get('list-account-receivables/{customer_ID}', 'Api\ApiController@list_account_receivables');
         Route::get('list-account-payables/{supplier_id}', 'Api\ApiController@list_account_payables');
 
-        Route::resources([
-            'movements' => 'BackOfficeStockMovementController',
-        ]);
-    });
 
-    Route::post('syncitem', 'Api\SyncController@syncItems');
-    Route::post('synccustomer', 'Api\SyncController@syncCustomer');
-    Route::post('synctransaction', 'Api\SyncController@uploadOrder');
+    });
+    Route::post('customers', 'Api\RelationshipController@createOrUpdateCustomer');
+    Route::post('PaymentDue', 'Api\AccountController@get_CustomerSchedual');
+    Route::post('ReceivePayment', 'Api\AccountController@recievePayment');
+
+    Route::post('syncitem', 'Api\ItemController@syncItems');
+    Route::post('synccustomer', 'Api\CustomerController@syncCustomer');
+
+    Route::post('synctransaction', 'Api\TransactionController@uploadOrder');
 });
 
 // group by slug
@@ -81,6 +88,4 @@ Route::prefix('{profile}')->group(function ()
 
 
 //  Route::get('PaymentDue/{slug}/{type}/{partnerName}/{partnerTaxID}', 'SchedualsController@PaymentDue');
-Route::post('PaymentDue/{profile}', 'SchedualsController@PaymentDue');
-Route::post('ReceivePayment/{profile}', 'SchedualsController@ReceivePayment');
 Route::post('Anull', 'AccountMovementController@Anull');

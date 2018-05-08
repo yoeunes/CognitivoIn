@@ -7,7 +7,6 @@ use App\OrderDetail;
 use App\OrderStatus;
 use App\Profile;
 use App\Relationship;
-use App\Currency;
 
 use Illuminate\Http\Request;
 
