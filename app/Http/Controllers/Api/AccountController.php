@@ -132,7 +132,7 @@ class AccountController extends Controller
 
             $account=Account::where('number',1)->first()==null?new Account():
             Account::where('number',1)->first();
-            $account->name="Cash A/c Of "+ $profile->name;
+            $account->name="Cash A/c Of " . $profile->name;
             $account->number="1";
             $account->save();
 
