@@ -23,7 +23,7 @@ class ItemController extends Controller
         ->with('items', $items);
     }
 
-    public function list_items(Profile $profile,$skip)
+    public function list_items(Profile $profile, $skip)
     {
         $items = Item::GetItems($profile->id)
         ->skip($skip)

@@ -2,9 +2,8 @@
     <div>
         <div class="block block-rounded block-themed">
             <div class="block-header bg-gd-primary">
-                <h3 class="block-title">Basic Info</h3>
+                <H3 class="block-title">Basic Information</H3>
                 <div class="block-options">
-
                     <button v-on:click="onSave($data,false)" class="btn btn-sm btn-alt-primary">
                         <i class="fa fa-save"></i> @lang('global.Save')
                     </button>
@@ -16,40 +15,43 @@
                     </button>
                 </div>
             </div>
+
             <div class="block-content block-content-full">
-
-                <div class="form-group">
-                    <div class="form-material floating col-8">
+                <div class="form-group row">
+                    <label class="col-12" for="sku">Code</label>
+                    <div class="col-md-9">
                         <input type="text" class="form-control" id="sku" name="sku" v-model="sku">
-                        <label for="sku">SKU</label>
+                        <div class="form-text text-muted">Further info about this input</div>
                     </div>
                 </div>
 
-                <div class="form-group">
-                    <div class="form-material floating col-8">
+                <div class="form-group row">
+                    <label class="col-12" for="sku">Name</label>
+                    <div class="col-md-9">
                         <input type="text" class="form-control" id="name" name="name" v-model="name">
-                        <label for="name">Name</label>
+                        <div class="form-text text-muted">Further info about this input</div>
                     </div>
                 </div>
 
-                <div class="form-group">
-                    <div class="form-material floating col-3">
-                        <input type="text" class="form-control" id="unit_price" name="unit_price" v-model="unit_price">
-                        <label for="unit_price">Base Selling Price</label>
+                <div class="form-group row">
+                    <label class="col-12" for="sku">Selling Price</label>
+                    <div class="col-md-9">
+                        <input type="number" class="form-control" id="unit_price" name="unit_price" v-model="unit_price">
+                        <div class="form-text text-muted">Further info about this input</div>
                     </div>
                 </div>
 
-                <div class="form-group">
-                    <div class="form-material floating">
+                <div class="form-group row">
+                    <label class="col-12" for="example-textarea-input">Short Description</label>
+                    <div class="col-9">
                         <textarea class="form-control" id="short_description" name="short_description" v-model="short_description" rows="3"></textarea>
-                        <label for="short_description">Short Description</label>
                     </div>
                 </div>
 
-                <div class="form-group">
-                    <div class="form-material floating col-8">
+                <div class="form-group row">
+                    <label class="col-12" for="example-textarea-input">Long Description</label>
+                    <div class="col-9">
                         <textarea class="form-control" id="long_description" name="long_description" v-model="long_description" rows="8"></textarea>
-                        <label for="long_description">Long Description</label>
                     </div>
                 </div>
             </div>
