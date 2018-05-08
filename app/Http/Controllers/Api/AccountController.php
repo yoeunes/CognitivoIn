@@ -134,6 +134,7 @@ class AccountController extends Controller
             Account::where('number',1)->first();
             $account->name="Cash A/c Of " . $profile->name;
             $account->number="1";
+                $account->currency='PRY';
             $account->save();
 
             $accountmovement=new AccountMovement();
