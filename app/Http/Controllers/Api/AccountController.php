@@ -129,10 +129,16 @@ class AccountController extends Controller
             }
             $schedual->save();
 
+            $account=Account::where('number',1)->first()==null?new Account():
+            Account::where('number',1)->first();
+            $account->name="Cash A/c Of "+ $profile->name;
+            $account->number="1";
+            $account->save();
+
             $accountmovement=new AccountMovement();
             $accountmovement->schedual_id=$schedual->id;
             $accountmovement->user_id=$relationship->id;
-            $accountmovement->account_id=$data['AccountID'];
+            $accountmovement->account_id=$account->id;
             $accountmovement->type_id=$data['Type'];
             // $currency=Currency::where('code',$data['CurrencyCode'])
             // ->orderBy('created_at', 'desc')->first();

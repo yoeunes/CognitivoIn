@@ -4,11 +4,11 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-class AccountMovement extends Model
+class Account extends Model
 {
   use SoftDeletes;
 
-  protected $table = 'account_movements';
+  protected $table = 'accounts';
 
   /**
   * Fields that can be mass assigned.
@@ -16,13 +16,12 @@ class AccountMovement extends Model
   * @var array
   */
   protected $fillable = [
-      'schedual_id',
-      'account_id',
+      'bank_relationship_id',
       'currency',
-      'rate',
-      'debit',
-      'credit',
-      'date',
+      'name',
+      'number',
+      'is_active'
+
 
   ];
 }
