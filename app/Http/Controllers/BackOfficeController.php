@@ -8,14 +8,20 @@ use Illuminate\Http\Request;
 class BackOfficeController extends Controller
 {
     /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+    * Show the application dashboard.
+    *
+    * @return \Illuminate\Http\Response
+    */
+    public function index(Profile $profile)
     {
-        return view('back_office.index');
-        // return view('home');
+        if (isset($profile))
+        {
+            return view('back_office.index');
+        }
+        else
+        {
+            return view('home');
+        }
     }
 
     public function indexDashboard()

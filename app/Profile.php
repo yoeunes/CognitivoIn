@@ -91,7 +91,8 @@ class Profile extends Model implements HasMedia
     //note: the first letter of first world if always in lower case
     public function currencies()
     {
-        return $this->belongsToMany(Currency::class, 'currency_relationships', 'profile_id', 'currency_id')->withPivot('is_favorite');
+        return $this->belongsToMany(Currency::class, 'currency_relationships', 'profile_id', 'currency_id')
+        ->withPivot('is_favorite');
     }
 
     public function targets()
@@ -107,11 +108,11 @@ class Profile extends Model implements HasMedia
     */
     public function scopeGetProfiles($query)
     {
-        return $query
+        return $query;
         // ->join('followables', 'followables.followable_id', '=', 'profiles.id')
         // ->where('followables.role', "!=", "'Follower'")
         // ->where('followables.user_id', '=', Auth::user()->profile_id)
-        ->select('profiles.name', 'profiles.id', 'profiles.slug');
+        //->select('profiles.name', 'profiles.id', 'profiles.slug');
     }
 
     /**

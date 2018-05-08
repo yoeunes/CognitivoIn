@@ -13,7 +13,7 @@
 
 Auth::routes();
 
-Route::get('/', 'HomeController@index')->name('market');
+Route::get('/', 'HomeController@index')->name('home');
 Route::get('/shops', 'HomeController@indexStores')->name('shops.index');
 Route::get('/shop/{profile}', 'HomeController@indexStores')->name('shops.show');
 Route::get('/{profile}', 'ProfileController@show')->name('profile');
