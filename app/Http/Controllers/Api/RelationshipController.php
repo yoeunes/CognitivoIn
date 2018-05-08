@@ -31,8 +31,8 @@ class RelationshipController extends Controller
     }
     public function getCustomer(Profile $profile,$id)
     {
-        $customers =Relationship::find($id)
-        
+        $customers =Relationship::find($id);
+
 
         return response()->json($customers);
     }
