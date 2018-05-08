@@ -64,13 +64,13 @@ class RelationshipController extends Controller
         return response()->json($processedCustomers, 200);
     }
 
-    public function createOrUpdateCustomer(Request $request, $data)
+    public function createOrUpdateCustomer(Request $request,Profile $profile, $data)
     {
-        $profile = request()->route('profile');
+
 
         $relationship = Relationship::GetCustomers()->where('id', $data->cloud_id)->first();
 
-        if (isset($item) == false)
+        if (isset($relationship) == false)
         {
             $relationship = Relationship::GetCustomers()
             ->where('customer_alias', $query)
@@ -91,7 +91,19 @@ class RelationshipController extends Controller
         return response()->json($relationship);
     }
 
-
+    public function customers(Profile $profile,Request $request)
+     {
+       $relationship= new Relationship();
+       $relationship->supplier_id = $profile->id;
+       $relationship->customer_taxid=$request['taxid'];
+       $relationship->customer_alias=$request['alias'];
+       $relationship->customer_address=$request['address'];
+       $relationship->customer_telephone=$request['telephone'];
+       $relationship->customer_email=$request['email'];
+       $relationship->supplier_accepted=true;
+       $relationship->save();
+       return response()->json($relationship);
+     }
 
 
     public function list_suppliers(Profile $profile)
