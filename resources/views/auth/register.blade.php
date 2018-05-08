@@ -9,7 +9,7 @@
                         We're very happy you are joining our community!
                     </p>
                     <p class="font-italic text-white-op">
-                        Copyright &copy; <span class="js-year-copy">2018</span>
+                        Copyright &copy; <span class="js-year-copy"></span>
                     </p>
                 </div>
             </div>
