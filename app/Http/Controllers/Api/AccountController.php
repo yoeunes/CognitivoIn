@@ -6,6 +6,7 @@ use App\Item;
 use App\Relationship;
 use App\Profile;
 use App\AccountMovement;
+use App\Scheduals;
 use Carbon\Carbon;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
