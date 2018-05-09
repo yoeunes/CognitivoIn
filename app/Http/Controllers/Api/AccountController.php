@@ -8,6 +8,8 @@ use App\Profile;
 use App\Account;
 use App\AccountMovement;
 use App\Scheduals;
+use App\Order;
+use App\OrderDetail;
 use Carbon\Carbon;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -93,7 +95,7 @@ class AccountController extends Controller
 
         public function recievePayment(Request $request, Profile $profile)
         {
-
+            //return response()->json($request,'500');
             //Store payment information recieved by client application
             $data=$request[0];
             if (!isset($data)) {
@@ -111,6 +113,31 @@ class AccountController extends Controller
                 ->where('supplier_alias',$data['PartnerName'])
                 ->orWhere('supplier_taxid',$data['PartnerTaxID'])->first();
             }
+
+            $order=new Order();
+
+            $order->number = $data['number'];
+            $order->relationship_id=$relationship->id;
+            $order->code = $data['code'];
+            //$order->code_expiry = $data['code_expiry'];
+            $order->is_printed = $data['number'] != "" ? true : false;
+            $order->date =Carbon::now();
+            $order->currency = 'PRY';
+            $order->currency_rate = 1;
+            $order->save();
+
+            foreach ($data['Selectditems'] as $data_detail)
+            {
+                $detail = new OrderDetail();
+                $detail->order_id = $order->id;
+                $detail->item_id = $data_detail['id'];
+                    $detail->item_name = $data_detail['name'];
+                $detail->quantity = $data_detail['quantity'];
+                $detail->unit_price = $data_detail['unit_price'];
+                $detail->save();
+
+            }
+
 
             $schedual= new Scheduals();
             $schedual->relationship_id=$relationship->id;
@@ -134,7 +161,7 @@ class AccountController extends Controller
             Account::where('number',1)->first();
             $account->name="Cash A/c Of " . $profile->name;
             $account->number="1";
-                $account->currency='PRY';
+            $account->currency='PRY';
             $account->save();
 
             $accountmovement=new AccountMovement();

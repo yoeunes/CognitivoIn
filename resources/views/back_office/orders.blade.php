@@ -8,7 +8,7 @@
     </a>
 </div>
 
-<infinity-order profile="{{ request()->route('profile') }}" baseurl="back-office/list-orders"  inline-template>
+<infinity-order profile="{{ request()->route('profile')->slug }}" baseurl="back-office/list-orders"  inline-template>
     <div>
         <div v-if="$parent.$parent.showList">
             @include('back_office/sales/orders/list')

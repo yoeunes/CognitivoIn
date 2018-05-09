@@ -8,7 +8,7 @@
   </a>
 </div>
 
-  <infinity-pipeline profile="{{ request()->route('profile') }}" baseurl="back-office/list-pipelines" inline-template>
+  <infinity-pipeline profile="{{ request()->route('profile')->slug }}" baseurl="back-office/list-pipelines" inline-template>
         <div>
 
            <div v-if="$parent.$parent.showList">

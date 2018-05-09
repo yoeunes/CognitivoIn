@@ -8,7 +8,7 @@
   </a>
 </div>
 
-  <infinity-customer baseurl="back-office/list-customers" profile="{{ request()->route('profile') }}" inline-template>
+  <infinity-customer baseurl="back-office/list-customers" profile="{{ request()->route('profile')->slug }}" inline-template>
         <div>
 
            <div v-if="$parent.$parent.showList">

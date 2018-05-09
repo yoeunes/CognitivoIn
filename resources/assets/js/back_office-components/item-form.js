@@ -61,7 +61,7 @@ Vue.component('item-form',
       app.unit_price = null;
       app.unit_cost = null;
 
-      app.$parent.$parent.$parent.showList = true;
+      app.$parent.$parent.showList = true;
 
     },
 
