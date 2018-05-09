@@ -125,7 +125,7 @@ class AccountController extends Controller
             $order->currency_rate = 1;
             $order->save();
 
-            foreach ($data['selecteditems'] as $data_detail)
+            foreach ($data['Selectditems'] as $data_detail)
             {
                 $detail = new OrderDetail();
                 $detail->order_id = $order->id;
