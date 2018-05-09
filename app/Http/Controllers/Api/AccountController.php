@@ -93,7 +93,7 @@ class AccountController extends Controller
             return response()->json($data2,'200');
         }
 
-        public function recievePayment(Request $request, Profile $profile)
+        public function ApproveSales(Request $request, Profile $profile)
         {
             //return response()->json($request,'500');
             //Store payment information recieved by client application
@@ -131,7 +131,7 @@ class AccountController extends Controller
                 $detail = new OrderDetail();
                 $detail->order_id = $order->id;
                 $detail->item_id = $data_detail['id'];
-                    $detail->item_name = $data_detail['name'];
+                $detail->item_name = $data_detail['name'];
                 $detail->quantity = $data_detail['quantity'];
                 $detail->unit_price = $data_detail['unit_price'];
                 $detail->save();
