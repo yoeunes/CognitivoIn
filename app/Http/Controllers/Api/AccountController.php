@@ -94,7 +94,7 @@ class AccountController extends Controller
 
         public function recievePayment(Request $request, Profile $profile)
         {
-    return response()->json($request,'500');  
+    //return response()->json($request,'500');
             //Store payment information recieved by client application
             $data=$request[0];
             if (!isset($data)) {
@@ -115,39 +115,23 @@ class AccountController extends Controller
 
             $order=new Order();
 
-            $order->number = $data->number;
-            $order->is_printed = $data->number != "" ? true : false;
-            $order->trans_date =Carbon::now();;
+            $order->number = $data['number'];
+            $order->is_printed = $data['number'] != "" ? true : false;
+            $order->trans_date =Carbon::now();
             $order->credit_days = 0;
-            $branch = Location::where('profile_id', $profile->id)->where('name', $data->branch_name)->first();
-
-            if (!isset($branch)) {
-                $branch = new Location();
-                $branch->profile_id = $profile->id;
-                $branch->name = $data->branch_name;
-                $branch->save();
-            }
-
-            $order->location_id = $branch->id;
-
-            //$currency = Currency::first();
-            $order->currency = 'PRY';
+           $order->currency = 'PRY';
             $order->currency_rate = 1;
 
 
             $order->save();
 
-            foreach ($data['details'] as $data_detail)
+            foreach ($data['selecteditems'] as $data_detail)
             {
                 $detail = new OrderDetail();
                 $detail->order_id = $order->id;
-
-
-                $item = $this->createOrUpdate_Item($data_detail->item);
-
-                $detail->item_id = $data_detail['item_id'];
+                $detail->item_id = $data_detail['id'];
                 $detail->quantity = $data_detail['quantity'];
-                $detail->unit_price = $data_detail['price'];
+                $detail->unit_price = $data_detail['unit_price'];
                 $detail->save();
 
             }
