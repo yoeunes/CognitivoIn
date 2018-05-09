@@ -86,8 +86,8 @@ Vue.component('infinity-item',
                 async: true,
                 success: function(data)
                 {
-                    console.log(data);
-                    app.$children[0].onEdit(data[0]);
+                    
+                    app.$parent.$children[0].onEdit(data[0]);
 
                 },
                 error: function(xhr, status, error)

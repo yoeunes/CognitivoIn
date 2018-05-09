@@ -1,4 +1,4 @@
-<item-form profile="{{ request()->route('profile') }}" inline-template>
+<item-form profile="{{ request()->route('profile')->slug }}" inline-template>
     <div>
         <div class="block block-rounded block-themed">
             <div class="block-header bg-gd-primary">

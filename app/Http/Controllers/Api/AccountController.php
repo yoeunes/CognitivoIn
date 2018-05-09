@@ -8,6 +8,7 @@ use App\Profile;
 use App\Account;
 use App\AccountMovement;
 use App\Scheduals;
+use App\Order;
 use Carbon\Carbon;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -93,7 +94,7 @@ class AccountController extends Controller
 
         public function recievePayment(Request $request, Profile $profile)
         {
-
+    return response()->json($request,'500');  
             //Store payment information recieved by client application
             $data=$request[0];
             if (!isset($data)) {
@@ -111,6 +112,46 @@ class AccountController extends Controller
                 ->where('supplier_alias',$data['PartnerName'])
                 ->orWhere('supplier_taxid',$data['PartnerTaxID'])->first();
             }
+
+            $order=new Order();
+
+            $order->number = $data->number;
+            $order->is_printed = $data->number != "" ? true : false;
+            $order->trans_date =Carbon::now();;
+            $order->credit_days = 0;
+            $branch = Location::where('profile_id', $profile->id)->where('name', $data->branch_name)->first();
+
+            if (!isset($branch)) {
+                $branch = new Location();
+                $branch->profile_id = $profile->id;
+                $branch->name = $data->branch_name;
+                $branch->save();
+            }
+
+            $order->location_id = $branch->id;
+
+            //$currency = Currency::first();
+            $order->currency = 'PRY';
+            $order->currency_rate = 1;
+
+
+            $order->save();
+
+            foreach ($data['details'] as $data_detail)
+            {
+                $detail = new OrderDetail();
+                $detail->order_id = $order->id;
+
+
+                $item = $this->createOrUpdate_Item($data_detail->item);
+
+                $detail->item_id = $data_detail['item_id'];
+                $detail->quantity = $data_detail['quantity'];
+                $detail->unit_price = $data_detail['price'];
+                $detail->save();
+
+            }
+
 
             $schedual= new Scheduals();
             $schedual->relationship_id=$relationship->id;
@@ -134,7 +175,7 @@ class AccountController extends Controller
             Account::where('number',1)->first();
             $account->name="Cash A/c Of " . $profile->name;
             $account->number="1";
-                $account->currency='PRY';
+            $account->currency='PRY';
             $account->save();
 
             $accountmovement=new AccountMovement();

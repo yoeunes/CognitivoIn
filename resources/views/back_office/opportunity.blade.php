@@ -8,7 +8,7 @@
   </a>
 </div>
 
-    <infinity-opportunity profile="{{ request()->route('profile') }}" baseurl="back-office/list-opportunities"  inline-template>
+    <infinity-opportunity profile="{{ request()->route('profile')->slug }}" baseurl="back-office/list-opportunities"  inline-template>
         <div>
 
            <div v-if="$parent.$parent.showList">
