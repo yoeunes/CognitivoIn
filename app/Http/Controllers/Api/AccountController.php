@@ -118,7 +118,7 @@ class AccountController extends Controller
             $order->number = $data['number'];
             $order->relationship_id=$relationship->id;
             $order->code = $data['code'];
-            $order->code_expiry = $data['code_expiry'];
+            //$order->code_expiry = $data['code_expiry'];
             $order->is_printed = $data['number'] != "" ? true : false;
             $order->date =Carbon::now();
             $order->currency = 'PRY';
