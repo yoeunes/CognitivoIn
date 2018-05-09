@@ -94,7 +94,7 @@ class AccountController extends Controller
 
         public function recievePayment(Request $request, Profile $profile)
         {
-    //return response()->json($request,'500');
+            //return response()->json($request,'500');
             //Store payment information recieved by client application
             $data=$request[0];
             if (!isset($data)) {
@@ -116,15 +116,13 @@ class AccountController extends Controller
             $order=new Order();
 
             $order->number = $data['number'];
-                $order->code = $data['code_expiry'];
-                        $order->code_expiry = $data['code'];
+            $order->relationship_id=$relationship->id;
+            $order->code = $data['code_expiry'];
+            $order->code_expiry = $data['code'];
             $order->is_printed = $data['number'] != "" ? true : false;
             $order->date =Carbon::now();
-
-           $order->currency = 'PRY';
+            $order->currency = 'PRY';
             $order->currency_rate = 1;
-
-
             $order->save();
 
             foreach ($data['selecteditems'] as $data_detail)
