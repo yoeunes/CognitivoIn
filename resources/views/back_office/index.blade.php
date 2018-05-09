@@ -430,6 +430,18 @@
         <div class="main-container">
             <div class="container">
 
+                <div v-if="showDashboard === 1">
+                    @include('back_office/dashboard')
+                </div>
+
+                <div v-if="showProfile === 1">
+                    @include('back_office/profile')
+                </div>
+
+                <div v-if="showLocations === 1">
+                    {{-- @include('back_office/locations') --}}
+                </div>
+
                 <div v-if="showItem === 1">
                     @include('back_office/items')
                 </div>
@@ -440,10 +452,6 @@
 
                 <div v-else-if="showPipeline === 1">
                     @include('back_office/pipeline')
-                </div>
-
-                <div v-else-if="showPipelineStage === 1">
-                    @include('back_office/pipelinestage')
                 </div>
 
                 <div v-else-if="showOpportunity === 1">

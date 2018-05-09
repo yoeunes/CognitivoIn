@@ -1,4 +1,4 @@
-<pipeline-form profile="{{ request()->route('profile') }}" inline-template>
+<pipeline-form profile="{{ request()->route('profile')->slug }}" inline-template>
 <div>
         <div class="row">
 

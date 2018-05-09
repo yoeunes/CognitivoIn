@@ -1,4 +1,4 @@
-<pipelinestage-form profile="{{ request()->route('profile') }}" inline-template>
+<pipelinestage-form profile="{{ request()->route('profile')->slug }}" inline-template>
 <div>
         <div class="row">
           <div class="form-group">

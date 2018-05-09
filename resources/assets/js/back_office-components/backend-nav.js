@@ -1,110 +1,119 @@
-//import Vue from 'vue';
 
-Vue.component('backend-nav',{
+Vue.component('backend-nav',
+{
+    data () {
+        return {
+            showDashboard: 1,
+            showProfile: 0,
+            showLocations: 0,
+            showItem: 0,
+            showCustomer: 0,
+            showPipeline: 0,
+            showOpportunity: 0,
+            showOrders: 0,
+        };
+    },
 
-  // props: ['profile'],
-  data () {
-    return {
-      html: '<h1>Loading...</h1>',
-      showItem:0,
-      showCustomer:0,
-      showPipeline:0,
-      showPipelineStage:0,
-      showOpportunity:0,
-      showOrders:0,
-    };
-  },
-  methods:
-  {
-    Dashboard: function ()
+    methods:
     {
-      this.$http.get('/back-office/dashboard').then(response => {
-        this.html = response.data;
-      });
-    },
-    Profile: function ()
-    {
-      this.$http.get('/back-office/profile').then(response => {
-        this.html = response.data;
-      });
-    },
-    Stores: function ()
-    {
-      this.$http.get('/back-office/locations').then(response => {
-        this.html = response.data;
-      });
-    },
-    Items: function ()
-    {
+        Dashboard: function ()
+        {
+            this.showDashboard = 1,
+            this.showProfile = 0,
+            this.showLocations = 0,
+            this.showItem = 0;
+            this.showCustomer = 0;
+            this.showPipeline = 0;
+            this.showOpportunity = 0;
+            this.showOrders = 0;
+        },
 
-      this.showItem=1;
-      this.showCustomer=0;
-      this.showPipeline=0;
-      this.showPipelineStage=0;
-      this.showOpportunity=0;
-      // this.$http.get('/back-office/items').then(response => {
-      //     this.html = response.bodyText;
-      //     console.log(response)
-      // });
-    },
-    Customers()
-    {
+        Profile: function ()
+        {
+            this.showDashboard = 0,
+            this.showProfile = 1,
+            this.showLocations = 0,
+            this.showItem = 0;
+            this.showCustomer = 0;
+            this.showPipeline = 0;
+            this.showOpportunity = 0;
+            this.showOrders = 0;
+        },
 
-      this.showCustomer=1;
-      this.showItem=0;
-      this.showPipeline=0;
-      this.showPipelineStage=0;
-      this.showOpportunity=0;
-      // this.$http.get('/back-office/sales/customers').then(response => {
-      //   this.html = response.data;
-      // });
-    },
-    Pipeline()
-    {
-      this.showPipeline=1;
-      this.showCustomer=0;
-      this.showItem=0;
-      this.showPipelineStage=0;
-      this.showOpportunity=0;
-      // this.$http.get('/back-office/sales/customers').then(response => {
-      //   this.html = response.data;
-      // });
-    },
-    PipelineStage()
-    {
-      this.showPipeline=0;
-      this.showCustomer=0;
-      this.showItem=0;
-      this.showPipelineStage=1;
-      this.showOpportunity=0;
-      // this.$http.get('/back-office/sales/customers').then(response => {
-      //   this.html = response.data;
-      // });
-    },
-    Opportunities()
-    {
-      this.showPipeline=0;
-      this.showCustomer=0;
-      this.showItem=0;
-      this.showPipelineStage=0;
-      this.showOpportunity=1;
-    },
-    Orders()
-    {
+        Stores: function ()
+        {
+            this.showDashboard = 0,
+            this.showProfile = 0,
+            this.showLocations = 1,
+            this.showItem = 0;
+            this.showCustomer = 0;
+            this.showPipeline = 0;
+            this.showOpportunity = 0;
+            this.showOrders = 0;
+        },
 
-      this.showPipeline=0;
-      this.showCustomer=0;
-      this.showItem=0;
-      this.showPipelineStage=0;
-      this.showOpportunity=0;
-      this.showOrders=1;
-      // this.$http.get('/back-office/sales/orders').then(response => {
-      //   this.html = response.data;
-      // });
+        Items: function ()
+        {
+            this.showDashboard = 0,
+            this.showProfile = 0,
+            this.showLocations = 0,
+            this.showItem = 1;
+            this.showCustomer = 0;
+            this.showPipeline = 0;
+            this.showOpportunity = 0;
+            this.showOrders = 0;
+        },
+
+        Customers()
+        {
+            this.showDashboard = 0,
+            this.showProfile = 0,
+            this.showLocations = 0,
+            this.showItem = 0;
+            this.showCustomer = 1;
+            this.showPipeline = 0;
+            this.showOpportunity = 0;
+            this.showOrders = 0;
+        },
+
+        Pipeline()
+        {
+            this.showDashboard = 0,
+            this.showProfile = 0,
+            this.showLocations = 0,
+            this.showItem = 0;
+            this.showCustomer = 0;
+            this.showPipeline = 1;
+            this.showOpportunity = 0;
+            this.showOrders = 0;
+        },
+
+        Opportunities()
+        {
+            this.showDashboard = 0,
+            this.showProfile = 0,
+            this.showLocations = 0,
+            this.showItem = 0;
+            this.showCustomer = 0;
+            this.showPipeline = 0;
+            this.showOpportunity = 1;
+            this.showOrders = 0;
+        },
+
+        Orders()
+        {
+            this.showDashboard = 0,
+            this.showProfile = 0,
+            this.showLocations = 0,
+            this.showItem = 0;
+            this.showCustomer = 0;
+            this.showPipeline = 0;
+            this.showOpportunity = 0;
+            this.showOrders = 1;
+        }
+    },
+    mounted()
+    {
+        //do something after mounting vue instance
     }
-  },
-  mounted() {
-    //do something after mounting vue instance
-    this.html = '<h1> Loading... </h1>';
-  }
 });

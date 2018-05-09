@@ -1,4 +1,4 @@
-<opportunity-form profile="{{ request()->route('profile') }}" inline-template>
+<opportunity-form profile="{{ request()->route('profile')->slug }}" inline-template>
       <div>
             <div class="row items-push">
                   <div class="col-sm-6 col-sm-offset-3">
