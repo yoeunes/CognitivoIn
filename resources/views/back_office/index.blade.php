@@ -24,9 +24,9 @@
                                 <!-- User Info -->
                                 <div class="content-header-item">
                                     <a class="img-link mr-5" href="#">
-                                        <img class="img-avatar img-avatar32" src="assets/img/avatars/avatar0.jpg" alt="">
+                                        <img class="img-avatar img-avatar32" src="/img/avatars/avatar0.jpg" alt="">
                                     </a>
-                                    <a class="align-middle link-effect text-primary-dark font-w600" href="#">Admin</a>
+                                    <a class="align-middle link-effect text-primary-dark font-w600" href="#">{{ Auth::user()->profile->name }}</a>
                                 </div>
                                 <!-- END User Info -->
                             </div>
@@ -139,7 +139,7 @@
                             <div class="content-side content-side-full content-side-user px-10 align-parent">
                                 <!-- Visible only in mini mode -->
                                 <div class="sidebar-mini-visible-b align-v animated fadeIn">
-                                    <img class="img-avatar img-avatar32" src="assets/img/avatars/avatar0.jpg" alt="">
+                                    <img class="img-avatar img-avatar32" src="/img/avatars/avatar0.jpg" alt="">
                                 </div>
                                 <!-- END Visible only in mini mode -->
 
@@ -245,6 +245,13 @@
                                             <i class="si si-puzzle"></i>
                                             <span class="sidebar-mini-hide">Stock</span>
                                         </a>
+                                        <ul>
+                                            <li>
+                                                <a @click="Items()" href="#">
+                                                    <span class="sidebar-mini-hide">Products & Services</span>
+                                                </a>
+                                            </li>
+                                        </ul>
                                     </li>
                                     <li>
                                         <a class="nav-submenu" data-toggle="nav-submenu" href="#">
