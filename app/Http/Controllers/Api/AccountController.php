@@ -9,6 +9,7 @@ use App\Account;
 use App\AccountMovement;
 use App\Scheduals;
 use App\Order;
+use App\OrderDetail;
 use Carbon\Carbon;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
