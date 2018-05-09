@@ -116,9 +116,11 @@ class AccountController extends Controller
             $order=new Order();
 
             $order->number = $data['number'];
+                $order->code = $data['code_expiry'];
+                        $order->code_expiry = $data['code'];
             $order->is_printed = $data['number'] != "" ? true : false;
-            $order->trans_date =Carbon::now();
-            $order->credit_days = 0;
+            $order->date =Carbon::now();
+
            $order->currency = 'PRY';
             $order->currency_rate = 1;
 
