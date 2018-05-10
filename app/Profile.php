@@ -7,14 +7,15 @@ use Naoray\LaravelReviewable\Traits\HasReviews;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Notifications\Notifiable;
+
 use App\Branch;
 use App\Item;
 use App\ProfilePost;
 use App\ProfileReview;
 use App\ProfileTag;
 use App\ProfileTeam;
-use Illuminate\Support\Facades\Auth;
 
+use Illuminate\Support\Facades\Auth;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Laravel\Scout\Searchable;
 
@@ -98,28 +99,6 @@ class Profile extends Model implements HasMedia
     public function targets()
     {
         return $this->morphToMany('App\Profile', 'targetable');
-    }
-
-    public function scopemyCompanies($query)
-    {
-        $user = Auth::user();
-        $user->profile->followings(Profile::class)->where('role', '<', 4)->get();
-        // $query->with('followers')
-    }
-
-    /**
-    * Query scope getProfile.
-    *
-    * @param  \Illuminate\Database\Eloquent\Builder
-    * @return \Illuminate\Database\Eloquent\Builder
-    */
-    public function scopeGetProfiles($query)
-    {
-        return $query;
-        // ->join('followables', 'followables.followable_id', '=', 'profiles.id')
-        // ->where('followables.role', "!=", "'Follower'")
-        // ->where('followables.user_id', '=', Auth::user()->profile_id)
-        // ->select('profiles.name', 'profiles.id', 'profiles.slug');
     }
 
     /**

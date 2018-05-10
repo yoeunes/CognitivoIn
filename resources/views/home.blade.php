@@ -3,8 +3,7 @@
 @section('main')
 
     @php
-    // $listOfCompanies = App\Profile::GetProfiles()->where('type', 2)->get();
-    $listOfCompanies = App\Profile::myCompanies()->get();
+    $listOfCompanies = Auth::user()->profile->followings(App\Profile::class)->where('role', '<', 4)->get();
     @endphp
 
     <a class="dropdown-item" href="{{ route('profile.create') }}">
@@ -22,5 +21,5 @@
             @endforeach
         @endif
     @endisset
-    
+
 @endsection

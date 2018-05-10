@@ -336,7 +336,7 @@
                                     </a>
 
                                     @php
-                                    $listOfCompanies = App\Profile::myCompanies()->get();
+                                    $listOfCompanies = Auth::user()->profile->followings(App\Profile::class)->where('role', '<', 4)->get();
                                     @endphp
 
                                     @isset($listOfCompanies)
