@@ -43,12 +43,17 @@ class AccountController extends Controller
         //return payment schedual. history of unpaid debt. by Customer TaxID
         $data = $request[0];
 
+        if ($data['Type']==1) {
+            $relationship=Relationship::GetCustomers()
+            ->where('customer_alias',$data['PartnerName'])
+            ->first();
 
-        $relationship = Relationship::
-        where('supplier_id', $profile->id)
-        ->where('customer_alias', $data['PartnerName'])
-        ->orWhere('customer_taxid', $data['PartnerTaxID'])->first();
-        return response()->json($relationship, '500');
+        }
+        else {
+            $relationship=Relationship::GetSuppliers()
+            ->where('supplier_alias',$data['PartnerName'])
+            ->orWhere('supplier_taxid',$data['PartnerTaxID'])->first();
+        }
 
         $schedules = Scheduals::where('relationship_id', $relationship->id)
         ->leftjoin('account_movements', 'scheduals.id', 'account_movements.schedual_id')
