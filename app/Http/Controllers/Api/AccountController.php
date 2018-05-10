@@ -37,59 +37,18 @@ class AccountController extends Controller
     }
 
 
-    public function ReceivePayment(Request $request,$profile)
-  {
 
-      $data2 = [];
-
-      $account = Account::where('number',1)->first()==null?new Account():
-      Account::where('number',1)->first();
-      $account->name = "Cash A/c Of " . $profile->name;
-      $account->number = "1";
-      $account->currency ='PRY';
-      $account->save();
-
-      $accountmovement = new AccountMovement();
-      $accountmovement->schedual_id = $schedual->id;
-      $accountmovement->user_id = $relationship->id;
-      $accountmovement->account_id = $account->id;
-      $accountmovement->type_id = $data['Type'];
-      $accountmovement->currency = 'PRY';
-      $accountmovement->currency_rate = 1;
-      $accountmovement->date = Carbon::now();
-
-      if ($data['Type'] == 1)
-      {
-          $accountmovement->credit = $data['Value'];
-          $accountmovement->debit = 0;
-      }
-      else
-      {
-          $accountmovement->credit = 0;
-          $accountmovement->debit = $data['Value'];
-      }
-      $accountmovement->save();
-
-      $data2 = [];
-
-      $data2[] = [
-          'PaymentReference' => $accountmovement->id,
-          'ResponseType' => 1
-      ];
-      return response()->json($data2, '200');
-
-  }
 
     public function get_CustomerSchedual(Request $request, Profile $profile)
     {
         //return payment schedual. history of unpaid debt. by Customer TaxID
-        $data = $request[0];
+      
 
 
 
 
 
-        $schedules = Scheduals::where('relationship_id', $data['id'])
+        $schedules = Scheduals::where('relationship_id', $request['id'])
         ->leftjoin('account_movements', 'scheduals.id', 'account_movements.schedual_id')
         ->select(DB::raw('max(scheduals.currency) as code'),
         DB::raw('max(scheduals.debit)-sum(account_movements.credit) as value'),
@@ -99,7 +58,6 @@ class AccountController extends Controller
         DB::raw('max(scheduals.reference) as Reference'))
         ->groupBy('account_movements.schedual_id')
         ->get();
-        return response()->json($request['id'], '500');
 
         $data2 = [];
         $values = [];
@@ -117,8 +75,8 @@ class AccountController extends Controller
         }
 
         $data2[] = [
-            'ReferenceName' => $data['PartnerName'],
-            'ReferenceTaxID' => $data['PartnerTaxID'],
+            'ReferenceName' => $request['PartnerName'],
+            'ReferenceTaxID' => $request['PartnerTaxID'],
             'Details' => $values ];
 
             return response()->json($data2, '200');
