@@ -66,6 +66,7 @@ Route::prefix('{profile}')->group(function ()
 
 
     });
+    Route::post('PaymentReceive', 'AccountMovementController@ReceivePayment');
     Route::post('customers', 'Api\RelationshipController@customers');
     Route::post('PaymentDue', 'Api\AccountController@get_CustomerSchedual');
     Route::post('ApproveSales', 'Api\AccountController@ApproveSales');

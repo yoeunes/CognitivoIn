@@ -88,13 +88,41 @@ class AccountMovementController extends Controller
     public function ReceivePayment(Request $request,$profile)
     {
 
-        $data2 = [];
+      $account = Account::where('number',1)->first()==null?new Account():
+          Account::where('number',1)->first();
+          $account->name = "Cash A/c Of " . $profile->name;
+          $account->number = "1";
+          $account->currency ='PRY';
+          $account->save();
 
-        $data2[] = [
-            'PaymentReference' => '15',
-            'ResponseType' => 1
-        ];
-        return response()->json($data2,'200');
+          $accountmovement = new AccountMovement();
+          $accountmovement->schedual_id = $schedual->id;
+          $accountmovement->user_id = $relationship->id;
+          $accountmovement->account_id = $account->id;
+          $accountmovement->type_id = $request['Type'];
+          $accountmovement->currency = 'PRY';
+          $accountmovement->currency_rate = 1;
+          $accountmovement->date = Carbon::now();
+
+          if ($data['Type'] == 1)
+          {
+              $accountmovement->credit = $request['Value'];
+              $accountmovement->debit = 0;
+          }
+          else
+          {
+              $accountmovement->credit = 0;
+              $accountmovement->debit = $request['value'];
+          }
+          $accountmovement->save();
+
+          $data2 = [];
+
+          $data2[] = [
+              'PaymentReference' => $accountmovement->id,
+              'ResponseType' => 1
+          ];
+          return response()->json($data2, '200');
     }
     public function Anull(Request $request)
     {
