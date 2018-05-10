@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Account;
+use App\Profile;
 use App\AccountMovement;
 use App\Relationship;
 use Illuminate\Http\Request;
@@ -103,7 +104,7 @@ class AccountMovementController extends Controller
           $accountmovement->currency = 'PRY';
           $accountmovement->currency_rate = 1;
           $accountmovement->date = Carbon::now();
- return response()->json($accountmovement, '200');
+
           if ($data['Type'] == 1)
           {
               $accountmovement->credit = $request['value'];
@@ -115,7 +116,7 @@ class AccountMovementController extends Controller
               $accountmovement->debit = $request['value'];
           }
           $accountmovement->save();
-
+ return response()->json($accountmovement, '200');
           $data2 = [];
 
           $data2[] = [
