@@ -105,7 +105,7 @@ class AccountMovementController extends Controller
           $accountmovement->currency_rate = 1;
           $accountmovement->date = Carbon::now();
 
-          if ($data['Type'] == 1)
+          if ($request['Type'] == 1)
           {
               $accountmovement->credit = $request['value'];
               $accountmovement->debit = 0;
