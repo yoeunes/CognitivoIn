@@ -143,7 +143,7 @@
                                 <!-- Visible only in normal mode -->
                                 <div class="sidebar-mini-hidden-b text-center">
                                     <a class="img-link" href="#">
-                                        <img class="img-avatar" src="{{ request()->route('profile')->avatar }}" alt="Logo">
+                                        <img class="img-avatar" src="{{ request()->route('profile')->avatar }}" onerror="this.src='/img/icons/team.svg'" alt="Logo" width="32">
                                     </a>
                                     <ul class="list-inline mt-10">
                                         <li class="list-inline-item">
@@ -309,12 +309,11 @@
                         <div class="content-header-section">
                             <!-- User Dropdown -->
                             <div class="btn-group" role="group">
-
                                 <button type="button" class="btn btn-rounded btn-dual-secondary" id="page-header-user-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     {{ Auth::user()->profile->name }}<i class="fa fa-angle-down ml-5"></i>
                                 </button>
 
-                                <div id="dropdown" class="dropdown-menu dropdown-menu-right min-width-150 show" aria-labelledby="page-header-user-dropdown">
+                                <div id="page-header-user-dropdown" class="dropdown-menu dropdown-menu-right min-width-150 show" aria-labelledby="page-header-user-dropdown">
                                     <a class="dropdown-item" href="#">
                                         <i class="si si-user mr-5"></i> Profile
                                     </a>
@@ -328,152 +327,144 @@
                                         <span><i class="si si-globe mr-5"></i> Market</span>
                                     </a>
 
-                                    {{-- <a class="dropdown-item" href="#">
-                                    <i class="si si-note mr-5"></i> Invoices
-                                </a> --}}
+                                    <div class="dropdown-divider"></div>
 
-                                <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" href="{{ route('profile.create') }}">
+                                        <span class="text-primary">
+                                            <i class="si si-plus"></i> Create Company
+                                        </span>
+                                    </a>
 
-                                <a class="dropdown-item" href="{{ route('profile.create') }}">
-                                    <span class="text-primary">
-                                        <i class="si si-plus"></i> Create Company
-                                    </span>
-                                </a>
+                                    @php
+                                    $listOfCompanies = App\Profile::myCompanies()->get();
+                                    @endphp
 
-                                @php
-                                $listOfCompanies = App\Profile::myCompanies()->get();
-                                @endphp
+                                    @isset($listOfCompanies)
+                                        @if ($listOfCompanies->count() > 0)
+                                            @foreach ($listOfCompanies->sortBy('alias') as $company)
+                                                <a class="dropdown-item" href="{{ route('home', $company)}}">
+                                                    @if (request()->route('profile')->id == $company->id)
+                                                        <i class="si si-check"></i> <b> {{ mb_strimwidth($company->alias, 0, 15, "...") }} </b>
+                                                    @else
+                                                        <i class="si si-briefcase"></i> {{ mb_strimwidth($company->alias, 0, 15, "...") }}
+                                                    @endif
+                                                </a>
+                                            @endforeach
+                                        @endif
+                                    @endisset
 
-                                @isset($listOfCompanies)
-                                    @if ($listOfCompanies->count() > 0)
-                                        @foreach ($listOfCompanies->sortBy('alias') as $company)
-                                            <a class="dropdown-item" href="{{ route('home', $company)}}">
-                                                @if (request()->route('profile')->id == $company->id)
-                                                    <i class="si si-check"></i> <b> {{ mb_strimwidth($company->alias, 0, 15, "...") }} </b>
-                                                @else
-                                                    <i class="si si-briefcase"></i> {{ mb_strimwidth($company->alias, 0, 15, "...") }}
-                                                @endif
-                                            </a>
-                                        @endforeach
-                                    @endif
-                                @endisset
-
-                                <!-- Toggle Side Overlay -->
-                                <!-- Layout API, functionality initialized in Codebase() -> uiApiLayout() -->
-                                {{-- <a class="dropdown-item" href="#" data-toggle="layout" data-action="side_overlay_toggle">
-                                <i class="si si-wrench mr-5"></i> Settings
-                            </a> --}}
-                            <!-- END Side Overlay -->
-
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="{{ route('logout') }}">
-                                <i class="si si-logout mr-5"></i> Sign Out
-                            </a>
-                        </div>
-                    </div>
-                    <!-- END User Dropdown -->
-
-                    <!-- Toggle Side Overlay -->
-                    <!-- Layout API, functionality initialized in Codebase() -> uiApiLayout() -->
-                    <button type="button" class="btn btn-circle btn-dual-secondary" data-toggle="layout" data-action="side_overlay_toggle">
-                        <i class="fa fa-tasks"></i>
-                    </button>
-                    <!-- END Toggle Side Overlay -->
-                </div>
-                <!-- END Right Section -->
-            </div>
-            <!-- END Header Content -->
-
-            <!-- Header Search -->
-            <div id="page-header-search" class="overlay-header">
-                <div class="content-header content-header-fullrow">
-                    <form>
-                        <div class="input-group">
-                            <div class="input-group-prepend">
-                                <!-- Close Search Section -->
-                                <!-- Layout API, functionality initialized in Codebase() -> uiApiLayout() -->
-                                <button type="button" class="btn btn-secondary px-15" data-toggle="layout" data-action="header_search_off">
-                                    <i class="fa fa-times"></i>
-                                </button>
-                                <!-- END Close Search Section -->
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" href="{{ route('logout') }}">
+                                        <i class="si si-logout mr-5"></i> Sign Out
+                                    </a>
+                                </div>
                             </div>
-                            <input type="text" class="form-control" placeholder="Search or hit ESC.." id="page-header-search-input" name="page-header-search-input">
-                            <div class="input-group-append">
-                                <button type="submit" class="btn btn-secondary px-15">
-                                    <i class="fa fa-search"></i>
+                            <!-- END User Dropdown -->
+
+                            <!-- Toggle Side Overlay -->
+                            <!-- Layout API, functionality initialized in Codebase() -> uiApiLayout() -->
+                            <div class="btn-group" role="group">
+                                <button type="button" class="btn btn-circle btn-dual-secondary" data-toggle="layout" data-action="side_overlay_toggle">
+                                    {{ Auth::user()->profile->name }}
+                                    <i class="fa fa-angle-down ml-5"></i>
                                 </button>
                             </div>
+                            <!-- END Toggle Side Overlay -->
                         </div>
-                    </form>
-                </div>
-            </div>
-            <!-- END Header Search -->
+                        <!-- END Right Section -->
+                    </div>
+                    <!-- END Header Content -->
 
-            <!-- Header Loader -->
-            <div id="page-header-loader" class="overlay-header bg-primary">
-                <div class="content-header content-header-fullrow text-center">
-                    <div class="content-header-item">
-                        <i class="fa fa-sun-o fa-spin text-white"></i>
+                    <!-- Header Search -->
+                    <div id="page-header-search" class="overlay-header">
+                        <div class="content-header content-header-fullrow">
+                            <form>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <!-- Close Search Section -->
+                                        <!-- Layout API, functionality initialized in Codebase() -> uiApiLayout() -->
+                                        <button type="button" class="btn btn-secondary px-15" data-toggle="layout" data-action="header_search_off">
+                                            <i class="fa fa-times"></i>
+                                        </button>
+                                        <!-- END Close Search Section -->
+                                    </div>
+                                    <input type="text" class="form-control" placeholder="Search or hit ESC.." id="page-header-search-input" name="page-header-search-input">
+                                    <div class="input-group-append">
+                                        <button type="submit" class="btn btn-secondary px-15">
+                                            <i class="fa fa-search"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <!-- END Header Search -->
+
+                    <!-- Header Loader -->
+                    <div id="page-header-loader" class="overlay-header bg-primary">
+                        <div class="content-header content-header-fullrow text-center">
+                            <div class="content-header-item">
+                                <i class="fa fa-sun-o fa-spin text-white"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- END Header Loader -->
+                </header>
+                <!-- END Header -->
+
+                <!-- Main Container -->
+
+                <div class="main-container">
+                    <div class="container">
+
+                        <div v-if="showDashboard === 1">
+                            @include('back_office/dashboard')
+                        </div>
+
+                        <div v-if="showProfile === 1">
+                            @include('back_office/profile')
+                        </div>
+
+                        <div v-if="showLocations === 1">
+                            {{-- @include('back_office/locations') --}}
+                        </div>
+
+                        <div v-if="showItem === 1">
+                            @include('back_office/inventory/items')
+                        </div>
+
+                        <div v-else-if="showCustomer === 1">
+                            @include('back_office/sales/customers')
+                        </div>
+
+                        <div v-else-if="showPipeline === 1">
+                            @include('back_office/sales/pipeline')
+                        </div>
+
+                        <div v-else-if="showOpportunity === 1">
+                            @include('back_office/sales/opportunity')
+                        </div>
+
+                        <div v-else-if="showOrders === 1">
+                            @include('back_office/sales/orders')
+                        </div>
                     </div>
                 </div>
-            </div>
-            <!-- END Header Loader -->
-        </header>
-        <!-- END Header -->
 
-        <!-- Main Container -->
+                <!-- END Main Container -->
 
-        <div class="main-container">
-            <div class="container">
-
-                <div v-if="showDashboard === 1">
-                    @include('back_office/dashboard')
-                </div>
-
-                <div v-if="showProfile === 1">
-                    @include('back_office/profile')
-                </div>
-
-                <div v-if="showLocations === 1">
-                    {{-- @include('back_office/locations') --}}
-                </div>
-
-                <div v-if="showItem === 1">
-                    @include('back_office/inventory/items')
-                </div>
-
-                <div v-else-if="showCustomer === 1">
-                    @include('back_office/sales/customers')
-                </div>
-
-                <div v-else-if="showPipeline === 1">
-                    @include('back_office/sales/pipeline')
-                </div>
-
-                <div v-else-if="showOpportunity === 1">
-                    @include('back_office/sales/opportunity')
-                </div>
-
-                <div v-else-if="showOrders === 1">
-                    @include('back_office/sales/orders')
-                </div>
+                <!-- Footer -->
+                <footer id="page-footer" class="opacity-0">
+                    <div class="content py-20 font-size-xs clearfix">
+                        <div class="float-right">
+                            <a class="font-w600" href="mailto:hola@cognitivo.in" target="_blank">Cognitivo</a> &copy; <span class="js-year-copy"></span>
+                        </div>
+                        <div class="float-left">
+                        </div>
+                    </div>
+                </footer>
+                <!-- END Footer -->
             </div>
         </div>
-
-        <!-- END Main Container -->
-
-        <!-- Footer -->
-        <footer id="page-footer" class="opacity-0">
-            <div class="content py-20 font-size-xs clearfix">
-                <div class="float-right">
-                    <a class="font-w600" href="mailto:hola@cognitivo.in" target="_blank">Cognitivo</a> &copy; <span class="js-year-copy"></span>
-                </div>
-                <div class="float-left">
-                </div>
-            </div>
-        </footer>
-        <!-- END Footer -->
-    </div>
-</div>
-</backend-nav>
+    </backend-nav>
 @endsection
