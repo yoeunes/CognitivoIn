@@ -201,18 +201,17 @@
                                                 <a @click="Customers()" href="#">Customers</a>
                                             </li>
                                             <li>
+                                                <a href="#">Promotions</a>
+                                            </li>
+                                            <li>
                                                 <a  class="nav-submenu" data-toggle="nav-submenu" href="#">Opportunities</a>
                                                 <ul>
                                                     <li>
                                                         <a @click="Pipeline()" href="#">Pipeline</a>
                                                     </li>
                                                     <li>
-                                                        <a @click="PipelineStage()" href="#">Pipeline Stage</a>
-                                                    </li>
-                                                    <li>
                                                         <a @click="Opportunities()" href="#">Opportunity</a>
                                                     </li>
-
                                                 </ul>
                                             </li>
                                             <li>
@@ -440,25 +439,24 @@
                 </div>
 
                 <div v-if="showItem === 1">
-                    @include('back_office/items')
+                    @include('back_office/inventory/items')
                 </div>
 
                 <div v-else-if="showCustomer === 1">
-                    @include('back_office/customers')
+                    @include('back_office/sales/customers')
                 </div>
 
                 <div v-else-if="showPipeline === 1">
-                    @include('back_office/pipeline')
+                    @include('back_office/sales/pipeline')
                 </div>
 
                 <div v-else-if="showOpportunity === 1">
-                    @include('back_office/opportunity')
+                    @include('back_office/sales/opportunity')
                 </div>
 
                 <div v-else-if="showOrders === 1">
-                    @include('back_office/orders')
+                    @include('back_office/sales/orders')
                 </div>
-
             </div>
         </div>
 
