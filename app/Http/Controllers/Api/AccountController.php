@@ -47,7 +47,7 @@ class AccountController extends Controller
         $relationship = Relationship::GetCustomers()
         ->where('customer_alias', $data['PartnerName'])
         ->orWhere('customer_taxid', $data['PartnerTaxID'])->first();
-
+return response()->json($relationship, '500');
 
         $schedules = Scheduals::where('relationship_id', $relationship->id)
         ->leftjoin('account_movements', 'scheduals.id', 'account_movements.schedual_id')
