@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Account;
 use App\AccountMovement;
 use App\Relationship;
 use Illuminate\Http\Request;
