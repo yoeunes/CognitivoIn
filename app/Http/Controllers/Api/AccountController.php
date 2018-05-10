@@ -44,10 +44,10 @@ class AccountController extends Controller
         $data = $request[0];
 
 
-            $relationship=Relationship::find($data[id]);
 
 
-        $schedules = Scheduals::where('relationship_id', $relationship->id)
+
+        $schedules = Scheduals::where('relationship_id', $data['id'])
         ->leftjoin('account_movements', 'scheduals.id', 'account_movements.schedual_id')
         ->select(DB::raw('max(currency) as code'),
         DB::raw('max(scheduals.debit)-sum(account_movements.credit) as value'),
