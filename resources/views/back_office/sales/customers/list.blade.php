@@ -1,45 +1,46 @@
-<div>
-  <div class="row">
-    <div class="col-1 m--font-boldest">
-      <p class="m--font-boldest m--font-transform-u">@lang('global.Gov Code')</p>
-    </div>
-    <div class="col-5">
-      <p class="m--font-boldest m--font-transform-u">@lang('global.Alias')</p>
-    </div>
-    <div class="col-2">
-      <p class="m--font-boldest m--font-transform-u">@lang('global.Telephone')</p>
-    </div>
-    <div class="col-2">
-      <p class="m--font-boldest m--font-transform-u">@lang('global.Email')</p>
-    </div>
-    <div class="col-2">
-      <p class="m--font-boldest m--font-transform-u">@lang('global.Action')</p>
-    </div>
 
-  </div>
-
-  <div class="row m--margin-bottom-5" v-for="invoice in list">
-    <div class="col-1">
-      <p> @{{ invoice.customer_taxid }} </p>
+<!-- Products Table -->
+<div class="block block-rounded">
+    <div class="block-content">
+        <infinity-item  baseurl="back-office/list-items"  profile="{{ request()->route('profile')->slug }}" inline-template>
+            <div>
+                <table class="table table-borderless table-striped">
+                    <thead>
+                        <tr>
+                            <th style="width: 100px;">ID</th>
+                            <th class="d-none d-sm-table-cell">@lang('global.Gov Code')</th>
+                            <th>@lang('global.Name')</th>
+                            <th class="d-none d-md-table-cell">@lang('global.Email')</th>
+                            <th class="text-right">@lang('global.Actions')</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <div class="">
+                            <tr v-for="relationship in list">
+                                <td>
+                                    <a class="font-w600" href="be_pages_ecom_product_edit.html">@{{ relationship.id }}</a>
+                                </td>
+                                <td class="d-none d-sm-table-cell">
+                                    @{{ relationship.customer_taxid }}
+                                </td>
+                                <td class="d-none d-sm-table-cell">
+                                    @{{ relationship.customer_name }}
+                                </td>
+                                <td>
+                                    @{{ relationship.customer_email }}
+                                </td>
+                                <td class="text-right">
+                                    <a @click="onEdit(relationship.id)" class="m-btn btn btn-secondary"><i class="la la-pencil m--font-brand"></i></a>
+                                    <a @click="onDelete(relationship)" class="m-btn btn btn-secondary"><i class="la la-trash m--font-danger"></i></a>
+                                    <a @click="onAnull(relationship)" class="m-btn btn btn-secondary"><i class="la la-close m--font-danger"></i></a>
+                                </td>
+                            </tr>
+                        </div>
+                    </tbody>
+                </table>
+                @include('layouts/infinity-loading')
+            </div>
+        </infinity-item>
     </div>
-    <div class="col-1">
-      <p> @{{ invoice.customer_alias }} </p>
-    </div>
-    <div class="col-1">
-      <p> @{{ invoice.customer_telephone }} </p>
-    </div>
-    <div class="col-1">
-      <p> @{{ invoice.customer_email }} </p>
-    </div>
-
-    <div class="col-1">
-      <div class="m-btn-group btn-group-sm m-btn-group--pill btn-group" role="group" aria-label="...">
-
-        <a @click="onEdit(invoice.id)" class="m-btn btn btn-secondary"><i class="la la-pencil m--font-brand"></i></a>
-        <a @click="onDelete(invoice)" class="m-btn btn btn-secondary"><i class="la la-trash m--font-danger"></i></a>
-        <a @click="onAnull(invoice)" class="m-btn btn btn-secondary"><i class="la la-close m--font-danger"></i></a>
-      </div>
-    </div>
-  </div>
-  @include('layouts/infinity-loading')
 </div>
+<!-- END Products Table -->

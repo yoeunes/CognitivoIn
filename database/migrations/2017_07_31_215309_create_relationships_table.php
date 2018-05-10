@@ -16,11 +16,11 @@ class CreateRelationshipsTable extends Migration
         Schema::create('relationships', function (Blueprint $table) {
             $table->increments('id');
 
-            $table->integer('customer_id')->unsigned()->nullable()->index();
+            $table->unsignedInteger('customer_id')->nullable()->index();
             $table->foreign('customer_id')->references('id')->on('profiles');
             $table->boolean('customer_accepted')->default(false);
 
-            $table->integer('supplier_id')->unsigned()->nullable()->index();
+            $table->unsignedInteger('supplier_id')->nullable()->index();
             $table->foreign('supplier_id')->references('id')->on('profiles');
             $table->boolean('supplier_accepted')->default(false);
 
@@ -39,6 +39,10 @@ class CreateRelationshipsTable extends Migration
             $table->string('supplier_address')->nullable();
             $table->string('supplier_telephone')->nullable();
             $table->string('supplier_email')->nullable();
+
+            $table->decimal('credit_limit')->nullable();
+            $table->unsignedInteger('contract_ref')->nullable();
+            
 
             $table->timestamps();
             $table->softDeletes();

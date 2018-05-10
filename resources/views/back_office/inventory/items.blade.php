@@ -1,7 +1,9 @@
 
+<!-- Page Content -->
 <div class="content">
+
     <!-- Overview -->
-    <h2 class="content-heading">Overview</h2>
+    <h2 class="content-heading"><b>Products & Services</b> | Statistics</h2>
     <div class="row gutters-tiny">
         <!-- All Products -->
         <div class="col-md-6 col-xl-3">
@@ -79,17 +81,15 @@
     </div>
     <!-- END Overview -->
 
-    <!-- Products -->
-    <div class="content-heading">
-        Products (3580)
+    <div class="block block-fx-shadow">
+        <div class="block-content">
+            <div v-if="$parent.showList">
+                @include('back_office/inventory/items/list')
+            </div>
+            <div v-else>
+                @include('back_office/inventory/items/form')
+            </div>
+        </div>
     </div>
-
-    <div v-if="$parent.showList">
-        @include('back_office/inventory/items/list')
-    </div>
-    <div v-else>
-        @include('back_office/inventory/items/form')
-    </div>
-
-    <!-- END Products -->
 </div>
+<!-- END Page Content -->

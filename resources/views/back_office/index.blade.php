@@ -143,7 +143,8 @@
                                 <!-- Visible only in normal mode -->
                                 <div class="sidebar-mini-hidden-b text-center">
                                     <a class="img-link" href="#">
-                                        <img class="img-avatar" src="{{ request()->route('profile')->avatar }}" onerror="this.src='/img/icons/team.svg'" alt="Logo" width="32">
+                                        {{-- class="img-avatar" --}}
+                                        <img src="{{ request()->route('profile')->avatar }}" onerror="this.src='/img/icons/briefcase.svg'" alt="Logo" width="64">
                                     </a>
                                     <ul class="list-inline mt-10">
                                         <li class="list-inline-item">
@@ -215,7 +216,7 @@
                                                 </ul>
                                             </li>
                                             <li>
-                                                <a @click="Orders()">Orders</a>
+                                                <a @click="Orders()" href="#">Orders</a>
                                             </li>
                                         </ul>
                                     </li>

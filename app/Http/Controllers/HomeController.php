@@ -39,8 +39,12 @@ class HomeController extends Controller
                 return view('back_office.index');
             }
 
-            //if not ownership, then show social page. as if it were any other user.
-            return view('social.web')->with('profile', $profile);
+            //if not ownership, then show social page. as if it were any other user. Also the page must not be private.
+            if ($profile->is_private == false)
+            {
+                return view('social.web')->with('profile', $profile);
+            }
+
         }
 
         //if no profile in url, just show home screen.
