@@ -93,7 +93,7 @@ class RelationshipController extends Controller
 
     public function customers(Profile $profile,Request $request)
      {
-        
+         return response()->json($request[0],500);
        $relationship= new Relationship();
        $relationship->supplier_id = $profile->id;
        $relationship->customer_taxid=$request[0]['taxid'];
