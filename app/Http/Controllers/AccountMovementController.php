@@ -107,13 +107,13 @@ class AccountMovementController extends Controller
 
           if ($request['Type'] == 1)
           {
-              $accountmovement->credit = $request['value'];
+              $accountmovement->credit = $request['Value'];
               $accountmovement->debit = 0;
           }
           else
           {
               $accountmovement->credit = 0;
-              $accountmovement->debit = $request['value'];
+              $accountmovement->debit = $request['Value'];
           }
           $accountmovement->save();
  return response()->json($accountmovement, '200');
