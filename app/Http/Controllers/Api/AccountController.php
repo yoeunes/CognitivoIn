@@ -43,29 +43,21 @@ class AccountController extends Controller
         //return payment schedual. history of unpaid debt. by Customer TaxID
         $data = $request[0];
 
-        if ($data['Type'] == 1)
-        {
-            $relationship = Relationship::GetCustomers()
-            ->where('customer_alias', $data['PartnerName'])
-            ->orWhere('customer_taxid', $data['PartnerTaxID'])->first();
-        }
-        else
-        {
-            $relationship = Relationship::GetSuppliers()
-            ->where('supplier_alias', $data['PartnerName'])
-            ->orWhere('supplier_taxid', $data['PartnerTaxID'])->first();
-        }
+
+        $relationship = Relationship::GetCustomers()
+        ->where('customer_alias', $data['PartnerName'])
+        ->orWhere('customer_taxid', $data['PartnerTaxID'])->first();
+
 
         $schedules = Scheduals::where('relationship_id', $relationship->id)
-        ->join('currencies', 'currencies.id', 'scheduals.currency_id')
         ->leftjoin('account_movements', 'scheduals.id', 'account_movements.schedual_id')
-        ->select('currencies.code as code',
-        'scheduals.debit',
-        'scheduals.credit',
-        'scheduals.id',
-        'scheduals.date',
-        'scheduals.date_exp',
-        'scheduals.reference')
+        ->select(DB::raw('max(currency) as code'),
+        DB::raw('max(scheduals.debit)-sum(account_movements.credit) as value'),
+        DB::raw('max(scheduals.id) as InvoiceNumber'),
+        DB::raw('max(scheduals.date) as InvoiceDate'),
+        DB::raw('max(scheduals.date_exp) as Deadline'),
+        DB::raw('max(scheduals.reference) as Reference'))
+        ->groupBy('account_movements.schedual_id')
         ->get();
 
         $data2 = [];
@@ -76,7 +68,6 @@ class AccountController extends Controller
             $values[$i] = [
                 'CurrencyCode' => $schedules[$i]->code ,
                 'Value' => $schedules[$i]->value ,
-                'MaxValue' => $schedules[$i]->max_value,
                 'ReferenceCode' => $schedules[$i]->reference,
                 'InvoiceNumber' => $schedules[$i]->InvoiceNumber,
                 'InvoiceDate' => $schedules[$i]->InvoiceDate,
