@@ -3,9 +3,6 @@
 @section('main')
     <backend-nav inline-template>
         <div>
-            {{-- <passport-clients></passport-clients>
-            <passport-authorized-clients></passport-authorized-clients>
-            <passport-personal-access-tokens></passport-personal-access-tokens> --}}
             <div id="page-container" class="side-scroll page-header-modern main-content-boxed side-trans-enabled sidebar-o">
                 <!-- Side Overlay-->
                 <aside id="side-overlay">
@@ -345,7 +342,7 @@
                                 </a>
 
                                 @php
-                                $listOfCompanies = App\Profile::GetProfiles()->where('type', 2)->get();
+                                $listOfCompanies = App\Profile::myCompanies()->get();
                                 @endphp
 
                                 @isset($listOfCompanies)

@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\User;
 use App\Profile;
-use App\followables;
+use App\Followable;
 use \Overtrue\LaravelFollow\Traits\CanFollow;
 
 class ProfileController extends Controller
@@ -29,7 +29,6 @@ class ProfileController extends Controller
     */
     public function create()
     {
-
         return view('company.form'); //->with('countries', $countries);
     }
 
@@ -54,17 +53,18 @@ class ProfileController extends Controller
         $company->save();
 
         //Laravel Follow
-        //Auth::user()->profile->follow($company);
+        Auth::user()->profile->follow($company);
 
         //Stream follow
+        $follower = Followable::where('profile_id', Auth::user()->profile_id)
+        ->where('followable_id', $company->id)
+        ->first();
 
-        // $follower= followables::where('user',Auth::user()->profile_id)->
-        // where('followable_id',$company->id)->first();
-        //
-        // if (isset($follower)) {
-        //     $follower->role=1;
-        //     $follower->save();
-        // }
+        if (isset($follower))
+        {
+            $follower->role = 1;
+            $follower->save();
+        }
 
         // $social = new ProfileFollower();
         // $social->profile_id = $profile->id;
@@ -83,7 +83,6 @@ class ProfileController extends Controller
     */
     public function show(Profile $profile)
     {
-
         return view('social.web')->with('profile', $profile);
     }
 
@@ -123,37 +122,34 @@ class ProfileController extends Controller
 
     public function followingUnfollowing($user,$profile)
     {
-        $user=Profile::where('id',$user)->first();
-        $profile=Profile::where('id',$profile)->first();
-        if ($profile->isFollowedBy($user)) {
+        $user = Profile::where('id',$user)->first();
+        $profile = Profile::where('id',$profile)->first();
+
+        if ($profile->isFollowedBy($user))
+        {
             $user->unfollow($profile);
         }
-        else {
+        else
+        {
             $user->follow($profile);
         }
+
         return response()->json('save', 200);
-
-
     }
 
 
     public function get_followers($user,$profile)
     {
-        $user=Profile::where('id',$user)->first();
-        $profile=Profile::where('id',$profile)->first();
+        $user = Profile::where('id', $user)->first();
+        $profile = Profile::where('id', $profile)->first();
 
         return response()->json($profile->isFollowedBy($user));
-
     }
 
     public function get_companys()
     {
-        $companys=Profile::GetProfiles()->where('type',2)->get();
+        $companys = Profile::GetProfiles()->where('type',2)->get();
 
         return response()->json($companys);
-
     }
-
-
-
 }

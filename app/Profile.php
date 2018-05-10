@@ -100,6 +100,13 @@ class Profile extends Model implements HasMedia
         return $this->morphToMany('App\Profile', 'targetable');
     }
 
+    public function scopemyCompanies($query)
+    {
+        $user = Auth::user();
+        $user->profile->followings(Profile::class)->where('role', '<', 4)->get();
+        // $query->with('followers')
+    }
+
     /**
     * Query scope getProfile.
     *
@@ -112,7 +119,7 @@ class Profile extends Model implements HasMedia
         // ->join('followables', 'followables.followable_id', '=', 'profiles.id')
         // ->where('followables.role', "!=", "'Follower'")
         // ->where('followables.user_id', '=', Auth::user()->profile_id)
-        //->select('profiles.name', 'profiles.id', 'profiles.slug');
+        // ->select('profiles.name', 'profiles.id', 'profiles.slug');
     }
 
     /**

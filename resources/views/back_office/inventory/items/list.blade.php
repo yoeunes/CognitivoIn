@@ -26,7 +26,7 @@
                                     @{{ item.name }}
                                 </td>
                                 <td>
-                                    @{{ item.price }}
+                                    @{{ item.unit_price }}
                                 </td>
                                 <td class="text-right">
                                     <a @click="onEdit(item.id)" class="m-btn btn btn-secondary"><i class="la la-pencil m--font-brand"></i></a>

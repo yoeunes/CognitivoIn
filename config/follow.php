@@ -30,6 +30,9 @@ return [
      */
     'followable_table' => 'followables',
 
+
+    'users_table_foreign_key' => 'profile_id',
+
     /*
      * Prefix of many-to-many relation fields.
      */

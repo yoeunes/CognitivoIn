@@ -33,7 +33,6 @@ class CreateReviewsTable extends Migration
     public function down()
     {
         $tableName = config('rateable.reviews_table_name');
-
         Schema::drop($tableName);
     }
 }
