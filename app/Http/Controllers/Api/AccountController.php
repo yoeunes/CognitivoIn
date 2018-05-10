@@ -37,7 +37,48 @@ class AccountController extends Controller
     }
 
 
+    public function ReceivePayment(Request $request,$profile)
+  {
 
+      $data2 = [];
+
+      $account = Account::where('number',1)->first()==null?new Account():
+      Account::where('number',1)->first();
+      $account->name = "Cash A/c Of " . $profile->name;
+      $account->number = "1";
+      $account->currency ='PRY';
+      $account->save();
+
+      $accountmovement = new AccountMovement();
+      $accountmovement->schedual_id = $schedual->id;
+      $accountmovement->user_id = $relationship->id;
+      $accountmovement->account_id = $account->id;
+      $accountmovement->type_id = $data['Type'];
+      $accountmovement->currency = 'PRY';
+      $accountmovement->currency_rate = 1;
+      $accountmovement->date = Carbon::now();
+
+      if ($data['Type'] == 1)
+      {
+          $accountmovement->credit = $data['Value'];
+          $accountmovement->debit = 0;
+      }
+      else
+      {
+          $accountmovement->credit = 0;
+          $accountmovement->debit = $data['Value'];
+      }
+      $accountmovement->save();
+
+      $data2 = [];
+
+      $data2[] = [
+          'PaymentReference' => $accountmovement->id,
+          'ResponseType' => 1
+      ];
+      return response()->json($data2, '200');
+
+  }
 
     public function get_CustomerSchedual(Request $request, Profile $profile)
     {
@@ -58,7 +99,7 @@ class AccountController extends Controller
         DB::raw('max(scheduals.reference) as Reference'))
         ->groupBy('account_movements.schedual_id')
         ->get();
-        return response()->json($data, '500');
+        return response()->json($data['id'], '500');
 
         $data2 = [];
         $values = [];
