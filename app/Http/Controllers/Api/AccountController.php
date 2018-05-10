@@ -42,7 +42,7 @@ class AccountController extends Controller
     public function get_CustomerSchedual(Request $request, Profile $profile)
     {
         //return payment schedual. history of unpaid debt. by Customer TaxID
-      
+
 
 
 
@@ -51,7 +51,7 @@ class AccountController extends Controller
         $schedules = Scheduals::where('relationship_id', $request['id'])
         ->leftjoin('account_movements', 'scheduals.id', 'account_movements.schedual_id')
         ->select(DB::raw('max(scheduals.currency) as code'),
-        DB::raw('max(scheduals.debit)-sum(account_movements.credit) as value'),
+        DB::raw('max(scheduals.credit)-sum(account_movements.debit) as value'),
         DB::raw('max(scheduals.id) as InvoiceNumber'),
         DB::raw('max(scheduals.date) as InvoiceDate'),
         DB::raw('max(scheduals.date_exp) as Deadline'),
