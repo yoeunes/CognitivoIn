@@ -85,7 +85,7 @@ class AccountMovementController extends Controller
         //
     }
 
-    public function ReceivePayment(Request $request,$profile)
+    public function ReceivePayment(Request $request,Profile $profile)
     {
 
       $account = Account::where('number',1)->first()==null?new Account():
