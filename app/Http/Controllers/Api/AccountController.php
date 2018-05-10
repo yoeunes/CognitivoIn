@@ -50,7 +50,7 @@ class AccountController extends Controller
 
         $schedules = Scheduals::where('relationship_id', $data['id'])
         ->leftjoin('account_movements', 'scheduals.id', 'account_movements.schedual_id')
-        ->select(DB::raw('max(currency) as code'),
+        ->select(DB::raw('max(scheduals.currency) as code'),
         DB::raw('max(scheduals.debit)-sum(account_movements.credit) as value'),
         DB::raw('max(scheduals.id) as InvoiceNumber'),
         DB::raw('max(scheduals.date) as InvoiceDate'),
