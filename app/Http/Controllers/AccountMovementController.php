@@ -96,7 +96,7 @@ class AccountMovementController extends Controller
           $account->save();
 
           $accountmovement = new AccountMovement();
-          $accountmovement->schedual_id = $schedual->id;
+          $accountmovement->schedual_id = $request['schedual_id'];
           $accountmovement->user_id = $relationship->id;
           $accountmovement->account_id = $account->id;
           $accountmovement->type_id = $request['Type'];
