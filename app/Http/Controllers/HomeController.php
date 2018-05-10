@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Profile;
+use Auth;
+
 class HomeController extends Controller
 {
     /**
@@ -23,13 +25,25 @@ class HomeController extends Controller
     */
     public function index(Profile $profile = null)
     {
+        //Check if profile is in url.
         if ($profile != null)
         {
-            return view('back_office.index');
+            //check if user has ownership of profile to open backend.
+            $isOwner = Auth::user()->profile->followings(Profile::class)
+            ->where('followable_id', $profile->id)
+            ->where('role', '<', 4)
+            ->exists() ?? false;
+
+            if ($isOwner)
+            {
+                return view('back_office.index');
+            }
+
+            //if not ownership, then show social page. as if it were any other user.
+            return view('social.web')->with('profile', $profile);
         }
-        else
-        {
-            return view('home');
-        }
+
+        //if no profile in url, just show home screen.
+        return view('home');
     }
 }

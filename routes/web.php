@@ -13,9 +13,9 @@
 
 Auth::routes();
 
-Route::get('/', 'HomeController@index')->name('home');
-Route::get('/shops', 'HomeController@indexStores')->name('shops.index');
-Route::get('/shop/{profile}', 'HomeController@indexStores')->name('shops.show');
+Route::get('/{profile?}', 'HomeController@index')->name('home');
+Route::get('/market', 'HomeController@indexMarket')->name('market.index');
+Route::get('/shop/{profile}', 'HomeController@indexStores')->name('shop.show');
 Route::get('/{profile}', 'ProfileController@show')->name('profile');
 
 Route::group(['middleware' => 'auth'], function ()
@@ -27,7 +27,7 @@ Route::group(['middleware' => 'auth'], function ()
         'profile' => 'ProfileController'
     ]);
 
-    Route::get('/{profile}', 'BackOfficeController@index');
+    // Route::get('/{profile?}', 'HomeController@index');
     Route::get('dashboard', 'BackOfficeController@index')->name('dashboard');
     Route::get('profile', 'BackOfficeController@indexProfile');
     Route::get('locations', 'BackOfficeController@indexStore');

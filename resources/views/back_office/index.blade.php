@@ -364,9 +364,9 @@
                             <!-- Toggle Side Overlay -->
                             <!-- Layout API, functionality initialized in Codebase() -> uiApiLayout() -->
                             <div class="btn-group" role="group">
-                                <button type="button" class="btn btn-circle btn-dual-secondary" data-toggle="layout" data-action="side_overlay_toggle">
+                                <button type="button" class="btn btn-rounded btn-dual-secondary" data-toggle="layout" data-action="side_overlay_toggle">
                                     {{ Auth::user()->profile->name }}
-                                    <i class="fa fa-angle-down ml-5"></i>
+                                    <i class="fa fa-angle-right ml-5"></i>
                                 </button>
                             </div>
                             <!-- END Toggle Side Overlay -->
