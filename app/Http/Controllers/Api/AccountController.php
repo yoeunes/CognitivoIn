@@ -11,6 +11,7 @@ use App\Scheduals;
 use App\Order;
 use App\OrderDetail;
 use Carbon\Carbon;
+use DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
