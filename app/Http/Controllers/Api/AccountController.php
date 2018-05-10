@@ -99,7 +99,7 @@ class AccountController extends Controller
         DB::raw('max(scheduals.reference) as Reference'))
         ->groupBy('account_movements.schedual_id')
         ->get();
-        return response()->json($data['id'], '500');
+        return response()->json($request['id'], '500');
 
         $data2 = [];
         $values = [];
