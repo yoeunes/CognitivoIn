@@ -116,7 +116,7 @@ class AccountMovementController extends Controller
               $accountmovement->debit = $request['Value'];
           }
           $accountmovement->save();
- return response()->json($accountmovement, '200');
+ 
           $data2 = [];
 
           $data2[] = [
