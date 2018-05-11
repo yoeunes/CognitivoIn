@@ -42,9 +42,20 @@ class AccountController extends Controller
     public function get_CustomerSchedual(Request $request, Profile $profile)
     {
         //return payment schedual. history of unpaid debt. by Customer TaxID
+        if ($data['Type']==1) {
+            $relationship=Relationship::GetCustomers()
+            ->where('customer_alias',$data['PartnerName'])
+            ->orWhere('customer_taxid',$data['PartnerTaxID'])->first();
+
+        }
+        else {
+            $relationship=Relationship::GetSuppliers()
+            ->where('supplier_alias',$data['PartnerName'])
+            ->orWhere('supplier_taxid',$data['PartnerTaxID'])->first();
+        }
 
 
-        $schedules = Scheduals::where('relationship_id', $request['id'])
+        $schedules = Scheduals::where('relationship_id', $relationship->id)
         ->leftjoin('account_movements', 'scheduals.id', 'account_movements.schedual_id')
         ->select(DB::raw('max(scheduals.currency) as code'),
         DB::raw('max(scheduals.credit)-sum(account_movements.debit) as value'),

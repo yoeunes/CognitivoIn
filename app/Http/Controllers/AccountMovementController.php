@@ -47,13 +47,13 @@ class AccountMovementController extends Controller
 
         $accountMovement = new AccountMovement();
         $accountMovement->schedual_id = $request['InvoiceReference'];
-        $accountMovement->user_id = $request['id'];
+        $accountMovement->user_id = $request['UserID'];
         $accountMovement->account_id = $account->id;
         $accountMovement->location_id = null;
         $accountMovement->type = $request['Type'] ?? 1;
         $accountMovement->currency = $request['Currency'];
 
-        if ($request['Currency'] != $profile->currency))
+        if ($request['Currency'] != $profile->currency)
         { $accountMovement->currency_rate = Swap::latest($profile->currency . '/' . $request['Currency'])->getValue(); }
         else
         { $accountMovement->currency_rate = 1; }
@@ -132,19 +132,20 @@ class AccountMovementController extends Controller
 
     public function annull(Request $request, Profile $profile)
     {
-        $accountMovement = AccountMovement::find($request)
+        $accountMovement = AccountMovement::find($request['InvoiceReference'])
         ->with('account')
         ->first();
 
+
         if (isset($accountMovement))
         {
-            $account = $accountMovement->account;
+            $account = $accountMovement->account();
 
             //Make sure that profile requesting change is owner of account movement. if not,
             //we cannot allow user to delete something that does not belong to them.
             if ($account->profile_id == $profile->id)
             {
-                $accountMovement->status = 3
+                $accountMovement->status = 3;
                 $accountMovement->comment = $request['Comment'];
                 $accountMovement->save();
             }

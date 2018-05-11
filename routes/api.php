@@ -68,7 +68,8 @@ Route::prefix('{profile}')->group(function ()
 
 
     });
-    Route::post('PaymentReceive', 'AccountMovementController@ReceivePayment');
+    Route::post('PaymentReceive', 'AccountMovementController@store');
+    Route::post('Anull', 'AccountMovementController@annull');
     Route::post('customers', 'Api\RelationshipController@customers');
     Route::post('PaymentDue', 'Api\AccountController@get_CustomerSchedual');
     Route::post('ApproveSales', 'Api\AccountController@ApproveSales');
@@ -93,4 +94,3 @@ Route::prefix('{profile}')->group(function ()
 
 
 //  Route::get('PaymentDue/{slug}/{type}/{partnerName}/{partnerTaxID}', 'SchedualsController@PaymentDue');
-Route::get('Anull/{profile}', 'AccountMovementController@Anull');
