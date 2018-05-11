@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use App\Account;;
 class AccountMovement extends Model
 {
   use SoftDeletes;
@@ -25,4 +26,9 @@ class AccountMovement extends Model
       'date',
 
   ];
+
+  public function account()
+  {
+      return $this->belongsTo(Account::class);
+  }
 }
