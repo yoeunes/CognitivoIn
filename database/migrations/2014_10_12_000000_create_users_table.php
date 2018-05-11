@@ -34,7 +34,7 @@ class CreateUsersTable extends Migration
             $table->string('country', 3)->nullable()->default('PRY');
             $table->string('zip', 11)->nullable();
             $table->string('geoloc')->nullable();
-            $table->string('currency', 3);
+            $table->string('currency', 3)->default('PRY');
 
             $table->string('short_description', 128)->nullable()->comment('short_descrp = Company. job_title = User');
             $table->text('long_description')->nullable();
