@@ -16,7 +16,7 @@ Auth::routes();
 Route::get('/{profile?}', 'HomeController@index')->name('home');
 Route::get('/market', 'HomeController@indexMarket')->name('market.index');
 Route::get('/shop/{profile}', 'HomeController@indexStores')->name('shop.show');
-Route::get('/{profile}', 'ProfileController@show')->name('profile');
+// Route::get('/{profile}', 'ProfileController@show')->name('profile');
 
 Route::group(['middleware' => 'auth'], function ()
 {
@@ -78,6 +78,3 @@ Route::group(['middleware' => 'auth'], function ()
         });
     });
 });
-
-Route::resource('profile', 'ProfileController');
-Route::get('/{profile?}', 'HomeController@index')->name('home');
