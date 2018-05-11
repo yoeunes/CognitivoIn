@@ -44,10 +44,6 @@ class AccountController extends Controller
         //return payment schedual. history of unpaid debt. by Customer TaxID
 
 
-
-
-
-
         $schedules = Scheduals::where('relationship_id', $request['id'])
         ->leftjoin('account_movements', 'scheduals.id', 'account_movements.schedual_id')
         ->select(DB::raw('max(scheduals.currency) as code'),
