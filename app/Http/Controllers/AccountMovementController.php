@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Scheduals;
 use App\Account;
 use App\Profile;
 use App\AccountMovement;
@@ -38,6 +39,7 @@ class AccountMovementController extends Controller
     */
     public function store(Request $request, Profile $profile)
     {
+        $return = [];
         $account = Account::where('profile_id', $profile->id)->first() ?? new Account();
 
         if (isset($account))
@@ -48,7 +50,7 @@ class AccountMovementController extends Controller
             $account->save();
         }
 
-        $schedual = Schedual::find($request['InvoiceReference']);
+        $schedual = Scheduals::find($request['InvoiceReference']);
 
         if (isset($schedual))
         {
@@ -71,7 +73,7 @@ class AccountMovementController extends Controller
 
             $accountMovement->save();
 
-            $return = [];
+
             $return[] = [
                 'PaymentReference' => $accountMovement->id,
                 'ResponseType' => 1
@@ -147,7 +149,7 @@ class AccountMovementController extends Controller
 
         if (isset($accountMovement))
         {
-            $account = $accountMovement->account();
+            $account = $accountMovement->account;
 
             //Make sure that profile requesting change is owner of account movement. if not,
             //we cannot allow user to delete something that does not belong to them.
