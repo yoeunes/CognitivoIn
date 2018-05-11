@@ -38,37 +38,45 @@ class AccountMovementController extends Controller
     */
     public function store(Request $request, Profile $profile)
     {
-        $account = Account::where('number', 1)->first() ?? new Account();
+        $account = Account::where('profile_id', $profile->id)->first() ?? new Account();
 
-        $account->name = "Cash A/C Of " . $profile->name;
-        $account->number = "1";
-        $account->currency ='PRY';
-        $account->save();
+        if (isset($account))
+        {
+            $account->name = "Cash A/C Of " . $profile->name;
+            $account->number = "1";
+            $account->currency ='PRY';
+            $account->save();
+        }
 
-        $accountMovement = new AccountMovement();
-        $accountMovement->schedual_id = $request['InvoiceReference'];
-        $accountMovement->user_id = $request['UserID'];
-        $accountMovement->account_id = $account->id;
-        $accountMovement->location_id = null;
-        $accountMovement->type = $request['Type'] ?? 1;
-        $accountMovement->currency = $request['Currency'];
+        $schedual = Schedual::find($request['InvoiceReference']);
 
-        if ($request['Currency'] != $profile->currency)
-        { $accountMovement->currency_rate = Swap::latest($profile->currency . '/' . $request['Currency'])->getValue(); }
-        else
-        { $accountMovement->currency_rate = 1; }
+        if (isset($schedual))
+        {
+            $accountMovement = new AccountMovement();
+            $accountMovement->schedual_id = $schedual->id;
+            $accountMovement->user_id = $request['UserID'];
+            $accountMovement->account_id = $account->id;
+            $accountMovement->location_id = null;
+            $accountMovement->type = $request['Type'] ?? 1;
+            $accountMovement->currency = $request['Currency'];
 
-        $accountMovement->date = Carbon::now();
-        $accountMovement->credit = $request['Type'] == 1 ? $request['Value'] : 0;
-        $accountMovement->debit = $request['Type'] == 1 ? 0 : $request['Value'];
+            if ($request['Currency'] != $schedual->currency)
+            { $accountMovement->currency_rate = Swap::latest($schedual->currency . '/' . $request['Currency'])->getValue(); }
+            else
+            { $accountMovement->currency_rate = 1; }
 
-        $accountMovement->save();
+            $accountMovement->date = Carbon::now();
+            $accountMovement->credit = $request['Type'] == 1 ? $request['Value'] : 0;
+            $accountMovement->debit = $request['Type'] == 1 ? 0 : $request['Value'];
 
-        $return = [];
-        $return[] = [
-            'PaymentReference' => $accountMovement->id,
-            'ResponseType' => 1
-        ];
+            $accountMovement->save();
+
+            $return = [];
+            $return[] = [
+                'PaymentReference' => $accountMovement->id,
+                'ResponseType' => 1
+            ];
+        }
 
         return response()->json($return, '200');
     }

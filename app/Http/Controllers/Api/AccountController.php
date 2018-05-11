@@ -27,7 +27,7 @@ class AccountController extends Controller
         return response()->json($suppliers);
     }
 
-    public function list_account_payables(Profile $profile,$supplier_ID)
+    public function list_account_payables(Profile $profile, $supplier_ID)
     {
         $suppliers = Scheduals::join('relationships','relationships.id','=','scheduals.relationship_id')
         ->where('relationships.supplier_id',$supplier_ID)
@@ -36,40 +36,25 @@ class AccountController extends Controller
         return response()->json($suppliers);
     }
 
-
-
-
     public function get_CustomerSchedual(Request $request, Profile $profile)
     {
         //return payment schedual. history of unpaid debt. by Customer TaxID
-        if ($data['Type']==1) {
-            $relationship=Relationship::GetCustomers()
-            ->where('customer_alias',$data['PartnerName'])
-            ->orWhere('customer_taxid',$data['PartnerTaxID'])->first();
 
-        }
-        else {
-            $relationship=Relationship::GetSuppliers()
-            ->where('supplier_alias',$data['PartnerName'])
-            ->orWhere('supplier_taxid',$data['PartnerTaxID'])->first();
-        }
-
-
-        $schedules = Scheduals::where('relationship_id', $relationship->id)
+        $schedules = Scheduals::where('relationship_id', $request['id'])
         ->leftjoin('account_movements', 'scheduals.id', 'account_movements.schedual_id')
-        ->select(DB::raw('max(scheduals.currency) as code'),
-        DB::raw('max(scheduals.credit)-sum(account_movements.debit) as value'),
-        DB::raw('max(scheduals.id) as InvoiceNumber'),
-        DB::raw('max(scheduals.date) as InvoiceDate'),
-        DB::raw('max(scheduals.date_exp) as Deadline'),
-        DB::raw('max(scheduals.reference) as Reference'))
+        ->select('scheduals.currency',
+        '(scheduals.credit) - sum(account_movements.debit) as value'),
+        'scheduals.id) as InvoiceNumber'),
+        'scheduals.date) as InvoiceDate'),
+        'scheduals.date_exp) as Deadline'),
+        'scheduals.reference) as Reference'))
         ->groupBy('account_movements.schedual_id')
         ->get();
 
-        $data2 = [];
+        $return = [];
         $values = [];
 
-        for ($i = 0; $i <count($schedules) ; $i++)
+        for ($i = 0; $i < count($schedules) ; $i++)
         {
             $values[$i] = [
                 'CurrencyCode' => $schedules[$i]->code ,
@@ -81,43 +66,50 @@ class AccountController extends Controller
             ];
         }
 
-        $data2[] = [
+        //for each currency requested, run loop and add into array
+
+        $return[] = [
+            foreach ($variable as $value) {
+                // code...
+            }
             'ReferenceName' => $request['PartnerName'],
             'ReferenceTaxID' => $request['PartnerTaxID'],
-            'Details' => $values ];
+            'Details' => $values
+        ];
 
-            return response()->json($data2, '200');
+            return response()->json($return, '200');
         }
 
         public function ApproveSales(Request $request, Profile $profile)
         {
             //return response()->json($request,'500');
             //Store payment information recieved by client application
-            $data=$request[0];
-            if (!isset($data)) {
-                $data=$request;
+            $data = $request[0];
+            if (isset($data) == false)
+            {
+                $data = $request;
             }
 
             if ($data['Type']==1) {
-                $relationship=Relationship::GetCustomers()
+                $relationship = Relationship::GetCustomers()
                 ->where('customer_alias',$data['PartnerName'])
                 ->orWhere('customer_taxid',$data['PartnerTaxID'])->first();
 
             }
             else {
-                $relationship=Relationship::GetSuppliers()
+                $relationship = Relationship::GetSuppliers()
                 ->where('supplier_alias',$data['PartnerName'])
                 ->orWhere('supplier_taxid',$data['PartnerTaxID'])->first();
             }
 
-            $order=new Order();
+            $order = new Order();
 
             $order->number = $data['number'];
-            $order->relationship_id=$relationship->id;
+            $order->relationship_id = $relationship->id;
             $order->code = $data['code'];
             //$order->code_expiry = $data['code_expiry'];
             $order->is_printed = $data['number'] != "" ? true : false;
-            $order->date =Carbon::now();
+            $order->date = Carbon::now();
             $order->currency = 'PRY';
             $order->currency_rate = 1;
             $order->save();
@@ -131,17 +123,16 @@ class AccountController extends Controller
                 $detail->quantity = $data_detail['quantity'];
                 $detail->unit_price = $data_detail['unit_price'];
                 $detail->save();
-
             }
 
-            $schedual= new Scheduals();
+            $schedual = new Scheduals();
             $schedual->relationship_id = $relationship->id;
             $schedual->currency = 'PRY';
             $schedual->currency_rate = 1;
             $schedual->date = Carbon::now();
             $schedual->date_exp = Carbon::now();
 
-            if ($data['Type']==1)
+            if ($data['Type'] == 1)
             {
                 $schedual->credit = $data['total_amount'];
                 $schedual->debit = 0;
@@ -154,8 +145,7 @@ class AccountController extends Controller
 
             $schedual->save();
 
-            $account = Account::where('number',1)->first()==null?new Account():
-            Account::where('number',1)->first();
+            $account = Account::where('number', 1)->first() ?? new Account():
             $account->name = "Cash A/c Of " . $profile->name;
             $account->number = "1";
             $account->currency ='PRY';
