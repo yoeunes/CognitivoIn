@@ -7,7 +7,7 @@ use App\AccountMovement;
 use App\Relationship;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
-
+use Swap\Laravel\Facades\Swap;
 class AccountMovementController extends Controller
 {
     /**
@@ -97,12 +97,12 @@ class AccountMovementController extends Controller
           $account->save();
 
           $accountmovement = new AccountMovement();
-          $accountmovement->schedual_id = $request['schedual_id'];
+          $accountmovement->schedual_id = $request['InvoiceReference'];
           $accountmovement->user_id = $request['id'];
           $accountmovement->account_id = $account->id;
           $accountmovement->type_id = $request['Type'];
-          $accountmovement->currency = 'PRY';
-          $accountmovement->currency_rate = 1;
+          $accountmovement->currency = $request['currency'];
+          $accountmovement->currency_rate = Swap::latest($profile->currency .'/PYG')->getValue();
           $accountmovement->date = Carbon::now();
 
           if ($request['Type'] == 1)
@@ -116,7 +116,7 @@ class AccountMovementController extends Controller
               $accountmovement->debit = $request['Value'];
           }
           $accountmovement->save();
- 
+
           $data2 = [];
 
           $data2[] = [
@@ -125,7 +125,7 @@ class AccountMovementController extends Controller
           ];
           return response()->json($data2, '200');
     }
-    public function Anull(Request $request)
+    public function Anull(Request $request,Profile $profile)
     {
 
         // $accountMovement = AccountMovement::where('reference',$InvoiceReference)->first();
@@ -133,7 +133,7 @@ class AccountMovementController extends Controller
         //     $accountMovement->delete();
         // }
         // return response()->json(2,'200');
-
-        return response()->json('200',200);
+        //$swap= new Swap();
+        return response()->json(Swap::latest($profile->currency .'/PYG')->getValue(),200);
     }
 }

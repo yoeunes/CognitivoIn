@@ -52,6 +52,15 @@
                                 </div>
                             </div>
                             <div class="form-group">
+                                <div class="col-xs-12">
+                                    <div class="form-material form-material-success">
+                                          <input class="form-control" type="text" id="currency" name="currency" placeholder="Default currency for your company">
+                                        {{-- <input class="form-control" type="text" id="register-password" name="register-password" placeholder="Where your company at?"> --}}
+                                        <label for="register-password">Currency</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
                                 <div class="col-xs-12 col-sm-6 col-sm-offset-3">
                                     <button class="btn btn-block btn-success" type="submit">Create Profile</button>
                                 </div>
@@ -97,7 +106,7 @@
                 </div>
             </div>
         </div> --}}
-    
+
     </form>
     <!-- END Register Form -->
 </div>

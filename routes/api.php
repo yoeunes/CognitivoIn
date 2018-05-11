@@ -22,7 +22,7 @@ Route::group(['middleware' => 'auth:api'], function ()
 {
 
 });
-Route::get('getCompanys/{id}', 'ProfileController@get_companys');
+Route::get('getCompanys/{slug}', 'ProfileController@get_companys');
 
 Route::get('login/{email}/{password}', 'Auth\SocialAuthController@Login');
 
@@ -93,4 +93,4 @@ Route::prefix('{profile}')->group(function ()
 
 
 //  Route::get('PaymentDue/{slug}/{type}/{partnerName}/{partnerTaxID}', 'SchedualsController@PaymentDue');
-Route::post('Anull', 'AccountMovementController@Anull');
+Route::get('Anull/{profile}', 'AccountMovementController@Anull');

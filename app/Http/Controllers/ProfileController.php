@@ -48,6 +48,7 @@ class ProfileController extends Controller
         $company->alias = $request->alias;
         $company->address = $request->address;
         $company->taxid = $request->taxID;
+        $company->currency=$request->currency;
         $company->type = 2;
 
         $company->save();
@@ -146,9 +147,9 @@ class ProfileController extends Controller
         return response()->json($profile->isFollowedBy($user));
     }
 
-    public function get_companys($id)
+    public function get_companys($slug)
   {
-    $user=User::where('profile_id',$id)->first();
+    $user=User::where('profile_id',$slug)->first();
     $companys = $user->profile->followings(\App\Profile::class)->where('role', '<', 4)->get();
 
     return response()->json($companys);
