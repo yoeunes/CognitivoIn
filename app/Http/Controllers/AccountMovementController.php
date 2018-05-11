@@ -36,9 +36,41 @@ class AccountMovementController extends Controller
     * @param  \Illuminate\Http\Request  $request
     * @return \Illuminate\Http\Response
     */
-    public function store(Request $request)
+    public function store(Request $request, Profile $profile)
     {
-        //
+        $account = Account::where('number', 1)->first() ?? new Account();
+
+        $account->name = "Cash A/C Of " . $profile->name;
+        $account->number = "1";
+        $account->currency ='PRY';
+        $account->save();
+
+        $accountMovement = new AccountMovement();
+        $accountMovement->schedual_id = $request['InvoiceReference'];
+        $accountMovement->user_id = $request['id'];
+        $accountMovement->account_id = $account->id;
+        $accountMovement->location_id = null;
+        $accountMovement->type = $request['Type'] ?? 1;
+        $accountMovement->currency = $request['Currency'];
+
+        if ($request['Currency'] != $profile->currency))
+        { $accountMovement->currency_rate = Swap::latest($profile->currency . '/' . $request['Currency'])->getValue(); }
+        else
+        { $accountMovement->currency_rate = 1; }
+
+        $accountMovement->date = Carbon::now();
+        $accountMovement->credit = $request['Type'] == 1 ? $request['Value'] : 0;
+        $accountMovement->debit = $request['Type'] == 1 ? 0 : $request['Value'];
+
+        $accountMovement->save();
+
+        $return = [];
+        $return[] = [
+            'PaymentReference' => $accountMovement->id,
+            'ResponseType' => 1
+        ];
+
+        return response()->json($return, '200');
     }
 
     /**
@@ -81,57 +113,43 @@ class AccountMovementController extends Controller
     * @param  \App\AccountMovement  $accountMovement
     * @return \Illuminate\Http\Response
     */
-    public function destroy(AccountMovement $accountMovement)
+    public function destroy(AccountMovement $accountMovement, Profile $profile)
     {
-        //
+        if (isset($accountMovement))
+        {
+            $account = $accountMovement->account;
+
+            //Make sure that profile requesting change is owner of account movement. if not,
+            //we cannot allow user to delete something that does not belong to them.
+            if ($account->profile_id == $profile->id)
+            {
+                $accountMovement->delete();
+            }
+        }
+
+        return response()->json('Unkown Movement', '401');
     }
 
-    public function ReceivePayment(Request $request, Profile $profile)
+    public function annull(Request $request, Profile $profile)
     {
-        $account = Account::where('number', 1)->first() ?? new Account();
+        $accountMovement = AccountMovement::find($request)
+        ->with('account')
+        ->first();
 
-        $account->name = "Cash A/C Of " . $profile->name;
-        $account->number = "1";
-        $account->currency ='PRY';
-        $account->save();
+        if (isset($accountMovement))
+        {
+            $account = $accountMovement->account;
 
-        $accountmovement = new AccountMovement();
-        $accountmovement->schedual_id = $request['InvoiceReference'];
-        $accountmovement->user_id = $request['id'];
-        $accountmovement->account_id = $account->id;
-        $accountmovement->location_id = null;
-        $accountmovement->type = $request['Type'] ?? 1;
-        $accountmovement->currency = $request['Currency'];
+            //Make sure that profile requesting change is owner of account movement. if not,
+            //we cannot allow user to delete something that does not belong to them.
+            if ($account->profile_id == $profile->id)
+            {
+                $accountMovement->status = 3
+                $accountMovement->comment = $request['Comment'];
+                $accountMovement->save();
+            }
+        }
 
-        if ($request['Currency'] != $profile->currency))
-        { $accountmovement->currency_rate = Swap::latest($profile->currency . '/' . $request['Currency'])->getValue(); }
-        else
-        { $accountmovement->currency_rate = 1; }
-
-        $accountmovement->date = Carbon::now();
-        $accountmovement->credit = $request['Type'] == 1 ? $request['Value'] : 0;
-        $accountmovement->debit = $request['Type'] == 1 ? 0 : $request['Value'];
-
-        $accountmovement->save();
-
-        $data2 = [];
-
-        $data2[] = [
-            'PaymentReference' => $accountmovement->id,
-            'ResponseType' => 1
-        ];
-
-        return response()->json($data2, '200');
-    }
-
-    public function Anull(Request $request,Profile $profile)
-    {
-        // $accountMovement = AccountMovement::where('reference',$InvoiceReference)->first();
-        // if (isset($accountMovement)) {
-        //     $accountMovement->delete();
-        // }
-        // return response()->json(2,'200');
-        //$swap= new Swap();
-        return response()->json(Swap::latest($profile->currency .'/PYG')->getValue(),200);
+        return response()->json('Unkown Movement', '401');
     }
 }
