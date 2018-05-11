@@ -1,9 +1,8 @@
 <?php
 
-use Illuminate\Http\Request;
+// use Illuminate\Http\Request;
 
 /*
-
 |--------------------------------------------------------------------------
 | API Routes
 |--------------------------------------------------------------------------
@@ -14,83 +13,73 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
+// Route::middleware('auth:api')->get('/user', function (Request $request) {
+//     return $request->user();
+// });
 
 Route::group(['middleware' => 'auth:api'], function ()
 {
-
-});
-Route::get('getCompanys/{slug}', 'ProfileController@get_companys');
-
-Route::get('login/{email}/{password}', 'Auth\SocialAuthController@Login');
-
-Route::get('getCustomers/{profile}', 'CustomerController@getAllCustomer');
-
-
-Route::prefix('{profile}')->group(function ()
-{
-    Route::prefix('back-office')->group(function ()
+    Route::prefix('{profile}')->group(function ()
     {
-        Route::resources([
-            'movements' => 'BackOfficeStockMovementController',
-        ]);
+        Route::prefix('back-office')->group(function ()
+        {
+            Route::resources([
+                'customers' => 'CustomerController',
+                'suppliers' => 'SupplierController',
+                'items' => 'ItemController',
+                'pipelines' => 'PipelineController',
+                'opportunities' => 'OpportunityController',
+                'orders' => 'OrderController',
+                'account-payables' => 'AccountPayableController',
+                'account-receivables' => 'AccountReceivableController',
+                'profile' => 'ProfileController'
+            ]);
 
-        Route::get('list-items/{skip}', 'ItemController@list_items');
+            Route::prefix('list/{skip}')->group(function ()
+            {
+                Route::get('customers', 'CustomerController@index');
+                Route::get('suppliers', 'SupplierController@index');
+                Route::get('items', 'ItemController@index');
+            });
 
-        Route::get('get-items', 'ItemController@get_items');
+            //Searches using ElasticSearch Server for index based search results.
+            Route::prefix('search')->group(function ()
+            {
+                Route::get('customers/{query}', 'CustomerController@search');
+                Route::get('suppliers/{query}', 'SupplierController@search');
+                Route::get('items/{query}', 'ItemController@search');
+                Route::get('opportunities/{query}', 'OpportunityController@search');
+                Route::get('orders/{query}', 'OrderController@search');
+            });
 
-        Route::get('list-items/by-id/{id}', 'ItemController@list_itemsByID');
-
-        Route::get('list-customers/{skip}', 'CustomerController@list_customers');
-        Route::get('list-customers/by-id/{id}', 'CustomerController@list_customersByID');
-
-        Route::get('list-pipelines/{skip}', 'PipelineController@list_pipelines');
-        Route::get('list-pipelines/all', 'PipelineController@get_pipelines');
-
-        Route::get('list-orders/{skip}', 'OrderController@list_orders');
-        Route::get('list-orders/by-id/{id}', 'OrderController@list_ordersByID');
-
-        Route::get('list-pipelinestages/{skip}', 'PipelineStageController@list_pipelinestages');
-        Route::get('list-stages/all', 'PipelineStageController@get_pipelinestages');
-        Route::get('list-pipelinestages/by-id/{id}', 'PipelineStageController@list_pipelinestagesByID');
-
-        Route::get('list-opportunities/{skip}', 'OpportunityController@list_opportunities');
-        Route::get('list-opportunities/by-id/{id}', 'OpportunityController@list_opportunitiesByID');
-
-
-        Route::get('list-suppliers', 'Api\ApiController@list_suppliers');
-        Route::get('list-currency', 'Api\ApiController@list_currency');
-
-        Route::get('list-account-receivables/{customer_ID}', 'Api\ApiController@list_account_receivables');
-        Route::get('list-account-payables/{supplier_id}', 'Api\ApiController@list_account_payables');
+            //Annull movements on specific modules
+            Route::prefix('annull')->group(function ()
+            {
+                Route::get('orders/{id}', 'OrderController@annull');
+                Route::get('account-payables/{id}', 'AccountPayableController@annull');
+                Route::get('account-receivables/{id}', 'AccountReceivableController@annull');
+            });
 
 
+            Route::get('list-currency', 'Api\ApiController@list_currency');
+
+        });
+
+        Route::post('PaymentReceive', 'AccountMovementController@store');
+        Route::post('Anull', 'AccountMovementController@annull');
+        // Route::post('customers', 'Api\RelationshipController@customers');
+        Route::post('PaymentDue', 'Api\AccountController@get_CustomerSchedual');
+        Route::post('ApproveSales', 'Api\AccountController@ApproveSales');
+
+        Route::post('syncitem', 'Api\ItemController@syncItems');
+        Route::post('synccustomer', 'Api\CustomerController@syncCustomer');
+
+        Route::post('synctransaction', 'Api\TransactionController@uploadOrder');
     });
-    Route::post('PaymentReceive', 'AccountMovementController@store');
-    Route::post('Anull', 'AccountMovementController@annull');
-    Route::post('customers', 'Api\RelationshipController@customers');
-    Route::post('PaymentDue', 'Api\AccountController@get_CustomerSchedual');
-    Route::post('ApproveSales', 'Api\AccountController@ApproveSales');
 
-    Route::post('syncitem', 'Api\ItemController@syncItems');
-    Route::post('synccustomer', 'Api\CustomerController@syncCustomer');
 
-    Route::post('synctransaction', 'Api\TransactionController@uploadOrder');
 });
 
-// group by slug
-// back-office/list-items/{location_slug?} //with stock and price list
-// back-office/list-customers
-// back-office/list-suppliers
-// back-office/list-currrency
-// back-office/list-account-receivables/{customer_ID}
-// back-office/list-account-payables/{supplier_ID}
-
-// back-office/make-sales //Note: Multiple
-// back-office/receive-payment //Note: Multiple
-// back-office/make-payment //Note: Multiple
-
-
-//  Route::get('PaymentDue/{slug}/{type}/{partnerName}/{partnerTaxID}', 'SchedualsController@PaymentDue');
+Route::get('getCompanys/{slug}', 'ProfileController@get_companys');
+Route::get('login/{email}/{password}', 'Auth\SocialAuthController@Login');
+Route::get('getCustomers/{profile}', 'CustomerController@getAllCustomer');

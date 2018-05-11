@@ -6,12 +6,12 @@ use App\Relationship;
 use App\Profile;
 use Illuminate\Http\Request;
 
-class CustomerController extends Controller
+class SupplierController extends Controller
 {
 
     public function index(Profile $profile, $skip)
     {
-        $customers = Relationship::GetCustomers()
+        $customers = Relationship::GetSuppliers()
         ->skip($skip)
         ->take(100)
         ->get();
@@ -31,11 +31,11 @@ class CustomerController extends Controller
         $relationship->supplier_id = $profile->id;
         $relationship->supplier_accepted = true;
 
-        $relationship->customer_taxid = $request->customer_taxid;
-        $relationship->customer_alias = $request->customer_alias;
-        $relationship->customer_address = $request->customer_address;
-        $relationship->customer_telephone = $request->customer_telephone;
-        $relationship->customer_email = $request->customer_email;
+        $relationship->supplier_taxid = $request->supplier_taxid;
+        $relationship->supplier_alias = $request->supplier_alias;
+        $relationship->supplier_address = $request->supplier_address;
+        $relationship->supplier_telephone = $request->supplier_telephone;
+        $relationship->supplier_email = $request->supplier_email;
         $relationship->credit_limit = $request->credit_limit ?? 0;
 
         $relationship->save();
@@ -66,18 +66,18 @@ class CustomerController extends Controller
     {
         if ($profile->id != $relationship->supplier_id)
         {
-            $relationship->customer_taxid = $request->customer_taxid;
-            $relationship->customer_alias = $request->customer_alias;
-            $relationship->customer_address = $request->customer_address;
-            $relationship->customer_telephone = $request->customer_telephone;
-            $relationship->customer_email = $request->customer_email;
+            $relationship->supplier_taxid = $request->supplier_taxid;
+            $relationship->supplier_alias = $request->supplier_alias;
+            $relationship->supplier_address = $request->supplier_address;
+            $relationship->supplier_telephone = $request->supplier_telephone;
+            $relationship->supplier_email = $request->supplier_email;
             $relationship->credit_limit = $request->credit_limit ?? 0;
-
             $relationship->save();
+
             return response()->json('Ok', 200);
         }
 
-        return response()->json('Customer not found', 403);
+        return response()->json('Supplier not found', 403);
     }
 
     /**
@@ -94,7 +94,7 @@ class CustomerController extends Controller
             return response()->json('Ok', 200);
         }
 
-        return response()->json('Customer not found', 403);
+        return response()->json('Supplier not found', 403);
     }
 
     public function acceptInvitation()
@@ -104,6 +104,6 @@ class CustomerController extends Controller
 
     public function search(Profile $profile, $query)
     {
-        return Relationship::search($query)->where('supplier_id', $profile->id)->where('supplier_accepted', '1')->get();
+        return Relationship::search($query)->where('customer_id', $profile->id)->where('customer_accepted', '1')->get();
     }
 }

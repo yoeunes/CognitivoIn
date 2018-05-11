@@ -28,9 +28,9 @@
 
     <!-- Icons -->
     <!-- The following icons can be replaced with your own, they are used by desktop and mobile browsers -->
-    <link rel="shortcut icon" href="assets/img/favicons/favicon.png">
-    <link rel="icon" type="image/png" sizes="192x192" href="assets/img/favicons/favicon-192x192.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="assets/img/favicons/apple-touch-icon-180x180.png">
+    <link rel="shortcut icon" href="/img/favicons/favicon.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/img/favicons/favicon-192x192.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/img/favicons/apple-touch-icon-180x180.png">
     <!-- END Icons -->
 
     <!-- Stylesheets -->
@@ -41,7 +41,9 @@
     <!-- <link rel="stylesheet" id="css-theme" href="assets/css/themes/flat.min.css"> -->
     <!-- END Stylesheets -->
 </head>
+
 <body>
+
     <div id="app" class="main-content-boxed">
         <main id="main-container">
             <div>
@@ -55,9 +57,9 @@
     </div>
 
     <!-- Codebase Core JS -->
-    <script src="{{ mix('/js/app.js') }}"></script>
     <script src="/js/codebase.min.js"></script>
-
+    <script src="{{ mix('/js/app.js') }}"></script>
 
 </body>
+
 </html>
