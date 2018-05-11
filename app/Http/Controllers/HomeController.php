@@ -51,11 +51,5 @@ class HomeController extends Controller
     return view('home');
   }
 
-  public function get_companys()
-  {
-
-    $companys = Auth::user()->profile->followings(\App\Profile::class)->where('role', '<', 4)->get();
-
-    return response()->json($companys);
-  }
+  
 }

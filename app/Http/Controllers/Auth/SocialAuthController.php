@@ -158,7 +158,7 @@ class SocialAuthController extends Controller
         if (Auth::attempt(['email' => $email, 'password' => $password]))
         {
             $user = User::where('email',$email)->first();
-              Auth::login($user, true);
+             
             return response()->json([$user->profile->slug]);
         }
         else

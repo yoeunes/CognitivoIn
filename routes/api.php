@@ -22,7 +22,7 @@ Route::group(['middleware' => 'auth:api'], function ()
 {
 
 });
-
+Route::get('getCompanys/{id}', 'ProfileController@get_companys');
 
 Route::get('login/{email}/{password}', 'Auth\SocialAuthController@Login');
 

@@ -146,5 +146,11 @@ class ProfileController extends Controller
         return response()->json($profile->isFollowedBy($user));
     }
 
-    
+    public function get_companys($id)
+  {
+    $user=User::where('profile_id',$id)->first();
+    $companys = $user->profile->followings(\App\Profile::class)->where('role', '<', 4)->get();
+
+    return response()->json($companys);
+  }
 }
