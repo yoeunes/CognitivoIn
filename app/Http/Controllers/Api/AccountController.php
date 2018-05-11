@@ -43,7 +43,7 @@ class AccountController extends Controller
         $schedules = Scheduals::where('relationship_id', $request['id'])
         ->leftjoin('account_movements', 'scheduals.id', 'account_movements.schedual_id')
         ->select('scheduals.currency',
-        '(scheduals.credit) - sum(account_movements.debit / scheduals.rate) as value'),
+        '(scheduals.credit) - sum(account_movements.debit * scheduals.rate) as value'),
         'scheduals.id) as InvoiceNumber'),
         'scheduals.date) as InvoiceDate'),
         'scheduals.date_exp) as Deadline'),
