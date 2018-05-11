@@ -22,7 +22,8 @@ Route::group(['middleware' => 'auth:api'], function ()
 {
 
 });
-Route::get('getCompanys', 'ProfileController@get_companys');
+
+
 Route::get('login/{email}/{password}', 'Auth\SocialAuthController@Login');
 
 Route::get('getCustomers/{profile}', 'CustomerController@getAllCustomer');

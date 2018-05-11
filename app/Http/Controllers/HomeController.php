@@ -8,46 +8,54 @@ use Auth;
 
 class HomeController extends Controller
 {
-    /**
-    * Create a new controller instance.
-    *
-    * @return void
-    */
-    public function __construct()
+  /**
+  * Create a new controller instance.
+  *
+  * @return void
+  */
+  public function __construct()
+  {
+    $this->middleware('auth');
+  }
+
+  /**
+  * Show the application dashboard.
+  *
+  * @return \Illuminate\Http\Response
+  */
+  public function index(Profile $profile = null)
+  {
+    //Check if profile is in url.
+    if ($profile != null)
     {
-        $this->middleware('auth');
+      //check if user has ownership of profile to open backend.
+      $isOwner = Auth::user()->profile->followings(Profile::class)
+      ->where('followable_id', $profile->id)
+      ->where('role', '<', 4)
+      ->exists() ?? false;
+
+      if ($isOwner)
+      {
+        return view('back_office.index');
+      }
+
+      //if not ownership, then show social page. as if it were any other user. Also the page must not be private.
+      if ($profile->is_private == false)
+      {
+        return view('social.web')->with('profile', $profile);
+      }
+
     }
 
-    /**
-    * Show the application dashboard.
-    *
-    * @return \Illuminate\Http\Response
-    */
-    public function index(Profile $profile = null)
-    {
-        //Check if profile is in url.
-        if ($profile != null)
-        {
-            //check if user has ownership of profile to open backend.
-            $isOwner = Auth::user()->profile->followings(Profile::class)
-            ->where('followable_id', $profile->id)
-            ->where('role', '<', 4)
-            ->exists() ?? false;
+    //if no profile in url, just show home screen.
+    return view('home');
+  }
 
-            if ($isOwner)
-            {
-                return view('back_office.index');
-            }
+  public function get_companys()
+  {
 
-            //if not ownership, then show social page. as if it were any other user. Also the page must not be private.
-            if ($profile->is_private == false)
-            {
-                return view('social.web')->with('profile', $profile);
-            }
+    $companys = Auth::user()->profile->followings(\App\Profile::class)->where('role', '<', 4)->get();
 
-        }
-
-        //if no profile in url, just show home screen.
-        return view('home');
-    }
+    return response()->json($companys);
+  }
 }
