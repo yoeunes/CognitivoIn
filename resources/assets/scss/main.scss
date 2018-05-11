@@ -5,8 +5,10 @@
 // Bootstrap functions (original)
 @import 'bootstrap/functions';
 
-// Codebase functions/variables and Bootstrap overrides
-@import 'codebase/functions';
+// User variables (your own variable overrides)
+@import 'custom/variables';
+
+// Codebase variables and Bootstrap variable overrides
 @import 'codebase/variables';
 @import 'codebase/variables-themes';
 @import 'codebase/variables-bootstrap';
@@ -18,7 +20,7 @@
 // Codebase mixins and Bootstrap overrides
 @import 'codebase/mixins';
 
-// // Bootstrap components (original)
+// Bootstrap components (original)
 @import 'bootstrap/reboot';
 @import 'bootstrap/type';
 @import 'bootstrap/images';
@@ -98,7 +100,7 @@
 @import 'vendor/animate';
 @import 'vendor/simple-line-icons';
 @import 'vendor/font-awesome';
-// @import 'vendor/font-awesome5';
+//@import 'vendor/font-awesome5';
 
 // Third party plugins (style overrides)
 @import 'vendor/bootstrap-datepicker';
@@ -119,5 +121,5 @@
 @import 'vendor/slick';
 @import 'vendor/summernote';
 
-// Your own modifications
-@import 'vendor/custom';
+// User styles (your own styles/overrides)
+@import 'custom/main';

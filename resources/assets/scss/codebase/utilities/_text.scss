@@ -20,9 +20,8 @@
 .line-height-base { line-height: $line-height-base !important; }
 
 // Helpers
-.text-wrap-break-word {
-    word-wrap: break-word;
-}
+.text-wrap-break-word { word-wrap: break-word; }
+.text-uppercase { letter-spacing: .0625em; }
 
 // Contextual colors
 @include text-emphasis-variant('.text-primary-dark', $brand-dark);

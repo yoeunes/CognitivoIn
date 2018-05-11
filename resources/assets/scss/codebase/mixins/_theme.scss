@@ -707,6 +707,12 @@
         }
 
         // Sidebar and side overlay related
+        @include media-breakpoint-up(lg) {
+            &.page-header-modern #sidebar {
+                box-shadow: 5px 0 10px $body-bg-dark;
+            }
+        }
+
         &.sidebar-inverse #sidebar {
             color: $body-color-light;
             background-color: $sidebar-inverse-bg;
@@ -718,6 +724,14 @@
     }
 
     // Blocks
+    .block {
+        box-shadow: 0 1px 1px $body-bg-dark;
+
+        &.block-transparent {
+            box-shadow: none;
+        }
+    }
+
     .block-header {
         &-default {
             background-color: $body-bg-light;
@@ -808,14 +822,14 @@
     .nav-main {
         // Default links
         a {
-            color: rgba($body-color, .8);
+            color: rgba($body-color, .9);
 
             @at-root .sidebar-inverse #sidebar & {
-                color: rgba($body-color-light, .6);
+                color: rgba($body-color-light, .75);
             }
 
             > i {
-                color: $brand-dark;
+                color: rgba($brand-dark, .75);
 
                 @at-root .sidebar-inverse #sidebar & {
                     color: $body-color-light;
@@ -838,7 +852,7 @@
         // Sub menus
         ul {
             a {
-                color: rgba($body-color, .5);
+                color: rgba($body-color, .6);
             }
         }
 

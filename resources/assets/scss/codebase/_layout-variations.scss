@@ -123,8 +123,10 @@
     }
 
     // Sidebar and side overlay related
-    &.page-header-modern #sidebar {
-        box-shadow: 5px 0 10px rgba(0,0,0,.02);
+    @include media-breakpoint-up(lg) {
+        &.page-header-modern #sidebar {
+            box-shadow: 5px 0 10px $body-bg-dark;
+        }
     }
 
     &.sidebar-inverse #sidebar {

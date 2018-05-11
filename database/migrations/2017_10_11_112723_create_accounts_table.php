@@ -20,7 +20,7 @@ class CreateAccountsTable extends Migration
         {
             $table->increments('id');
 
-            $table->integer('profile_id')->unsigned()->nullable();
+            $table->integer('profile_id')->unsigned();
             $table->foreign('profile_id')->references('id')->on('profiles')->onDelete('cascade');
 
             $table->integer('bank_relationship_id')->unsigned()->nullable();

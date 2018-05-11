@@ -3,7 +3,8 @@
 @section('main')
     <backend-nav inline-template>
         <div>
-            <div id="page-container" class="side-scroll page-header-modern main-content-boxed side-trans-enabled sidebar-o">
+
+            <div id="page-container" class="sidebar-o side-scroll page-header-modern main-content-boxed side-trans-enabled">
                 <!-- Side Overlay-->
                 <aside id="side-overlay">
                     <!-- Side Overlay Scroll Container -->
@@ -96,189 +97,192 @@
                 <!-- Sidebar -->
                 <nav id="sidebar">
                     <!-- Sidebar Scroll Container -->
-                    <div id="sidebar-scroll">
-                        <!-- Sidebar Content -->
-                        <div class="sidebar-content">
-                            <!-- Side Header -->
-                            <div class="content-header content-header-fullrow px-15">
-                                <!-- Mini Mode -->
-                                <div class="content-header-section sidebar-mini-visible-b">
-                                    <!-- Logo -->
-                                    <span class="content-header-item font-w700 font-size-xl float-left animated fadeIn">
-                                        <img src="/img/logo/cognitivo-64.svg" width="32" alt="">
-                                    </span>
-                                    <!-- END Logo -->
-                                </div>
-                                <!-- END Mini Mode -->
-
-                                <!-- Normal Mode -->
-                                <div class="content-header-section text-center align-parent sidebar-mini-hidden">
-                                    <!-- Close Sidebar, Visible only on mobile screens -->
-                                    <!-- Layout API, functionality initialized in Codebase() -> uiApiLayout() -->
-                                    <button type="button" class="btn btn-circle btn-dual-secondary d-lg-none align-v-r" data-toggle="layout" data-action="sidebar_close">
-                                        <i class="fa fa-times text-danger"></i>
-                                    </button>
-                                    <!-- END Close Sidebar -->
-
-                                    <!-- Logo -->
-                                    <div class="content-header-item">
-                                        <a href="#">
-                                            <img src="/img/logo/cognitivo-64.svg" width="36" alt="">
-                                        </a>
+                    <div class="slimScrollDiv">
+                        <div id="sidebar-scroll">
+                            <!-- Sidebar Content -->
+                            <div class="sidebar-content">
+                                <!-- Side Header -->
+                                <div class="content-header content-header-fullrow px-15">
+                                    <!-- Mini Mode -->
+                                    <div class="content-header-section sidebar-mini-visible-b">
+                                        <!-- Logo -->
+                                        <span class="content-header-item font-w700 font-size-xl float-left animated fadeIn">
+                                            <img src="/img/logo/cognitivo-64.svg" width="32" alt="">
+                                        </span>
+                                        <!-- END Logo -->
                                     </div>
-                                    <!-- END Logo -->
-                                </div>
-                                <!-- END Normal Mode -->
-                            </div>
-                            <!-- END Side Header -->
+                                    <!-- END Mini Mode -->
 
-                            <!-- Side User -->
-                            <div class="content-side content-side-full content-side-user px-10 align-parent">
-                                <!-- Visible only in mini mode -->
-                                <div class="sidebar-mini-visible-b align-v animated fadeIn">
-                                    <img class="img-avatar img-avatar32" src="/img/avatars/avatar0.jpg" alt="">
-                                </div>
-                                <!-- END Visible only in mini mode -->
+                                    <!-- Normal Mode -->
+                                    <div class="content-header-section text-center align-parent sidebar-mini-hidden">
+                                        <!-- Close Sidebar, Visible only on mobile screens -->
+                                        <!-- Layout API, functionality initialized in Codebase() -> uiApiLayout() -->
+                                        <button type="button" class="btn btn-circle btn-dual-secondary d-lg-none align-v-r" data-toggle="layout" data-action="sidebar_close">
+                                            <i class="fa fa-times text-danger"></i>
+                                        </button>
+                                        <!-- END Close Sidebar -->
 
-                                <!-- Visible only in normal mode -->
-                                <div class="sidebar-mini-hidden-b text-center">
-                                    <a class="img-link" href="#">
-                                        {{-- class="img-avatar" --}}
-                                        <img src="{{ request()->route('profile')->avatar }}" onerror="this.src='/img/icons/briefcase.svg'" alt="Logo" width="64">
-                                    </a>
-                                    <ul class="list-inline mt-10">
-                                        <li class="list-inline-item">
-                                            <a class="link-effect text-dual-primary-dark font-size-xs font-w600 text-uppercase" href="#">
-                                                {{ request()->route('profile')->alias }}
+                                        <!-- Logo -->
+                                        <div class="content-header-item">
+                                            <a href="#">
+                                                <img src="/img/logo/cognitivo-64.svg" width="36" alt="">
                                             </a>
-                                        </li>
-
-                                    </ul>
+                                        </div>
+                                        <!-- END Logo -->
+                                    </div>
+                                    <!-- END Normal Mode -->
                                 </div>
-                                <!-- END Visible only in normal mode -->
-                            </div>
-                            <!-- END Side User -->
+                                <!-- END Side Header -->
 
-                            <!-- Side Navigation -->
-                            <div class="content-side content-side-full">
-                                <ul class="nav-main">
-                                    <li>
-                                        <a @click="Dashboard()" href="#">
-                                            <i class="si si-pie-chart"></i>
-                                            <span class="sidebar-mini-hide">Dashboard</span>
+                                <!-- Side User -->
+                                <div class="content-side content-side-full bg-body-light">
+                                    <!-- Visible only in mini mode -->
+                                    <div class="sidebar-mini-visible-b align-v animated fadeIn">
+                                        <img class="img-avatar img-avatar32" src="/img/avatars/avatar0.jpg" alt="">
+                                    </div>
+                                    <!-- END Visible only in mini mode -->
+
+                                    <!-- Visible only in normal mode -->
+                                    <div class="sidebar-mini-hidden-b text-center">
+                                        <a class="img-link" href="#">
+                                            {{-- class="img-avatar" --}}
+                                            <img src="{{ request()->route('profile')->avatar }}" onerror="this.src='/img/icons/briefcase.svg'" alt="Logo" width="64">
                                         </a>
-                                    </li>
-                                    <li>
-                                        <a @click="Profile()" href="#">
-                                            <i class="si si-home"></i>
-                                            <span class="sidebar-mini-hide">Company Profile</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a @click="Stores()" href="#">
-                                            <i class="si si-pointer"></i>
-                                            <span class="sidebar-mini-hide">Shops &amp; Locations</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a @click="Items()" href="#">
-                                            <i class="si si-diamond"></i>
-                                            <span class="sidebar-mini-hide">Products & Services</span>
-                                        </a>
-                                    </li>
-                                    <li class="nav-main-heading">
-                                        <span class="sidebar-mini-hidden">Modules</span>
-                                    </li>
-                                    <li>
-                                        <a class="nav-submenu" data-toggle="nav-submenu" href="#">
-                                            <i class="si si-paper-plane"></i>
-                                            <span class="sidebar-mini-hide">Sales</span>
-                                        </a>
-                                        <ul>
-                                            <li>
-                                                <a @click="SalesDashboard()" href="#">Dashboard</a>
-                                            </li>
-                                            <li>
-                                                <a @click="Customers()" href="#">Customers</a>
-                                            </li>
-                                            <li>
-                                                <a href="#">Promotions</a>
-                                            </li>
-                                            <li>
-                                                <a  class="nav-submenu" data-toggle="nav-submenu" href="#">Opportunities</a>
-                                                <ul>
-                                                    <li>
-                                                        <a @click="Pipeline()" href="#">Pipeline</a>
-                                                    </li>
-                                                    <li>
-                                                        <a @click="Opportunities()" href="#">Opportunity</a>
-                                                    </li>
-                                                </ul>
-                                            </li>
-                                            <li>
-                                                <a @click="Orders()" href="#">Orders</a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li>
-                                        <a class="nav-submenu" data-toggle="nav-submenu" href="#">
-                                            <i class="si si-basket"></i>
-                                            <span class="sidebar-mini-hide">Purchase</span>
-                                        </a>
-                                        <ul>
-                                            <li>
-                                                <a @click="PurchaseDashboard()" href="#">Dashboard</a>
-                                            </li>
-                                            <li>
-                                                <a @click="Suppliers()" href="#">Suppliers</a>
-                                            </li>
-                                            <li>
-                                                <a @click="Purchases()" href="#">Purchases</a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li>
-                                        <a class="nav-submenu" data-toggle="nav-submenu" href="#">
-                                            <i class="si si-puzzle"></i>
-                                            <span class="sidebar-mini-hide">Stock</span>
-                                        </a>
-                                        <ul>
-                                            <li>
-                                                <a @click="Items()" href="#">
-                                                    <span class="sidebar-mini-hide">Products & Services</span>
+                                        <ul class="list-inline mt-10">
+                                            <li class="list-inline-item">
+                                                <a class="link-effect text-dual-primary-dark font-size-xs font-w600 text-uppercase" href="#">
+                                                    {{ request()->route('profile')->alias }}
                                                 </a>
                                             </li>
+
                                         </ul>
-                                    </li>
-                                    <li>
-                                        <a class="nav-submenu" data-toggle="nav-submenu" href="#">
-                                            <i class="si si-wallet"></i>
-                                            <span class="sidebar-mini-hide">Finance</span>
-                                        </a>
-                                        <ul>
-                                            <li>
-                                                <a @click="viewFinanceDashboard()" href="#">Dashboard</a>
-                                            </li>
-                                            <li>
-                                                <a @click="" href="#">Accounts</a>
-                                            </li>
-                                            <li>
-                                                <a @click="" href="#">Account Recievables</a>
-                                            </li>
-                                            <li>
-                                                <a @click="" href="#">Account Payables</a>
-                                            </li>
-                                            <li>
-                                                <a @click="" href="#">Account Movements</a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                </ul>
+                                    </div>
+                                    <!-- END Visible only in normal mode -->
+                                </div>
+                                <!-- END Side User -->
+
+                                <!-- Side Navigation -->
+                                <div class="content-side content-side-full">
+                                    <ul class="nav-main">
+                                        <li>
+                                            <a @click="Dashboard()" href="#">
+                                                <i class="si si-pie-chart"></i>
+                                                <span class="sidebar-mini-hide">Dashboard</span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a @click="Profile()" href="#">
+                                                <i class="si si-home"></i>
+                                                <span class="sidebar-mini-hide">Company Profile</span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a @click="Stores()" href="#">
+                                                <i class="si si-pointer"></i>
+                                                <span class="sidebar-mini-hide">Shops &amp; Locations</span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a @click="Items()" href="#">
+                                                <i class="si si-diamond"></i>
+                                                <span class="sidebar-mini-hide">Products & Services</span>
+                                            </a>
+                                        </li>
+                                        <li class="nav-main-heading">
+                                            <span class="sidebar-mini-hidden">Modules</span>
+                                        </li>
+                                        <li>
+                                            <a class="nav-submenu" data-toggle="nav-submenu" href="#">
+                                                <i class="si si-paper-plane"></i>
+                                                <span class="sidebar-mini-hide">Sales</span>
+                                            </a>
+                                            <ul>
+                                                <li>
+                                                    <a @click="SalesDashboard()" href="#">Dashboard</a>
+                                                </li>
+                                                <li>
+                                                    <a @click="Customers()" href="#">Customers</a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">Promotions</a>
+                                                </li>
+                                                <li>
+                                                    <a  class="nav-submenu" data-toggle="nav-submenu" href="#">Opportunities</a>
+                                                    <ul>
+                                                        <li>
+                                                            <a @click="Pipeline()" href="#">Pipeline</a>
+                                                        </li>
+                                                        <li>
+                                                            <a @click="Opportunities()" href="#">Opportunity</a>
+                                                        </li>
+                                                    </ul>
+                                                </li>
+                                                <li>
+                                                    <a @click="Orders()" href="#">Orders</a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            <a class="nav-submenu" data-toggle="nav-submenu" href="#">
+                                                <i class="si si-basket"></i>
+                                                <span class="sidebar-mini-hide">Purchase</span>
+                                            </a>
+                                            <ul>
+                                                <li>
+                                                    <a @click="PurchaseDashboard()" href="#">Dashboard</a>
+                                                </li>
+                                                <li>
+                                                    <a @click="Suppliers()" href="#">Suppliers</a>
+                                                </li>
+                                                <li>
+                                                    <a @click="Purchases()" href="#">Purchases</a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            <a class="nav-submenu" data-toggle="nav-submenu" href="#">
+                                                <i class="si si-puzzle"></i>
+                                                <span class="sidebar-mini-hide">Stock</span>
+                                            </a>
+                                            <ul>
+                                                <li>
+                                                    <a @click="Items()" href="#">
+                                                        <span class="sidebar-mini-hide">Products & Services</span>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            <a class="nav-submenu" data-toggle="nav-submenu" href="#">
+                                                <i class="si si-wallet"></i>
+                                                <span class="sidebar-mini-hide">Finance</span>
+                                            </a>
+                                            <ul>
+                                                <li>
+                                                    <a @click="viewFinanceDashboard()" href="#">Dashboard</a>
+                                                </li>
+                                                <li>
+                                                    <a @click="" href="#">Accounts</a>
+                                                </li>
+                                                <li>
+                                                    <a @click="" href="#">Account Recievables</a>
+                                                </li>
+                                                <li>
+                                                    <a @click="" href="#">Account Payables</a>
+                                                </li>
+                                                <li>
+                                                    <a @click="" href="#">Account Movements</a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <!-- END Side Navigation -->
                             </div>
-                            <!-- END Side Navigation -->
+                            <!-- Sidebar Content -->
                         </div>
-                        <!-- Sidebar Content -->
                     </div>
+
                     <!-- END Sidebar Scroll Container -->
                 </nav>
                 <!-- END Sidebar -->
@@ -311,16 +315,19 @@
                             <!-- User Dropdown -->
                             <div class="btn-group" role="group">
                                 <button type="button" class="btn btn-rounded btn-dual-secondary" id="page-header-user-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    {{ Auth::user()->profile->name }}<i class="fa fa-angle-down ml-5"></i>
+                                    {{ Auth::user()->profile->name }}
+                                    <i class="fa fa-angle-down ml-5"></i>
                                 </button>
 
-                                <div id="page-header-user-dropdown" class="dropdown-menu dropdown-menu-right min-width-150 show" aria-labelledby="page-header-user-dropdown">
+                                <div id="page-header-user-dropdown" class="dropdown-menu dropdown-menu-right min-width-150" aria-labelledby="page-header-user-dropdown" x-placement="bottom-end">
+
                                     <a class="dropdown-item" href="#">
                                         <i class="si si-user mr-5"></i> Profile
                                     </a>
 
                                     <a class="dropdown-item d-flex align-items-center justify-content-between" href="#">
-                                        <span><i class="si si-envelope-open mr-5"></i> Messages</span>
+                                        <span><i class="si si-envelope-open mr-5"></i> Messages
+                                        </span>
                                         <span class="badge badge-primary pull-right">3</span>
                                     </a>
 
@@ -337,7 +344,11 @@
                                     </a>
 
                                     @php
-                                    $listOfCompanies = Auth::user()->profile->followings(App\Profile::class)->where('role', '<', 4)->get();
+
+                                    $listOfCompanies = Auth::user()->profile->followings(App\Profile::class)
+                                    ->where('role', '<', 4)
+                                    ->get();
+
                                     @endphp
 
                                     @isset($listOfCompanies)

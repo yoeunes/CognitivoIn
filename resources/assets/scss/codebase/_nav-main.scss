@@ -10,11 +10,12 @@
 
     // Headings
     .nav-main-heading {
-        padding: 24px $space-side 6px $space-side;
+        padding: 26px $space-side 6px $space-side;
         font-size: 12px;
         font-weight: 600;
         text-transform: uppercase;
-        opacity: .5;
+        letter-spacing: 1px;
+        opacity: .55;
     }
 
     // Default links
@@ -24,17 +25,18 @@
         padding: 9px $space-side 9px ($space-side + 22);
         font-size: 13px;
         font-weight: 600;
-        color: rgba($body-color, .8);
+        color: rgba($body-color, .9);
         text-transform: uppercase;
+        letter-spacing: .5px;
 
         @at-root .sidebar-inverse #sidebar & {
-            color: rgba($body-color-light, .6);
+            color: rgba($body-color-light, .75);
         }
 
         > i {
             @include vertical-align(50%, auto, $space-side);
             font-size: 14px;
-            color: $brand-dark;
+            color: rgba($brand-dark, .75);
 
             @at-root .sidebar-inverse #sidebar & {
                 color: $body-color-light;
@@ -111,9 +113,10 @@
         }
 
         a {
-            padding: 5px 8px 5px 0;
+            padding: 6px 8px 6px 0;
             text-transform: none;
-            color: rgba($body-color, .5);
+            letter-spacing: normal;
+            color: rgba($body-color, .6);
 
             @include hover-focus {
                 background-color: transparent;

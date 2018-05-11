@@ -18,19 +18,19 @@ use Illuminate\Http\Request;
 class AccountController extends Controller
 {
 
-    public function list_account_receivables(Profile $profile,$customer_ID)
+    public function list_account_receivables(Profile $profile, $customer_ID)
     {
-        $suppliers = Scheduals::join('relationships','relationships.id','=','scheduals.relationship_id')
-        ->where('relationships.customer_id',$customer_ID)
+        $customers = Scheduals::join('relationships','relationships.id','=','scheduals.relationship_id')
+        ->where('relationships.customer_id', $customer_ID)
         ->get();
 
-        return response()->json($suppliers);
+        return response()->json($customers);
     }
 
     public function list_account_payables(Profile $profile, $supplier_ID)
     {
         $suppliers = Scheduals::join('relationships','relationships.id','=','scheduals.relationship_id')
-        ->where('relationships.supplier_id',$supplier_ID)
+        ->where('relationships.supplier_id', $supplier_ID)
         ->get();
 
         return response()->json($suppliers);
