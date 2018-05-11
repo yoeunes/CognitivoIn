@@ -4,7 +4,6 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-
 class Location extends Model
 {
     protected $table = 'locations';
@@ -23,5 +22,15 @@ class Location extends Model
 
         'country'
     ];
+
+    /**
+     * The accountMovements that belong to the model.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function accountMovements()
+    {
+        return $this->belongsToMany(AccountMovement::class);
+    }
 
 }

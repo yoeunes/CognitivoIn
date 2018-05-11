@@ -8,17 +8,14 @@ use App\Scopes\AccountScope;
 
 class Account extends Model
 {
-
     use SoftDeletes;
     protected $table = 'accounts';
-
 
     protected static function boot()
     {
         parent::boot();
         static::addGlobalScope(new AccountScope);
     }
-
 
     /**
     * Fields that can be mass assigned.
