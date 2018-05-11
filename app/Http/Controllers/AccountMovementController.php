@@ -86,48 +86,46 @@ class AccountMovementController extends Controller
         //
     }
 
-    public function ReceivePayment(Request $request,Profile $profile)
+    public function ReceivePayment(Request $request, Profile $profile)
     {
+        $account = Account::where('number', 1)->first() ?? new Account();
 
-      $account = Account::where('number',1)->first()==null?new Account():
-          Account::where('number',1)->first();
-          $account->name = "Cash A/c Of " . $profile->name;
-          $account->number = "1";
-          $account->currency ='PRY';
-          $account->save();
+        $account->name = "Cash A/C Of " . $profile->name;
+        $account->number = "1";
+        $account->currency ='PRY';
+        $account->save();
 
-          $accountmovement = new AccountMovement();
-          $accountmovement->schedual_id = $request['InvoiceReference'];
-          $accountmovement->user_id = $request['id'];
-          $accountmovement->account_id = $account->id;
-          $accountmovement->type_id = $request['Type'];
-          $accountmovement->currency = $request['currency'];
-          $accountmovement->currency_rate = Swap::latest($profile->currency .'/PYG')->getValue();
-          $accountmovement->date = Carbon::now();
+        $accountmovement = new AccountMovement();
+        $accountmovement->schedual_id = $request['InvoiceReference'];
+        $accountmovement->user_id = $request['id'];
+        $accountmovement->account_id = $account->id;
+        $accountmovement->location_id = null;
+        $accountmovement->type = $request['Type'] ?? 1;
+        $accountmovement->currency = $request['Currency'];
 
-          if ($request['Type'] == 1)
-          {
-              $accountmovement->credit = $request['Value'];
-              $accountmovement->debit = 0;
-          }
-          else
-          {
-              $accountmovement->credit = 0;
-              $accountmovement->debit = $request['Value'];
-          }
-          $accountmovement->save();
+        if ($request['Currency'] != $profile->currency))
+        { $accountmovement->currency_rate = Swap::latest($profile->currency . '/' . $request['Currency'])->getValue(); }
+        else
+        { $accountmovement->currency_rate = 1; }
 
-          $data2 = [];
+        $accountmovement->date = Carbon::now();
+        $accountmovement->credit = $request['Type'] == 1 ? $request['Value'] : 0;
+        $accountmovement->debit = $request['Type'] == 1 ? 0 : $request['Value'];
 
-          $data2[] = [
-              'PaymentReference' => $accountmovement->id,
-              'ResponseType' => 1
-          ];
-          return response()->json($data2, '200');
+        $accountmovement->save();
+
+        $data2 = [];
+
+        $data2[] = [
+            'PaymentReference' => $accountmovement->id,
+            'ResponseType' => 1
+        ];
+
+        return response()->json($data2, '200');
     }
+
     public function Anull(Request $request,Profile $profile)
     {
-
         // $accountMovement = AccountMovement::where('reference',$InvoiceReference)->first();
         // if (isset($accountMovement)) {
         //     $accountMovement->delete();

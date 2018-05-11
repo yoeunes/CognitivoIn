@@ -19,29 +19,31 @@ class CreateAccountMovementsTable extends Migration
         {
             $table->increments('id');
 
-            $table->integer('schedual_id')->unsigned()->nullable();
-            $table->foreign('schedual_id')->references('id')->on('scheduals');
-
-            $table->integer('user_id')->unsigned()->index();
-            $table->foreign('user_id')->references('id')->on('profiles');
-
-            $table->integer('status')->unsigned()->default(1);
-            //$table->enum('status', array('Pending' ,'Approved', 'Rejected'))->default('Pending');
-
-            $table->integer('account_id')->unsigned();
+            $table->unsignedInteger('account_id')->index();
             $table->foreign('account_id')->references('id')->on('accounts')->onDelete('cascade');
 
-            $table->tinyInteger('type_id')->unsigned();
+            $table->unsignedInteger('location_id')->nullable()->index();
+            $table->foreign('location_id')->references('id')->on('locations')->onDelete('cascade');
+
+            $table->unsignedInteger('schedual_id')->nullable();
+            $table->foreign('schedual_id')->references('id')->on('scheduals');
+
+            $table->unsignedInteger('user_id')->nullable();
+            $table->foreign('user_id')->references('id')->on('profiles');
+
+            $table->unsignedTinyInteger('status')->default(1);
+            //'Pending' ,'Approved', 'Rejected' ->default('Pending');
+
+            $table->unsignedTinyInteger('type')->default(1);
             //1 = Cash, 2 = Check, 3 = CreditCard, 4 = WireTransfer, 5 = Refund or Credit Note
-            //$table->foreign('type_id')->references('id')->on('payment_types')->onDelete('cascade');
 
             $table->string('currency', 3);
-            $table->decimal('currency_rate', 20, 5);
+            $table->unsignedDecimal('currency_rate', 20, 5);
 
             $table->date('date');
 
-            $table->decimal('debit', 20, 2);
-            $table->decimal('credit', 20, 2);
+            $table->unsignedDecimal('debit', 20, 2);
+            $table->unsignedDecimal('credit', 20, 2);
 
             $table->string('comment')->nullable();
             $table->string('reference')->nullable()->comment('Store Payment Number');
