@@ -148,7 +148,8 @@ class ProfileController extends Controller
 
     public function get_companys()
     {
-        $companys = Profile::GetProfiles()->where('type',2)->get();
+        dd(Auth::user());
+        $companys = Auth::user()->profile->followings(App\Profile::class)->where('role', '<', 4)->get();
 
         return response()->json($companys);
     }
