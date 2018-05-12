@@ -38,13 +38,11 @@ class AccountMovementController extends Controller
     */
     public function store(Request $request, Profile $profile)
     {
-<<<<<<< HEAD
+
         $account = Account::where('profile_id', $profile->id)
         ->where('type', $request['PaymentType'])
         ->first();
-=======
-        $account = Account::where('profile_id', $profile->id)->first() ?? new Account();
->>>>>>> parent of b580b54... update
+
 
         if (isset($account))
         {
@@ -56,7 +54,7 @@ class AccountMovementController extends Controller
             $account->save();
         }
 
-<<<<<<< HEAD
+
         $accountMovement = new AccountMovement();
         $accountMovement->schedual_id = $request['ReferenceID'];
         $accountMovement->account_id = $account->id;
@@ -73,7 +71,7 @@ class AccountMovementController extends Controller
         $accountMovement->date = $request['Date'] ?? Carbon::now();
         $accountMovement->credit = 0;
         $accountMovement->debit = $request['Value'];
-=======
+
         $schedual = Schedual::find($request['InvoiceReference']);
 
         if (isset($schedual))
@@ -103,15 +101,7 @@ class AccountMovementController extends Controller
                 'ResponseType' => 1
             ];
         }
->>>>>>> parent of b580b54... update
 
-        $accountMovement->save();
-
-        $return = [];
-        $return[] = [
-            'PaymentReference' => $accountMovement->id,
-            'ResponseType' => 1
-        ];
 
         return response()->json($return, 200);
     }
@@ -172,8 +162,7 @@ class AccountMovementController extends Controller
 
         return response()->json('Unkown Movement', '401');
     }
-<<<<<<< HEAD
-=======
+
 
     public function annull(Request $request, Profile $profile)
     {
@@ -198,5 +187,5 @@ class AccountMovementController extends Controller
 
         return response()->json('Unkown Movement', '401');
     }
->>>>>>> parent of b580b54... update
+
 }
