@@ -121,16 +121,16 @@
         },
         {
             "name": "christofferok/laravel-emojione",
-            "version": "2.1.2",
+            "version": "2.1.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/christofferok/laravel-emojione.git",
-                "reference": "61521ad00cb39f51616d9af816d1cba12d7a0480"
+                "reference": "91a1d6b90510f6981c5d21c579124a7448cc74f6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/christofferok/laravel-emojione/zipball/61521ad00cb39f51616d9af816d1cba12d7a0480",
-                "reference": "61521ad00cb39f51616d9af816d1cba12d7a0480",
+                "url": "https://api.github.com/repos/christofferok/laravel-emojione/zipball/91a1d6b90510f6981c5d21c579124a7448cc74f6",
+                "reference": "91a1d6b90510f6981c5d21c579124a7448cc74f6",
                 "shasum": ""
             },
             "require": {
@@ -147,14 +147,11 @@
             },
             "type": "library",
             "extra": {
-                "branch-alias": {
-                    "dev-master": "1.0-dev"
-                },
                 "laravel": {
                     "providers": [
                         "ChristofferOK\\LaravelEmojiOne\\LaravelEmojiOneServiceProvider"
                     ],
-                    "alias": {
+                    "aliases": {
                         "LaravelEmojiOne": "ChristofferOK\\LaravelEmojiOne\\LaravelEmojiOneFacade"
                     }
                 }
@@ -172,7 +169,7 @@
                 {
                     "name": ":Christoffer Korvald",
                     "email": "korvald@gmail.com",
-                    "homepage": "https://christoffeork.com",
+                    "homepage": "https://christofferok.com",
                     "role": "Developer"
                 }
             ],
@@ -185,7 +182,7 @@
                 "emojione",
                 "laravel"
             ],
-            "time": "2017-07-22T12:30:16+00:00"
+            "time": "2018-01-17T09:46:20+00:00"
         },
         {
             "name": "clue/stream-filter",
@@ -2096,16 +2093,16 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v5.6.20",
+            "version": "v5.6.21",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "3c11e7acc6ad14dd86e2f9e4bf3230010c3e611c"
+                "reference": "458a89b1c5ff73072c27308566f444c790f76f28"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/3c11e7acc6ad14dd86e2f9e4bf3230010c3e611c",
-                "reference": "3c11e7acc6ad14dd86e2f9e4bf3230010c3e611c",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/458a89b1c5ff73072c27308566f444c790f76f28",
+                "reference": "458a89b1c5ff73072c27308566f444c790f76f28",
                 "shasum": ""
             },
             "require": {
@@ -2231,7 +2228,7 @@
                 "framework",
                 "laravel"
             ],
-            "time": "2018-05-02T15:22:18+00:00"
+            "time": "2018-05-08T13:30:15+00:00"
         },
         {
             "name": "laravel/passport",
@@ -5086,16 +5083,16 @@
         },
         {
             "name": "spatie/laravel-medialibrary",
-            "version": "7.3.4",
+            "version": "7.3.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/laravel-medialibrary.git",
-                "reference": "003a3dd2d0c061d68886a80b81ba8645d4575684"
+                "reference": "c85726e022316ecd20e63d045a4fabe3e8a7fb2f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/laravel-medialibrary/zipball/003a3dd2d0c061d68886a80b81ba8645d4575684",
-                "reference": "003a3dd2d0c061d68886a80b81ba8645d4575684",
+                "url": "https://api.github.com/repos/spatie/laravel-medialibrary/zipball/c85726e022316ecd20e63d045a4fabe3e8a7fb2f",
+                "reference": "c85726e022316ecd20e63d045a4fabe3e8a7fb2f",
                 "shasum": ""
             },
             "require": {
@@ -5165,7 +5162,7 @@
                 "media",
                 "spatie"
             ],
-            "time": "2018-05-07T09:28:23+00:00"
+            "time": "2018-05-09T16:59:46+00:00"
         },
         {
             "name": "spatie/laravel-model-status",
@@ -6907,16 +6904,16 @@
         },
         {
             "name": "mockery/mockery",
-            "version": "1.0",
+            "version": "1.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/mockery/mockery.git",
-                "reference": "1bac8c362b12f522fdd1f1fa3556284c91affa38"
+                "reference": "99e29d3596b16dabe4982548527d5ddf90232e99"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/mockery/mockery/zipball/1bac8c362b12f522fdd1f1fa3556284c91affa38",
-                "reference": "1bac8c362b12f522fdd1f1fa3556284c91affa38",
+                "url": "https://api.github.com/repos/mockery/mockery/zipball/99e29d3596b16dabe4982548527d5ddf90232e99",
+                "reference": "99e29d3596b16dabe4982548527d5ddf90232e99",
                 "shasum": ""
             },
             "require": {
@@ -6925,7 +6922,8 @@
                 "php": ">=5.6.0"
             },
             "require-dev": {
-                "phpunit/phpunit": "~5.7|~6.1"
+                "phpdocumentor/phpdocumentor": "^2.9",
+                "phpunit/phpunit": "~5.7.10|~6.5"
             },
             "type": "library",
             "extra": {
@@ -6944,7 +6942,7 @@
             ],
             "authors": [
                 {
-                    "name": "Padraic Brady",
+                    "name": "Pádraic Brady",
                     "email": "padraic.brady@gmail.com",
                     "homepage": "http://blog.astrumfutura.com"
                 },
@@ -6954,8 +6952,8 @@
                     "homepage": "http://davedevelopment.co.uk"
                 }
             ],
-            "description": "Mockery is a simple yet flexible PHP mock object framework for use in unit testing with PHPUnit, PHPSpec or any other testing framework. Its core goal is to offer a test double framework with a succinct API capable of clearly defining all possible object operations and interactions using a human readable Domain Specific Language (DSL). Designed as a drop in alternative to PHPUnit's phpunit-mock-objects library, Mockery is easy to integrate with PHPUnit and can operate alongside phpunit-mock-objects without the World ending.",
-            "homepage": "http://github.com/mockery/mockery",
+            "description": "Mockery is a simple yet flexible PHP mock object framework",
+            "homepage": "https://github.com/mockery/mockery",
             "keywords": [
                 "BDD",
                 "TDD",
@@ -6968,7 +6966,7 @@
                 "test double",
                 "testing"
             ],
-            "time": "2017-10-06T16:20:43+00:00"
+            "time": "2018-05-08T08:54:48+00:00"
         },
         {
             "name": "myclabs/deep-copy",

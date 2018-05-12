@@ -16,25 +16,13 @@ class PipelineController extends Controller
     */
     public function index(Profile $profile)
     {
-        $pipelines = Pipeline::with('stages')->Pipelines($profile->id)->get();
-        return view('company.sales.opportunities.pipeline.list')->with('pipelines',$pipelines);
-    }
-
-    public function list_pipelines(Profile $profile,$skip)
-    {
-
       $pipelines = Pipeline::with('stages')->Pipelines($profile->id)->skip($skip)
         ->take(100)->get();
 
       return response()->json($pipelines);
     }
-    public function get_pipelines(Profile $profile,$skip)
-    {
 
-      $pipelines = Pipeline::with('stages')->Pipelines($profile->id)->get();
 
-      return response()->json($pipelines);
-    }
     public function list_pipelinesByID(Profile $profile,$id)
     {
 
@@ -99,11 +87,7 @@ class PipelineController extends Controller
     */
     public function edit(Profile $profile, Pipeline $pipeline)
     {
-        $pipelinestages = PipelineStage::with('pipeline')->where('pipeline_id', $pipeline->id)->orderBy('sequence')->get();
-
-        return view('company.sales.opportunities.pipeline.form')
-        ->with('pipeline',$pipeline)
-        ->with('pipelinestages',$pipelinestages);
+        
     }
 
     /**
@@ -115,17 +99,7 @@ class PipelineController extends Controller
     */
     public function update(Request $request, Profile $profile, Pipeline $pipeline)
     {
-        $pipeline->name = $request->name;
 
-        $pipeline->is_active = true;
-
-        $pipeline->save();
-
-        $pipelinestages = PipelineStage::with('pipeline')->orderBy('sequence')->get();
-
-        return view('company.sales.opportunities.pipeline.form')
-        ->with('pipeline',$pipeline)
-        ->with('pipelinestages',$pipelinestages);
     }
 
     /**
@@ -138,8 +112,6 @@ class PipelineController extends Controller
     {
         $pipeline->delete();
 
-        $pipelines = Pipeline::with('stages')->Pipelines($profile->id)->get();
-
-        return view('company.sales.opportunities.pipeline.list')->with('pipelines',$pipelines);
+        return response()->json('200',200);
     }
 }

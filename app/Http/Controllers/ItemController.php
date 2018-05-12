@@ -16,23 +16,18 @@ class ItemController extends Controller
     *
     * @return \Illuminate\Http\Response
     */
+    //for list of items
     public function index(Profile $profile)
     {
-        $items = Item::GetItems($profile->id)->get();
-        return view('company.stock.items.list')
-        ->with('items', $items);
+      $items = Item::GetItems($profile->id)
+      ->skip($skip)
+      ->take(100)
+      ->get();
+
+      return response()->json($items);
     }
 
-    public function list_items(Profile $profile, $skip)
-    {
-        $items = Item::GetItems($profile->id)
-        ->skip($skip)
-        ->take(100)
-        ->get();
-
-        return response()->json($items);
-    }
-
+  //for list of items in orders
     public function get_items(Profile $profile)
     {
         $items = Item::GetItems($profile->id)
@@ -41,14 +36,7 @@ class ItemController extends Controller
         return response()->json($items);
     }
 
-    public function list_itemsByID(Profile $profile,$id)
-    {
-        $items = Item::GetItems($profile->id)
-        ->where('id',$id)
-        ->get();
 
-        return response()->json($items);
-    }
 
     /**
     * Show the form for creating a new resource.
@@ -71,26 +59,6 @@ class ItemController extends Controller
 
         $item = $request->id == 0 ? new Item() : Item::where('id', $request->id)->first();
         $item->profile_id = $profile->id;
-
-        //$currency = null;
-        // $currencies = Currency::GetCurrencies();
-        //
-        // if (count($currencies) == 0)
-        // {
-        //     $currency = new Currency();
-        //     $currency->name ='US Dollar';
-        //     $currency->code ='USD';
-        //     $currency->symbol ='$';
-        //     $currency->format ='$1.0.00';
-        //     $currency->exchange_rate = 0;
-        //     $currency->active = 0;
-        //     $currency->save();
-        // }
-        // else
-        // {
-        //     $currency = $currencies->first();
-        // }
-
         $item->currency = 'PRY';
         $item->sku = $request->sku;
         $item->name = $request->name;
@@ -122,7 +90,7 @@ class ItemController extends Controller
     */
     public function edit(Profile $profile,Item $item)
     {
-        return view('company.stock.items.form')->with('item',$item);
+        return response()->json($items);
     }
 
     /**

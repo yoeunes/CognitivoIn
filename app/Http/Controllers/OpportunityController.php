@@ -20,28 +20,15 @@ class OpportunityController extends Controller
     */
     public function index(Profile $profile)
     {
-        $pipelines = Pipeline::get();
+      $opportunities = Opportunity::Mine()
+       ->select('opportunities.id', 'opportunities.description', 'opportunities.deadline_date', 'opportunities.value',
+       'relationships.customer_alias', 'relationships.customer_taxid')
+         ->skip($skip)
+       ->take(100)->get();
 
-        $opportunities = Opportunity::Mine()
-        ->select('opportunities.id', 'opportunities.description', 'opportunities.deadline_date', 'opportunities.value',
-        'relationships.customer_alias', 'relationships.customer_taxid')
-        ->get();
-
-        return view('company.sales.opportunities.list')
-        ->with('opportunities', $opportunities)
-        ->with('pipelines', $pipelines);
+     return response()->json($opportunities);
     }
-    public function list_opportunities(Profile $profile,$skip)
-    {
 
-       $opportunities = Opportunity::Mine()
-        ->select('opportunities.id', 'opportunities.description', 'opportunities.deadline_date', 'opportunities.value',
-        'relationships.customer_alias', 'relationships.customer_taxid')
-          ->skip($skip)
-        ->take(100)->get();
-
-      return response()->json($opportunities);
-    }
     public function list_opportunitiesByID(Profile $profile,$id)
     {
 

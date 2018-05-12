@@ -11,6 +11,7 @@ class CustomerController extends Controller
 
     public function index(Profile $profile, $skip)
     {
+
         $customers = Relationship::GetCustomers()
         ->skip($skip)
         ->take(100)
@@ -27,7 +28,8 @@ class CustomerController extends Controller
     */
     public function store(Request $request, Profile $profile)
     {
-        $relationship = new Relationship();
+
+        $relationship =  $request->id == 0 ? new Relationship() : Relationship::where('id', $request->id)->first();
         $relationship->supplier_id = $profile->id;
         $relationship->supplier_accepted = true;
 
@@ -51,8 +53,9 @@ class CustomerController extends Controller
     */
     public function show(Relationship $relationship)
     {
-        $customers = Relationship::find($relationship->id);
-        return response()->json($customers);
+
+
+        return response()->json($relationship);
     }
 
     /**
@@ -64,6 +67,7 @@ class CustomerController extends Controller
     */
     public function update(Request $request, Profile $profile, Relationship $relationship )
     {
+
         if ($profile->id != $relationship->supplier_id)
         {
             $relationship->customer_taxid = $request->customer_taxid;

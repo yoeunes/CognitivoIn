@@ -48,6 +48,7 @@ class AccountReceivableController extends Controller
         if (isset($account))
         {
             $account = new Account()
+                  $account->profile_id = $profile->id;
             $account->profile_id = $profile->id;
             $account->name = "Cash Account for " . $profile->name;
             $account->number = "...";

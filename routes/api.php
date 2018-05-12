@@ -18,7 +18,7 @@
 // });
 
 Route::group(['middleware' => 'auth:api'], function ()
-{
+{});
     Route::resource('profile', 'ProfileController');
 
     Route::prefix('{profile}')->group(function ()
@@ -34,6 +34,7 @@ Route::group(['middleware' => 'auth:api'], function ()
                 'orders' => 'OrderController',
                 'account-payables' => 'AccountPayableController',
                 'account-receivables' => 'AccountReceivableController',
+                'account-movement' => 'AccountMovementController'
                 // 'profile' => 'ProfileController'
             ]);
 
@@ -68,17 +69,15 @@ Route::group(['middleware' => 'auth:api'], function ()
         });
 
 // TODO remove all these methods
-        Route::post('PaymentReceive', 'AccountMovementController@store');
-        Route::post('Anull', 'AccountMovementController@annull');
+        //Route::post('PaymentReceive', 'AccountMovementController@store');
+        //Route::post('Anull', 'AccountMovementController@annull');
         Route::post('PaymentDue', 'Api\AccountController@get_CustomerSchedual');
         Route::post('ApproveSales', 'Api\AccountController@ApproveSales');
-
         Route::post('syncitem', 'Api\ItemController@syncItems');
         Route::post('synccustomer', 'Api\CustomerController@syncCustomer');
-
         Route::post('synctransaction', 'Api\TransactionController@uploadOrder');
     });
-});
+
 
 Route::get('getCompanys/{slug}', 'ProfileController@get_companys');
 Route::get('login/{email}/{password}', 'Auth\SocialAuthController@Login');

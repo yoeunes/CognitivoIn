@@ -20,18 +20,12 @@ class OrderController extends Controller
     public function index(Profile $profile)
     {
 
-        $orders = Order::FromCustomers()->orderBy('trans_date')->paginate(50);
-
-        return view('company.sales.orders.list')->with('orders', $orders);
-    }
-    public function list_orders(Profile $profile,$skip)
-    {
-
       $orders = Order::with('details')->skip($skip)
         ->take(100)->get();
 
       return response()->json($orders);
     }
+
     /**
     * Show the form for creating a new resource.
     *
@@ -39,8 +33,7 @@ class OrderController extends Controller
     */
     public function create(Profile $profile)
     {
-        $customers=Relationship::GetCustomers()->get();
-        return view('company.sales.orders.form')->with('customers',$customers);
+
     }
 
     /**
@@ -106,7 +99,8 @@ class OrderController extends Controller
     public function show(Profile $profile,Order $order)
     {
 
-        return view('company.sales.orders.show')->with('order', $order->with('details')->first());
+        return response()->json($order->with('details')->first());
+
     }
 
     /**
@@ -118,8 +112,7 @@ class OrderController extends Controller
     public function edit(Profile $profile,$id)
     {
 
-        $order=Order::where('id',$id)->with('details')->get();
-        return response()->json($order);
+    
     }
 
     /**

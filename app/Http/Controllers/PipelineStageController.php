@@ -125,10 +125,6 @@ class PipelineStageController extends Controller
         $pipeline = Pipeline::where('id',$pipelinestage->pipeline_id)->first();
 
         $pipelinestage->delete();
-
-        $pipelinestages = PipelineStage::with('pipeline')->where('pipeline_id', $pipeline->id)->orderBy('sequence')->get();
-        return view('company.sales.opportunities.pipeline.form')
-        ->with('pipeline',$pipeline)
-        ->with('pipelinestages',$pipelinestages);
+  return response()->json('200',200);
     }
 }
