@@ -19,6 +19,8 @@
 
 Route::group(['middleware' => 'auth:api'], function ()
 {
+    Route::resource('profile', 'ProfileController');
+
     Route::prefix('{profile}')->group(function ()
     {
         Route::prefix('back-office')->group(function ()
@@ -32,7 +34,7 @@ Route::group(['middleware' => 'auth:api'], function ()
                 'orders' => 'OrderController',
                 'account-payables' => 'AccountPayableController',
                 'account-receivables' => 'AccountReceivableController',
-                'profile' => 'ProfileController'
+                // 'profile' => 'ProfileController'
             ]);
 
             Route::prefix('list/{skip}')->group(function ()
@@ -65,9 +67,9 @@ Route::group(['middleware' => 'auth:api'], function ()
 
         });
 
+// TODO remove all these methods
         Route::post('PaymentReceive', 'AccountMovementController@store');
         Route::post('Anull', 'AccountMovementController@annull');
-        // Route::post('customers', 'Api\RelationshipController@customers');
         Route::post('PaymentDue', 'Api\AccountController@get_CustomerSchedual');
         Route::post('ApproveSales', 'Api\AccountController@ApproveSales');
 
@@ -76,8 +78,6 @@ Route::group(['middleware' => 'auth:api'], function ()
 
         Route::post('synctransaction', 'Api\TransactionController@uploadOrder');
     });
-
-
 });
 
 Route::get('getCompanys/{slug}', 'ProfileController@get_companys');
