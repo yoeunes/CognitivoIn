@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Scheduals;
 use App\Account;
 use App\Profile;
 use App\AccountMovement;
@@ -39,9 +38,13 @@ class AccountMovementController extends Controller
     */
     public function store(Request $request, Profile $profile)
     {
+<<<<<<< HEAD
         $account = Account::where('profile_id', $profile->id)
         ->where('type', $request['PaymentType'])
         ->first();
+=======
+        $account = Account::where('profile_id', $profile->id)->first() ?? new Account();
+>>>>>>> parent of b580b54... update
 
         if (isset($account))
         {
@@ -53,6 +56,7 @@ class AccountMovementController extends Controller
             $account->save();
         }
 
+<<<<<<< HEAD
         $accountMovement = new AccountMovement();
         $accountMovement->schedual_id = $request['ReferenceID'];
         $accountMovement->account_id = $account->id;
@@ -69,6 +73,37 @@ class AccountMovementController extends Controller
         $accountMovement->date = $request['Date'] ?? Carbon::now();
         $accountMovement->credit = 0;
         $accountMovement->debit = $request['Value'];
+=======
+        $schedual = Schedual::find($request['InvoiceReference']);
+
+        if (isset($schedual))
+        {
+            $accountMovement = new AccountMovement();
+            $accountMovement->schedual_id = $schedual->id;
+            $accountMovement->user_id = $request['UserID'];
+            $accountMovement->account_id = $account->id;
+            $accountMovement->location_id = null;
+            $accountMovement->type = $request['Type'] ?? 1;
+            $accountMovement->currency = $request['Currency'];
+
+            if ($request['Currency'] != $schedual->currency)
+            { $accountMovement->currency_rate = Swap::latest($schedual->currency . '/' . $request['Currency'])->getValue(); }
+            else
+            { $accountMovement->currency_rate = 1; }
+
+            $accountMovement->date = Carbon::now();
+            $accountMovement->credit = $request['Type'] == 1 ? $request['Value'] : 0;
+            $accountMovement->debit = $request['Type'] == 1 ? 0 : $request['Value'];
+
+            $accountMovement->save();
+
+            $return = [];
+            $return[] = [
+                'PaymentReference' => $accountMovement->id,
+                'ResponseType' => 1
+            ];
+        }
+>>>>>>> parent of b580b54... update
 
         $accountMovement->save();
 
@@ -137,4 +172,31 @@ class AccountMovementController extends Controller
 
         return response()->json('Unkown Movement', '401');
     }
+<<<<<<< HEAD
+=======
+
+    public function annull(Request $request, Profile $profile)
+    {
+        $accountMovement = AccountMovement::find($request['InvoiceReference'])
+        ->with('account')
+        ->first();
+
+
+        if (isset($accountMovement))
+        {
+            $account = $accountMovement->account();
+
+            //Make sure that profile requesting change is owner of account movement. if not,
+            //we cannot allow user to delete something that does not belong to them.
+            if ($account->profile_id == $profile->id)
+            {
+                $accountMovement->status = 3;
+                $accountMovement->comment = $request['Comment'];
+                $accountMovement->save();
+            }
+        }
+
+        return response()->json('Unkown Movement', '401');
+    }
+>>>>>>> parent of b580b54... update
 }
