@@ -57,7 +57,7 @@
     </div>
 
     <!-- Codebase Core JS -->
-    <script src="/js/codebase.min.js"></script>
+    <script src="/js/codebase.2.0.min.js"></script>
     <script src="{{ mix('/js/app.js') }}"></script>
 
 </body>
