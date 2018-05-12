@@ -1,7 +1,7 @@
 <!-- Products Table -->
 <div class="block block-rounded">
     <div class="block-content">
-        <infinity-item  baseurl="back-office/list-items"  profile="{{ request()->route('profile')->slug }}" inline-template>
+        <infinity-item  baseurl="items"  profile="{{ request()->route('profile')->slug }}" inline-template>
             <div>
                 <table class="table table-borderless table-striped">
                     <thead>

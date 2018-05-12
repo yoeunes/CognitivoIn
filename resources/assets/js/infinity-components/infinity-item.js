@@ -45,7 +45,7 @@ Vue.component('infinity-item',
         {
             var app = this;
 
-            axios.get('/api/'+ this.profile +'' + '/' + this.baseurl + '/' + app.skip + '',
+            axios.get('/api/'+ this.profile +'' + '/back-office/list/'  + app.skip + '/' + this.baseurl + '',
             {
                 params:
                 {
@@ -79,15 +79,15 @@ Vue.component('infinity-item',
             app.$parent.$parent.showList = false;
             console.log(data);
             $.ajax({
-                url: '/api/'+ this.profile +'' + '/' + this.baseurl + '/by-id' + '/'  + data,
+                url: '/api/'+ this.profile + '/back-office/' + this.baseurl + '/' + data + '/edit',
                 headers: {'X-CSRF-TOKEN': CSRF_TOKEN},
                 type: 'get',
                 dataType: 'json',
                 async: true,
                 success: function(data)
                 {
-                    
-                    app.$parent.$children[0].onEdit(data[0]);
+                
+                    app.$parent.$children[0].onEdit(data);
 
                 },
                 error: function(xhr, status, error)

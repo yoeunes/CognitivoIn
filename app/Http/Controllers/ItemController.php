@@ -17,7 +17,7 @@ class ItemController extends Controller
     * @return \Illuminate\Http\Response
     */
     //for list of items
-    public function index(Profile $profile)
+    public function index(Profile $profile,$skip)
     {
       $items = Item::GetItems($profile->id)
       ->skip($skip)
@@ -90,7 +90,7 @@ class ItemController extends Controller
     */
     public function edit(Profile $profile,Item $item)
     {
-        return response()->json($items);
+        return response()->json($item);
     }
 
     /**

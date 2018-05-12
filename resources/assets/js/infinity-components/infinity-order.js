@@ -45,7 +45,7 @@ Vue.component('infinity-order',
         {
             var app = this;
 
-            axios.get('/api/'+ this.profile +'' + '/' + this.baseurl + '/' + app.skip + '',
+            axios.get('/api/'+ this.profile +'' + '/back-office/list/'  + app.skip + '/' + this.baseurl + '',
             {
                 params:
                 {

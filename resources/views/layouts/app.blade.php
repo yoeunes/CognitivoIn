@@ -58,7 +58,6 @@
 
     <!-- Codebase Core JS -->
      <script src="/js/jquery.min.js"></script>
-    
     <script src="/js/codebase.min.js"></script>
     <script src="{{ mix('/js/app.js') }}"></script>
 
