@@ -61,7 +61,7 @@ class AccountReceivableController extends Controller
         {
             $accountMovement = new AccountMovement();
             $accountMovement->schedual_id = $request['ReferenceID'];
-            $accountMovement->account_id = $request['AccountID'];
+            $accountMovement->account_id = $account->id;
             $accountMovement->user_id = $request['UserID'] ?? null;
             $accountMovement->location_id = $request['LocationID'] ?? null;
             $accountMovement->type = $request['PaymentType'] ?? 1;

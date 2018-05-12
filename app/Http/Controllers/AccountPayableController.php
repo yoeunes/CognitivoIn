@@ -61,7 +61,7 @@ class AccountPayableController extends Controller
         {
             $accountMovement = new AccountMovement();
             $accountMovement->schedual_id = $request['ReferenceID'];
-            $accountMovement->account_id = $request['AccountID'];
+            $accountMovement->account_id = $account->id;
             $accountMovement->user_id = $request['UserID'] ?? null;
             $accountMovement->location_id = $request['LocationID'] ?? null;
             $accountMovement->type = $request['PaymentType'] ?? 1;
@@ -119,7 +119,6 @@ class AccountPayableController extends Controller
     */
     public function update(Request $request, Profile $profile, AccountMovement $accountMovement)
     {
-        $accountMovement = AccountMovement::find($accountMovement->id);
         $schedual = Schedual::find($request['ReferenceID']);
 
         if (isset($accountMovement) && isset($schedual))

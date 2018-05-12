@@ -16,9 +16,9 @@ class AccountMovementController extends Controller
     *
     * @return \Illuminate\Http\Response
     */
-    public function index()
+    public function index(Profile $profile, $skip)
     {
-        //
+
     }
 
     /**
@@ -39,48 +39,46 @@ class AccountMovementController extends Controller
     */
     public function store(Request $request, Profile $profile)
     {
-        $return = [];
-        $account = Account::where('profile_id', $profile->id)->first() ?? new Account();
+        $account = Account::where('profile_id', $profile->id)
+        ->where('type', $request['PaymentType'])
+        ->first();
 
         if (isset($account))
         {
-            $account->name = "Cash A/C Of " . $profile->name;
-            $account->number = "1";
-            $account->currency ='PRY';
+            $account = new Account()
+            $account->profile_id = $profile->id;
+            $account->name = "Cash Account for " . $profile->name;
+            $account->number = "...";
+            $account->currency = $profile->currency;
             $account->save();
         }
 
-        $schedual = Scheduals::find($request['InvoiceReference']);
+        $accountMovement = new AccountMovement();
+        $accountMovement->schedual_id = $request['ReferenceID'];
+        $accountMovement->account_id = $account->id;
+        $accountMovement->user_id = $request['UserID'] ?? null;
+        $accountMovement->location_id = $request['LocationID'] ?? null;
+        $accountMovement->type = $request['PaymentType'] ?? 1;
+        $accountMovement->currency = $request['Currency'];
 
-        if (isset($schedual))
-        {
-            $accountMovement = new AccountMovement();
-            $accountMovement->schedual_id = $schedual->id;
-            $accountMovement->user_id = $request['UserID'];
-            $accountMovement->account_id = $account->id;
-            $accountMovement->location_id = null;
-            $accountMovement->type = $request['Type'] ?? 1;
-            $accountMovement->currency = $request['Currency'];
+        if ($request['Currency'] != $schedual->currency)
+        { $accountMovement->currency_rate = Swap::latest($schedual->currency . '/' . $request['Currency'])->getValue(); }
+        else
+        { $accountMovement->currency_rate = 1; }
 
-            if ($request['Currency'] != $schedual->currency)
-            { $accountMovement->currency_rate = Swap::latest($schedual->currency . '/' . $request['Currency'])->getValue(); }
-            else
-            { $accountMovement->currency_rate = 1; }
+        $accountMovement->date = $request['Date'] ?? Carbon::now();
+        $accountMovement->credit = 0;
+        $accountMovement->debit = $request['Value'];
 
-            $accountMovement->date = Carbon::now();
-            $accountMovement->credit = $request['Type'] == 1 ? $request['Value'] : 0;
-            $accountMovement->debit = $request['Type'] == 1 ? 0 : $request['Value'];
+        $accountMovement->save();
 
-            $accountMovement->save();
+        $return = [];
+        $return[] = [
+            'PaymentReference' => $accountMovement->id,
+            'ResponseType' => 1
+        ];
 
-
-            $return[] = [
-                'PaymentReference' => $accountMovement->id,
-                'ResponseType' => 1
-            ];
-        }
-
-        return response()->json($return, '200');
+        return response()->json($return, 200);
     }
 
     /**
@@ -134,30 +132,6 @@ class AccountMovementController extends Controller
             if ($account->profile_id == $profile->id)
             {
                 $accountMovement->delete();
-            }
-        }
-
-        return response()->json('Unkown Movement', '401');
-    }
-
-    public function annull(Request $request, Profile $profile)
-    {
-        $accountMovement = AccountMovement::find($request['InvoiceReference'])
-        ->with('account')
-        ->first();
-
-
-        if (isset($accountMovement))
-        {
-            $account = $accountMovement->account;
-
-            //Make sure that profile requesting change is owner of account movement. if not,
-            //we cannot allow user to delete something that does not belong to them.
-            if ($account->profile_id == $profile->id)
-            {
-                $accountMovement->status = 3;
-                $accountMovement->comment = $request['Comment'];
-                $accountMovement->save();
             }
         }
 
