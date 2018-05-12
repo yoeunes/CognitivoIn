@@ -1,6 +1,5 @@
 <item-form profile="{{ request()->route('profile')->slug }}" inline-template>
     <div>
-
         <!-- User Profile -->
         <form action="be_pages_crypto_settings.html" method="post" onsubmit="return false;">
             <h2 class="content-heading text-black">General</h2>

@@ -15,7 +15,6 @@ Vue.component('infinity-customer',
             skip: 0,
             pageSize: 100,
             search: '',
-
         }
     },
 
@@ -26,12 +25,9 @@ Vue.component('infinity-customer',
             return this.list;
         },
 
-
         Today: function Today() {
             return new Date();
         }
-
-
     },
 
     components:
@@ -54,7 +50,6 @@ Vue.component('infinity-customer',
             })
             .then(({ data }) =>
             {
-
                 if (data.length > 0)
                 {
                     console.log(data);
@@ -72,14 +67,16 @@ Vue.component('infinity-customer',
                 }
             });
         },
+
         onEdit: function(data)
         {
             var app = this;
 
             app.$parent.$parent.showList = false;
+
             console.log(data);
             $.ajax({
-                url: '/api/'+ this.profile + '' + '/' + this.baseurl + '/by-id' + '/'  + data,
+                url: '/api/'+ this.profile + '/' + this.baseurl + '/by-id' + '/'  + data.ID,
                 headers: {'X-CSRF-TOKEN': CSRF_TOKEN},
                 type: 'get',
                 dataType: 'json',
@@ -96,6 +93,7 @@ Vue.component('infinity-customer',
                 }
             });
         },
+
         onDelete: function(data)
         {
             //SweetAlert message and confirmation.

@@ -26,12 +26,10 @@ Vue.component('infinity-item',
             return this.list;
         },
 
-
-        Today: function Today() {
+        Today: function Today()
+        {
             return new Date();
         }
-
-
     },
 
     components:
@@ -86,7 +84,7 @@ Vue.component('infinity-item',
                 async: true,
                 success: function(data)
                 {
-                
+
                     app.$parent.$children[0].onEdit(data);
 
                 },

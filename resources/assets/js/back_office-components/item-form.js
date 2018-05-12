@@ -25,14 +25,11 @@ Vue.component('item-form',
     }
   },
 
-
-
   methods:
   {
 
     onEdit: function(data)
     {
-      console.log(data)
       var app = this;
       app.id = data.id;
       app.profile_id = data.profile_id,
@@ -50,7 +47,6 @@ Vue.component('item-form',
     onReset: function(isnew)
     {
       var app = this;
-
       app.id = null;
       app.profile_id = null;
       app.name = null;

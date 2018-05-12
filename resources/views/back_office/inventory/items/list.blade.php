@@ -1,7 +1,7 @@
 <!-- Products Table -->
 <div class="block block-rounded">
     <div class="block-content">
-        <infinity-item  baseurl="items"  profile="{{ request()->route('profile')->slug }}" inline-template>
+        <infinity-item baseurl="items" profile="{{ request()->route('profile')->slug }}" inline-template>
             <div>
                 <table class="table table-borderless table-striped">
                     <thead>
@@ -29,9 +29,8 @@
                                     @{{ item.unit_price }}
                                 </td>
                                 <td class="text-right">
-                                    <a @click="onEdit(item.id)" class="m-btn btn btn-secondary"><i class="la la-pencil m--font-brand"></i></a>
+                                    <a @click="onEdit(item)" class="m-btn btn btn-secondary"><i class="la la-pencil m--font-brand"></i></a>
                                     <a @click="onDelete(item)" class="m-btn btn btn-secondary"><i class="la la-trash m--font-danger"></i></a>
-                                    <a @click="onAnull(item)" class="m-btn btn btn-secondary"><i class="la la-close m--font-danger"></i></a>
                                 </td>
                             </tr>
                         </div>

@@ -26,23 +26,36 @@ Route::group(['middleware' => 'auth:api'], function ()
         Route::prefix('back-office')->group(function ()
         {
             Route::resources([
+                'locations' => 'LocationController',
+
                 'customers' => 'CustomerController',
                 'suppliers' => 'SupplierController',
                 'items' => 'ItemController',
                 'pipelines' => 'PipelineController',
                 'opportunities' => 'OpportunityController',
                 'orders' => 'OrderController',
+
+                'accounts' => 'AccountsController',
                 'account-payables' => 'AccountPayableController',
                 'account-receivables' => 'AccountReceivableController',
                 'account-movement' => 'AccountMovementController'
-                // 'profile' => 'ProfileController'
             ]);
 
             Route::prefix('list/{skip}')->group(function ()
             {
-                Route::get('customers', 'CustomerController@index');
-                Route::get('suppliers', 'SupplierController@index');
-                Route::get('items', 'ItemController@index');
+                Route::get('locations', 'LocationController@index');
+
+                Route::get('customers/{filterBy}', 'CustomerController@index');
+                Route::get('suppliers/{filterBy}', 'SupplierController@index');
+                Route::get('items/{filterBy}', 'ItemController@index');
+
+                Route::get('pipelines/{filterBy}', 'PipelineController@index');
+                Route::get('opportunities/{filterBy}', 'OpportunityController@index');
+                Route::get('orders/{filterBy}', 'OrderController@index');
+                Route::get('accounts/{filterBy}', 'AccountsController@index');
+                Route::get('account-payables/{filterBy}', 'AccountPayableController@index');
+                Route::get('account-receivables/{filterBy}', 'AccountReceivableController@index');
+                Route::get('account-movement/{filterBy}', 'AccountMovementController@index');
             });
 
             //Searches using ElasticSearch Server for index based search results.
@@ -68,7 +81,7 @@ Route::group(['middleware' => 'auth:api'], function ()
 
         });
 
-// TODO remove all these methods
+        // TODO remove all these methods
         //Route::post('PaymentReceive', 'AccountMovementController@store');
         //Route::post('Anull', 'AccountMovementController@annull');
         Route::post('PaymentDue', 'Api\AccountController@get_CustomerSchedual');
@@ -79,6 +92,6 @@ Route::group(['middleware' => 'auth:api'], function ()
     });
 
 
-Route::get('getCompanys/{slug}', 'ProfileController@get_companys');
-Route::get('login/{email}/{password}', 'Auth\SocialAuthController@Login');
-Route::get('getCustomers/{profile}', 'CustomerController@getAllCustomer');
+    Route::get('getCompanys/{slug}', 'ProfileController@get_companys');
+    Route::get('login/{email}/{password}', 'Auth\SocialAuthController@Login');
+    Route::get('getCustomers/{profile}', 'CustomerController@getAllCustomer');
