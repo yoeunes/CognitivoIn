@@ -57,7 +57,14 @@
     </div>
 
     <!-- Codebase Core JS -->
-    <script src="/js/codebase.2.0.min.js"></script>
+     <script src="/js/jquery.min.js"></script>
+    <script src="/js/bootstrap.bundle.min.js"></script>
+    <script src="/js/jquery.slimscroll.min.js"></script>
+    <script src="/js/jquery.scrollLock.min.js"></script>
+    <script src="/js/jquery.appear.min.js"></script>
+    <script src="/js/jquery.countTo.min.js"></script>
+    <script src="/js/js.cookie.min.js"></script>
+    <script src="/js/codebase.min.js"></script>
     <script src="{{ mix('/js/app.js') }}"></script>
 
 </body>
