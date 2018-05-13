@@ -1,4 +1,5 @@
 
+import Vue from 'vue';
 import VueSweetAlert from 'vue-sweetalert';
 import InfiniteLoading from 'vue-infinite-loading';
 import axios from 'axios';
@@ -6,12 +7,13 @@ import axios from 'axios';
 Vue.component('model',
 {
     props: ['profile'],
-
     data() {
-        return
-        {
+        return {
             showList: true,
-            showModule: 1,
+            showModule: '1',
+            //1 = Dashboard
+            //2 = Profile
+            //3 = Locations
 
             url: '',
             total: 0,
@@ -37,7 +39,7 @@ Vue.component('model',
             var app = this;
             if (app.url != '')
             {
-                axios.get('/api/' + this.profile + '/back-office/list/'  + app.skip + '/' + app.url + '/' + app.filterListBy +,
+                axios.get('/api/' + this.profile + '/back-office/list/'  + app.skip + '/' + app.url + '/' + app.filterListBy,
                 {
                     params:
                     {
@@ -60,6 +62,9 @@ Vue.component('model',
                     {
                         $state.complete();
                     }
+                })
+                .catch({
+                    $state.complete();
                 });
             }
         },
@@ -99,16 +104,17 @@ Vue.component('model',
             var app = this;
             swal({
                 title: 'Are you sure?',
-                text: "You will loose all your data",
+                text: "This will cancel all changes made",
                 type: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
                 cancelButtonColor: '#d33',
                 confirmButtonText: 'Yes, cancel it!'
             }).then((result) => {
+                //clean property changes
                 app.showList = true;
             })
-        }
+        },
 
         onSave($url, $data)
         {
@@ -165,7 +171,7 @@ Vue.component('model',
                 cancelButtonColor: '#d33',
                 confirmButtonText: 'Yes, delete it!'
             }).then((result) => {
-                axios.delete('/api/' + this.profile + '/back-office/' + app.url, {
+                axios.delete('/api/' + this.profile + '/back-office/' + this.url, {
                     params: { $data: this.data.ID }
                 })
                 .then(() => {
