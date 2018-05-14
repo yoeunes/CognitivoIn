@@ -1,5 +1,6 @@
 <order-form profile="{{ request()->route('profile')->slug }}" inline-template>
   <div>
+    
     <div class="row" >
        <div class="col-lg-6">
          <!-- Billing Address -->

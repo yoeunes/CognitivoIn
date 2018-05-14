@@ -14,12 +14,12 @@ class PipelineController extends Controller
     *
     * @return \Illuminate\Http\Response
     */
-    public function index(Profile $profile)
+    public function index(Profile $profile,$skip)
     {
-      $pipelines = Pipeline::with('stages')->Pipelines($profile->id)->skip($skip)
+        $pipelines = Pipeline::with('stages')->Pipelines($profile->id)->skip($skip)
         ->take(100)->get();
 
-      return response()->json($pipelines);
+        return response()->json($pipelines);
     }
 
 
@@ -27,14 +27,14 @@ class PipelineController extends Controller
     {
 
 
-      $pipelines = Pipeline::with('stages')->Pipelines($profile->id)
+        $pipelines = Pipeline::with('stages')->Pipelines($profile->id)
 
-      ->where('id',$id)
+        ->where('id',$id)
 
         ->get();
 
 
-      return response()->json($pipelines);
+        return response()->json($pipelines);
     }
     /**
     * Show the form for creating a new resource.
@@ -64,7 +64,7 @@ class PipelineController extends Controller
 
         $pipeline->save();
 
-          return response()->json('ok',200);
+        return response()->json('ok',200);
 
     }
 
@@ -87,7 +87,7 @@ class PipelineController extends Controller
     */
     public function edit(Profile $profile, Pipeline $pipeline)
     {
-        
+        return response()->json($pipeline->with('stages')->first());
     }
 
     /**

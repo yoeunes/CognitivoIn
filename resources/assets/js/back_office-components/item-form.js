@@ -30,18 +30,19 @@ Vue.component('item-form',
 
     onEdit: function(data)
     {
+
       var app = this;
       app.id = data.id;
-      app.profile_id = data.profile_id,
-      app.name = data.name,
-      app.sku = data.sku,
-      app.short_description = data.short_description,
-      app.long_description = data.long_description,
-      app.currency_id = data.currency_id,
-      app.unit_price = data.unit_price,
-      app.unit_cost = data.unit_cost,
-      app.is_active = data.is_active,
-      app.$parent.$parent.showList = false;
+      app.profile_id = data.profile_id;
+      app.name = data.name;
+      app.sku = data.sku;
+      app.short_description = data.short_description;
+      app.long_description = data.long_description;
+      app.currency_id = data.currency_id;
+      app.unit_price = data.unit_price;
+      app.unit_cost = data.unit_cost;
+      app.is_active = data.is_active;
+      app.$parent.showList = false;
     },
 
     onReset: function(isnew)
@@ -56,8 +57,10 @@ Vue.component('item-form',
       app.currency_id = null;
       app.unit_price = null;
       app.unit_cost = null;
+      if (!isnew) {
+          app.$parent.showList = true;
+      }
 
-      app.$parent.$parent.showList = true;
 
     },
 
@@ -81,6 +84,7 @@ Vue.component('item-form',
         if (response.status = 200 )
         {
           app.onReset(isnew);
+          app.$parent.onList('items',4.2);
         }
         else
         {

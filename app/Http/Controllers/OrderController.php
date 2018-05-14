@@ -17,7 +17,7 @@ class OrderController extends Controller
     *
     * @return \Illuminate\Http\Response
     */
-    public function index(Profile $profile)
+    public function index(Profile $profile,$skip)
     {
 
       $orders = Order::with('details')->skip($skip)
@@ -109,10 +109,10 @@ class OrderController extends Controller
     * @param  \App\Order  $order
     * @return \Illuminate\Http\Response
     */
-    public function edit(Profile $profile,$id)
+    public function edit(Profile $profile,Order $order)
     {
+return response()->json($order->with('details')->first());
 
-    
     }
 
     /**

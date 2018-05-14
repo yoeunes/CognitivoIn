@@ -32,6 +32,7 @@ Route::group(['middleware' => 'auth:api'], function ()
                 'suppliers' => 'SupplierController',
                 'items' => 'ItemController',
                 'pipelines' => 'PipelineController',
+                'pipelinestag' => 'PipelineStageController',
                 'opportunities' => 'OpportunityController',
                 'orders' => 'OrderController',
 
@@ -95,3 +96,4 @@ Route::group(['middleware' => 'auth:api'], function ()
     Route::get('getCompanys/{slug}', 'ProfileController@get_companys');
     Route::get('login/{email}/{password}', 'Auth\SocialAuthController@Login');
     Route::get('getCustomers/{profile}', 'CustomerController@getAllCustomer');
+    Route::get('getItems/{profile}', 'ItemController@get_items');

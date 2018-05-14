@@ -16,14 +16,14 @@ class PipelineStageController extends Controller
     */
     public function index(Profile $profile)
     {
+      $pipelinestages = PipelineStage::get();
 
+      return response()->json($pipelinestages);
     }
     public function get_pipelinestages(Profile $profile)
     {
 
-      $pipelinestages = PipelineStage::get();
 
-      return response()->json($pipelinestages);
     }
     public function list_pipelinestages(Profile $profile,$skip)
     {
@@ -64,20 +64,20 @@ class PipelineStageController extends Controller
     public function store(Profile $profile,Request $request)
     {
 
-        $pipelinestage = $request->id == 0 ? new PipelineStage() :
-        PipelineStage::where('id',$request->id)->first();;
+        $pipelinestage = $request->stage_id == 0 ? new PipelineStage() :
+        PipelineStage::where('id',$request->stage_id)->first();;
 
-        $pipelinestage->pipeline_id = $request->pipeline_id;
+        $pipelinestage->pipeline_id = $request->id;
 
-        $pipelinestage->name = $request->name;
+        $pipelinestage->name = $request->stage_name;
 
         $pipelinestage->completed = 1;
 
-        $pipelinestage->sequence =  $request->sequence == null ? 1 : $request->sequence;
+        $pipelinestage->sequence =  $request->stage_sequence == null ? 1 : $request->stage_sequence;
 
         $pipelinestage->save();
 
-              return response()->json('ok',200);
+              return response()->json(PipelineStage::where('pipeline_id',$request->id)->get(),200);
     }
 
     /**

@@ -17,7 +17,7 @@ class ItemController extends Controller
     * @return \Illuminate\Http\Response
     */
     //for list of items
-    public function index(Profile $profile,$skip)
+    public function index(Profile $profile,$skip,$filterBy)
     {
       $items = Item::GetItems($profile->id)
       ->skip($skip)

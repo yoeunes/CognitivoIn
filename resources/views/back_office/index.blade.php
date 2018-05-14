@@ -180,7 +180,7 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a @click="showModule = 4" href="#">
+                                    <a @click="onList('items',4)" href="#">
                                         <i class="si si-diamond"></i>
                                         <span class="sidebar-mini-hide">Products & Services</span>
                                     </a>
@@ -198,7 +198,7 @@
                                             <a @click="showModule = '4.1'" href="#">Dashboard</a>
                                         </li>
                                         <li>
-                                            <a @click="" href="#">Customers</a>
+                                            <a @click="onList('customers',4.2)" href="#">Customers</a>
                                         </li>
                                         <li>
                                             <a href="#">Promotions</a>
@@ -207,15 +207,15 @@
                                             <a  class="nav-submenu" data-toggle="nav-submenu" href="#">Opportunities</a>
                                             <ul>
                                                 <li>
-                                                    <a @click="" href="#">Pipeline</a>
+                                                    <a @click="onList('pipelines',4.4)" href="#">Pipeline</a>
                                                 </li>
                                                 <li>
-                                                    <a @click="" href="#">Opportunity</a>
+                                                    <a @click="onList('opportunities',4.5)" href="#">Opportunity</a>
                                                 </li>
                                             </ul>
                                         </li>
                                         <li>
-                                            <a @click="" href="#">Orders</a>
+                                            <a @click="onList('orders',4.6)" href="#">Orders</a>
                                         </li>
                                     </ul>
                                 </li>
@@ -444,19 +444,19 @@
                 @include('back_office/inventory/items')
             </div>
 
-            <div v-else-if="showModule === 1">
+            <div v-else-if="showModule === 4.2">
                 @include('back_office/sales/customers')
             </div>
 
-            <div v-else-if="showModule === 1">
+            <div v-else-if="showModule === 4.4">
                 @include('back_office/sales/pipeline')
             </div>
 
-            <div v-else-if="showModule === 1">
+            <div v-else-if="showModule === 4.5">
                 @include('back_office/sales/opportunity')
             </div>
 
-            <div v-else-if="showModule === 1">
+            <div v-else-if="showModule === 4.6">
                 @include('back_office/sales/orders')
             </div>
         </div>

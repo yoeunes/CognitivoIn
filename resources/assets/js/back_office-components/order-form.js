@@ -112,13 +112,13 @@ methods: {
       var app = this;
       if(app.relationship_id !== '')
       {
-        axios.get('/api/'+ this.profile  + '/back-office/list-customers/by-id' + '/'  +  app.relationship_id )
+        axios.get('/api/'+ this.profile  + '/back-office/customers' + '/'  +  app.relationship_id + '/edit' )
         .then(function (resp) {
 
-          app.customer_name = '('+ resp.data[0].customer_taxid + ') - ' +  resp.data[0].customer_alias  ;
-          app.customer_address = resp.data[0].customer_address;
-          app.customer_telephone = resp.data[0].customer_telephone;
-          app.customer_email = resp.data[0].customer_email;
+          app.customer_name = '('+ resp.data.customer_taxid + ') - ' +  resp.data.customer_alias  ;
+          app.customer_address = resp.data.customer_address;
+          app.customer_telephone = resp.data.customer_telephone;
+          app.customer_email = resp.data.customer_email;
         })
         .catch(function (resp) {
           console.log(resp);

@@ -11,6 +11,11 @@ Vue.component('pipeline-form',
 
       id: 0,
       name:'',
+      stages:[],
+      showStage:true,
+      stage_id:0,
+      stage_name:'',
+      stage_sequence:''
 
 
     }
@@ -20,15 +25,65 @@ Vue.component('pipeline-form',
 
   methods:
   {
+    onCreate()
+    {
+      var app = this;
+      app.showStage = false;
+    },
+    onEditStage(data)
+    {
+      var app = this;
+      app.showStage = false;
+      app.stage_id=data.id;
+      app.stage_name=data.name;
+      app.stage_sequence=data.sequence;
+    },
+    onStageSave: function(json,isnew)
+    {
+      var app = this;
+      var api = null;
+
+
+
+      axios({
+        method: 'post',
+        url: '/back-office/'+ this.profile +'/sales/pipelinestages',
+        responseType: 'json',
+        data: json
+
+      }).then(function (response)
+      {
+        if (response.status = 200 )
+        {
+          app.showStage = true;
+          app.stages=[];
+          for (var i = 0; i < response.data.length; i++) {
+            app.stages.push(response.data[i]);
+          }
+        }
+        else
+        {
+          alert('Something Went Wrong...')
+        }
+      })
+      .catch(function (error)
+      {
+        console.log(error);
+        console.log(error.response);
+      });
+    },
 
     onEdit: function(data)
     {
       console.log(data)
       var app = this;
-        app.id=data.id;
+      app.id=data.id;
       app.name=data.name;
-
-      app.$parent.$parent.$parent.showList = false;
+      for (var i = 0; i < data.stages.length; i++) {
+        app.stages.push(data.stages[i]);
+      }
+      app.stage=data.stages;
+      app.$parent.showList = false;
     },
 
     onReset: function(isnew)
@@ -39,7 +94,7 @@ Vue.component('pipeline-form',
 
       if (isnew == false)
       {
-        app.$parent.$parent.$parent.showList = true;
+        app.$parent.showList = true;
       }
     },
 
@@ -63,6 +118,7 @@ Vue.component('pipeline-form',
         if (response.status = 200 )
         {
           app.onReset(isnew);
+          app.$parent.onList('pipelines',4.4);
         }
         else
         {
@@ -86,12 +142,12 @@ Vue.component('pipeline-form',
 
 
 
-},
+  },
 
-mounted: function mounted()
-{
+  mounted: function mounted()
+  {
 
 
 
-}
+  }
 });

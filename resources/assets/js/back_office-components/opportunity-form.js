@@ -37,7 +37,7 @@ Vue.component('opportunity-form',
       app.deadline_date=data.deadline_date;
       app.value=data.value;
       app.stage_id=data.pipeline_stage_id
-      app.$parent.$parent.$parent.showList = false;
+      app.$parent.showList = false;
     },
 
     onReset: function(isnew)
@@ -49,10 +49,10 @@ Vue.component('opportunity-form',
       app.deadline_date=null;
 
       app.value=null;
-        app.stage_id=null;
+      app.stage_id=null;
       if (isnew == false)
       {
-        app.$parent.$parent.$parent.showList = true;
+        app.$parent.showList = true;
       }
     },
 
@@ -76,6 +76,7 @@ Vue.component('opportunity-form',
         if (response.status = 200 )
         {
           app.onReset(isnew);
+          app.$parent.onList('items',4.5);
         }
         else
         {
@@ -91,7 +92,7 @@ Vue.component('opportunity-form',
     getStages: function(data)
     {
       var app = this;
-      axios.get('/api/'+ this.profile +'/back-office/list-stages/all/',
+      axios.get('/api/'+ this.profile +'/back-office/pipelinestages/',
     )
     .then(({ data }) =>
     {
@@ -129,13 +130,13 @@ Vue.component('opportunity-form',
 
 
 
-  },
+},
 
-  mounted: function mounted()
-  {
+mounted: function mounted()
+{
 
-    this.getStages();
-    this.getCustomers();
+  this.getStages();
+  this.getCustomers();
 
-  }
+}
 });

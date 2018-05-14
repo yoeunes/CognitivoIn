@@ -20,6 +20,16 @@ class CustomerController extends Controller
         return response()->json($customers);
     }
 
+    public function getAllCustomer (Profile $profile)
+    {
+
+        $customers = Relationship::GetCustomers()
+      
+        ->get();
+
+        return response()->json($customers);
+    }
+
     /**
     * Store a newly created resource in storage.
     *
@@ -51,11 +61,11 @@ class CustomerController extends Controller
     * @param  \App\Relationship  $relationship
     * @return \Illuminate\Http\Response
     */
-    public function show(Relationship $relationship)
+    public function edit(Profile $profile,$relationship)
     {
 
 
-        return response()->json($relationship);
+        return response()->json(Relationship::find($relationship));
     }
 
     /**

@@ -47,7 +47,7 @@
     <div id="app" class="main-content-boxed">
         <main id="main-container">
             <div>
-                <model inline-template>
+                <model profile="{{ request()->route('profile')->slug }}" inline-template>
                     <div>
                         @yield('main')
                     </div>
@@ -58,6 +58,12 @@
 
     <!-- Codebase Core JS -->
      <script src="/js/jquery.min.js"></script>
+     <script src="/js/core/bootstrap.bundle.min.js"></script>
+     <script src="/js/core/jquery.slimscroll.min.js"></script>
+     <script src="/js/core/jquery.scrollLock.min.js"></script>
+     <script src="/js/core/jquery.appear.min.js"></script>
+     <script src="/js/core/jquery.countTo.min.js"></script>
+     <script src="/js/core/js.cookie.min.js"></script>
     <script src="/js/codebase.min.js"></script>
     <script src="{{ mix('/js/app.js') }}"></script>
 

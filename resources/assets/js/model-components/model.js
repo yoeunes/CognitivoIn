@@ -28,17 +28,20 @@ Vue.component('model',
     methods:
     {
 
-        showModule($moduleID)
+        showModules($moduleID)
         {
             var app = this;
             app.showModule = $moduleID;
+            app.showList=1;
         },
 
         infiniteHandler($state)
         {
             var app = this;
+
             if (app.url != '')
             {
+
                 axios.get('/api/' + this.profile + '/back-office/list/'  + app.skip + '/' + app.url + '/' + app.filterListBy,
                 {
                     params:
@@ -64,8 +67,9 @@ Vue.component('model',
                     }
                 })
                 .catch({
-                    $state.complete();
+                    //$state.complete();
                 });
+                console.log(app.list);
             }
         },
 
@@ -73,8 +77,14 @@ Vue.component('model',
         onList($url, $filter)
         {
             var app = this;
-            this.skip = 0;
-            this.$refs.infiniteLoading.attemptLoad();
+            app.skip = 0;
+            app.url=$url;
+            app.showModule=$filter;
+            app.list= [];
+            if (app.$refs.infiniteLoading!=null) {
+                app.$refs.infiniteLoading.attemptLoad();
+            }
+
         },
 
         onCreate()
@@ -83,18 +93,20 @@ Vue.component('model',
             app.showList = false;
         },
 
-        onEdit($url, $data)
+        onEdit($data)
         {
             var app = this;
-
-            axios.get('/api/' + this.profile + '/back-office/list/'  + app.skip + '/' + app.url + '/' + app.filterListBy)
-            .then(({ $data }) =>
+            app.showList = false;
+            axios.get('/api/' + this.profile + '/back-office/' + app.url + '/' + $data.id + '/edit')
+            .then(({ data }) =>
             {
-                app.showList = false;
-                return $data[0];
+            
+
+
+                app.$children[0].onEdit(data);
             })
             .catch(error => {
-                console.log(error.response.data);
+                console.log(error);
                 this.$swal('Error trying to edit record.');
             });
         },

@@ -18,7 +18,7 @@ class OpportunityController extends Controller
     *
     * @return \Illuminate\Http\Response
     */
-    public function index(Profile $profile)
+    public function index(Profile $profile,$skip)
     {
       $opportunities = Opportunity::Mine()
        ->select('opportunities.id', 'opportunities.description', 'opportunities.deadline_date', 'opportunities.value',
@@ -116,9 +116,15 @@ class OpportunityController extends Controller
     * @param  \App\opportunity  $opportunity
     * @return \Illuminate\Http\Response
     */
-    public function edit(opportunity $opportunity)
+    public function edit(Profile $profile,$id)
     {
-        //
+      $opportunities = Opportunity::Mine()
+       ->where('opportunities.id',$id)
+
+       ->first();
+
+
+     return response()->json($opportunities);
     }
 
     /**

@@ -92,7 +92,7 @@ export default {
         if(app.items.length==0)
         {
           var quantity=0;
-          axios.get('/api/'+ this.$parent.profile  +'/back-office/get-items/')
+          axios.get('/api/getItems/'+ this.$parent.profile )
           .then(function (resp)
           {
             console.log(resp.data);

@@ -61,7 +61,7 @@
 
         <!-- Add Product -->
         <div class="col-md-6 col-xl-3">
-            <a class="block block-rounded block-link-shadow" @click="$parent.onCreate()" href="#">
+            <a class="block block-rounded block-link-shadow" @click="onCreate()" href="#">
                 <div class="block-content block-content-full block-sticky-options">
                     <div class="block-options">
                         <div class="block-options-item">
@@ -83,7 +83,7 @@
 
     <div class="block block-fx-shadow">
         <div class="block-content">
-            <div v-if="$parent.showList">
+            <div v-if="showList">
                 @include('back_office/inventory/items/list')
             </div>
             <div v-else>
