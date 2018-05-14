@@ -27,12 +27,11 @@ Vue.component('model',
 
     methods:
     {
-
         showModules($moduleID)
         {
             var app = this;
             app.showModule = $moduleID;
-            app.showList=1;
+            app.showList = 1;
         },
 
         infiniteHandler($state)
@@ -41,7 +40,6 @@ Vue.component('model',
 
             if (app.url != '')
             {
-
                 axios.get('/api/' + this.profile + '/back-office/list/'  + app.skip + '/' + app.url + '/' + app.filterListBy,
                 {
                     params:
@@ -66,10 +64,10 @@ Vue.component('model',
                         $state.complete();
                     }
                 })
-                .catch({
-                    //$state.complete();
+                .catch(error => {
+                    console.log(error);
+                    this.$swal('Error trying to save record.');
                 });
-                console.log(app.list);
             }
         },
 
@@ -78,13 +76,13 @@ Vue.component('model',
         {
             var app = this;
             app.skip = 0;
-            app.url=$url;
-            app.showModule=$filter;
-            app.list= [];
-            if (app.$refs.infiniteLoading!=null) {
+            app.url = $url;
+            app.showModule = $filter;
+            app.list = [];
+            if (app.$refs.infiniteLoading != null)
+            {
                 app.$refs.infiniteLoading.attemptLoad();
             }
-
         },
 
         onCreate()
@@ -100,9 +98,6 @@ Vue.component('model',
             axios.get('/api/' + this.profile + '/back-office/' + app.url + '/' + $data.id + '/edit')
             .then(({ data }) =>
             {
-
-
-
                 app.$children[0].onEdit(data);
             })
             .catch(error => {
@@ -138,13 +133,14 @@ Vue.component('model',
                 this.$swal({
                     position: 'top-end',
                     type: 'success',
-                    title: 'Your work has been saved',
+                    title: 'Awsome! Your work has been saved',
                     showConfirmButton: false,
                     timer: 1500
                 })
             })
-            .catch({
-
+            .catch(error => {
+                console.log(error);
+                this.$swal('Error trying to save record.');
             });
         },
 
@@ -160,13 +156,14 @@ Vue.component('model',
                 this.$swal({
                     position: 'top-end',
                     type: 'success',
-                    title: 'Your work has been saved',
+                    title: 'Awsome! Your work has been saved',
                     showConfirmButton: false,
                     timer: 1500
                 })
             })
-            .catch({
-
+            .catch(error => {
+                console.log(error);
+                this.$swal('Error trying to save record.');
             });
         },
 
@@ -182,12 +179,15 @@ Vue.component('model',
                 confirmButtonColor: '#3085d6',
                 cancelButtonColor: '#d33',
                 confirmButtonText: 'Yes, delete it!'
-            }).then((result) => {
+            })
+            .then((result) => {
                 axios.delete('/api/' + this.profile + '/back-office/' + this.url, {
                     params: { $data: this.data.ID }
                 })
                 .then(() => {
+
                     let index = this.list.findIndex(crud => list.ID === ID);
+
                     this.list.splice(index, 1);
 
                     this.$swal({
@@ -198,13 +198,14 @@ Vue.component('model',
                         timer: 750
                     })
                 })
-                .catch({
-
+                .catch(error => {
+                    console.log(error);
+                    this.$swal('Error trying to delete record.');
                 });
             })
         },
 
-        onApprove($url, $data)
+        onApprove($data)
         {
             var app = this;
 
@@ -217,6 +218,24 @@ Vue.component('model',
                 cancelButtonColor: '#d33',
                 confirmButtonText: 'Yes, approve it!'
             }).then((result) => {
+
+                axios.post('/api/' + this.profile + '/back-office/' + app.url + '/' + $data.id + '/approve', $data)
+                .then(() =>
+                {
+                    app.showList = true;
+
+                    this.$swal({
+                        position: 'top-end',
+                        type: 'success',
+                        title: 'Awsome! Your record has been approved',
+                        showConfirmButton: false,
+                        timer: 1500
+                    })
+                })
+                .catch(error => {
+                    console.log(error);
+                    this.$swal('Error trying to approve record.');
+                });
                 //Code to approve
             })
         },
@@ -235,6 +254,23 @@ Vue.component('model',
                 confirmButtonText: 'Yes, annull it!'
             }).then((result) => {
                 //Code to annull
+                axios.post('/api/' + this.profile + '/back-office/' + app.url + '/' + $data.id + '/approve', $data)
+                .then(() =>
+                {
+                    this.$swal({
+                        position: 'top-end',
+                        type: 'success',
+                        title: 'Awsome! Your record has been annulled',
+                        showConfirmButton: false,
+                        timer: 1500
+                    })
+
+                    app.showList = true;
+                })
+                .catch(error => {
+                    console.log(error);
+                    this.$swal('Error trying to annull record.');
+                });
             })
         }
     },
