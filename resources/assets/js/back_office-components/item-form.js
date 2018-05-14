@@ -58,7 +58,7 @@ Vue.component('item-form',
       app.unit_price = null;
       app.unit_cost = null;
       if (!isnew) {
-          app.$parent.showList = true;
+        app.$parent.showList = true;
       }
 
 
@@ -71,31 +71,9 @@ Vue.component('item-form',
       var app = this;
       var api = null;
 
+      app.$parent.onSave('/back-office/'+ this.profile +'/sales/items',json);
 
-
-      axios({
-        method: 'post',
-        url: '/back-office/'+ this.profile +'/sales/items',
-        responseType: 'json',
-        data: json
-
-      }).then(function (response)
-      {
-        if (response.status = 200 )
-        {
-          app.onReset(isnew);
-          app.$parent.onList('items',4.2);
-        }
-        else
-        {
-          alert('Something Went Wrong...')
-        }
-      })
-      .catch(function (error)
-      {
-        console.log(error);
-        console.log(error.response);
-      });
+      
     }
 
 

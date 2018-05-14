@@ -100,7 +100,7 @@ Vue.component('model',
             axios.get('/api/' + this.profile + '/back-office/' + app.url + '/' + $data.id + '/edit')
             .then(({ data }) =>
             {
-            
+
 
 
                 app.$children[0].onEdit(data);
@@ -131,7 +131,7 @@ Vue.component('model',
         onSave($url, $data)
         {
             var app = this;
-            axios.put('/api/cruds/${id}', { color })
+            axios.post($url, $data)
             .then(() =>
             {
                 app.showList = true;

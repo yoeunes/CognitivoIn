@@ -80,26 +80,8 @@ Vue.component('customer-form',
         {
             var app = this;
             var api = null;
-
-            axios({
-                method: 'post',
-                url: '/back-office/'+ this.profile +'/sales/customers',
-                responseType: 'json',
-                data: json
-
-            }).then(function (response)
-            {
-                if (response.status = 200 )
-                {
-                    app.onReset(isnew);
-                    app.$parent.onList('customers',4.2);
-                }
-            })
-            .catch(function (error)
-            {
-                console.log(error);
-                console.log(error.response);
-            });
+            app.$parent.onSave('/back-office/'+ this.profile +'/sales/customers',json);
+          
         }
 
 

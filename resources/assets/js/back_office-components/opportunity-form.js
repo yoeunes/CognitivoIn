@@ -63,31 +63,9 @@ Vue.component('opportunity-form',
       var app = this;
       var api = null;
 
+  app.$parent.onSave('/back-office/'+ this.profile +'/sales/opportunities',json);
 
-
-      axios({
-        method: 'post',
-        url: '/back-office/'+ this.profile +'/sales/opportunities',
-        responseType: 'json',
-        data: json
-
-      }).then(function (response)
-      {
-        if (response.status = 200 )
-        {
-          app.onReset(isnew);
-          app.$parent.onList('items',4.5);
-        }
-        else
-        {
-          alert('Something Went Wrong...')
-        }
-      })
-      .catch(function (error)
-      {
-        console.log(error);
-        console.log(error.response);
-      });
+    
     },
     getStages: function(data)
     {

@@ -106,30 +106,8 @@ Vue.component('pipeline-form',
       var api = null;
 
 
-
-      axios({
-        method: 'post',
-        url: '/back-office/'+ this.profile +'/sales/pipelines',
-        responseType: 'json',
-        data: json
-
-      }).then(function (response)
-      {
-        if (response.status = 200 )
-        {
-          app.onReset(isnew);
-          app.$parent.onList('pipelines',4.4);
-        }
-        else
-        {
-          alert('Something Went Wrong...')
-        }
-      })
-      .catch(function (error)
-      {
-        console.log(error);
-        console.log(error.response);
-      });
+      app.$parent.onSave('/back-office/'+ this.profile +'/sales/pipelines',json);
+      
     }
 
 

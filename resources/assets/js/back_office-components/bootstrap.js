@@ -5,3 +5,4 @@ require('./pipeline-form');
 require('./pipelinestage-form');
 require('./opportunity-form');
 require('./order-form');
+require('./location-form');

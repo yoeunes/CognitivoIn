@@ -44,7 +44,7 @@ Route::group(['middleware' => 'auth:api'], function ()
 
             Route::prefix('list/{skip}')->group(function ()
             {
-                Route::get('locations', 'LocationController@index');
+                Route::get('locations/{filterBy}', 'LocationController@index');
 
                 Route::get('customers/{filterBy}', 'CustomerController@index');
                 Route::get('suppliers/{filterBy}', 'SupplierController@index');

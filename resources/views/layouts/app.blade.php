@@ -47,11 +47,11 @@
     <div id="app" class="main-content-boxed">
         <main id="main-container">
             <div>
-                <model profile="{{ request()->route('profile')->slug }}" inline-template>
+
                     <div>
                         @yield('main')
                     </div>
-                </model>
+              
             </div>
         </main>
     </div>

@@ -54332,6 +54332,7 @@ __webpack_require__(60);
 __webpack_require__(61);
 __webpack_require__(62);
 __webpack_require__(63);
+__webpack_require__(106);
 
 /***/ }),
 /* 58 */
@@ -54411,23 +54412,7 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('item-form', {
       var app = this;
       var api = null;
 
-      __WEBPACK_IMPORTED_MODULE_2_axios___default()({
-        method: 'post',
-        url: '/back-office/' + this.profile + '/sales/items',
-        responseType: 'json',
-        data: json
-
-      }).then(function (response) {
-        if (response.status = 200) {
-          app.onReset(isnew);
-          app.$parent.onList('items', 4.2);
-        } else {
-          alert('Something Went Wrong...');
-        }
-      }).catch(function (error) {
-        console.log(error);
-        console.log(error.response);
-      });
+      app.$parent.onSave('/back-office/' + this.profile + '/sales/items', json);
     }
 
   },
@@ -54517,22 +54502,7 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('customer-form', {
         onSave: function onSave(json, isnew) {
             var app = this;
             var api = null;
-
-            __WEBPACK_IMPORTED_MODULE_2_axios___default()({
-                method: 'post',
-                url: '/back-office/' + this.profile + '/sales/customers',
-                responseType: 'json',
-                data: json
-
-            }).then(function (response) {
-                if (response.status = 200) {
-                    app.onReset(isnew);
-                    app.$parent.onList('customers', 4.2);
-                }
-            }).catch(function (error) {
-                console.log(error);
-                console.log(error.response);
-            });
+            app.$parent.onSave('/back-office/' + this.profile + '/sales/customers', json);
         }
 
     },
@@ -54640,23 +54610,7 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('pipeline-form', {
       var app = this;
       var api = null;
 
-      __WEBPACK_IMPORTED_MODULE_2_axios___default()({
-        method: 'post',
-        url: '/back-office/' + this.profile + '/sales/pipelines',
-        responseType: 'json',
-        data: json
-
-      }).then(function (response) {
-        if (response.status = 200) {
-          app.onReset(isnew);
-          app.$parent.onList('pipelines', 4.4);
-        } else {
-          alert('Something Went Wrong...');
-        }
-      }).catch(function (error) {
-        console.log(error);
-        console.log(error.response);
-      });
+      app.$parent.onSave('/back-office/' + this.profile + '/sales/pipelines', json);
     }
 
   },
@@ -54831,23 +54785,7 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('opportunity-form', {
       var app = this;
       var api = null;
 
-      __WEBPACK_IMPORTED_MODULE_2_axios___default()({
-        method: 'post',
-        url: '/back-office/' + this.profile + '/sales/opportunities',
-        responseType: 'json',
-        data: json
-
-      }).then(function (response) {
-        if (response.status = 200) {
-          app.onReset(isnew);
-          app.$parent.onList('items', 4.5);
-        } else {
-          alert('Something Went Wrong...');
-        }
-      }).catch(function (error) {
-        console.log(error);
-        console.log(error.response);
-      });
+      app.$parent.onSave('/back-office/' + this.profile + '/sales/opportunities', json);
     },
     getStages: function getStages(data) {
       var app = this;
@@ -56446,7 +56384,7 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('model', {
             var _this2 = this;
 
             var app = this;
-            __WEBPACK_IMPORTED_MODULE_3_axios___default.a.put('/api/cruds/${id}', { color: color }).then(function () {
+            __WEBPACK_IMPORTED_MODULE_3_axios___default.a.post($url, $data).then(function () {
                 app.showList = true;
                 _this2.$swal({
                     position: 'top-end',
@@ -58706,6 +58644,89 @@ if (false) {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 93 */,
+/* 94 */,
+/* 95 */,
+/* 96 */,
+/* 97 */,
+/* 98 */,
+/* 99 */,
+/* 100 */,
+/* 101 */,
+/* 102 */,
+/* 103 */,
+/* 104 */,
+/* 105 */,
+/* 106 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vue_sweetalert__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vue_sweetalert___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_vue_sweetalert__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_axios__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_axios__);
+
+
+
+
+__WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('location-form', {
+
+    props: ['profile'],
+    data: function data() {
+        return {
+
+            id: 0,
+            name: '',
+            address: '',
+            city: '',
+            state: ''
+
+        };
+    },
+
+
+    methods: {
+
+        onEdit: function onEdit(data) {
+
+            var app = this;
+            app.id = data.id;
+            app.name = data.name;
+            app.address = data.address;
+            app.city = data.city;
+            app.state = data.state;
+            app.$parent.showList = false;
+        },
+
+        onReset: function onReset(isnew) {
+            var app = this;
+            app.id = null;
+            app.name = '';
+            app.address = '';
+            app.city = '';
+            app.state = '';
+            if (isnew == false) {
+                app.$parent.showList = true;
+            }
+        },
+
+        //Takes Json and uploads it into Sales Invoice API for inserting. Since this is a new, it should directly insert without checking.
+        //For updates code will be different and should use the ID's palced int he Json.
+        onSave: function onSave(json, isnew) {
+            var app = this;
+            var api = null;
+            app.$parent.onSave('/back-office/' + this.profile + '/sales/locations', json);
+        }
+
+    },
+
+    mounted: function mounted() {}
+});
 
 /***/ })
 /******/ ]);

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Location;
+use App\Profile;
 use Illuminate\Http\Request;
 
 class LocationController extends Controller
@@ -12,9 +13,9 @@ class LocationController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Profile $profile,$skip)
     {
-        $location = Location->skip($skip)
+        $location = Location::skip($skip)
           ->take(100)->get();
 
         return response()->json($location);
@@ -70,9 +71,9 @@ class LocationController extends Controller
      * @param  \App\Location  $location
      * @return \Illuminate\Http\Response
      */
-    public function edit(Location $location)
+    public function edit(Profile $profiel,Location $location)
     {
-        //
+        return response()->json($location);
     }
 
     /**
