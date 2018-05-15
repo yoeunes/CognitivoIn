@@ -478,10 +478,14 @@
                         </div>
 
                         <div v-else-if="showModule === 2.1">
-                            @include('back_office/profile')
+                            @include('back_office/configs/profile')
                         </div>
 
                         <div v-else-if="showModule === 2.3">
+                            @include('back_office/configs/teams')
+                        </div>
+
+                        <div v-else-if="showModule === 2.2">
                             @include('back_office/configs/locations')
                         </div>
 

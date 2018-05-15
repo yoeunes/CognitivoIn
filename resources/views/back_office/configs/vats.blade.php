@@ -1,12 +1,10 @@
 
-
 <!-- Page Content -->
 <div class="content">
 
     <!-- Overview -->
     <h2 class="content-heading"><b>Vat</b> | Statistics</h2>
     <div class="row gutters-tiny">
-
 
         <!-- Add Product -->
         <div class="col-md-6 col-xl-3">

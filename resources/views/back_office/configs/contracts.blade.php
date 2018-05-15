@@ -4,9 +4,10 @@
 <div class="content">
 
     <!-- Overview -->
-    <h2 class="content-heading"><b>Contract</b> | Statistics</h2>
+    <h2 class="content-heading">
+        <b>Contract</b> | Statistics
+    </h2>
     <div class="row gutters-tiny">
-
 
         <!-- Add Product -->
         <div class="col-md-6 col-xl-3">
@@ -33,7 +34,7 @@
     <div class="block block-fx-shadow">
         <div class="block-content">
             <div v-if="showList">
-               @include('back_office/configs/contracts/list')
+                @include('back_office/configs/contracts/list')
             </div>
             <div v-else>
                 @include('back_office/configs/contracts/form')

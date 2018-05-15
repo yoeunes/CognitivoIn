@@ -78,9 +78,11 @@ Vue.component('model',
         onList($url, $filter)
         {
             var app = this;
+            app.showList = true;
             app.skip = 0;
             app.url = $url;
             app.showModule = $filter;
+
             app.list = [];
 
             if (app.$refs.infiniteLoading != null)

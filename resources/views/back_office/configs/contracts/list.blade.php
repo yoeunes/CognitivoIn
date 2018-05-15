@@ -1,9 +1,7 @@
 <div>
-<!-- Products Table -->
-<div class="block block-rounded">
-    <div class="block-content">
-        {{-- <infinity-item  baseurl="back-office/list-items"  profile="{{ request()->route('profile')->slug }}" inline-template> --}}
-        <div>
+    <!-- Products Table -->
+    <div class="block block-rounded">
+        <div class="block-content">
             <table class="table table-borderless table-striped">
                 <thead>
                     <tr>
@@ -32,8 +30,6 @@
             </table>
             @include('layouts/infinity-loading')
         </div>
-        {{-- </infinity-item> --}}
     </div>
-</div>
 </div>
 <!-- END Products Table -->

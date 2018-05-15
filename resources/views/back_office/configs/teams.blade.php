@@ -4,7 +4,7 @@
 <div class="content">
 
     <!-- Overview -->
-    <h2 class="content-heading"><b>Shops & Locations</b> | Statistics</h2>
+    <h2 class="content-heading"><b>Teams & Followers</b> | Statistics</h2>
     <div class="row gutters-tiny">
 
         <!-- Add Product -->
@@ -20,7 +20,7 @@
                         <div class="font-size-h2 font-w700 mb-0 text-success">
                             <i class="fa fa-plus"></i>
                         </div>
-                        <div class="font-size-sm font-w600 text-uppercase text-muted">New Location</div>
+                        <div class="font-size-sm font-w600 text-uppercase text-muted">Add Team Member</div>
                     </div>
                 </div>
             </a>

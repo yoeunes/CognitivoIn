@@ -8,7 +8,7 @@
                         <th style="width: 100px;">ID</th>
                         <th class="d-none d-sm-table-cell">@lang('global.Name')</th>
                         <th>@lang('global.Address')</th>
-                        <th class="d-none d-md-table-cell">@lang('global.City')</th>
+                        <th class="d-none d-md-table-cell">@lang('global.Role')</th>
                         <th class="text-right">@lang('global.Actions')</th>
                     </tr>
                 </thead>
