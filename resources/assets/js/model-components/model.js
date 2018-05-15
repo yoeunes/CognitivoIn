@@ -148,11 +148,10 @@ Vue.component('model',
         {
             var app = this;
 
-            axios.put('/api/cruds/${id}', { color })
+            axios.post($url, $data)
             .then(() =>
             {
                 //TODO run code to clean data.
-                app.showList = false;
                 this.$swal({
                     position: 'top-end',
                     type: 'success',
@@ -160,6 +159,8 @@ Vue.component('model',
                     showConfirmButton: false,
                     timer: 1500
                 })
+
+                app.showList = true;
             })
             .catch(error => {
                 console.log(error);
@@ -222,8 +223,6 @@ Vue.component('model',
                 axios.post('/api/' + this.profile + '/back-office/' + app.url + '/' + $data.id + '/approve', $data)
                 .then(() =>
                 {
-                    app.showList = true;
-
                     this.$swal({
                         position: 'top-end',
                         type: 'success',
@@ -231,6 +230,8 @@ Vue.component('model',
                         showConfirmButton: false,
                         timer: 1500
                     })
+
+                    app.showList = true;
                 })
                 .catch(error => {
                     console.log(error);
@@ -254,7 +255,7 @@ Vue.component('model',
                 confirmButtonText: 'Yes, annull it!'
             }).then((result) => {
                 //Code to annull
-                axios.post('/api/' + this.profile + '/back-office/' + app.url + '/' + $data.id + '/approve', $data)
+                axios.post('/api/' + this.profile + '/back-office/' + app.url + '/' + $data.id + '/annull', $data)
                 .then(() =>
                 {
                     this.$swal({
