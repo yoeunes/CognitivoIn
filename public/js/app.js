@@ -56306,10 +56306,11 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('model', {
             app.showList = 1;
         },
         infiniteHandler: function infiniteHandler($state) {
+            var _this = this;
+
             var app = this;
 
             if (app.url != '') {
-
                 __WEBPACK_IMPORTED_MODULE_3_axios___default.a.get('/api/' + this.profile + '/back-office/list/' + app.skip + '/' + app.url + '/' + app.filterListBy, {
                     params: {
                         page: app.list.length / this.pageSize + 1
@@ -56327,10 +56328,10 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('model', {
                     } else {
                         $state.complete();
                     }
-                }).catch({
-                    //$state.complete();
+                }).catch(function (error) {
+                    console.log(error);
+                    _this.$swal('Error trying to save record.');
                 });
-                console.log(app.list);
             }
         },
 
@@ -56351,18 +56352,17 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('model', {
             app.showList = false;
         },
         onEdit: function onEdit($data) {
-            var _this = this;
+            var _this2 = this;
 
             var app = this;
             app.showList = false;
             __WEBPACK_IMPORTED_MODULE_3_axios___default.a.get('/api/' + this.profile + '/back-office/' + app.url + '/' + $data.id + '/edit').then(function (_ref2) {
                 var data = _ref2.data;
 
-
                 app.$children[0].onEdit(data);
             }).catch(function (error) {
                 console.log(error);
-                _this.$swal('Error trying to edit record.');
+                _this2.$swal('Error trying to edit record.');
             });
         },
         onCancel: function onCancel($data) {
@@ -56381,39 +56381,46 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('model', {
             });
         },
         onSave: function onSave($url, $data) {
-            var _this2 = this;
+            var _this3 = this;
 
             var app = this;
             __WEBPACK_IMPORTED_MODULE_3_axios___default.a.post($url, $data).then(function () {
                 app.showList = true;
-                _this2.$swal({
-                    position: 'top-end',
-                    type: 'success',
-                    title: 'Your work has been saved',
-                    showConfirmButton: false,
-                    timer: 1500
-                });
-            }).catch({});
-        },
-        onSaveCreate: function onSaveCreate($url, $data) {
-            var _this3 = this;
-
-            var app = this;
-
-            __WEBPACK_IMPORTED_MODULE_3_axios___default.a.put('/api/cruds/${id}', { color: color }).then(function () {
-                //TODO run code to clean data.
-                app.showList = false;
                 _this3.$swal({
                     position: 'top-end',
                     type: 'success',
-                    title: 'Your work has been saved',
+                    title: 'Awsome! Your work has been saved',
                     showConfirmButton: false,
                     timer: 1500
                 });
-            }).catch({});
+            }).catch(function (error) {
+                console.log(error);
+                _this3.$swal('Error trying to save record.');
+            });
+        },
+        onSaveCreate: function onSaveCreate($url, $data) {
+            var _this4 = this;
+
+            var app = this;
+
+            __WEBPACK_IMPORTED_MODULE_3_axios___default.a.post($url, $data).then(function () {
+                //TODO run code to clean data.
+                _this4.$swal({
+                    position: 'top-end',
+                    type: 'success',
+                    title: 'Awsome! Your work has been saved',
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+
+                app.showList = true;
+            }).catch(function (error) {
+                console.log(error);
+                _this4.$swal('Error trying to save record.');
+            });
         },
         onDelete: function onDelete($url, $data) {
-            var _this4 = this;
+            var _this5 = this;
 
             var app = this;
 
@@ -56426,25 +56433,32 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('model', {
                 cancelButtonColor: '#d33',
                 confirmButtonText: 'Yes, delete it!'
             }).then(function (result) {
-                __WEBPACK_IMPORTED_MODULE_3_axios___default.a.delete('/api/' + _this4.profile + '/back-office/' + _this4.url, {
-                    params: { $data: _this4.data.ID }
+                __WEBPACK_IMPORTED_MODULE_3_axios___default.a.delete('/api/' + _this5.profile + '/back-office/' + _this5.url, {
+                    params: { $data: _this5.data.ID }
                 }).then(function () {
-                    var index = _this4.list.findIndex(function (crud) {
+
+                    var index = _this5.list.findIndex(function (crud) {
                         return list.ID === ID;
                     });
-                    _this4.list.splice(index, 1);
 
-                    _this4.$swal({
+                    _this5.list.splice(index, 1);
+
+                    _this5.$swal({
                         position: 'top-end',
                         type: 'success',
                         title: 'The record has been deleted',
                         showConfirmButton: false,
                         timer: 750
                     });
-                }).catch({});
+                }).catch(function (error) {
+                    console.log(error);
+                    _this5.$swal('Error trying to delete record.');
+                });
             });
         },
-        onApprove: function onApprove($url, $data) {
+        onApprove: function onApprove($data) {
+            var _this6 = this;
+
             var app = this;
 
             swal({
@@ -56456,10 +56470,27 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('model', {
                 cancelButtonColor: '#d33',
                 confirmButtonText: 'Yes, approve it!'
             }).then(function (result) {
+
+                __WEBPACK_IMPORTED_MODULE_3_axios___default.a.post('/api/' + _this6.profile + '/back-office/' + app.url + '/' + $data.id + '/approve', $data).then(function () {
+                    _this6.$swal({
+                        position: 'top-end',
+                        type: 'success',
+                        title: 'Awsome! Your record has been approved',
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+
+                    app.showList = true;
+                }).catch(function (error) {
+                    console.log(error);
+                    _this6.$swal('Error trying to approve record.');
+                });
                 //Code to approve
             });
         },
         onAnnull: function onAnnull($url, $data) {
+            var _this7 = this;
+
             var app = this;
 
             swal({
@@ -56472,6 +56503,20 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('model', {
                 confirmButtonText: 'Yes, annull it!'
             }).then(function (result) {
                 //Code to annull
+                __WEBPACK_IMPORTED_MODULE_3_axios___default.a.post('/api/' + _this7.profile + '/back-office/' + app.url + '/' + $data.id + '/annull', $data).then(function () {
+                    _this7.$swal({
+                        position: 'top-end',
+                        type: 'success',
+                        title: 'Awsome! Your record has been annulled',
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+
+                    app.showList = true;
+                }).catch(function (error) {
+                    console.log(error);
+                    _this7.$swal('Error trying to annull record.');
+                });
             });
         }
     },
