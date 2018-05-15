@@ -16,9 +16,9 @@ class PipelineStageController extends Controller
     */
     public function index(Profile $profile)
     {
-      $pipelinestages = PipelineStage::get();
+        $pipelinestages = PipelineStage::get();
 
-      return response()->json($pipelinestages);
+        return response()->json($pipelinestages);
     }
     public function get_pipelinestages(Profile $profile)
     {
@@ -28,20 +28,20 @@ class PipelineStageController extends Controller
     public function list_pipelinestages(Profile $profile,$skip)
     {
 
-      $pipelinestages = PipelineStage::skip($skip)
+        $pipelinestages = PipelineStage::skip($skip)
         ->take(100)->get();
 
-      return response()->json($pipelinestages);
+        return response()->json($pipelinestages);
     }
     public function list_pipelinestagesByID(Profile $profile,$id)
     {
 
 
-      $pipelinestage = PipelineStage::where('id',$id)
+        $pipelinestage = PipelineStage::where('id',$id)
         ->get();
 
 
-      return response()->json($pipelinestage);
+        return response()->json($pipelinestage);
     }
 
 
@@ -67,7 +67,19 @@ class PipelineStageController extends Controller
         $pipelinestage = $request->stage_id == 0 ? new PipelineStage() :
         PipelineStage::where('id',$request->stage_id)->first();;
 
-        $pipelinestage->pipeline_id = $request->id;
+        if ($request->id==0) {
+            $pipeline= new Pipeline();
+            $pipeline->profile_id = $profile->id;
+            $pipeline->name = $request->name;
+            $pipeline->is_active = true;
+            $pipeline->save();
+
+            $pipelinestage->pipeline_id = $pipeline->id;
+        }
+        else {
+            $pipelinestage->pipeline_id = $request->id;
+        }
+
 
         $pipelinestage->name = $request->stage_name;
 
@@ -77,7 +89,7 @@ class PipelineStageController extends Controller
 
         $pipelinestage->save();
 
-              return response()->json(PipelineStage::where('pipeline_id',$request->id)->get(),200);
+        return response()->json(PipelineStage::where('pipeline_id',$pipeline->id)->get(),200);
     }
 
     /**
@@ -125,6 +137,6 @@ class PipelineStageController extends Controller
         $pipeline = Pipeline::where('id',$pipelinestage->pipeline_id)->first();
 
         $pipelinestage->delete();
-  return response()->json('200',200);
+        return response()->json('200',200);
     }
 }

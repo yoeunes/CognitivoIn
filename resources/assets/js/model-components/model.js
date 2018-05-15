@@ -140,6 +140,7 @@ Vue.component('model',
             })
             .catch(error => {
                 console.log(error);
+                console.log(error.response);
                 this.$swal('Error trying to save record.');
             });
         },

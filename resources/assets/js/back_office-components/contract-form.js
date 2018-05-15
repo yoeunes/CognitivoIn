@@ -3,19 +3,20 @@ import VueSweetAlert from 'vue-sweetalert';
 import axios from 'axios';
 
 
-Vue.component('pipeline-form',
+Vue.component('contract-form',
 {
+
   props: ['profile'],
   data() {
     return {
 
       id: 0,
       name:'',
-      stages:[],
-      showStage:true,
-      stage_id:0,
-      stage_name:'',
-      stage_sequence:''
+      contractdetails:[],
+      showDetail:true,
+      detail_id:0,
+      offset:'',
+      percent:''
 
 
     }
@@ -28,17 +29,17 @@ Vue.component('pipeline-form',
     onCreate()
     {
       var app = this;
-      app.showStage = false;
+      app.showDetail = false;
     },
-    onEditStage(data)
+    onEditDetail(data)
     {
       var app = this;
-      app.showStage = false;
-      app.stage_id=data.id;
-      app.stage_name=data.name;
-      app.stage_sequence=data.sequence;
+      app.showDetail = false;
+      app.offset=data.coefficient;
+      app.percent=data.percent;
+      app.detail_id=data.id;
     },
-    onStageSave: function(json,isnew)
+    onDetailSave: function(json,isnew)
     {
       var app = this;
       var api = null;
@@ -47,20 +48,22 @@ Vue.component('pipeline-form',
 
       axios({
         method: 'post',
-        url: '/back-office/'+ this.profile +'/sales/pipelinestages',
+        url: '/back-office/'+ this.profile +'/sales/contractdetail',
         responseType: 'json',
         data: json
 
       }).then(function (response)
       {
+
         if (response.status = 200 )
         {
-          app.showStage = true;
-          app.stages=[];
+          app.showDetail = true;
+          app.contractdetails=[];
+
           for (var i = 0; i < response.data.length; i++) {
-            app.stages.push(response.data[i]);
-        
-            app.id=response.data[i].pipeline_id;
+            app.contractdetails.push(response.data[i]);
+            
+            app.id=response.data[i].contract_id;
           }
         }
         else
@@ -74,15 +77,15 @@ Vue.component('pipeline-form',
         console.log(error.response);
       });
     },
-
     onEdit: function(data)
     {
-      console.log(data)
+
       var app = this;
       app.id=data.id;
       app.name=data.name;
-      for (var i = 0; i < data.stages.length; i++) {
-        app.stages.push(data.stages[i]);
+      app.contractdetails=[];
+      for (var i = 0; i < data.details.length; i++) {
+        app.contractdetails.push(data.details[i]);
       }
 
       app.$parent.showList = false;
@@ -92,23 +95,20 @@ Vue.component('pipeline-form',
     {
       var app = this;
       app.id=null;
-      app.name=null;
-
+      app.name='';
       if (isnew == false)
       {
-        app.$parent.showList = true;
+        app.$parent.showList  = true;
       }
     },
 
-    //Takes Json and uploads it into Sales INvoice API for inserting. Since this is a new, it should directly insert without checking.
+    //Takes Json and uploads it into Sales Invoice API for inserting. Since this is a new, it should directly insert without checking.
     //For updates code will be different and should use the ID's palced int he Json.
     onSave: function(json,isnew)
     {
       var app = this;
       var api = null;
-
-
-      app.$parent.onSave('/back-office/'+ this.profile +'/sales/pipelines',json);
+      app.$parent.onSave('/back-office/'+ this.profile +'/sales/contracts',json);
 
     }
 

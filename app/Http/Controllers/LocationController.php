@@ -37,7 +37,7 @@ class LocationController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Profile $profile,Request $request)
     {
         $location =  $request->id == 0 ? new Location() : Location::where('id', $request->id)->first();
         $location->profile_id = $profile->id;

@@ -14,7 +14,9 @@ Vue.component('location-form',
             name:'',
             address: '',
             city:'',
-            state:''
+            state:'',
+            country:'',
+            zip:''
 
 
         }

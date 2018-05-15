@@ -4,7 +4,7 @@
 <div class="content">
 
     <!-- Overview -->
-    <h2 class="content-heading"><b>Shops & Locations</b> | Statistics</h2>
+    <h2 class="content-heading"><b>Vat</b> | Statistics</h2>
     <div class="row gutters-tiny">
 
 
@@ -21,7 +21,7 @@
                         <div class="font-size-h2 font-w700 mb-0 text-success">
                             <i class="fa fa-plus"></i>
                         </div>
-                        <div class="font-size-sm font-w600 text-uppercase text-muted">New Location</div>
+                        <div class="font-size-sm font-w600 text-uppercase text-muted">New Vat</div>
                     </div>
                 </div>
             </a>
@@ -33,10 +33,10 @@
     <div class="block block-fx-shadow">
         <div class="block-content">
             <div v-if="showList">
-               @include('back_office/configs/locations/list')
+               @include('back_office/configs/vat/list')
             </div>
             <div v-else>
-                @include('back_office/configs/locations/form')
+                @include('back_office/configs/vat/form')
             </div>
         </div>
     </div>

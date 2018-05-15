@@ -87,7 +87,8 @@ class PipelineController extends Controller
     */
     public function edit(Profile $profile, Pipeline $pipeline)
     {
-        return response()->json($pipeline->with('stages')->first());
+
+        return response()->json(Pipeline::where('id',$pipeline->id)->with('stages')->first());
     }
 
     /**
