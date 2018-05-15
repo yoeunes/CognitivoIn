@@ -169,46 +169,52 @@
                                                 <span class="sidebar-mini-hide">Dashboard</span>
                                             </a>
                                         </li>
-                                        <li>
-                                            <a @click="showModule = 2" href="#">
-                                                <i class="si si-home"></i>
-                                                <span class="sidebar-mini-hide">Company Profile</span>
-                                            </a>
-                                        </li>
+
                                         <li>
                                             <a class="nav-submenu" data-toggle="nav-submenu" href="#">
                                                 <i class="si si-settings"></i>
-                                                <span class="sidebar-mini-hide">Config</span>
+                                                <span class="sidebar-mini-hide">Profile</span>
                                             </a>
                                             <ul>
                                                 <li>
-                                                    <a @click="onList('locations',3)" href="#">
-
+                                                    <a @click="showModule = 2.1" href="#">
+                                                        <span class="sidebar-mini-hide">Company Profile</span>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a @click="onList('locations', 2.2)" href="#">
                                                         <span class="sidebar-mini-hide">Shops &amp; Locations</span>
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a @click="onList('vats',3.1)" href="#">
-                                                        <span class="sidebar-mini-hide">Sales Tax</span>
+                                                    <a @click="onList('followers', 2.3)" href="#">
+                                                        <span class="sidebar-mini-hide">Teams & Followers</span>
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a @click="onList('contracts',3.2)" href="#">
+                                                    <a @click="onList('contracts', 2.4)" href="#">
                                                         <span class="sidebar-mini-hide">Contracts</span>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a @click="onList('vats', 2.5)" href="#">
+                                                        <span class="sidebar-mini-hide">Sales Tax</span>
                                                     </a>
                                                 </li>
                                             </ul>
                                         </li>
 
                                         <li>
-                                            <a @click="onList('items', 6.1)" href="#">
+                                            <a @click="onList('items', 5.1)" href="#">
                                                 <i class="si si-diamond"></i>
                                                 <span class="sidebar-mini-hide">Products & Services</span>
                                             </a>
                                         </li>
+
                                         <li class="nav-main-heading">
                                             <span class="sidebar-mini-hidden">Modules</span>
                                         </li>
+
                                         <li>
                                             <a class="nav-submenu" data-toggle="nav-submenu" href="#">
                                                 <i class="si si-paper-plane"></i>
@@ -216,30 +222,30 @@
                                             </a>
                                             <ul>
                                                 <li>
-                                                    <a @click="showModule = '4.1'" href="#">Dashboard</a>
+                                                    <a @click="showModule = '1.3'" href="#">Dashboard</a>
                                                 </li>
                                                 <li>
-                                                    <a @click="onList('customers',4.2)" href="#">Customers</a>
+                                                    <a @click="onList('customers', 3.1)" href="#">Customers</a>
                                                 </li>
                                                 <li>
-                                                    <a href="#">Promotions</a>
+                                                    <a @click="onList('promotions', 3.6)" href="#">Promotions</a>
                                                 </li>
                                                 <li>
                                                     <a  class="nav-submenu" data-toggle="nav-submenu" href="#">Opportunities</a>
                                                     <ul>
                                                         <li>
-                                                            <a @click="onList('pipelines',4.4)" href="#">Pipeline</a>
+                                                            <a @click="onList('pipelines', 3.3)" href="#">Pipeline</a>
                                                         </li>
                                                         <li>
-                                                            <a @click="onList('opportunities',4.5)" href="#">Opportunity</a>
+                                                            <a @click="onList('opportunities', 3.2)" href="#">Opportunity</a>
                                                         </li>
                                                     </ul>
                                                 </li>
                                                 <li>
-                                                    <a @click="onList('orders',4.6)" href="#">Orders</a>
+                                                    <a @click="onList('orders', 3.4)" href="#">Orders</a>
                                                 </li>
                                                 <li>
-                                                    <a @click="onList('accounts', 4.7)" href="#">Account Recievables</a>
+                                                    <a @click="onList('accounts', 3.5)" href="#">Account Recievables</a>
                                                 </li>
                                             </ul>
                                         </li>
@@ -250,13 +256,16 @@
                                             </a>
                                             <ul>
                                                 <li>
-                                                    <a @click="" href="#">Dashboard</a>
+                                                    <a @click="showModule = '1.4'" href="#">Dashboard</a>
                                                 </li>
                                                 <li>
-                                                    <a @click="" href="#">Suppliers</a>
+                                                    <a @click="onList('suppliers', 4.1)" href="#">Suppliers</a>
                                                 </li>
                                                 <li>
-                                                    <a @click="" href="#">Purchases</a>
+                                                    <a @click="onList('purchases', 4.2)" href="#">Orders</a>
+                                                </li>
+                                                <li>
+                                                    <a @click="onList('accounts', 4.3)" href="#">Account Payables</a>
                                                 </li>
                                             </ul>
                                         </li>
@@ -267,8 +276,26 @@
                                             </a>
                                             <ul>
                                                 <li>
-                                                    <a @click="onList('items', 6.1)" href="#">
+                                                    <a @click="" href="#">Dashboard</a>
+                                                </li>
+                                                <li>
+                                                    <a @click="onList('items', 5.1)" href="#">
                                                         <span class="sidebar-mini-hide">Products & Services</span>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a @click="onList('stock', 5.2)" href="#">
+                                                        <span class="sidebar-mini-hide">Stock Levels</span>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a @click="onList('items', 5.3)" href="#">
+                                                        <span class="sidebar-mini-hide">Movements</span>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a @click="onList('items', 5.4)" href="#">
+                                                        <span class="sidebar-mini-hide">Inventories</span>
                                                     </a>
                                                 </li>
                                             </ul>
@@ -283,16 +310,16 @@
                                                     <a @click="" href="#">Dashboard</a>
                                                 </li>
                                                 <li>
-                                                    <a @click="onList('accounts', 7.1)" href="#">Accounts</a>
+                                                    <a @click="onList('accounts', 6.1)" href="#">Accounts</a>
                                                 </li>
                                                 <li>
-                                                    <a @click="onList('accounts', 3.3)" href="#">Account Recievables</a>
+                                                    <a @click="onList('accounts', 3.5)" href="#">Account Recievables</a>
                                                 </li>
                                                 <li>
                                                     <a @click="onList('accounts', 4.3)" href="#">Account Payables</a>
                                                 </li>
                                                 <li>
-                                                    <a @click="onList('accounts', 7.1)" href="#">Account Movements</a>
+                                                    <a @click="onList('accounts', 6.2)" href="#">Account Movements</a>
                                                 </li>
                                             </ul>
                                         </li>
@@ -450,42 +477,39 @@
                             @include('back_office/dashboard')
                         </div>
 
-                        <div v-else-if="showModule === 2">
+                        <div v-else-if="showModule === 2.1">
                             @include('back_office/profile')
                         </div>
 
-                        <div v-else-if="showModule === 3">
-
+                        <div v-else-if="showModule === 2.3">
                             @include('back_office/configs/locations')
                         </div>
 
-                        <div v-else-if="showModule === 3.1">
-
+                        <div v-else-if="showModule === 2.5">
                             @include('back_office/configs/vats')
                         </div>
 
-                        <div v-else-if="showModule === 3.2">
-
+                        <div v-else-if="showModule === 2.4">
                             @include('back_office/configs/contracts')
                         </div>
 
-                        <div v-else-if="showModule === 6.1">
+                        <div v-else-if="showModule === 5.1">
                             @include('back_office/inventory/items')
                         </div>
 
-                        <div v-else-if="showModule === 4.2">
+                        <div v-else-if="showModule === 3.1">
                             @include('back_office/sales/customers')
                         </div>
 
-                        <div v-else-if="showModule === 4.4">
+                        <div v-else-if="showModule === 3.3">
                             @include('back_office/sales/pipeline')
                         </div>
 
-                        <div v-else-if="showModule === 4.5">
+                        <div v-else-if="showModule === 3.2">
                             @include('back_office/sales/opportunity')
                         </div>
 
-                        <div v-else-if="showModule === 4.6">
+                        <div v-else-if="showModule === 3.4">
                             @include('back_office/sales/orders')
                         </div>
                     </div>

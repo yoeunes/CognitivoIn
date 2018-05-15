@@ -65,8 +65,11 @@ Vue.component('model',
                     }
                 })
                 .catch(error => {
+                    //Stop loading with one error.
+                    $state.complete();
+                    //Log error for help
                     console.log(error);
-                    this.$swal('Error trying to save record.');
+                    this.$swal('Error trying to load records.');
                 });
             }
         },
@@ -79,6 +82,7 @@ Vue.component('model',
             app.url = $url;
             app.showModule = $filter;
             app.list = [];
+
             if (app.$refs.infiniteLoading != null)
             {
                 app.$refs.infiniteLoading.attemptLoad();
@@ -139,7 +143,6 @@ Vue.component('model',
                 })
             })
             .catch(error => {
-                console.log(error);
                 console.log(error.response);
                 this.$swal('Error trying to save record.');
             });
