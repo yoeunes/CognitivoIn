@@ -72,15 +72,15 @@ Route::group(['middleware' => 'auth:api'], function ()
                 Route::get('opportunities/{query}', 'OpportunityController@search');
                 Route::get('orders/{query}', 'OrderController@search');
                 //TODO
-                Route::get('account-receivables/{query}', 'AccountReceivableController@search');
+                Route::post('account-receivables', 'AccountReceivableController@search');
             });
 
             //Annull movements on specific modules
             Route::prefix('approve')->group(function ()
             {
-                Route::post('orders/{id}', 'OrderController@annull');
+                Route::post('orders/{id}', 'OrderController@approve');
                 //TODO
-                Route::post('payment-made', 'AccountPayableController@store');
+                Route::post('payment-made', 'AccountMovementController@store');
                 Route::post('payment-recieved', 'AccountReceivableController@store');
             });
 

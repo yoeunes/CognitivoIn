@@ -47,7 +47,7 @@ class AccountPayableController extends Controller
 
     if (isset($account))
     {
-      $account = new Account()
+      $account = new Account();
       $account->type=$request['PaymentType'];
       $account->profile_id = $profile->id;
       $account->name = "Cash Account for " . $profile->name;
@@ -177,9 +177,9 @@ class AccountPayableController extends Controller
     return response()->json('Resource not found', 404);
   }
 
-  public function annull(Request $request, Profile $profile)
+  public function annull(Request $request, Profile $profile,$id)
   {
-    $accountMovement = AccountMovement::find($request['PaymentReferenceID'])
+    $accountMovement = AccountMovement::where('id',$id)
     ->with('account')
     ->first();
 
