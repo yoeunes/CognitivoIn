@@ -58,8 +58,7 @@ class AccountMovementController extends Controller
 
 
 
-        $schedual = Scheduals::find($request['InvoiceReference']);
-
+        $schedual = Scheduals::where('id',$request['InvoiceReference'])->first();
         if (isset($schedual))
         {
             $accountMovement = new AccountMovement();
