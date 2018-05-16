@@ -8,13 +8,11 @@
     </a>
 </div>
 
-{{-- <infinity-pipeline profile="{{ request()->route('profile')->slug }}" baseurl="back-office/list-pipelines" inline-template> --}}
-    <div>
-        <div v-if="showList">
-            @include('back_office/sales/pipeline/list')
-        </div>
-        <div v-else>
-            @include('back_office/sales/pipeline/form')
-        </div>
+<div>
+    <div v-if="showList">
+        @include('back_office/sales/pipeline/list')
     </div>
-{{-- </infinity-pipeline> --}}
+    <div v-else>
+        @include('back_office/sales/pipeline/form')
+    </div>
+</div>
