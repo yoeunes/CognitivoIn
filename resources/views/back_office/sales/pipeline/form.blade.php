@@ -20,7 +20,7 @@
             <label for="product-name">Stage</label>
             <input class="form-control" type="text" v-model="stage_name">
 
-            <button v-on:click="onStageSave($data,false)" class="btn btn-primary">
+            <button v-on:click="onStageSave($data, false)" class="btn btn-primary">
                 @lang('global.SaveStage')
             </button>
         </div>
