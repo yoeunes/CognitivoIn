@@ -24,7 +24,7 @@ class CustomerController extends Controller
     {
 
         $customers = Relationship::GetCustomers()
-      
+
         ->get();
 
         return response()->json($customers);
@@ -38,6 +38,7 @@ class CustomerController extends Controller
     */
     public function store(Request $request, Profile $profile)
     {
+      dd('sdf');
 
         $relationship =  $request->id == 0 ? new Relationship() : Relationship::where('id', $request->id)->first();
         $relationship->supplier_id = $profile->id;
