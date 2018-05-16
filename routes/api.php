@@ -72,7 +72,7 @@ Route::group(['middleware' => 'auth:api'], function ()
                 Route::get('opportunities/{query}', 'OpportunityController@search');
                 Route::get('orders/{query}', 'OrderController@search');
                 //TODO
-                Route::post('account-receivables', 'AccountReceivableController@search');
+                Route::get('account-receivables/{name}/{taxid}', 'AccountReceivableController@search');
             });
 
             //Annull movements on specific modules

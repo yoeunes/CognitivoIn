@@ -180,56 +180,58 @@ class AccountReceivableController extends Controller
         return response()->json('Resource not found', 404);
     }
 
-    public function search(Request $request, Profile $profile)
+    public function search(Request $request, Profile $profile,$name,$taxid)
     {
-
+    $return = [];
         //return payment schedual. history of unpaid debt. by Customer TaxID
         if ($request->Type==1) {
             $relationship = Relationship::GetCustomers()
-            ->where('customer_alias',$request->PartnerName)
-            ->orWhere('customer_taxid',$request->PartnerTaxID)->first();
+            ->where('customer_alias',$name)
+            ->orWhere('customer_taxid',$taxid)->first();
 
         }
         else {
             $relationship = Relationship::GetSuppliers()
-            ->where('supplier_alias',$request->PartnerName)
-            ->orWhere('supplier_taxid',$request->PartnerTaxID)->first();
+            ->where('supplier_alias',$name)
+            ->orWhere('supplier_taxid',$taxid)->first();
         }
+        if (isset($relationship)) {
+            $schedules = Scheduals::where('relationship_id', $relationship->id)
+            ->leftjoin('account_movements', 'scheduals.id', 'account_movements.schedual_id')
+            ->select(DB::raw('max(scheduals.currency) as code'),
+            DB::raw('max(scheduals.credit)-sum(account_movements.debit) as value'),
+            DB::raw('max(scheduals.id) as InvoiceNumber'),
+            DB::raw('max(scheduals.date) as InvoiceDate'),
+            DB::raw('max(scheduals.date_exp) as Deadline'),
+            DB::raw('max(scheduals.reference) as Reference'))
+            ->groupBy('account_movements.schedual_id')
+            ->get();
 
-        $schedules = Scheduals::where('relationship_id', $relationship->id)
-        ->leftjoin('account_movements', 'scheduals.id', 'account_movements.schedual_id')
-        ->select(DB::raw('max(scheduals.currency) as code'),
-        DB::raw('max(scheduals.credit)-sum(account_movements.debit) as value'),
-        DB::raw('max(scheduals.id) as InvoiceNumber'),
-        DB::raw('max(scheduals.date) as InvoiceDate'),
-        DB::raw('max(scheduals.date_exp) as Deadline'),
-        DB::raw('max(scheduals.reference) as Reference'))
-        ->groupBy('account_movements.schedual_id')
-        ->get();
 
-        $return = [];
-        $values = [];
+            $values = [];
 
-        for ($i = 0; $i < count($schedules) ; $i++)
-        {
-            $values[$i] = [
-                'CurrencyCode' => $schedules[$i]->code ,
-                'Value' => $schedules[$i]->value ,
-                'ReferenceCode' => $schedules[$i]->reference,
-                'InvoiceNumber' => $schedules[$i]->InvoiceNumber,
-                'InvoiceDate' => $schedules[$i]->InvoiceDate,
-                'Deadline' => $schedules[$i]->Deadline,
+            for ($i = 0; $i < count($schedules) ; $i++)
+            {
+                $values[$i] = [
+                    'CurrencyCode' => $schedules[$i]->code ,
+                    'Value' => $schedules[$i]->value ,
+                    'ReferenceCode' => $schedules[$i]->reference,
+                    'InvoiceNumber' => $schedules[$i]->InvoiceNumber,
+                    'InvoiceDate' => $schedules[$i]->InvoiceDate,
+                    'Deadline' => $schedules[$i]->Deadline,
+                ];
+            }
+
+            //for each currency requested, run loop and add into array
+
+            $return[] = [
+
+                'ReferenceName' => $name,
+                'ReferenceTaxID' => $taxid,
+                'Details' => $values
             ];
         }
 
-        //for each currency requested, run loop and add into array
-
-        $return[] = [
-
-            'ReferenceName' => $request->PartnerName,
-            'ReferenceTaxID' => $request->PartnerTaxID,
-            'Details' => $values
-        ];
 
         return response()->json($return, '200');
     }
