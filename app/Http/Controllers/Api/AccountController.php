@@ -153,7 +153,7 @@ class AccountController extends Controller
             $accountmovement->schedual_id = $schedual->id;
             $accountmovement->user_id = $relationship->id;
             $accountmovement->account_id = $account->id;
-            $accountmovement->type_id = $data['Type'];
+            $accountmovement->type = $data['Type'];
             $accountmovement->currency = 'PRY';
             $accountmovement->currency_rate = 1;
             $accountmovement->date = Carbon::now();
