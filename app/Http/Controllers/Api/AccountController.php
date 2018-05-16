@@ -151,7 +151,7 @@ class AccountController extends Controller
 
             $accountmovement = new AccountMovement();
             $accountmovement->schedual_id = $schedual->id;
-            $accountmovement->user_id = $relationship->id;
+            //$accountmovement->user_id = $relationship->id;
             $accountmovement->account_id = $account->id;
             $accountmovement->type = $data['Type'];
             $accountmovement->currency = 'PRY';
