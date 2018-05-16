@@ -137,7 +137,7 @@ class SocialAuthController extends Controller
     }
 
     // login the user
-  //  Auth::login($user, true);
+    Auth::login($user, true);
     Auth::attempt(['email' => $user->email, 'password' => $user->password])
     return $this->sendSuccessResponse();
   }
