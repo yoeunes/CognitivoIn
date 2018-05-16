@@ -25,6 +25,7 @@ Route::group(['middleware' => 'auth:api'], function ()
     {
         Route::prefix('back-office')->group(function ()
         {
+            Route::post('customers/store', 'CustomerController@store');
             Route::resources([
                 'locations' => 'LocationController',
                 'vats' => 'VatController',
