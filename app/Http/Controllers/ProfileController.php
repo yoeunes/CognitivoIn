@@ -150,7 +150,7 @@ class ProfileController extends Controller
     public function get_companys($id)
   {
     $user=User::where('profile_id',$id)->first();
-      return response()->json($user);
+      return response()->json($user,500);
     $companys = $user->profile->followings(\App\Profile::class)->where('role', '<', 4)->get();
 
     return response()->json($companys);
