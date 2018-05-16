@@ -119,7 +119,7 @@ class AccountController extends Controller
             //$order->code_expiry = $data['code_expiry'];
             $order->is_printed = $data['number'] != "" ? true : false;
             $order->date = Carbon::now();
-            $order->currency = 'PRY';
+            $order->currency = 'PYG';
             $order->currency_rate = 1;
             $order->save();
 
