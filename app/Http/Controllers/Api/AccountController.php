@@ -40,16 +40,16 @@ class AccountController extends Controller
     {
         //return payment schedual. history of unpaid debt. by Customer TaxID
 
-        $schedules = Scheduals::where('relationship_id', $request['id'])
-        ->leftjoin('account_movements', 'scheduals.id', 'account_movements.schedual_id')
-        ->select('scheduals.currency',
-        '(scheduals.credit) - sum(account_movements.debit * scheduals.rate) as value'),
-        'scheduals.id) as InvoiceNumber'),
-        'scheduals.date) as InvoiceDate'),
-        'scheduals.date_exp) as Deadline'),
-        'scheduals.reference) as Reference'))
-        ->groupBy('account_movements.schedual_id')
-        ->get();
+        // $schedules = Scheduals::where('relationship_id', $request['id'])
+        // ->leftjoin('account_movements', 'scheduals.id', 'account_movements.schedual_id')
+        // ->select('scheduals.currency',
+        // '(scheduals.credit) - sum(account_movements.debit * scheduals.rate) as value',
+        // 'scheduals.id as InvoiceNumber',
+        // 'scheduals.date as InvoiceDate',
+        // 'scheduals.date_exp as Deadline',
+        // 'scheduals.reference as Reference')
+        // ->groupBy('account_movements.schedual_id')
+        // ->get();
 
         $return = [];
         $values = [];
@@ -69,9 +69,7 @@ class AccountController extends Controller
         //for each currency requested, run loop and add into array
 
         $return[] = [
-            foreach ($variable as $value) {
-                // code...
-            }
+
             'ReferenceName' => $request['PartnerName'],
             'ReferenceTaxID' => $request['PartnerTaxID'],
             'Details' => $values
@@ -145,7 +143,7 @@ class AccountController extends Controller
 
             $schedual->save();
 
-            $account = Account::where('number', 1)->first() ?? new Account():
+            $account = Account::where('number', 1)->first() ?? new Account();
             $account->name = "Cash A/c Of " . $profile->name;
             $account->number = "1";
             $account->currency ='PRY';

@@ -38,7 +38,7 @@ class CustomerController extends Controller
     */
     public function store(Request $request, Profile $profile)
     {
-      
+
 
         $relationship =  $request->id == 0 ? new Relationship() : Relationship::where('id', $request->id)->first();
         $relationship->supplier_id = $profile->id;
@@ -53,7 +53,7 @@ class CustomerController extends Controller
 
         $relationship->save();
 
-        return response()->json($relationship->id, 201);
+        return response()->json($relationship, 201);
     }
 
     /**

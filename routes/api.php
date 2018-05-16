@@ -25,13 +25,13 @@ Route::group(['middleware' => 'auth:api'], function ()
     {
         Route::prefix('back-office')->group(function ()
         {
-            Route::post('customers/store', 'CustomerController@store');
+            //Route::post('customers/store', 'CustomerController@store');
             Route::resources([
                 'locations' => 'LocationController',
                 'vats' => 'VatController',
                 'contracts' => 'ContractController',
                 'followers' => 'FollowerController',
-            //    'customers' => 'CustomerController',
+                'customers' => 'CustomerController',
                 'suppliers' => 'SupplierController',
                 'items' => 'ItemController',
                 'pipelines' => 'PipelineController',
@@ -89,7 +89,7 @@ Route::group(['middleware' => 'auth:api'], function ()
         // TODO remove all these methods
         //Route::post('PaymentReceive', 'AccountMovementController@store');
         //Route::post('Anull', 'AccountMovementController@annull');
-        Route::post('PaymentDue', 'Api\AccountController@get_CustomerSchedual');
+        Route::get('PaymentDue', 'Api\AccountController@get_CustomerSchedual');
         Route::post('ApproveSales', 'Api\AccountController@ApproveSales');
         Route::post('syncitem', 'Api\ItemController@syncItems');
         Route::post('synccustomer', 'Api\CustomerController@syncCustomer');
