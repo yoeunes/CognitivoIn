@@ -19,7 +19,7 @@ Route::get('/shop/{profile}', 'HomeController@indexStores')->name('shop.show');
 // Route::get('/{profile}', 'ProfileController@show')->name('profile');
 
 Route::group(['middleware' => 'auth'], function ()
-{
+{});
   Route::post('create', 'ProfileController@index')->name('profile.create');
 
   Route::resources([
@@ -82,4 +82,3 @@ Route::group(['middleware' => 'auth'], function ()
       ]);
     });
   });
-});
