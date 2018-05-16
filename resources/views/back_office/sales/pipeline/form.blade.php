@@ -13,7 +13,6 @@
         </div>
 
         <div class="row">
-
             <label for="product-name">Number</label>
             <input class="form-control" type="text" v-model="stage_sequence">
 
