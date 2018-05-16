@@ -77,8 +77,8 @@ Route::group(['middleware' => 'auth:api'], function ()
             Route::prefix('annull')->group(function ()
             {
                 Route::get('orders/{id}', 'OrderController@annull');
-                Route::get('account-payables/{id}', 'AccountPayableController@annull');
-                Route::get('account-receivables/{id}', 'AccountReceivableController@annull');
+                Route::get('payment-made/{id}', 'AccountPayableController@annull');
+                Route::get('payment-recieved/{id}', 'AccountReceivableController@annull');
             });
 
 
