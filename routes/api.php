@@ -87,9 +87,9 @@ Route::group(['middleware' => 'auth:api'], function ()
         });
 
         // TODO remove all these methods
-        //Route::post('PaymentReceive', 'AccountMovementController@store');
-        //Route::post('Anull', 'AccountMovementController@annull');
-        Route::get('PaymentDue', 'Api\AccountController@get_CustomerSchedual');
+        Route::post('PaymentReceive', 'AccountMovementController@store');
+        Route::post('Anull', 'AccountMovementController@annull');
+        Route::post('PaymentDue', 'Api\AccountController@get_CustomerSchedual');
         Route::post('ApproveSales', 'Api\AccountController@ApproveSales');
         Route::post('syncitem', 'Api\ItemController@syncItems');
         Route::post('synccustomer', 'Api\CustomerController@syncCustomer');

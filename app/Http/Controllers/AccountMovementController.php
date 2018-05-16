@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Account;
 use App\Profile;
+use App\Scheduals;
 use App\AccountMovement;
 use App\Relationship;
 use Illuminate\Http\Request;
@@ -38,15 +39,14 @@ class AccountMovementController extends Controller
     */
     public function store(Request $request, Profile $profile)
     {
-
+        $return = [];
         $account = Account::where('profile_id', $profile->id)
-        ->where('type', $request['PaymentType'])
         ->first();
 
 
         if (isset($account))
         {
-            $account = new Account()
+            $account = new Account();
             $account->profile_id = $profile->id;
             $account->name = "Cash Account for " . $profile->name;
             $account->number = "...";
@@ -55,24 +55,9 @@ class AccountMovementController extends Controller
         }
 
 
-        $accountMovement = new AccountMovement();
-        $accountMovement->schedual_id = $request['ReferenceID'];
-        $accountMovement->account_id = $account->id;
-        $accountMovement->user_id = $request['UserID'] ?? null;
-        $accountMovement->location_id = $request['LocationID'] ?? null;
-        $accountMovement->type = $request['PaymentType'] ?? 1;
-        $accountMovement->currency = $request['Currency'];
 
-        if ($request['Currency'] != $schedual->currency)
-        { $accountMovement->currency_rate = Swap::latest($schedual->currency . '/' . $request['Currency'])->getValue(); }
-        else
-        { $accountMovement->currency_rate = 1; }
 
-        $accountMovement->date = $request['Date'] ?? Carbon::now();
-        $accountMovement->credit = 0;
-        $accountMovement->debit = $request['Value'];
-
-        $schedual = Schedual::find($request['InvoiceReference']);
+        $schedual = Scheduals::find($request['InvoiceReference']);
 
         if (isset($schedual))
         {
@@ -95,8 +80,8 @@ class AccountMovementController extends Controller
 
             $accountMovement->save();
 
-            $return = [];
-            $return[] = [
+
+            $return = [
                 'PaymentReference' => $accountMovement->id,
                 'ResponseType' => 1
             ];
@@ -166,7 +151,7 @@ class AccountMovementController extends Controller
 
     public function annull(Request $request, Profile $profile)
     {
-        $accountMovement = AccountMovement::find($request['InvoiceReference'])
+        $accountMovement = AccountMovement::where('schedual_id',$request['InvoiceReference'])
         ->with('account')
         ->first();
 

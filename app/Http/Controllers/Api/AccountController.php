@@ -39,17 +39,28 @@ class AccountController extends Controller
     public function get_CustomerSchedual(Request $request, Profile $profile)
     {
         //return payment schedual. history of unpaid debt. by Customer TaxID
+        if ($request['Type']==1) {
+            $relationship = Relationship::GetCustomers()
+            ->where('customer_alias',$request['PartnerName'])
+            ->orWhere('customer_taxid',$request['PartnerTaxID'])->first();
 
-        // $schedules = Scheduals::where('relationship_id', $request['id'])
-        // ->leftjoin('account_movements', 'scheduals.id', 'account_movements.schedual_id')
-        // ->select('scheduals.currency',
-        // '(scheduals.credit) - sum(account_movements.debit * scheduals.rate) as value',
-        // 'scheduals.id as InvoiceNumber',
-        // 'scheduals.date as InvoiceDate',
-        // 'scheduals.date_exp as Deadline',
-        // 'scheduals.reference as Reference')
-        // ->groupBy('account_movements.schedual_id')
-        // ->get();
+        }
+        else {
+            $relationship = Relationship::GetSuppliers()
+            ->where('supplier_alias',$request['PartnerName'])
+            ->orWhere('supplier_taxid',$request['PartnerTaxID'])->first();
+        }
+
+        $schedules = Scheduals::where('relationship_id', $relationship->id)
+        ->leftjoin('account_movements', 'scheduals.id', 'account_movements.schedual_id')
+        ->select(DB::raw('max(scheduals.currency) as code'),
+        DB::raw('max(scheduals.credit)-sum(account_movements.debit) as value'),
+        DB::raw('max(scheduals.id) as InvoiceNumber'),
+        DB::raw('max(scheduals.date) as InvoiceDate'),
+        DB::raw('max(scheduals.date_exp) as Deadline'),
+        DB::raw('max(scheduals.reference) as Reference'))
+        ->groupBy('account_movements.schedual_id')
+        ->get();
 
         $return = [];
         $values = [];
@@ -160,13 +171,13 @@ class AccountController extends Controller
 
             if ($data['Type'] == 1)
             {
-                $accountmovement->credit = $data['Value'];
-                $accountmovement->debit = 0;
+                $accountmovement->credit = 0;
+                $accountmovement->debit =$data['Value'];
             }
             else
             {
-                $accountmovement->credit = 0;
-                $accountmovement->debit = $data['Value'];
+                $accountmovement->credit = $data['Value'];
+                $accountmovement->debit = 0;
             }
             $accountmovement->save();
 
