@@ -39,12 +39,13 @@ class AccountMovementController extends Controller
     */
     public function store(Request $request, Profile $profile)
     {
-        $return = [];
+
+        $return = ['Invoice Not Found ...'];
         $account = Account::where('profile_id', $profile->id)
         ->first();
 
 
-        if (isset($account))
+        if (!isset($account))
         {
             $account = new Account();
             $account->profile_id = $profile->id;
@@ -64,6 +65,7 @@ class AccountMovementController extends Controller
             $accountMovement = new AccountMovement();
             $accountMovement->schedual_id = $schedual->id;
             $accountMovement->user_id = $request['UserID'];
+
             $accountMovement->account_id = $account->id;
             $accountMovement->location_id = null;
             $accountMovement->type = $request['Type'] ?? 1;
