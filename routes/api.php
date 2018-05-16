@@ -71,14 +71,26 @@ Route::group(['middleware' => 'auth:api'], function ()
                 Route::get('items/{query}', 'ItemController@search');
                 Route::get('opportunities/{query}', 'OpportunityController@search');
                 Route::get('orders/{query}', 'OrderController@search');
+                //TODO
+                Route::get('account-receivables/{query}', 'AccountReceivableController@search');
+            });
+
+            //Annull movements on specific modules
+            Route::prefix('approve')->group(function ()
+            {
+                Route::post('orders/{id}', 'OrderController@annull');
+                //TODO
+                Route::post('payment-made', 'AccountPayableController@store');
+                Route::post('payment-recieved', 'AccountReceivableController@store');
             });
 
             //Annull movements on specific modules
             Route::prefix('annull')->group(function ()
             {
-                Route::get('orders/{id}', 'OrderController@annull');
-                Route::get('payment-made/{id}', 'AccountPayableController@annull');
-                Route::get('payment-recieved/{id}', 'AccountReceivableController@annull');
+                Route::post('orders/{id}', 'OrderController@annull');
+                //TODO
+                Route::post('payment-made/{id}', 'AccountPayableController@annull');
+                Route::post('payment-recieved/{id}', 'AccountReceivableController@annull');
             });
 
 
@@ -86,18 +98,17 @@ Route::group(['middleware' => 'auth:api'], function ()
 
         });
 
-        // TODO remove all these methods
-        Route::post('PaymentReceive', 'AccountMovementController@store');
-        Route::post('Anull', 'AccountMovementController@annull');
-        Route::post('PaymentDue', 'Api\AccountController@get_CustomerSchedual');
+        //Route::post('PaymentReceive', 'AccountMovementController@store');
+        //Route::post('Anull', 'AccountMovementController@annull');
+        //Route::post('PaymentDue', 'Api\AccountController@get_CustomerSchedual');
         Route::post('ApproveSales', 'Api\AccountController@ApproveSales');
-        Route::post('syncitem', 'Api\ItemController@syncItems');
-        Route::post('synccustomer', 'Api\CustomerController@syncCustomer');
-        Route::post('synctransaction', 'Api\TransactionController@uploadOrder');
+        //Route::post('syncitem', 'Api\ItemController@syncItems');
+        //Route::post('synccustomer', 'Api\CustomerController@syncCustomer');
+        //Route::post('synctransaction', 'Api\TransactionController@uploadOrder');
     });
-
 
     Route::get('getCompanys/{slug}', 'ProfileController@get_companys');
     Route::get('login/{email}/{password}', 'Auth\SocialAuthController@Login');
+    //TODO DELETE THESE ROUTES
     Route::get('getCustomers/{profile}', 'CustomerController@getAllCustomer');
     Route::get('getItems/{profile}', 'ItemController@get_items');
