@@ -214,6 +214,7 @@ class AccountReceivableController extends Controller
             for ($i = 0; $i < count($schedules) ; $i++)
             {
                 if ($schedules[$i]->value >0) {
+                    $j=0;
                     $values[$i] = [
                         'CurrencyCode' => $schedules[$i]->code ,
                         'Value' => $schedules[$i]->value ,
@@ -222,6 +223,7 @@ class AccountReceivableController extends Controller
                         'InvoiceDate' => $schedules[$i]->InvoiceDate,
                         'Deadline' => $schedules[$i]->Deadline,
                     ];
+                    $j=$j+1;
                 }
 
             }
@@ -232,7 +234,7 @@ class AccountReceivableController extends Controller
 
                 'ReferenceName' => $request->customer_alias,
                 'ReferenceTaxID' => $request->customer_taxid,
-                'Details' =>collect($values)
+                'Details' =>$values
             ];
         }
 
