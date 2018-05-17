@@ -171,6 +171,7 @@ class AccountController extends Controller
     $schedual->save();
 
     $account = Account::where('number', 1)->first() ?? new Account();
+    $account->profile_id=$profile->id;
     $account->name = "Cash A/c Of " . $profile->name;
     $account->number = "1";
     $account->currency ='PRY';
