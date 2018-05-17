@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Item;
-use App\VatDetail
+use App\VatDetail;
 use App\Relationship;
 use App\Profile;
 use App\Account;
