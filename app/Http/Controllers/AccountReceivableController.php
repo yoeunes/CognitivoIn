@@ -232,7 +232,7 @@ class AccountReceivableController extends Controller
 
                 'ReferenceName' => $request->customer_alias,
                 'ReferenceTaxID' => $request->customer_taxid,
-                'Details' => $values
+                'Details' =>response()->json( $values)
             ];
         }
 
