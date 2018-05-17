@@ -144,13 +144,13 @@ class AccountController extends Controller
 
             if ($data['Type'] == 1)
             {
-                $schedual->credit = $data['total_amount'];
-                $schedual->debit = 0;
+                $schedual->credit = 0;
+                $schedual->debit = $data['total_amount'];
             }
             else
             {
-                $schedual->credit = 0;
-                $schedual->debit = $data['total_amount'];
+                $schedual->credit = $data['total_amount'];
+                $schedual->debit = 0;
             }
 
             $schedual->save();
