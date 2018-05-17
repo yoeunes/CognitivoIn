@@ -197,6 +197,7 @@ class AccountReceivableController extends Controller
 
         if (isset($relationship)) {
             $schedules = Scheduals::where('relationship_id', $relationship->id)
+            ->where('account_movements.status','!=',3)
             ->leftjoin('account_movements', 'scheduals.id', 'account_movements.schedual_id')
             ->select(DB::raw('max(scheduals.currency) as code'),
             DB::raw('max(scheduals.debit)-sum(account_movements.credit) as value'),
