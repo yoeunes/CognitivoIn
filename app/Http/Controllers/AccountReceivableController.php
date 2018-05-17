@@ -194,7 +194,7 @@ class AccountReceivableController extends Controller
         ->where('customer_alias',$request->customer_alias)
         ->orWhere('customer_taxid',$request->customer_taxid)->first();
 
-dd($relationship);
+
         if (isset($relationship)) {
             $schedules = Scheduals::where('relationship_id', $relationship->id)
             ->where('account_movements.status','!=',3)
