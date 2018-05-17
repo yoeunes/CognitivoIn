@@ -152,7 +152,7 @@ class AccountController extends Controller
 
     $schedual = new Scheduals();
     $schedual->relationship_id = $relationship->id;
-    $schedual->currency = 'PRY';
+    $schedual->currency = 'PYG';
     $schedual->currency_rate = 1;
     $schedual->date = Carbon::now();
     $schedual->date_exp = Carbon::now();
@@ -174,7 +174,7 @@ class AccountController extends Controller
     $account->profile_id=$profile->id;
     $account->name = "Cash A/c Of " . $profile->name;
     $account->number = "1";
-    $account->currency ='PRY';
+    $account->currency ='PYG';
     $account->save();
 
     $accountmovement = new AccountMovement();
@@ -182,7 +182,7 @@ class AccountController extends Controller
     //$accountmovement->user_id = $relationship->id;
     $accountmovement->account_id = $account->id;
     $accountmovement->type = $data['Type'];
-    $accountmovement->currency = 'PRY';
+    $accountmovement->currency = 'PYG';
     $accountmovement->currency_rate = 1;
     $accountmovement->date = Carbon::now();
 
