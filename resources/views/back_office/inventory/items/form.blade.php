@@ -236,6 +236,17 @@
                         <input type="number" class="form-control" id="unit_price" name="unit_price" v-model="unit_price">
                         <div class="form-text text-muted">Further info about this input</div>
                     </div>
+
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-12" for="sku">Vat</label>
+                    <div class="col-md-9">
+                      <select v-model="vat_id" required class="custom-select" >
+                          <option v-for="vat in vats" :value="vat.id">@{{ vat.name }}</option>
+                      </select>
+                        <div class="form-text text-muted">Further info about this input</div>
+                    </div>
                 </div>
 
                 <div class="form-group row">

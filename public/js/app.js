@@ -54355,13 +54355,15 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('item-form', {
       profile_id: '',
       name: '',
       sku: '',
+      vat_id: '',
       short_description: '',
       long_description: '',
       currency_id: '',
       unit_price: '',
       unit_cost: '',
       is_active: true,
-      currencies: []
+      currencies: [],
+      vats: []
 
     };
   },
@@ -54376,6 +54378,7 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('item-form', {
       app.profile_id = data.profile_id;
       app.name = data.name;
       app.sku = data.sku;
+      app.vat_id = data.vat_id;
       app.short_description = data.short_description;
       app.long_description = data.long_description;
       app.currency_id = data.currency_id;
@@ -54391,6 +54394,7 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('item-form', {
       app.profile_id = null;
       app.name = null;
       app.sku = null;
+      app.vat_id = null;
       app.short_description = null;
       app.long_description = null;
       app.currency_id = null;
@@ -54412,7 +54416,21 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('item-form', {
 
   },
 
-  mounted: function mounted() {}
+  mounted: function mounted() {
+    var _this = this;
+
+    var app = this;
+    __WEBPACK_IMPORTED_MODULE_2_axios___default.a.get('/api/' + this.$parent.profile + '/back-office/list/0/vats/1').then(function (_ref) {
+      var data = _ref.data;
+
+
+      app.vats = data;
+      console.log();
+    }).catch(function (error) {
+      console.log(error);
+      _this.$swal('Error trying to edit record.');
+    });
+  }
 });
 
 /***/ }),

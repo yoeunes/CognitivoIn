@@ -14,6 +14,7 @@ Vue.component('item-form',
       profile_id:'',
       name:'',
       sku: '',
+      vat_id:'',
       short_description:'',
       long_description:'',
       currency_id:'',
@@ -21,6 +22,7 @@ Vue.component('item-form',
       unit_cost: '',
       is_active: true,
       currencies:[],
+      vats:[]
 
     }
   },
@@ -36,6 +38,7 @@ Vue.component('item-form',
       app.profile_id = data.profile_id;
       app.name = data.name;
       app.sku = data.sku;
+      app.vat_id = data.vat_id;
       app.short_description = data.short_description;
       app.long_description = data.long_description;
       app.currency_id = data.currency_id;
@@ -52,6 +55,7 @@ Vue.component('item-form',
       app.profile_id = null;
       app.name = null;
       app.sku = null;
+      app.vat_id = null;
       app.short_description = null;
       app.long_description = null;
       app.currency_id = null;
@@ -73,7 +77,7 @@ Vue.component('item-form',
 
       app.$parent.onSave('/back-office/'+ this.profile +'/sales/items',json);
 
-      
+
     }
 
 
@@ -81,8 +85,18 @@ Vue.component('item-form',
 
   mounted: function mounted()
   {
+    var app=this;
+    axios.get('/api/' + this.$parent.profile + '/back-office/list/0/vats/1')
+    .then(({ data }) =>
+    {
 
-
+        app.vats=data;
+        console.log()
+    })
+    .catch(error => {
+        console.log(error);
+        this.$swal('Error trying to edit record.');
+    });
 
   }
 });
