@@ -188,13 +188,13 @@ class AccountController extends Controller
 
     if ($data['Type'] == 1)
     {
-      $accountmovement->credit = 0;
-      $accountmovement->debit =$data['Value'];
+      $accountmovement->credit = $data['Value'];
+      $accountmovement->debit =0;
     }
     else
     {
-      $accountmovement->credit = $data['Value'];
-      $accountmovement->debit = 0;
+      $accountmovement->credit = 0;
+      $accountmovement->debit = $data['Value'];
     }
     $accountmovement->save();
 
