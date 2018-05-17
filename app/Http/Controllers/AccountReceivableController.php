@@ -213,14 +213,17 @@ class AccountReceivableController extends Controller
 
             for ($i = 0; $i < count($schedules) ; $i++)
             {
-                $values[$i] = [
-                    'CurrencyCode' => $schedules[$i]->code ,
-                    'Value' => $schedules[$i]->value ,
-                    'ReferenceCode' => $schedules[$i]->reference,
-                    'InvoiceNumber' => $schedules[$i]->InvoiceNumber,
-                    'InvoiceDate' => $schedules[$i]->InvoiceDate,
-                    'Deadline' => $schedules[$i]->Deadline,
-                ];
+                if ($schedules[$i]->value >0) {
+                    $values[$i] = [
+                        'CurrencyCode' => $schedules[$i]->code ,
+                        'Value' => $schedules[$i]->value ,
+                        'ReferenceCode' => $schedules[$i]->reference,
+                        'InvoiceNumber' => $schedules[$i]->InvoiceNumber,
+                        'InvoiceDate' => $schedules[$i]->InvoiceDate,
+                        'Deadline' => $schedules[$i]->Deadline,
+                    ];
+                }
+
             }
 
             //for each currency requested, run loop and add into array
