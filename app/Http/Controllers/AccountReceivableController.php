@@ -42,40 +42,44 @@ class AccountReceivableController extends Controller
     */
     public function store(Request $request, Profile $profile)
     {
-        $account = Account::where('profile_id', $profile->id)
-        ->where('type', $request['PaymentType'])
+        $account = Account::where('id',$request->account_id)
         ->first();
 
-        if (isset($account))
+        if (!isset($account))
         {
-            $account = new Account();
-            $account->profile_id = $profile->id;
-            $account->profile_id = $profile->id;
-            $account->name = "Cash Account for " . $profile->name;
-            $account->number = "...";
-            $account->currency = $profile->currency;
-            $account->save();
+            $account = Account::where('profile_id',$profile->id)
+            ->first();
+            if (!isset($account)) {
+                $account = new Account();
+                $account->profile_id = $profile->id;
+                $account->profile_id = $profile->id;
+                $account->name = "Cash Account for " . $profile->name;
+                $account->number = "...";
+                $account->currency = $profile->currency;
+                $account->save();
+            }
+
         }
 
-        $schedual = Scheduals::find($request['ReferenceID']);
+        $schedual = Scheduals::where('id',$request->InvoiceNumber)->first();
 
         if (isset($schedual))
         {
             $accountMovement = new AccountMovement();
-            $accountMovement->schedual_id = $request['ReferenceID'];
+            $accountMovement->schedual_id = $request->InvoiceNumber;
             $accountMovement->account_id = $account->id;
-            $accountMovement->user_id = $request['UserID'] ?? null;
-            $accountMovement->location_id = $request['LocationID'] ?? null;
-            $accountMovement->type = $request['PaymentType'] ?? 1;
-            $accountMovement->currency = $request['Currency'];
+            $accountMovement->user_id = $request->user_id ?? null;
+            $accountMovement->location_id = $request->location_id ?? null;
+            $accountMovement->type = $request->payment_type ?? 1;
+            $accountMovement->currency = $request->currency;
 
             if ($request['Currency'] != $schedual->currency)
-            { $accountMovement->currency_rate = Swap::latest($schedual->currency . '/' . $request['Currency'])->getValue(); }
+            { $accountMovement->currency_rate = Swap::latest($schedual->currency . '/' . $request->currency)->getValue(); }
             else
             { $accountMovement->currency_rate = 1; }
 
-            $accountMovement->date = $request['Date'] ?? Carbon::now();
-            $accountMovement->credit = $request['Value'];
+            $accountMovement->date = $request->date ?? Carbon::now();
+            $accountMovement->credit = $request->value;
             $accountMovement->debit = 0;
 
             $accountMovement->save();
@@ -180,14 +184,14 @@ class AccountReceivableController extends Controller
         return response()->json('Resource not found', 404);
     }
 
-    public function search(Request $request, Profile $profile,$name,$taxid)
+    public function search(Request $request, Profile $profile)
     {
         $return = [];
         //return payment schedual. history of unpaid debt. by Customer TaxID
-        
+
         $relationship = Relationship::GetCustomers()
-        ->where('customer_alias',$name)
-        ->orWhere('customer_taxid',$taxid)->first();
+        ->where('customer_alias',$request->customer_alias)
+        ->orWhere('customer_taxid',$request->customer_taxid)->first();
 
 
         if (isset($relationship)) {
@@ -221,8 +225,8 @@ class AccountReceivableController extends Controller
 
             $return[] = [
 
-                'ReferenceName' => $name,
-                'ReferenceTaxID' => $taxid,
+                'ReferenceName' => $request->customer_alias,
+                'ReferenceTaxID' => $request->customer_taxid,
                 'Details' => $values
             ];
         }
@@ -231,28 +235,32 @@ class AccountReceivableController extends Controller
         return response()->json($return, '200');
     }
 
-    public function annull(Request $request, Profile $profile)
+    public function annull(Request $request, Profile $profile,$id)
+  {
+    $accountMovement = AccountMovement::where('id',$id)
+    ->with('account')
+    ->first();
+
+    if (isset($accountMovement))
     {
-        $accountMovement = AccountMovement::find($request['PaymentReferenceID'])
-        ->with('account')
-        ->first();
+      $account = $accountMovement->account;
 
-        if (isset($accountMovement))
+      //Make sure that profile requesting change is owner of account movement. if not,
+      //we cannot allow user to delete something that does not belong to them.
+      if (isset($account))
+      {
+        if ($account->profile_id == $profile->id)
         {
-            $account = $accountMovement->account;
+          $accountMovement->status = 3;
+          $accountMovement->comment = $request['Comment'];
+          $accountMovement->save();
 
-            //Make sure that profile requesting change is owner of account movement. if not,
-            //we cannot allow user to delete something that does not belong to them.
-            if ($account->profile_id == $profile->id)
-            {
-                $accountMovement->status = 3;
-                $accountMovement->comment = $request['Comment'];
-                $accountMovement->save();
-
-                return response()->json('Annulled', 200);
-            }
+          return response()->json('Annulled', 200);
         }
+      }
 
-        return response()->json('Resource not found', 404);
     }
+
+    return response()->json('Resource not found', 404);
+  }
 }
