@@ -42,6 +42,7 @@ class AccountReceivableController extends Controller
     */
     public function store(Request $request, Profile $profile)
     {
+        $return = [];
         $account = Account::where('id',$request->account_id)
         ->first();
 
@@ -84,7 +85,7 @@ class AccountReceivableController extends Controller
 
             $accountMovement->save();
 
-            $return = [];
+
             $return[] = [
                 'PaymentReference' => $accountMovement->id,
                 'ResponseType' => 1
