@@ -215,13 +215,13 @@ class AccountReceivableController extends Controller
             {
                 if ($schedules[$i]->value >0) {
                     $j=0;
-                    $values[$i] = [
-                        'CurrencyCode' => $schedules[$i]->code ,
-                        'Value' => $schedules[$i]->value ,
-                        'ReferenceCode' => $schedules[$i]->reference,
-                        'InvoiceNumber' => $schedules[$i]->InvoiceNumber,
-                        'InvoiceDate' => $schedules[$i]->InvoiceDate,
-                        'Deadline' => $schedules[$i]->Deadline,
+                    $values[$j] = [
+                        'CurrencyCode' => $schedules[$j]->code ,
+                        'Value' => $schedules[$j]->value ,
+                        'ReferenceCode' => $schedules[$j]->reference,
+                        'InvoiceNumber' => $schedules[$j]->InvoiceNumber,
+                        'InvoiceDate' => $schedules[$j]->InvoiceDate,
+                        'Deadline' => $schedules[$j]->Deadline,
                     ];
                     $j=$j+1;
                 }
