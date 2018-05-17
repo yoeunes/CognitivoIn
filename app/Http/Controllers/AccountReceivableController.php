@@ -189,12 +189,12 @@ class AccountReceivableController extends Controller
     {
         $return = [];
         //return payment schedual. history of unpaid debt. by Customer TaxID
-dd($request->customer_alias);
+
         $relationship = Relationship::GetCustomers()
         ->where('customer_alias',$request->customer_alias)
         ->orWhere('customer_taxid',$request->customer_taxid)->first();
 
-
+dd($relationship);
         if (isset($relationship)) {
             $schedules = Scheduals::where('relationship_id', $relationship->id)
             ->where('account_movements.status','!=',3)
