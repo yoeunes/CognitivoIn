@@ -182,19 +182,14 @@ class AccountReceivableController extends Controller
 
     public function search(Request $request, Profile $profile,$name,$taxid)
     {
-    $return = [];
+        $return = [];
         //return payment schedual. history of unpaid debt. by Customer TaxID
-        if ($request->Type==1) {
-            $relationship = Relationship::GetCustomers()
-            ->where('customer_alias',$name)
-            ->orWhere('customer_taxid',$taxid)->first();
+        
+        $relationship = Relationship::GetCustomers()
+        ->where('customer_alias',$name)
+        ->orWhere('customer_taxid',$taxid)->first();
 
-        }
-        else {
-            $relationship = Relationship::GetSuppliers()
-            ->where('supplier_alias',$name)
-            ->orWhere('supplier_taxid',$taxid)->first();
-        }
+
         if (isset($relationship)) {
             $schedules = Scheduals::where('relationship_id', $relationship->id)
             ->leftjoin('account_movements', 'scheduals.id', 'account_movements.schedual_id')
