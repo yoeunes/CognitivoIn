@@ -207,7 +207,7 @@ class AccountReceivableController extends Controller
             DB::raw('max(scheduals.reference) as Reference'))
             ->groupBy('account_movements.schedual_id')
             ->get();
-dd($schedules);
+
 
             $values = [];
 
