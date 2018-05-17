@@ -25,6 +25,9 @@ class CreateItemTable extends Migration
             $table->integer('item_id')->unsigned()->nullable();
             $table->foreign('item_id')->references('id')->on('items');
 
+            $table->integer('vat_id')->unsigned()->nullable();
+            $table->foreign('vat_id')->references('id')->on('vats');
+
             $table->string('name');
             $table->string('sku')->nullable();
 
