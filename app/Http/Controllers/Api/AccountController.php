@@ -129,7 +129,7 @@ class AccountController extends Controller
       $item=Item::where('id',$data_detail['id'])->first();
       $vatdetail=VatDetail::where('vat_id',$item->vat_id)->get();
       $values = [];
-      $item_value=$data_detail['quantity'] * $data_detail['unit_price']
+      $item_value=$data_detail['quantity'] * $data_detail['unit_price'];
       $i=0;
       foreach ($vatdetail as $detail) {
         $values[$i] = [
