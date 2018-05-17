@@ -193,7 +193,7 @@ class AccountReceivableController extends Controller
         $relationship = Relationship::GetCustomers()
         ->where('customer_alias',$request->customer_alias)
         ->orWhere('customer_taxid',$request->customer_taxid)->first();
-    dd($relationship);
+
 
         if (isset($relationship)) {
             $schedules = Scheduals::where('relationship_id', $relationship->id)
@@ -208,7 +208,7 @@ class AccountReceivableController extends Controller
             ->groupBy('account_movements.schedual_id')
             ->get();
 
-
+            dd($schedules);
             $values = [];
 
             for ($i = 0; $i < count($schedules) ; $i++)
