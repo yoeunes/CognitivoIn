@@ -213,7 +213,7 @@ class AccountReceivableController extends Controller
 
             for ($i = 0; $i < count($schedules) ; $i++)
             {
-                if ($schedules[$i]->value !="0.00") {
+                // if ($schedules[$i]->value !="0.00") {
                     $j=0;
                     $values[$j] = [
                         'CurrencyCode' => $schedules[$j]->code ,
@@ -224,7 +224,7 @@ class AccountReceivableController extends Controller
                         'Deadline' => $schedules[$j]->Deadline,
                     ];
                     $j=$j+1;
-                }
+                // }
 
             }
 
