@@ -207,13 +207,13 @@ class AccountReceivableController extends Controller
             DB::raw('max(scheduals.reference) as Reference'))
             ->groupBy('account_movements.schedual_id')
             ->get();
-
+dd($schedules);
 
             $values = [];
 
             for ($i = 0; $i < count($schedules) ; $i++)
             {
-                if ($schedules[$i]->value >0) {
+                if ($schedules[$i]->value >0.00) {
                     $j=0;
                     $values[$j] = [
                         'CurrencyCode' => $schedules[$j]->code ,
