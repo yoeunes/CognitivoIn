@@ -213,7 +213,7 @@ dd($schedules);
 
             for ($i = 0; $i < count($schedules) ; $i++)
             {
-                if ($schedules[$i]->value >0.00) {
+                if ($schedules[$i]->value !="0.00") {
                     $j=0;
                     $values[$j] = [
                         'CurrencyCode' => $schedules[$j]->code ,
