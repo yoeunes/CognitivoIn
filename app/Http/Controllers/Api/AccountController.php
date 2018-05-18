@@ -37,22 +37,11 @@ class AccountController extends Controller
         return response()->json($suppliers);
     }
 
-<<<<<<< HEAD
-    $order->number = $data['number'];
-    $order->relationship_id = $relationship->id;
-    $order->code = $data['code'];
-    $order->contract_id = $data['contract_id'];
-    //$order->code_expiry = $data['code_expiry'];
-    $order->is_printed = $data['number'] != "" ? true : false;
-    $order->date = Carbon::now();
-    $order->currency = 'PYG';
-    $order->currency_rate = 1;
-    $order->save();
 
-    foreach ($data['Selectditems'] as $data_detail)
-=======
+
+
     public function get_CustomerSchedual(Request $request, Profile $profile)
->>>>>>> 1a2d877e68140485aecf59d54892da99e8e21b76
+
     {
 
         //return payment schedual. history of unpaid debt. by Customer TaxID
