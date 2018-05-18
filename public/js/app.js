@@ -54546,11 +54546,12 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('pipeline-form', {
 
       id: 0,
       name: '',
-      stages: [],
-      showStage: true,
-      stage_id: 0,
-      stage_name: '',
-      stage_sequence: ''
+      stages: [{
+        stage_id: 0,
+        stage_name: '',
+        stage_sequence: ''
+      }],
+      showStage: true
 
     };
   },
@@ -54564,12 +54565,15 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('pipeline-form', {
     onEditStage: function onEditStage(data) {
       var app = this;
       app.showStage = false;
-      app.stage_id = data.id;
-      app.stage_name = data.name;
-      app.stage_sequence = data.sequence;
     },
 
-    onStageSave: function onStageSave(json, isnew) {
+    onAddStage: function onAddStage() {
+      var app = this;
+      var api = null;
+      app.stages.push({ stage_id: 0, stage_name: '', stage_sequence: '' });
+    },
+
+    onSaveStage: function onSaveStage(json, isnew) {
       var app = this;
       var api = null;
 
@@ -54582,12 +54586,7 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('pipeline-form', {
       }).then(function (response) {
         if (response.status = 200) {
           app.showStage = true;
-          app.stages = [];
-          for (var i = 0; i < response.data.length; i++) {
-            app.stages.push(response.data[i]);
-
-            app.id = response.data[i].pipeline_id;
-          }
+          app.id = response.data[i].pipeline_id;
         } else {
           alert('Something Went Wrong...');
         }
@@ -54602,8 +54601,10 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('pipeline-form', {
       var app = this;
       app.id = data.id;
       app.name = data.name;
+      app.stages.slice(0, 1);
       for (var i = 0; i < data.stages.length; i++) {
-        app.stages.push(data.stages[i]);
+        app.stages.push({ stage_id: data.stages[i].id, stage_name: data.stages[i].name,
+          stage_sequence: data.stages[i].sequence });
       }
 
       app.$parent.showList = false;
@@ -55515,10 +55516,10 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('vat-form', {
                 if (response.status = 200) {
                     app.showDetail = true;
                     app.vatdetails = [];
+
                     for (var i = 0; i < response.data.length; i++) {
                         app.vatdetails.push(response.data[i]);
                         app.id = response.data[i].vat_id;
-                        console.log(app.id);
                     }
                 } else {
                     alert('Something Went Wrong...');
@@ -55822,6 +55823,9 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('model', {
                     showConfirmButton: false,
                     timer: 1500
                 });
+                if (app.$refs.infiniteLoading != null) {
+                    app.$refs.infiniteLoading.attemptLoad();
+                }
             }).catch(function (error) {
                 console.log(error.response);
                 _this3.$swal('Error trying to save record.');

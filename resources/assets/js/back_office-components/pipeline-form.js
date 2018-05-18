@@ -11,11 +11,13 @@ Vue.component('pipeline-form',
 
       id: 0,
       name:'',
-      stages:[],
+      stages:[{
+        stage_id:0,
+        stage_name:'',
+        stage_sequence:''
+      }],
       showStage:true,
-      stage_id:0,
-      stage_name:'',
-      stage_sequence:''
+
 
 
     }
@@ -34,11 +36,18 @@ Vue.component('pipeline-form',
     {
       var app = this;
       app.showStage = false;
-      app.stage_id=data.id;
-      app.stage_name=data.name;
-      app.stage_sequence=data.sequence;
+
     },
-    onStageSave: function(json,isnew)
+    onAddStage: function()
+    {
+      var app = this;
+      var api = null;
+      app.stages.push({stage_id:0,stage_name:'',stage_sequence:''});
+
+
+    },
+
+    onSaveStage: function(json,isnew)
     {
       var app = this;
       var api = null;
@@ -56,12 +65,7 @@ Vue.component('pipeline-form',
         if (response.status = 200 )
         {
           app.showStage = true;
-          app.stages=[];
-          for (var i = 0; i < response.data.length; i++) {
-            app.stages.push(response.data[i]);
-        
-            app.id=response.data[i].pipeline_id;
-          }
+          app.id=response.data[i].pipeline_id;
         }
         else
         {
@@ -81,8 +85,10 @@ Vue.component('pipeline-form',
       var app = this;
       app.id=data.id;
       app.name=data.name;
+      app.stages.slice(0,1);
       for (var i = 0; i < data.stages.length; i++) {
-        app.stages.push(data.stages[i]);
+        app.stages.push({stage_id: data.stages[i].id,stage_name:data.stages[i].name,
+          stage_sequence:data.stages[i].sequence});
       }
 
       app.$parent.showList = false;

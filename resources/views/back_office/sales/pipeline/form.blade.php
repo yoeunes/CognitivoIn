@@ -13,14 +13,10 @@
         </div>
 
         <div class="row">
-            <label for="product-name">Number</label>
-            <input class="form-control" type="text" v-model="stage_sequence">
 
-            <label for="product-name">Stage</label>
-            <input class="form-control" type="text" v-model="stage_name">
 
-            <button v-on:click="onStageSave($data, false)" class="btn btn-primary">
-                @lang('global.SaveStage')
+            <button v-on:click="onAddStage($data, false)" class="btn btn-primary">
+                @lang('global.AddStage')
             </button>
         </div>
 
@@ -38,14 +34,17 @@
                 </thead>
                 <tbody>
                     <tr v-for="stage in stages">
-                        <td><p> @{{ stage.sequence }} </p></td>
-                        <td><p> @{{ stage.name }} </p></td>
+                        <td><input type="text" v-model="stage.stage_sequence"/></td>
+                        <td><input type="text" v-model="stage.stage_name"/></td>
                     </tr>
                 </tbody>
             </table>
         </div>
 
         <div class="row">
+            <button v-on:click="onSaveStage($data, false)" class="btn btn-primary">
+                @lang('global.SaveStage')
+            </button>
             <button v-on:click="onSave($data,false)" class="btn btn-primary">
                 @lang('global.Save')
             </button>
