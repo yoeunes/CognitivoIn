@@ -20,7 +20,7 @@ class CreateVatDetailsTable extends Migration
             $table->foreign('vat_id')->references('id')->on('vats');
 
             $table->unsignedDecimal('coefficient', 4, 4);
-            $table->unsignedDecimal('percent', 4, 4);
+            $table->unsignedDecimal('percent', 5, 4);
             $table->timestamps();
         });
     }
