@@ -131,16 +131,18 @@ class AccountController extends Controller
 
         foreach ($data['Selectditems'] as $data_detail)
         {
-            $item = Item::where('id',$data_detail['id'])->first();
-            $vatdetail = VatDetail::where('vat_id',$item->vat_id)->get();
+            $item = Item::where('id', $data_detail['id'])->first();
+            $vatdetail = VatDetail::where('vat_id', $item->vat_id)->get();
+
             $values = [];
             $item_value = $data_detail['quantity'] * $data_detail['unit_price'];
             $i = 0;
+
             foreach ($vatdetail as $detail)
             {
                 $values[$i] = [
                     'coefficient' => ($detail->coefficient * 100) . "%" ,
-                    'Value' => ((($item_value) / (1 + $detail->coefficient)) - (-1) * $item_value) * $detail->percent,
+                    'Value' => (((($item_value) / (1 + $detail->coefficient)) - $item_value) * (-1)) * $detail->percent,
                 ];
 
                 $i = $i + 1;
