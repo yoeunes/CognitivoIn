@@ -59,10 +59,12 @@ Vue.component('vat-form',
                 {
                     app.showDetail = true;
                     app.vatdetails=[];
+
                     for (var i = 0; i < response.data.length; i++) {
                         app.vatdetails.push(response.data[i]);
                         app.id=response.data[i].vat_id;
                     }
+
                 }
                 else
                 {

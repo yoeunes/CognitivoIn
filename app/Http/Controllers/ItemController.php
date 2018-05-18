@@ -40,6 +40,7 @@ class ItemController extends Controller
     DB::raw('max(items.unit_price) as unit_price'),
     DB::raw('max(items.unit_price) + (max(items.unit_price)*sum(vat_details.coefficient)) as unit_price_vat')
     )
+    ->groupBy('items.id')
     ->groupBy('items.vat_id')
     ->get();
 
