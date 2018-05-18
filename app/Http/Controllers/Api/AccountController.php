@@ -136,7 +136,7 @@ class AccountController extends Controller
             {
                 $values[$i] = [
                     'coefficient' => ($detail->coefficient * 100) . "%" ,
-                    'Value' => ($item_value * $detail->percent) * $detail->coefficient,
+                    'Value' => ((($item_value) / (1 + $detail->coefficient)) - (-1) * $item_value) * $detail->percent,
                 ];
 
                 $i = $i + 1;
