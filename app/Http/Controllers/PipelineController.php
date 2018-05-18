@@ -14,28 +14,17 @@ class PipelineController extends Controller
     *
     * @return \Illuminate\Http\Response
     */
-    public function index(Profile $profile,$skip)
+    public function index(Profile $profile, $skip)
     {
-        $pipelines = Pipeline::with('stages')->Pipelines($profile->id)->skip($skip)
-        ->take(100)->get();
-
-        return response()->json($pipelines);
-    }
-
-
-    public function list_pipelinesByID(Profile $profile,$id)
-    {
-
-
-        $pipelines = Pipeline::with('stages')->Pipelines($profile->id)
-
-        ->where('id',$id)
-
+        $pipelines = Pipeline::with('stages')
+        ->Pipelines($profile->id)
+        ->skip($skip)
+        ->take(100)
         ->get();
 
-
         return response()->json($pipelines);
     }
+
     /**
     * Show the form for creating a new resource.
     *
@@ -52,20 +41,28 @@ class PipelineController extends Controller
     * @param  \Illuminate\Http\Request  $request
     * @return \Illuminate\Http\Response
     */
-    public function store(Profile $profile,Request $request)
+    public function store(Profile $profile, Request $request)
     {
-
-        $pipeline =$request->id == 0 ? new Pipeline() :
-        Pipeline::where('id',$request->id)->first();
+        $pipeline = Pipeline::where('id', $request->id)->first() ?? new Pipeline();
 
         $pipeline->profile_id = $profile->id;
         $pipeline->name = $request->name;
         $pipeline->is_active = true;
-
         $pipeline->save();
 
-        return response()->json('ok',200);
+        $stages = collect($request->stages);
 
+        foreach ($stages as $stage)
+        {
+            $pipelineStage = $stage->id > 0 ? PipelineStage::where('id', $stage->id)->first() : new PipelineStage();
+            $pipelineStage->pipeline_id = $pipeline->id;
+            $pipelineStage->name = $stage->stage_name;
+            $pipelineStage->completed = $stage->stage_completed ?? 1;
+            $pipelineStage->sequence =  $stage->stage_sequence ?? 1;
+            $pipelineStage->save();
+        }
+
+        return response()->json('Done', 200);
     }
 
     /**
@@ -87,8 +84,11 @@ class PipelineController extends Controller
     */
     public function edit(Profile $profile, Pipeline $pipeline)
     {
+        $pipeline = Pipeline::where('id', $pipeline->id)
+        ->with('stages')
+        ->first();
 
-        return response()->json(Pipeline::where('id',$pipeline->id)->with('stages')->first());
+        return response()->json($pipeline);
     }
 
     /**
@@ -111,8 +111,14 @@ class PipelineController extends Controller
     */
     public function destroy(Profile $profile, Pipeline $pipeline)
     {
-        $pipeline->delete();
-
-        return response()->json('200',200);
+        if ($pipeline->profile_id == $profile->id)
+        {
+            $pipeline->delete();
+            return response()->json('200',200);
+        }
+        else
+        {
+            return response()->json('Resource not found', 401);
+        }
     }
 }

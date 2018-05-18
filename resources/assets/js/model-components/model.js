@@ -222,8 +222,8 @@ Vue.component('model',
             var app = this;
 
             swal({
-                title: 'You are about to Approve',
-                text: "This will process your record",
+                title: 'You are about to Approve this record.',
+                text: "This will process your record, and is non-reversable.",
                 type: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
