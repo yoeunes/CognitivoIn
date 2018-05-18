@@ -98,6 +98,8 @@ Route::group(['middleware' => 'auth:api'], function ()
 
     });
 
+
+    Route::post('SentReceipt', 'EmailController@sentemail');
     //Route::post('PaymentReceive', 'AccountMovementController@store');
     //Route::post('Anull', 'AccountMovementController@annull');
     //Route::post('PaymentDue', 'Api\AccountController@get_CustomerSchedual');
