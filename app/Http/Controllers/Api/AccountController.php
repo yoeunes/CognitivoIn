@@ -141,7 +141,7 @@ class AccountController extends Controller
             foreach ($vatdetail as $detail)
             {
                 $vat = (((($item_value) / (1 + $detail->coefficient)) - $item_value) * (-1)) * $detail->percent;
-                
+
                 $values[$i] = [
                     'coefficient' => ($detail->coefficient * 100) . "%" ,
                     'Value' => number_format($vat, 0, ',', '.'),
@@ -154,9 +154,9 @@ class AccountController extends Controller
             $detail->order_id = $order->id;
             $detail->item_id = $data_detail['id'];
             $detail->item_name = $data_detail['name'];
-            $detail->quantity = $data_detail['quantity'];
+            $detail->quantity = number_format($data_detail['quantity'], 0, ',', '.');
             $detail->vat_id = $item->vat_id;
-            $detail->unit_price = $data_detail['unit_price'];
+            $detail->unit_price = number_format($data_detail['unit_price'], 0, ',', '.');
             $detail->save();
         }
 
@@ -181,7 +181,7 @@ class AccountController extends Controller
         $schedual->save();
 
         $account = Account::where('number', 1)->first() ?? new Account();
-        $account->profile_id=$profile->id;
+        $account->profile_id = $profile->id;
         $account->name = "Cash A/C Of " . $profile->name;
         $account->number = "1";
         $account->currency ='PYG';
@@ -209,12 +209,12 @@ class AccountController extends Controller
         $accountmovement->save();
 
         $data2 = [];
-
         $data2[] = [
             'PaymentReference' => $accountmovement->id,
             'ResponseType' => 1,
-            'Detail'=>$values
+            'Detail'=> $values
         ];
+
         return response()->json($data2, '200');
     }
 }
