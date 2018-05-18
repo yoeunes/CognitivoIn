@@ -143,6 +143,11 @@ Vue.component('model',
                     showConfirmButton: false,
                     timer: 1500
                 })
+                if (app.$refs.infiniteLoading != null)
+                {
+                    app.$refs.infiniteLoading.attemptLoad();
+                }
+
             })
             .catch(error => {
                 console.log(error.response);
