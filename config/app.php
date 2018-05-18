@@ -155,6 +155,7 @@ return [
         ScoutEngines\Elasticsearch\ElasticsearchProvider::class,
         Swap\Laravel\SwapServiceProvider::class,
         Mpociot\ApiDoc\ApiDocGeneratorServiceProvider::class,
+        Bugsnag\BugsnagLaravel\BugsnagServiceProvider::class,
         /*
         * Application Service Providers...
         */

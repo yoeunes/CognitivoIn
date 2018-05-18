@@ -85,7 +85,6 @@ class AccountReceivableController extends Controller
 
             $accountMovement->save();
 
-
             $return[] = [
                 'PaymentReference' => $accountMovement->id,
                 'ResponseType' => 1

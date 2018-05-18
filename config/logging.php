@@ -37,7 +37,11 @@ return [
             'driver' => 'stack',
             'channels' => ['single'],
         ],
-
+        // Create a bugsnag logging channel:
+        'bugsnag' => [
+            'driver' => 'bugsnag',
+        ],
+        
         'single' => [
             'driver' => 'single',
             'path' => storage_path('logs/laravel.log'),
