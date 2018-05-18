@@ -140,9 +140,11 @@ class AccountController extends Controller
 
             foreach ($vatdetail as $detail)
             {
+                $vat = (((($item_value) / (1 + $detail->coefficient)) - $item_value) * (-1)) * $detail->percent;
+                
                 $values[$i] = [
                     'coefficient' => ($detail->coefficient * 100) . "%" ,
-                    'Value' => (((($item_value) / (1 + $detail->coefficient)) - $item_value) * (-1)) * $detail->percent,
+                    'Value' => number_format($vat, 0, ',', '.'),
                 ];
 
                 $i = $i + 1;
