@@ -17,7 +17,7 @@ class PipelineController extends Controller
     public function index(Profile $profile, $skip)
     {
         $pipelines = Pipeline::with('stages')
-        ->Pipelines($profile->id)
+        ->My($profile->id)
         ->skip($skip)
         ->take(100)
         ->get();
@@ -114,11 +114,9 @@ class PipelineController extends Controller
         if ($pipeline->profile_id == $profile->id)
         {
             $pipeline->delete();
-            return response()->json('200',200);
+            return response()->json('200', 200);
         }
-        else
-        {
-            return response()->json('Resource not found', 401);
-        }
+
+        return response()->json('Resource not found', 401);
     }
 }

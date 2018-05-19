@@ -1,27 +1,32 @@
-<div>
-    <div class="row">
-        <div class="col-5">
-            <p class="m--font-boldest m--font-transform-u">
-                @lang('global.name')
-            </p>
+<div class="content">
+    <div class="block block-fx-shadow">
+        <div class="block-content">
+            <table>
+                <thead>
+                    <tr>
+                        <td>#</td>
+                        <th>Pipeline Name</th>
+                        <th class="text-center">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr v-for="pipeline in list">
+                        <td>@{{ pipeline.id }}</td>
+                        <td>@{{ pipeline.name }}</td>
+                        <td class="text-center">
+                            <div class="btn-group">
+                                <button v-on:click="onEdit(pipeline)" type="button" class="btn btn-sm btn-info js-tooltip-enabled" data-toggle="tooltip" data-original-title="Edit">
+                                    <i class="fa fa-pencil"></i>
+                                </button>
+                                <button v-on:click="onDelete(pipeline)" type="button" class="btn btn-sm btn-danger js-tooltip-enabled" data-toggle="tooltip" data-original-title="Delete">
+                                    <i class="fa fa-times"></i>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            @include('layouts/infinity-loading')
         </div>
     </div>
-
-    <div class="row m--margin-bottom-5" v-for="invoice in list">
-        <div class="col-1">
-            <p> @{{ invoice.name }} </p>
-        </div>
-
-        <div class="col-1">
-            <div role="group" aria-label="...">
-                <a @click="onEdit(invoice, false)" class="m-btn btn btn-secondary">
-                    <i class="la la-pencil m--font-brand"></i>
-                </a>
-                <a @click="onDelete(invoice)" class="m-btn btn btn-secondary">
-                    <i class="la la-trash m--font-danger"></i>
-                </a>
-            </div>
-        </div>
-    </div>
-    @include('layouts/infinity-loading')
 </div>

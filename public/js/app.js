@@ -54530,8 +54530,10 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('customer-form', {
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vue_sweetalert__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vue_sweetalert___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_vue_sweetalert__);
 
-// import VueSweetAlert from 'vue-sweetalert';
+
 // import axios from 'axios';
 
 __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('pipeline-form', {
@@ -54592,11 +54594,10 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('pipeline-form', {
         },
 
         onEdit: function onEdit(data) {
-            console.log(data);
             var app = this;
             app.id = data.id;
             app.name = data.name;
-            app.stages.slice(0, 1);
+            // app.stages.slice(0,1);
 
             for (var i = 0; i < data.stages.length; i++) {
                 app.stages.push({
@@ -54624,8 +54625,6 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('pipeline-form', {
         //Takes Json and uploads it into Sales INvoice API for inserting. Since this is a new, it should directly insert without checking.
         //For updates code will be different and should use the ID's palced int he Json.
         onSave: function onSave(json, isnew) {
-            console.log(json);
-
             var app = this;
             var api = null;
             //run validation checked
@@ -54643,105 +54642,92 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('pipeline-form', {
 
 /***/ }),
 /* 60 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, __webpack_exports__) {
 
 "use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vue_sweetalert__ = __webpack_require__(3);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vue_sweetalert___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_vue_sweetalert__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_axios__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_axios__);
+// import Vue from 'vÍue';
+// import VueSweetAlert from 'vue-sweetalert';
+// import axios from 'axios';
 
-
-
-
-__WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('opportunity-form', {
-
-  props: ['profile'],
-  data: function data() {
-    return {
-
-      id: 0,
-      relationship_id: '',
-      description: '',
-      deadline_date: '',
-      value: '',
-      stage_id: '',
-      stages: [],
-      customers: []
-
-    };
-  },
-
-
-  methods: {
-
-    onEdit: function onEdit(data) {
-      console.log(data);
-      var app = this;
-      app.id = data.id;
-      app.relationship_id = data.relationship_id;
-      app.description = data.description;
-      app.deadline_date = data.deadline_date;
-      app.value = data.value;
-      app.stage_id = data.pipeline_stage_id;
-      app.$parent.showList = false;
+Vue.component('opportunity-form', {
+    props: ['profile'],
+    data: function data() {
+        return {
+            id: 0,
+            relationship_id: '',
+            description: '',
+            deadline_date: '',
+            value: '',
+            stage_id: '',
+            stages: [],
+            customers: []
+        };
     },
 
-    onReset: function onReset(isnew) {
-      var app = this;
-      app.id = null;
-      app.relationship_id = null;
-      app.description = null;
-      app.deadline_date = null;
 
-      app.value = null;
-      app.stage_id = null;
-      if (isnew == false) {
-        app.$parent.showList = true;
-      }
-    },
+    methods: {
+        onEdit: function onEdit(data) {
+            console.log(data);
+            var app = this;
+            app.id = data.id;
+            app.relationship_id = data.relationship_id;
+            app.description = data.description;
+            app.deadline_date = data.deadline_date;
+            app.value = data.value;
+            app.stage_id = data.pipeline_stage_id;
+            app.$parent.showList = false;
+        },
 
-    //Takes Json and uploads it into Sales INvoice API for inserting. Since this is a new, it should directly insert without checking.
-    //For updates code will be different and should use the ID's palced int he Json.
-    onSave: function onSave(json, isnew) {
-      var app = this;
-      var api = null;
+        onReset: function onReset(isnew) {
+            var app = this;
+            app.id = null;
+            app.relationship_id = null;
+            app.description = null;
+            app.deadline_date = null;
 
-      app.$parent.onSave('/back-office/' + this.profile + '/sales/opportunities', json);
-    },
-    getStages: function getStages(data) {
-      var app = this;
-      __WEBPACK_IMPORTED_MODULE_2_axios___default.a.get('/api/' + this.profile + '/back-office/pipelinestages/').then(function (_ref) {
-        var data = _ref.data;
+            app.value = null;
+            app.stage_id = null;
+            if (isnew == false) {
+                app.$parent.showList = true;
+            }
+        },
 
-        app.stages = [];
-        for (var i = 0; i < data.length; i++) {
-          app.stages.push({ name: data[i]['name'], id: data[i]['id'] });
+        //Takes Json and uploads it into Sales INvoice API for inserting. Since this is a new, it should directly insert without checking.
+        //For updates code will be different and should use the ID's palced int he Json.
+        onSave: function onSave(json, isnew) {
+            var app = this;
+            app.$parent.onSave(json);
+        },
+
+        getStages: function getStages(data) {
+            var app = this;
+            axios.get('/api/' + this.profile + '/back-office/pipelinestages/').then(function (_ref) {
+                var data = _ref.data;
+
+                app.stages = [];
+                for (var i = 0; i < data.length; i++) {
+                    app.stages.push({ name: data[i]['name'], id: data[i]['id'] });
+                }
+            });
+        },
+
+        getCustomers: function getCustomers(data) {
+            var app = this;
+            axios.get('/api/getCustomers/' + this.profile + '/').then(function (_ref2) {
+                var data = _ref2.data;
+
+                app.customers = [];
+                for (var i = 0; i < data.length; i++) {
+                    app.customers.push({ name: data[i]['customer_alias'], id: data[i]['id'] });
+                }
+            });
         }
-      });
     },
-    getCustomers: function getCustomers(data) {
-      var app = this;
-      __WEBPACK_IMPORTED_MODULE_2_axios___default.a.get('/api/getCustomers/' + this.profile + '/').then(function (_ref2) {
-        var data = _ref2.data;
 
-        app.customers = [];
-        for (var i = 0; i < data.length; i++) {
-          app.customers.push({ name: data[i]['customer_alias'], id: data[i]['id'] });
-        }
-      });
+    mounted: function mounted() {
+        this.getStages();
+        this.getCustomers();
     }
-
-  },
-
-  mounted: function mounted() {
-
-    this.getStages();
-    this.getCustomers();
-  }
 });
 
 /***/ }),
@@ -54764,149 +54750,155 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('order-form', {
-  props: ['profile'],
-  components: {
-    'item': __WEBPACK_IMPORTED_MODULE_3__ItemComponent_vue___default.a
-  },
-  data: function data() {
-    return {
-      relationship_id: '',
-      customer_name: '',
-      customer_address: '',
-      customer_telephone: '',
-      customer_email: '',
-      customers: [],
-      itemscomponent: [],
-      details: []
-
-    };
-  },
-
-  methods: {
-    addQuantity: function addQuantity(detail) {
-      var app = this;
-      detail.quantity = detail.quantity + 1;
-      var orderdata = null;
-      if (app.details != null) {
-        for (var i = 0; i < app.details.length; i++) {
-          if (app.details[i].sku == detail.sku) {
-            orderdata = app.details[i];
-            break;
-          }
-        }
-      }
-
-      if (orderdata == null) {
-
-        app.details.push({ price: detail.price, cost: detail.cost, sku: detail.sku, sub_total: detail.price * detail.quantity,
-          name: detail.name, quantity: detail.quantity, item_id: detail.item_id, currency_id: detail.currency_id });
-      } else {
-        orderdata.quantity = detail.quantity;
-        orderdata.sub_total = detail.quantity * detail.price;
-      }
+    props: ['profile'],
+    components: {
+        'item': __WEBPACK_IMPORTED_MODULE_3__ItemComponent_vue___default.a
+    },
+    data: function data() {
+        return {
+            relationship_id: '',
+            customer_name: '',
+            customer_address: '',
+            customer_telephone: '',
+            customer_email: '',
+            customers: [],
+            itemscomponent: [],
+            details: []
+        };
     },
 
-    removeQuantity: function removeQuantity(detail) {
-      var app = this;
-      var orderdata = null;
-      var index = 0;
-      if (app.details != null) {
-        for (var i = 0; i < app.details.length; i++) {
-          if (app.details[i].sku == detail.sku) {
-            orderdata = app.details[i];
-            index = i;
-            break;
-          }
+    methods: {
+        addQuantity: function addQuantity(detail) {
+            var app = this;
+            detail.quantity = detail.quantity + 1;
+            var orderdata = null;
+            if (app.details != null) {
+                for (var i = 0; i < app.details.length; i++) {
+                    if (app.details[i].sku == detail.sku) {
+                        orderdata = app.details[i];
+                        break;
+                    }
+                }
+            }
+
+            if (orderdata == null) {
+                app.details.push({
+                    price: detail.price,
+                    cost: detail.cost,
+                    sku: detail.sku,
+                    sub_total: detail.price * detail.quantity,
+                    name: detail.name,
+                    quantity: detail.quantity,
+                    item_id: detail.item_id,
+                    currency_id: detail.currency_id
+                });
+            } else {
+                orderdata.quantity = detail.quantity;
+                orderdata.sub_total = detail.quantity * detail.price;
+            }
+        },
+
+        removeQuantity: function removeQuantity(detail) {
+            var app = this;
+            var orderdata = null;
+            var index = 0;
+            if (app.details != null) {
+                for (var i = 0; i < app.details.length; i++) {
+                    if (app.details[i].sku == detail.sku) {
+                        orderdata = app.details[i];
+                        index = i;
+                        break;
+                    }
+                }
+            }
+
+            if (detail.quantity == 0) {
+                detail.quantity = 0;
+            } else {
+                detail.quantity = detail.quantity - 1;
+                if (detail.quantity == 0) {
+                    if (orderdata != null) {
+                        app.details.splice(index, 1);
+                    }
+                } else {
+                    if (orderdata != null) {
+                        orderdata.quantity = detail.quantity;
+                        orderdata.sub_total = detail.quantity * detail.price;
+                    }
+                }
+
+                console.log(app.details);
+            }
+        },
+
+        onContactChange: function onContactChange() {
+            var app = this;
+            if (app.relationship_id !== '') {
+                __WEBPACK_IMPORTED_MODULE_2_axios___default.a.get('/api/' + this.profile + '/back-office/customers' + '/' + app.relationship_id + '/edit').then(function (resp) {
+
+                    app.customer_name = '(' + resp.data.customer_taxid + ') - ' + resp.data.customer_alias;
+                    app.customer_address = resp.data.customer_address;
+                    app.customer_telephone = resp.data.customer_telephone;
+                    app.customer_email = resp.data.customer_email;
+                }).catch(function (resp) {
+                    console.log(resp);
+                    alert("Could not execute onContactChange in Order Component");
+                });
+            }
+        },
+
+        onSave: function onSave(json) {
+
+            console.log('Started method onSave Order Component');
+
+            __WEBPACK_IMPORTED_MODULE_2_axios___default()({
+                method: 'post',
+                url: '/back-office/' + this.profile + '/sales/orders',
+                responseType: 'json',
+                data: {
+                    'relationship_id': this.relationship_id,
+                    'details': this.details
+                }
+
+            }).then(function (response) {
+                app.$parent.$parent.$parent.showList = true;
+                //document.location = '/'  + slug + '/portal/sales/orders';
+            }).catch(function (error) {
+                console.log(error);
+            });
         }
-      }
-
-      if (detail.quantity == 0) {
-
-        detail.quantity = 0;
-      } else {
-        detail.quantity = detail.quantity - 1;
-        if (detail.quantity == 0) {
-          if (orderdata != null) {
-            app.details.splice(index, 1);
-          }
-        } else {
-          if (orderdata != null) {
-            orderdata.quantity = detail.quantity;
-            orderdata.sub_total = detail.quantity * detail.price;
-          }
-        }
-
-        console.log(app.details);
-      }
     },
-    onContactChange: function onContactChange() {
-      var app = this;
-      if (app.relationship_id !== '') {
-        __WEBPACK_IMPORTED_MODULE_2_axios___default.a.get('/api/' + this.profile + '/back-office/customers' + '/' + app.relationship_id + '/edit').then(function (resp) {
+    computed: {
+        // a computed getter
+        grandTotal: function grandTotal() {
 
-          app.customer_name = '(' + resp.data.customer_taxid + ') - ' + resp.data.customer_alias;
-          app.customer_address = resp.data.customer_address;
-          app.customer_telephone = resp.data.customer_telephone;
-          app.customer_email = resp.data.customer_email;
+            // `this` points to the vm instance
+            var app = this;
+            var total = 0.0;
+
+            if (app.details != null) {
+
+                for (var i = 0; i < app.details.length; i++) {
+                    total += parseFloat(app.details[i].quantity).toFixed(2) * parseFloat(app.details[i].price).toFixed(2);
+                }
+            }
+
+            return parseFloat(total).toFixed(2);
+        }
+    },
+
+    mounted: function mounted() {
+
+        this.itemscomponent = this.$children;
+        var app = this;
+
+        __WEBPACK_IMPORTED_MODULE_2_axios___default.a.get('/api/getCustomers/' + this.profile).then(function (resp) {
+            console.log(resp.data);
+            app.customers = resp.data;
         }).catch(function (resp) {
-          console.log(resp);
-          alert("Could not execute onContactChange in Order Component");
+            alert(' Could not load Slug, "' + slug + '" on Order Component ');
         });
-      }
-    },
-
-    onSave: function onSave(json) {
-
-      console.log('Started method onSave Order Component');
-
-      __WEBPACK_IMPORTED_MODULE_2_axios___default()({
-        method: 'post',
-        url: '/back-office/' + this.profile + '/sales/orders',
-        responseType: 'json',
-        data: {
-          'relationship_id': this.relationship_id,
-          'details': this.details
-        }
-
-      }).then(function (response) {
-        app.$parent.$parent.$parent.showList = true;
-        //document.location = '/'  + slug + '/portal/sales/orders';
-      }).catch(function (error) {
-        console.log(error);
-      });
     }
-  },
-  computed: {
-    // a computed getter
-    grandTotal: function grandTotal() {
-
-      // `this` points to the vm instance
-      var app = this;
-      var total = 0.0;
-
-      if (app.details != null) {
-
-        for (var i = 0; i < app.details.length; i++) {
-          total += parseFloat(app.details[i].quantity).toFixed(2) * parseFloat(app.details[i].price).toFixed(2);
-        }
-      }
-
-      return parseFloat(total).toFixed(2);
-    }
-  },
-
-  mounted: function mounted() {
-
-    this.itemscomponent = this.$children;
-    var app = this;
-
-    __WEBPACK_IMPORTED_MODULE_2_axios___default.a.get('/api/getCustomers/' + this.profile).then(function (resp) {
-      console.log(resp.data);
-      app.customers = resp.data;
-    }).catch(function (resp) {
-      alert(' Could not load Slug, "' + slug + '" on Order Component ');
-    });
-  }
 });
 
 /***/ }),
@@ -55323,7 +55315,8 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('location-form', {
             city: '',
             state: '',
             country: '',
-            zip: ''
+            zip: '',
+            hours: []
         };
     },
 
@@ -55336,6 +55329,16 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('location-form', {
             app.address = data.address;
             app.city = data.city;
             app.state = data.state;
+
+            for (var i = 0; i < data.hours.length; i++) {
+                app.hours.push({
+                    id: data.stages[i].id,
+                    open_time: data.stages[i].open_time,
+                    close_time: data.stages[i].close_time,
+                    day: data.stages[i].day
+                });
+            }
+
             app.$parent.showList = false;
         },
 
@@ -55346,6 +55349,7 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('location-form', {
             app.address = '';
             app.city = '';
             app.state = '';
+            app.hours = [];
 
             if (isnew == false) {
                 app.$parent.showList = true;
@@ -55357,7 +55361,8 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('location-form', {
         onSave: function onSave(json, isnew) {
             var app = this;
             var api = null;
-            app.$parent.onSave('/back-office/' + this.profile + '/sales/locations', json);
+
+            app.$parent.onSave(json);
         }
     },
 
@@ -55381,11 +55386,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('vat-form', {
-
     props: ['profile'],
     data: function data() {
         return {
-
             id: 0,
             name: '',
             vatdetails: [],
@@ -55393,7 +55396,6 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('vat-form', {
             detail_id: 0,
             coefficient: '',
             percent: ''
-
         };
     },
 
@@ -55410,6 +55412,7 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('vat-form', {
             app.percent = data.percent;
             app.detail_id = data.id;
         },
+
 
         onDetailSave: function onDetailSave(json, isnew) {
             var app = this;
@@ -55440,7 +55443,6 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('vat-form', {
         },
 
         onEdit: function onEdit(data) {
-
             var app = this;
             app.id = data.id;
             app.name = data.name;
@@ -55468,7 +55470,6 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('vat-form', {
             var api = null;
             app.$parent.onSave('/back-office/' + this.profile + '/sales/vats', json);
         }
-
     },
 
     mounted: function mounted() {}
@@ -55636,7 +55637,7 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('model', {
         showModules: function showModules($moduleID) {
             var app = this;
             app.showModule = $moduleID;
-            app.showList = 1;
+            app.showList = true;
         },
         infiniteHandler: function infiniteHandler($state) {
             var _this = this;
@@ -55661,11 +55662,11 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('model', {
                     } else {
                         $state.complete();
                     }
-                }).catch(function (error) {
-                    //Stop loading with one error.
+                }).catch(function (ex) {
+                    //Stop loading with one ex.
                     $state.complete();
-                    //Log error for help
-                    console.log(error);
+                    //Log ex for help
+                    console.log(ex);
                     _this.$swal('Error trying to load records.');
                 });
             }
@@ -55699,14 +55700,14 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('model', {
                 var data = _ref2.data;
 
                 app.$children[0].onEdit(data);
-            }).catch(function (error) {
-                console.log(error);
+            }).catch(function (ex) {
+                console.log(ex);
                 _this2.$swal('Error trying to edit record.');
             });
         },
         onCancel: function onCancel($data) {
             var app = this;
-            swal({
+            this.$swal({
                 title: 'Are you sure?',
                 text: "This will cancel all changes made",
                 type: 'warning',
@@ -55719,7 +55720,7 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('model', {
                 app.showList = true;
             });
         },
-        onSave: function onSave($url, $data) {
+        onSave: function onSave($data) {
             var _this3 = this;
 
             var app = this;
@@ -55735,12 +55736,12 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('model', {
                 if (app.$refs.infiniteLoading != null) {
                     app.$refs.infiniteLoading.attemptLoad();
                 }
-            }).catch(function (error) {
-                console.log(error.response);
+            }).catch(function (ex) {
+                console.log(ex.response);
                 _this3.$swal('Error trying to save record.');
             });
         },
-        onSaveCreate: function onSaveCreate($url, $data) {
+        onSaveCreate: function onSaveCreate($data) {
             var _this4 = this;
 
             var app = this;
@@ -55756,33 +55757,29 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('model', {
                 });
 
                 app.showList = true;
-            }).catch(function (error) {
-                console.log(error);
+            }).catch(function (ex) {
+                console.log(ex);
                 _this4.$swal('Error trying to save record.');
             });
         },
-        onDelete: function onDelete($url, $data) {
+        onDelete: function onDelete($data) {
             var _this5 = this;
 
             var app = this;
 
-            swal({
-                title: 'Are you sure?',
-                text: "You won't be able to revert this!",
-                type: 'danger',
+            this.$swal({
+                title: 'Delete Record',
+                text: "Sure? This action is non-reversable",
+                type: 'question',
                 showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
                 confirmButtonText: 'Yes, delete it!'
             }).then(function (result) {
-                __WEBPACK_IMPORTED_MODULE_3_axios___default.a.delete('/api/' + _this5.profile + '/back-office/' + _this5.url, {
-                    params: { $data: _this5.data.ID }
-                }).then(function () {
 
-                    var index = _this5.list.findIndex(function (crud) {
-                        return list.ID === ID;
+                __WEBPACK_IMPORTED_MODULE_3_axios___default.a.delete('/api/' + _this5.profile + '/back-office/' + _this5.url + '/' + $data.id).then(function () {
+
+                    var index = _this5.list.findIndex(function (x) {
+                        return x.id === $data.id;
                     });
-
                     _this5.list.splice(index, 1);
 
                     _this5.$swal({
@@ -55792,8 +55789,8 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('model', {
                         showConfirmButton: false,
                         timer: 750
                     });
-                }).catch(function (error) {
-                    console.log(error);
+                }).catch(function (ex) {
+                    console.log(ex);
                     _this5.$swal('Error trying to delete record.');
                 });
             });
@@ -55803,16 +55800,13 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('model', {
 
             var app = this;
 
-            swal({
-                title: 'You are about to Approve this record.',
+            this.$swal({
+                title: 'Approve Record',
                 text: "This will process your record, and is non-reversable.",
                 type: 'warning',
                 showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
                 confirmButtonText: 'Yes, approve it!'
             }).then(function (result) {
-
                 __WEBPACK_IMPORTED_MODULE_3_axios___default.a.post('/api/' + _this6.profile + '/back-office/' + app.url + '/' + $data.id + '/approve', $data).then(function () {
                     _this6.$swal({
                         position: 'top-end',
@@ -55823,25 +55817,23 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('model', {
                     });
 
                     app.showList = true;
-                }).catch(function (error) {
-                    console.log(error);
+                }).catch(function (ex) {
+                    console.log(ex);
                     _this6.$swal('Error trying to approve record.');
                 });
                 //Code to approve
             });
         },
-        onAnnull: function onAnnull($url, $data) {
+        onAnnull: function onAnnull($data) {
             var _this7 = this;
 
             var app = this;
 
-            swal({
-                title: 'Annull? Are you sure?',
+            this.$swal({
+                title: 'Annull Record',
                 text: "This is non-reversable",
                 type: 'warning',
                 showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
                 confirmButtonText: 'Yes, annull it!'
             }).then(function (result) {
                 //Code to annull
@@ -55853,17 +55845,19 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('model', {
                         showConfirmButton: false,
                         timer: 1500
                     });
-
                     app.showList = true;
-                }).catch(function (error) {
-                    console.log(error);
+                }).catch(function (ex) {
+                    console.log(ex);
                     _this7.$swal('Error trying to annull record.');
                 });
             });
         }
     },
 
-    mounted: function mounted() {}
+    mounted: function mounted() {
+        var app = this;
+        app.showModule = 1;
+    }
 });
 
 /***/ }),

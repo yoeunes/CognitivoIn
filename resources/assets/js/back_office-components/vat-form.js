@@ -5,25 +5,18 @@ import axios from 'axios';
 
 Vue.component('vat-form',
 {
-
     props: ['profile'],
     data() {
         return {
-
             id: 0,
-            name:'',
-            vatdetails:[],
-            showDetail:true,
-            detail_id:0,
-            coefficient:'',
-            percent:''
-
-
-
+            name: '',
+            vatdetails: [],
+            showDetail: true,
+            detail_id: 0,
+            coefficient: '',
+            percent: ''
         }
     },
-
-
 
     methods:
     {
@@ -32,20 +25,20 @@ Vue.component('vat-form',
             var app = this;
             app.showDetail = false;
         },
+
         onEditDetail(data)
         {
             var app = this;
             app.showDetail = false;
-            app.coefficient=data.coefficient;
-            app.percent=data.percent;
-            app.detail_id=data.id;
+            app.coefficient = data.coefficient;
+            app.percent = data.percent;
+            app.detail_id = data.id;
         },
+
         onDetailSave: function(json,isnew)
         {
             var app = this;
             var api = null;
-
-
 
             axios({
                 method: 'post',
@@ -58,13 +51,12 @@ Vue.component('vat-form',
                 if (response.status = 200 )
                 {
                     app.showDetail = true;
-                    app.vatdetails=[];
+                    app.vatdetails = [];
 
                     for (var i = 0; i < response.data.length; i++) {
                         app.vatdetails.push(response.data[i]);
-                        app.id=response.data[i].vat_id;
+                        app.id = response.data[i].vat_id;
                     }
-
                 }
                 else
                 {
@@ -80,11 +72,10 @@ Vue.component('vat-form',
 
         onEdit: function(data)
         {
-
             var app = this;
-            app.id=data.id;
-            app.name=data.name;
-            app.vatdetails=[];
+            app.id = data.id;
+            app.name = data.name;
+            app.vatdetails = [];
             for (var i = 0; i < data.details.length; i++) {
                 app.vatdetails.push(data.details[i]);
             }
@@ -95,11 +86,11 @@ Vue.component('vat-form',
         onReset: function(isnew)
         {
             var app = this;
-            app.id=null;
-            app.name='';
+            app.id = null;
+            app.name = '';
             if (isnew == false)
             {
-                app.$parent.showList  = true;
+                app.$parent.showList = true;
             }
         },
 
@@ -110,25 +101,11 @@ Vue.component('vat-form',
             var app = this;
             var api = null;
             app.$parent.onSave('/back-office/'+ this.profile +'/sales/vats',json);
-
         }
-
-
-
-
-
-
-
-
-
-
-
     },
 
     mounted: function mounted()
     {
-
-
 
     }
 });

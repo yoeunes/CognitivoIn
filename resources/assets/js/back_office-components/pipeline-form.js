@@ -1,5 +1,5 @@
 import Vue from 'vue';
-// import VueSweetAlert from 'vue-sweetalert';
+import VueSweetAlert from 'vue-sweetalert';
 // import axios from 'axios';
 
 Vue.component('pipeline-form',
@@ -69,11 +69,10 @@ Vue.component('pipeline-form',
 
         onEdit: function(data)
         {
-            console.log(data)
             var app = this;
             app.id = data.id;
             app.name = data.name;
-            app.stages.slice(0,1);
+            // app.stages.slice(0,1);
 
             for (var i = 0; i < data.stages.length; i++) {
                 app.stages.push({
@@ -104,8 +103,6 @@ Vue.component('pipeline-form',
         //For updates code will be different and should use the ID's palced int he Json.
         onSave: function(json,isnew)
         {
-            console.log(json)
-            
             var app = this;
             var api = null;
             //run validation checked

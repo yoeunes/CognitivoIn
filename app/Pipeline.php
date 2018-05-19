@@ -20,7 +20,7 @@ class Pipeline extends Model
         'is_active'
     ];
 
-    public function scopePipelines($query, $id)
+    public function scopeMy($query, $id)
     {
         return $query->where('profile_id', $id);
     }

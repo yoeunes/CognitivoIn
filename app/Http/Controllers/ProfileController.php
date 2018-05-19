@@ -48,9 +48,8 @@ class ProfileController extends Controller
         $company->alias = $request->alias;
         $company->address = $request->address;
         $company->taxid = $request->taxID;
-        $company->currency=$request->currency;
+        $company->currency = $request->currency;
         $company->type = 2;
-
         $company->save();
 
         //Laravel Follow
@@ -66,12 +65,6 @@ class ProfileController extends Controller
             $follower->role = 1;
             $follower->save();
         }
-
-        // $social = new ProfileFollower();
-        // $social->profile_id = $profile->id;
-        // $social->followable_id = Auth::user()->profile_id;
-        // $social->role = 1;
-        // $social->save();
 
         return view('/home');
     }
@@ -107,7 +100,27 @@ class ProfileController extends Controller
     */
     public function update(Request $request, Profile $profile)
     {
+        $profile->taxid = $request->taxid;
+        $profile->name = $request->name;
+        $profile->alias = $request->alias;
+        $profile->slug = $request->slug;
 
+        $profile->short_description = $request->short_description;
+        $profile->long_description = $request->long_description;
+
+        $profile->telephone = $request->telephone;
+        $profile->email = $request->email;
+        $profile->website = $request->website;
+
+        $profile->address = $request->address;
+        $profile->zip = $request->zip;
+        $profile->state = $request->state;
+        $profile->country = $request->country;
+
+        $profile->currency = $request->currency;
+        $profile->save();
+
+        return redirect()->back();
     }
 
     /**
@@ -121,19 +134,15 @@ class ProfileController extends Controller
         //
     }
 
-    public function followingUnfollowing($user,$profile)
+    public function followingUnfollowing($user, $profile)
     {
         $user = Profile::where('id',$user)->first();
         $profile = Profile::where('id',$profile)->first();
 
         if ($profile->isFollowedBy($user))
-        {
-            $user->unfollow($profile);
-        }
+        { $user->unfollow($profile); }
         else
-        {
-            $user->follow($profile);
-        }
+        { $user->follow($profile); }
 
         return response()->json('save', 200);
     }
@@ -147,12 +156,10 @@ class ProfileController extends Controller
         return response()->json($profile->isFollowedBy($user));
     }
 
-    public function get_companys($id)
-  {
-    $user=User::where('profile_id',$id)->first();
-    
-    $companys = $user->profile->followings(\App\Profile::class)->where('role', '<', 4)->get();
-
-    return response()->json($companys);
-  }
+    public function get_companies($id)
+    {
+        $user = User::where('profile_id', $id)->first();
+        $companies = $user->profile->followings(\App\Profile::class)->where('role', '<', 4)->get();
+        return response()->json($companies);
+    }
 }

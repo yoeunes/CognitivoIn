@@ -13,7 +13,8 @@ Vue.component('location-form',
             city:'',
             state:'',
             country:'',
-            zip:''
+            zip:'',
+            hours: []
         }
     },
 
@@ -27,6 +28,16 @@ Vue.component('location-form',
             app.address = data.address;
             app.city = data.city;
             app.state = data.state;
+
+            for (var i = 0; i < data.hours.length; i++) {
+                app.hours.push({
+                    id: data.stages[i].id,
+                    open_time: data.stages[i].open_time,
+                    close_time: data.stages[i].close_time,
+                    day: data.stages[i].day
+                });
+            }
+
             app.$parent.showList = false;
         },
 
@@ -38,6 +49,7 @@ Vue.component('location-form',
             app.address = '';
             app.city = '';
             app.state = '';
+            app.hours = [];
 
             if (isnew == false)
             {
@@ -47,11 +59,12 @@ Vue.component('location-form',
 
         //Takes Json and uploads it into Sales Invoice API for inserting. Since this is a new, it should directly insert without checking.
         //For updates code will be different and should use the ID's palced int he Json.
-        onSave: function(json,isnew)
+        onSave: function(json, isnew)
         {
             var app = this;
             var api = null;
-            app.$parent.onSave('/back-office/'+ this.profile +'/sales/locations',json);
+            
+            app.$parent.onSave(json);
         }
     },
 
