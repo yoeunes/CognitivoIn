@@ -1,4 +1,4 @@
-<customer-form profile="{{ request()->route('profile')->slug }}" inline-template>
+<customer-form inline-template>
     <div>
         <div class="block block-rounded block-themed">
             <div class="block-header bg-gd-primary">
@@ -56,7 +56,6 @@
                 </div>
             </div>
         </div>
-
         <div class="row">
             <div class="form-group">
                 <div class="col-xs-12">
@@ -124,7 +123,5 @@
                 </button>
             </div>
         </div>
-
-
     </div>
 </item-form>

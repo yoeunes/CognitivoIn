@@ -1,15 +1,14 @@
 
-
 <!-- Page Content -->
 <div class="content">
 
     <!-- Overview -->
-    <h2 class="content-heading"><b>Shops & Locations</b> | Statistics</h2>
+    <h2 class="content-heading">Profile | <b>Shops & Locations</b></h2>
     <div class="row gutters-tiny">
 
         <!-- Add Product -->
         <div class="col-md-6 col-xl-3">
-            <a class="block block-rounded block-link-shadow" @click="onCreate()" href="#">
+            <a class="block block-rounded block-link-shadow" @click="onCreate()" href="#" v-if="showList">
                 <div class="block-content block-content-full block-sticky-options">
                     <div class="block-options">
                         <div class="block-options-item">
@@ -20,7 +19,7 @@
                         <div class="font-size-h2 font-w700 mb-0 text-success">
                             <i class="fa fa-plus"></i>
                         </div>
-                        <div class="font-size-sm font-w600 text-uppercase text-muted">New Location</div>
+                        <div class="font-size-sm font-w600 text-uppercase text-muted">Create new Location</div>
                     </div>
                 </div>
             </a>
@@ -32,7 +31,7 @@
     <div class="block block-fx-shadow">
         <div class="block-content">
             <div v-if="showList">
-               @include('back_office/configs/locations/list')
+                @include('back_office/configs/locations/list')
             </div>
             <div v-else>
                 @include('back_office/configs/locations/form')

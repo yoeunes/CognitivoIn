@@ -1,14 +1,15 @@
-import Vue from 'vue';
-import VueSweetAlert from 'vue-sweetalert';
-import axios from 'axios';
+// import Vue from 'vue';
+// import VueSweetAlert from 'vue-sweetalert';
+// import axios from 'axios';
 
 Vue.component('location-form',
 {
-    props: ['profile'],
+    //props: ['profile'],
     data() {
         return {
             id: 0,
             name:'',
+            telephone: '',
             address: '',
             city:'',
             state:'',
@@ -20,28 +21,30 @@ Vue.component('location-form',
 
     methods:
     {
-        onEdit: function(data)
+        onEdit: function(record)
         {
             var app = this;
-            app.id = data.id;
-            app.name = data.name;
-            app.address = data.address;
-            app.city = data.city;
-            app.state = data.state;
 
-            for (var i = 0; i < data.hours.length; i++) {
+            app.id = record.id;
+            app.name = record.name;
+            app.telephone = record.telephone;
+            app.address = record.address;
+            app.city = record.city;
+            app.state = record.state;
+            app.country = record.country;
+            app.zip = record.zip;
+
+            for (var i = 0; i < record.hours.length; i++) {
                 app.hours.push({
-                    id: data.stages[i].id,
-                    open_time: data.stages[i].open_time,
-                    close_time: data.stages[i].close_time,
-                    day: data.stages[i].day
+                    id: record.stages[i].id,
+                    open_time: record.stages[i].open_time,
+                    close_time: record.stages[i].close_time,
+                    day: record.stages[i].day
                 });
             }
-
-            app.$parent.showList = false;
         },
 
-        onReset: function(isnew)
+        onReset: function()
         {
             var app = this;
             app.id = null;
@@ -50,11 +53,6 @@ Vue.component('location-form',
             app.city = '';
             app.state = '';
             app.hours = [];
-
-            if (isnew == false)
-            {
-                app.$parent.showList = true;
-            }
         },
 
         //Takes Json and uploads it into Sales Invoice API for inserting. Since this is a new, it should directly insert without checking.
@@ -62,9 +60,13 @@ Vue.component('location-form',
         onSave: function(json, isnew)
         {
             var app = this;
-            var api = null;
-            
-            app.$parent.onSave(json);
+
+            if (isnew == false) {
+                app.$parent.onSave(json);
+            }
+            else {
+                app.$parent.onSaveCreate(json);
+            }
         }
     },
 

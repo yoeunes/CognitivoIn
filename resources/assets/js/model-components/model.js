@@ -75,20 +75,19 @@ Vue.component('model',
         },
 
         //This restarts the inifity loader.
-        onList($url, $filter)
+        onList($url, $showModule)
         {
             var app = this;
             app.showList = true;
             app.skip = 0;
             app.url = $url;
-            app.showModule = $filter;
+            app.showModule = $showModule;
 
             app.list = [];
 
+            //Handle the infinite loading of the list.
             if (app.$refs.infiniteLoading != null)
-            {
-                app.$refs.infiniteLoading.attemptLoad();
-            }
+            { app.$refs.infiniteLoading.attemptLoad(); }
         },
 
         onCreate()
@@ -100,11 +99,13 @@ Vue.component('model',
         onEdit($data)
         {
             var app = this;
-            app.showList = false;
+
             axios.get('/api/' + this.profile + '/back-office/' + app.url + '/' + $data.id + '/edit')
-            .then(({ data }) =>
+            .then((record) =>
             {
-                app.$children[0].onEdit(data);
+                app.showList = false;
+                this.$refs.backendForm.onEdit(record);
+                //app.$children.onEdit(record);
             })
             .catch(ex => {
                 console.log(ex);
@@ -120,11 +121,12 @@ Vue.component('model',
                 text: "This will cancel all changes made",
                 type: 'warning',
                 showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
+                // confirmButtonColor: '#3085d6',
+                // cancelButtonColor: '#d33',
                 confirmButtonText: 'Yes, cancel it!'
-            }).then((result) => {
+            }).then(() => {
                 //clean property changes
+                // app.$children[0].onReset();
                 app.showList = true;
             })
         },
@@ -132,10 +134,10 @@ Vue.component('model',
         onSave($data)
         {
             var app = this;
-            axios.post($url, $data)
+            //alert($data.id);
+            axios.post('/api/' + this.profile + '/back-office/' + app.url, $data)
             .then(() =>
             {
-                app.showList = true;
                 this.$swal({
                     position: 'top-end',
                     type: 'success',
@@ -143,14 +145,12 @@ Vue.component('model',
                     showConfirmButton: false,
                     timer: 1500
                 })
-                if (app.$refs.infiniteLoading != null)
-                {
-                    app.$refs.infiniteLoading.attemptLoad();
-                }
 
+                app.$refs.infiniteLoading.attemptLoad();
+                app.showList = true;
             })
             .catch(ex => {
-                console.log(ex.response);
+                console.log(ex);
                 this.$swal('Error trying to save record.');
             });
         },
@@ -159,7 +159,7 @@ Vue.component('model',
         {
             var app = this;
 
-            axios.post($url, $data)
+            axios.post('/api/' + this.profile + '/back-office/' + app.url, $data)
             .then(() =>
             {
                 //TODO run code to clean data.
@@ -171,7 +171,7 @@ Vue.component('model',
                     timer: 1500
                 })
 
-                app.showList = true;
+                app.showList = false;
             })
             .catch(ex => {
                 console.log(ex);
@@ -190,7 +190,7 @@ Vue.component('model',
                 showCancelButton: true,
                 confirmButtonText: 'Yes, delete it!'
             })
-            .then((result) => {
+            .then(() => {
 
                 axios.delete('/api/' + this.profile + '/back-office/' + this.url + '/' + $data.id)
                 .then(() => {
@@ -223,7 +223,7 @@ Vue.component('model',
                 type: 'warning',
                 showCancelButton: true,
                 confirmButtonText: 'Yes, approve it!'
-            }).then((result) => {
+            }).then(() => {
                 axios.post('/api/' + this.profile + '/back-office/' + app.url + '/' + $data.id + '/approve', $data)
                 .then(() =>
                 {
@@ -255,7 +255,7 @@ Vue.component('model',
                 type: 'warning',
                 showCancelButton: true,
                 confirmButtonText: 'Yes, annull it!'
-            }).then((result) => {
+            }).then(() => {
                 //Code to annull
                 axios.post('/api/' + this.profile + '/back-office/' + app.url + '/' + $data.id + '/annull', $data)
                 .then(() =>

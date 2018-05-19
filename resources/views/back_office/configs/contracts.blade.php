@@ -4,9 +4,7 @@
 <div class="content">
 
     <!-- Overview -->
-    <h2 class="content-heading">
-        <b>Contract</b> | Statistics
-    </h2>
+    <h2 class="content-heading">Profile | <b>Contracts</b></h2>
     <div class="row gutters-tiny">
 
         <!-- Add Product -->

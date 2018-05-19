@@ -1,4 +1,4 @@
-<location-form profile="{{ request()->route('profile')->slug }}" inline-template>
+<location-form inline-template>
     <div>
         <div class="block block-rounded block-themed">
             <div class="block-header bg-gd-primary">

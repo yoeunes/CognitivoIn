@@ -14,23 +14,28 @@ class Location extends Model
     * @var array
     */
     protected $fillable = [
+        'profile_id',
         'name',
         'telephone',
         'address',
+        'zip',
+        'city',
         'state',
-        'profile_id',
-
         'country'
     ];
 
     /**
-     * The accountMovements that belong to the model.
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
-     */
+    * The accountMovements that belong to the model.
+    *
+    * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+    */
     public function accountMovements()
     {
         return $this->belongsToMany(AccountMovement::class);
     }
 
+    public function hours()
+    {
+        return $this->hasMany(LocationHour::class);
+    }
 }

@@ -3,9 +3,8 @@
 <div class="content">
 
     <!-- Overview -->
-    <h2 class="content-heading"><b>Vat</b> | Statistics</h2>
+    <h2 class="content-heading">Profile | <b>Sales Tax</b> <small>(VAT)</small></h2>
     <div class="row gutters-tiny">
-
         <!-- Add Product -->
         <div class="col-md-6 col-xl-3">
             <a class="block block-rounded block-link-shadow" @click="onCreate()" href="#">

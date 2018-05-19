@@ -1,4 +1,4 @@
-<item-form profile="{{ request()->route('profile')->slug }}" inline-template>
+<item-form inline-template>
     <div>
         <!-- User Profile -->
         <form action="be_pages_crypto_settings.html" method="post" onsubmit="return false;">
@@ -195,9 +195,7 @@
         </form>
         <!-- END Security -->
 
-
         <div class="block block-rounded block-themed">
-
             <div class="block-header bg-gd-primary">
                 <h3 class="block-title">Basic Information</h3>
                 <div class="block-options">

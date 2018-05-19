@@ -1,4 +1,4 @@
-<pipeline-form profile="{{ request()->route('profile')->slug }}" inline-template>
+<pipeline-form inline-template>
     <div>
         <div class="content">
             <div class="block block-fx-shadow">

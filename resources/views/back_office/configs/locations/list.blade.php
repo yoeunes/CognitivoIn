@@ -5,31 +5,47 @@
             <table class="table table-borderless table-striped">
                 <thead>
                     <tr>
-                        <th style="width: 100px;">ID</th>
-                        <th class="d-none d-sm-table-cell">@lang('global.Name')</th>
-                        <th>@lang('global.Address')</th>
-                        <th class="d-none d-md-table-cell">@lang('global.City')</th>
-                        <th class="text-right">@lang('global.Actions')</th>
+                        <th>
+                            #
+                        </th>
+                        <th class="d-none d-sm-table-cell">
+                            @lang('global.Name')
+                        </th>
+                        <th>
+                            @lang('global.City')
+                        </th>
+                        <th class="d-none d-md-table-cell">
+                            @lang('global.State')
+                        </th>
+                        <th class="text-right">
+                            @lang('global.Actions')
+                        </th>
                     </tr>
                 </thead>
                 <tbody>
                     <div class="">
                         <tr v-for="location in list">
                             <td>
-                                <a class="font-w600" href="be_pages_ecom_product_edit.html">@{{ location.id }}</a>
+                                @{{ location.id }}
                             </td>
                             <td class="d-none d-sm-table-cell">
-                                @{{ location.name }}
-                            </td>
-                            <td class="d-none d-sm-table-cell">
-                                @{{ location.address }}
+                                <a class="font-w600" href="#" @click="onEdit(location)">@{{ location.name }}</a>
                             </td>
                             <td>
                                 @{{ location.city }}
                             </td>
+                            <td>
+                                @{{ location.state }}
+                            </td>
                             <td class="text-right">
-                                <a @click="onEdit(location,false)" class="m-btn btn btn-secondary"><i class="la la-pencil m--font-brand"></i></a>
-                                <a @click="onDelete(location)" class="m-btn btn btn-secondary"><i class="la la-trash m--font-danger"></i></a>
+                                <div class="btn-group">
+                                    <button v-on:click="onEdit(location)" type="button" class="btn btn-sm btn-secondary js-tooltip-enabled" data-toggle="tooltip" data-original-title="Edit">
+                                        <i class="fa fa-pencil"></i>
+                                    </button>
+                                    <button v-on:click="onDelete(location)" type="button" class="btn btn-sm btn-secondary js-tooltip-enabled" data-toggle="tooltip" data-original-title="Delete">
+                                        <i class="fa fa-times"></i>
+                                    </button>
+                                </div>
                             </td>
                         </tr>
                     </div>
