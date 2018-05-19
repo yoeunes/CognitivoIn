@@ -55320,27 +55320,68 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('contract-form', {
     },
 
 
+    computed: {
+        totalPercent: function totalPercent() {
+            var app = this;
+            var total = 0;
+
+            for (var i = 0; i < app.details.length; i++) {
+                total = +app.details[i].percent + +total;
+            }
+
+            return (total * 100).toFixed(2);
+        }
+    },
+
     methods: {
+        addDetail: function addDetail() {
+            var app = this;
+
+            app.details.push({
+                id: 0,
+                percent: 1,
+                offset: 0
+            });
+        },
+
+        removeDetail: function removeDetail(detail) {
+            var app = this;
+
+            var index = this.details.indexOf(detail);
+            this.details.splice(index, 1);
+        },
+
+        template: function template(quota, interval) {
+            var app = this;
+
+            //clean details
+            app.details = [];
+
+            for (var i = 1; i < quota + 1; i++) {
+                app.details.push({
+                    id: 0,
+                    percent: (1 / quota).toFixed(4),
+                    offset: Math.floor(interval / quota * i)
+                });
+            }
+        },
+
         onEdit: function onEdit(data) {
             var app = this;
             app.id = data.id;
             app.name = data.name;
             app.details = [];
+
             for (var i = 0; i < data.details.length; i++) {
                 app.details.push(data.details[i]);
             }
-
-            app.$parent.showList = false;
         },
 
         onReset: function onReset(isnew) {
             var app = this;
             app.id = null;
             app.name = '';
-
-            if (isnew == false) {
-                app.$parent.showList = true;
-            }
+            app.details = [];
         }
     },
 
