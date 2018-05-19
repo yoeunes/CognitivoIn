@@ -54318,146 +54318,104 @@ __webpack_require__(68);
 /* 56 */
 /***/ (function(module, exports, __webpack_require__) {
 
-// require('./backend-nav');
-__webpack_require__(57);
+
+__webpack_require__(67);
 __webpack_require__(58);
-__webpack_require__(59);
+__webpack_require__(57);
+__webpack_require__(65);
 __webpack_require__(60);
 __webpack_require__(61);
-__webpack_require__(65);
+__webpack_require__(59);
 __webpack_require__(66);
-__webpack_require__(67);
 
 /***/ }),
 /* 57 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, __webpack_exports__) {
 
 "use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vue_sweetalert__ = __webpack_require__(3);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vue_sweetalert___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_vue_sweetalert__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_axios__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_axios__);
 
-
-
-
-__WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('item-form', {
-
-  props: ['currency', 'profile'],
-  data: function data() {
-    return {
-
-      id: 0,
-      profile_id: '',
-      name: '',
-      sku: '',
-      vat_id: '',
-      short_description: '',
-      long_description: '',
-      currency_id: '',
-      unit_price: '',
-      unit_cost: '',
-      is_active: true,
-      currencies: [],
-      vats: []
-
-    };
-  },
-
-
-  methods: {
-
-    onEdit: function onEdit(data) {
-
-      var app = this;
-      app.id = data.id;
-      app.profile_id = data.profile_id;
-      app.name = data.name;
-      app.sku = data.sku;
-      app.vat_id = data.vat_id;
-      app.short_description = data.short_description;
-      app.long_description = data.long_description;
-      app.currency_id = data.currency_id;
-      app.unit_price = data.unit_price;
-      app.unit_cost = data.unit_cost;
-      app.is_active = data.is_active;
-      app.$parent.showList = false;
+Vue.component('item-form', {
+    props: ['currency'],
+    data: function data() {
+        return {
+            id: 0,
+            profile_id: '',
+            name: '',
+            sku: '',
+            vat_id: '',
+            short_description: '',
+            long_description: '',
+            currency_id: '',
+            unit_price: '',
+            unit_cost: '',
+            is_active: true,
+            currencies: []
+        };
     },
 
-    onReset: function onReset(isnew) {
-      var app = this;
-      app.id = null;
-      app.profile_id = null;
-      app.name = null;
-      app.sku = null;
-      app.vat_id = null;
-      app.short_description = null;
-      app.long_description = null;
-      app.currency_id = null;
-      app.unit_price = null;
-      app.unit_cost = null;
-      if (!isnew) {
-        app.$parent.showList = true;
-      }
+
+    methods: {
+        onEdit: function onEdit(data) {
+            var app = this;
+            app.id = data.id;
+            app.profile_id = data.profile_id;
+            app.name = data.name;
+            app.sku = data.sku;
+            app.vat_id = data.vat_id;
+            app.short_description = data.short_description;
+            app.long_description = data.long_description;
+            app.currency_id = data.currency_id;
+            app.unit_price = data.unit_price;
+            app.unit_cost = data.unit_cost;
+            app.is_active = data.is_active;
+            app.$parent.showList = false;
+        },
+
+        onReset: function onReset(isnew) {
+            var app = this;
+            app.id = null;
+            app.profile_id = null;
+            app.name = null;
+            app.sku = null;
+            app.vat_id = null;
+            app.short_description = null;
+            app.long_description = null;
+            app.currency_id = null;
+            app.unit_price = null;
+            app.unit_cost = null;
+            if (!isnew) {
+                app.$parent.showList = true;
+            }
+        }
     },
 
-    //Takes Json and uploads it into Sales INvoice API for inserting. Since this is a new, it should directly insert without checking.
-    //For updates code will be different and should use the ID's palced int he Json.
-    onSave: function onSave(json, isnew) {
-      var app = this;
-      var api = null;
+    mounted: function mounted() {
+        var _this = this;
 
-      app.$parent.onSave('/back-office/' + this.profile + '/sales/items', json);
+        var app = this;
+        axios.get('/api/' + this.$parent.profile + '/back-office/list/0/vats/1').then(function (_ref) {
+            var data = _ref.data;
+
+            app.vats = data;
+            console.log();
+        }).catch(function (error) {
+            console.log(error);
+            _this.$swal('Error trying to edit record.');
+        });
     }
-
-  },
-
-  mounted: function mounted() {
-    var _this = this;
-
-    var app = this;
-    __WEBPACK_IMPORTED_MODULE_2_axios___default.a.get('/api/' + this.$parent.profile + '/back-office/list/0/vats/1').then(function (_ref) {
-      var data = _ref.data;
-
-
-      app.vats = data;
-      console.log();
-    }).catch(function (error) {
-      console.log(error);
-      _this.$swal('Error trying to edit record.');
-    });
-  }
 });
 
 /***/ }),
 /* 58 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports) {
 
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vue_sweetalert__ = __webpack_require__(3);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vue_sweetalert___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_vue_sweetalert__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_axios__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_axios__);
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-
-
-
-
-__WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('customer-form', {
-
-    props: ['profile'],
+Vue.component('customer-form', {
     data: function data() {
         var _ref;
 
         return _ref = {
-
             id: 0,
             customer_alias: '',
             customer_taxid: '',
@@ -54469,10 +54427,9 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('customer-form', {
 
 
     methods: {
-
         onEdit: function onEdit(data) {
-
             var app = this;
+
             app.id = data.id;
             app.customer_alias = data.customer_alias;
             app.customer_taxid = data.customer_taxid;
@@ -54486,11 +54443,11 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('customer-form', {
             app.supplier_telephone = data.supplier_telephone;
             app.supplier_email = data.supplier_email;
             app.supplier_telephone = data.supplier_telephone;
-            app.$parent.showList = false;
         },
 
         onReset: function onReset(isnew) {
             var app = this;
+
             app.id = null;
             app.customer_alias = null;
             app.customer_taxid = null;
@@ -54504,19 +54461,7 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('customer-form', {
             app.supplier_telephone = null;
             app.supplier_email = null;
             app.supplier_telephone = null;
-            if (isnew == false) {
-                app.$parent.showList = true;
-            }
-        },
-
-        //Takes Json and uploads it into Sales Invoice API for inserting. Since this is a new, it should directly insert without checking.
-        //For updates code will be different and should use the ID's palced int he Json.
-        onSave: function onSave(json, isnew) {
-            var app = this;
-            var api = null;
-            app.$parent.onSave('/back-office/' + this.profile + '/sales/customers', json);
         }
-
     },
 
     mounted: function mounted() {}
@@ -54537,7 +54482,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 // import axios from 'axios';
 
 __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('pipeline-form', {
-    props: ['profile'],
     data: function data() {
         return {
             id: 0,
@@ -54620,20 +54564,13 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('pipeline-form', {
             if (isnew == false) {
                 app.$parent.showList = true;
             }
-        },
-
-        //Takes Json and uploads it into Sales INvoice API for inserting. Since this is a new, it should directly insert without checking.
-        //For updates code will be different and should use the ID's palced int he Json.
-        onSave: function onSave(json, isnew) {
-            var app = this;
-            var api = null;
-            //run validation checked
-            app.$parent.onSave('/back-office/' + this.profile + '/sales/pipelines', json);
         }
     },
 
     mounted: function mounted() {
         var app = this;
+
+        //We want users to load stages, if none is there, we will ask user to set one up.
         if (app.stages.length == 0) {
             this.onAddStage();
         }
@@ -54642,15 +54579,13 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('pipeline-form', {
 
 /***/ }),
 /* 60 */
-/***/ (function(module, __webpack_exports__) {
+/***/ (function(module, exports) {
 
-"use strict";
 // import Vue from 'vÍue';
 // import VueSweetAlert from 'vue-sweetalert';
 // import axios from 'axios';
 
 Vue.component('opportunity-form', {
-    props: ['profile'],
     data: function data() {
         return {
             id: 0,
@@ -54692,13 +54627,6 @@ Vue.component('opportunity-form', {
             }
         },
 
-        //Takes Json and uploads it into Sales INvoice API for inserting. Since this is a new, it should directly insert without checking.
-        //For updates code will be different and should use the ID's palced int he Json.
-        onSave: function onSave(json, isnew) {
-            var app = this;
-            app.$parent.onSave(json);
-        },
-
         getStages: function getStages(data) {
             var app = this;
             axios.get('/api/' + this.profile + '/back-office/pipelinestages/').then(function (_ref) {
@@ -54736,24 +54664,15 @@ Vue.component('opportunity-form', {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vue_sweetalert__ = __webpack_require__(3);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vue_sweetalert___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_vue_sweetalert__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_axios__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_axios__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ItemComponent_vue__ = __webpack_require__(62);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ItemComponent_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__ItemComponent_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ItemComponent_vue__ = __webpack_require__(62);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ItemComponent_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__ItemComponent_vue__);
 
 
-
-
-
-__WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('order-form', {
-    props: ['profile'],
+Vue.component('order-form', {
     components: {
-        'item': __WEBPACK_IMPORTED_MODULE_3__ItemComponent_vue___default.a
+        'item': __WEBPACK_IMPORTED_MODULE_0__ItemComponent_vue___default.a
     },
+
     data: function data() {
         return {
             relationship_id: '',
@@ -54816,6 +54735,7 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('order-form', {
                 detail.quantity = 0;
             } else {
                 detail.quantity = detail.quantity - 1;
+
                 if (detail.quantity == 0) {
                     if (orderdata != null) {
                         app.details.splice(index, 1);
@@ -54834,7 +54754,7 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('order-form', {
         onContactChange: function onContactChange() {
             var app = this;
             if (app.relationship_id !== '') {
-                __WEBPACK_IMPORTED_MODULE_2_axios___default.a.get('/api/' + this.profile + '/back-office/customers' + '/' + app.relationship_id + '/edit').then(function (resp) {
+                axios.get('/api/' + this.profile + '/back-office/customers' + '/' + app.relationship_id + '/edit').then(function (resp) {
 
                     app.customer_name = '(' + resp.data.customer_taxid + ') - ' + resp.data.customer_alias;
                     app.customer_address = resp.data.customer_address;
@@ -54845,39 +54765,17 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('order-form', {
                     alert("Could not execute onContactChange in Order Component");
                 });
             }
-        },
-
-        onSave: function onSave(json) {
-
-            console.log('Started method onSave Order Component');
-
-            __WEBPACK_IMPORTED_MODULE_2_axios___default()({
-                method: 'post',
-                url: '/back-office/' + this.profile + '/sales/orders',
-                responseType: 'json',
-                data: {
-                    'relationship_id': this.relationship_id,
-                    'details': this.details
-                }
-
-            }).then(function (response) {
-                app.$parent.$parent.$parent.showList = true;
-                //document.location = '/'  + slug + '/portal/sales/orders';
-            }).catch(function (error) {
-                console.log(error);
-            });
         }
     },
+
     computed: {
         // a computed getter
         grandTotal: function grandTotal() {
-
             // `this` points to the vm instance
             var app = this;
             var total = 0.0;
 
             if (app.details != null) {
-
                 for (var i = 0; i < app.details.length; i++) {
                     total += parseFloat(app.details[i].quantity).toFixed(2) * parseFloat(app.details[i].price).toFixed(2);
                 }
@@ -54888,11 +54786,10 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('order-form', {
     },
 
     mounted: function mounted() {
-
         this.itemscomponent = this.$children;
         var app = this;
 
-        __WEBPACK_IMPORTED_MODULE_2_axios___default.a.get('/api/getCustomers/' + this.profile).then(function (resp) {
+        axios.get('/api/getCustomers/' + this.profile).then(function (resp) {
             console.log(resp.data);
             app.customers = resp.data;
         }).catch(function (resp) {
@@ -55291,15 +55188,10 @@ if (false) {
 
 /***/ }),
 /* 65 */
-/***/ (function(module, __webpack_exports__) {
+/***/ (function(module, exports) {
 
-"use strict";
-// import Vue from 'vue';
-// import VueSweetAlert from 'vue-sweetalert';
-// import axios from 'axios';
 
 Vue.component('location-form', {
-    //props: ['profile'],
     data: function data() {
         return {
             id: 0,
@@ -55323,41 +55215,34 @@ Vue.component('location-form', {
             app.name = record.name;
             app.telephone = record.telephone;
             app.address = record.address;
+            app.zip = record.zip;
             app.city = record.city;
             app.state = record.state;
             app.country = record.country;
-            app.zip = record.zip;
 
-            for (var i = 0; i < record.hours.length; i++) {
-                app.hours.push({
-                    id: record.stages[i].id,
-                    open_time: record.stages[i].open_time,
-                    close_time: record.stages[i].close_time,
-                    day: record.stages[i].day
-                });
-            }
+            // for (var i = 0; i < record.hours.length; i++) {
+            //     app.hours.push({
+            //         id: record.stages[i].id,
+            //         open_time: record.stages[i].open_time,
+            //         close_time: record.stages[i].close_time,
+            //         day: record.stages[i].day
+            //     });
+            // }
         },
 
         onReset: function onReset() {
             var app = this;
+
             app.id = null;
             app.name = '';
+            app.telephone = '';
             app.address = '';
+            app.zip = '';
             app.city = '';
             app.state = '';
+            app.country = '';
+
             app.hours = [];
-        },
-
-        //Takes Json and uploads it into Sales Invoice API for inserting. Since this is a new, it should directly insert without checking.
-        //For updates code will be different and should use the ID's palced int he Json.
-        onSave: function onSave(json, isnew) {
-            var app = this;
-
-            if (isnew == false) {
-                app.$parent.onSave(json);
-            } else {
-                app.$parent.onSaveCreate(json);
-            }
         }
     },
 
@@ -55366,22 +55251,10 @@ Vue.component('location-form', {
 
 /***/ }),
 /* 66 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vue_sweetalert__ = __webpack_require__(3);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vue_sweetalert___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_vue_sweetalert__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_axios__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_axios__);
+/***/ (function(module, exports) {
 
 
-
-
-__WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('vat-form', {
-    props: ['profile'],
+Vue.component('vat-form', {
     data: function data() {
         return {
             id: 0,
@@ -55396,47 +55269,6 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('vat-form', {
 
 
     methods: {
-        onCreate: function onCreate() {
-            var app = this;
-            app.showDetail = false;
-        },
-        onEditDetail: function onEditDetail(data) {
-            var app = this;
-            app.showDetail = false;
-            app.coefficient = data.coefficient;
-            app.percent = data.percent;
-            app.detail_id = data.id;
-        },
-
-
-        onDetailSave: function onDetailSave(json, isnew) {
-            var app = this;
-            var api = null;
-
-            __WEBPACK_IMPORTED_MODULE_2_axios___default()({
-                method: 'post',
-                url: '/back-office/' + this.profile + '/sales/vatdetail',
-                responseType: 'json',
-                data: json
-
-            }).then(function (response) {
-                if (response.status = 200) {
-                    app.showDetail = true;
-                    app.vatdetails = [];
-
-                    for (var i = 0; i < response.data.length; i++) {
-                        app.vatdetails.push(response.data[i]);
-                        app.id = response.data[i].vat_id;
-                    }
-                } else {
-                    alert('Something Went Wrong...');
-                }
-            }).catch(function (error) {
-                console.log(error);
-                console.log(error.response);
-            });
-        },
-
         onEdit: function onEdit(data) {
             var app = this;
             app.id = data.id;
@@ -55456,14 +55288,6 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('vat-form', {
             if (isnew == false) {
                 app.$parent.showList = true;
             }
-        },
-
-        //Takes Json and uploads it into Sales Invoice API for inserting. Since this is a new, it should directly insert without checking.
-        //For updates code will be different and should use the ID's palced int he Json.
-        onSave: function onSave(json, isnew) {
-            var app = this;
-            var api = null;
-            app.$parent.onSave('/back-office/' + this.profile + '/sales/vats', json);
         }
     },
 
@@ -55487,98 +55311,40 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('contract-form', {
-
-  props: ['profile'],
-  data: function data() {
-    return {
-
-      id: 0,
-      name: '',
-      contractdetails: [],
-      showDetail: true,
-      detail_id: 0,
-      offset: '',
-      percent: ''
-
-    };
-  },
-
-
-  methods: {
-    onCreate: function onCreate() {
-      var app = this;
-      app.showDetail = false;
-    },
-    onEditDetail: function onEditDetail(data) {
-      var app = this;
-      app.showDetail = false;
-      app.offset = data.coefficient;
-      app.percent = data.percent;
-      app.detail_id = data.id;
+    data: function data() {
+        return {
+            id: 0,
+            name: '',
+            details: []
+        };
     },
 
-    onDetailSave: function onDetailSave(json, isnew) {
-      var app = this;
-      var api = null;
 
-      __WEBPACK_IMPORTED_MODULE_2_axios___default()({
-        method: 'post',
-        url: '/back-office/' + this.profile + '/sales/contractdetail',
-        responseType: 'json',
-        data: json
+    methods: {
+        onEdit: function onEdit(data) {
+            var app = this;
+            app.id = data.id;
+            app.name = data.name;
+            app.details = [];
+            for (var i = 0; i < data.details.length; i++) {
+                app.details.push(data.details[i]);
+            }
 
-      }).then(function (response) {
+            app.$parent.showList = false;
+        },
 
-        if (response.status = 200) {
-          app.showDetail = true;
-          app.contractdetails = [];
+        onReset: function onReset(isnew) {
+            var app = this;
+            app.id = null;
+            app.name = '';
 
-          for (var i = 0; i < response.data.length; i++) {
-            app.contractdetails.push(response.data[i]);
-
-            app.id = response.data[i].contract_id;
-          }
-        } else {
-          alert('Something Went Wrong...');
+            if (isnew == false) {
+                app.$parent.showList = true;
+            }
         }
-      }).catch(function (error) {
-        console.log(error);
-        console.log(error.response);
-      });
-    },
-    onEdit: function onEdit(data) {
-
-      var app = this;
-      app.id = data.id;
-      app.name = data.name;
-      app.contractdetails = [];
-      for (var i = 0; i < data.details.length; i++) {
-        app.contractdetails.push(data.details[i]);
-      }
-
-      app.$parent.showList = false;
     },
 
-    onReset: function onReset(isnew) {
-      var app = this;
-      app.id = null;
-      app.name = '';
-      if (isnew == false) {
-        app.$parent.showList = true;
-      }
-    },
-
-    //Takes Json and uploads it into Sales Invoice API for inserting. Since this is a new, it should directly insert without checking.
-    //For updates code will be different and should use the ID's palced int he Json.
-    onSave: function onSave(json, isnew) {
-      var app = this;
-      var api = null;
-      app.$parent.onSave('/back-office/' + this.profile + '/sales/contracts', json);
-    }
-
-  },
-
-  mounted: function mounted() {}
+    mounted: function mounted() {}
 });
 
 /***/ }),
@@ -55677,7 +55443,6 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('model', {
             app.showModule = $showModule;
 
             app.list = [];
-
             //Handle the infinite loading of the list.
             if (app.$refs.infiniteLoading != null) {
                 app.$refs.infiniteLoading.attemptLoad();
@@ -55691,18 +55456,19 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('model', {
             var _this2 = this;
 
             var app = this;
+            app.showList = false;
 
-            __WEBPACK_IMPORTED_MODULE_3_axios___default.a.get('/api/' + this.profile + '/back-office/' + app.url + '/' + $data.id + '/edit').then(function (record) {
-                app.showList = false;
-                _this2.$refs.backendForm.onEdit(record);
-                //app.$children.onEdit(record);
+            __WEBPACK_IMPORTED_MODULE_3_axios___default.a.get('/api/' + this.profile + '/back-office/' + app.url + '/' + $data.id + '/edit').then(function (response) {
+                app.$refs.back_officeForm.onEdit(response.data);
             }).catch(function (ex) {
                 console.log(ex);
+                app.showList = true;
                 _this2.$swal('Error trying to edit record.');
             });
         },
         onCancel: function onCancel($data) {
             var app = this;
+
             this.$swal({
                 title: 'Are you sure?',
                 text: "This will cancel all changes made",
@@ -55713,7 +55479,7 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('model', {
                 confirmButtonText: 'Yes, cancel it!'
             }).then(function () {
                 //clean property changes
-                // app.$children[0].onReset();
+                app.$refs.back_officeForm.onReset();
                 app.showList = true;
             });
         },
@@ -55731,8 +55497,11 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('model', {
                     timer: 1500
                 });
 
-                app.$refs.infiniteLoading.attemptLoad();
                 app.showList = true;
+
+                if (app.$refs.infiniteLoading != null) {
+                    app.$refs.infiniteLoading.attemptLoad();
+                }
             }).catch(function (ex) {
                 console.log(ex);
                 _this3.$swal('Error trying to save record.');

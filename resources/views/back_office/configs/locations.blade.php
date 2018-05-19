@@ -8,6 +8,18 @@
 
         <!-- Add Product -->
         <div class="col-md-6 col-xl-3">
+            <div class="block block-rounded block-link-shadow">
+                <div class="block-content block-content-full block-sticky-options">
+                    <div class="py-20 text-center">
+                        <div class="font-size-h2 font-w700 mb-0 text-success">
+                            <img src="/img/logo/cognitivo-64.svg" width="46">
+                        </div>
+                        <div class="font-size-sm font-w600 text-uppercase text-muted">Shops and Locations</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-xl-3">
             <a class="block block-rounded block-link-shadow" @click="onCreate()" href="#" v-if="showList">
                 <div class="block-content block-content-full block-sticky-options">
                     <div class="block-options">

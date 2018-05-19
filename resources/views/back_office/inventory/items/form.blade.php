@@ -1,4 +1,4 @@
-<item-form inline-template>
+<item-form ref="back_officeForm" inline-template>
     <div>
         <!-- User Profile -->
         <form action="be_pages_crypto_settings.html" method="post" onsubmit="return false;">

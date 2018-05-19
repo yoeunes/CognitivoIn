@@ -40,8 +40,8 @@ class LocationController extends Controller
     */
     public function store(Profile $profile, Request $request)
     {
-        // $location = Location::where('id', $request->id)->first() ?? new Location();
-        $location = new Location();
+        $location = Location::where('id', $request->id)->first() ?? new Location();
+        // $location = new Location();
         $location->profile_id = $profile->id;
 
         $location->name = $request->name;

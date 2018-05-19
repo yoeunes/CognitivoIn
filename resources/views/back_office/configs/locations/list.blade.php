@@ -29,7 +29,7 @@
                                 @{{ location.id }}
                             </td>
                             <td class="d-none d-sm-table-cell">
-                                <a class="font-w600" href="#" @click="onEdit(location)">@{{ location.name }}</a>
+                                <a href="#" @click="onEdit(location)">@{{ location.name }}</a>
                             </td>
                             <td>
                                 @{{ location.city }}

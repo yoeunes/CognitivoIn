@@ -1,4 +1,4 @@
-<location-form ref="backendForm" inline-template>
+<location-form ref="back_officeForm" inline-template>
     <div>
         <!-- Branch Profile -->
         <h2 class="content-heading text-black">Shop Information</h2>
@@ -58,7 +58,7 @@
             </div>
         </div>
 
-        <button v-on:click="onSave($data, false)" class="btn btn-primary min-width-125 js-click-ripple-enabled" data-toggle="click-ripple">
+        <button v-on:click="$parent.onSave($data, false)" class="btn btn-primary min-width-125 js-click-ripple-enabled" data-toggle="click-ripple">
             <i class="fa fa-save"></i> @lang('global.Save')
         </button>
         <button v-on:click="$parent.onCancel()" class="btn btn-outline-secondary min-width-125 js-click-ripple-enabled" data-toggle="click-ripple">
@@ -73,7 +73,7 @@
                 <p class="text-muted">
                     Mark your working hours to help customers know if your shop is open or not.
                 </p>
-                <button v-on:click="onSave($data, false)" class="btn btn-sm btn-alt-primary">
+                <button v-on:click="$parent.onSave($data, false)" class="btn btn-sm btn-alt-primary">
                     <i class="fa fa-plus"></i> @lang('global.AddRow')
                 </button>
             </div>

@@ -1,14 +1,11 @@
-import Vue from 'vue';
-import VueSweetAlert from 'vue-sweetalert';
-import axios from 'axios';
 import Items from './ItemComponent.vue';
 
 Vue.component('order-form',
 {
-    props: ['profile'],
     components:{
         'item':Items
     },
+
     data: function () {
         return {
             relationship_id:'',
@@ -84,6 +81,7 @@ Vue.component('order-form',
                 else
                 {
                     detail.quantity = detail.quantity - 1;
+
                     if (detail.quantity == 0) {
                         if (orderdata != null)
                         {
@@ -96,14 +94,11 @@ Vue.component('order-form',
                         {
                             orderdata.quantity = detail.quantity;
                             orderdata.sub_total = detail.quantity * detail.price;
-
                         }
                     }
 
                     console.log(app.details);
-
                 }
-
             },
 
             onContactChange: function ()
@@ -125,53 +120,25 @@ Vue.component('order-form',
                     });
                 }
             },
-
-            onSave: function(json)
-            {
-
-                console.log('Started method onSave Order Component');
-
-                axios({
-                    method: 'post',
-                    url: '/back-office/'+ this.profile +'/sales/orders',
-                    responseType: 'json',
-                    data: {
-                        'relationship_id': this.relationship_id,
-                        'details': this.details
-                    }
-
-                }).then(function (response)
-                {
-                    app.$parent.$parent.$parent.showList = true;
-                    //document.location = '/'  + slug + '/portal/sales/orders';
-                })
-                .catch(function (error)
-                {
-                    console.log(error);
-                });
-            }
         },
-        computed: {
-            // a computed getter
-            grandTotal: function () {
 
+        computed:
+        {
+            // a computed getter
+            grandTotal: function ()
+            {
                 // `this` points to the vm instance
                 var app = this;
                 var total = 0.0;
 
-
-
                 if (app.details!=null)
                 {
-
-                    for(let i = 0; i < app.details.length; i++)
+                    for (let i = 0; i < app.details.length; i++)
                     {
                         total += parseFloat(app.details[i].quantity).toFixed(2) *
                         parseFloat(app.details[i].price).toFixed(2);
                     }
                 }
-
-
 
                 return parseFloat(total).toFixed(2);
             }
@@ -179,8 +146,7 @@ Vue.component('order-form',
 
         mounted()
         {
-
-            this.itemscomponent=this.$children;
+            this.itemscomponent = this.$children;
             var app = this;
 
             axios.get('/api/getCustomers/' + this.profile )

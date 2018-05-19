@@ -1,4 +1,4 @@
-<contract-form inline-template>
+<contract-form ref="back_officeForm" inline-template>
     <div>
         <div class="block block-rounded block-themed">
             <div class="block-header bg-gd-primary">

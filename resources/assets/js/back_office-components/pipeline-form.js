@@ -4,7 +4,6 @@ import VueSweetAlert from 'vue-sweetalert';
 
 Vue.component('pipeline-form',
 {
-    props: ['profile'],
     data() {
         return {
             id: 0,
@@ -98,21 +97,13 @@ Vue.component('pipeline-form',
                 app.$parent.showList = true;
             }
         },
-
-        //Takes Json and uploads it into Sales INvoice API for inserting. Since this is a new, it should directly insert without checking.
-        //For updates code will be different and should use the ID's palced int he Json.
-        onSave: function(json,isnew)
-        {
-            var app = this;
-            var api = null;
-            //run validation checked
-            app.$parent.onSave('/back-office/' + this.profile + '/sales/pipelines', json);
-        }
     },
 
     mounted: function mounted()
     {
         var app = this;
+
+        //We want users to load stages, if none is there, we will ask user to set one up.
         if (app.stages.length == 0)
         {
             this.onAddStage();

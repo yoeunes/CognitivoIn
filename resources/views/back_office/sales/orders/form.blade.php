@@ -1,4 +1,4 @@
-<order-form inline-template>
+<order-form ref="back_officeForm" inline-template>
   <div>
 
     <div class="row" >

@@ -1,9 +1,9 @@
-// require('./backend-nav');
-require('./item-form');
+
+require('./contract-form');
 require('./customer-form');
-require('./pipeline-form');
+require('./item-form');
+require('./location-form');
 require('./opportunity-form');
 require('./order-form');
-require('./location-form');
+require('./pipeline-form');
 require('./vat-form');
-require('./contract-form');

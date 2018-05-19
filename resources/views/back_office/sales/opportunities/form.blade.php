@@ -1,4 +1,4 @@
-<opportunity-form inline-template>
+<opportunity-form ref="back_officeForm" inline-template>
     <div>
         <div class="row items-push">
             <div class="col-sm-6 col-sm-offset-3">

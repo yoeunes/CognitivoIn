@@ -15,10 +15,10 @@
                         <td>@{{ pipeline.name }}</td>
                         <td class="text-center">
                             <div class="btn-group">
-                                <button v-on:click="onEdit(pipeline)" type="button" class="btn btn-sm btn-info js-tooltip-enabled" data-toggle="tooltip" data-original-title="Edit">
+                                <button v-on:click="onEdit(pipeline)" type="button" class="btn btn-sm btn-secondary js-tooltip-enabled" data-toggle="tooltip" data-original-title="Edit">
                                     <i class="fa fa-pencil"></i>
                                 </button>
-                                <button v-on:click="onDelete(pipeline)" type="button" class="btn btn-sm btn-danger js-tooltip-enabled" data-toggle="tooltip" data-original-title="Delete">
+                                <button v-on:click="onDelete(pipeline)" type="button" class="btn btn-sm btn-secondary js-tooltip-enabled" data-toggle="tooltip" data-original-title="Delete">
                                     <i class="fa fa-times"></i>
                                 </button>
                             </div>

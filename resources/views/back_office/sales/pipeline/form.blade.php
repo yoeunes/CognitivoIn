@@ -1,4 +1,4 @@
-<pipeline-form inline-template>
+<pipeline-form ref="back_officeForm" inline-template>
     <div>
         <div class="content">
             <div class="block block-fx-shadow">

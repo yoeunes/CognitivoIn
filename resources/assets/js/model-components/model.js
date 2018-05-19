@@ -84,7 +84,6 @@ Vue.component('model',
             app.showModule = $showModule;
 
             app.list = [];
-
             //Handle the infinite loading of the list.
             if (app.$refs.infiniteLoading != null)
             { app.$refs.infiniteLoading.attemptLoad(); }
@@ -99,16 +98,15 @@ Vue.component('model',
         onEdit($data)
         {
             var app = this;
+            app.showList = false;
 
             axios.get('/api/' + this.profile + '/back-office/' + app.url + '/' + $data.id + '/edit')
-            .then((record) =>
-            {
-                app.showList = false;
-                this.$refs.backendForm.onEdit(record);
-                //app.$children.onEdit(record);
+            .then(function (response) {
+                app.$refs.back_officeForm.onEdit(response.data);
             })
             .catch(ex => {
                 console.log(ex);
+                app.showList = true;
                 this.$swal('Error trying to edit record.');
             });
         },
@@ -116,6 +114,7 @@ Vue.component('model',
         onCancel($data)
         {
             var app = this;
+
             this.$swal({
                 title: 'Are you sure?',
                 text: "This will cancel all changes made",
@@ -126,7 +125,7 @@ Vue.component('model',
                 confirmButtonText: 'Yes, cancel it!'
             }).then(() => {
                 //clean property changes
-                // app.$children[0].onReset();
+                app.$refs.back_officeForm.onReset();
                 app.showList = true;
             })
         },
@@ -146,8 +145,10 @@ Vue.component('model',
                     timer: 1500
                 })
 
-                app.$refs.infiniteLoading.attemptLoad();
                 app.showList = true;
+                
+                if (app.$refs.infiniteLoading != null)
+                { app.$refs.infiniteLoading.attemptLoad(); }
             })
             .catch(ex => {
                 console.log(ex);

@@ -4,7 +4,6 @@
 
 Vue.component('opportunity-form',
 {
-    props: ['profile'],
     data() {
         return {
             id: 0,
@@ -47,14 +46,6 @@ Vue.component('opportunity-form',
             {
                 app.$parent.showList = true;
             }
-        },
-
-        //Takes Json and uploads it into Sales INvoice API for inserting. Since this is a new, it should directly insert without checking.
-        //For updates code will be different and should use the ID's palced int he Json.
-        onSave: function(json,isnew)
-        {
-            var app = this;
-            app.$parent.onSave(json);
         },
 
         getStages: function(data)
