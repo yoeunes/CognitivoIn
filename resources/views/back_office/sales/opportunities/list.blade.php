@@ -14,7 +14,11 @@
                 <tbody>
                     <tr v-for="opportunity in list">
                         <td>@{{ opportunity.id }}</td>
-                        <td>@{{ opportunity.description }}</td>
+                        <td>
+                            <a @click="onShow(opportunity)" href="#">
+                                @{{ opportunity.description }}
+                            </a>
+                        </td>
                         <td></td>
                         <td>@{{ opportunity.value }}</td>
                         <td class="text-center">

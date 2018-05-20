@@ -1,16 +1,16 @@
-<opportunity-form inline-template>
+<opportunity-task-form  inline-template>
     <div>
         <div class="content">
             <!-- Hero -->
             <div class="block block-rounded">
                 <div class="block-content bg-pattern" style="background-image: url('/img/backgrounds/bg-pattern-inverse.png');">
                     <div class="py-20 text-center">
-                        <h1 class="h3 mb-5">@{{ opportunity.name }}</h1>
+                        <h1 class="h3 mb-5">@{{ $parent.name }}</h1>
                         <p class="mb-10 text-muted">
-                            <em>@{{ opportunity.deadline_date }}</em>
+                            <em>@{{ $parent.deadline_date }}</em>
                         </p>
                         <p>
-                            @{{ opportunity.description }}
+                            @{{ $parent.description }}
                         </p>
                     </div>
                 </div>
@@ -45,7 +45,8 @@
                         </div>
                         <!-- END Tasks Info -->
 
-                        <!-- People -->
+                        <!-- Members -->
+
                         <div class="block block-rounded">
                             <div class="block-header block-header-default">
                                 <h3 class="block-title">Members</h3>
@@ -58,28 +59,35 @@
                                 </div>
                             </div>
                             <div class="block-content">
-                                <ul class="nav-users push" v-for="member in members">
+
+                                {{-- <ul class="nav-users push" v-for="member in members">
                                     <li>
                                         <a href="/@{{ member.slug }}" target="_blank">
                                             <img class="img-avatar" src="@{{ member.profile_img }}" alt="">
                                             <i class="fa fa-circle text-success"></i> @{{ member.name }}
-                                            <div class="font-w400 font-size-xs text-muted"><i class="fa fa-mail"></i> @{{ member.email }}</div>
+                                            <div class="font-w400 font-size-xs text-muted">
+                                                <i class="fa fa-mail"></i> @{{ member.email }}
+                                            </div>
                                         </a>
                                     </li>
-                                </ul>
-                                <form class="push" action="be_pages_generic_todo.html" method="post" onsubmit="return false;">
-                                    <div class="input-group">
-                                        <input class="form-control" type="text" placeholder="Invite more people..">
-                                        <div class="input-group-append">
-                                            <button class="btn btn-secondary" type="submit">
-                                                <i class="fa fa-plus"></i>
-                                            </button>
+                                </ul> --}}
+
+                                <opportunity-member-form inline-template>
+                                    <form class="push" action="be_pages_generic_todo.html" method="post" onsubmit="return false;">
+                                        <div class="input-group">
+                                            <input class="form-control" type="text" placeholder="Invite more people..">
+                                            <div class="input-group-append">
+                                                <button class="btn btn-secondary" type="submit">
+                                                    <i class="fa fa-plus"></i>
+                                                </button>
+                                            </div>
                                         </div>
-                                    </div>
-                                </form>
+                                    </form>
+                                </opportunity-member-form>
+
                             </div>
                         </div>
-                        <!-- END People -->
+                        <!-- END Members -->
                     </div>
                     <!-- END Collapsible Tasks Navigation -->
                 </div>
@@ -198,4 +206,4 @@
             <!-- END Tasks Content -->
         </div>
     </div>
-</opportunity-format>
+</opportunity-task-form>

@@ -55,7 +55,6 @@
                     </div>
                 </div>
             </div>
-
             <div class="row">
                 <button v-on:click="$parent.onSave($data, false)" class="btn btn-outline-primary min-width-125 js-click-ripple-enabled m" data-toggle="click-ripple">
                     @lang('global.Save')
@@ -65,6 +64,6 @@
                     @lang('global.Cancel')
                 </button>
             </div>
-
         </div>
-    </opportunity-format>
+    </div>
+</opportunity-form>

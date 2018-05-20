@@ -56937,13 +56937,6 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('model', {
 
 
     methods: {
-        // showModules($moduleID)
-        // {
-        //     var app = this;
-        //     app.showModule = $moduleID;
-        //     app.showList = true;
-        // },
-
         infiniteHandler: function infiniteHandler($state) {
             var _this = this;
 

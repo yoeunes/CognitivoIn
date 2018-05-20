@@ -27,13 +27,6 @@ Vue.component('model',
 
     methods:
     {
-        // showModules($moduleID)
-        // {
-        //     var app = this;
-        //     app.showModule = $moduleID;
-        //     app.showList = true;
-        // },
-
         infiniteHandler($state)
         {
             var app = this;
@@ -101,7 +94,8 @@ Vue.component('model',
             app.showList = 1;
 
             axios.get('/api/' + this.profile + '/back-office/' + app.url + '/' + $data.id)
-            .then(function (response) {
+            .then(function (response)
+            {
                 //app.$refs.back_officeForm.onEdit(response.data);
             })
             .catch(ex => {
