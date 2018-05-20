@@ -95,6 +95,22 @@ Vue.component('model',
             app.showList = false;
         },
 
+        onShow($data)
+        {
+            var app = this;
+            app.showList = 1;
+
+            axios.get('/api/' + this.profile + '/back-office/' + app.url + '/' + $data.id)
+            .then(function (response) {
+                //app.$refs.back_officeForm.onEdit(response.data);
+            })
+            .catch(ex => {
+                console.log(ex);
+                app.showList = true;
+                this.$swal('Error trying to show record.');
+            });
+        },
+
         onEdit($data)
         {
             var app = this;

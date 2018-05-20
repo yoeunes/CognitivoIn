@@ -47,11 +47,11 @@ class Opportunity extends Model
 
     public function tasks()
     {
-        return $this->hasMany(OppportunityTask::class);
+        return $this->hasMany(OpportunityTask::class);
     }
 
     public function members()
     {
-        return $this->hasMany(OppporunityMember::class);
+        return $this->hasMany(OpportunityMember::class);
     }
 }

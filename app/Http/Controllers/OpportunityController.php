@@ -11,6 +11,7 @@ use App\PipelineStage;
 use App\Pipeline;
 use App\Relationship;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class OpportunityController extends Controller
 {
@@ -21,8 +22,7 @@ class OpportunityController extends Controller
     */
     public function index(Profile $profile, $skip, $filterBy)
     {
-        $opportunities = Opportunity::Mine()
-        ->skip($skip)
+        $opportunities = Opportunity::skip($skip)
         ->take(100)
         ->get();
 
@@ -48,7 +48,7 @@ class OpportunityController extends Controller
         $opportunity->is_archived = $request->is_archived;
         $opportunity->save();
 
-        $members = collect($request->members);
+        //$members = collect($request->members);
 
         //if opportunity is new, then create user as it's first member.
         if ($request->id == 0)
@@ -56,6 +56,7 @@ class OpportunityController extends Controller
             $member = new OpportunityMember();
             $member->opportunity_id = $opportunity->id;
             $member->profile_id = Auth::user()->profile_id;
+            $member->role = 1;
             $member->save();
         }
 
@@ -72,7 +73,7 @@ class OpportunityController extends Controller
     public function show(Profile $profile, Opportunity $opportunity)
     {
         $opportunity = $opportunity
-        ->with('activities')
+        ->with('tasks')
         ->with('members')
         ->first();
 

@@ -1,35 +1,39 @@
-<div>
-    <div class="row">
-        <div class="col-5">
-            <p class="m--font-boldest m--font-transform-u">@lang('global.Customer Alias')</p>
-        </div>
-        <div class="col-5">
-            <p class="m--font-boldest m--font-transform-u">@lang('global.Value')</p>
-        </div>
-        <div class="col-5">
-            <p class="m--font-boldest m--font-transform-u">@lang('global.Description')</p>
+<div class="content">
+    <div class="block block-fx-shadow">
+        <div class="block-content">
+            <table>
+                <thead>
+                    <tr>
+                        <td>#</td>
+                        <th>Opportunity Name</th>
+                        <th>Customer</th>
+                        <th>Value</th>
+                        <th class="text-center">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr v-for="opportunity in list">
+                        <td>@{{ opportunity.id }}</td>
+                        <td>@{{ opportunity.description }}</td>
+                        <td></td>
+                        <td>@{{ opportunity.value }}</td>
+                        <td class="text-center">
+                            <div class="btn-group">
+                                <button v-on:click="onShow(opportunity)" type="button" class="btn btn-sm btn-secondary js-tooltip-enabled" data-toggle="tooltip" data-original-title="Edit">
+                                    <i class="fa fa-eye"></i>
+                                </button>
+                                <button v-on:click="onEdit(opportunity)" type="button" class="btn btn-sm btn-secondary js-tooltip-enabled" data-toggle="tooltip" data-original-title="Edit">
+                                    <i class="fa fa-pencil"></i>
+                                </button>
+                                <button v-on:click="onDelete(opportunity)" type="button" class="btn btn-sm btn-secondary js-tooltip-enabled" data-toggle="tooltip" data-original-title="Delete">
+                                    <i class="fa fa-times"></i>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            @include('layouts/infinity-loading')
         </div>
     </div>
-
-    <div class="row m--margin-bottom-5" v-for="invoice in list">
-        <div class="col-1">
-            <p> @{{ invoice.customer_alias }} </p>
-        </div>
-        <div class="col-1">
-            <p> @{{ invoice.value }} </p>
-        </div>
-        <div class="col-1">
-            <p> @{{ invoice.description }} </p>
-        </div>
-
-        <div class="col-1">
-            <div role="group" aria-label="...">
-                <a @click="onEdit(invoice)" class="m-btn btn btn-secondary"><i class="la la-pencil m--font-brand"></i></a>
-                <a @click="onDelete(invoice)" class="m-btn btn btn-secondary"><i class="la la-trash m--font-danger"></i></a>
-                <a @click="onAnull(invoice)" class="m-btn btn btn-secondary"><i class="la la-close m--font-danger"></i></a>
-            </div>
-        </div>
-    </div>
-
-    @include('layouts/infinity-loading')
 </div>

@@ -56996,8 +56996,22 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('model', {
             var app = this;
             app.showList = false;
         },
-        onEdit: function onEdit($data) {
+        onShow: function onShow($data) {
             var _this2 = this;
+
+            var app = this;
+            app.showList = 1;
+
+            __WEBPACK_IMPORTED_MODULE_3_axios___default.a.get('/api/' + this.profile + '/back-office/' + app.url + '/' + $data.id).then(function (response) {
+                //app.$refs.back_officeForm.onEdit(response.data);
+            }).catch(function (ex) {
+                console.log(ex);
+                app.showList = true;
+                _this2.$swal('Error trying to show record.');
+            });
+        },
+        onEdit: function onEdit($data) {
+            var _this3 = this;
 
             var app = this;
             app.showList = false;
@@ -57007,7 +57021,7 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('model', {
             }).catch(function (ex) {
                 console.log(ex);
                 app.showList = true;
-                _this2.$swal('Error trying to edit record.');
+                _this3.$swal('Error trying to edit record.');
             });
         },
         onCancel: function onCancel($data) {
@@ -57028,12 +57042,12 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('model', {
             });
         },
         postSpecial: function postSpecial(specialURL, $data) {
-            var _this3 = this;
+            var _this4 = this;
 
             var app = this;
             //alert($data.id);
             __WEBPACK_IMPORTED_MODULE_3_axios___default.a.post('/api/' + this.profile + '/back-office/' + app.url + '/' + specialURL + '/', $data).then(function (response) {
-                _this3.$swal({
+                _this4.$swal({
                     position: 'top-end',
                     type: 'success',
                     title: 'Done!',
@@ -57044,16 +57058,16 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('model', {
                 return response;
             }).catch(function (ex) {
                 console.log(ex);
-                _this3.$swal('Error trying to preform action');
+                _this4.$swal('Error trying to preform action');
             });
         },
         onSave: function onSave($data) {
-            var _this4 = this;
+            var _this5 = this;
 
             var app = this;
             //alert($data.id);
             __WEBPACK_IMPORTED_MODULE_3_axios___default.a.post('/api/' + this.profile + '/back-office/' + app.url, $data).then(function () {
-                _this4.$swal({
+                _this5.$swal({
                     position: 'top-end',
                     type: 'success',
                     title: 'Awsome! Your work has been saved',
@@ -57068,17 +57082,17 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('model', {
                 }
             }).catch(function (ex) {
                 console.log(ex);
-                _this4.$swal('Error trying to save record.');
+                _this5.$swal('Error trying to save record.');
             });
         },
         onSaveCreate: function onSaveCreate($data) {
-            var _this5 = this;
+            var _this6 = this;
 
             var app = this;
 
             __WEBPACK_IMPORTED_MODULE_3_axios___default.a.post('/api/' + this.profile + '/back-office/' + app.url, $data).then(function () {
                 //TODO run code to clean data.
-                _this5.$swal({
+                _this6.$swal({
                     position: 'top-end',
                     type: 'success',
                     title: 'Awsome! Your work has been saved',
@@ -57089,11 +57103,11 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('model', {
                 app.showList = false;
             }).catch(function (ex) {
                 console.log(ex);
-                _this5.$swal('Error trying to save record.');
+                _this6.$swal('Error trying to save record.');
             });
         },
         onDelete: function onDelete($data) {
-            var _this6 = this;
+            var _this7 = this;
 
             var app = this;
 
@@ -57105,14 +57119,14 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('model', {
                 confirmButtonText: 'Yes, delete it!'
             }).then(function () {
 
-                __WEBPACK_IMPORTED_MODULE_3_axios___default.a.delete('/api/' + _this6.profile + '/back-office/' + _this6.url + '/' + $data.id).then(function () {
+                __WEBPACK_IMPORTED_MODULE_3_axios___default.a.delete('/api/' + _this7.profile + '/back-office/' + _this7.url + '/' + $data.id).then(function () {
 
-                    var index = _this6.list.findIndex(function (x) {
+                    var index = _this7.list.findIndex(function (x) {
                         return x.id === $data.id;
                     });
-                    _this6.list.splice(index, 1);
+                    _this7.list.splice(index, 1);
 
-                    _this6.$swal({
+                    _this7.$swal({
                         position: 'top-end',
                         type: 'success',
                         title: 'The record has been deleted',
@@ -57121,12 +57135,12 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('model', {
                     });
                 }).catch(function (ex) {
                     console.log(ex);
-                    _this6.$swal('Error trying to delete record.');
+                    _this7.$swal('Error trying to delete record.');
                 });
             });
         },
         onApprove: function onApprove($data) {
-            var _this7 = this;
+            var _this8 = this;
 
             var app = this;
 
@@ -57137,8 +57151,8 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('model', {
                 showCancelButton: true,
                 confirmButtonText: 'Yes, approve it!'
             }).then(function () {
-                __WEBPACK_IMPORTED_MODULE_3_axios___default.a.post('/api/' + _this7.profile + '/back-office/' + app.url + '/' + $data.id + '/approve', $data).then(function () {
-                    _this7.$swal({
+                __WEBPACK_IMPORTED_MODULE_3_axios___default.a.post('/api/' + _this8.profile + '/back-office/' + app.url + '/' + $data.id + '/approve', $data).then(function () {
+                    _this8.$swal({
                         position: 'top-end',
                         type: 'success',
                         title: 'Awsome! Your record has been approved',
@@ -57149,13 +57163,13 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('model', {
                     app.showList = true;
                 }).catch(function (ex) {
                     console.log(ex);
-                    _this7.$swal('Error trying to approve record.');
+                    _this8.$swal('Error trying to approve record.');
                 });
                 //Code to approve
             });
         },
         onAnnull: function onAnnull($data) {
-            var _this8 = this;
+            var _this9 = this;
 
             var app = this;
 
@@ -57167,8 +57181,8 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('model', {
                 confirmButtonText: 'Yes, annull it!'
             }).then(function () {
                 //Code to annull
-                __WEBPACK_IMPORTED_MODULE_3_axios___default.a.post('/api/' + _this8.profile + '/back-office/' + app.url + '/' + $data.id + '/annull', $data).then(function () {
-                    _this8.$swal({
+                __WEBPACK_IMPORTED_MODULE_3_axios___default.a.post('/api/' + _this9.profile + '/back-office/' + app.url + '/' + $data.id + '/annull', $data).then(function () {
+                    _this9.$swal({
                         position: 'top-end',
                         type: 'success',
                         title: 'Awsome! Your record has been annulled',
@@ -57178,7 +57192,7 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('model', {
                     app.showList = true;
                 }).catch(function (ex) {
                     console.log(ex);
-                    _this8.$swal('Error trying to annull record.');
+                    _this9.$swal('Error trying to annull record.');
                 });
             });
         }
