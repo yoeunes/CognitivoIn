@@ -56141,6 +56141,7 @@ Vue.component('location-form', {
 /* 61 */
 /***/ (function(module, exports) {
 
+// Vue.use(Buefy.default)
 
 Vue.component('opportunity-form', {
     data: function data() {
@@ -56187,7 +56188,7 @@ Vue.component('opportunity-form', {
 
         getStages: function getStages(data) {
             var app = this;
-            axios.get('/api/' + this.profile + '/back-office/pipelinestages/').then(function (_ref) {
+            axios.get('/api/' + this.profile + '/back-office/pipeline-stages/').then(function (_ref) {
                 var data = _ref.data;
 
                 app.stages = [];

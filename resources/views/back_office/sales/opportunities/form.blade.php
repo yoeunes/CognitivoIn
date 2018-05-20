@@ -33,37 +33,47 @@
                                 <div class="col-6">
                                     <label>Pipeline Stage</label>
                                     <input type="text" v-model="pipeline_stage_id" class="form-control form-control-lg">
-                                    {{-- <select v-model="stage_id" required class="custom-select" > <option v-for="stage in stages" :value="stage.id">@{{ stage.name }}</option></select> --}}
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <div class="col-6">
-                                    <label>Opportunity Value</label>
-                                    <input type="text" v-model="value" class="form-control form-control-lg">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <div class="js-datetimepicker input-group date" data-format="YYYY/MM/DD">
-                                    <input class="form-control input-lg" type="date" placeholder="Do you have a deadline?" v-model="deadline_date">
-                                    <span class="input-group-addon">
-                                        <span class="fa fa-calendar"></span>
-                                    </span>
-                                </div>
+                                    {{-- <b-field label="Simple">
+                                        <b-select placeholder="Select a name">
+                                            <option
+                                            v-for="option in data"
+                                            :value="option.id"
+                                            :key="option.id">
+                                            @{{ option.name }}
+                                        </option>
+                                    </b-select>
+                                </b-field> --}}
+                                {{-- <select v-model="stage_id" required class="custom-select" > <option v-for="stage in stages" :value="stage.id">@{{ stage.name }}</option></select> --}}
                             </div>
                         </div>
-                        <!-- END User Profile -->
+                        <div class="form-group row">
+                            <div class="col-6">
+                                <label>Opportunity Value</label>
+                                <input type="text" v-model="value" class="form-control form-control-lg">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="js-datetimepicker input-group date" data-format="YYYY/MM/DD">
+                                <input class="form-control input-lg" type="date" placeholder="Do you have a deadline?" v-model="deadline_date">
+                                <span class="input-group-addon">
+                                    <span class="fa fa-calendar"></span>
+                                </span>
+                            </div>
+                        </div>
                     </div>
+                    <!-- END User Profile -->
                 </div>
             </div>
-            <div class="row">
-                <button v-on:click="$parent.onSave($data, false)" class="btn btn-outline-primary min-width-125 js-click-ripple-enabled m" data-toggle="click-ripple">
-                    @lang('global.Save')
-                </button>
+        </div>
+        <div class="row">
+            <button v-on:click="$parent.onSave($data, false)" class="btn btn-outline-primary min-width-125 js-click-ripple-enabled m" data-toggle="click-ripple">
+                @lang('global.Save')
+            </button>
 
-                <button v-on:click="$parent.onCancel()" class="btn btn-alt-secondary min-width-125 js-click-ripple-enabled" data-toggle="click-ripple">
-                    @lang('global.Cancel')
-                </button>
-            </div>
+            <button v-on:click="$parent.onCancel()" class="btn btn-alt-secondary min-width-125 js-click-ripple-enabled" data-toggle="click-ripple">
+                @lang('global.Cancel')
+            </button>
         </div>
     </div>
+</div>
 </opportunity-form>
