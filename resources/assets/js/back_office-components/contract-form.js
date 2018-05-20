@@ -21,9 +21,7 @@ Vue.component('contract-form',
             var total = 0;
 
             for (var i = 0; i < app.details.length; i++)
-            {
-                total = +app.details[i].percent + +total;
-            }
+            { total = +app.details[i].percent + +total; }
 
             return (total * 100).toFixed(2);
         },
@@ -34,7 +32,7 @@ Vue.component('contract-form',
         addDetail: function()
         {
             var app = this;
-
+            
             app.details.push({
                 id: 0,
                 percent: 1,

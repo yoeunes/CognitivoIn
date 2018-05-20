@@ -15,7 +15,7 @@ return [
     |
     */
 
-    'default' => env('LOG_CHANNEL', 'stack'),
+    'default' => env('LOG_CHANNEL', 'daily'),
 
     /*
     |--------------------------------------------------------------------------
@@ -41,7 +41,7 @@ return [
         'bugsnag' => [
             'driver' => 'bugsnag',
         ],
-        
+
         'single' => [
             'driver' => 'single',
             'path' => storage_path('logs/laravel.log'),

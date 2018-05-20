@@ -14,7 +14,7 @@ class ContractController extends Controller
     *
     * @return \Illuminate\Http\Response
     */
-    public function index(Profile $profile,$skip)
+    public function index(Profile $profile, $skip, $filter)
     {
         $contract = Contract::skip($skip)
         ->take(100)
@@ -44,15 +44,15 @@ class ContractController extends Controller
         $contract = Contract::where('id', $request->id)->first() ?? new Contract();
 
         $contract->name = $request->name;
-        $contract->profile_id = $profile->id;
-        $contract->country ='PRY';
+        //$contract->profile_id = $profile->id;
+        $contract->country = $profile->country;
         $contract->save();
 
         $totalPercent = 0;
 
         foreach ($contract->details as $reqDetail)
         {
-            $detail = ContractDetail::find($reqDetail->id) ?? new ContractDetail();
+            $detail = ContractDetail::where('id', $reqDetail->id)->first() ?? new ContractDetail();
             $detail->contract_id = $contract->id;
             $detail->percent = $reqDetail->percent;
             $detail->offset = $reqDetail->offset;
@@ -63,12 +63,12 @@ class ContractController extends Controller
         //this code adds the remaining balance to the end.
         if ($totalPercent < 1 && isset($contract->details->last()))
         {
-            $detail = $contract->details->last();
-            $detail->percent = $detail->percent + (1 - $totalPercent)
+            $detail = $contract->details()->last();
+            $detail->percent = $detail->percent + (1 - $totalPercent);
             $detail->save();
         }
 
-        return response()->json('Done', 200);
+        return response()->json('Ok', 200);
     }
 
     /**

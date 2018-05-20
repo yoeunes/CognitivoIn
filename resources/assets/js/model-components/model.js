@@ -41,12 +41,7 @@ Vue.component('model',
             if (app.url != '')
             {
                 axios.get('/api/' + this.profile + '/back-office/list/'  + app.skip + '/' + app.url + '/' + app.filterListBy,
-                {
-                    params:
-                    {
-                        page: app.list.length / this.pageSize + 1,
-                    },
-                })
+                { params: { page: app.list.length / this.pageSize + 1 } })
                 .then(({ data }) =>
                 {
                     if (data.length > 0)
@@ -75,14 +70,15 @@ Vue.component('model',
         },
 
         //This restarts the inifity loader.
-        onList($url, $showModule)
+        onList($url, $showModule, $filterListBy)
         {
             var app = this;
             app.showList = true;
             app.skip = 0;
             app.url = $url;
             app.showModule = $showModule;
-
+            app.filterListBy = $filterListBy;
+            
             app.list = [];
             //Handle the infinite loading of the list.
             if (app.$refs.infiniteLoading != null)
@@ -146,7 +142,7 @@ Vue.component('model',
                 })
 
                 app.showList = true;
-                
+
                 if (app.$refs.infiniteLoading != null)
                 { app.$refs.infiniteLoading.attemptLoad(); }
             })
