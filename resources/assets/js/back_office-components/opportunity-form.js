@@ -1,19 +1,19 @@
-// import Vue from 'vÍue';
-// import VueSweetAlert from 'vue-sweetalert';
-// import axios from 'axios';
 
 Vue.component('opportunity-form',
 {
     data() {
         return {
             id: 0,
-            relationship_id:'',
-            description:'',
-            deadline_date:'',
-            value:'',
-            stage_id:'',
-            stages:[],
-            customers:[]
+            relationship_id: '',
+            pipeline_id: '',
+            pipeline_stage_id: '',
+            deadline_date: '',
+            description: '',
+            status: '',
+            value: '',
+            is_archived: false,
+
+            stages: [],
         }
     },
 
@@ -21,31 +21,28 @@ Vue.component('opportunity-form',
     {
         onEdit: function(data)
         {
-            console.log(data)
             var app = this;
             app.id = data.id;
             app.relationship_id = data.relationship_id;
-            app.description = data.description;
+            app.pipeline_stage_id  = data.pipeline_stage_id;
             app.deadline_date = data.deadline_date;
+            app.description = data.description;
+            app.status = data.status;
             app.value = data.value;
-            app.stage_id  = data.pipeline_stage_id
-            app.$parent.showList = false;
+            app.is_archived = data.is_archived;
         },
 
-        onReset: function(isnew)
+        onReset: function()
         {
             var app = this;
-            app.id = null;
-            app.relationship_id = null;
-            app.description = null;
-            app.deadline_date = null;
-
-            app.value = null;
-            app.stage_id = null;
-            if (isnew == false)
-            {
-                app.$parent.showList = true;
-            }
+            app.id = 0;
+            app.relationship_id = '';
+            app.pipeline_stage_id  = '';
+            app.deadline_date = '';
+            app.description = '';
+            app.status = '';
+            app.value = '';
+            app.is_archived = '';
         },
 
         getStages: function(data)
@@ -57,29 +54,17 @@ Vue.component('opportunity-form',
                 app.stages = [];
                 for(let i = 0; i < data.length; i++)
                 {
-                    app.stages.push({ name: data[i]['name'], id: data[i]['id'] });
+                    app.stages.push({
+                        name: data[i]['name'],
+                        id: data[i]['id']
+                    });
                 }
             });
         },
-
-        getCustomers: function(data)
-        {
-            var app = this;
-            axios.get('/api/getCustomers/'+ this.profile +'/')
-            .then(({ data }) =>
-            {
-                app.customers = [];
-                for(let i = 0; i < data.length; i++)
-                {
-                    app.customers.push({ name:data[i]['customer_alias'], id:data[i]['id'] });
-                }
-            });
-        }
     },
 
     mounted: function mounted()
     {
         this.getStages();
-        this.getCustomers();
     }
 });

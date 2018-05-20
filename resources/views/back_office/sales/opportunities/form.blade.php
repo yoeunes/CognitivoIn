@@ -1,67 +1,70 @@
 <opportunity-form ref="back_officeForm" inline-template>
     <div>
-        <div class="row items-push">
-            <div class="col-sm-6 col-sm-offset-3">
-                <div class="form-group">
-                    <div class="col-xs-12">
-                        <label for="project-name">Customer</label>
-                        <select v-model="relationship_id" required class="custom-select" >
-                            <option v-for="customer in customers" :value="customer.id">@{{ customer.name }}</option>
-                        </select>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <div class="col-xs-12">
-                        <label for="project-category">Stage</label>
-                        <select v-model="stage_id" required class="custom-select" >
-                            <option v-for="stage in stages" :value="stage.id">@{{ stage.name }}</option>
-                        </select>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <div class="col-xs-12">
-                        <label for="project-description">Description (Optional)</label>
-                        <textarea class="form-control input-lg"  rows="4" placeholder="A few words about the Opportunity.." v-model="description"></textarea>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <div class="col-sm-10 col-lg-8">
-                        <!-- Bootstrap Datetimepicker (.js-datetimepicker class is initialized in App() -> uiHelperDatetimepicker()) -->
-                        <!-- For more info and examples you can check out https://github.com/Eonasdan/bootstrap-datetimepicker -->
-                        <label for="project-name">Deadline</label>
-                        <div class="js-datetimepicker input-group date" data-format="YYYY/MM/DD">
-                            <input class="form-control input-lg" type="date" placeholder="Do you have a deadline?" v-model="deadline_date">
-                            <span class="input-group-addon">
-                                <span class="fa fa-calendar"></span>
-                            </span>
+        <div class="content">
+            <div class="block block-fx-shadow">
+                <div class="block-content">
+                    <!-- User Profile -->
+                    <h2 class="content-heading text-black"> Opportunity </h2>
+                    <div class="row items-push">
+                        <div class="col-lg-3">
+                            <p class="text-muted">
+                                Opportunities are a great way to plan and remind yourself of potential sales. And how to convert those opportunities to actual sales.
+                            </p>
                         </div>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <div class="col-xs-12">
-                        <label for="project-description">Value</label>
-                        <input type="number" class="form-control input-lg" v-model="value"></input>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <div class="col-xs-12">
-                        <button v-on:click="onSave($data,false)" class="btn btn-primary">
-                            @lang('global.Save')
-                        </button>
-                        <button v-on:click="onSave($data,true)" class="btn btn-primary">
-                            @lang('global.Save-and-New')
-                        </button>
-                        <button v-on:click="$parent.cancel()" class="btn btn-default">
-                            @lang('global.Cancel')
-                        </button>
+                        <div class="col-lg-7 offset-lg-1">
+                            <div class="form-group row">
+                                <div class="col-12">
+                                    <label>Opportunity Name</label>
+                                    <input type="text" class="form-control form-control-lg" v-model="description" placeholder="Give your pipeline a nice name">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-12">
+                                    <label>Customer</label>
+                                    <input type="text" class="form-control form-control-lg" v-model="relationship_id" placeholder="Give your pipeline a nice name">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-6">
+                                    <label>Pipeline</label>
+                                    <input type="text" v-model="pipeline_id" class="form-control form-control-lg">
+                                    {{-- <select v-model="stage_id" required class="custom-select" > <option v-for="stage in stages" :value="stage.id">@{{ stage.name }}</option> </select> --}}
+                                </div>
+                                <div class="col-6">
+                                    <label>Pipeline Stage</label>
+                                    <input type="text" v-model="pipeline_stage_id" class="form-control form-control-lg">
+                                    {{-- <select v-model="stage_id" required class="custom-select" > <option v-for="stage in stages" :value="stage.id">@{{ stage.name }}</option></select> --}}
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-6">
+                                    <label>Opportunity Value</label>
+                                    <input type="text" v-model="value" class="form-control form-control-lg">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="js-datetimepicker input-group date" data-format="YYYY/MM/DD">
+                                    <input class="form-control input-lg" type="date" placeholder="Do you have a deadline?" v-model="deadline_date">
+                                    <span class="input-group-addon">
+                                        <span class="fa fa-calendar"></span>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- END User Profile -->
                     </div>
                 </div>
             </div>
+
+            <div class="row">
+                <button v-on:click="$parent.onSave($data, false)" class="btn btn-outline-primary min-width-125 js-click-ripple-enabled m" data-toggle="click-ripple">
+                    @lang('global.Save')
+                </button>
+
+                <button v-on:click="$parent.onCancel()" class="btn btn-alt-secondary min-width-125 js-click-ripple-enabled" data-toggle="click-ripple">
+                    @lang('global.Cancel')
+                </button>
+            </div>
+
         </div>
-    </div>
-</opportunity-format>
+    </opportunity-format>

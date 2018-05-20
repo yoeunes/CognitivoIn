@@ -5,9 +5,9 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class OpportunityActivity extends Model
+class OpportunityTask extends Model
 {
-    use SoftDeletes, \GetStream\StreamLaravel\Eloquent\ActivityTrait;
+    use SoftDeletes; //, \GetStream\StreamLaravel\Eloquent\ActivityTrait;
     // use Searchable;
 
     protected $table = 'opportunity_tasks';
@@ -27,12 +27,7 @@ class OpportunityActivity extends Model
 
     public function opportunity()
     {
-        return $this->belongsTo('App\Opportunity');
-    }
-
-    public function team()
-    {
-        return $this->belongsTo(Team::class);
+        return $this->belongsTo(Opportunity::class);
     }
 
     public function activityActorMethodName()

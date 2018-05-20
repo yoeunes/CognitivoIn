@@ -55836,6 +55836,8 @@ __webpack_require__(58);
 __webpack_require__(59);
 __webpack_require__(60);
 __webpack_require__(61);
+__webpack_require__(101);
+__webpack_require__(102);
 __webpack_require__(62);
 __webpack_require__(66);
 __webpack_require__(67);
@@ -56139,50 +56141,48 @@ Vue.component('location-form', {
 /* 61 */
 /***/ (function(module, exports) {
 
-// import Vue from 'vÍue';
-// import VueSweetAlert from 'vue-sweetalert';
-// import axios from 'axios';
 
 Vue.component('opportunity-form', {
     data: function data() {
         return {
             id: 0,
             relationship_id: '',
-            description: '',
+            pipeline_id: '',
+            pipeline_stage_id: '',
             deadline_date: '',
+            description: '',
+            status: '',
             value: '',
-            stage_id: '',
-            stages: [],
-            customers: []
+            is_archived: false,
+
+            stages: []
         };
     },
 
 
     methods: {
         onEdit: function onEdit(data) {
-            console.log(data);
             var app = this;
             app.id = data.id;
             app.relationship_id = data.relationship_id;
-            app.description = data.description;
+            app.pipeline_stage_id = data.pipeline_stage_id;
             app.deadline_date = data.deadline_date;
+            app.description = data.description;
+            app.status = data.status;
             app.value = data.value;
-            app.stage_id = data.pipeline_stage_id;
-            app.$parent.showList = false;
+            app.is_archived = data.is_archived;
         },
 
-        onReset: function onReset(isnew) {
+        onReset: function onReset() {
             var app = this;
-            app.id = null;
-            app.relationship_id = null;
-            app.description = null;
-            app.deadline_date = null;
-
-            app.value = null;
-            app.stage_id = null;
-            if (isnew == false) {
-                app.$parent.showList = true;
-            }
+            app.id = 0;
+            app.relationship_id = '';
+            app.pipeline_stage_id = '';
+            app.deadline_date = '';
+            app.description = '';
+            app.status = '';
+            app.value = '';
+            app.is_archived = '';
         },
 
         getStages: function getStages(data) {
@@ -56192,19 +56192,10 @@ Vue.component('opportunity-form', {
 
                 app.stages = [];
                 for (var i = 0; i < data.length; i++) {
-                    app.stages.push({ name: data[i]['name'], id: data[i]['id'] });
-                }
-            });
-        },
-
-        getCustomers: function getCustomers(data) {
-            var app = this;
-            axios.get('/api/getCustomers/' + this.profile + '/').then(function (_ref2) {
-                var data = _ref2.data;
-
-                app.customers = [];
-                for (var i = 0; i < data.length; i++) {
-                    app.customers.push({ name: data[i]['customer_alias'], id: data[i]['id'] });
+                    app.stages.push({
+                        name: data[i]['name'],
+                        id: data[i]['id']
+                    });
                 }
             });
         }
@@ -56212,7 +56203,6 @@ Vue.component('opportunity-form', {
 
     mounted: function mounted() {
         this.getStages();
-        this.getCustomers();
     }
 });
 
@@ -56947,11 +56937,13 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('model', {
 
 
     methods: {
-        showModules: function showModules($moduleID) {
-            var app = this;
-            app.showModule = $moduleID;
-            app.showList = true;
-        },
+        // showModules($moduleID)
+        // {
+        //     var app = this;
+        //     app.showModule = $moduleID;
+        //     app.showList = true;
+        // },
+
         infiniteHandler: function infiniteHandler($state) {
             var _this = this;
 
@@ -56983,13 +56975,16 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('model', {
 
 
         //This restarts the inifity loader.
-        onList: function onList($url, $showModule, $filterListBy) {
+        onList: function onList($url, $showModule) {
             var app = this;
             app.showList = true;
             app.skip = 0;
             app.url = $url;
             app.showModule = $showModule;
-            app.filterListBy = $filterListBy;
+
+            if ($filterListBy != null) {
+                app.filterListBy = $filterListBy;
+            }
 
             app.list = [];
             //Handle the infinite loading of the list.
@@ -57032,13 +57027,33 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('model', {
                 app.showList = true;
             });
         },
-        onSave: function onSave($data) {
+        postSpecial: function postSpecial(specialURL, $data) {
             var _this3 = this;
 
             var app = this;
             //alert($data.id);
-            __WEBPACK_IMPORTED_MODULE_3_axios___default.a.post('/api/' + this.profile + '/back-office/' + app.url, $data).then(function () {
+            __WEBPACK_IMPORTED_MODULE_3_axios___default.a.post('/api/' + this.profile + '/back-office/' + app.url + '/' + specialURL + '/', $data).then(function (response) {
                 _this3.$swal({
+                    position: 'top-end',
+                    type: 'success',
+                    title: 'Done!',
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+
+                return response;
+            }).catch(function (ex) {
+                console.log(ex);
+                _this3.$swal('Error trying to preform action');
+            });
+        },
+        onSave: function onSave($data) {
+            var _this4 = this;
+
+            var app = this;
+            //alert($data.id);
+            __WEBPACK_IMPORTED_MODULE_3_axios___default.a.post('/api/' + this.profile + '/back-office/' + app.url, $data).then(function () {
+                _this4.$swal({
                     position: 'top-end',
                     type: 'success',
                     title: 'Awsome! Your work has been saved',
@@ -57053,17 +57068,17 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('model', {
                 }
             }).catch(function (ex) {
                 console.log(ex);
-                _this3.$swal('Error trying to save record.');
+                _this4.$swal('Error trying to save record.');
             });
         },
         onSaveCreate: function onSaveCreate($data) {
-            var _this4 = this;
+            var _this5 = this;
 
             var app = this;
 
             __WEBPACK_IMPORTED_MODULE_3_axios___default.a.post('/api/' + this.profile + '/back-office/' + app.url, $data).then(function () {
                 //TODO run code to clean data.
-                _this4.$swal({
+                _this5.$swal({
                     position: 'top-end',
                     type: 'success',
                     title: 'Awsome! Your work has been saved',
@@ -57074,11 +57089,11 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('model', {
                 app.showList = false;
             }).catch(function (ex) {
                 console.log(ex);
-                _this4.$swal('Error trying to save record.');
+                _this5.$swal('Error trying to save record.');
             });
         },
         onDelete: function onDelete($data) {
-            var _this5 = this;
+            var _this6 = this;
 
             var app = this;
 
@@ -57090,14 +57105,14 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('model', {
                 confirmButtonText: 'Yes, delete it!'
             }).then(function () {
 
-                __WEBPACK_IMPORTED_MODULE_3_axios___default.a.delete('/api/' + _this5.profile + '/back-office/' + _this5.url + '/' + $data.id).then(function () {
+                __WEBPACK_IMPORTED_MODULE_3_axios___default.a.delete('/api/' + _this6.profile + '/back-office/' + _this6.url + '/' + $data.id).then(function () {
 
-                    var index = _this5.list.findIndex(function (x) {
+                    var index = _this6.list.findIndex(function (x) {
                         return x.id === $data.id;
                     });
-                    _this5.list.splice(index, 1);
+                    _this6.list.splice(index, 1);
 
-                    _this5.$swal({
+                    _this6.$swal({
                         position: 'top-end',
                         type: 'success',
                         title: 'The record has been deleted',
@@ -57106,12 +57121,12 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('model', {
                     });
                 }).catch(function (ex) {
                     console.log(ex);
-                    _this5.$swal('Error trying to delete record.');
+                    _this6.$swal('Error trying to delete record.');
                 });
             });
         },
         onApprove: function onApprove($data) {
-            var _this6 = this;
+            var _this7 = this;
 
             var app = this;
 
@@ -57122,8 +57137,8 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('model', {
                 showCancelButton: true,
                 confirmButtonText: 'Yes, approve it!'
             }).then(function () {
-                __WEBPACK_IMPORTED_MODULE_3_axios___default.a.post('/api/' + _this6.profile + '/back-office/' + app.url + '/' + $data.id + '/approve', $data).then(function () {
-                    _this6.$swal({
+                __WEBPACK_IMPORTED_MODULE_3_axios___default.a.post('/api/' + _this7.profile + '/back-office/' + app.url + '/' + $data.id + '/approve', $data).then(function () {
+                    _this7.$swal({
                         position: 'top-end',
                         type: 'success',
                         title: 'Awsome! Your record has been approved',
@@ -57134,13 +57149,13 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('model', {
                     app.showList = true;
                 }).catch(function (ex) {
                     console.log(ex);
-                    _this6.$swal('Error trying to approve record.');
+                    _this7.$swal('Error trying to approve record.');
                 });
                 //Code to approve
             });
         },
         onAnnull: function onAnnull($data) {
-            var _this7 = this;
+            var _this8 = this;
 
             var app = this;
 
@@ -57152,8 +57167,8 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('model', {
                 confirmButtonText: 'Yes, annull it!'
             }).then(function () {
                 //Code to annull
-                __WEBPACK_IMPORTED_MODULE_3_axios___default.a.post('/api/' + _this7.profile + '/back-office/' + app.url + '/' + $data.id + '/annull', $data).then(function () {
-                    _this7.$swal({
+                __WEBPACK_IMPORTED_MODULE_3_axios___default.a.post('/api/' + _this8.profile + '/back-office/' + app.url + '/' + $data.id + '/annull', $data).then(function () {
+                    _this8.$swal({
                         position: 'top-end',
                         type: 'success',
                         title: 'Awsome! Your record has been annulled',
@@ -57163,7 +57178,7 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('model', {
                     app.showList = true;
                 }).catch(function (ex) {
                     console.log(ex);
-                    _this7.$swal('Error trying to annull record.');
+                    _this8.$swal('Error trying to annull record.');
                 });
             });
         }
@@ -59346,6 +59361,167 @@ if (false) {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 88 */,
+/* 89 */,
+/* 90 */,
+/* 91 */,
+/* 92 */,
+/* 93 */,
+/* 94 */,
+/* 95 */,
+/* 96 */,
+/* 97 */,
+/* 98 */,
+/* 99 */,
+/* 100 */,
+/* 101 */
+/***/ (function(module, exports) {
+
+
+Vue.component('opportunity-task-form', {
+    props: ['opportunityID'],
+    data: function data() {
+        return {
+            id: 0,
+            activity_type: '',
+            opportunity_id: '',
+            sentiment: '',
+            reminder_date: '',
+            date_started: '',
+            date_ended: '',
+            title: '',
+            description: '',
+            geoloc: '',
+            completed: false
+        };
+    },
+
+
+    computed: {
+        activeTasks: function activeTasks() {
+            var app = this;
+
+            return app.$parent.list.filter(function (i) {
+                return i.is_completed === '0';
+            });
+        },
+
+        completedTasks: function completedTasks() {
+            var app = this;
+
+            return app.$parent.list.filter(function (i) {
+                return i.is_completed === '1';
+            });
+        }
+    },
+
+    methods: {
+        addTask: function addTask($taskTitle) {
+            //code for adding tasks
+            var app = this;
+
+            app.$parent.list.push({
+                id: data.id,
+                activity_type: 1,
+                opportunity_id: app.$parent.opportunity_id,
+                sentiment: 1,
+
+                reminder_date: null,
+                date_started: null,
+                date_ended: null,
+
+                title: $taskTitle,
+                description: null,
+                geoloc: null,
+                completed: false
+            });
+
+            app.$parent.onSave();
+        },
+
+        changeStateTask: function changeStateTask(task) {
+            var app = this;
+            var data = app.$parent.postSpecial('status', $taskTitle);
+            //find index in list and update value.
+        },
+
+        onEdit: function onEdit(data) {
+            var app = this;
+            app.id = data.id;
+            app.activity_type = data.activity_type;
+            app.opportunity_id = data.opportunity_id;
+            app.sentiment = data.sentiment;
+
+            app.reminder_date = data.reminder_date;
+            app.date_started = data.date_started;
+            app.date_ended = data.date_ended;
+
+            app.title = data.title;
+            app.description = data.description;
+            app.geoloc = data.geoloc;
+            app.completed = data.completed;
+        },
+
+        onReset: function onReset() {
+            var app = this;
+            app.id = 0;
+            app.activity_type = '';
+            app.opportunity_id = '';
+            app.sentiment = '';
+
+            app.reminder_date = '';
+            app.date_started = '';
+            app.date_ended = '';
+
+            app.title = '';
+            app.description = '';
+            app.geoloc = '';
+            app.completed = false;
+        }
+    },
+
+    mounted: function mounted() {}
+});
+
+/***/ }),
+/* 102 */
+/***/ (function(module, exports) {
+
+
+Vue.component('opportunity-member-form', {
+    data: function data() {
+        return {
+            id: 0,
+            profile_id: '',
+            opportunity_id: '',
+            member: '',
+            email: ''
+        };
+    },
+
+
+    methods: {
+        addMember: function addMember($profileID) {
+            //code for adding tasks
+            var app = this;
+            axios.post('/api/' + app.$parent.profile + '/back-office/opportunities/' + this.opportunityID + '/members/', $profileID).then(function (_ref) {
+                var data = _ref.data;
+
+                app.$parent.list.push({
+                    id: data.id,
+                    member: data.name,
+                    email: data.email,
+                    profile_id: data.profile_id,
+                    opportunity_id: data.opportunity_id
+                });
+            });
+        }
+    },
+
+    mounted: function mounted() {}
+});
 
 /***/ })
 /******/ ]);

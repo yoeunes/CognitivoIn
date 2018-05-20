@@ -13,7 +13,7 @@ class LocationController extends Controller
     *
     * @return \Illuminate\Http\Response
     */
-    public function index(Profile $profile,$skip)
+    public function index(Profile $profile, $skip)
     {
         $location = Location::skip($skip)
         ->take(100)
@@ -86,18 +86,6 @@ class LocationController extends Controller
         ->first();
 
         return response()->json($location);
-    }
-
-    /**
-    * Update the specified resource in storage.
-    *
-    * @param  \Illuminate\Http\Request  $request
-    * @param  \App\Location  $location
-    * @return \Illuminate\Http\Response
-    */
-    public function update(Request $request, Location $location)
-    {
-        //
     }
 
     /**

@@ -16,21 +16,21 @@ class ContractController extends Controller
     */
     public function index(Profile $profile, $skip, $filter)
     {
-        $contract = Contract::skip($skip)
-        ->take(100)
-        ->get();
+        if ($filter == 1)
+        {
+            $contract = Contract::skip($skip)
+            ->take(100)
+            ->get();
+        }
+        else if($filter == 2)
+        {
+            $contract = Contract::skip($skip)
+            ->onlyTrashed()
+            ->take(100)
+            ->get();
+        }
 
         return response()->json($contract);
-    }
-
-    /**
-    * Show the form for creating a new resource.
-    *
-    * @return \Illuminate\Http\Response
-    */
-    public function create()
-    {
-        //
     }
 
     /**
@@ -44,21 +44,22 @@ class ContractController extends Controller
         $contract = Contract::where('id', $request->id)->first() ?? new Contract();
 
         $contract->name = $request->name;
-        //$contract->profile_id = $profile->id;
+        $contract->profile_id = $profile->id;
         $contract->country = $profile->country;
         $contract->save();
 
         $totalPercent = 0;
+        $details = collect($contract->details);
 
-        foreach ($contract->details as $reqDetail)
+        foreach ($details as $row)
         {
-            $detail = ContractDetail::where('id', $reqDetail->id)->first() ?? new ContractDetail();
+            $detail = ContractDetail::where('id', $row->id)->first() ?? new ContractDetail();
             $detail->contract_id = $contract->id;
-            $detail->percent = $reqDetail->percent;
-            $detail->offset = $reqDetail->offset;
+            $detail->percent = $row->percent;
+            $detail->offset = $row->offset;
             $detail->save();
 
-            $totalPercent += $reqDetail->percent;
+            $totalPercent += $detail->percent;
         }
         //this code adds the remaining balance to the end.
         if ($totalPercent < 1 && isset($contract->details->last()))
@@ -69,17 +70,6 @@ class ContractController extends Controller
         }
 
         return response()->json('Ok', 200);
-    }
-
-    /**
-    * Display the specified resource.
-    *
-    * @param  \App\Contract  $contract
-    * @return \Illuminate\Http\Response
-    */
-    public function show(Contract $contract)
-    {
-        //
     }
 
     /**
@@ -98,18 +88,6 @@ class ContractController extends Controller
     }
 
     /**
-    * Update the specified resource in storage.
-    *
-    * @param  \Illuminate\Http\Request  $request
-    * @param  \App\Contract  $contract
-    * @return \Illuminate\Http\Response
-    */
-    public function update(Request $request, Contract $contract)
-    {
-        //
-    }
-
-    /**
     * Remove the specified resource from storage.
     *
     * @param  \App\Contract  $contract
@@ -120,6 +98,23 @@ class ContractController extends Controller
         if ($contract->profile_id == $profile->id)
         {
             $contract->delete();
+            return response()->json('200', 200);
+        }
+
+        return response()->json('Resource not found', 401);
+    }
+
+    /**
+    * Remove the specified resource from storage.
+    *
+    * @param  \App\Contract  $contract
+    * @return \Illuminate\Http\Response
+    */
+    public function restore(Profile $profile, Contract $contract)
+    {
+        if ($contract->profile_id == $profile->id)
+        {
+            $contract->restore();
             return response()->json('200', 200);
         }
 

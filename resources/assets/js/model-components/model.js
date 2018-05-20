@@ -27,12 +27,12 @@ Vue.component('model',
 
     methods:
     {
-        showModules($moduleID)
-        {
-            var app = this;
-            app.showModule = $moduleID;
-            app.showList = true;
-        },
+        // showModules($moduleID)
+        // {
+        //     var app = this;
+        //     app.showModule = $moduleID;
+        //     app.showList = true;
+        // },
 
         infiniteHandler($state)
         {
@@ -70,15 +70,19 @@ Vue.component('model',
         },
 
         //This restarts the inifity loader.
-        onList($url, $showModule, $filterListBy)
+        onList($url, $showModule)
         {
             var app = this;
             app.showList = true;
             app.skip = 0;
             app.url = $url;
             app.showModule = $showModule;
-            app.filterListBy = $filterListBy;
-            
+
+            if ($filterListBy != null)
+            {
+                app.filterListBy = $filterListBy ;
+            }
+
             app.list = [];
             //Handle the infinite loading of the list.
             if (app.$refs.infiniteLoading != null)
@@ -126,6 +130,30 @@ Vue.component('model',
             })
         },
 
+        postSpecial(specialURL, $data)
+        {
+            var app = this;
+            //alert($data.id);
+            axios.post('/api/' + this.profile + '/back-office/' + app.url + '/' + specialURL + '/', $data)
+            .then((response) =>
+            {
+                this.$swal({
+                    position: 'top-end',
+                    type: 'success',
+                    title: 'Done!',
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+
+                return response;
+            })
+            .catch(ex => {
+                console.log(ex);
+                this.$swal('Error trying to preform action');
+            });
+        },
+
+
         onSave($data)
         {
             var app = this;
@@ -139,7 +167,7 @@ Vue.component('model',
                     title: 'Awsome! Your work has been saved',
                     showConfirmButton: false,
                     timer: 1500
-                })
+                });
 
                 app.showList = true;
 
@@ -166,7 +194,7 @@ Vue.component('model',
                     title: 'Awsome! Your work has been saved',
                     showConfirmButton: false,
                     timer: 1500
-                })
+                });
 
                 app.showList = false;
             })

@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Opportunity;
-use App\OpportunityActivity;
+use App\OpportunityTask;
+use App\OpportunityMember;
 use App\Profile;
 use App\Cart;
 use App\PipelineStage;
@@ -18,43 +19,14 @@ class OpportunityController extends Controller
     *
     * @return \Illuminate\Http\Response
     */
-    public function index(Profile $profile,$skip)
+    public function index(Profile $profile, $skip, $filterBy)
     {
-      $opportunities = Opportunity::Mine()
-       ->select('opportunities.id', 'opportunities.description', 'opportunities.deadline_date', 'opportunities.value',
-       'relationships.customer_alias', 'relationships.customer_taxid')
-         ->skip($skip)
-       ->take(100)->get();
-
-     return response()->json($opportunities);
-    }
-
-    public function list_opportunitiesByID(Profile $profile,$id)
-    {
-
-
-       $opportunities = Opportunity::Mine()
-        ->where('opportunities.id',$id)
-
+        $opportunities = Opportunity::Mine()
+        ->skip($skip)
+        ->take(100)
         ->get();
 
-
-      return response()->json($opportunities);
-    }
-
-    /**
-    * Show the form for creating a new resource.
-    *
-    * @return \Illuminate\Http\Response
-    */
-    public function create(Profile $profile)
-    {
-        $customers = Relationship::GetCustomers()->get();
-        $stages = PipelineStage::get();
-
-        return view('company.sales.opportunities.form')
-        ->with('customers',$customers)
-        ->with('stages',$stages);
+        return response()->json($opportunities);
     }
 
     /**
@@ -65,23 +37,30 @@ class OpportunityController extends Controller
     */
     public function store(Request $request, Profile $profile)
     {
-        $opportunity = $request->id == 0 ? new Opportunity()
-        : Opportunity::where('id', $request->id)->first();
+        $opportunity = Opportunity::where('id', $request->id)->first() ?? new Opportunity();
 
-
-        $customers = Relationship::GetCustomers()
-        ->where('id', '=', $request->relationship_id)
-
-        ->first();
-        $opportunity->relationship_id = $customers->id;
-        $opportunity->pipeline_stage_id = $request->stage_id;
+        $opportunity->relationship_id = $request->relationship_id;
+        $opportunity->pipeline_stage_id = $request->pipeline_stage_id;
         $opportunity->deadline_date = $request->deadline_date;
         $opportunity->description = $request->description;
         $opportunity->status = 1;
         $opportunity->value = $request->value;
+        $opportunity->is_archived = $request->is_archived;
         $opportunity->save();
 
-    return response()->json('ok',200);
+        $members = collect($request->members);
+
+        //if opportunity is new, then create user as it's first member.
+        if ($request->id == 0)
+        {
+            $member = new OpportunityMember();
+            $member->opportunity_id = $opportunity->id;
+            $member->profile_id = Auth::user()->profile_id;
+            $member->save();
+        }
+
+        //do not iterate over tasks and members. they will have their own individual functions
+        return response()->json('Ok', 200);
     }
 
     /**
@@ -90,24 +69,14 @@ class OpportunityController extends Controller
     * @param  \App\opportunity  $opportunity
     * @return \Illuminate\Http\Response
     */
-    public function show(Profile $profile, $opportunityID)
+    public function show(Profile $profile, Opportunity $opportunity)
     {
-        $opportunity = Opportunity::find($opportunityID);
+        $opportunity = $opportunity
+        ->with('activities')
+        ->with('members')
+        ->first();
 
-        $opportunity_activities = OpportunityActivity::
-        where('opportunity_id', $opportunityID)
-        ->where('completed', false)
-        ->get();
-
-        $opportunitiesinactive = OpportunityActivity::
-        where('opportunity_id', $opportunityID)
-        ->where('completed', true)
-        ->get();
-
-        return view('company.sales.opportunities.show')
-        ->with('opportunity',$opportunity)
-        ->with('opportunity_activities',$opportunity_activities)
-        ->with('opportunitiesinactive',$opportunitiesinactive);
+        return response()->json($opportunity);
     }
 
     /**
@@ -116,27 +85,9 @@ class OpportunityController extends Controller
     * @param  \App\opportunity  $opportunity
     * @return \Illuminate\Http\Response
     */
-    public function edit(Profile $profile,$id)
+    public function edit(Profile $profile, Opportunity $opportunity)
     {
-      $opportunities = Opportunity::Mine()
-       ->where('opportunities.id',$id)
-
-       ->first();
-
-
-     return response()->json($opportunities);
-    }
-
-    /**
-    * Update the specified resource in storage.
-    *
-    * @param  \Illuminate\Http\Request  $request
-    * @param  \App\opportunity  $opportunity
-    * @return \Illuminate\Http\Response
-    */
-    public function update(Request $request, Opportunity $opportunity)
-    {
-        //
+        return response()->json($opportunity);
     }
 
     /**
@@ -147,6 +98,32 @@ class OpportunityController extends Controller
     */
     public function destroy(Opportunity $opportunity)
     {
-        //
+        $relationship = $opportunity->relationship();
+        if ($relationship->supplier_id == $profile->id)
+        {
+            //No need for soft delete.
+            $opportunity->delete();
+            return response()->json('Ok', 200);
+        }
+
+        return response()->json('Resource not found', 401);
+    }
+
+    /**
+    * Remove the specified resource from storage.
+    *
+    * @param  \App\Contract  $contract
+    * @return \Illuminate\Http\Response
+    */
+    public function restore(Profile $profile, Opportunity $opportunity)
+    {
+        $relationship = $opportunity->relationship();
+        if ($relationship->profile_id == $profile->id)
+        {
+            $opportunity->restore();
+            return response()->json('Ok', 200);
+        }
+
+        return response()->json('Resource not found', 401);
     }
 }

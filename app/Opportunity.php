@@ -14,29 +14,44 @@ class Opportunity extends Model
 
     protected $table = 'opportunities';
 
-
     protected $fillable = [
         'relationship_id',
-        'stage_id',
+        'pipeline_stage_id',
         'deadline_date',
         'description',
         'status',
-        'value'
+        'value',
+        'is_archived'
     ];
 
     public function scopeMine($query)
     {
         return $query->join('relationships', 'relationships.id', 'opportunities.relationship_id')
-            ->where('relationships.supplier_id', request()->route('profile')->id);
+        ->where('relationships.supplier_id', request()->route('profile')->id);
     }
 
-    public function stage()
+    public function pipelineStage()
     {
-        return $this->belongsTo('App\PipelineStage');
+        return $this->belongsTo(PipelineStage::class);
     }
 
     public function relationship()
     {
-        return $this->belongsTo('App\Relationship');
+        return $this->belongsTo(Relationship::class);
+    }
+
+    public function items()
+    {
+        return $this->hasMany(Cart::class);
+    }
+
+    public function tasks()
+    {
+        return $this->hasMany(OppportunityTask::class);
+    }
+
+    public function members()
+    {
+        return $this->hasMany(OppporunityMember::class);
     }
 }
