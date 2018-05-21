@@ -210,7 +210,7 @@ class AccountController extends Controller
 
         $data2 = [];
         $data2[] = [
-            'Date' => $order->date->format('mm-dd-yyyy'),
+            'Date' => $order->date->format('m-d-Y'),
             'PaymentReference' => $accountmovement->id,
             'ResponseType' => 1,
             'Detail'=> $values
