@@ -20,9 +20,9 @@ class Pipeline extends Model
         'is_active'
     ];
 
-    public function scopeMy($query, $id)
+    public function scopeMy($query, Profile $profile)
     {
-        return $query->where('profile_id', $id);
+        return $query->where('profile_id', $profile->id);
     }
 
     public function stages()

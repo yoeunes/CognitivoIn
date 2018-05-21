@@ -16,8 +16,8 @@ class PipelineController extends Controller
     */
     public function index(Profile $profile, $skip)
     {
-        $pipelines = Pipeline::with('stages')
-        ->My($profile->id)
+        $pipelines = Pipeline::My($profile)
+        ->with('stages')
         ->skip($skip)
         ->take(100)
         ->get();
