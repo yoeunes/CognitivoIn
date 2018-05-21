@@ -36,8 +36,9 @@ Route::group(['middleware' => 'auth:api'], function ()
                 'suppliers' => 'SupplierController',
                 'items' => 'ItemController',
                 'pipelines' => 'PipelineController',
+                'pipeline-stages' => 'PipelineStageController',
                 'opportunities' => 'OpportunityController',
-                'opportunities/{id}/tasks' => 'OpportunityController',
+                'opportunities/{id}/tasks' => 'OpportunityTaskController',
                 'orders' => 'OrderController',
 
                 'accounts' => 'AccountsController',

@@ -44,6 +44,7 @@ Route::group(['middleware' => 'auth'], function ()
             Route::resources([
                 'customers' => 'CustomerController',
                 'opportunities' => 'OpportunityController',
+                'opportunities/{id}/tasks' => 'OpportunityTaskController',
                 'orders' => 'OrderController',
                 'pipelines' => 'PipelineController',
                 'pipelinestages' => 'PipelineStageController',

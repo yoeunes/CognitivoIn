@@ -91,12 +91,13 @@ Vue.component('model',
         onShow($data)
         {
             var app = this;
-            app.showList = 1;
+            app.showList = 2;
 
             axios.get('/api/' + this.profile + '/back-office/' + app.url + '/' + $data.id)
             .then(function (response)
             {
-                //app.$refs.back_officeForm.onEdit(response.data);
+
+                app.$refs.OpportunityTaskForm.opportunity_id=$data.id;
             })
             .catch(ex => {
                 console.log(ex);
@@ -143,8 +144,8 @@ Vue.component('model',
         postSpecial(specialURL, $data)
         {
             var app = this;
-            //alert($data.id);
-            axios.post('/api/' + this.profile + '/back-office/' + app.url + '/' + specialURL + '/', $data)
+            
+            axios.post(specialURL + '/', $data)
             .then((response) =>
             {
                 this.$swal({
@@ -158,7 +159,7 @@ Vue.component('model',
                 return response;
             })
             .catch(ex => {
-                console.log(ex);
+                console.log(ex.response);
                 this.$swal('Error trying to preform action');
             });
         },
