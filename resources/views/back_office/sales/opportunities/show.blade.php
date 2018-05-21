@@ -76,18 +76,18 @@
                             </ul>
 
                             {{-- <opportunity-member-form ref="member-form" inline-template> --}}
-                                <div>
-                                    <form class="push" action="be_pages_generic_todo.html" method="post" onsubmit="return false;">
-                                        <div class="input-group">
-                                            {{-- <input class="form-control" type="text" v-model="member" placeholder="Invite more people.."> --}}
-                                            <div class="input-group-append">
-                                                <button @click="onSave(member)" class="btn btn-secondary" type="submit">
-                                                    <i class="fa fa-plus"></i>
-                                                </button>
-                                            </div>
+                            <div>
+                                <form class="push" action="be_pages_generic_todo.html" method="post" onsubmit="return false;">
+                                    <div class="input-group">
+                                        {{-- <input class="form-control" type="text" v-model="member" placeholder="Invite more people.."> --}}
+                                        <div class="input-group-append">
+                                            <button @click="onSave(member)" class="btn btn-secondary" type="submit">
+                                                <i class="fa fa-plus"></i>
+                                            </button>
                                         </div>
-                                    </form>
-                                </div>
+                                    </div>
+                                </form>
+                            </div>
                             {{-- </opportunity-member-form> --}}
 
 
@@ -103,7 +103,7 @@
                 <div class="js-tasks">
 
                     <!-- Add task -->
-                     <opportunity-task-form ref="task-form" inline-template>
+                    <opportunity-task-form ref="task-form" inline-template>
                         <div>
                             <form id="js-task-form" action="addTask()" method="post">
                                 <div class="input-group input-group-lg">
@@ -129,16 +129,17 @@
                             <table class="table table-borderless table-vcenter mb-0">
                                 <tbody>
 
-                                    <tr v-for="activeTasks in tasks">
-                                        
+                                    <tr v-for="task in activeTasks">
+
                                         <td class="text-center" style="width: 50px;">
                                             <label class="js-task-status css-control css-control-primary css-checkbox py-0">
                                                 <input type="checkbox" class="css-control-input">
                                                 <span class="css-control-indicator"></span>
                                             </label>
                                         </td>
-                                        <td class="js-task-content font-w600">
-                                            @{{ activeTasks.title }}
+                                        <td class="js-task-content">
+                                            <span class="font-w600">@{{ task.title }}</span>
+                                            <small>@{{ task.description }}</small>
                                         </td>
                                         <td class="text-right" style="width: 100px;">
                                             <button @click="editTask(task)" class="js-task-star btn btn-sm btn-alt-info" type="button">
@@ -157,55 +158,30 @@
                     <!-- END Tasks List -->
 
                     <!-- Tasks List Completed -->
-                    {{-- <h2 v-for="tasks in completedTasks" class="content-heading mb-10">Completed</h2>
+                    <h2 v-for="tasks in completedTasks" class="content-heading mb-10">Completed</h2>
                     <div class="js-task-list-completed">
                         <!-- Completed Task -->
                         <div class="js-task block block-rounded mb-5 animated fadeIn" data-task-id="3" data-task-completed="true" data-task-starred="false">
                             <table class="table table-borderless table-vcenter bg-body-light mb-0">
-                                <tbody><tr>
-                                    <td class="text-center" style="width: 50px;">
-                                        <label class="js-task-status css-control css-control-primary css-checkbox py-0">
-                                            <input type="checkbox" class="css-control-input" checked="">
-                                            <span class="css-control-indicator"></span>
-                                        </label>
-                                    </td>
-                                    <td class="js-task-content font-w600">
-                                        <del>
-                                            @{{ completedTasks.name }}
-                                        </del>
-                                    </td>
-                                    <td class="text-right" style="width: 100px;">
-                                        <button @click="editTask(task)" class="js-task-star btn btn-sm btn-alt-info" type="button">
-                                            <i class="fa fa-pencil"></i>
-                                        </button>
-                                        <button @click="deleteTask(task)" class="js-task-remove btn btn-sm btn-alt-danger" type="button">
-                                            <i class="fa fa-times"></i>
-                                        </button>
-                                    </td>
-                                </tr>
-                            </tbody></table>
-                        </div>
-                        <!-- END Completed Task -->
-
-                        <!-- Completed Task -->
-                        <div class="js-task block block-rounded mb-5 animated fadeIn" data-task-id="2" data-task-completed="true" data-task-starred="false">
-                            <table class="table table-borderless table-vcenter bg-body-light mb-0">
                                 <tbody>
-                                    <tr>
+                                    <tr v-for="task in completedTasks">
                                         <td class="text-center" style="width: 50px;">
                                             <label class="js-task-status css-control css-control-primary css-checkbox py-0">
                                                 <input type="checkbox" class="css-control-input" checked="">
                                                 <span class="css-control-indicator"></span>
                                             </label>
                                         </td>
-                                        <td class="js-task-content font-w600">
-                                            <del>Contract Signing</del>
+                                        <td class="js-task-content">
+                                            <del>
+                                                <span class="font-w600">@{{ task.title }}</span>
+                                                <small>@{{ task.description }}</small>
+                                            </del>
                                         </td>
                                         <td class="text-right" style="width: 100px;">
-                                            <button class="js-task-star btn btn-sm btn-alt-warning" type="button">
-                                                <i class="fa fa-star-o"></i>
+                                            <button @click="editTask(task)" class="js-task-star btn btn-sm btn-alt-info" type="button">
+                                                <i class="fa fa-pencil"></i>
                                             </button>
-                                            <button class="js-task-remove btn btn-sm btn-alt-danger" type="button">
+                                            <button @click="deleteTask(task)" class="js-task-remove btn btn-sm btn-alt-danger" type="button">
                                                 <i class="fa fa-times"></i>
                                             </button>
                                         </td>
@@ -214,12 +190,12 @@
                             </table>
                         </div>
                         <!-- END Completed Task -->
-                    </div> --}}
-                    <!-- END Tasks List Completed -->
+
+                        <!-- END Tasks List Completed -->
+                    </div>
+                    <!-- END Tasks -->
                 </div>
-                <!-- END Tasks -->
             </div>
+            <!-- END Tasks Content -->
         </div>
-        <!-- END Tasks Content -->
     </div>
-</div>

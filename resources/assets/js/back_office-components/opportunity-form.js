@@ -26,16 +26,15 @@ Vue.component('opportunity-form',
             var app = this;
 
             return app.tasks.filter(function(i) {
-                return i.is_completed === '0'
+                return i.completed == 0
             })
         },
 
         completedTasks: function ()
         {
             var app = this;
-
             return app.tasks.filter(function(i) {
-                return i.is_completed === '1'
+                return i.completed == 1
             })
         },
     },
@@ -43,10 +42,10 @@ Vue.component('opportunity-form',
 
     methods:
     {
-
         onEdit: function(data)
         {
             var app = this;
+
             app.id = data.id;
             app.relationship_id = data.relationship_id;
             app.pipeline_stage_id  = data.pipeline_stage_id;
@@ -57,21 +56,11 @@ Vue.component('opportunity-form',
             app.is_archived = data.is_archived;
         },
 
-        onReset: function()
-        {
-            var app = this;
-            app.id = 0;
-            app.relationship_id = '';
-            app.pipeline_stage_id  = '';
-            app.deadline_date = '';
-            app.description = '';
-            app.status = '';
-            app.value = '';
-            app.is_archived = '';
-        },
         onShow: function(data)
         {
-            var app=this;
+            var app = this;
+
+            app.tasks = [];
             for (var i = 0; i < data.tasks.length; i++) {
                 app.tasks.push({
                     id: data.tasks[i].id,
@@ -89,6 +78,8 @@ Vue.component('opportunity-form',
                     completed: data.tasks[i].completed
                 });
             }
+
+            app.members = [];
             for (var i = 0; i < data.members.length; i++) {
                 app.members.push({
                     id: data.members[i].id,
@@ -100,10 +91,27 @@ Vue.component('opportunity-form',
             }
         },
 
+        onReset: function()
+        {
+            var app = this;
+
+            app.id = 0;
+            app.relationship_id = '';
+            app.pipeline_stage_id  = '';
+            app.deadline_date = '';
+            app.description = '';
+            app.status = '';
+            app.value = '';
+            app.is_archived = '';
+
+            app.tasks = [];
+            app.members = [];
+        },
+
         getStages: function(data)
         {
             var app = this;
-            axios.get('/api/'+ app.$parent.profile +'/back-office/pipeline-stages/')
+            axios.get('/api/' + app.$parent.profile + '/back-office/pipeline-stages/')
             .then(({ data }) =>
             {
                 app.stages = [];
