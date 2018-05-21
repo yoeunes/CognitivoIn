@@ -63,7 +63,7 @@ Vue.component('model',
         },
 
         //This restarts the inifity loader.
-        onList($url, $showModule)
+        onList($url, $showModule,$filterListBy)
         {
             var app = this;
             app.showList = true;
@@ -167,8 +167,8 @@ Vue.component('model',
         onSave($data)
         {
             var app = this;
-            //alert($data.id);
-            axios.post('/api/' + this.profile + '/back-office/' + app.url, $data)
+            console.log($data);
+            axios.post('/back-office/'+ this.profile +'/sales/' + app.url, $data)
             .then(() =>
             {
                 this.$swal({
@@ -185,7 +185,7 @@ Vue.component('model',
                 { app.$refs.infiniteLoading.attemptLoad(); }
             })
             .catch(ex => {
-                console.log(ex);
+                console.log(ex.response);
                 this.$swal('Error trying to save record.');
             });
         },

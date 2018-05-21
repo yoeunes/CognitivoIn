@@ -92,7 +92,7 @@
         </div>
 
         <div class="row">
-            <button v-on:click="onSave($data, false)" class="btn btn-outline-primary min-width-125 js-click-ripple-enabled m" data-toggle="click-ripple">
+            <button v-on:click="$parent.onSave($data, false)" class="btn btn-outline-primary min-width-125 js-click-ripple-enabled m" data-toggle="click-ripple">
                 @lang('global.Save')
             </button>
 

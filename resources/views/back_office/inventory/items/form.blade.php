@@ -199,10 +199,10 @@
             <div class="block-header bg-gd-primary">
                 <h3 class="block-title">Basic Information</h3>
                 <div class="block-options">
-                    <button v-on:click="onSave($data,false)" class="btn btn-sm btn-alt-primary">
+                    <button v-on:click="$parent.onSave($data,false)" class="btn btn-sm btn-alt-primary">
                         <i class="fa fa-save"></i> @lang('global.Save')
                     </button>
-                    <button v-on:click="onSave($data,true)" class="btn btn-sm btn-alt-primary">
+                    <button v-on:click="$parent.onSave($data,true)" class="btn btn-sm btn-alt-primary">
                         <i class="fa fa-plus"></i> @lang('global.Save-and-New')
                     </button>
                     <button v-on:click="$parent.cancel()" class="btn btn-sm btn-alt-danger">

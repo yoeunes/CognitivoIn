@@ -18,7 +18,7 @@ class ProfileController extends Controller
     */
     public function index()
     {
-        //
+          return response()->json(Profile::where('type',1)->get(), 200);
     }
 
     /**
@@ -29,7 +29,8 @@ class ProfileController extends Controller
     */
     public function create()
     {
-        return view('company.form'); //->with('countries', $countries);
+
+            return view('company.form'); //->with('countries', $countries);
     }
 
     /**

@@ -12,7 +12,9 @@ import Vue from 'vue';
 import VueSweetalert2 from 'vue-sweetalert2';
 import VueRouter from 'vue-router';
 import VueResource from 'vue-resource';
-//import SearchBox from './components/searchbox.vue';
+import SearchBoxCustomer from './components/searchbox.vue';
+import SearchBoxItem from './components/searchboxItem.vue';
+import SearchBoxProfile from './components/searchboxProfile.vue';
 import Buefy from 'buefy';
 import 'buefy/lib/buefy.css';
 
@@ -47,7 +49,9 @@ const routes = [
     {
         path: '/',
         components: {
-            //SearchBox:SearchBox
+            SearchBoxCustomer:SearchBoxCustomer,
+            SearchBoxItem:SearchBoxItem,
+            SearchBoxProfile:SearchBoxProfile
 
         }
     },

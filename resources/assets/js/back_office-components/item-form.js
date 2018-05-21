@@ -16,6 +16,7 @@ Vue.component('item-form',
             unit_cost: '',
             is_active: true,
             currencies:[],
+            vats:[]
         }
     },
 

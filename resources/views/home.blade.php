@@ -6,7 +6,7 @@
     $listOfCompanies = Auth::user()->profile->followings(App\Profile::class)->where('role', '<', 4)->get();
     @endphp
 
-    <a class="dropdown-item" href="{{ route('profile.create') }}">
+    <a class="dropdown-item" href="/profile/create">
         <span class="text-primary">
             <i class="si si-plus"></i> Create Company
         </span>

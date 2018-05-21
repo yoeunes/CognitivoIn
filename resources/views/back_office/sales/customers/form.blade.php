@@ -112,7 +112,7 @@
                 </div>
             </div>
             <div class="form-group">
-                <button v-on:click="onSave($data,false)" class="btn btn-primary">
+                <button v-on:click="$parent.onSave($data,false)" class="btn btn-primary">
                     @lang('global.Save')
                 </button>
                 <button v-on:click="onSave($data,true)" class="btn btn-primary">

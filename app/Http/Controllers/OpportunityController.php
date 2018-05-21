@@ -44,6 +44,8 @@ class OpportunityController extends Controller
         $opportunity->deadline_date = $request->deadline_date;
         $opportunity->description = $request->description;
         $opportunity->status = 1;
+        /// TODO: change this field value from default
+        $opportunity->currency = 'PYG';
         $opportunity->value = $request->value;
         $opportunity->is_archived = $request->is_archived;
         $opportunity->save();
