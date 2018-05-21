@@ -190,8 +190,6 @@
                             </table>
                         </div>
                         <!-- END Completed Task -->
-
-                        <!-- END Tasks List Completed -->
                     </div>
                     <!-- END Tasks -->
                 </div>
