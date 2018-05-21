@@ -22,7 +22,7 @@ class OpportunityController extends Controller
     */
     public function index(Profile $profile, $skip, $filterBy)
     {
-        $opportunities = Opportunity::skip($skip)
+        $opportunities = Opportunity::with('tasks')->with('members')->skip($skip)
         ->take(100)
         ->get();
 

@@ -92,18 +92,8 @@ Vue.component('model',
         {
             var app = this;
             app.showList = 2;
+            app.$refs.back_officeForm.onShow($data);
 
-            axios.get('/api/' + this.profile + '/back-office/' + app.url + '/' + $data.id)
-            .then(function (response)
-            {
-
-                app.$refs.OpportunityTaskForm.opportunity_id=$data.id;
-            })
-            .catch(ex => {
-                console.log(ex);
-                app.showList = true;
-                this.$swal('Error trying to show record.');
-            });
         },
 
         onEdit($data)
@@ -144,7 +134,7 @@ Vue.component('model',
         postSpecial(specialURL, $data)
         {
             var app = this;
-            
+
             axios.post(specialURL + '/', $data)
             .then((response) =>
             {

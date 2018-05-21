@@ -15,11 +15,35 @@ Vue.component('opportunity-form',
             is_archived: false,
 
             stages: [],
+            tasks:[],
+            members:[]
         }
     },
+    computed:
+    {
+        activeTasks: function ()
+        {
+            var app = this;
+
+            return app.tasks.filter(function(i) {
+                return i.is_completed === '0'
+            })
+        },
+
+        completedTasks: function ()
+        {
+            var app = this;
+
+            return app.tasks.filter(function(i) {
+                return i.is_completed === '1'
+            })
+        },
+    },
+
 
     methods:
     {
+
         onEdit: function(data)
         {
             var app = this;
@@ -44,6 +68,36 @@ Vue.component('opportunity-form',
             app.status = '';
             app.value = '';
             app.is_archived = '';
+        },
+        onShow: function(data)
+        {
+            var app=this;
+            for (var i = 0; i < data.tasks.length; i++) {
+                app.tasks.push({
+                    id: data.tasks[i].id,
+                    activity_type: data.tasks[i].activity_type,
+                    opportunity_id: data.tasks[i].id,
+                    sentiment: data.tasks[i].sentiment,
+
+                    reminder_date: data.tasks[i].reminder_date,
+                    date_started: data.tasks[i].date_started,
+                    date_ended: data.tasks[i].date_ended,
+
+                    title: data.tasks[i].title,
+                    description: data.tasks[i].description,
+                    geoloc: data.tasks[i].geoloc,
+                    completed: data.tasks[i].completed
+                });
+            }
+            for (var i = 0; i < data.members.length; i++) {
+                app.members.push({
+                    id: data.members[i].id,
+                    member: data.members[i].name,
+                    email: data.members[i].email,
+                    profile_id: data.members[i].profile_id,
+                    opportunity_id: data.members[i].opportunity_id,
+                });
+            }
         },
 
         getStages: function(data)

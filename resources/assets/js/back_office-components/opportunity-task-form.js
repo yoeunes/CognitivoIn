@@ -47,7 +47,7 @@ Vue.component('opportunity-task-form',
             //code for adding tasks
             var app = this;
 
-            app.tasks.push({
+            app .$parent.tasks.push({
                 id: app.id,
                 activity_type: 1,
                 opportunity_id: app.opportunity_id,
@@ -63,8 +63,8 @@ Vue.component('opportunity-task-form',
                 completed: false
             });
 
-        
-            app.$parent.postSpecial('/back-office/'+ app.$parent.profile +'/sales/opportunities/' + app.opportunity_id + '/tasks' ,app.tasks);
+
+            app.$parent.$parent.postSpecial('/back-office/'+ app.$parent.profile +'/sales/opportunities/' + app.opportunity_id + '/tasks' ,app.tasks);
 
         },
 
