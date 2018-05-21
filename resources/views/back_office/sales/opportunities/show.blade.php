@@ -1,4 +1,5 @@
-<opportunity-task-form ref="OpportunityTaskForm" inline-template>
+{{-- Task Model --}}
+<model inline-template>
     <div>
         <div class="content">
             <!-- Hero -->
@@ -33,11 +34,11 @@
                             <div class="block-content">
                                 <ul class="list-group push">
                                     <li @click="" class="list-group-item">
-                                        <span class="js-task-badge badge badge-primary float-right animated bounceIn">@{{ activeTasks.length }}</span>
+                                        <span class="js-task-badge badge badge-primary float-right animated bounceIn">@{{ $refs.task-form.activeTasks.length }}</span>
                                         <i class="fa fa-fw fa-tasks mr-5"></i> Active
                                     </li>
                                     <li @click="" class="list-group-item">
-                                        <span class="js-task-badge-completed badge badge-success float-right animated bounceIn">@{{ completedTasks.length }}</span>
+                                        <span class="js-task-badge-completed badge badge-success float-right animated bounceIn">@{{ $refs.task-form.completedTasks.length }}</span>
                                         <i class="fa fa-fw fa-check mr-5"></i> Completed
                                     </li>
                                 </ul>
@@ -46,45 +47,48 @@
                         <!-- END Tasks Info -->
 
                         <!-- Members -->
+                        <model inline-template>
 
-                        <div class="block block-rounded">
-                            <div class="block-header block-header-default">
-                                <h3 class="block-title">Members</h3>
-                                <div class="block-options">
-                                    <div class="dropdown">
-                                        <button type="button" class="btn-block-option" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            <i class="si si-plus"></i>
-                                        </button>
+                            <div class="block block-rounded">
+
+                                <div class="block-header block-header-default">
+                                    <h3 class="block-title">Members</h3>
+                                    <div class="block-options">
+                                        <div class="dropdown">
+                                            <button type="button" class="btn-block-option" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                <i class="si si-plus"></i>
+                                            </button>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="block-content">
 
-                                {{-- <ul class="nav-users push" v-for="member in members">
-                                    <li>
-                                        <a href="/@{{ member.slug }}" target="_blank">
-                                            <img class="img-avatar" src="@{{ member.profile_img }}" alt="">
-                                            <i class="fa fa-circle text-success"></i> @{{ member.name }}
-                                            <div class="font-w400 font-size-xs text-muted">
-                                                <i class="fa fa-mail"></i> @{{ member.email }}
+                                <div class="block-content">
+                                    <ul class="nav-users push" v-for="member in list">
+                                        <li>
+                                            <a href="/@{{ member.slug }}" target="_blank">
+                                                <img class="img-avatar" src="@{{ member.profile_img }}" alt="">
+                                                <i class="fa fa-circle text-success"></i> @{{ member.name }}
+                                                <div class="font-w400 font-size-xs text-muted">
+                                                    <i class="fa fa-mail"></i> @{{ member.email }}
+                                                </div>
+                                            </a>
+                                        </li>
+                                    </ul>
+
+                                    <opportunity-member-form ref="member-form" inline-template>
+                                        <form class="push" action="be_pages_generic_todo.html" method="post" onsubmit="return false;">
+                                            <div class="input-group">
+                                                <input class="form-control" type="text" v-model="member" placeholder="Invite more people..">
+                                                <div class="input-group-append">
+                                                    <button @click="onSave(member)" class="btn btn-secondary" type="submit">
+                                                        <i class="fa fa-plus"></i>
+                                                    </button>
+                                                </div>
                                             </div>
-                                        </a>
-                                    </li>
-                                </ul> --}}
+                                        </form>
+                                    </opportunity-member-form>
 
-                                <opportunity-member-form inline-template>
-                                    <form class="push" action="be_pages_generic_todo.html" method="post" onsubmit="return false;">
-                                        <div class="input-group">
-                                            <input class="form-control" type="text" placeholder="Invite more people..">
-                                            <div class="input-group-append">
-                                                <button class="btn btn-secondary" type="submit">
-                                                    <i class="fa fa-plus"></i>
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </form>
-                                </opportunity-member-form>
-
+                                </model>
                             </div>
                         </div>
                         <!-- END Members -->
@@ -95,21 +99,26 @@
                     <!-- Tasks -->
                     <!-- Tasks functionality (initialized in js/pages/be_pages_generic_todo.js) -->
                     <div class="js-tasks">
+
                         <!-- Add task -->
-                        <form id="js-task-form" action="addTask()" method="post">
-                            <div class="input-group input-group-lg">
-                                <input class="form-control" type="text" v-model=title id="js-task-input" name="js-task-input" placeholder="Add a task and press enter..">
-                                <div class="input-group-append">
-                                    <span @click="addTask()" class="input-group-text">
-                                        <i class="fa fa-plus"></i>
-                                    </span>
+                        <opportunity-member-form ref="task-form" inline-template>
+                            <form id="js-task-form" action="addTask()" method="post">
+                                <div class="input-group input-group-lg">
+                                    <input class="form-control" type="text" v-model=title id="js-task-input" name="js-task-input" placeholder="Add a task and press enter..">
+                                    <div class="input-group-append">
+                                        <span @click="addTask()" class="input-group-text">
+                                            <i class="fa fa-plus"></i>
+                                        </span>
+                                    </div>
                                 </div>
-                            </div>
-                        </form>
+                            </form>
+                        </opportunity-member-form>
+
                         <!-- END Add task -->
 
                         <!-- Tasks List -->
                         <h2 class="content-heading mb-10">Active</h2>
+
                         <div class="js-task-list">
                             <!-- Task -->
                             <div v-for="tasks in activeTasks" class="js-task block block-rounded mb-5 animated fadeIn" data-task-id="9" data-task-completed="false" data-task-starred="false">
@@ -175,26 +184,28 @@
                             <!-- Completed Task -->
                             <div class="js-task block block-rounded mb-5 animated fadeIn" data-task-id="2" data-task-completed="true" data-task-starred="false">
                                 <table class="table table-borderless table-vcenter bg-body-light mb-0">
-                                    <tbody><tr>
-                                        <td class="text-center" style="width: 50px;">
-                                            <label class="js-task-status css-control css-control-primary css-checkbox py-0">
-                                                <input type="checkbox" class="css-control-input" checked="">
-                                                <span class="css-control-indicator"></span>
-                                            </label>
-                                        </td>
-                                        <td class="js-task-content font-w600">
-                                            <del>Contract Signing</del>
-                                        </td>
-                                        <td class="text-right" style="width: 100px;">
-                                            <button class="js-task-star btn btn-sm btn-alt-warning" type="button">
-                                                <i class="fa fa-star-o"></i>
-                                            </button>
-                                            <button class="js-task-remove btn btn-sm btn-alt-danger" type="button">
-                                                <i class="fa fa-times"></i>
-                                            </button>
-                                        </td>
-                                    </tr>
-                                </tbody></table>
+                                    <tbody>
+                                        <tr>
+                                            <td class="text-center" style="width: 50px;">
+                                                <label class="js-task-status css-control css-control-primary css-checkbox py-0">
+                                                    <input type="checkbox" class="css-control-input" checked="">
+                                                    <span class="css-control-indicator"></span>
+                                                </label>
+                                            </td>
+                                            <td class="js-task-content font-w600">
+                                                <del>Contract Signing</del>
+                                            </td>
+                                            <td class="text-right" style="width: 100px;">
+                                                <button class="js-task-star btn btn-sm btn-alt-warning" type="button">
+                                                    <i class="fa fa-star-o"></i>
+                                                </button>
+                                                <button class="js-task-remove btn btn-sm btn-alt-danger" type="button">
+                                                    <i class="fa fa-times"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
                             </div>
                             <!-- END Completed Task -->
                         </div>
@@ -206,4 +217,4 @@
             <!-- END Tasks Content -->
         </div>
     </div>
-</opportunity-task-form>
+</model>
