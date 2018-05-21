@@ -1708,16 +1708,16 @@
         },
         {
             "name": "florianv/exchanger",
-            "version": "1.2.0",
+            "version": "1.2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/florianv/exchanger.git",
-                "reference": "dad2fb36ade670e020623b20f2d0c1fa7e6891b9"
+                "reference": "b0d3a834e8d8e8764c71e6c7013cd92e5d4084e4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/florianv/exchanger/zipball/dad2fb36ade670e020623b20f2d0c1fa7e6891b9",
-                "reference": "dad2fb36ade670e020623b20f2d0c1fa7e6891b9",
+                "url": "https://api.github.com/repos/florianv/exchanger/zipball/b0d3a834e8d8e8764c71e6c7013cd92e5d4084e4",
+                "reference": "b0d3a834e8d8e8764c71e6c7013cd92e5d4084e4",
                 "shasum": ""
             },
             "require": {
@@ -1741,7 +1741,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.0-dev"
+                    "dev-master": "1.x-dev"
                 }
             },
             "autoload": {
@@ -1769,7 +1769,7 @@
                 "exchange rates",
                 "money"
             ],
-            "time": "2018-04-24T15:09:08+00:00"
+            "time": "2018-05-14T07:24:12+00:00"
         },
         {
             "name": "florianv/laravel-swap",
@@ -2447,16 +2447,16 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v5.6.21",
+            "version": "v5.6.22",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "458a89b1c5ff73072c27308566f444c790f76f28"
+                "reference": "637fd797a6dde8d24a9f07da77e375ec251c5d24"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/458a89b1c5ff73072c27308566f444c790f76f28",
-                "reference": "458a89b1c5ff73072c27308566f444c790f76f28",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/637fd797a6dde8d24a9f07da77e375ec251c5d24",
+                "reference": "637fd797a6dde8d24a9f07da77e375ec251c5d24",
                 "shasum": ""
             },
             "require": {
@@ -2582,7 +2582,7 @@
                 "framework",
                 "laravel"
             ],
-            "time": "2018-05-08T13:30:15+00:00"
+            "time": "2018-05-15T13:34:20+00:00"
         },
         {
             "name": "laravel/passport",
@@ -2720,16 +2720,16 @@
         },
         {
             "name": "laravel/tinker",
-            "version": "v1.0.6",
+            "version": "v1.0.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/tinker.git",
-                "reference": "b22fe905fcefdffae76b011e27c7ac09e07e052b"
+                "reference": "e3086ee8cb1f54a39ae8dcb72d1c37d10128997d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/tinker/zipball/b22fe905fcefdffae76b011e27c7ac09e07e052b",
-                "reference": "b22fe905fcefdffae76b011e27c7ac09e07e052b",
+                "url": "https://api.github.com/repos/laravel/tinker/zipball/e3086ee8cb1f54a39ae8dcb72d1c37d10128997d",
+                "reference": "e3086ee8cb1f54a39ae8dcb72d1c37d10128997d",
                 "shasum": ""
             },
             "require": {
@@ -2779,7 +2779,7 @@
                 "laravel",
                 "psysh"
             ],
-            "time": "2018-04-16T12:10:37+00:00"
+            "time": "2018-05-17T13:42:07+00:00"
         },
         {
             "name": "lcobucci/jwt",
@@ -3888,16 +3888,16 @@
         },
         {
             "name": "overtrue/laravel-follow",
-            "version": "1.1.4",
+            "version": "1.1.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/overtrue/laravel-follow.git",
-                "reference": "82f71bf7ad7fc848b4281b961ca1e2c1ae545f9e"
+                "reference": "4d22c784f4d1d941e541682fc57a9a2890d0f954"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/overtrue/laravel-follow/zipball/82f71bf7ad7fc848b4281b961ca1e2c1ae545f9e",
-                "reference": "82f71bf7ad7fc848b4281b961ca1e2c1ae545f9e",
+                "url": "https://api.github.com/repos/overtrue/laravel-follow/zipball/4d22c784f4d1d941e541682fc57a9a2890d0f954",
+                "reference": "4d22c784f4d1d941e541682fc57a9a2890d0f954",
                 "shasum": ""
             },
             "require": {
@@ -3932,7 +3932,7 @@
                 }
             ],
             "description": "Laravel 5 User Based System",
-            "time": "2018-03-05T05:57:11+00:00"
+            "time": "2018-04-25T15:02:52+00:00"
         },
         {
             "name": "paragonie/random_compat",
@@ -5437,16 +5437,16 @@
         },
         {
             "name": "spatie/laravel-medialibrary",
-            "version": "7.3.5",
+            "version": "7.3.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/laravel-medialibrary.git",
-                "reference": "c85726e022316ecd20e63d045a4fabe3e8a7fb2f"
+                "reference": "63f15b2e54f09d8f4d274b52c5b85cc65f2ef776"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/laravel-medialibrary/zipball/c85726e022316ecd20e63d045a4fabe3e8a7fb2f",
-                "reference": "c85726e022316ecd20e63d045a4fabe3e8a7fb2f",
+                "url": "https://api.github.com/repos/spatie/laravel-medialibrary/zipball/63f15b2e54f09d8f4d274b52c5b85cc65f2ef776",
+                "reference": "63f15b2e54f09d8f4d274b52c5b85cc65f2ef776",
                 "shasum": ""
             },
             "require": {
@@ -5516,7 +5516,7 @@
                 "media",
                 "spatie"
             ],
-            "time": "2018-05-09T16:59:46+00:00"
+            "time": "2018-05-15T08:39:12+00:00"
         },
         {
             "name": "spatie/laravel-model-status",

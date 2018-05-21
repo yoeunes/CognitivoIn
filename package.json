@@ -20,7 +20,7 @@
         "lodash": "^4.17.10",
         "popper.js": "^1.12",
         "vue": "^2.5.16",
-        "vue-resource": "^1.5.0"
+        "vue-resource": "^1.5.1"
     },
     "dependencies": {
         "buefy": "^0.6.5",
