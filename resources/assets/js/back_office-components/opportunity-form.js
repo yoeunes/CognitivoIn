@@ -49,7 +49,7 @@ Vue.component('opportunity-form',
         getStages: function(data)
         {
             var app = this;
-            axios.get('/api/'+ this.profile +'/back-office/pipeline-stages/')
+            axios.get('/api/'+ app.$parent.profile +'/back-office/pipeline-stages/')
             .then(({ data }) =>
             {
                 app.stages = [];

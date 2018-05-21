@@ -15,6 +15,7 @@ Vue.component('opportunity-task-form',
             description: '',
             geoloc: '',
             completed: false,
+            tasks:[]
         }
     },
 
@@ -41,28 +42,30 @@ Vue.component('opportunity-task-form',
 
     methods:
     {
-        addTask: function($taskTitle)
+        addTask: function()
         {
             //code for adding tasks
             var app = this;
 
-            app.$parent.list.push({
-                id: data.id,
+            app.tasks.push({
+                id: app.id,
                 activity_type: 1,
-                opportunity_id: app.$parent.opportunity_id,
+                opportunity_id: app.opportunity_id,
                 sentiment: 1,
 
                 reminder_date: null,
                 date_started: null,
                 date_ended: null,
 
-                title: $taskTitle,
+                title: app.title,
                 description: null,
                 geoloc: null,
                 completed: false
             });
 
-            app.$parent.onSave();
+        
+            app.$parent.postSpecial('/back-office/'+ app.$parent.profile +'/sales/opportunities/' + app.opportunity_id + '/tasks' ,app.tasks);
+
         },
 
         changeStateTask: function(task)

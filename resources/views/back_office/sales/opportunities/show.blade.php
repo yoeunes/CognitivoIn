@@ -1,4 +1,4 @@
-<opportunity-task-form  inline-template>
+<opportunity-task-form ref="OpportunityTaskForm" inline-template>
     <div>
         <div class="content">
             <!-- Hero -->
@@ -96,11 +96,11 @@
                     <!-- Tasks functionality (initialized in js/pages/be_pages_generic_todo.js) -->
                     <div class="js-tasks">
                         <!-- Add task -->
-                        <form id="js-task-form" action="be_pages_generic_todo.html" method="post">
+                        <form id="js-task-form" action="addTask()" method="post">
                             <div class="input-group input-group-lg">
-                                <input class="form-control" type="text" id="js-task-input" name="js-task-input" placeholder="Add a task and press enter..">
+                                <input class="form-control" type="text" v-model=title id="js-task-input" name="js-task-input" placeholder="Add a task and press enter..">
                                 <div class="input-group-append">
-                                    <span @click="createTask()" class="input-group-text">
+                                    <span @click="addTask()" class="input-group-text">
                                         <i class="fa fa-plus"></i>
                                     </span>
                                 </div>
@@ -123,7 +123,7 @@
                                                 </label>
                                             </td>
                                             <td class="js-task-content font-w600">
-                                                @{{ task.name }}
+                                                @{{ activeTasks.name }}
                                             </td>
                                             <td class="text-right" style="width: 100px;">
                                                 <button @click="editTask(task)" class="js-task-star btn btn-sm btn-alt-info" type="button">
@@ -156,7 +156,7 @@
                                         </td>
                                         <td class="js-task-content font-w600">
                                             <del>
-                                                @{{ task.name }}
+                                                @{{ completedTasks.name }}
                                             </del>
                                         </td>
                                         <td class="text-right" style="width: 100px;">

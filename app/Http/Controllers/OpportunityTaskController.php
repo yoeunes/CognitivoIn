@@ -1,7 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Profile;
+use App\OpportunityMember;
 use App\OpportunityTask;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
@@ -29,18 +30,19 @@ class OpportunityTaskController extends Controller
     */
     public function store(Request $request)
     {
-        $opportunityMember = OpportunityMember::find($request->id) ?? new OpportunityMember();
-        $opportunityMember->activity_type = $request->activity_type ?? 1;
-        $opportunityMember->opportunity_id = $request->opportunity_id;
-        $opportunityMember->sentiment = $request->sentiment ?? 0;
-        $opportunityMember->reminder_date = $request->reminder_date ?? null;
-        $opportunityMember->date_started = $request->date_started ?? Carbon::now();
-        $opportunityMember->date_ended = $request->date_ended ?? null;
-        $opportunityMember->title = $request->title ?? 'Title Missing';
-        $opportunityMember->description = $request->description ?? null;
-        $opportunityMember->geoloc = $request->geoloc ?? null;
-        $opportunityMember->completed = $request->completed ?? 0;
-        $opportunityMember->save();
+            
+        $OpportunityTask = OpportunityTask::find($request->id) ?? new OpportunityTask();
+        $OpportunityTask->activity_type = $request->activity_type ?? 1;
+        $OpportunityTask->opportunity_id = $request->opportunity_id;
+        $OpportunityTask->sentiment = $request->sentiment ?? 0;
+        $OpportunityTask->reminder_date = $request->reminder_date ?? null;
+        $OpportunityTask->date_started = $request->date_started ?? Carbon::now();
+        $OpportunityTask->date_ended = $request->date_ended ?? null;
+        $OpportunityTask->title = $request->title ?? 'Title Missing';
+        $OpportunityTask->description = $request->description ?? null;
+        $OpportunityTask->geoloc = $request->geoloc ?? null;
+        $OpportunityTask->completed = $request->completed ?? 0;
+        $OpportunityTask->save();
 
         return response()->json('Ok', 200);
     }

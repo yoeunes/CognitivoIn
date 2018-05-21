@@ -58190,7 +58190,7 @@ Vue.component('opportunity-form', {
 
         getStages: function getStages(data) {
             var app = this;
-            axios.get('/api/' + this.profile + '/back-office/pipeline-stages/').then(function (_ref) {
+            axios.get('/api/' + app.$parent.profile + '/back-office/pipeline-stages/').then(function (_ref) {
                 var data = _ref.data;
 
                 app.stages = [];
@@ -58228,7 +58228,8 @@ Vue.component('opportunity-task-form', {
             title: '',
             description: '',
             geoloc: '',
-            completed: false
+            completed: false,
+            tasks: []
         };
     },
 
@@ -58252,27 +58253,27 @@ Vue.component('opportunity-task-form', {
     },
 
     methods: {
-        addTask: function addTask($taskTitle) {
+        addTask: function addTask() {
             //code for adding tasks
             var app = this;
 
-            app.$parent.list.push({
-                id: data.id,
+            app.tasks.push({
+                id: app.id,
                 activity_type: 1,
-                opportunity_id: app.$parent.opportunity_id,
+                opportunity_id: app.opportunity_id,
                 sentiment: 1,
 
                 reminder_date: null,
                 date_started: null,
                 date_ended: null,
 
-                title: $taskTitle,
+                title: app.title,
                 description: null,
                 geoloc: null,
                 completed: false
             });
 
-            app.$parent.onSave();
+            app.$parent.postSpecial('/back-office/' + app.$parent.profile + '/sales/opportunities/' + app.opportunity_id + '/tasks', app.tasks);
         },
 
         changeStateTask: function changeStateTask(task) {
@@ -59144,10 +59145,11 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('model', {
             var _this2 = this;
 
             var app = this;
-            app.showList = 1;
+            app.showList = 2;
 
             __WEBPACK_IMPORTED_MODULE_3_axios___default.a.get('/api/' + this.profile + '/back-office/' + app.url + '/' + $data.id).then(function (response) {
-                //app.$refs.back_officeForm.onEdit(response.data);
+
+                app.$refs.OpportunityTaskForm.opportunity_id = $data.id;
             }).catch(function (ex) {
                 console.log(ex);
                 app.showList = true;
@@ -59189,8 +59191,8 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('model', {
             var _this4 = this;
 
             var app = this;
-            //alert($data.id);
-            __WEBPACK_IMPORTED_MODULE_3_axios___default.a.post('/api/' + this.profile + '/back-office/' + app.url + '/' + specialURL + '/', $data).then(function (response) {
+
+            __WEBPACK_IMPORTED_MODULE_3_axios___default.a.post(specialURL + '/', $data).then(function (response) {
                 _this4.$swal({
                     position: 'top-end',
                     type: 'success',
@@ -59201,7 +59203,7 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('model', {
 
                 return response;
             }).catch(function (ex) {
-                console.log(ex);
+                console.log(ex.response);
                 _this4.$swal('Error trying to preform action');
             });
         },
