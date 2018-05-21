@@ -62,7 +62,8 @@ class ContractController extends Controller
             $totalPercent += $detail->percent;
         }
         //this code adds the remaining balance to the end.
-        if ($totalPercent < 1 && isset($contract->details->last()))
+        $contract_detail=$contract->details->last();
+        if ($totalPercent < 1 && isset($contract_detail))
         {
             $detail = $contract->details()->last();
             $detail->percent = $detail->percent + (1 - $totalPercent);
