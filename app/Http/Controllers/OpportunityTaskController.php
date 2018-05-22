@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Profile;
+use App\Opportunity;
 use App\OpportunityMember;
 use App\OpportunityTask;
 use Illuminate\Http\Request;
@@ -28,9 +29,8 @@ class OpportunityTaskController extends Controller
     * @param  \Illuminate\Http\Request  $request
     * @return \Illuminate\Http\Response
     */
-    public function store(Request $request, Profile $profile, Opportunity $opportunity)
+    public function store(Profile $profile, Opportunity $opportunity, Request $request)
     {
-
         $opportunityTask = OpportunityTask::find($request->id) ?? new OpportunityTask();
         $opportunityTask->activity_type = $request->activity_type ?? 1;
         $opportunityTask->opportunity_id = $opportunity->id;

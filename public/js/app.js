@@ -59821,7 +59821,91 @@ Vue.component('opportunity-form', {
 /* 157 */
 /***/ (function(module, exports) {
 
-throw new Error("Module build failed: SyntaxError: this is a reserved word (29:16)\n\n\u001b[0m \u001b[90m 27 | \u001b[39m\n \u001b[90m 28 | \u001b[39m            app\u001b[33m.\u001b[39m$parent\u001b[33m.\u001b[39mtasks\u001b[33m.\u001b[39mpush({\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 29 | \u001b[39m                \u001b[36mthis\u001b[39m\u001b[33m.\u001b[39m$data\n \u001b[90m    | \u001b[39m                \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 30 | \u001b[39m            })\u001b[33m;\u001b[39m\n \u001b[90m 31 | \u001b[39m\n \u001b[90m 32 | \u001b[39m            app\u001b[33m.\u001b[39m$parent\u001b[33m.\u001b[39m$parent\u001b[33m.\u001b[39mpostSpecial(\u001b[32m'/back-office/'\u001b[39m \u001b[33m+\u001b[39m app\u001b[33m.\u001b[39m$parent\u001b[33m.\u001b[39m$parent\u001b[33m.\u001b[39mprofile \u001b[33m+\u001b[39m \u001b[32m'/sales/opportunities/'\u001b[39m \u001b[33m+\u001b[39m app\u001b[33m.\u001b[39mopportunity_id \u001b[33m+\u001b[39m \u001b[32m'/tasks'\u001b[39m\u001b[33m,\u001b[39m app\u001b[33m.\u001b[39mdata)\u001b[33m;\u001b[39m\u001b[0m\n");
+
+Vue.component('opportunity-task-form', {
+    data: function data() {
+        return {
+            id: 0,
+            activity_type: '',
+            opportunity_id: '',
+            sentiment: '',
+            reminder_date: '',
+            date_started: '',
+            date_ended: '',
+            title: '',
+            description: '',
+            geoloc: '',
+            completed: false
+        };
+    },
+
+
+    methods: {
+        addTask: function addTask() {
+            //code for adding tasks
+            var app = this;
+            var url = '/back-office/' + app.$parent.$parent.profile + '/sales/opportunities/' + app.$parent.id + '/tasks';
+
+            var response = app.$parent.$parent.postSpecial(url, app.data);
+
+            if (isObject(response)) {
+                app.$parent.tasks.push({
+                    id: response.data.id,
+                    title: response.data.title,
+                    profile_id: response.data.profile_id,
+                    completed: false
+                });
+
+                this.onReset();
+            }
+        },
+
+        changeStateTask: function changeStateTask(task) {
+            var app = this;
+
+            var data = app.$parent.postSpecial('status', $taskTitle);
+            //find index in list and update value.
+        },
+
+        onEdit: function onEdit(data) {
+            var app = this;
+
+            app.id = data.id;
+            app.activity_type = data.activity_type;
+            app.opportunity_id = data.opportunity_id;
+            app.sentiment = data.sentiment;
+
+            app.reminder_date = data.reminder_date;
+            app.date_started = data.date_started;
+            app.date_ended = data.date_ended;
+
+            app.title = data.title;
+            app.description = data.description;
+            app.geoloc = data.geoloc;
+            app.completed = data.completed;
+        },
+
+        onReset: function onReset() {
+            var app = this;
+
+            app.id = 0;
+            app.activity_type = '';
+            app.opportunity_id = '';
+            app.sentiment = '';
+
+            app.reminder_date = '';
+            app.date_started = '';
+            app.date_ended = '';
+
+            app.title = '';
+            app.description = '';
+            app.geoloc = '';
+            app.completed = false;
+        }
+    },
+
+    mounted: function mounted() {}
+});
 
 /***/ }),
 /* 158 */

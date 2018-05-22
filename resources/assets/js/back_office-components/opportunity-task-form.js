@@ -1,12 +1,11 @@
 
 Vue.component('opportunity-task-form',
 {
-    props: ['opportunityID'],
     data() {
         return {
             id: 0,
             activity_type: '',
-            opportunity_id: app.$parent.opportunity_id,
+            opportunity_id: '',
             sentiment: '',
             reminder_date: '',
             date_started: '',
@@ -24,18 +23,27 @@ Vue.component('opportunity-task-form',
         {
             //code for adding tasks
             var app = this;
+            var url = '/back-office/' + app.$parent.$parent.profile + '/sales/opportunities/' + app.$parent.id + '/tasks';
 
-            app.$parent.tasks.push({
-                this.$data
-            });
+            var response = app.$parent.$parent.postSpecial(url, app.data);
 
-            app.$parent.$parent.postSpecial('/back-office/' + app.$parent.$parent.profile + '/sales/opportunities/' + app.opportunity_id + '/tasks', app.data);
-            this.onReset();
+            if (isObject(response))
+            {
+                app.$parent.tasks.push({
+                    id : response.data.id,
+                    title : response.data.title,
+                    profile_id : response.data.profile_id,
+                    completed : false
+                });
+
+                this.onReset();
+            }
         },
 
         changeStateTask: function(task)
         {
             var app = this;
+
             var data = app.$parent.postSpecial('status', $taskTitle);
             //find index in list and update value.
         },
@@ -43,6 +51,7 @@ Vue.component('opportunity-task-form',
         onEdit: function(data)
         {
             var app = this;
+
             app.id = data.id;
             app.activity_type = data.activity_type;
             app.opportunity_id = data.opportunity_id;
@@ -61,6 +70,7 @@ Vue.component('opportunity-task-form',
         onReset: function()
         {
             var app = this;
+
             app.id = 0;
             app.activity_type = '';
             app.opportunity_id = '';
