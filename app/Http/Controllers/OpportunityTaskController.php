@@ -29,7 +29,7 @@ class OpportunityTaskController extends Controller
     * @param  \Illuminate\Http\Request  $request
     * @return \Illuminate\Http\Response
     */
-    public function store(Profile $profile, Opportunity $opportunity, Request $request)
+    public function store(Request $request, Profile $profile, Opportunity $opportunity)
     {
         $opportunityTask = OpportunityTask::find($request->id) ?? new OpportunityTask();
         $opportunityTask->activity_type = $request->activity_type ?? 1;

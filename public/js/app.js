@@ -59848,22 +59848,31 @@ Vue.component('opportunity-task-form', {
 
             var response = app.$parent.$parent.postSpecial(url, app.data);
 
-            if (isObject(response)) {
-                app.$parent.tasks.push({
-                    id: response.data.id,
-                    title: response.data.title,
-                    profile_id: response.data.profile_id,
-                    completed: false
-                });
+            //if (isObject(response))
+            //{
+            app.$parent.tasks.push({
+                id: response.data.id,
+                activity_type: response.data.activity_type,
+                opportunity_id: response.data.opportunity_id,
+                sentiment: response.data.sentiment,
+                reminder_date: response.data.reminder_date,
+                date_started: response.data.date_started,
+                date_ended: response.data.date_ended,
+                title: response.data.title,
+                description: response.data.description,
+                geoloc: response.data.geoloc,
+                completed: false
+            });
 
-                this.onReset();
-            }
+            this.onReset();
+            //}
         },
 
         changeStateTask: function changeStateTask(task) {
             var app = this;
+            var url = '/back-office/' + app.$parent.$parent.profile + '/sales/opportunities/' + app.$parent.id + '/tasks';
 
-            var data = app.$parent.postSpecial('status', $taskTitle);
+            var data = app.$parent.postSpecial(url, task);
             //find index in list and update value.
         },
 

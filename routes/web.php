@@ -20,11 +20,11 @@ Route::get('/shop/{profile}', 'HomeController@indexStores')->name('shop.show');
 Route::group(['middleware' => 'auth'], function ()
 {
 
-///   Route::get('create', 'ProfileController@create');//->name('profile.create');
+    ///   Route::get('create', 'ProfileController@create');//->name('profile.create');
 
     Route::resources([
         'inbox' => 'MessageController',
-         'profile' => 'ProfileController'
+        'profile' => 'ProfileController'
     ]);
 
     // Route::get('/{profile?}', 'HomeController@index');
@@ -44,7 +44,7 @@ Route::group(['middleware' => 'auth'], function ()
             Route::resources([
                 'customers' => 'CustomerController',
                 'opportunities' => 'OpportunityController',
-                'opportunities/{id}/tasks' => 'OpportunityTaskController',
+                'opportunities/{opportunity}/tasks' => 'OpportunityTaskController',
                 'orders' => 'OrderController',
                 'pipelines' => 'PipelineController',
                 'pipelinestages' => 'PipelineStageController',
