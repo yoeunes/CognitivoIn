@@ -6,12 +6,12 @@
         <div class="block block-rounded">
             <div class="block-content bg-pattern" style="background-image: url('/img/backgrounds/bg-pattern-inverse.png');">
                 <div class="py-20 text-center">
-                    <h1 class="h3 mb-5">@{{ $parent.name }}</h1>
+                    <h1 class="h3 mb-5">@{{ name }}</h1>
                     <p class="mb-10 text-muted">
-                        <em>@{{ $parent.deadline_date }}</em>
+                        <em>@{{ deadline_date }}</em>
                     </p>
                     <p>
-                        @{{ $parent.description }}
+                        @{{ description }}
                     </p>
                 </div>
             </div>

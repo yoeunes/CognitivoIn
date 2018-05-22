@@ -1,5 +1,5 @@
 
-<div class="col-sm-6 col-md-3">
+<div class="col-sm-6 col-md-3" v-if="showList === true">
     <a class="block block-link-hover3 text-center" @click="onCreate()">
         <div class="block-content block-content-full">
             <div class="h1 font-w700 text-success">
