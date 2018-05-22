@@ -7,10 +7,10 @@ use Illuminate\Database\Migrations\Migration;
 class UpdateOpportunity extends Migration
 {
     /**
-     * Run the migrations.
-     *
-     * @return void
-     */
+    * Run the migrations.
+    *
+    * @return void
+    */
     public function up()
     {
         //
@@ -23,12 +23,15 @@ class UpdateOpportunity extends Migration
     }
 
     /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
+    * Reverse the migrations.
+    *
+    * @return void
+    */
     public function down()
     {
-        //
+        Schema::table('opportunities', function (Blueprint $table) {
+            $table->dropForeign(['profile_id']);
+            $table->dropColumn(['currency']);
+        });
     }
 }

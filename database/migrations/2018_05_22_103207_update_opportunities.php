@@ -41,6 +41,19 @@ class UpdateOpportunities extends Migration
     */
     public function down()
     {
-        //
+        Schema::table('opportunities', function (Blueprint $table)
+        {
+            $table->unsignedInteger('pipeline_stage_id')->nullable()->after('relationship_id');
+            $table->foreign('pipeline_stage_id')->references('id')->on('pipeline_stages')->onDelete('cascade');
+
+            $table->dropForeign(['pipeline_id']);
+            $table->dropColumn(['name']);
+        });
+
+        Schema::table('opportunity_tasks', function (Blueprint $table)
+        {
+            $table->dropForeign(['pipeline_stage_id']);
+            $table->dropColumn(['completed_at']);
+        });
     }
 }
