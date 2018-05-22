@@ -41,7 +41,7 @@ Vue.component('opportunity-task-form',
                 completed: false,
             });
 
-            this.onReset();
+            app.onReset();
         },
 
         changeStateTask: function(task)

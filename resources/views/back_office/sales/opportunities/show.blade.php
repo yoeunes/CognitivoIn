@@ -57,7 +57,8 @@
                         <ul class="nav-users push" v-for="item in items">
                             <li>
                                 <a href="#" target="_blank">
-                                    <img class="img-avatar" :src="member.profile_img" alt="">
+                                    <img class="img-avatar" src="/img/avatars/avatar0.jpg" alt="">
+                                    {{-- <img class="img-avatar" :src="member.profile_img" onerror="this.src='/img/avatars/avatar0.jpg';" alt=""> --}}
                                     <i class="fa fa-circle text-success"></i> @{{ item.name }}
                                     <div class="font-w400 font-size-xs text-muted">
                                         <i class="fa fa-mail"></i> @{{ item.email }}
@@ -162,7 +163,7 @@
                                         <small>@{{ task.description }}</small>
                                     </td>
                                     <td class="text-right">
-                                        <button @click="editTask(task)" class="btn btn-sm btn-circle btn-alt-warning mr-5 mb-5" type="button">
+                                        <button v-if="task.reminder_date != null" @click="editTask(task)" class="btn btn-sm btn-circle btn-alt-warning mr-5 mb-5" type="button">
                                             <i class="si si-bell"></i>
                                         </button>
                                         <button @click="editTask(task)" class="js-task-star btn btn-sm btn-alt-info" type="button">

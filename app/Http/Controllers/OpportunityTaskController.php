@@ -31,20 +31,25 @@ class OpportunityTaskController extends Controller
     */
     public function store(Request $request, Profile $profile, Opportunity $opportunity)
     {
-        $opportunityTask = OpportunityTask::find($request->id) ?? new OpportunityTask();
-        $opportunityTask->activity_type = $request->activity_type ?? 1;
-        $opportunityTask->opportunity_id = $opportunity->id;
-        $opportunityTask->sentiment = $request->sentiment ?? 0;
-        $opportunityTask->reminder_date = $request->reminder_date ?? null;
-        $opportunityTask->date_started = $request->date_started ?? Carbon::now();
-        $opportunityTask->date_ended = $request->date_ended ?? null;
-        $opportunityTask->title = $request->title ?? 'Title Missing';
-        $opportunityTask->description = $request->description ?? null;
-        $opportunityTask->geoloc = $request->geoloc ?? null;
-        $opportunityTask->completed = $request->completed ?? 0;
-        $opportunityTask->save();
+        if ($profile->id == $opportunity->profile_id)
+        {
+            $opportunityTask = OpportunityTask::find($request->id) ?? new OpportunityTask();
+            $opportunityTask->activity_type = $request->activity_type ?? 1;
+            $opportunityTask->opportunity_id = $opportunity->id;
+            $opportunityTask->sentiment = $request->sentiment ?? 0;
+            $opportunityTask->reminder_date = $request->reminder_date ?? null;
+            $opportunityTask->date_started = $request->date_started ?? Carbon::now();
+            $opportunityTask->date_ended = $request->date_ended ?? null;
+            $opportunityTask->title = $request->title ?? 'Title Missing';
+            $opportunityTask->description = $request->description ?? null;
+            $opportunityTask->geoloc = $request->geoloc ?? null;
+            $opportunityTask->completed = $request->completed ?? 0;
+            $opportunityTask->save();
 
-        return response()->json($opportunityTask, 200);
+            return response()->json($opportunityTask, 200);
+        }
+        
+        return response()->json('Resource not found', 401);
     }
 
     /**
@@ -53,9 +58,14 @@ class OpportunityTaskController extends Controller
     * @param  \App\OpportunityTask  $opportunityTask
     * @return \Illuminate\Http\Response
     */
-    public function edit(OpportunityTask $opportunityTask)
+    public function edit(Profile $profile, Opportunity $opportunity, OpportunityTask $opportunityTask)
     {
-        return response()->json($opportunityTask);
+        if ($profile->id == $opportunity->profile_id)
+        {
+            return response()->json($opportunityTask);
+        }
+
+        return response()->json('Resource not found', 401);
     }
 
     /**
