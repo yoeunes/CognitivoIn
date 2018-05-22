@@ -7,7 +7,9 @@ Vue.component('opportunity-member-form',
             profile_id: '',
             opportunity_id: '',
             member: '',
-            email: ''
+            email: '',
+            slug: '',
+            profile_img: '',
         }
     },
 
@@ -24,6 +26,8 @@ Vue.component('opportunity-member-form',
                     id: data.id,
                     member: data.name,
                     email: data.email,
+                    slug: '/' + data.slug,
+                    profile_img: data.profile_img,
                     profile_id: data.profile_id,
                     opportunity_id: data.opportunity_id,
                 });

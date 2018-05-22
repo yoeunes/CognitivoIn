@@ -45,9 +45,9 @@ class OpportunityController extends Controller
         $opportunity->description = $request->description;
         $opportunity->status = 1;
         /// TODO: change this field value from default
-        $opportunity->currency = 'PYG';
-        $opportunity->value = $request->value;
-        $opportunity->is_archived = $request->is_archived;
+        $opportunity->currency = $request->currency ?? $profile->currency;
+        $opportunity->value = $request->value ?? 0;
+        $opportunity->is_archived = $request->is_archived ?? false;
         $opportunity->save();
 
         //$members = collect($request->members);

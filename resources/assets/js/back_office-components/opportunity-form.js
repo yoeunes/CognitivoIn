@@ -98,6 +98,8 @@ Vue.component('opportunity-form',
                     id: data.members[i].id,
                     name: data.members[i].name,
                     email: data.members[i].email,
+                    profile_img: data.members[i].profile_img,
+                    slug: '/' + data.members[i].slug
                 });
             }
 

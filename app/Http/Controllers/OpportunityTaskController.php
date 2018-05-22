@@ -44,7 +44,7 @@ class OpportunityTaskController extends Controller
         $opportunityTask->completed = $request->completed ?? 0;
         $opportunityTask->save();
 
-        return response()->json('Ok', 200);
+        return response()->json($opportunityTask, 200);
     }
 
     /**

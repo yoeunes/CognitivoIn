@@ -142,10 +142,12 @@ Vue.component('model',
         postSpecial(specialURL, $data)
         {
             var app = this;
+            console.log($data);
 
-            axios.post(specialURL + '/', $data)
+            axios.post(specialURL, $data)
             .then((response) =>
             {
+                console.log(response);
                 this.$swal({
                     position: 'top-end',
                     type: 'success',

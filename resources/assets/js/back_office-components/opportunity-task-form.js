@@ -27,24 +27,21 @@ Vue.component('opportunity-task-form',
 
             var response = app.$parent.$parent.postSpecial(url, app.data);
 
-            //if (isObject(response))
-            //{
-                app.$parent.tasks.push({
-                    id: response.data.id,
-                    activity_type: response.data.activity_type,
-                    opportunity_id: response.data.opportunity_id,
-                    sentiment: response.data.sentiment,
-                    reminder_date: response.data.reminder_date,
-                    date_started: response.data.date_started,
-                    date_ended: response.data.date_ended,
-                    title: response.data.title,
-                    description: response.data.description,
-                    geoloc: response.data.geoloc,
-                    completed: false,
-                });
+            app.$parent.tasks.push({
+                id: response.data.id,
+                activity_type: response.data.activity_type,
+                opportunity_id: response.data.opportunity_id,
+                sentiment: response.data.sentiment,
+                reminder_date: response.data.reminder_date,
+                date_started: response.data.date_started,
+                date_ended: response.data.date_ended,
+                title: response.data.title,
+                description: response.data.description,
+                geoloc: response.data.geoloc,
+                completed: false,
+            });
 
-                this.onReset();
-            //}
+            this.onReset();
         },
 
         changeStateTask: function(task)

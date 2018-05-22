@@ -59762,7 +59762,9 @@ Vue.component('opportunity-form', {
                 app.members.push({
                     id: data.members[i].id,
                     name: data.members[i].name,
-                    email: data.members[i].email
+                    email: data.members[i].email,
+                    profile_img: data.members[i].profile_img,
+                    slug: '/' + data.members[i].slug
                 });
             }
 
@@ -59848,8 +59850,6 @@ Vue.component('opportunity-task-form', {
 
             var response = app.$parent.$parent.postSpecial(url, app.data);
 
-            //if (isObject(response))
-            //{
             app.$parent.tasks.push({
                 id: response.data.id,
                 activity_type: response.data.activity_type,
@@ -59865,7 +59865,6 @@ Vue.component('opportunity-task-form', {
             });
 
             this.onReset();
-            //}
         },
 
         changeStateTask: function changeStateTask(task) {
@@ -59928,7 +59927,9 @@ Vue.component('opportunity-member-form', {
             profile_id: '',
             opportunity_id: '',
             member: '',
-            email: ''
+            email: '',
+            slug: '',
+            profile_img: ''
         };
     },
 
@@ -59944,6 +59945,8 @@ Vue.component('opportunity-member-form', {
                     id: data.id,
                     member: data.name,
                     email: data.email,
+                    slug: '/' + data.slug,
+                    profile_img: data.profile_img,
                     profile_id: data.profile_id,
                     opportunity_id: data.opportunity_id
                 });
@@ -60835,8 +60838,10 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('model', {
             var _this4 = this;
 
             var app = this;
+            console.log($data);
 
-            __WEBPACK_IMPORTED_MODULE_3_axios___default.a.post(specialURL + '/', $data).then(function (response) {
+            __WEBPACK_IMPORTED_MODULE_3_axios___default.a.post(specialURL, $data).then(function (response) {
+                console.log(response);
                 _this4.$swal({
                     position: 'top-end',
                     type: 'success',
