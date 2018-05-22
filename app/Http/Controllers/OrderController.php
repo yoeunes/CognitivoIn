@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
+
 use App\Order;
 use App\OrderDetail;
-use App\OrderStatus;
 use App\Profile;
 use App\Relationship;
 
@@ -12,129 +12,128 @@ use Illuminate\Http\Request;
 
 class OrderController extends Controller
 {
-    /**
-    * Display a listing of the resource.
-    *
-    * @return \Illuminate\Http\Response
-    */
-    public function index(Profile $profile,$skip)
+  /**
+  * Display a listing of the resource.
+  *
+  * @return \Illuminate\Http\Response
+  */
+  public function index(Profile $profile,$skip)
+  {
+
+    $orders = Order::with('relationship')->with('details')->skip($skip)
+    ->take(100)->get();
+
+    return response()->json($orders);
+  }
+
+  /**
+  * Show the form for creating a new resource.
+  *
+  * @return \Illuminate\Http\Response
+  */
+  public function create(Profile $profile)
+  {
+
+  }
+
+  /**
+  * Store a newly created resource in storage.
+  *
+  * @param  \Illuminate\Http\Request  $request
+  * @return \Illuminate\Http\Response
+  */
+  public function store(Request $request,Profile $profile)
+  {
+
+    if (count($request->details)>0)
     {
 
-      $orders = Order::with('details')->skip($skip)
-        ->take(100)->get();
-
-      return response()->json($orders);
-    }
-
-    /**
-    * Show the form for creating a new resource.
-    *
-    * @return \Illuminate\Http\Response
-    */
-    public function create(Profile $profile)
-    {
-
-    }
-
-    /**
-    * Store a newly created resource in storage.
-    *
-    * @param  \Illuminate\Http\Request  $request
-    * @return \Illuminate\Http\Response
-    */
-    public function store(Request $request,Profile $profile)
-    {
-
-        if (count($request->details)>0)
-        {
-
-            $currency=Currency::where('id',$request->details[0]['currency_id'])->first();
-
-            if (isset($currency)) {
-
-                $order= new Order();
-
-                $order->relationship_id=$request->relationship_id;
-                $order->currency_id=$currency->id;
-                $order->currency_rate=$currency->exchange_rate;
-                $order->status=1;
-                $order->is_impex=0;
-                $order->is_printed=0;
-                $order->is_archived=0;
-
-                $order->save();
-
-                $orderstatus = new OrderStatus();
-                $orderstatus->order_id = $order->id;
-                $orderstatus->status = 1;
-                $orderstatus->save();
+      //$currency=Currency::where('id',$request->details[0]['currency_id'])->first();
 
 
-                foreach ($request->details as $detail) {
-
-                    $orderDetail= new OrderDetail();
-                    $orderDetail->order_id= $order->id;
-                    $orderDetail->item_id= $detail['item_id'];
-                    $orderDetail->quantity= $detail['quantity'];
-                    $orderDetail->unit_price= $detail['price'];
-
-                    $orderDetail->save();
-                }
+      $order = Order::where('id', $request->id)->first() ?? new Order();
 
 
-                return response()->json('success');
-            }
+      $order->relationship_id=$request->relationship_id;
+      $order->currency='PYG';
+      $order->currency_rate=1;
+      $order->is_impex=0;
+      $order->is_printed=0;
+      $order->is_archived=0;
 
-        }
+      $order->save();
 
-        return response()->json('fail');
-    }
 
-    /**
-    * Display the specified resource.
-    *
-    * @param  \App\Order  $order
-    * @return \Illuminate\Http\Response
-    */
-    public function show(Profile $profile,Order $order)
-    {
 
-        return response()->json($order->with('details')->first());
+      foreach ($request->details as $detail) {
+        $orderDetail = OrderDetail::where('id', $detail['id'])->first()
+        ?? new OrderDetail();
+        $orderDetail->order_id= $order->id;
+        $orderDetail->item_id= $detail['item_id'];
+        $orderDetail->item_name= $detail['sku'];
+        $orderDetail->item_name= $detail['name'];
+        $orderDetail->quantity= $detail['quantity'];
+        $orderDetail->unit_price= $detail['price'];
+
+        $orderDetail->save();
+
+
+
+        return response()->json('success');
+      }
 
     }
 
-    /**
-    * Show the form for editing the specified resource.
-    *
-    * @param  \App\Order  $order
-    * @return \Illuminate\Http\Response
-    */
-    public function edit(Profile $profile,Order $order)
-    {
-return response()->json($order->with('details')->first());
+    return response()->json('fail',500);
+  }
 
-    }
+  /**
+  * Display the specified resource.
+  *
+  * @param  \App\Order  $order
+  * @return \Illuminate\Http\Response
+  */
+  public function show(Profile $profile,Order $order)
+  {
 
-    /**
-    * Update the specified resource in storage.
-    *
-    * @param  \Illuminate\Http\Request  $request
-    * @param  \App\Order  $order
-    * @return \Illuminate\Http\Response
-    */
-    public function update(Request $request, Order $order)
-    {
-        //
-    }
+    return response()->json($order->with('details')->first());
 
-    /**
-    * Remove the specified resource from storage.
-    *
-    * @param  \App\Order  $order
-    * @return \Illuminate\Http\Response
-    */
-    public function destroy(Order $order)
-    {
-        //
-    }
+  }
+
+  /**
+  * Show the form for editing the specified resource.
+  *
+  * @param  \App\Order  $order
+  * @return \Illuminate\Http\Response
+  */
+  public function edit(Profile $profile,Order $order)
+  {
+
+
+    return response()->json(Order::with('details')->where('orders.id',$order->id)->first());
+
+  }
+
+  /**
+  * Update the specified resource in storage.
+  *
+  * @param  \Illuminate\Http\Request  $request
+  * @param  \App\Order  $order
+  * @return \Illuminate\Http\Response
+  */
+  public function update(Request $request, Order $order)
+  {
+    //
+  }
+
+  /**
+  * Remove the specified resource from storage.
+  *
+  * @param  \App\Order  $order
+  * @return \Illuminate\Http\Response
+  */
+  public function destroy(Order $order)
+  {
+    //
+  }
 }

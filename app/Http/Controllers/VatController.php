@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Vat;
+use App\VatDetail;
 use App\Profile;
 use Illuminate\Http\Request;
 
@@ -15,7 +16,7 @@ class VatController extends Controller
     */
     public function index(Profile $profile,$skip)
     {
-        $location = Vat::skip($skip)
+        $location = Vat::with('details')->skip($skip)
         ->take(100)->get();
 
         return response()->json($location);
@@ -49,6 +50,20 @@ class VatController extends Controller
 
 
         $vat->save();
+
+        $details = collect($request->details);
+
+        foreach ($details as $row)
+      {
+          $detail = VatDetail::where('id', $row['id'])->first()
+          ?? new VatDetail();
+          $detail->vat_id = $vat->id;
+          $detail->percent = $row['percent'];
+          $detail->coefficient = $row['coefficient'];
+          $detail->save();
+
+
+      }
     }
 
     /**
@@ -71,7 +86,7 @@ class VatController extends Controller
     public function edit(Profile $profile,Vat $vat)
     {
       return response()->json(Vat::where('id',$vat->id)->with('details')->first());
-      
+
     }
 
     /**

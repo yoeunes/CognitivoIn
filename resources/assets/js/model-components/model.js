@@ -37,6 +37,7 @@ Vue.component('model',
                 { params: { page: app.list.length / this.pageSize + 1 } })
                 .then(({ data }) =>
                 {
+                  console.log(data);
                     if (data.length > 0)
                     {
                         for (let i = 0; i < data.length; i++)
@@ -70,7 +71,6 @@ Vue.component('model',
             app.skip = 0;
             app.url = $url;
             app.showModule = $showModule;
-
             if ($filterListBy != null)
             {
                 app.filterListBy = $filterListBy ;

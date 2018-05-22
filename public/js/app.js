@@ -58426,133 +58426,154 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 Vue.component('order-form', {
-    components: {
-        'item': __WEBPACK_IMPORTED_MODULE_0__ItemComponent_vue___default.a
-    },
+  components: {
+    'item': __WEBPACK_IMPORTED_MODULE_0__ItemComponent_vue___default.a
+  },
 
-    data: function data() {
-        return {
-            relationship_id: '',
-            customer_name: '',
-            customer_address: '',
-            customer_telephone: '',
-            customer_email: '',
-            customers: [],
-            itemscomponent: [],
-            details: []
-        };
-    },
+  data: function data() {
+    return {
+      id: 0,
+      relationship_id: '',
+      customer_name: '',
+      customer_address: '',
+      customer_telephone: '',
+      customer_email: '',
+      customers: [],
+      //itemscomponent:[],
+      details: []
+    };
+  },
 
-    methods: {
-        addQuantity: function addQuantity(detail) {
-            var app = this;
-            detail.quantity = detail.quantity + 1;
-            var orderdata = null;
-            if (app.details != null) {
-                for (var i = 0; i < app.details.length; i++) {
-                    if (app.details[i].sku == detail.sku) {
-                        orderdata = app.details[i];
-                        break;
-                    }
-                }
-            }
+  methods: {
+    onEdit: function onEdit(data) {
+      var app = this;
 
-            if (orderdata == null) {
-                app.details.push({
-                    price: detail.price,
-                    cost: detail.cost,
-                    sku: detail.sku,
-                    sub_total: detail.price * detail.quantity,
-                    name: detail.name,
-                    quantity: detail.quantity,
-                    item_id: detail.item_id,
-                    currency_id: detail.currency_id
-                });
-            } else {
-                orderdata.quantity = detail.quantity;
-                orderdata.sub_total = detail.quantity * detail.price;
-            }
-        },
+      app.id = data.id;
+      app.relationship_id = data.relationship_id, app.customer_name = data.customer_name, app.customer_address = data.customer_address, app.customer_telephone = data.customer_telephone, app.customer_email = data.customer_email, app.details = [];
+      for (var i = 0; i < data.details.length; i++) {
+        app.details.push({
+          id: data.details[i].id,
+          price: data.details[i].unit_price,
+          cost: data.details[i].unit_cost,
+          sku: data.details[i].item_sku,
+          sub_total: data.details[i].unit_price * data.details[i].quantity,
+          name: data.details[i].item_name,
+          quantity: data.details[i].quantity,
+          item_id: data.details[i].item_id
 
-        removeQuantity: function removeQuantity(detail) {
-            var app = this;
-            var orderdata = null;
-            var index = 0;
-            if (app.details != null) {
-                for (var i = 0; i < app.details.length; i++) {
-                    if (app.details[i].sku == detail.sku) {
-                        orderdata = app.details[i];
-                        index = i;
-                        break;
-                    }
-                }
-            }
-
-            if (detail.quantity == 0) {
-                detail.quantity = 0;
-            } else {
-                detail.quantity = detail.quantity - 1;
-
-                if (detail.quantity == 0) {
-                    if (orderdata != null) {
-                        app.details.splice(index, 1);
-                    }
-                } else {
-                    if (orderdata != null) {
-                        orderdata.quantity = detail.quantity;
-                        orderdata.sub_total = detail.quantity * detail.price;
-                    }
-                }
-
-                console.log(app.details);
-            }
-        },
-
-        onContactChange: function onContactChange() {
-            var app = this;
-            if (app.relationship_id !== '') {
-                axios.get('/api/' + this.profile + '/back-office/customers' + '/' + app.relationship_id + '/edit').then(function (resp) {
-
-                    app.customer_name = '(' + resp.data.customer_taxid + ') - ' + resp.data.customer_alias;
-                    app.customer_address = resp.data.customer_address;
-                    app.customer_telephone = resp.data.customer_telephone;
-                    app.customer_email = resp.data.customer_email;
-                }).catch(function (resp) {
-                    console.log(resp);
-                    alert("Could not execute onContactChange in Order Component");
-                });
-            }
-        }
-    },
-
-    computed: {
-        // a computed getter
-        grandTotal: function grandTotal() {
-            // `this` points to the vm instance
-            var app = this;
-            var total = 0.0;
-
-            if (app.details != null) {
-                for (var i = 0; i < app.details.length; i++) {
-                    total += parseFloat(app.details[i].quantity).toFixed(2) * parseFloat(app.details[i].price).toFixed(2);
-                }
-            }
-
-            return parseFloat(total).toFixed(2);
-        }
-    },
-
-    mounted: function mounted() {
-        this.itemscomponent = this.$children;
-        var app = this;
-
-        axios.get('/api/getCustomers/' + this.profile).then(function (resp) {
-            console.log(resp.data);
-            app.customers = resp.data;
-        }).catch(function (resp) {
-            alert(' Could not load Slug, "' + slug + '" on Order Component ');
         });
+      }
+    },
+    addQuantity: function addQuantity(detail) {
+      var app = this;
+      detail.quantity = detail.quantity + 1;
+      var orderdata = null;
+      if (app.details != null) {
+        for (var i = 0; i < app.details.length; i++) {
+          if (app.details[i].sku == detail.sku) {
+            orderdata = app.details[i];
+            break;
+          }
+        }
+      }
+
+      if (orderdata == null) {
+        app.details.push({
+          id: 0,
+          price: detail.price,
+          cost: detail.cost,
+          sku: detail.sku,
+          sub_total: detail.price * detail.quantity,
+          name: detail.name,
+          quantity: detail.quantity,
+          item_id: detail.item_id
+
+        });
+      } else {
+        orderdata.quantity = detail.quantity;
+        orderdata.sub_total = detail.quantity * detail.price;
+      }
+    },
+
+    removeQuantity: function removeQuantity(detail) {
+      var app = this;
+      var orderdata = null;
+      var index = 0;
+      if (app.details != null) {
+        for (var i = 0; i < app.details.length; i++) {
+          if (app.details[i].sku == detail.sku) {
+            orderdata = app.details[i];
+            index = i;
+            break;
+          }
+        }
+      }
+
+      if (detail.quantity == 0) {
+        detail.quantity = 0;
+      } else {
+        detail.quantity = detail.quantity - 1;
+
+        if (detail.quantity == 0) {
+          if (orderdata != null) {
+            app.details.splice(index, 1);
+          }
+        } else {
+          if (orderdata != null) {
+            orderdata.quantity = detail.quantity;
+            orderdata.sub_total = detail.quantity * detail.price;
+          }
+        }
+
+        console.log(app.details);
+      }
+    },
+
+    onContactChange: function onContactChange() {
+      var app = this;
+      if (app.relationship_id !== '') {
+        axios.get('/api/' + app.$parent.profile + '/back-office/customers' + '/' + app.relationship_id + '/edit').then(function (resp) {
+
+          app.customer_name = '(' + resp.data.customer_taxid + ') - ' + resp.data.customer_alias;
+          app.customer_address = resp.data.customer_address;
+          app.customer_telephone = resp.data.customer_telephone;
+          app.customer_email = resp.data.customer_email;
+        }).catch(function (resp) {
+          console.log(resp);
+          alert("Could not execute onContactChange in Order Component");
+        });
+      }
     }
+  },
+
+  computed: {
+    // a computed getter
+    grandTotal: function grandTotal() {
+      // `this` points to the vm instance
+      var app = this;
+      var total = 0.0;
+
+      if (app.details != null) {
+        for (var i = 0; i < app.details.length; i++) {
+          total += parseFloat(app.details[i].quantity).toFixed(2) * parseFloat(app.details[i].price).toFixed(2);
+        }
+      }
+
+      return parseFloat(total).toFixed(2);
+    }
+  },
+
+  mounted: function mounted() {
+    //this.itemscomponent = this.$children;
+    var app = this;
+
+    axios.get('/api/getCustomers/' + app.$parent.profile).then(function (resp) {
+      console.log(resp.data);
+      app.customers = resp.data;
+    }).catch(function (resp) {
+      alert(' Could not load Slug, "' + slug + '" on Order Component ');
+    });
+  }
 });
 
 /***/ }),
@@ -58695,7 +58716,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
       if (app.items.length == 0) {
         var quantity = 0;
-        axios.get('/api/getItems/' + this.$parent.profile).then(function (resp) {
+        axios.get('/api/getItems/' + this.$parent.$parent.profile).then(function (resp) {
           console.log(resp.data);
           for (var i = 0; i < resp.data.length; i++) {
 
@@ -59063,35 +59084,57 @@ Vue.component('vat-form', {
         return {
             id: 0,
             name: '',
-            vatdetails: [],
-            showDetail: true,
-            detail_id: 0,
-            coefficient: '',
-            percent: ''
+            details: []
+
         };
     },
 
+    computed: {
+        totalPercent: function totalPercent() {
+            var app = this;
+            var total = 0;
 
+            for (var i = 0; i < app.details.length; i++) {
+                total = +app.details[i].percent + +total;
+            }
+
+            return (total * 100).toFixed(2);
+        }
+    },
     methods: {
+        addDetail: function addDetail() {
+            var app = this;
+
+            app.details.push({
+                id: 0,
+                percent: 1,
+                coefficient: 0
+            });
+        },
+
+        removeDetail: function removeDetail(detail) {
+            var app = this;
+
+            var index = this.details.indexOf(detail);
+            this.details.splice(index, 1);
+        },
+
         onEdit: function onEdit(data) {
             var app = this;
             app.id = data.id;
             app.name = data.name;
-            app.vatdetails = [];
-            for (var i = 0; i < data.details.length; i++) {
-                app.vatdetails.push(data.details[i]);
-            }
+            app.details = [];
 
-            app.$parent.showList = false;
+            for (var i = 0; i < data.details.length; i++) {
+                app.details.push(data.details[i]);
+            }
         },
 
         onReset: function onReset(isnew) {
             var app = this;
             app.id = null;
             app.name = '';
-            if (isnew == false) {
-                app.$parent.showList = true;
-            }
+            app.details = [];
         }
     },
 
@@ -59155,6 +59198,7 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('model', {
                 __WEBPACK_IMPORTED_MODULE_3_axios___default.a.get('/api/' + this.profile + '/back-office/list/' + app.skip + '/' + app.url + '/' + app.filterListBy, { params: { page: app.list.length / this.pageSize + 1 } }).then(function (_ref) {
                     var data = _ref.data;
 
+                    console.log(data);
                     if (data.length > 0) {
                         for (var i = 0; i < data.length; i++) {
                             app.list.push(data[i]);
@@ -59183,7 +59227,6 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('model', {
             app.skip = 0;
             app.url = $url;
             app.showModule = $showModule;
-
             if ($filterListBy != null) {
                 app.filterListBy = $filterListBy;
             }

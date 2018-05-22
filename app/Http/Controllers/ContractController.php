@@ -49,23 +49,24 @@ class ContractController extends Controller
         $contract->save();
 
         $totalPercent = 0;
-        $details = collect($contract->details);
+        $details = collect($request->details);
 
         foreach ($details as $row)
         {
-            $detail = ContractDetail::where('id', $row->id)->first() ?? new ContractDetail();
+            $detail = ContractDetail::where('id', $row['id'])->first()
+            ?? new ContractDetail();
             $detail->contract_id = $contract->id;
-            $detail->percent = $row->percent;
-            $detail->offset = $row->offset;
+            $detail->percent =$row['percent'];
+            $detail->offset = $row['offset'];
             $detail->save();
 
             $totalPercent += $detail->percent;
         }
         //this code adds the remaining balance to the end.
-        $contract_detail=$contract->details->last();
+        $contract_detail=$contract->details()->orderBy('id', 'DESC')->first();
         if ($totalPercent < 1 && isset($contract_detail))
         {
-            $detail = $contract->details()->last();
+            $detail = $contract->details()->orderBy('id', 'DESC')->first();
             $detail->percent = $detail->percent + (1 - $totalPercent);
             $detail->save();
         }

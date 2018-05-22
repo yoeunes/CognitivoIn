@@ -1,5 +1,82 @@
 <vat-form ref="back_officeForm" inline-template>
-    <div>
+  <div>
+  <div>
+      <!-- Contract Profile -->
+      <h2 class="content-heading text-black">Contract</h2>
+      <div class="row items-push">
+          <div class="col-lg-3">
+              <p class="text-muted">
+                Tax Information
+              </p>
+          </div>
+          <div class="col-lg-7 offset-lg-1">
+              <div class="form-group row">
+                  <div class="col-12">
+                      <label>Tax Name</label>
+                      <input type="text" class="form-control form-control-lg" v-model="name">
+                  </div>
+              </div>
+          </div>
+      </div>
+      <!-- END Contract Profile -->
+
+      <!-- Details -->
+      <h2 class="content-heading text-black">Details</h2>
+      <div class="row items-push">
+          <div class="col-lg-3">
+              <p class="text-muted">
+            Detail information
+              </p>
+              <button @click="addDetail()" class="btn btn-sm btn-alt-primary">
+                  <i class="fa fa-plus"></i> @lang('global.AddRow')
+              </button>
+              <br>
+
+
+          </div>
+          <div class="col-lg-7 offset-lg-1">
+              <div class="form-group row">
+                  <div class="col-4">
+                      <label for="crypto-settings-firstname">Percent</label>
+                  </div>
+                  <div class="col-4">
+                      <label for="crypto-settings-lastname">coefficient</label>
+                  </div>
+                  <div class="col-4">
+                      <label for="crypto-settings-lastname">Actions</label>
+                  </div>
+              </div>
+              <div class="form-group row" v-for="detail in details">
+                  <div class="col-4">
+                      <input type="number" class="form-control form-control-lg" v-model="detail.percent">
+                  </div>
+                  <div class="col-4">
+                      <input type="number" class="form-control form-control-lg" v-model="detail.coefficient">
+                  </div>
+                  <div class="col-4">
+                      <button @click="removeDetail(detail)" type="button" name="button"><i class="fa fa-trash"></i></button>
+                  </div>
+              </div>
+              <div class="form-group row">
+                  <div class="col-12">
+                      <p>
+                          @{{ totalPercent }}% out of 100%.
+                          <small> This marks the percentage of the value of your invoice that is set for payment. Try to get as close to 100% as you can, in case you can't, Cognitivo will add the remaining balance to the last detail. </small>
+                      </p>
+                  </div>
+              </div>
+          </div>
+      </div>
+
+      <button v-on:click="$parent.onSave($data, false)" class="btn btn-primary min-width-125 js-click-ripple-enabled" data-toggle="click-ripple">
+          <i class="fa fa-save"></i> @lang('global.Save')
+      </button>
+      <button v-on:click="$parent.onCancel()" class="btn btn-outline-secondary min-width-125 js-click-ripple-enabled" data-toggle="click-ripple">
+          <i class="fa fa-close"></i> @lang('global.Cancel')
+      </button>
+      <!-- END Details -->
+  </div>
+    {{-- <div>
         <div class="block block-rounded block-themed">
             <div class="block-header bg-gd-primary">
                 <h3 class="block-title">Basic Information</h3>
@@ -84,5 +161,6 @@
                 </button>
             </div>
         </div>
-    </div>
+    </div> --}}
+  </div>
 </vat-form>

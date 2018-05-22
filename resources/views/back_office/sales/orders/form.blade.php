@@ -89,7 +89,7 @@
 
        <div class="block-header bg-gray-lighter">
          <div class="block-content block-content-full">
-           <button class="btn btn-info" v-on:click="onSave($data)" type="button">Save Product</button>
+           <button class="btn btn-info" v-on:click="$parent.onSave($data)" type="button">Save Product</button>
          </div>
 
        </div>
