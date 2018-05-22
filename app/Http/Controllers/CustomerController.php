@@ -29,6 +29,17 @@ class CustomerController extends Controller
 
         return response()->json($customers);
     }
+    public function getCustomer (Profile $profile,$frase)
+    {
+        
+        $customers = Relationship::GetCustomers()
+        ->where('customer_alias', 'LIKE', "%$frase%")
+        ->orWhere('customer_taxid', 'LIKE', "%$frase%")
+
+        ->get();
+
+        return response()->json($customers);
+    }
 
     /**
     * Store a newly created resource in storage.

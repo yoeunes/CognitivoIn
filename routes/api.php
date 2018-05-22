@@ -114,4 +114,7 @@ Route::group(['middleware' => 'auth:api'], function ()
     Route::get('login/{email}/{password}', 'Auth\SocialAuthController@Login');
     //TODO DELETE THESE ROUTES
     Route::get('getCustomers/{profile}', 'CustomerController@getAllCustomer');
+    Route::get('getCustomer/{profile}/{frase}', 'CustomerController@getCustomer');
+
     Route::get('getItems/{profile}', 'ItemController@get_items');
+    Route::get('getItem/{profile}/{frase}', 'ItemController@get_item');

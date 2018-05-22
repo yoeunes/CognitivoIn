@@ -64,12 +64,13 @@ export default {
     props: ['current_company'],
     data () {
         return {
-            src: '/api/getItems/' + this.current_company['slug'] + '/',
+            src: '/api/getItem/' + this.current_company['slug'] + '/',
             limit: 5,
             minChars: 3,
             queryParamName: '',
             selectText:'Favor Elegir',
-            id:''
+            id:'',
+            detail:[]
         }
     },
 
@@ -82,83 +83,87 @@ export default {
             app.selectText = item.name + ' | ' + item.sku;
             app.id= item.id;
 
+            // app.detail.push({ price:resp.data[i].unit_price,cost:resp.data[i].unit_cost,sku:resp.data[i].sku
+            //     ,name:resp.data[i].name,quantity:quantity,item_id:resp.data[i].id});
+                  this.$parent.addQuantity({ price:item.unit_price,cost:item.unit_cost,sku:item.sku
+                      ,name:item.name,quantity:0,item_id:item.id});
+            }
+
         }
-
     }
-}
-</script>
+    </script>
 
 
 
-<style scoped>
+    <style scoped>
 
-.fa-times
-{
-    cursor: pointer;
-}
+    .fa-times
+    {
+        cursor: pointer;
+    }
 
-i
-{
-    float: right;
-    position: relative;
-    opacity: 0.4;
-}
+    i
+    {
+        float: right;
+        position: relative;
+        opacity: 0.4;
+    }
 
-ul
-{
-    position: absolute;
-    padding: 0;
-    min-width: 100%;
-    background-color: #fff;
-    list-style: none;
-    border-radius: 4px;
-    box-shadow: 0 0 10px rgba(0,0,0, 0.25);
-    z-index: 1000;
-}
+    ul
+    {
+        position: absolute;
+        padding: 0;
+        min-width: 100%;
+        background-color: #fff;
+        list-style: none;
+        border-radius: 4px;
+        box-shadow: 0 0 10px rgba(0,0,0, 0.25);
+        z-index: 1000;
+    }
 
-li
-{
-    padding: 5px;
-    border-bottom: 1px solid #ccc;
-    cursor: pointer;
-}
+    li
+    {
+        padding: 5px;
+        border-bottom: 1px solid #ccc;
+        cursor: pointer;
+    }
 
-li:first-child
-{
-    border-top-left-radius: 4px;
-    border-top-right-radius: 4px;
-}
+    li:first-child
+    {
+        border-top-left-radius: 4px;
+        border-top-right-radius: 4px;
+    }
 
-li:last-child
-{
-    border-bottom-left-radius: 4px;
-    border-bottom-right-radius: 4px;
-    border-bottom: 0;
-}
+    li:last-child
+    {
+        border-bottom-left-radius: 4px;
+        border-bottom-right-radius: 4px;
+        border-bottom: 0;
+    }
 
-span
-{
-    color: #2c3e50;
-}
+    span
+    {
+        color: #2c3e50;
+    }
 
-.active
-{
-    background-color: #3aa373;
-}
+    .active
+    {
+        background-color: #3aa373;
+    }
 
-.active span
-{
-    color: white;
-}
+    .active span
+    {
+        color: white;
+    }
 
-.name
-{
-    font-weight: 500;
-    font-size: 14px;
-}
+    .name
+    {
+        font-weight: 500;
+        font-size: 14px;
+    }
 
-.screen-name
-{
-    font-style: italic;
-}
-</style>
+    .screen-name
+    {
+        font-style: italic;
+    }
+    </style>
