@@ -31,6 +31,8 @@ class UpdateOpportunity extends Migration
     {
         Schema::table('opportunities', function (Blueprint $table) {
             $table->dropForeign(['profile_id']);
+            $table->dropColumn(['profile_id']);
+
             $table->dropColumn(['currency']);
         });
     }

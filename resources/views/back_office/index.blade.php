@@ -472,48 +472,47 @@
 
                 <div class="main-container">
                     <div class="container">
-                        <div v-if="showModule === 1">
+                        <div v-if="showModule == '1'">
                             @include('back_office/dashboard')
                         </div>
 
-                        <div v-if="showModule === 2.1">
+                        <div v-if="showModule == '2.1'">
                             @include('back_office/configs/profile')
                         </div>
 
-                        <div v-if="showModule === 2.3">
+                        <div v-if="showModule == '2.3'">
                             @include('back_office/configs/teams')
                         </div>
 
-                        <div v-if="showModule === 2.2">
+                        <div v-if="showModule == '2.2'">
                             @include('back_office/configs/locations')
                         </div>
 
-                        <div v-if="showModule === 2.5">
+                        <div v-if="showModule == 2.5">
                             @include('back_office/configs/vats')
                         </div>
 
-                        <div v-if="showModule === 2.4">
+                        <div v-if="showModule == 2.4">
                             @include('back_office/configs/contracts')
                         </div>
 
-                        <div v-if="showModule === 5.1">
+                        <div v-if="showModule == 5.1">
                             @include('back_office/inventory/items')
                         </div>
 
-                        <div v-if="showModule === 3.1">
+                        <div v-if="showModule == 3.1">
                             @include('back_office/sales/customers')
                         </div>
 
-                        <div v-if="showModule === 3.3">
+                        <div v-if="showModule == 3.3">
                             @include('back_office/sales/pipeline')
                         </div>
 
-                        <div v-if="showModule === 3.2">
+                        <div v-if="showModule == 3.2">
                             @include('back_office/sales/opportunity')
                         </div>
 
-                        <div v-if="showModule === 3.4">
-
+                        <div v-if="showModule == 3.4">
                             @include('back_office/sales/orders')
                         </div>
                     </div>
@@ -535,5 +534,4 @@
             </div>
         </div>
     </model>
-
 @endsection

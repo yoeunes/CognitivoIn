@@ -40,7 +40,7 @@ class OpportunityController extends Controller
         $opportunity = Opportunity::where('id', $request->id)->first() ?? new Opportunity();
 
         $opportunity->relationship_id = $request->relationship_id;
-        $opportunity->pipeline_stage_id = $request->pipeline_stage_id;
+        $opportunity->pipeline_id = $request->pipeline_id;
         $opportunity->deadline_date = $request->deadline_date;
         $opportunity->description = $request->description;
         $opportunity->status = 1;

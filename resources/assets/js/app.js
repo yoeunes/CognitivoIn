@@ -24,7 +24,8 @@ require('./components/bootstrap');
 
 window.Vue.use(VueResource);
 window.Vue.use(VueRouter);
-Vue.use(require('vue-shortkey'))
+
+// Vue.use(require('vue-shortkey'))
 Vue.use(VueSweetalert2);
 Vue.use(Buefy);
 

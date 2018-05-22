@@ -18,6 +18,7 @@ class UpdateOpportunities extends Migration
             $table->unsignedInteger('relationship_id')->nullable()->change();
 
             $table->dropForeign(['pipeline_stage_id']);
+            $table->dropColumn(['pipeline_stage_id']);
 
             $table->unsignedInteger('pipeline_id')->nullable()->after('relationship_id');
             $table->foreign('pipeline_id')->references('id')->on('pipelines')->onDelete('cascade');
@@ -36,6 +37,11 @@ class UpdateOpportunities extends Migration
         Schema::table('contract_details', function (Blueprint $table)
         {
             $table->unsignedDecimal('percent', 5, 4)->change();
+        });
+
+        Schema::table('pipeline_stages', function (Blueprint $table)
+        {
+            $table->unsignedTinyInteger('activity_type')->nullable()->after('sequence');
         });
     }
 
@@ -63,6 +69,11 @@ class UpdateOpportunities extends Migration
             $table->dropColumn(['pipeline_stage_id']);
 
             $table->dropColumn(['completed_at']);
+        });
+
+        Schema::table('pipeline_stages', function (Blueprint $table)
+        {
+            $table->dropColumn(['activity_type']);
         });
     }
 }

@@ -28,21 +28,21 @@ class OpportunityTaskController extends Controller
     * @param  \Illuminate\Http\Request  $request
     * @return \Illuminate\Http\Response
     */
-    public function store(Request $request)
+    public function store(Request $request, Profile $profile, Opportunity $opportunity)
     {
-            
-        $OpportunityTask = OpportunityTask::find($request->id) ?? new OpportunityTask();
-        $OpportunityTask->activity_type = $request->activity_type ?? 1;
-        $OpportunityTask->opportunity_id = $request->opportunity_id;
-        $OpportunityTask->sentiment = $request->sentiment ?? 0;
-        $OpportunityTask->reminder_date = $request->reminder_date ?? null;
-        $OpportunityTask->date_started = $request->date_started ?? Carbon::now();
-        $OpportunityTask->date_ended = $request->date_ended ?? null;
-        $OpportunityTask->title = $request->title ?? 'Title Missing';
-        $OpportunityTask->description = $request->description ?? null;
-        $OpportunityTask->geoloc = $request->geoloc ?? null;
-        $OpportunityTask->completed = $request->completed ?? 0;
-        $OpportunityTask->save();
+
+        $opportunityTask = OpportunityTask::find($request->id) ?? new OpportunityTask();
+        $opportunityTask->activity_type = $request->activity_type ?? 1;
+        $opportunityTask->opportunity_id = $opportunity->id;
+        $opportunityTask->sentiment = $request->sentiment ?? 0;
+        $opportunityTask->reminder_date = $request->reminder_date ?? null;
+        $opportunityTask->date_started = $request->date_started ?? Carbon::now();
+        $opportunityTask->date_ended = $request->date_ended ?? null;
+        $opportunityTask->title = $request->title ?? 'Title Missing';
+        $opportunityTask->description = $request->description ?? null;
+        $opportunityTask->geoloc = $request->geoloc ?? null;
+        $opportunityTask->completed = $request->completed ?? 0;
+        $opportunityTask->save();
 
         return response()->json('Ok', 200);
     }

@@ -52,6 +52,6 @@ class Opportunity extends Model
 
     public function members()
     {
-        return $this->hasMany(OpportunityMember::class);
+        return $this->belongsToMany(Profile::class, 'opportunity_members');
     }
 }

@@ -27,6 +27,10 @@ class UpdateContract extends Migration
     */
     public function down()
     {
-        //
+        Schema::table('contracts', function (Blueprint $table)
+        {
+            $table->dropForeign(['profile_id']);
+            $table->dropColumn(['profile_id']);
+        });
     }
 }

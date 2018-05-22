@@ -14,12 +14,12 @@
     <div v-if="showList === true">
         @include('back_office/sales/opportunities/list')
     </div>
-<opportunity-form ref="back_officeForm" inline-template>
-         <div>
+    <opportunity-form ref="back_officeForm" v-else inline-template>
+        <div>
             <div v-if="$parent.showList === 2">
                 @include('back_office/sales/opportunities/show')
             </div>
-             <div v-if="$parent.showList !== true">
+            <div v-if="$parent.showList !== true">
                 @include('back_office/sales/opportunities/form')
             </div>
         </div>

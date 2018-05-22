@@ -16147,7 +16147,8 @@ __webpack_require__(150);
 
 window.Vue.use(__WEBPACK_IMPORTED_MODULE_3_vue_resource__["a" /* default */]);
 window.Vue.use(__WEBPACK_IMPORTED_MODULE_2_vue_router__["a" /* default */]);
-__WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"vue-shortkey\""); e.code = 'MODULE_NOT_FOUND'; throw e; }())));
+
+// Vue.use(require('vue-shortkey'))
 __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vue_sweetalert2__["a" /* default */]);
 __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_7_buefy___default.a);
 
@@ -59722,6 +59723,14 @@ Vue.component('opportunity-form', {
 
         onShow: function onShow(data) {
             var app = this;
+            app.id = data.id;
+            app.relationship_id = data.relationship_id;
+            app.pipeline_stage_id = data.pipeline_stage_id;
+            app.deadline_date = data.deadline_date;
+            app.description = data.description;
+            app.status = data.status;
+            app.value = data.value;
+            app.is_archived = data.is_archived;
 
             app.tasks = [];
             for (var i = 0; i < data.tasks.length; i++) {

@@ -59,7 +59,15 @@ Vue.component('opportunity-form',
         onShow: function(data)
         {
             var app = this;
-
+            app.id = data.id;
+            app.relationship_id = data.relationship_id;
+            app.pipeline_stage_id  = data.pipeline_stage_id;
+            app.deadline_date = data.deadline_date;
+            app.description = data.description;
+            app.status = data.status;
+            app.value = data.value;
+            app.is_archived = data.is_archived;
+            
             app.tasks = [];
             for (var i = 0; i < data.tasks.length; i++) {
                 app.tasks.push({
