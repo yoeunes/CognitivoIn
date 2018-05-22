@@ -50,15 +50,18 @@ Vue.component('order-form',
       },
       addQuantity: function (detail)
       {
+
         var app = this;
         detail.quantity = detail.quantity + 1;
         var orderdata = null;
         if (app.details != null) {
           for(let i = 0; i < app.details.length; i++)
           {
+
             if (app.details[i].sku == detail.sku)
             {
               orderdata = app.details[i];
+
               break;
             }
           }
@@ -69,6 +72,7 @@ Vue.component('order-form',
           app.details.push(
             {
               id:0,
+
               price: detail.price,
               cost: detail.cost,
               sku: detail.sku,
@@ -81,8 +85,10 @@ Vue.component('order-form',
           }
           else
           {
-            orderdata.quantity = detail.quantity;
+
+            orderdata.quantity =   orderdata.quantity + detail.quantity;
             orderdata.sub_total = detail.quantity * detail.price;
+              console.log(orderdata );
           }
         },
 

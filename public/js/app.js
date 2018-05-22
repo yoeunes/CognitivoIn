@@ -16146,6 +16146,8 @@ __webpack_require__(145);
 __webpack_require__(150);
 
 window.Vue.use(__WEBPACK_IMPORTED_MODULE_3_vue_resource__["a" /* default */]);
+window.Vue.use(__WEBPACK_IMPORTED_MODULE_2_vue_router__["a" /* default */]);
+__WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"vue-shortkey\""); e.code = 'MODULE_NOT_FOUND'; throw e; }())));
 __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vue_sweetalert2__["a" /* default */]);
 __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_7_buefy___default.a);
 
@@ -24432,7 +24434,7 @@ __WEBPACK_IMPORTED_MODULE_1_vue___default.a.prototype.$http = __WEBPACK_IMPORTED
             address: '',
             email: '',
             telephone: '',
-            src: '/api/getCustomers/' + this.current_company['slug'] + '/',
+            src: '/api/getCustomer/' + this.current_company['slug'] + '/',
             limit: 5,
             minChars: 3,
             queryParamName: '',
@@ -24448,6 +24450,11 @@ __WEBPACK_IMPORTED_MODULE_1_vue___default.a.prototype.$http = __WEBPACK_IMPORTED
 
             app.selectText = item.customer_alias + ' | ' + item.customer_taxid;
             app.id = item.id;
+            app.$parent.relationship_id = item.id;
+            app.$parent.customer_address = item.customer_address;
+            app.$parent.customer_email = item.customer_email;
+            app.$parent.customer_name = item.customer_alias;
+            app.$parent.customer_telephone = item.customer_telephone;
         },
         onSave: function onSave() {
             $.ajax({
@@ -27099,12 +27106,13 @@ __WEBPACK_IMPORTED_MODULE_1_vue___default.a.prototype.$http = __WEBPACK_IMPORTED
     props: ['current_company'],
     data: function data() {
         return {
-            src: '/api/getItems/' + this.current_company['slug'] + '/',
+            src: '/api/getItem/' + this.current_company['slug'] + '/',
             limit: 5,
             minChars: 3,
             queryParamName: '',
             selectText: 'Favor Elegir',
-            id: ''
+            id: '',
+            detail: []
         };
     },
 
@@ -27115,6 +27123,11 @@ __WEBPACK_IMPORTED_MODULE_1_vue___default.a.prototype.$http = __WEBPACK_IMPORTED
 
             app.selectText = item.name + ' | ' + item.sku;
             app.id = item.id;
+
+            // app.detail.push({ price:resp.data[i].unit_price,cost:resp.data[i].unit_cost,sku:resp.data[i].sku
+            //     ,name:resp.data[i].name,quantity:quantity,item_id:resp.data[i].id});
+            this.$parent.addQuantity({ price: item.unit_price, cost: item.unit_cost, sku: item.sku,
+                name: item.name, quantity: 0, item_id: item.id });
         }
     }
 });
@@ -59977,13 +59990,16 @@ Vue.component('order-form', {
       }
     },
     addQuantity: function addQuantity(detail) {
+
       var app = this;
       detail.quantity = detail.quantity + 1;
       var orderdata = null;
       if (app.details != null) {
         for (var i = 0; i < app.details.length; i++) {
+
           if (app.details[i].sku == detail.sku) {
             orderdata = app.details[i];
+
             break;
           }
         }
@@ -59992,6 +60008,7 @@ Vue.component('order-form', {
       if (orderdata == null) {
         app.details.push({
           id: 0,
+
           price: detail.price,
           cost: detail.cost,
           sku: detail.sku,
@@ -60002,8 +60019,10 @@ Vue.component('order-form', {
 
         });
       } else {
-        orderdata.quantity = detail.quantity;
+
+        orderdata.quantity = orderdata.quantity + detail.quantity;
         orderdata.sub_total = detail.quantity * detail.price;
+        console.log(orderdata);
       }
     },
 
