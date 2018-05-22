@@ -59679,6 +59679,7 @@ Vue.component('opportunity-form', {
             pipeline_id: '',
             pipeline_stage_id: '',
             deadline_date: '',
+            name: '',
             description: '',
             status: '',
             value: '',
@@ -59686,9 +59687,11 @@ Vue.component('opportunity-form', {
 
             stages: [],
             tasks: [],
+            items: [],
             members: []
         };
     },
+
 
     computed: {
         activeTasks: function activeTasks() {
@@ -59715,6 +59718,7 @@ Vue.component('opportunity-form', {
             app.relationship_id = data.relationship_id;
             app.pipeline_stage_id = data.pipeline_stage_id;
             app.deadline_date = data.deadline_date;
+            app.name = data.name;
             app.description = data.description;
             app.status = data.status;
             app.value = data.value;
@@ -59723,10 +59727,12 @@ Vue.component('opportunity-form', {
 
         onShow: function onShow(data) {
             var app = this;
+
             app.id = data.id;
             app.relationship_id = data.relationship_id;
             app.pipeline_stage_id = data.pipeline_stage_id;
             app.deadline_date = data.deadline_date;
+            app.name = data.name;
             app.description = data.description;
             app.status = data.status;
             app.value = data.value;
@@ -59755,12 +59761,21 @@ Vue.component('opportunity-form', {
             for (var i = 0; i < data.members.length; i++) {
                 app.members.push({
                     id: data.members[i].id,
-                    member: data.members[i].name,
-                    email: data.members[i].email,
-                    profile_id: data.members[i].profile_id,
-                    opportunity_id: data.members[i].opportunity_id
+                    name: data.members[i].name,
+                    email: data.members[i].email
                 });
             }
+
+            app.items = [];
+            // for (var i = 0; i < data.items.length; i++) {
+            //     app.items.push({
+            //         // id: data.members[i].id,
+            //         // member: data.members[i].name,
+            //         // email: data.members[i].email,
+            //         // profile_id: data.members[i].profile_id,
+            //         // opportunity_id: data.members[i].opportunity_id,
+            //     });
+            // }
         },
 
         onReset: function onReset() {
@@ -59770,6 +59785,7 @@ Vue.component('opportunity-form', {
             app.relationship_id = '';
             app.pipeline_stage_id = '';
             app.deadline_date = '';
+            app.name = '';
             app.description = '';
             app.status = '';
             app.value = '';
@@ -59777,6 +59793,7 @@ Vue.component('opportunity-form', {
 
             app.tasks = [];
             app.members = [];
+            app.items = [];
         },
 
         getStages: function getStages(data) {
@@ -59804,112 +59821,7 @@ Vue.component('opportunity-form', {
 /* 157 */
 /***/ (function(module, exports) {
 
-
-Vue.component('opportunity-task-form', {
-    props: ['opportunityID'],
-    data: function data() {
-        return {
-            id: 0,
-            activity_type: '',
-            opportunity_id: '',
-            sentiment: '',
-            reminder_date: '',
-            date_started: '',
-            date_ended: '',
-            title: '',
-            description: '',
-            geoloc: '',
-            completed: false,
-            tasks: []
-        };
-    },
-
-
-    computed: {
-        activeTasks: function activeTasks() {
-            var app = this;
-
-            return app.$parent.list.filter(function (i) {
-                return i.is_completed === '0';
-            });
-        },
-
-        completedTasks: function completedTasks() {
-            var app = this;
-
-            return app.$parent.list.filter(function (i) {
-                return i.is_completed === '1';
-            });
-        }
-    },
-
-    methods: {
-        addTask: function addTask() {
-            //code for adding tasks
-            var app = this;
-
-            app.$parent.tasks.push({
-                id: app.id,
-                activity_type: 1,
-                opportunity_id: app.opportunity_id,
-                sentiment: 1,
-
-                reminder_date: null,
-                date_started: null,
-                date_ended: null,
-
-                title: app.title,
-                description: null,
-                geoloc: null,
-                completed: false
-            });
-
-            app.$parent.$parent.postSpecial('/back-office/' + app.$parent.profile + '/sales/opportunities/' + app.opportunity_id + '/tasks', app.tasks);
-        },
-
-        changeStateTask: function changeStateTask(task) {
-            var app = this;
-            var data = app.$parent.postSpecial('status', $taskTitle);
-            //find index in list and update value.
-        },
-
-        onEdit: function onEdit(data) {
-            var app = this;
-            app.id = data.id;
-            app.activity_type = data.activity_type;
-            app.opportunity_id = data.opportunity_id;
-            app.sentiment = data.sentiment;
-
-            app.reminder_date = data.reminder_date;
-            app.date_started = data.date_started;
-            app.date_ended = data.date_ended;
-
-            app.title = data.title;
-            app.description = data.description;
-            app.geoloc = data.geoloc;
-            app.completed = data.completed;
-        },
-
-        onReset: function onReset() {
-            var app = this;
-            app.id = 0;
-            app.activity_type = '';
-            app.opportunity_id = '';
-            app.sentiment = '';
-
-            app.reminder_date = '';
-            app.date_started = '';
-            app.date_ended = '';
-
-            app.title = '';
-            app.description = '';
-            app.geoloc = '';
-            app.completed = false;
-        }
-    },
-
-    mounted: function mounted() {}
-});
+throw new Error("Module build failed: SyntaxError: this is a reserved word (29:16)\n\n\u001b[0m \u001b[90m 27 | \u001b[39m\n \u001b[90m 28 | \u001b[39m            app\u001b[33m.\u001b[39m$parent\u001b[33m.\u001b[39mtasks\u001b[33m.\u001b[39mpush({\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 29 | \u001b[39m                \u001b[36mthis\u001b[39m\u001b[33m.\u001b[39m$data\n \u001b[90m    | \u001b[39m                \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 30 | \u001b[39m            })\u001b[33m;\u001b[39m\n \u001b[90m 31 | \u001b[39m\n \u001b[90m 32 | \u001b[39m            app\u001b[33m.\u001b[39m$parent\u001b[33m.\u001b[39m$parent\u001b[33m.\u001b[39mpostSpecial(\u001b[32m'/back-office/'\u001b[39m \u001b[33m+\u001b[39m app\u001b[33m.\u001b[39m$parent\u001b[33m.\u001b[39m$parent\u001b[33m.\u001b[39mprofile \u001b[33m+\u001b[39m \u001b[32m'/sales/opportunities/'\u001b[39m \u001b[33m+\u001b[39m app\u001b[33m.\u001b[39mopportunity_id \u001b[33m+\u001b[39m \u001b[32m'/tasks'\u001b[39m\u001b[33m,\u001b[39m app\u001b[33m.\u001b[39mdata)\u001b[33m;\u001b[39m\u001b[0m\n");
 
 /***/ }),
 /* 158 */
@@ -60782,12 +60694,21 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('model', {
             app.showList = false;
         },
         onShow: function onShow($data) {
+            var _this2 = this;
+
             var app = this;
             app.showList = 2;
-            app.$refs.back_officeForm.onShow($data);
+
+            __WEBPACK_IMPORTED_MODULE_3_axios___default.a.get('/api/' + this.profile + '/back-office/' + app.url + '/' + $data.id).then(function (response) {
+                app.$refs.back_officeForm.onShow(response.data);
+            }).catch(function (ex) {
+                console.log(ex);
+                app.showList = true;
+                _this2.$swal('Error trying to edit record.');
+            });
         },
         onEdit: function onEdit($data) {
-            var _this2 = this;
+            var _this3 = this;
 
             var app = this;
             app.showList = false;
@@ -60797,7 +60718,7 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('model', {
             }).catch(function (ex) {
                 console.log(ex);
                 app.showList = true;
-                _this2.$swal('Error trying to edit record.');
+                _this3.$swal('Error trying to edit record.');
             });
         },
         onCancel: function onCancel($data) {
@@ -60818,12 +60739,12 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('model', {
             });
         },
         postSpecial: function postSpecial(specialURL, $data) {
-            var _this3 = this;
+            var _this4 = this;
 
             var app = this;
 
             __WEBPACK_IMPORTED_MODULE_3_axios___default.a.post(specialURL + '/', $data).then(function (response) {
-                _this3.$swal({
+                _this4.$swal({
                     position: 'top-end',
                     type: 'success',
                     title: 'Done!',
@@ -60834,16 +60755,16 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('model', {
                 return response;
             }).catch(function (ex) {
                 console.log(ex.response);
-                _this3.$swal('Error trying to preform action');
+                _this4.$swal('Error trying to preform action');
             });
         },
         onSave: function onSave($data) {
-            var _this4 = this;
+            var _this5 = this;
 
             var app = this;
             console.log($data);
             __WEBPACK_IMPORTED_MODULE_3_axios___default.a.post('/back-office/' + this.profile + '/sales/' + app.url, $data).then(function () {
-                _this4.$swal({
+                _this5.$swal({
                     position: 'top-end',
                     type: 'success',
                     title: 'Awsome! Your work has been saved',
@@ -60858,17 +60779,17 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('model', {
                 }
             }).catch(function (ex) {
                 console.log(ex.response);
-                _this4.$swal('Error trying to save record.');
+                _this5.$swal('Error trying to save record.');
             });
         },
         onSaveCreate: function onSaveCreate($data) {
-            var _this5 = this;
+            var _this6 = this;
 
             var app = this;
 
             __WEBPACK_IMPORTED_MODULE_3_axios___default.a.post('/api/' + this.profile + '/back-office/' + app.url, $data).then(function () {
                 //TODO run code to clean data.
-                _this5.$swal({
+                _this6.$swal({
                     position: 'top-end',
                     type: 'success',
                     title: 'Awsome! Your work has been saved',
@@ -60879,11 +60800,11 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('model', {
                 app.showList = false;
             }).catch(function (ex) {
                 console.log(ex);
-                _this5.$swal('Error trying to save record.');
+                _this6.$swal('Error trying to save record.');
             });
         },
         onDelete: function onDelete($data) {
-            var _this6 = this;
+            var _this7 = this;
 
             var app = this;
 
@@ -60895,14 +60816,14 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('model', {
                 confirmButtonText: 'Yes, delete it!'
             }).then(function () {
 
-                __WEBPACK_IMPORTED_MODULE_3_axios___default.a.delete('/api/' + _this6.profile + '/back-office/' + _this6.url + '/' + $data.id).then(function () {
+                __WEBPACK_IMPORTED_MODULE_3_axios___default.a.delete('/api/' + _this7.profile + '/back-office/' + _this7.url + '/' + $data.id).then(function () {
 
-                    var index = _this6.list.findIndex(function (x) {
+                    var index = _this7.list.findIndex(function (x) {
                         return x.id === $data.id;
                     });
-                    _this6.list.splice(index, 1);
+                    _this7.list.splice(index, 1);
 
-                    _this6.$swal({
+                    _this7.$swal({
                         position: 'top-end',
                         type: 'success',
                         title: 'The record has been deleted',
@@ -60911,12 +60832,12 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('model', {
                     });
                 }).catch(function (ex) {
                     console.log(ex);
-                    _this6.$swal('Error trying to delete record.');
+                    _this7.$swal('Error trying to delete record.');
                 });
             });
         },
         onApprove: function onApprove($data) {
-            var _this7 = this;
+            var _this8 = this;
 
             var app = this;
 
@@ -60927,8 +60848,8 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('model', {
                 showCancelButton: true,
                 confirmButtonText: 'Yes, approve it!'
             }).then(function () {
-                __WEBPACK_IMPORTED_MODULE_3_axios___default.a.post('/api/' + _this7.profile + '/back-office/' + app.url + '/' + $data.id + '/approve', $data).then(function () {
-                    _this7.$swal({
+                __WEBPACK_IMPORTED_MODULE_3_axios___default.a.post('/api/' + _this8.profile + '/back-office/' + app.url + '/' + $data.id + '/approve', $data).then(function () {
+                    _this8.$swal({
                         position: 'top-end',
                         type: 'success',
                         title: 'Awsome! Your record has been approved',
@@ -60939,13 +60860,13 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('model', {
                     app.showList = true;
                 }).catch(function (ex) {
                     console.log(ex);
-                    _this7.$swal('Error trying to approve record.');
+                    _this8.$swal('Error trying to approve record.');
                 });
                 //Code to approve
             });
         },
         onAnnull: function onAnnull($data) {
-            var _this8 = this;
+            var _this9 = this;
 
             var app = this;
 
@@ -60957,8 +60878,8 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('model', {
                 confirmButtonText: 'Yes, annull it!'
             }).then(function () {
                 //Code to annull
-                __WEBPACK_IMPORTED_MODULE_3_axios___default.a.post('/api/' + _this8.profile + '/back-office/' + app.url + '/' + $data.id + '/annull', $data).then(function () {
-                    _this8.$swal({
+                __WEBPACK_IMPORTED_MODULE_3_axios___default.a.post('/api/' + _this9.profile + '/back-office/' + app.url + '/' + $data.id + '/annull', $data).then(function () {
+                    _this9.$swal({
                         position: 'top-end',
                         type: 'success',
                         title: 'Awsome! Your record has been annulled',
@@ -60968,7 +60889,7 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('model', {
                     app.showList = true;
                 }).catch(function (ex) {
                     console.log(ex);
-                    _this8.$swal('Error trying to annull record.');
+                    _this9.$swal('Error trying to annull record.');
                 });
             });
         }

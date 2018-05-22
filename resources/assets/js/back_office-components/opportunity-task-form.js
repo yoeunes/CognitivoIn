@@ -6,7 +6,7 @@ Vue.component('opportunity-task-form',
         return {
             id: 0,
             activity_type: '',
-            opportunity_id: '',
+            opportunity_id: app.$parent.opportunity_id,
             sentiment: '',
             reminder_date: '',
             date_started: '',
@@ -15,29 +15,7 @@ Vue.component('opportunity-task-form',
             description: '',
             geoloc: '',
             completed: false,
-            tasks:[]
         }
-    },
-
-    computed:
-    {
-        activeTasks: function ()
-        {
-            var app = this;
-
-            return app.$parent.list.filter(function(i) {
-                return i.is_completed === '0'
-            })
-        },
-
-        completedTasks: function ()
-        {
-            var app = this;
-
-            return app.$parent.list.filter(function(i) {
-                return i.is_completed === '1'
-            })
-        },
     },
 
     methods:
@@ -47,25 +25,12 @@ Vue.component('opportunity-task-form',
             //code for adding tasks
             var app = this;
 
-            app .$parent.tasks.push({
-                id: app.id,
-                activity_type: 1,
-                opportunity_id: app.opportunity_id,
-                sentiment: 1,
-
-                reminder_date: null,
-                date_started: null,
-                date_ended: null,
-
-                title: app.title,
-                description: null,
-                geoloc: null,
-                completed: false
+            app.$parent.tasks.push({
+                this.$data
             });
 
-
-            app.$parent.$parent.postSpecial('/back-office/'+ app.$parent.profile +'/sales/opportunities/' + app.opportunity_id + '/tasks' ,app.tasks);
-
+            app.$parent.$parent.postSpecial('/back-office/' + app.$parent.$parent.profile + '/sales/opportunities/' + app.opportunity_id + '/tasks', app.data);
+            this.onReset();
         },
 
         changeStateTask: function(task)

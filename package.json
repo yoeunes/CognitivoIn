@@ -23,6 +23,7 @@
         "vue-resource": "^1.5.1"
     },
     "dependencies": {
+        "ajv": "^6.5.0",
         "buefy": "^0.6.5",
         "pngquant-bin": "^4.0.0",
         "vue-infinite-loading": "^2.3.1",

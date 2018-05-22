@@ -37,7 +37,7 @@ Vue.component('model',
                 { params: { page: app.list.length / this.pageSize + 1 } })
                 .then(({ data }) =>
                 {
-                  console.log(data);
+                    console.log(data);
                     if (data.length > 0)
                     {
                         for (let i = 0; i < data.length; i++)
@@ -92,8 +92,16 @@ Vue.component('model',
         {
             var app = this;
             app.showList = 2;
-            app.$refs.back_officeForm.onShow($data);
 
+            axios.get('/api/' + this.profile + '/back-office/' + app.url + '/' + $data.id)
+            .then(function (response) {
+                app.$refs.back_officeForm.onShow(response.data);
+            })
+            .catch(ex => {
+                console.log(ex);
+                app.showList = true;
+                this.$swal('Error trying to edit record.');
+            });
         },
 
         onEdit($data)

@@ -9,16 +9,19 @@ Vue.component('opportunity-form',
             pipeline_id: '',
             pipeline_stage_id: '',
             deadline_date: '',
+            name: '',
             description: '',
             status: '',
             value: '',
             is_archived: false,
 
             stages: [],
-            tasks:[],
-            members:[]
+            tasks: [],
+            items: [],
+            members: []
         }
     },
+
     computed:
     {
         activeTasks: function ()
@@ -39,7 +42,6 @@ Vue.component('opportunity-form',
         },
     },
 
-
     methods:
     {
         onEdit: function(data)
@@ -50,6 +52,7 @@ Vue.component('opportunity-form',
             app.relationship_id = data.relationship_id;
             app.pipeline_stage_id  = data.pipeline_stage_id;
             app.deadline_date = data.deadline_date;
+            app.name = data.name;
             app.description = data.description;
             app.status = data.status;
             app.value = data.value;
@@ -59,15 +62,17 @@ Vue.component('opportunity-form',
         onShow: function(data)
         {
             var app = this;
+
             app.id = data.id;
             app.relationship_id = data.relationship_id;
             app.pipeline_stage_id  = data.pipeline_stage_id;
             app.deadline_date = data.deadline_date;
+            app.name = data.name;
             app.description = data.description;
             app.status = data.status;
             app.value = data.value;
             app.is_archived = data.is_archived;
-            
+
             app.tasks = [];
             for (var i = 0; i < data.tasks.length; i++) {
                 app.tasks.push({
@@ -91,12 +96,21 @@ Vue.component('opportunity-form',
             for (var i = 0; i < data.members.length; i++) {
                 app.members.push({
                     id: data.members[i].id,
-                    member: data.members[i].name,
+                    name: data.members[i].name,
                     email: data.members[i].email,
-                    profile_id: data.members[i].profile_id,
-                    opportunity_id: data.members[i].opportunity_id,
                 });
             }
+
+            app.items = [];
+            // for (var i = 0; i < data.items.length; i++) {
+            //     app.items.push({
+            //         // id: data.members[i].id,
+            //         // member: data.members[i].name,
+            //         // email: data.members[i].email,
+            //         // profile_id: data.members[i].profile_id,
+            //         // opportunity_id: data.members[i].opportunity_id,
+            //     });
+            // }
         },
 
         onReset: function()
@@ -107,6 +121,7 @@ Vue.component('opportunity-form',
             app.relationship_id = '';
             app.pipeline_stage_id  = '';
             app.deadline_date = '';
+            app.name = '';
             app.description = '';
             app.status = '';
             app.value = '';
@@ -114,6 +129,7 @@ Vue.component('opportunity-form',
 
             app.tasks = [];
             app.members = [];
+            app.items = [];
         },
 
         getStages: function(data)

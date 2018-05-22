@@ -19,7 +19,7 @@
             <div v-if="$parent.showList === 2">
                 @include('back_office/sales/opportunities/show')
             </div>
-            <div v-if="$parent.showList !== true">
+            <div v-if="$parent.showList === false">
                 @include('back_office/sales/opportunities/form')
             </div>
         </div>

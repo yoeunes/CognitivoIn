@@ -47,26 +47,16 @@
                     <!-- END Tasks Info -->
 
                     <!-- Members -->
-
-
                     <div class="block block-rounded">
-
                         <div class="block-header block-header-default">
                             <h3 class="block-title">Members</h3>
-                            <div class="block-options">
-                                <div class="dropdown">
-                                    <button type="button" class="btn-block-option" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        <i class="si si-plus"></i>
-                                    </button>
-                                </div>
-                            </div>
                         </div>
 
                         <div class="block-content">
                             <ul class="nav-users push" v-for="member in members">
                                 <li>
-                                    <a href="" target="_blank">
-                                        {{-- <img class="img-avatar" src="member.profile_img" alt=""> --}}
+                                    <a href="#" target="_blank">
+                                        <img class="img-avatar" :src="member.profile_img" alt="">
                                         <i class="fa fa-circle text-success"></i> @{{ member.name }}
                                         <div class="font-w400 font-size-xs text-muted">
                                             <i class="fa fa-mail"></i> @{{ member.email }}
@@ -75,21 +65,20 @@
                                 </li>
                             </ul>
 
-                            {{-- <opportunity-member-form ref="member-form" inline-template> --}}
-                            <div>
-                                <form class="push" action="be_pages_generic_todo.html" method="post" onsubmit="return false;">
-                                    <div class="input-group">
-                                        {{-- <input class="form-control" type="text" v-model="member" placeholder="Invite more people.."> --}}
-                                        <div class="input-group-append">
-                                            <button @click="onSave(member)" class="btn btn-secondary" type="submit">
-                                                <i class="fa fa-plus"></i>
-                                            </button>
+                            <opportunity-member-form ref="member-form" inline-template>
+                                <div>
+                                    <form class="push" action="be_pages_generic_todo.html" method="post" onsubmit="return false;">
+                                        <div class="input-group">
+                                            {{-- <input class="form-control" type="text" v-model="member" placeholder="Invite more people.."> --}}
+                                            <div class="input-group-append">
+                                                <button @click="onSave(member)" class="btn btn-secondary" type="submit">
+                                                    <i class="fa fa-plus"></i>
+                                                </button>
+                                            </div>
                                         </div>
-                                    </div>
-                                </form>
-                            </div>
-                            {{-- </opportunity-member-form> --}}
-
+                                    </form>
+                                </div>
+                            </opportunity-member-form>
 
                         </div>
                     </div>
@@ -112,13 +101,6 @@
                                         <i class="fa fa-plus"></i>
                                     </span>
                                 </div>
-                                <select name="status">
-                                    {{-- @foreach (App\Enums\ActivityTypesEnum::labels() as $value => $label)
-                                        <option value="{{ $value }}">
-                                            {{ $label }}
-                                        </option>
-                                    @endforeach --}}
-                                </select>
                             </div>
                         </div>
                     </opportunity-task-form>
