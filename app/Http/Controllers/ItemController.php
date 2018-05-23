@@ -45,7 +45,7 @@ class ItemController extends Controller
 
     return response()->json($items);
   }
-  public function get_item(Profile $profile,$frase)
+  public function getItem(Profile $profile,$frase)
   {
     $items = Item::where('items.profile_id', $profile->id)
     ->where('items.name', 'LIKE', "%$frase%")

@@ -20,8 +20,6 @@
             aria-describedby="basic-addon2"
             autocomplete="off"
 
-            v-shortkey.once="['ctrl', 'n']"
-            @shortkey="add()"
 
             v-model="query"
             @keydown.down="down"
@@ -33,9 +31,7 @@
 
             <div class="input-group-append">
                 <span  id="basic-addon1">
-                    <a class="btn-icon-only" data-pk="1" data-target="#myModal1" data-title="Añadir" data-toggle="modal" data-type="text">
-                        <i class="fa fa-plus push-5-r"></i>
-                    </a>
+
                     <input type="hidden" name="profile_id" v-model="id"/>
                     @{{ selectText }}
                 </span>
@@ -64,7 +60,7 @@ export default {
     props: ['current_company'],
     data () {
         return {
-            src: '/api/profile/',
+            src: '/api/getProfile/',
             limit: 5,
             minChars: 3,
             queryParamName: '',
@@ -81,7 +77,7 @@ export default {
 
             app.selectText = item.name + ' | ' + item.alias;
             app.id= item.id;
-
+            app.$parent.addMember(item.id);
         }
 
     }

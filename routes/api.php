@@ -39,6 +39,7 @@ Route::group(['middleware' => 'auth:api'], function ()
                 'pipeline-stages' => 'PipelineStageController',
                 'opportunities' => 'OpportunityController',
                 'opportunities/{id}/tasks' => 'OpportunityTaskController',
+                'opportunities/{id}/members' => 'OpportunityMemberController',
                 'orders' => 'OrderController',
 
                 'accounts' => 'AccountsController',
@@ -112,9 +113,13 @@ Route::group(['middleware' => 'auth:api'], function ()
 
     Route::get('getCompanys/{slug}', 'ProfileController@get_companies');
     Route::get('login/{email}/{password}', 'Auth\SocialAuthController@Login');
-    //TODO DELETE THESE ROUTES
-    Route::get('getCustomers/{profile}', 'CustomerController@getAllCustomer');
+    //for searchbox route
+    Route::get('getProfile/{frase}', 'ProfileController@getProfile');
+    Route::get('getItem/{profile}/{frase}', 'ItemController@getItem');
     Route::get('getCustomer/{profile}/{frase}', 'CustomerController@getCustomer');
 
+    //TODO DELETE THESE ROUTES
+    Route::get('getCustomers/{profile}', 'CustomerController@getAllCustomer');
+
+
     Route::get('getItems/{profile}', 'ItemController@get_items');
-    Route::get('getItem/{profile}/{frase}', 'ItemController@get_item');

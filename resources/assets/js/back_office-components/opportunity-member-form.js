@@ -17,21 +17,25 @@ Vue.component('opportunity-member-form',
     {
         addMember: function($profileID)
         {
+            console.log($profileID);
             //code for adding tasks
             var app = this;
-            axios.post('/api/'+ app.$parent.profile +'/back-office/opportunities/' + this.opportunityID + '/members/', $profileID)
+            axios.post('/api/'+ app.$parent.$parent.profile +'/back-office/opportunities/' + this.$parent.id + '/members/', {profile_id:$profileID})
             .then(({ data }) =>
             {
-                app.$parent.list.push({
+                app.$parent.members.push({
                     id: data.id,
-                    member: data.name,
-                    email: data.email,
-                    slug: '/' + data.slug,
-                    profile_img: data.profile_img,
+                    name: data.profile.name,
+                    email: data.profile.email,
+                    slug: '/' + data.profile.slug,
+                    profile_img: data.profile.profile_img,
                     profile_id: data.profile_id,
                     opportunity_id: data.opportunity_id,
                 });
-            });
+            })  .catch(ex => {
+                console.log(ex);
+                this.$swal('Error trying to load records.');
+            });;
         },
     },
 
