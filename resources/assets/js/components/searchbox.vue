@@ -89,8 +89,7 @@
             aria-describedby="basic-addon2"
             autocomplete="off"
 
-            v-shortkey.once="['ctrl', 'n']"
-            @shortkey="add()"
+
 
             v-model="query"
             @keydown.down="down"
@@ -155,11 +154,7 @@ export default {
 
             app.selectText = item.customer_alias + ' | ' + item.customer_taxid;
             app.id= item.id;
-            app.$parent.relationship_id=item.id;
-            app.$parent.customer_address=item.customer_address;
-            app.$parent.customer_email=item.customer_email;
-            app.$parent.customer_name=item.customer_alias;
-            app.$parent.customer_telephone=item.customer_telephone;
+        
         },
         onSave()
         {

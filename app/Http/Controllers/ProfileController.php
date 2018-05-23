@@ -163,4 +163,13 @@ class ProfileController extends Controller
         $companies = $user->profile->followings(\App\Profile::class)->where('role', '<', 4)->get();
         return response()->json($companies);
     }
+
+    public function getProfile($frase)
+    {
+      $profiles = Profile::where('type', 1)
+      ->where('name', 'LIKE', "%$frase%")
+     ->get();
+
+      return response()->json($profiles);
+    }
 }

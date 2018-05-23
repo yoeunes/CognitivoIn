@@ -22905,7 +22905,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
 
 
 
@@ -22939,11 +22938,6 @@ __WEBPACK_IMPORTED_MODULE_1_vue___default.a.prototype.$http = __WEBPACK_IMPORTED
 
             app.selectText = item.customer_alias + ' | ' + item.customer_taxid;
             app.id = item.id;
-            app.$parent.relationship_id = item.id;
-            app.$parent.customer_address = item.customer_address;
-            app.$parent.customer_email = item.customer_email;
-            app.$parent.customer_name = item.customer_alias;
-            app.$parent.customer_telephone = item.customer_telephone;
         },
         onSave: function onSave() {
             $.ajax({
@@ -25172,13 +25166,6 @@ var render = function() {
       _c("input", {
         directives: [
           {
-            name: "shortkey",
-            rawName: "v-shortkey.once",
-            value: ["ctrl", "n"],
-            expression: "['ctrl', 'n']",
-            modifiers: { once: true }
-          },
-          {
             name: "model",
             rawName: "v-model",
             value: _vm.query,
@@ -25195,9 +25182,6 @@ var render = function() {
         },
         domProps: { value: _vm.query },
         on: {
-          shortkey: function($event) {
-            _vm.add()
-          },
           keydown: [
             function($event) {
               if (
@@ -25579,10 +25563,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
 
 
 
@@ -25672,13 +25652,6 @@ var render = function() {
       _c("input", {
         directives: [
           {
-            name: "shortkey",
-            rawName: "v-shortkey.once",
-            value: ["ctrl", "n"],
-            expression: "['ctrl', 'n']",
-            modifiers: { once: true }
-          },
-          {
             name: "model",
             rawName: "v-model",
             value: _vm.query,
@@ -25695,9 +25668,6 @@ var render = function() {
         },
         domProps: { value: _vm.query },
         on: {
-          shortkey: function($event) {
-            _vm.add()
-          },
           keydown: [
             function($event) {
               if (
@@ -25754,8 +25724,6 @@ var render = function() {
       _vm._v(" "),
       _c("div", { staticClass: "input-group-append" }, [
         _c("span", { attrs: { id: "basic-addon1" } }, [
-          _vm._m(0),
-          _vm._v(" "),
           _c("input", {
             directives: [
               {
@@ -25825,27 +25793,7 @@ var render = function() {
     ])
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "a",
-      {
-        staticClass: "btn-icon-only",
-        attrs: {
-          "data-pk": "1",
-          "data-target": "#myModal1",
-          "data-title": "Añadir",
-          "data-toggle": "modal",
-          "data-type": "text"
-        }
-      },
-      [_c("i", { staticClass: "fa fa-plus push-5-r" })]
-    )
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
@@ -26008,10 +25956,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
 
 
 
@@ -26024,7 +25968,7 @@ __WEBPACK_IMPORTED_MODULE_1_vue___default.a.prototype.$http = __WEBPACK_IMPORTED
     props: ['current_company'],
     data: function data() {
         return {
-            src: '/api/profile/',
+            src: '/api/getProfile/',
             limit: 5,
             minChars: 3,
             queryParamName: '',
@@ -26040,6 +25984,7 @@ __WEBPACK_IMPORTED_MODULE_1_vue___default.a.prototype.$http = __WEBPACK_IMPORTED
 
             app.selectText = item.name + ' | ' + item.alias;
             app.id = item.id;
+            app.$parent.addMember(item.id);
         }
     }
 });
@@ -26095,13 +26040,6 @@ var render = function() {
       _c("input", {
         directives: [
           {
-            name: "shortkey",
-            rawName: "v-shortkey.once",
-            value: ["ctrl", "n"],
-            expression: "['ctrl', 'n']",
-            modifiers: { once: true }
-          },
-          {
             name: "model",
             rawName: "v-model",
             value: _vm.query,
@@ -26118,9 +26056,6 @@ var render = function() {
         },
         domProps: { value: _vm.query },
         on: {
-          shortkey: function($event) {
-            _vm.add()
-          },
           keydown: [
             function($event) {
               if (
@@ -26177,8 +26112,6 @@ var render = function() {
       _vm._v(" "),
       _c("div", { staticClass: "input-group-append" }, [
         _c("span", { attrs: { id: "basic-addon1" } }, [
-          _vm._m(0),
-          _vm._v(" "),
           _c("input", {
             directives: [
               {
@@ -26248,27 +26181,7 @@ var render = function() {
     ])
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "a",
-      {
-        staticClass: "btn-icon-only",
-        attrs: {
-          "data-pk": "1",
-          "data-target": "#myModal1",
-          "data-title": "Añadir",
-          "data-toggle": "modal",
-          "data-type": "text"
-        }
-      },
-      [_c("i", { staticClass: "fa fa-plus push-5-r" })]
-    )
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
@@ -58438,21 +58351,27 @@ Vue.component('opportunity-member-form', {
 
     methods: {
         addMember: function addMember($profileID) {
+            var _this = this;
+
+            console.log($profileID);
             //code for adding tasks
             var app = this;
-            axios.post('/api/' + app.$parent.profile + '/back-office/opportunities/' + this.opportunityID + '/members/', $profileID).then(function (_ref) {
+            axios.post('/api/' + app.$parent.$parent.profile + '/back-office/opportunities/' + this.$parent.id + '/members/', { profile_id: $profileID }).then(function (_ref) {
                 var data = _ref.data;
 
-                app.$parent.list.push({
+                app.$parent.members.push({
                     id: data.id,
-                    member: data.name,
-                    email: data.email,
-                    slug: '/' + data.slug,
-                    profile_img: data.profile_img,
+                    name: data.profile.name,
+                    email: data.profile.email,
+                    slug: '/' + data.profile.slug,
+                    profile_img: data.profile.profile_img,
                     profile_id: data.profile_id,
                     opportunity_id: data.opportunity_id
                 });
-            });
+            }).catch(function (ex) {
+                console.log(ex);
+                _this.$swal('Error trying to load records.');
+            });;
         }
     },
 

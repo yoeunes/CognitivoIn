@@ -70,11 +70,12 @@
                         {{-- <opportunity-member-form ref="member-form" inline-template> --}}
                         <div>
                             <div class="input-group">
-                                <input class="form-control" type="text" placeholder="Invite more people..">
+
                                 <div class="input-group-append">
-                                    <button class="btn btn-secondary" type="submit">
-                                        <i class="fa fa-plus"></i>
-                                    </button>
+                                  <router-view name="SearchBoxItem"
+                                  :current_company="{{request()->route('profile')}}" >
+
+                              </router-view>
                                 </div>
                             </div>
                         </div>
@@ -106,12 +107,10 @@
                         <opportunity-member-form ref="member-form" inline-template>
                             <div>
                                 <div class="input-group">
-                                    <input class="form-control" type="text" v-model="member" placeholder="Invite more people..">
-                                    <div class="input-group-append">
-                                        <button @click="onSave(member)" class="btn btn-secondary">
-                                            <i class="fa fa-plus"></i>
-                                        </button>
-                                    </div>
+                                    <router-view name="SearchBoxProfile"
+                                    :current_company="{{request()->route('profile')}}" >
+
+                                </router-view>
                                 </div>
                             </div>
                         </opportunity-member-form>
