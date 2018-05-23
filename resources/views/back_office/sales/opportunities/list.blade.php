@@ -1,4 +1,4 @@
-<div class="content">
+{{-- <div class="content"> --}}
     <div class="block block-fx-shadow">
         <div class="block-content">
             <table>
@@ -40,4 +40,4 @@
             @include('layouts/infinity-loading')
         </div>
     </div>
-</div>
+{{-- </div> --}}

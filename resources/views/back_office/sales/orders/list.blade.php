@@ -1,30 +1,31 @@
 
-<div>
-    <div class="row">
-
-        <div class="col-5">
-            <p class="m--font-boldest m--font-transform-u">@lang('global.Code')</p>
-        </div>
-        <div class="col-5">
-            <p class="m--font-boldest m--font-transform-u">@lang('global.Customer')</p>
-        </div>
-    </div>
-
-    <div class="row m--margin-bottom-5" v-for="invoice in list">
-        <div class="col-1">
-            <p> @{{ invoice.tracking_code }} </p>
-        </div>
-        <div class="col-1">
-            <p> @{{ invoice.relationship.customer_alias }} </p>
-        </div>
-
-        <div class="col-1">
-            <div role="group" aria-label="...">
-                <a @click="onEdit(invoice)" class="m-btn btn btn-secondary"><i class="la la-pencil m--font-brand"></i></a>
-                <a @click="onDelete(invoice)" class="m-btn btn btn-secondary"><i class="la la-trash m--font-danger"></i></a>
-                <a @click="onAnull(invoice)" class="m-btn btn btn-secondary"><i class="la la-close m--font-danger"></i></a>
-            </div>
-        </div>
-    </div>
+<div class="block-content">
+    <table>
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Customer</th>
+                <th>Number</th>
+                <th class="text-center">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr v-for="invoice in list">
+                <td>@{{ invoice.date }}</td>
+                <td>@{{ invoice.relationship.customer_alias }}</td>
+                <td>@{{ invoice.number }}</td>
+                <td class="text-center">
+                    <div class="btn-group">
+                        <button v-on:click="onEdit(invoice)" type="button" class="btn btn-sm btn-secondary js-tooltip-enabled" data-toggle="tooltip" data-original-title="Edit">
+                            <i class="fa fa-pencil"></i>
+                        </button>
+                        <button v-on:click="onDelete(invoice)" type="button" class="btn btn-sm btn-secondary js-tooltip-enabled" data-toggle="tooltip" data-original-title="Delete">
+                            <i class="fa fa-times"></i>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
     @include('layouts/infinity-loading')
 </div>
