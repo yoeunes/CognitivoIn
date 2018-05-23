@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Scopes\ProfileScope;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Overtrue\LaravelFollow\Traits\CanBeFollowed;
@@ -24,10 +25,11 @@ class Opportunity extends Model
         'is_archived'
     ];
 
-    public function scopeMine($query)
+
+    protected static function boot()
     {
-        return $query->join('relationships', 'relationships.id', 'opportunities.relationship_id')
-        ->where('relationships.supplier_id', request()->route('profile')->id);
+        parent::boot();
+        static::addGlobalScope(new ProfileScope);
     }
 
     public function pipelineStage()

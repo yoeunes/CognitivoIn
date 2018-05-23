@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use App\Scopes\AccountScope;
+use App\Scopes\ProfileScope;
 
 class Account extends Model
 {
@@ -14,7 +14,7 @@ class Account extends Model
     protected static function boot()
     {
         parent::boot();
-        static::addGlobalScope(new AccountScope);
+        static::addGlobalScope(new ProfileScope);
     }
 
     /**

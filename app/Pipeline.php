@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Scopes\ProfileScope;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -19,6 +20,12 @@ class Pipeline extends Model
         'name',
         'is_active'
     ];
+
+    protected static function boot()
+    {
+        parent::boot();
+        static::addGlobalScope(new ProfileScope);
+    }
 
     public function scopeMy($query, Profile $profile)
     {

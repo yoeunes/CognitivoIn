@@ -26,7 +26,6 @@ class Relationship extends Model
     'customer_id',
     'customer_alias',
     'customer_taxid',
-
   ];
 
   public function toSearchableArray()

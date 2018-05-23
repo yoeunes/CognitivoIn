@@ -24,5 +24,4 @@ class Cart extends Model
     {
         return $this->belongsTo(Relationship::class);
     }
-
 }

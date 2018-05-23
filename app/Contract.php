@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Scopes\ProfileScope;
 use Illuminate\Database\Eloquent\Model;
 
 class Contract extends Model
@@ -19,6 +20,12 @@ class Contract extends Model
         'profile_id',
         'country'
     ];
+
+    protected static function boot()
+    {
+        parent::boot();
+        static::addGlobalScope(new ProfileScope);
+    }
 
     public function details()
     {

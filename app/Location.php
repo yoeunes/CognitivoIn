@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Scopes\ProfileScope;
 use Illuminate\Database\Eloquent\Model;
 
 class Location extends Model
@@ -23,6 +24,12 @@ class Location extends Model
         'state',
         'country'
     ];
+
+    protected static function boot()
+    {
+        parent::boot();
+        static::addGlobalScope(new ProfileScope);
+    }
 
     /**
     * The accountMovements that belong to the model.
