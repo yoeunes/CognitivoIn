@@ -515,6 +515,14 @@
                             @include('back_office/inventory/items')
                         </div>
 
+                        <div v-if="showModule == 5.2">
+                            @include('back_office/inventory/items')
+                        </div>
+
+                        <div v-if="showModule == 5.3">
+                            @include('back_office/inventory/item_movements')
+                        </div>
+
                         <div v-if="showModule == 6.1">
                             @include('back_office/finance/accounts')
                         </div>
