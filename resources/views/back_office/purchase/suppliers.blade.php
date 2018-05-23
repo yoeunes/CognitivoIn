@@ -3,7 +3,7 @@
 <div class="content">
 
     <!-- Overview -->
-    <h2 class="content-heading">Finance | <b>Accounts Receivables</b></h2>
+    <h2 class="content-heading">Purchase | <b>Suppliers</b></h2>
     <div class="row gutters-tiny">
 
         <!-- Add Product -->
@@ -14,7 +14,7 @@
                         <div class="font-size-h2 font-w700 mb-0 text-success">
                             <img src="/img/logo/cognitivo-64.svg" width="46">
                         </div>
-                        <div class="font-size-sm font-w600 text-uppercase text-muted">Customers</div>
+                        <div class="font-size-sm font-w600 text-uppercase text-muted">Suppliers</div>
                     </div>
                 </div>
             </div>
@@ -31,7 +31,7 @@
                         <div class="font-size-h2 font-w700 mb-0 text-success">
                             <i class="fa fa-plus"></i>
                         </div>
-                        <div class="font-size-sm font-w600 text-uppercase text-muted">Create a Payment</div>
+                        <div class="font-size-sm font-w600 text-uppercase text-muted">Create new Supplier</div>
                     </div>
                 </div>
             </a>
@@ -43,10 +43,10 @@
     <div class="block block-fx-shadow">
         <div class="block-content">
             <div v-if="showList">
-                @include('back_office/finance/account_receivables/list')
+                @include('back_office/purchase/suppliers/list')
             </div>
             <div v-else>
-                @include('back_office/finance/account_receivables/form')
+                @include('back_office/purchase/suppliers/form')
             </div>
         </div>
     </div>
