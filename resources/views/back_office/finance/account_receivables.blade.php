@@ -3,7 +3,7 @@
 <div class="content">
 
     <!-- Overview -->
-    <h2 class="content-heading">Finance | <b>Accounts Receivables</b></h2>
+    <h2 class="content-heading">Finance | <b>Account Receivables</b></h2>
     <div class="row gutters-tiny">
 
         <!-- Add Product -->
@@ -14,11 +14,12 @@
                         <div class="font-size-h2 font-w700 mb-0 text-success">
                             <img src="/img/logo/cognitivo-64.svg" width="46">
                         </div>
-                        <div class="font-size-sm font-w600 text-uppercase text-muted">Customers</div>
+                        <div class="font-size-sm font-w600 text-uppercase text-muted">Account Receivables</div>
                     </div>
                 </div>
             </div>
         </div>
+
         <div class="col-md-6 col-xl-3">
             <a class="block block-rounded block-link-shadow" @click="onCreate()" href="#" v-if="showList">
                 <div class="block-content block-content-full block-sticky-options">

@@ -153,7 +153,6 @@
                                                     {{ request()->route('profile')->alias }}
                                                 </a>
                                             </li>
-
                                         </ul>
                                     </div>
                                     <!-- END Visible only in normal mode -->
@@ -228,7 +227,7 @@
                                                     <a @click="onList('customers', 3.1)" href="#">Customers</a>
                                                 </li>
                                                 <li>
-                                                    <a @click="onList('promotions', 3.6)" href="#">Promotions</a>
+                                                    <a @click="onList('promotions', 3.5)" href="#">Promotions</a>
                                                 </li>
                                                 <li>
                                                     <a  class="nav-submenu" data-toggle="nav-submenu" href="#">Opportunities</a>
@@ -245,7 +244,7 @@
                                                     <a @click="onList('orders', 3.4)" href="#">Orders</a>
                                                 </li>
                                                 <li>
-                                                    <a @click="onList('accounts', 3.5)" href="#">Account Recievables</a>
+                                                    <a @click="onList('account-receivables', 6.2)" href="#">Account Receivables</a>
                                                 </li>
                                             </ul>
                                         </li>
@@ -265,7 +264,7 @@
                                                     <a @click="onList('purchases', 4.2)" href="#">Orders</a>
                                                 </li>
                                                 <li>
-                                                    <a @click="onList('accounts', 4.3)" href="#">Account Payables</a>
+                                                    <a @click="onList('account-payables', 6.3)" href="#">Account Payables</a>
                                                 </li>
                                             </ul>
                                         </li>
@@ -313,13 +312,13 @@
                                                     <a @click="onList('accounts', 6.1)" href="#">Accounts</a>
                                                 </li>
                                                 <li>
-                                                    <a @click="onList('accounts', 3.5)" href="#">Account Recievables</a>
+                                                    <a @click="onList('accounts', 6.2)" href="#">Account Recievables</a>
                                                 </li>
                                                 <li>
-                                                    <a @click="onList('accounts', 4.3)" href="#">Account Payables</a>
+                                                    <a @click="onList('accounts', 6.3)" href="#">Account Payables</a>
                                                 </li>
                                                 <li>
-                                                    <a @click="onList('accounts', 6.2)" href="#">Account Movements</a>
+                                                    <a @click="onList('accounts', 6.4)" href="#">Account Movements</a>
                                                 </li>
                                             </ul>
                                         </li>
@@ -488,16 +487,12 @@
                             @include('back_office/configs/locations')
                         </div>
 
-                        <div v-if="showModule == 2.5">
-                            @include('back_office/configs/vats')
-                        </div>
-
                         <div v-if="showModule == 2.4">
                             @include('back_office/configs/contracts')
                         </div>
 
-                        <div v-if="showModule == 5.1">
-                            @include('back_office/inventory/items')
+                        <div v-if="showModule == 2.5">
+                            @include('back_office/configs/vats')
                         </div>
 
                         <div v-if="showModule == 3.1">
@@ -515,6 +510,27 @@
                         <div v-if="showModule == 3.4">
                             @include('back_office/sales/orders')
                         </div>
+
+                        <div v-if="showModule == 5.1">
+                            @include('back_office/inventory/items')
+                        </div>
+
+                        <div v-if="showModule == 6.1">
+                            @include('back_office/finance/accounts')
+                        </div>
+
+                        <div v-if="showModule == 6.2">
+                            @include('back_office/finance/account_receivables')
+                        </div>
+
+                        <div v-if="showModule == 6.3">
+                            @include('back_office/finance/account_payables')
+                        </div>
+
+                        <div v-if="showModule == 6.4">
+                            @include('back_office/finance/account_movements')
+                        </div>
+
                     </div>
                 </div>
 

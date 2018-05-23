@@ -3,7 +3,7 @@
 <div class="content">
 
     <!-- Overview -->
-    <h2 class="content-heading">Finance | <b>Accounts Payables</b></h2>
+    <h2 class="content-heading">Finance | <b>Account Payables</b></h2>
     <div class="row gutters-tiny">
 
         <!-- Add Product -->
@@ -14,7 +14,7 @@
                         <div class="font-size-h2 font-w700 mb-0 text-success">
                             <img src="/img/logo/cognitivo-64.svg" width="46">
                         </div>
-                        <div class="font-size-sm font-w600 text-uppercase text-muted">Suppliers</div>
+                        <div class="font-size-sm font-w600 text-uppercase text-muted">Account Payables</div>
                     </div>
                 </div>
             </div>
