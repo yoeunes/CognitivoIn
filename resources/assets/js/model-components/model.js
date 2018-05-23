@@ -138,12 +138,12 @@ Vue.component('model',
                 app.showList = true;
             })
         },
-        postSpecial: function(specialURL, $data)
+        postSpecial: async function(specialURL, $data)
         {
             var app = this;
-
+            var resp;
             //console.log($data);
-            axios.post(specialURL, $data)
+            await axios.post(specialURL, $data)
             .then((response) =>
             {
 
@@ -155,14 +155,16 @@ Vue.component('model',
                     showConfirmButton: false,
                     timer: 1500
                 });
-            
-                return response;
+
+                resp= response.data;
             })
             .catch(ex => {
 
                 console.log(ex);
                 this.$swal('Error trying to preform action');
             });
+
+            return resp;
         },
 
 
