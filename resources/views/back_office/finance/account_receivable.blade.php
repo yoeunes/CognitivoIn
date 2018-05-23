@@ -31,7 +31,7 @@
                         <div class="font-size-h2 font-w700 mb-0 text-success">
                             <i class="fa fa-plus"></i>
                         </div>
-                        <div class="font-size-sm font-w600 text-uppercase text-muted">Create a Payment</div>
+                        <div class="font-size-sm font-w600 text-uppercase text-muted">Recieve a Payment</div>
                     </div>
                 </div>
             </a>
