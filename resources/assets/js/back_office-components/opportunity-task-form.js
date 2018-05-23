@@ -7,7 +7,7 @@ Vue.component('opportunity-task-form',
             activity_type: '',
             opportunity_id: '',
             sentiment: '',
-            reminder_date: '',
+            reminder_date: null,
             date_started: '',
             date_ended: '',
             title: '',
@@ -99,7 +99,7 @@ Vue.component('opportunity-task-form',
             app.opportunity_id = '';
             app.sentiment = '';
 
-            app.reminder_date = '';
+            app.reminder_date = null;
             app.date_started = '';
             app.date_ended = '';
 
