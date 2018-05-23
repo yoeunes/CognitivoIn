@@ -33,7 +33,7 @@ Vue.component('opportunity-member-form',
                     opportunity_id: data.opportunity_id,
                 });
             })  .catch(ex => {
-                console.log(ex);
+                console.log(ex.response);
                 this.$swal('Error trying to load records.');
             });;
         },

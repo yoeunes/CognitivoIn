@@ -35,10 +35,14 @@ class OpportunityMemberController extends Controller
 
     if ($profile->id == $opportunity->profile_id)
     {
-      $opportunityMembers = new OpportunityMember();
-      $opportunityMembers->opportunity_id = $opportunity->id;
-      $opportunityMembers->profile_id = $request->profile_id;
-      $opportunityMembers->save();
+        
+      if (OpportunityMember::where('profile_id',$request->profile_id)->get()->count()==0) {
+        $opportunityMembers = new OpportunityMember();
+        $opportunityMembers->opportunity_id = $opportunity->id;
+        $opportunityMembers->profile_id = $request->profile_id;
+        $opportunityMembers->save();
+      }
+
     }
     $opportunityMember=OpportunityMember::where('id',$opportunityMembers->id)->with('profile')->first();
     return response()->json($opportunityMember, 200);
