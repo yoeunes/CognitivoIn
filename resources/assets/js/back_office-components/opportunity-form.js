@@ -44,6 +44,46 @@ Vue.component('opportunity-form',
 
     methods:
     {
+
+        editTask: function(task)
+        {
+            var app = this;
+            var url = '/back-office/' + app.$parent.profile + '/sales/opportunities/' + app.id + '/tasks';
+            var data =
+            {
+                id: app.id,
+                activity_type: app.activity_type,
+                opportunity_id: app.opportunity_id,
+                sentiment: app.sentiment,
+                reminder_date: app.reminder_date,
+                date_started: app.date_started,
+                date_ended: app.date_ended,
+                title: app.title,
+                description: app.description,
+                geoloc: app.geoloc,
+                completed: app.completed == true ? false : true,
+            }
+
+            app.$parent.postSpecial(url, data)
+            .then(function(response)
+            {
+
+                    tasks.id=response.id;
+                    tasks.activity_type=response.activity_type;
+                    tasks.opportunity_id=response.opportunity_id;
+                    tasks.sentiment=response.sentiment;
+                    tasks.reminder_date=response.reminder_date;
+                    tasks.date_started=response.date_started;
+                    tasks.date_ended=response.date_ended;
+                    tasks.title=response.title;
+                    tasks.description=response.description;
+                    tasks.geoloc=response.geoloc;
+                    tasks.completed=response.completed;
+
+
+
+            });
+        },
         onEdit: function(data)
         {
             var app = this;
@@ -59,7 +99,7 @@ Vue.component('opportunity-form',
             app.value = data.value;
             app.is_archived = data.is_archived;
         },
-    
+
 
         onShow: function(data)
         {
