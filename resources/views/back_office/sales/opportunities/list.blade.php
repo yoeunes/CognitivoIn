@@ -19,7 +19,7 @@
                                 @{{ opportunity.description }}
                             </a>
                         </td>
-                        <td></td>
+                        <td>@{{opportunity.relationship.customer_alias}}</td>
                         <td>@{{ opportunity.value }}</td>
                         <td class="text-center">
                             <div class="btn-group">

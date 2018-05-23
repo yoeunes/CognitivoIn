@@ -37,7 +37,7 @@ Vue.component('model',
                 { params: { page: app.list.length / this.pageSize + 1 } })
                 .then(({ data }) =>
                 {
-                    console.log(data);
+
                     if (data.length > 0)
                     {
                         for (let i = 0; i < data.length; i++)
@@ -138,16 +138,16 @@ Vue.component('model',
                 app.showList = true;
             })
         },
-
-        postSpecial(specialURL, $data)
+        postSpecial: function(specialURL, $data)
         {
             var app = this;
-            console.log($data);
 
+            //console.log($data);
             axios.post(specialURL, $data)
             .then((response) =>
             {
-                console.log(response);
+
+
                 this.$swal({
                     position: 'top-end',
                     type: 'success',
@@ -155,11 +155,12 @@ Vue.component('model',
                     showConfirmButton: false,
                     timer: 1500
                 });
-
+            
                 return response;
             })
             .catch(ex => {
-                console.log(ex.response);
+
+                console.log(ex);
                 this.$swal('Error trying to preform action');
             });
         },

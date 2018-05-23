@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('main')
-    <model profile="{{ request()->route('profile')->slug }}" inline-template>
+    <model  profile="{{ request()->route('profile')->slug }}" inline-template>
         <div>
             <div id="page-container" class="sidebar-o side-scroll page-header-modern main-content-boxed side-trans-enabled">
                 <!-- Side Overlay-->

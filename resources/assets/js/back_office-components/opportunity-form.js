@@ -7,15 +7,15 @@ Vue.component('opportunity-form',
             id: 0,
             relationship_id: '',
             pipeline_id: '',
-            pipeline_stage_id: '',
             deadline_date: '',
             name: '',
             description: '',
             status: '',
             value: '',
+            currency:'',
             is_archived: false,
 
-            stages: [],
+            pipelines:[],
             tasks: [],
             items: [],
             members: []
@@ -47,10 +47,11 @@ Vue.component('opportunity-form',
         onEdit: function(data)
         {
             var app = this;
-
             app.id = data.id;
             app.relationship_id = data.relationship_id;
-            app.pipeline_stage_id  = data.pipeline_stage_id;
+            app.$children[0].selectText = data.relationship.customer_alias + '|' +data.relationship.customer_taxid ;
+            app.pipeline_id  = data.pipeline_id;
+            app.currency  = data.currency;
             app.deadline_date = data.deadline_date;
             app.name = data.name;
             app.description = data.description;
@@ -58,6 +59,7 @@ Vue.component('opportunity-form',
             app.value = data.value;
             app.is_archived = data.is_archived;
         },
+    
 
         onShow: function(data)
         {
@@ -134,16 +136,16 @@ Vue.component('opportunity-form',
             app.items = [];
         },
 
-        getStages: function(data)
+        getPipelines: function(data)
         {
             var app = this;
-            axios.get('/api/' + app.$parent.profile + '/back-office/pipeline-stages/')
+            axios.get('/api/' + app.$parent.profile + '/back-office/list/0/pipelines/1')
             .then(({ data }) =>
             {
-                app.stages = [];
+                app.pipelines = [];
                 for(let i = 0; i < data.length; i++)
                 {
-                    app.stages.push({
+                    app.pipelines.push({
                         name: data[i]['name'],
                         id: data[i]['id']
                     });
@@ -154,6 +156,6 @@ Vue.component('opportunity-form',
 
     mounted: function mounted()
     {
-        this.getStages();
+        this.getPipelines();
     }
 });

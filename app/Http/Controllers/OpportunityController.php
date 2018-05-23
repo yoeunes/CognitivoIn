@@ -22,7 +22,10 @@ class OpportunityController extends Controller
     */
     public function index(Profile $profile, $skip, $filterBy)
     {
-        $opportunities = Opportunity::with('tasks')->with('members')->skip($skip)
+        $opportunities = Opportunity::with('tasks')
+        ->with('relationship')
+        ->with('members')
+        ->skip($skip)
         ->take(100)
         ->get();
 
@@ -38,7 +41,7 @@ class OpportunityController extends Controller
     public function store(Request $request, Profile $profile)
     {
         $opportunity = Opportunity::where('id', $request->id)->first() ?? new Opportunity();
-
+        $opportunity->profile_id = $profile->id;
         $opportunity->relationship_id = $request->relationship_id;
         $opportunity->pipeline_id = $request->pipeline_id;
         $opportunity->deadline_date = $request->deadline_date;
@@ -90,7 +93,7 @@ class OpportunityController extends Controller
     */
     public function edit(Profile $profile, Opportunity $opportunity)
     {
-        return response()->json($opportunity);
+        return response()->json(Opportunity::where('id',$opportunity->id)->with('relationship')->first());
     }
 
     /**
