@@ -31,6 +31,7 @@ class OpportunityTaskController extends Controller
     */
     public function store(Request $request, Profile $profile, Opportunity $opportunity)
     {
+      
         if ($profile->id == $opportunity->profile_id)
         {
             $opportunityTask = OpportunityTask::find($request->id) ?? new OpportunityTask();
@@ -48,7 +49,7 @@ class OpportunityTaskController extends Controller
 
             return response()->json($opportunityTask, 200);
         }
-        
+
         return response()->json('Resource not found', 401);
     }
 

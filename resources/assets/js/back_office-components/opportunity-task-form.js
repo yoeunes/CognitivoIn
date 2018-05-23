@@ -14,32 +14,49 @@ Vue.component('opportunity-task-form',
             description: '',
             geoloc: '',
             completed: false,
+            taske:[]
         }
     },
 
     methods:
     {
-        addTask: function()
+        addTask:   function()
         {
             //code for adding tasks
             var app = this;
             var url = '/back-office/' + app.$parent.$parent.profile + '/sales/opportunities/' + app.$parent.id + '/tasks';
+            var data=
+                {
+                    id: app.id,
+                    activity_type:app.activity_type,
+                    opportunity_id:app.opportunity_id,
+                    sentiment:app.sentiment,
+                    reminder_date:app.reminder_date,
+                    date_started:app.date_started,
+                    date_ended:app.date_ended,
+                    title:app.title,
+                    description:app.description,
+                    geoloc:app.geoloc,
+                    completed: app.completed,
+                }
+                app.$parent.$parent.postSpecial(url, data);
+                app.$parent.tasks.push({
+                    id: data.id,
+                    activity_type: data.activity_type,
+                    opportunity_id: data.opportunity_id,
+                    sentiment: data.sentiment,
+                    reminder_date: data.reminder_date,
+                    date_started: data.date_started,
+                    date_ended: data.date_ended,
+                    title: data.title,
+                    description: data.description,
+                    geoloc: data.geoloc,
+                    completed: data.completed,
+                });
 
-            var response = app.$parent.$parent.postSpecial(url, app.data);
 
-            app.$parent.tasks.push({
-                id: response.data.id,
-                activity_type: response.data.activity_type,
-                opportunity_id: response.data.opportunity_id,
-                sentiment: response.data.sentiment,
-                reminder_date: response.data.reminder_date,
-                date_started: response.data.date_started,
-                date_ended: response.data.date_ended,
-                title: response.data.title,
-                description: response.data.description,
-                geoloc: response.data.geoloc,
-                completed: false,
-            });
+
+
 
             app.onReset();
         },
@@ -52,6 +69,7 @@ Vue.component('opportunity-task-form',
             var data = app.$parent.postSpecial(url, task);
             //find index in list and update value.
         },
+
 
         onEdit: function(data)
         {

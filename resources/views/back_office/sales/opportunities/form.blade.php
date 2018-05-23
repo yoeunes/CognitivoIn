@@ -20,19 +20,20 @@
                         <div class="form-group row">
                             <div class="col-12">
                                 <label>Customer</label>
-                                <input type="text" class="form-control form-control-lg" v-model="relationship_id" placeholder="Give your pipeline a nice name">
-                            </div>
+                                <router-view name="SearchBoxCustomer"
+                                :current_company="{{request()->route('profile')}}" >
+
+                            </router-view>
                         </div>
-                        <div class="form-group row">
-                            <div class="col-6">
-                                <label>Pipeline</label>
-                                <input type="text" v-model="pipeline_id" class="form-control form-control-lg">
-                                {{-- <select v-model="stage_id" required class="custom-select" > <option v-for="stage in stages" :value="stage.id">@{{ stage.name }}</option> </select> --}}
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-6">
+                            <label>Pipeline</label>
+
+                            <select v-model="pipeline_id" required class="custom-select" >
+                                <option v-for="pipeline in pipelines" :value="pipeline.id">@{{ pipeline.name }}</option> </select>
                             </div>
-                            <div class="col-6">
-                                <label>Pipeline Stage</label>
-                                <input type="text" v-model="pipeline_stage_id" class="form-control form-control-lg">
-                            </div>
+
                         </div>
                         <div class="form-group row">
                             <div class="col-6">
@@ -41,12 +42,22 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <div class="js-datetimepicker input-group date" data-format="YYYY/MM/DD">
-                                <input class="form-control input-lg" type="date" placeholder="Do you have a deadline?" v-model="deadline_date">
-                                <span class="input-group-addon">
-                                    <span class="fa fa-calendar"></span>
-                                </span>
+                            <div class="col-6">
+                                <label>Currency</label>
+                                <input type="text" v-model="currency" class="form-control form-control-lg">
                             </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-6">
+                                <label>Deadline Date</label>
+                                <div class="js-datetimepicker input-group date" data-format="YYYY/MM/DD">
+                                    <input class="form-control input-lg" type="date" placeholder="Do you have a deadline?" v-model="deadline_date">
+                                    <span class="input-group-addon">
+                                        <span class="fa fa-calendar"></span>
+                                    </span>
+                                </div>
+                            </div>
+
                         </div>
                     </div>
                     <!-- END User Profile -->

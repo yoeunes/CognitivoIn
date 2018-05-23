@@ -54,14 +54,17 @@ class PipelineController extends Controller
 
         foreach ($stages as $stage)
         {
+            if ($stage['stage_name']!=null)
+            {
+                $pipelineStage = $stage['id'] > 0 ? PipelineStage::where('id', $stage['id'])->first() : new PipelineStage();
+                $pipelineStage->pipeline_id = $pipeline->id;
+                $pipelineStage->name = $stage['stage_name'];
+                $pipelineStage->completed = $stage['stage_completed'] ?? 1;
+                $pipelineStage->sequence =  $stage['stage_sequence'] ?? 1;
 
-            $pipelineStage = $stage['id'] > 0 ? PipelineStage::where('id', $stage['id'])->first() : new PipelineStage();
-            $pipelineStage->pipeline_id = $pipeline->id;
-            $pipelineStage->name = $stage['stage_name'];
-            $pipelineStage->completed = $stage['stage_completed'] ?? 1;
-            $pipelineStage->sequence =  $stage['stage_sequence'] ?? 1;
+                $pipelineStage->save();
+            }
 
-            $pipelineStage->save();
         }
 
         return response()->json('Done', 200);

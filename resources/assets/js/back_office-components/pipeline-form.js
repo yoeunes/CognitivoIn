@@ -71,7 +71,8 @@ Vue.component('pipeline-form',
             var app = this;
             app.id = data.id;
             app.name = data.name;
-            // app.stages.slice(0,1);
+
+             app.stages=[];
 
             for (var i = 0; i < data.stages.length; i++) {
                 app.stages.push({
