@@ -34,11 +34,11 @@
                     </div>
                     <div class="block-content">
                         <ul class="list-group push">
-                            <li @click="" class="list-group-item">
+                            <li class="list-group-item">
                                 <span class="js-task-badge badge badge-primary float-right animated bounceIn">@{{ activeTasks.length }}</span>
                                 <i class="fa fa-fw fa-tasks mr-5"></i> Active
                             </li>
-                            <li @click="" class="list-group-item">
+                            <li class="list-group-item">
                                 <span class="js-task-badge-completed badge badge-success float-right animated bounceIn">@{{ completedTasks.length }}</span>
                                 <i class="fa fa-fw fa-check mr-5"></i> Completed
                             </li>
@@ -153,7 +153,7 @@
                                 <tr v-for="task in activeTasks">
                                     <td class="text-center" style="width: 50px;">
                                         <label class="js-task-status css-control css-control-primary css-checkbox py-0">
-                                            <input type="checkbox" class="css-control-input">
+                                            <input type="checkbox" v-on:change="editTask(task)" class="css-control-input">
                                             <span class="css-control-indicator"></span>
                                         </label>
                                     </td>

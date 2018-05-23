@@ -156,10 +156,9 @@ Vue.component('model',
                     timer: 1500
                 });
 
-                resp= response.data;
+                resp = response.data;
             })
             .catch(ex => {
-
                 console.log(ex);
                 this.$swal('Error trying to preform action');
             });
