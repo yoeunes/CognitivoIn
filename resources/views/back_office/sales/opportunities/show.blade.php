@@ -72,151 +72,154 @@
                             <div class="input-group">
 
                                 <div class="input-group-append">
-                                  <router-view name="SearchBoxItem"
-                                  :current_company="{{request()->route('profile')}}" >
-
-                              </router-view>
-                                </div>
-                            </div>
-                        </div>
-                        {{-- </opportunity-member-form> --}}
-
-                    </div>
-                </div>
-                <!-- END Items -->
-
-                <!-- Members -->
-                <div class="block block-rounded">
-                    <div class="block-header block-header-default">
-                        <h3 class="block-title">Members</h3>
-                    </div>
-
-                    <div class="block-content">
-                        <ul class="nav-users push" v-for="member in members">
-                            <li>
-                                <a v-bind:href="member.slug" target="_blank">
-                                    <img class="img-avatar" :src="member.profile_img" alt="">
-                                    <i class="fa fa-circle text-success"></i> @{{ member.name }}
-                                    <div class="font-w400 font-size-xs text-muted">
-                                        <i class="fa fa-mail"></i> @{{ member.email }}
-                                    </div>
-                                </a>
-                            </li>
-                        </ul>
-
-                        <opportunity-member-form ref="member-form" inline-template>
-                            <div>
-                                <div class="input-group">
-                                    <router-view name="SearchBoxProfile"
+                                    <router-view name="SearchBoxItem"
                                     :current_company="{{request()->route('profile')}}" >
 
                                 </router-view>
-                                </div>
-                            </div>
-                        </opportunity-member-form>
-
-                    </div>
-                </div>
-                <!-- END Members -->
-            </div>
-            <!-- END Collapsible Tasks Navigation -->
-        </div>
-        <div class="col-md-7 col-xl-9">
-            <!-- Tasks -->
-            <!-- Tasks functionality (initialized in js/pages/be_pages_generic_todo.js) -->
-            <div class="js-tasks">
-
-                <!-- Add task -->
-                <opportunity-task-form ref="task-form" inline-template>
-                    <div>
-                        <div class="input-group input-group-lg">
-                            <input class="form-control" type="text" v-model="title" id="js-task-input" name="js-task-input" placeholder="Add a task and press enter..">
-                            <div class="input-group-append">
-                                <span @click="addTask()" class="input-group-text">
-                                    <i class="fa fa-plus"></i>
-                                </span>
                             </div>
                         </div>
                     </div>
-                </opportunity-task-form>
+                    {{-- </opportunity-member-form> --}}
 
-                <!-- END Add task -->
+                </div>
+            </div>
+            <!-- END Items -->
 
-                <!-- Tasks List -->
-                <h2 class="content-heading mb-10">Active</h2>
+            <!-- Members -->
+            <div class="block block-rounded">
+                <div class="block-header block-header-default">
+                    <h3 class="block-title">Members</h3>
+                </div>
 
-                <div class="js-task-list">
-                    <!-- Task -->
-                    <div  class="js-task block block-rounded mb-5 animated fadeIn" data-task-id="9" data-task-completed="false" data-task-starred="false">
-                        <table class="table table-borderless table-vcenter mb-0">
-                            <tbody>
-                                <tr v-for="task in activeTasks">
-                                    <td class="text-center" style="width: 50px;">
-                                        <label class="js-task-status css-control css-control-primary css-checkbox py-0">
-                                            <input type="checkbox" v-on:change="editTask(task)" class="css-control-input">
-                                            <span class="css-control-indicator"></span>
-                                        </label>
-                                    </td>
-                                    <td class="js-task-content">
+                <div class="block-content">
+                    <ul class="nav-users push" v-for="member in members">
+                        <li>
+                            <a v-bind:href="member.slug" target="_blank">
+                                <img class="img-avatar" :src="member.profile_img" alt="">
+                                <i class="fa fa-circle text-success"></i> @{{ member.name }}
+                                <div class="font-w400 font-size-xs text-muted">
+                                    <i class="fa fa-mail"></i> @{{ member.email }}
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+
+                    <opportunity-member-form ref="member-form" inline-template>
+                        <div>
+                            <div class="input-group">
+                                <router-view name="SearchBoxProfile" :current_company="{{request()->route('profile')}}"> </router-view>
+                            </div>
+                        </div>
+                    </opportunity-member-form>
+
+                </div>
+            </div>
+            <!-- END Members -->
+        </div>
+        <!-- END Collapsible Tasks Navigation -->
+    </div>
+    <div class="col-md-7 col-xl-9">
+        <!-- Tasks -->
+        <!-- Tasks functionality (initialized in js/pages/be_pages_generic_todo.js) -->
+        <div class="js-tasks">
+
+            <!-- Add task -->
+            <opportunity-task-form ref="task-form" inline-template>
+                <div>
+                    <div class="input-group input-group-lg">
+                        <b-field label="Name" expanded>
+                            <b-field>
+                                <b-select placeholder="Activity">
+                                    <option>Mr.</option>
+                                    <option>Ms.</option>
+                                </b-select>
+                                <b-input placeholder="Task" expanded></b-input>
+                            </b-field>
+                        </b-field>
+                        <div v-if="isOpen">
+                            Hi there!!
+                        </div>
+                    </div>
+                </div>
+            </opportunity-task-form>
+
+            <!-- END Add task -->
+
+            <!-- Tasks List -->
+            <h2 class="content-heading mb-10">Active</h2>
+
+            <div class="js-task-list">
+                <!-- Task -->
+                <div  class="js-task block block-rounded mb-5 animated fadeIn" data-task-id="9" data-task-completed="false" data-task-starred="false">
+                    <table class="table table-borderless table-vcenter mb-0">
+                        <tbody>
+                            <tr v-for="task in activeTasks">
+                                <td class="text-center" style="width: 50px;">
+                                    <label class="js-task-status css-control css-control-primary css-checkbox py-0">
+                                        <input type="checkbox" v-on:change="editTask(task)" class="css-control-input">
+                                        <span class="css-control-indicator"></span>
+                                    </label>
+                                </td>
+                                <td class="js-task-content">
+                                    <span class="font-w600">@{{ task.title }}</span>
+                                    <small>@{{ task.description }}</small>
+                                </td>
+                                <td class="text-right">
+                                    <button v-if="task.reminder_date != null" @click="editTask(task)" class="btn btn-sm btn-circle btn-alt-warning mr-5 mb-5" type="button">
+                                        <i class="si si-bell"></i>
+                                    </button>
+                                    <button @click="editTask(task)" class="js-task-star btn btn-sm btn-alt-info" type="button">
+                                        <i class="si si-pencil"></i>
+                                    </button>
+                                    <button @click="deleteTask(task)" class="js-task-remove btn btn-sm btn-alt-danger" type="button">
+                                        <i class="si si-close"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <!-- END Task -->
+            </div>
+            <!-- END Tasks List -->
+
+            <!-- Tasks List Completed -->
+            <h2 v-for="tasks in completedTasks" class="content-heading mb-10">Completed</h2>
+            <div class="js-task-list-completed">
+                <!-- Completed Task -->
+                <div class="js-task block block-rounded mb-5 animated fadeIn" data-task-id="3" data-task-completed="true" data-task-starred="false">
+                    <table class="table table-borderless table-vcenter bg-body-light mb-0">
+                        <tbody>
+                            <tr v-for="task in completedTasks">
+                                <td class="text-center" style="width: 50px;">
+                                    <label class="js-task-status css-control css-control-primary css-checkbox py-0">
+                                        <input type="checkbox" class="css-control-input" checked="">
+                                        <span class="css-control-indicator"></span>
+                                    </label>
+                                </td>
+                                <td class="js-task-content">
+                                    <del>
                                         <span class="font-w600">@{{ task.title }}</span>
                                         <small>@{{ task.description }}</small>
-                                    </td>
-                                    <td class="text-right">
-                                        <button v-if="task.reminder_date != null" @click="editTask(task)" class="btn btn-sm btn-circle btn-alt-warning mr-5 mb-5" type="button">
-                                            <i class="si si-bell"></i>
-                                        </button>
-                                        <button @click="editTask(task)" class="js-task-star btn btn-sm btn-alt-info" type="button">
-                                            <i class="si si-pencil"></i>
-                                        </button>
-                                        <button @click="deleteTask(task)" class="js-task-remove btn btn-sm btn-alt-danger" type="button">
-                                            <i class="si si-close"></i>
-                                        </button>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <!-- END Task -->
+                                    </del>
+                                </td>
+                                <td class="text-right" style="width: 100px;">
+                                    <button @click="editTask(task)" class="js-task-star btn btn-sm btn-alt-info" type="button">
+                                        <i class="fa fa-pencil"></i>
+                                    </button>
+                                    <button @click="deleteTask(task)" class="js-task-remove btn btn-sm btn-alt-danger" type="button">
+                                        <i class="fa fa-times"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
-                <!-- END Tasks List -->
-
-                <!-- Tasks List Completed -->
-                <h2 v-for="tasks in completedTasks" class="content-heading mb-10">Completed</h2>
-                <div class="js-task-list-completed">
-                    <!-- Completed Task -->
-                    <div class="js-task block block-rounded mb-5 animated fadeIn" data-task-id="3" data-task-completed="true" data-task-starred="false">
-                        <table class="table table-borderless table-vcenter bg-body-light mb-0">
-                            <tbody>
-                                <tr v-for="task in completedTasks">
-                                    <td class="text-center" style="width: 50px;">
-                                        <label class="js-task-status css-control css-control-primary css-checkbox py-0">
-                                            <input type="checkbox" class="css-control-input" checked="">
-                                            <span class="css-control-indicator"></span>
-                                        </label>
-                                    </td>
-                                    <td class="js-task-content">
-                                        <del>
-                                            <span class="font-w600">@{{ task.title }}</span>
-                                            <small>@{{ task.description }}</small>
-                                        </del>
-                                    </td>
-                                    <td class="text-right" style="width: 100px;">
-                                        <button @click="editTask(task)" class="js-task-star btn btn-sm btn-alt-info" type="button">
-                                            <i class="fa fa-pencil"></i>
-                                        </button>
-                                        <button @click="deleteTask(task)" class="js-task-remove btn btn-sm btn-alt-danger" type="button">
-                                            <i class="fa fa-times"></i>
-                                        </button>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <!-- END Completed Task -->
-                </div>
-                <!-- END Tasks -->
+                <!-- END Completed Task -->
             </div>
+            <!-- END Tasks -->
         </div>
-        <!-- END Tasks Content -->
     </div>
+    <!-- END Tasks Content -->
+</div>
 </div>

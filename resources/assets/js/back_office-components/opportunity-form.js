@@ -28,7 +28,8 @@ Vue.component('opportunity-form',
         {
             var app = this;
 
-            return app.tasks.filter(function(i) {
+            return app.tasks.filter(function(i)
+            {
                 return i.completed == 0
             })
         },
@@ -44,46 +45,54 @@ Vue.component('opportunity-form',
 
     methods:
     {
-
         editTask: function(task)
         {
             var app = this;
             var url = '/back-office/' + app.$parent.profile + '/sales/opportunities/' + app.id + '/tasks';
             var data =
             {
-                id: app.id,
-                activity_type: app.activity_type,
-                opportunity_id: app.opportunity_id,
-                sentiment: app.sentiment,
-                reminder_date: app.reminder_date,
-                date_started: app.date_started,
-                date_ended: app.date_ended,
-                title: app.title,
-                description: app.description,
-                geoloc: app.geoloc,
-                completed: app.completed == true ? false : true,
+                id: task.id,
+                activity_type: task.activity_type,
+                opportunity_id: task.opportunity_id,
+                sentiment: task.sentiment,
+                reminder_date: task.reminder_date,
+                date_started: task.date_started,
+                date_ended: task.date_ended,
+                title: task.title,
+                description: task.description,
+                geoloc: task.geoloc,
+                completed: task.completed
             }
 
             app.$parent.postSpecial(url, data)
             .then(function(response)
-            {
-
-                    tasks.id=response.id;
-                    tasks.activity_type=response.activity_type;
-                    tasks.opportunity_id=response.opportunity_id;
-                    tasks.sentiment=response.sentiment;
-                    tasks.reminder_date=response.reminder_date;
-                    tasks.date_started=response.date_started;
-                    tasks.date_ended=response.date_ended;
-                    tasks.title=response.title;
-                    tasks.description=response.description;
-                    tasks.geoloc=response.geoloc;
-                    tasks.completed=response.completed;
-
-
-
-            });
+            { });
         },
+
+        changeTaskState: function(task)
+        {
+            var app = this;
+            var url = '/back-office/' + app.$parent.profile + '/sales/opportunities/' + app.id + '/tasks';
+            var data =
+            {
+                id: task.id,
+                activity_type: task.activity_type,
+                opportunity_id: task.opportunity_id,
+                sentiment: task.sentiment,
+                reminder_date: task.reminder_date,
+                date_started: task.date_started,
+                date_ended: task.date_ended,
+                title: task.title,
+                description: task.description,
+                geoloc: task.geoloc,
+                completed: task.completed == true ? false : true,
+            }
+
+            app.$parent.postSpecial(url, data)
+            .then(function(response)
+            { });
+        },
+
         onEdit: function(data)
         {
             var app = this;

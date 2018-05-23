@@ -47,18 +47,13 @@
     <div id="app" class="main-content-boxed">
         <main id="main-container">
             <div>
-
-                    <div>
-                        @yield('main')
-                    </div>
-
+                @yield('main')
             </div>
         </main>
     </div>
 
     <!-- Codebase Core JS -->
-     <script src="/js/jquery.min.js"></script>
-    
+    <script src="/js/jquery.min.js"></script>
     <script src="/js/codebase.min.js"></script>
     <script src="{{ mix('/js/app.js') }}"></script>
 

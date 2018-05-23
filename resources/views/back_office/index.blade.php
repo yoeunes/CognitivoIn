@@ -1,9 +1,8 @@
 @extends('layouts.app')
 
 @section('main')
-    <model  profile="{{ request()->route('profile')->slug }}" inline-template>
-        <div>
-            <div id="page-container" class="sidebar-o side-scroll page-header-modern main-content-boxed side-trans-enabled">
+    <model profile="{{ request()->route('profile')->slug }}" inline-template>
+        <div id="page-container" class="sidebar-o side-scroll page-header-modern main-content-boxed side-trans-enabled">
                 <!-- Side Overlay-->
                 <aside id="side-overlay">
                     <!-- Side Overlay Scroll Container -->
@@ -362,12 +361,9 @@
                             <!-- User Dropdown -->
                             <div class="btn-group" role="group">
 
-
-
                                 <button type="button" class="btn btn-rounded btn-dual-secondary" id="page-header-user-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                                     {{ Auth::user()->profile->name }} <i class="fa fa-angle-down ml-5"></i>
                                 </button>
-
 
                                 <div class="dropdown-menu dropdown-menu-right min-width-150" aria-labelledby="page-header-user-dropdown" x-placement="bottom-end">
                                     <a class="dropdown-item" href="#">
@@ -468,7 +464,6 @@
                 <!-- END Header -->
 
                 <!-- Main Container -->
-
                 <div class="main-container">
                     <div class="container">
                         <div v-if="showModule == '1'">
@@ -538,10 +533,8 @@
                         <div v-if="showModule == 6.4">
                             @include('back_office/finance/account_movements')
                         </div>
-
                     </div>
                 </div>
-
                 <!-- END Main Container -->
 
                 <!-- Footer -->
@@ -556,6 +549,5 @@
                 </footer>
                 <!-- END Footer -->
             </div>
-        </div>
     </model>
 @endsection

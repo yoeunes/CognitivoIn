@@ -14,7 +14,8 @@ Vue.component('opportunity-task-form',
             description: '',
             geoloc: '',
             completed: false,
-            taske:[]
+
+            isOpen: false,
         }
     },
 
@@ -59,27 +60,6 @@ Vue.component('opportunity-task-form',
 
                 app.onReset();
             });
-        },
-
-
-
-        onEdit: function(data)
-        {
-            var app = this;
-
-            app.id = data.id;
-            app.activity_type = data.activity_type;
-            app.opportunity_id = data.opportunity_id;
-            app.sentiment = data.sentiment;
-
-            app.reminder_date = data.reminder_date;
-            app.date_started = data.date_started;
-            app.date_ended = data.date_ended;
-
-            app.title = data.title;
-            app.description = data.description;
-            app.geoloc = data.geoloc;
-            app.completed = data.completed;
         },
 
         onReset: function()
