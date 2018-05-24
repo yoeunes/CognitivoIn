@@ -11,6 +11,8 @@ use App\AccountMovement;
 use App\Scheduals;
 use App\Order;
 use App\OrderDetail;
+use App\Contract;
+use App\ContractDetail;
 use Carbon\Carbon;
 use DB;
 use App\Http\Controllers\Controller;
