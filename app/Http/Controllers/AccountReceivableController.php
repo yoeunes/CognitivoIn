@@ -198,13 +198,13 @@ class AccountReceivableController extends Controller
             $schedules = Scheduals::where('relationship_id', $relationship->id)
             ->where('account_movements.status','!=',3)
             ->leftjoin('account_movements', 'scheduals.id', 'account_movements.schedual_id')
-            ->select(DB::raw('max(scheduals.currency) as code'),
+            ->select(DB::raw('max(scheduals.currency1) as code'),
             DB::raw('max(scheduals.debit)-sum(account_movements.credit) as value'),
             DB::raw('max(scheduals.id) as InvoiceNumber'),
             DB::raw('max(scheduals.date) as InvoiceDate'),
             DB::raw('max(scheduals.date_exp) as Deadline'),
             DB::raw('max(scheduals.reference) as Reference'))
-            ->groupBy('account_movements.schedual_id')
+            ->groupBy('Scheduals.schedual_id')
             ->get();
 
 
