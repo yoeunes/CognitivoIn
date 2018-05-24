@@ -188,7 +188,7 @@ class AccountController extends Controller
         $account->currency ='PYG';
         $account->save();
 
-        $schedual=Schedual::where('relationship_id',$relationship->id)->orderBy('date_exp')->first();
+        $schedual=Scheduals::where('relationship_id',$relationship->id)->orderBy('date_exp')->first();
         $accountmovement = new AccountMovement();
         $accountmovement->schedual_id = $schedual->id;
         //$accountmovement->user_id = $relationship->id;
