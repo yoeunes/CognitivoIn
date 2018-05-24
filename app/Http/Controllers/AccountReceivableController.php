@@ -213,7 +213,7 @@ class AccountReceivableController extends Controller
                 $values[$j] = [
                     'CurrencyCode' => $schedules[$j]->code ,
                     'Value' => $schedules[$j]->value ,
-                    'ReferenceCode' => $schedules[$j]->reference,
+                    'ReferenceCode' => $schedules[$j]->Reference,
                     'InvoiceNumber' => $schedules[$j]->InvoiceNumber,
                     'InvoiceDate' => $schedules[$j]->InvoiceDate,
                     'Deadline' => $schedules[$j]->Deadline,
