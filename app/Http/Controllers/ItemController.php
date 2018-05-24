@@ -37,6 +37,7 @@ class ItemController extends Controller
     ->select(DB::raw('max(items.id) as id'),
     DB::raw('max(items.name) as name'),
     DB::raw('max(items.sku) as sku'),
+    DB::raw('sum(vat_details.coefficient) as coefficient'),
     DB::raw('max(items.unit_price) as unit_price'),
     DB::raw('max(items.unit_price) + (max(items.unit_price)*sum(vat_details.coefficient)) as unit_price_vat')
     )
