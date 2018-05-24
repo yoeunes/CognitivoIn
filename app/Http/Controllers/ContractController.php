@@ -36,7 +36,7 @@ class ContractController extends Controller
             ->where('contract_details.percent' ,'>', 0)
             ->where('contracts.profile_id' ,$profile->id)
             ->groupBy('contracts.id')
-            ->select('contracts.id','contracts.name')
+            ->select('contracts.id','max(contracts.name)')
             ->get();
         }
 
