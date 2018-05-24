@@ -29,6 +29,13 @@ class ContractController extends Controller
             ->take(100)
             ->get();
         }
+        else if($filter == 3)
+        {
+            $contract = Contract::
+            join('contract_details', 'contract_details.contract_id', 'contracts.id')
+            ->where('contract_details.percent' ,'>', 0)
+            ->get();
+        }
 
         return response()->json($contract);
     }
