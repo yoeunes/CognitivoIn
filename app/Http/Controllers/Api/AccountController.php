@@ -166,8 +166,8 @@ class AccountController extends Controller
             $detail->save();
         }
         if ($data['contract_id'] >0 ) {
-            $contract_detail=ContractDetail::where('contract_id',$data['contract_id'])->get();
-            foreach ($contract_detail as $key )
+            $contract_details=ContractDetail::where('contract_id',$data['contract_id'])->get();
+            foreach ($contract_details as $contract_detail )
             {
              $this->Generateschedual($relationship->id,
                                      $data['total_amount'] * $contract_detail->percent,
