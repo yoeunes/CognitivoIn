@@ -122,7 +122,10 @@ class AccountController extends Controller
         $order->number = $data['number'];
         $order->relationship_id = $relationship->id;
         $order->code = $data['code'];
-        $order->contract_id = $data['contract_id'];
+        if ($data['contract_id']>0) {
+            $order->contract_id = $data['contract_id'];
+        }
+
         //$order->code_expiry = $data['code_expiry'];
         $order->is_printed = $data['number'] != "" ? true : false;
         $order->date = Carbon::now();
@@ -160,7 +163,7 @@ class AccountController extends Controller
             $detail->unit_price = number_format($data_detail['unit_price'], 0, ',', '.');
             $detail->save();
         }
-        if (isset($data['contract_id'])) {
+        if ($data['contract_id'] >0 ) {
             $contract_detail=ContractDetail::where('contract_id',$data['contract_id'])->get();
             foreach ($contract_detail as $key )
             {
