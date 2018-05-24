@@ -190,9 +190,17 @@ class AccountController extends Controller
         $account->currency ='PYG';
         $account->save();
 
-        $schedual=Scheduals::where('relationship_id',$relationship->id)->orderBy('date_exp')->first();
+        $schedules = DB::select('
+        select
+        scheduals.currency as code, (scheduals.debit-(select if(sum(credit) is null,0,sum(credit)) from account_movements where `account_movements`.`status` != 3
+        and `scheduals`.`id` = `account_movements`.`schedual_id`)) as value,
+        scheduals.id as InvoiceNumber, scheduals.date as InvoiceDate, scheduals.date_exp as Deadline,
+        scheduals.reference as Reference from `scheduals`
+        where `relationship_id` = '. $relationship ->id . ' and `scheduals`.`deleted_at` is null and (scheduals.debit-(select if(sum(credit) is null,0,sum(credit)) from account_movements where `account_movements`.`status` != 3
+        and `scheduals`.`id` = `account_movements`.`schedual_id`)) >0  order by scheduals.date_exp limit  1');
+        $schedual = collect($schedules);
         $accountmovement = new AccountMovement();
-        $accountmovement->schedual_id = $schedual->id;
+        $accountmovement->schedual_id = $schedual[0]->id;
         //$accountmovement->user_id = $relationship->id;
         $accountmovement->account_id = $account->id;
         $accountmovement->type = $data['Type'];
