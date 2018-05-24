@@ -127,27 +127,13 @@
             <opportunity-task-form ref="task-form" inline-template>
                 <div>
                     <section>
-                        <b-collapse class="card">
-                            <div slot="trigger" slot-scope="props" class="card-header">
-                                <p class="card-header-title">
-                                    Component
-                                </p>
-                                <a class="card-header-icon">
-                                    <b-icon :icon="props.open ? 'menu-down' : 'menu-up'">
-                                    </b-icon>
-                                </a>
-                            </div>
-                            <div class="card-body">
-                                <div class="content">
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec iaculis mauris.
-                                </div>
-                            </div>
-                            <footer class="card-footer">
-                                <a class="card-footer-item">Save</a>
-                                <a class="card-footer-item">Edit</a>
-                                <a class="card-footer-item">Delete</a>
-                            </footer>
-                        </b-collapse>
+                        <div class="card-body">
+                            <h5 class="card-title">Card title</h5>
+                            <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                            <a href="#" class="card-link">Card link</a>
+                            <a href="#" class="card-link">Another link</a>
+                        </div>
                     </section>
                 </div>
             </opportunity-task-form>
