@@ -204,6 +204,7 @@ class AccountReceivableController extends Controller
             where `relationship_id` = 7 and `scheduals`.`deleted_at` is null');
 
               $schedules = collect($schedules);
+              return response()->json($schedules, '200');
             $values = [];
 
             for ($i = 0; $i < count($schedules) ; $i++)
