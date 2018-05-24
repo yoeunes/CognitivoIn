@@ -37,7 +37,7 @@ class ContractController extends Controller
             ->where('contracts.profile_id' ,$profile->id)
             ->groupBy('contracts.id')
             ->select(DB::raw('max(contracts.id) as id'),
-            DB::raw('max(contracts.name) as name')),
+            DB::raw('max(contracts.name) as name'))
             ->get();
         }
 
