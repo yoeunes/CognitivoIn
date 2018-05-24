@@ -247,7 +247,8 @@ class AccountController extends Controller
     public function AmountFromContract(Request $request, Profile $profile)
     {
 
-        $data = $request[0];
+        $data = $request;
+        return response()->json($data['total_amount'] , '500');
         if ($data['contract_id'] >0 )
         {
             $contract_details=ContractDetail::where('contract_id',$data['contract_id'])->orderBy('offset')->first();
