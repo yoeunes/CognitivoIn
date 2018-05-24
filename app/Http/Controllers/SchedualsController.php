@@ -87,6 +87,9 @@ class SchedualsController extends Controller
   {
     //
   }
-
+  public function GenreateSchedual(Request $request,Profile $profile)
+  {
+  
+  }
 
   }

@@ -159,26 +159,31 @@ class AccountController extends Controller
             $detail->unit_price = number_format($data_detail['unit_price'], 0, ',', '.');
             $detail->save();
         }
-
-        $schedual = new Scheduals();
-        $schedual->relationship_id = $relationship->id;
-        $schedual->currency = 'PYG';
-        $schedual->currency_rate = 1;
-        $schedual->date = Carbon::now();
-        $schedual->date_exp = Carbon::now();
-
-        if ($data['Type'] == 1)
+        $contract_detail=ContractDetail::where('contract_id',$request->contract_id)->get();
+        foreach ($contract_detail as $key )
         {
-            $schedual->credit = 0;
-            $schedual->debit = $data['total_amount'];
-        }
-        else
-        {
-            $schedual->credit = $data['total_amount'];
-            $schedual->debit = 0;
+          $schedual = new Scheduals();
+          $schedual->relationship_id = $relationship->id;
+          $schedual->currency = 'PYG';
+          $schedual->currency_rate = 1;
+          $schedual->date = Carbon::now();
+          $schedual->date_exp = Carbon::now($contract_detail->offset);
+
+          if ($data['Type'] == 1)
+          {
+              $schedual->credit = 0;
+              $schedual->debit = $data['total_amount'] * $contract_detail->percent;
+          }
+          else
+          {
+              $schedual->credit = $data['total_amount'] * $contract_detail->percent;
+              $schedual->debit = 0;
+          }
+
+          $schedual->save();
         }
 
-        $schedual->save();
+
 
         $account = Account::where('number', 1)->first() ?? new Account();
         $account->profile_id = $profile->id;
@@ -187,6 +192,7 @@ class AccountController extends Controller
         $account->currency ='PYG';
         $account->save();
 
+        $schedual=Schedual::where('relationship_id',$relationship->id)->orderBy('date_exp')->first();
         $accountmovement = new AccountMovement();
         $accountmovement->schedual_id = $schedual->id;
         //$accountmovement->user_id = $relationship->id;
