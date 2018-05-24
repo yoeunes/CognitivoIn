@@ -33,7 +33,7 @@ class ItemController extends Controller
   {
     $items = Item::where('items.profile_id', $profile->id)
     ->leftjoin('vats', 'items.vat_id', 'vats.id')
-    ->leftjoin('vat_details', 'vat_details.vat_id', 'items.id')
+    ->leftjoin('vat_details', 'vat_details.vat_id', 'vats.id')
     ->select(DB::raw('max(items.id) as id'),
     DB::raw('max(items.name) as name'),
     DB::raw('max(items.sku) as sku'),
