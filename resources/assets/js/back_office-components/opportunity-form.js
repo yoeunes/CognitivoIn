@@ -45,6 +45,16 @@ Vue.component('opportunity-form',
 
     methods:
     {
+        taskChecked: function(task)
+        {
+            var app = this;
+            var url = '/back-office/' + app.$parent.profile + '/sales/opportunities/' + app.id + '/tasks';
+
+            app.$parent.postSpecial(url, task)
+            .then(function(response)
+            { });
+        },
+
         editTask: function(task)
         {
             var app = this;
@@ -98,9 +108,9 @@ Vue.component('opportunity-form',
             var app = this;
             app.id = data.id;
             app.relationship_id = data.relationship_id;
-            app.$children[0].selectText = data.relationship.customer_alias + '|' +data.relationship.customer_taxid ;
-            app.pipeline_id  = data.pipeline_id;
-            app.currency  = data.currency;
+            app.$children[0].selectText = data.relationship.customer_alias + '|' + data.relationship.customer_taxid;
+            app.pipeline_id = data.pipeline_id;
+            app.currency = data.currency;
             app.deadline_date = data.deadline_date;
             app.name = data.name;
             app.description = data.description;

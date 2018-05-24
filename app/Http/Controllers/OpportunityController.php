@@ -45,6 +45,7 @@ class OpportunityController extends Controller
         $opportunity->relationship_id = $request->relationship_id;
         $opportunity->pipeline_id = $request->pipeline_id;
         $opportunity->deadline_date = $request->deadline_date;
+        $opportunity->name = $request->name;
         $opportunity->description = $request->description;
         $opportunity->status = 1;
         /// TODO: change this field value from default

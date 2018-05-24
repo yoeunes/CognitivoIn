@@ -55,6 +55,9 @@ Route::group(['middleware' => 'auth'], function ()
                 'contracts' => 'ContractController',
                 'contractdetail' => 'ContractDetailController'
             ]);
+
+            Route::post('opportunities/{opportunity}/tasks/checked', 'ProfileController@taskChecked');
+
         });
 
         Route::prefix('purchase')->group(function ()
@@ -85,5 +88,4 @@ Route::group(['middleware' => 'auth'], function ()
             ]);
         });
     });
-
 });

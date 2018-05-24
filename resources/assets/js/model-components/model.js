@@ -142,12 +142,10 @@ Vue.component('model',
         {
             var app = this;
             var resp;
-            //console.log($data);
+
             await axios.post(specialURL, $data)
             .then((response) =>
             {
-
-
                 this.$swal({
                     position: 'top-end',
                     type: 'success',

@@ -11,12 +11,12 @@
                         </p>
                     </div>
                     <div class="col-lg-7 offset-lg-1">
-                        <div class="form-group row">
-                            <div class="col-12">
-                                <label>Opportunity Name</label>
-                                <input type="text" class="form-control form-control-lg" v-model="description" placeholder="Give your pipeline a nice name">
-                            </div>
-                        </div>
+                        <b-field label="Opportunity Name" expanded>
+                            <b-input maxlength="200" v-model="name" placeholder="So whats this oportunity about?"></b-input>
+                        </b-field>
+                        <b-field label="Description" expanded>
+                            <b-input maxlength="200" v-model="description" placeholder="So whats this oportunity about?" type="textarea"></b-input>
+                        </b-field>
                         <div class="form-group row">
                             <div class="col-12">
                                 <label>Customer</label>
@@ -42,6 +42,11 @@
                             </div>
                         </div>
                         <div class="form-group row">
+                            <b-field label="Currency">
+                                <b-input placeholder="Currency" type="text" maxlength="3" has-counter>
+                                </b-input>
+                            </b-field>
+
                             <div class="col-6">
                                 <label>Currency</label>
                                 <input type="text" v-model="currency" class="form-control form-control-lg">

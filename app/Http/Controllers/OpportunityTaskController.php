@@ -31,20 +31,35 @@ class OpportunityTaskController extends Controller
     */
     public function store(Request $request, Profile $profile, Opportunity $opportunity)
     {
-      
-        if ($profile->id == $opportunity->profile_id)
+
+        if ($profile->id == $opportunity->profile_id && $request->title != '')
         {
             $opportunityTask = OpportunityTask::find($request->id) ?? new OpportunityTask();
             $opportunityTask->activity_type = $request->activity_type ?? 1;
             $opportunityTask->opportunity_id = $opportunity->id;
             $opportunityTask->sentiment = $request->sentiment ?? 0;
-            $opportunityTask->reminder_date = $request->reminder_date ?? null;
-            $opportunityTask->date_started = $request->date_started ?? Carbon::now();
-            $opportunityTask->date_ended = $request->date_ended ?? null;
-            $opportunityTask->title = $request->title ?? 'Title Missing';
+            $opportunityTask->reminder_date = $request->reminder_date != null ? Carbon::parse($request->reminder_date) : null;
+            $opportunityTask->date_started = $request->date_started != null ? Carbon::parse($request->date_started) : Carbon::now();
+            $opportunityTask->date_ended = $request->date_ended != null ? Carbon::parse($request->date_ended) : null;
+            $opportunityTask->title = $request->title;
             $opportunityTask->description = $request->description ?? null;
             $opportunityTask->geoloc = $request->geoloc ?? null;
             $opportunityTask->completed = $request->completed ?? 0;
+            $opportunityTask->save();
+
+            return response()->json($opportunityTask, 200);
+        }
+
+        return response()->json('Resource not found', 401);
+    }
+
+    public function taskChecked(Request $request, Profile $profile, Opportunity $opportunity)
+    {
+        $opportunityTask = OpportunityTask::find($request->id);
+
+        if ($opportunityTask)
+        {
+            $opportunityTask->completed = !$request->completed;
             $opportunityTask->save();
 
             return response()->json($opportunityTask, 200);

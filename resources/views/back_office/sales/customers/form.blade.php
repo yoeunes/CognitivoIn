@@ -1,61 +1,69 @@
 <customer-form ref="back_officeForm" inline-template>
     <div>
-        <div class="block block-rounded block-themed">
-            <div class="block-header bg-gd-primary">
-                <H3 class="block-title">Basic Information</H3>
-                <div class="block-options">
-                    <button v-on:click="$parent.onSave($data,false)" class="btn btn-sm btn-alt-primary">
-                        <i class="fa fa-save"></i> @lang('global.Save')
-                    </button>
-                    <button v-on:click="$parent.onSave($data,true)" class="btn btn-sm btn-alt-primary">
-                        <i class="fa fa-plus"></i> @lang('global.Save-and-New')
-                    </button>
-                    <button v-on:click="$parent.cancel()" class="btn btn-sm btn-alt-danger">
-                        <i class="fa fa-close"></i> @lang('global.Cancel')
-                    </button>
-                </div>
+
+        <!-- User Profile -->
+        <h2 class="content-heading text-black"> Commercial </h2>
+        <div class="row items-push">
+            <div class="col-lg-3">
+                <p class="text-muted">
+                    Load the customers commercial information, this information helps during order process.
+                </p>
             </div>
+            <div class="col-lg-7 offset-lg-1">
 
-            <div class="block-content block-content-full">
-                <div class="form-group row">
-                    <label class="col-12" for="sku">Gov Code</label>
-                    <div class="col-md-9">
-                        <input type="text" class="form-control"  v-model="customer_taxid">
-                        <div class="form-text text-muted">Further info about this input</div>
-                    </div>
-                </div>
+                <b-field label="Customer Name">
+                    <b-input v-model="customer_alias"></b-input>
+                </b-field>
 
-                <div class="form-group row">
-                    <label class="col-12" for="sku">Alias</label>
-                    <div class="col-md-9">
-                        <input type="text" class="form-control" v-model="customer_alias">
-                        <div class="form-text text-muted">Further info about this input</div>
-                    </div>
-                </div>
+                <b-field label="Government TaxID">
+                    <b-input v-model="customer_taxid"></b-input>
+                </b-field>
 
-                <div class="form-group row">
-                    <label class="col-12" for="sku">Address</label>
-                    <div class="col-md-9">
-                        <input type="text" class="form-control"  v-model="customer_address">
-                        <div class="form-text text-muted">Further info about this input</div>
-                    </div>
-                </div>
+                <b-field label="Default Contract" v-if="credit_limit != null">
+                    <b-input v-model="contract_id"></b-input>
+                </b-field>
 
-                <div class="form-group row">
-                    <label class="col-12" for="example-textarea-input">Telephone</label>
-                    <div class="col-9">
-                        <input type="text" class="form-control"  v-model="customer_telephone" />
-                    </div>
-                </div>
-
-                <div class="form-group row">
-                    <label class="col-12" for="example-textarea-input">Email</label>
-                    <div class="col-9">
-                    <input type="text" class="form-control"  v-model="customer_email" />
-                    </div>
-                </div>
+                <b-field label="Credit Limit">
+                    <b-input v-model="credit_limit"></b-input>
+                </b-field>
             </div>
         </div>
+        <!-- END User Profile -->
 
+        <!-- Personal Details -->
+        <h2 class="content-heading text-black"> Contact </h2>
+        <div class="row items-push">
+            <div class="col-lg-3">
+                <p class="text-muted">
+                    Load contact information such as address, emails, and telephone numbers.
+                </p>
+            </div>
+            <div class="col-lg-7 offset-lg-1">
+                <b-field label="Telephone">
+                    <b-input v-model="customer_telephone"></b-input>
+                </b-field>
+                <b-field label="Email">
+                    <b-input v-model="customer_email"></b-input>
+                </b-field>
+                <b-field label="Address">
+                    <b-input type="textarea" v-model="customer_address"></b-input>
+                </b-field>
+            </div>
+        </div>
+        <!-- END Personal Details -->
+
+        <div class="row">
+            <button v-on:click="$parent.onSave($data, false)" class="btn btn-outline-primary min-width-125 js-click-ripple-enabled m" data-toggle="click-ripple">
+                @lang('global.Save')
+            </button>
+
+            <button v-on:click="$parent.onSave($data, true)" class="btn btn-outline-primary min-width-125 js-click-ripple-enabled" data-toggle="click-ripple">
+                @lang('global.Save-and-New')
+            </button>
+
+            <button v-on:click="$parent.cancel()" class="btn btn-alt-secondary min-width-125 js-click-ripple-enabled" data-toggle="click-ripple">
+                @lang('global.Cancel')
+            </button>
+        </div>
     </div>
-</item-form>
+</customer-form>

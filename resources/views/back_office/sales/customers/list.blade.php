@@ -13,7 +13,7 @@
             <tr v-for="customer in list">
                 <td>@{{ customer.customer_taxid }}</td>
                 <td>@{{ customer.customer_alias }}</td>
-                <td>@{{ customer.email }}</td>
+                <td>@{{ customer.customer_email }}</td>
                 <td class="text-center">
                     <div class="btn-group">
                         <button v-on:click="onEdit(customer)" type="button" class="btn btn-sm btn-secondary js-tooltip-enabled" data-toggle="tooltip" data-original-title="Edit">
