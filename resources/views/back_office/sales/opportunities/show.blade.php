@@ -126,20 +126,29 @@
             <!-- Add task -->
             <opportunity-task-form ref="task-form" inline-template>
                 <div>
-                    <div class="input-group input-group-lg">
-                        <b-field label="Name" expanded>
-                            <b-field>
-                                <b-select placeholder="Activity">
-                                    <option>Mr.</option>
-                                    <option>Ms.</option>
-                                </b-select>
-                                <b-input placeholder="Task" expanded></b-input>
-                            </b-field>
-                        </b-field>
-                        <div v-if="isOpen">
-                            Hi there!!
-                        </div>
-                    </div>
+                    <section>
+                        <b-collapse class="card">
+                            <div slot="trigger" slot-scope="props" class="card-header">
+                                <p class="card-header-title">
+                                    Component
+                                </p>
+                                <a class="card-header-icon">
+                                    <b-icon :icon="props.open ? 'menu-down' : 'menu-up'">
+                                    </b-icon>
+                                </a>
+                            </div>
+                            <div class="card-body">
+                                <div class="content">
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec iaculis mauris.
+                                </div>
+                            </div>
+                            <footer class="card-footer">
+                                <a class="card-footer-item">Save</a>
+                                <a class="card-footer-item">Edit</a>
+                                <a class="card-footer-item">Delete</a>
+                            </footer>
+                        </b-collapse>
+                    </section>
                 </div>
             </opportunity-task-form>
 
@@ -184,7 +193,7 @@
             <!-- END Tasks List -->
 
             <!-- Tasks List Completed -->
-            <h2 v-for="tasks in completedTasks" class="content-heading mb-10">Completed</h2>
+            <h2 class="content-heading mb-10">Completed</h2>
             <div class="js-task-list-completed">
                 <!-- Completed Task -->
                 <div class="js-task block block-rounded mb-5 animated fadeIn" data-task-id="3" data-task-completed="true" data-task-starred="false">
@@ -205,7 +214,7 @@
                                 </td>
                                 <td class="text-right" style="width: 100px;">
                                     <button @click="editTask(task)" class="js-task-star btn btn-sm btn-alt-info" type="button">
-                                        <i class="fa fa-pencil"></i>
+                                        <i class="fa fa-eye"></i>
                                     </button>
                                     <button @click="deleteTask(task)" class="js-task-remove btn btn-sm btn-alt-danger" type="button">
                                         <i class="fa fa-times"></i>

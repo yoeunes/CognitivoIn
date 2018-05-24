@@ -36,7 +36,7 @@
     <!-- Stylesheets -->
     <!-- Codebase framework -->
     <link rel="stylesheet" href="{{ mix('/css/main.css') }}">
-
+    <link rel="stylesheet" href="//cdn.materialdesignicons.com/2.0.46/css/materialdesignicons.min.css">
     <!-- You can include a specific file from css/themes/ folder to alter the default color theme of the template. eg: -->
     <!-- <link rel="stylesheet" id="css-theme" href="assets/css/themes/flat.min.css"> -->
     <!-- END Stylesheets -->
