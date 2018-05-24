@@ -100,7 +100,7 @@ Route::group(['middleware' => 'auth:api'], function ()
             Route::get('list-currency', 'Api\ApiController@list_currency');
         });
 
-
+        Route::post('AmountFromContract', 'Api\AccountController@AmountFromContract');
         Route::post('SentReceipt', 'EmailController@sentemail');
         //Route::post('PaymentReceive', 'AccountMovementController@store');
         //Route::post('Anull', 'AccountMovementController@annull');

@@ -169,15 +169,15 @@ class AccountController extends Controller
             $contract_details=ContractDetail::where('contract_id',$data['contract_id'])->get();
             foreach ($contract_details as $contract_detail )
             {
-             $this->Generateschedual($relationship->id,
-                                     $data['total_amount'] * $contract_detail->percent,
-                                     Carbon::now()->addDays($contract_detail->offset),$data['Type']);
+                $this->Generateschedual($relationship->id,
+                $data['total_amount'] * $contract_detail->percent,
+                Carbon::now()->addDays($contract_detail->offset),$data['Type']);
             }
         }
         else {
             $this->Generateschedual($relationship->id,
-                                    $data['total_amount'],
-                                    Carbon::now(),$data['Type']);
+            $data['total_amount'],
+            Carbon::now(),$data['Type']);
         }
 
 
@@ -243,5 +243,16 @@ class AccountController extends Controller
         }
 
         $schedual->save();
+    }
+    public function AmountFromContract(Request $request, Profile $profile)
+    {
+
+        $data = $request[0];
+        if ($data['contract_id'] >0 )
+        {
+            $contract_details=ContractDetail::where('contract_id',$data['contract_id'])->orderBy('offset')->first();
+            return response()->json($data['total_amount'] * $contract_detail->percent, '200');
+        }
+        return response()->json($data['total_amount'] , '200');
     }
 }
