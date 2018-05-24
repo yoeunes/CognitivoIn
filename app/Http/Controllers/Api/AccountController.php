@@ -122,6 +122,7 @@ class AccountController extends Controller
         $order->number = $data['number'];
         $order->relationship_id = $relationship->id;
         $order->code = $data['code'];
+        $order->contract_id = $data['contract_id'];
         //$order->code_expiry = $data['code_expiry'];
         $order->is_printed = $data['number'] != "" ? true : false;
         $order->date = Carbon::now();
@@ -159,29 +160,21 @@ class AccountController extends Controller
             $detail->unit_price = number_format($data_detail['unit_price'], 0, ',', '.');
             $detail->save();
         }
-        $contract_detail=ContractDetail::where('contract_id',$request->contract_id)->get();
-        foreach ($contract_detail as $key )
-        {
-          $schedual = new Scheduals();
-          $schedual->relationship_id = $relationship->id;
-          $schedual->currency = 'PYG';
-          $schedual->currency_rate = 1;
-          $schedual->date = Carbon::now();
-          $schedual->date_exp = Carbon::now($contract_detail->offset);
-
-          if ($data['Type'] == 1)
-          {
-              $schedual->credit = 0;
-              $schedual->debit = $data['total_amount'] * $contract_detail->percent;
-          }
-          else
-          {
-              $schedual->credit = $data['total_amount'] * $contract_detail->percent;
-              $schedual->debit = 0;
-          }
-
-          $schedual->save();
+        if (isset($data['contract_id'])) {
+            $contract_detail=ContractDetail::where('contract_id',$data['contract_id'])->get();
+            foreach ($contract_detail as $key )
+            {
+             $this->Generateschedual($relationship->id,
+                                     $data['total_amount'] * $contract_detail->percent,
+                                     Carbon::now($contract_detail->offset))
+            }
         }
+        else {
+            $this->Generateschedual($relationship->id,
+                                    $data['total_amount'],
+                                    Carbon::now())
+        }
+
 
 
 
@@ -223,5 +216,27 @@ class AccountController extends Controller
         ];
 
         return response()->json($data2, '200');
+    }
+    public function Generateschedual($relationship_id,$amount,$exp_date)
+    {
+        $schedual = new Scheduals();
+        $schedual->relationship_id = ;
+        $schedual->currency = 'PYG';
+        $schedual->currency_rate = 1;
+        $schedual->date = Carbon::now();
+        $schedual->date_exp =$exp_date ;
+
+        if ($data['Type'] == 1)
+        {
+            $schedual->credit = 0;
+            $schedual->debit =$amount ;
+        }
+        else
+        {
+            $schedual->credit = $amount;
+            $schedual->debit = 0;
+        }
+
+        $schedual->save();
     }
 }
