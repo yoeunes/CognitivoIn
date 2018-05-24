@@ -169,13 +169,13 @@ class AccountController extends Controller
             {
              $this->Generateschedual($relationship->id,
                                      $data['total_amount'] * $contract_detail->percent,
-                                     Carbon::now($contract_detail->offset));
+                                     Carbon::now($contract_detail->offset),$data['Type']);
             }
         }
         else {
             $this->Generateschedual($relationship->id,
                                     $data['total_amount'],
-                                    Carbon::now());
+                                    Carbon::now(),$data['Type']);
         }
 
 
@@ -220,7 +220,7 @@ class AccountController extends Controller
 
         return response()->json($data2, '200');
     }
-    public function Generateschedual($relationship_id,$amount,$exp_date)
+    public function Generateschedual($relationship_id,$amount,$exp_date,$type)
     {
         $schedual = new Scheduals();
         $schedual->relationship_id = $relationship_id;
@@ -229,7 +229,7 @@ class AccountController extends Controller
         $schedual->date = Carbon::now();
         $schedual->date_exp =$exp_date ;
 
-        if ($data['Type'] == 1)
+        if ($type == 1)
         {
             $schedual->credit = 0;
             $schedual->debit =$amount ;
