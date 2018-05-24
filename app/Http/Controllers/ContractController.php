@@ -34,6 +34,8 @@ class ContractController extends Controller
             $contract = Contract::
             join('contract_details', 'contract_details.contract_id', 'contracts.id')
             ->where('contract_details.percent' ,'>', 0)
+            ->where('contracts.profile_id' ,$profile->id)
+
             ->get();
         }
 
