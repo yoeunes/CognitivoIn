@@ -220,7 +220,7 @@ class AccountController extends Controller
     public function Generateschedual($relationship_id,$amount,$exp_date)
     {
         $schedual = new Scheduals();
-        $schedual->relationship_id = ;
+        $schedual->relationship_id = $relationship_id;
         $schedual->currency = 'PYG';
         $schedual->currency_rate = 1;
         $schedual->date = Carbon::now();
