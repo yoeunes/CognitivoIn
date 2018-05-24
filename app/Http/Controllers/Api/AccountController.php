@@ -171,7 +171,7 @@ class AccountController extends Controller
             {
              $this->Generateschedual($relationship->id,
                                      $data['total_amount'] * $contract_detail->percent,
-                                     Carbon::now($contract_detail->offset),$data['Type']);
+                                     Carbon::now()->addDays($contract_detail->offset),$data['Type']);
             }
         }
         else {
