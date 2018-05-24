@@ -61,7 +61,7 @@
                 @lang('global.Save-and-New')
             </button>
 
-            <button v-on:click="$parent.cancel()" class="btn btn-alt-secondary min-width-125 js-click-ripple-enabled" data-toggle="click-ripple">
+            <button v-on:click="$parent.onCancel()" class="btn btn-alt-secondary min-width-125 js-click-ripple-enabled" data-toggle="click-ripple">
                 @lang('global.Cancel')
             </button>
         </div>

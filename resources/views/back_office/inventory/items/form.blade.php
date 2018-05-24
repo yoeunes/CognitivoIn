@@ -23,20 +23,20 @@
                     </div>
                 </div>
 
-                <div class="form-group row">
-                    <div class="col-12">
-                        <label for="crypto-settings-email">Short Description</label>
-                        <textarea class="form-control" v-model="short_description" rows="3"></textarea>
-                        appears on search pages to help understand what the product or service is.
-                    </div>
-                </div>
+                <b-field label="Short Description">
+                    <b-input maxlength="128" v-model="short_description" type="textarea"></b-input>
+                </b-field>
 
-                <div class="form-group row">
-                    <div class="col-12">
-                        <label for="crypto-settings-email">Long Description</label>
-                        <textarea class="form-control" v-model="long_description" rows="8"></textarea>
-                    </div>
+                <b-field label="Long Description">
+                    <b-input maxlength="200" v-model="long_description" type="textarea"></b-input>
+                </b-field>
+
+                <div class="field">
+                    <b-switch v-model="is_global">This product is a Global</b-switch>
                 </div>
+                <b-field label="Global Product" v-if="is_global == false">
+                    <b-input v-model="id_item"></b-input>
+                </b-field>
             </div>
         </div>
         <!-- END User Profile -->
@@ -53,12 +53,13 @@
             <div class="col-lg-7 offset-lg-1">
                 <div class="form-group row">
                     <div class="col-6">
-                        <label>Selling Price</label>
-                        <input type="text" class="form-control form-control-lg" v-model="unit_price">
-                    </div>
-                    <div class="col-6">
                         <label>Currency</label>
                         <input type="text" class="form-control form-control-lg" v-model="currency" disabled="">
+                    </div>
+
+                    <div class="col-6">
+                        <label>Selling Price</label>
+                        <input type="text" class="form-control form-control-lg" v-model="unit_price">
                     </div>
                 </div>
 

@@ -21,8 +21,8 @@
                             </td>
 
                             <td class="text-right">
-                                <a @click="onEdit(contract,false)" class="m-btn btn btn-secondary"><i class="la la-pencil m--font-brand"></i></a>
-                                <a @click="onDelete(contract)" class="m-btn btn btn-secondary"><i class="la la-trash m--font-danger"></i></a>
+                                <a @click="$parent.onEdit(contract,false)" class="m-btn btn btn-secondary"><i class="la la-pencil m--font-brand"></i></a>
+                                <a @click="$parent.onDelete(contract)" class="m-btn btn btn-secondary"><i class="la la-trash m--font-danger"></i></a>
                             </td>
                         </tr>
                     </div>

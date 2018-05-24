@@ -57868,6 +57868,7 @@ Vue.component('item-form', {
     data: function data() {
         return {
             id: 0,
+            item_id: '',
             profile_id: '',
             name: '',
             sku: '',
@@ -57878,6 +57879,7 @@ Vue.component('item-form', {
             unit_price: '',
             unit_cost: '',
             is_active: true,
+            is_global: true,
             currencies: [],
             vats: []
         };
@@ -57889,6 +57891,7 @@ Vue.component('item-form', {
             var app = this;
             app.id = data.id;
             app.profile_id = data.profile_id;
+            app.item_id = app.is_global == false ? item_id : null;
             app.name = data.name;
             app.sku = data.sku;
             app.vat_id = data.vat_id;
@@ -57905,6 +57908,7 @@ Vue.component('item-form', {
             var app = this;
             app.id = null;
             app.profile_id = null;
+            app.item_id = null;
             app.name = null;
             app.sku = null;
             app.vat_id = null;
