@@ -195,34 +195,30 @@ class AccountReceivableController extends Controller
 
 
         if (isset($relationship)) {
-            $schedules = Scheduals::where('relationship_id', $relationship->id)
-            ->where('account_movements.status','!=',3)
-            ->leftjoin('account_movements', 'scheduals.id', 'account_movements.schedual_id')
-            ->select(DB::raw('max(scheduals.currency1) as code'),
-            DB::raw('max(scheduals.debit)-sum(account_movements.credit) as value'),
-            DB::raw('max(scheduals.id) as InvoiceNumber'),
-            DB::raw('max(scheduals.date) as InvoiceDate'),
-            DB::raw('max(scheduals.date_exp) as Deadline'),
-            DB::raw('max(scheduals.reference) as Reference'))
-            ->groupBy('Scheduals.schedual_id')
-            ->get();
+            $schedules = DB::select('
+            select
+            scheduals.currency as code, (scheduals.debit-(select if(sum(credit) is null,0,sum(credit)) from account_movements where `account_movements`.`status` != 3
+            and `scheduals`.`id` = `account_movements`.`schedual_id`)) as value,
+            scheduals.id as InvoiceNumber, scheduals.date as InvoiceDate, scheduals.date_exp as Deadline,
+            scheduals.reference as Reference from `scheduals`
+            where `relationship_id` = 7 and `scheduals`.`deleted_at` is null');
 
-
+              $schedules = collect($schedules);
             $values = [];
 
             for ($i = 0; $i < count($schedules) ; $i++)
             {
                 // if ($schedules[$i]->value !="0.00") {
-                    $j=0;
-                    $values[$j] = [
-                        'CurrencyCode' => $schedules[$j]->code ,
-                        'Value' => $schedules[$j]->value ,
-                        'ReferenceCode' => $schedules[$j]->reference,
-                        'InvoiceNumber' => $schedules[$j]->InvoiceNumber,
-                        'InvoiceDate' => $schedules[$j]->InvoiceDate,
-                        'Deadline' => $schedules[$j]->Deadline,
-                    ];
-                    $j=$j+1;
+                $j=0;
+                $values[$j] = [
+                    'CurrencyCode' => $schedules[$j]->code ,
+                    'Value' => $schedules[$j]->value ,
+                    'ReferenceCode' => $schedules[$j]->reference,
+                    'InvoiceNumber' => $schedules[$j]->InvoiceNumber,
+                    'InvoiceDate' => $schedules[$j]->InvoiceDate,
+                    'Deadline' => $schedules[$j]->Deadline,
+                ];
+                $j=$j+1;
                 // }
 
             }
@@ -242,31 +238,31 @@ class AccountReceivableController extends Controller
     }
 
     public function annull(Request $request, Profile $profile,$id)
-  {
-    $accountMovement = AccountMovement::where('id',$id)
-    ->with('account')
-    ->first();
-
-    if (isset($accountMovement))
     {
-      $account = $accountMovement->account;
+        $accountMovement = AccountMovement::where('id',$id)
+        ->with('account')
+        ->first();
 
-      //Make sure that profile requesting change is owner of account movement. if not,
-      //we cannot allow user to delete something that does not belong to them.
-      if (isset($account))
-      {
-        if ($account->profile_id == $profile->id)
+        if (isset($accountMovement))
         {
-          $accountMovement->status = 3;
-          $accountMovement->comment = $request['Comment'];
-          $accountMovement->save();
+            $account = $accountMovement->account;
 
-          return response()->json('Annulled', 200);
+            //Make sure that profile requesting change is owner of account movement. if not,
+            //we cannot allow user to delete something that does not belong to them.
+            if (isset($account))
+            {
+                if ($account->profile_id == $profile->id)
+                {
+                    $accountMovement->status = 3;
+                    $accountMovement->comment = $request['Comment'];
+                    $accountMovement->save();
+
+                    return response()->json('Annulled', 200);
+                }
+            }
+
         }
-      }
 
+        return response()->json('Resource not found', 404);
     }
-
-    return response()->json('Resource not found', 404);
-  }
 }
