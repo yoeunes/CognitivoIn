@@ -248,11 +248,11 @@ class AccountController extends Controller
     {
 
         $data = $request;
-    
+
         if ($data['contract_id'] >0 )
         {
             $contract_details=ContractDetail::where('contract_id',$data['contract_id'])->orderBy('offset')->first();
-            return response()->json($data['total_amount'] * $contract_detail->percent, '200');
+            return response()->json($data['total_amount'] * $contract_details->percent, '200');
         }
         return response()->json($data['total_amount'] , '200');
     }
