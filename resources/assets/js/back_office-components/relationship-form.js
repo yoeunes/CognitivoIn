@@ -1,5 +1,5 @@
 
-Vue.component('customer-form',
+Vue.component('relationship-form',
 {
     data() {
         return {

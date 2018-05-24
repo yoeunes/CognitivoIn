@@ -274,7 +274,7 @@
                                             </a>
                                             <ul>
                                                 <li>
-                                                    <a @click="" href="#">Dashboard</a>
+                                                    <a @click="showModule = '1.5'" href="#">Dashboard</a>
                                                 </li>
                                                 <li>
                                                     <a @click="onList('items', 5.1)" href="#">
@@ -305,7 +305,7 @@
                                             </a>
                                             <ul>
                                                 <li>
-                                                    <a @click="" href="#">Dashboard</a>
+                                                    <a @click="showModule = '1.6'" href="#">Dashboard</a>
                                                 </li>
                                                 <li>
                                                     <a @click="onList('accounts', 6.1)" href="#">Accounts</a>
@@ -490,6 +490,10 @@
                             @include('back_office/configs/vats')
                         </div>
 
+                        <div v-if="showModule == '1.3'">
+                            @include('back_office/sales/dashboard')
+                        </div>
+
                         <div v-if="showModule == 3.1">
                             @include('back_office/sales/customers')
                         </div>
@@ -506,6 +510,18 @@
                             @include('back_office/sales/orders')
                         </div>
 
+                        <div v-if="showModule == '4.1'">
+                            @include('back_office/purchase/suppliers')
+                        </div>
+
+                        <div v-if="showModule == '1.4'">
+                            @include('back_office/purchase/dashboard')
+                        </div>
+
+                        <div v-if="showModule == '1.5'">
+                            @include('back_office/inventory/dashboard')
+                        </div>
+
                         <div v-if="showModule == 5.1">
                             @include('back_office/inventory/items')
                         </div>
@@ -516,6 +532,10 @@
 
                         <div v-if="showModule == 5.3">
                             @include('back_office/inventory/item_movements')
+                        </div>
+
+                        <div v-if="showModule == '1.6'">
+                            @include('back_office/finance/dashboard')
                         </div>
 
                         <div v-if="showModule == 6.1">

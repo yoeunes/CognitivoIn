@@ -28,8 +28,8 @@ class SupplierController extends Controller
     public function store(Request $request, Profile $profile)
     {
         $relationship = new Relationship();
-        $relationship->supplier_id = $profile->id;
-        $relationship->supplier_accepted = true;
+        $relationship->customer_id = $profile->id;
+        $relationship->customer_accepted = true;
 
         $relationship->supplier_taxid = $request->supplier_taxid;
         $relationship->supplier_alias = $request->supplier_alias;
@@ -64,7 +64,7 @@ class SupplierController extends Controller
     */
     public function update(Request $request, Profile $profile, Relationship $relationship )
     {
-        if ($profile->id != $relationship->supplier_id)
+        if ($profile->id != $relationship->customer_id)
         {
             $relationship->supplier_taxid = $request->supplier_taxid;
             $relationship->supplier_alias = $request->supplier_alias;
@@ -88,7 +88,7 @@ class SupplierController extends Controller
     */
     public function destroy(Relationship $relationship)
     {
-        if ($profile->id != $relationship->supplier_id)
+        if ($profile->id != $relationship->customer_id)
         {
             $customer->delete();
             return response()->json('Ok', 200);

@@ -43,7 +43,7 @@
                             <i class="si si-users fa-3x text-body-bg-dark"></i>
                         </div>
                         <div class="font-size-h3 font-w600 js-count-to-enabled" data-toggle="countTo" data-speed="1000" data-to="4252">4252</div>
-                        <div class="font-size-sm font-w600 text-uppercase text-muted">Online</div>
+                        <div class="font-size-sm font-w600 text-uppercase text-muted">Pending</div>
                     </div>
                 </a>
             </div>
@@ -55,7 +55,7 @@
                 <div class="block">
                     <div class="block-header">
                         <h3 class="block-title">
-                            Sales <small>This week</small>
+                            Cashflow <small>This week</small>
                         </h3>
                         <div class="block-options">
                             <button type="button" class="btn-block-option" data-toggle="block-option" data-action="state_toggle" data-action-mode="demo">
@@ -103,7 +103,7 @@
             <div class="block">
                 <div class="block-header">
                     <h3 class="block-title">
-                        Earnings <small>This week</small>
+                        Accounts Pending <small>This week</small>
                     </h3>
                     <div class="block-options">
                         <button type="button" class="btn-block-option" data-toggle="block-option" data-action="state_toggle" data-action-mode="demo">

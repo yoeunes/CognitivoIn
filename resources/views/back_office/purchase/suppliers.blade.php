@@ -19,6 +19,7 @@
                 </div>
             </div>
         </div>
+
         <div class="col-md-6 col-xl-3">
             <a class="block block-rounded block-link-shadow" @click="onCreate()" href="#" v-if="showList">
                 <div class="block-content block-content-full block-sticky-options">

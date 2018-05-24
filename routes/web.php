@@ -43,6 +43,7 @@ Route::group(['middleware' => 'auth'], function ()
             Route::get('dashboard', 'BackOfficeController@dashboardSales');
             Route::resources([
                 'customers' => 'CustomerController',
+                'suppliers' => 'SupplierController',
                 'opportunities' => 'OpportunityController',
                 'opportunities/{opportunity}/tasks' => 'OpportunityTaskController',
                 'orders' => 'OrderController',

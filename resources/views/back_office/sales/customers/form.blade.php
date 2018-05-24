@@ -1,4 +1,4 @@
-<customer-form ref="back_officeForm" inline-template>
+<relationship-form ref="back_officeForm" inline-template>
     <div>
 
         <!-- User Profile -->
@@ -66,4 +66,4 @@
             </button>
         </div>
     </div>
-</customer-form>
+</relationship-form>

@@ -1,6 +1,6 @@
 
 require('./contract-form');
-require('./customer-form');
+require('./relationship-form');
 require('./item-form');
 require('./location-form');
 require('./opportunity-form');

@@ -57753,7 +57753,7 @@ __webpack_require__(165);
 
 
 __webpack_require__(152);
-__webpack_require__(153);
+__webpack_require__(200);
 __webpack_require__(154);
 __webpack_require__(155);
 __webpack_require__(156);
@@ -57858,68 +57858,7 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('contract-form', {
 });
 
 /***/ }),
-/* 153 */
-/***/ (function(module, exports) {
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-Vue.component('customer-form', {
-    data: function data() {
-        var _ref;
-
-        return _ref = {
-            id: 0,
-            customer_alias: '',
-            customer_taxid: '',
-            customer_address: '',
-            customer_telephone: '',
-            customer_email: ''
-        }, _defineProperty(_ref, 'customer_telephone', ''), _defineProperty(_ref, 'supplier_alias', ''), _defineProperty(_ref, 'supplier_taxid', ''), _defineProperty(_ref, 'supplier_address', ''), _defineProperty(_ref, 'supplier_telephone', ''), _defineProperty(_ref, 'supplier_email', ''), _defineProperty(_ref, 'supplier_telephone', ''), _ref;
-    },
-
-
-    methods: {
-        onEdit: function onEdit(data) {
-            var app = this;
-
-            app.id = data.id;
-            app.customer_alias = data.customer_alias;
-            app.customer_taxid = data.customer_taxid;
-            app.customer_address = data.customer_address;
-            app.customer_telephone = data.customer_telephone;
-            app.customer_email = data.customer_email;
-            app.customer_telephone = data.customer_telephone;
-            app.supplier_alias = data.supplier_alias;
-            app.supplier_taxid = data.supplier_taxid;
-            app.supplier_address = data.supplier_address;
-            app.supplier_telephone = data.supplier_telephone;
-            app.supplier_email = data.supplier_email;
-            app.supplier_telephone = data.supplier_telephone;
-        },
-
-        onReset: function onReset(isnew) {
-            var app = this;
-
-            app.id = null;
-            app.customer_alias = null;
-            app.customer_taxid = null;
-            app.customer_address = null;
-            app.customer_telephone = null;
-            app.customer_email = null;
-            app.customer_telephone = null;
-            app.supplier_alias = null;
-            app.supplier_taxid = null;
-            app.supplier_address = null;
-            app.supplier_telephone = null;
-            app.supplier_email = null;
-            app.supplier_telephone = null;
-        }
-    },
-
-    mounted: function mounted() {}
-});
-
-/***/ }),
+/* 153 */,
 /* 154 */
 /***/ (function(module, exports) {
 
@@ -62395,6 +62334,81 @@ if (false) {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 187 */,
+/* 188 */,
+/* 189 */,
+/* 190 */,
+/* 191 */,
+/* 192 */,
+/* 193 */,
+/* 194 */,
+/* 195 */,
+/* 196 */,
+/* 197 */,
+/* 198 */,
+/* 199 */,
+/* 200 */
+/***/ (function(module, exports) {
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+Vue.component('relationship-form', {
+    data: function data() {
+        var _ref;
+
+        return _ref = {
+            id: 0,
+            customer_alias: '',
+            customer_taxid: '',
+            customer_address: '',
+            customer_telephone: '',
+            customer_email: ''
+        }, _defineProperty(_ref, 'customer_telephone', ''), _defineProperty(_ref, 'supplier_alias', ''), _defineProperty(_ref, 'supplier_taxid', ''), _defineProperty(_ref, 'supplier_address', ''), _defineProperty(_ref, 'supplier_telephone', ''), _defineProperty(_ref, 'supplier_email', ''), _defineProperty(_ref, 'supplier_telephone', ''), _ref;
+    },
+
+
+    methods: {
+        onEdit: function onEdit(data) {
+            var app = this;
+
+            app.id = data.id;
+            app.customer_alias = data.customer_alias;
+            app.customer_taxid = data.customer_taxid;
+            app.customer_address = data.customer_address;
+            app.customer_telephone = data.customer_telephone;
+            app.customer_email = data.customer_email;
+            app.customer_telephone = data.customer_telephone;
+            app.supplier_alias = data.supplier_alias;
+            app.supplier_taxid = data.supplier_taxid;
+            app.supplier_address = data.supplier_address;
+            app.supplier_telephone = data.supplier_telephone;
+            app.supplier_email = data.supplier_email;
+            app.supplier_telephone = data.supplier_telephone;
+        },
+
+        onReset: function onReset(isnew) {
+            var app = this;
+
+            app.id = null;
+            app.customer_alias = null;
+            app.customer_taxid = null;
+            app.customer_address = null;
+            app.customer_telephone = null;
+            app.customer_email = null;
+            app.customer_telephone = null;
+            app.supplier_alias = null;
+            app.supplier_taxid = null;
+            app.supplier_address = null;
+            app.supplier_telephone = null;
+            app.supplier_email = null;
+            app.supplier_telephone = null;
+        }
+    },
+
+    mounted: function mounted() {}
+});
 
 /***/ })
 /******/ ]);
