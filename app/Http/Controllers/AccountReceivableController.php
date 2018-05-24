@@ -206,11 +206,11 @@ class AccountReceivableController extends Controller
               $schedules = collect($schedules);
 
             $values = [];
-
+            $j=0;
             for ($i = 0; $i < count($schedules) ; $i++)
             {
                 // if ($schedules[$i]->value !="0.00") {
-                $j=0;
+
                 $values[$j] = [
                     'CurrencyCode' => $schedules[$j]->code ,
                     'Value' => $schedules[$j]->value ,
@@ -223,7 +223,7 @@ class AccountReceivableController extends Controller
                 // }
 
             }
-  return response()->json($values, '200');
+  
             //for each currency requested, run loop and add into array
 
             $return[] = [
