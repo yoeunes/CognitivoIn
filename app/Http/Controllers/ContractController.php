@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Contract;
 use App\ContractDetail;
 use App\Profile;
+use DB;
 use Illuminate\Http\Request;
 
 class ContractController extends Controller
