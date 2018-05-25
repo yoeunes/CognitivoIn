@@ -91,14 +91,14 @@ class OpportunityTaskController extends Controller
     * @param  \App\OpportunityTask  $opportunityTask
     * @return \Illuminate\Http\Response
     */
-    public function destroy(OpportunityTask $opportunityTask)
+    public function destroy(Profile $profile, Opportunity $opportunity, OpportunityTask $opportunityTask)
     {
-        if ($contract->profile_id == $profile->id)
-        {
+        //if ($opportunityTask->opportunity_id == $opportunity->id && $opportunity->profile_id == $profile->id)
+        //{
             //No need for soft delete.
-            $contract->forceDelete();
+            $opportunityTask->forceDelete();
             return response()->json('200', 200);
-        }
+        //}
 
         return response()->json('Resource not found', 401);
     }

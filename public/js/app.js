@@ -58097,50 +58097,14 @@ Vue.component('opportunity-form', {
             var app = this;
             var url = '/back-office/' + app.$parent.profile + '/sales/opportunities/' + app.id + '/tasks';
             var data = {
-                id: task.id,
-                activity_type: task.activity_type,
-                opportunity_id: task.opportunity_id,
-                sentiment: task.sentiment,
-                reminder_date: task.reminder_date,
-                date_started: task.date_started,
-                date_ended: task.date_ended,
-                title: task.title,
-                description: task.description,
-                geoloc: task.geoloc,
-                completed: task.completed
+                id: task.id
             };
 
             app.$parent.deleteSpecial(url, data).then(function (response) {
-                var index = this.tasks.findIndex(function (x) {
-                    return x.id === $data.id;
-                });
-                this.tasks.splice(index, 1);
+                // let index = app.tasks.findIndex(x => x.id === task.id);
+                // app.tasks.splice(index, 1);
             });
         },
-
-        // changeTaskState: function(task)
-        // {
-        //     var app = this;
-        //     var url = '/back-office/' + app.$parent.profile + '/sales/opportunities/' + app.id + '/tasks';
-        //     var data =
-        //     {
-        //         id: task.id,
-        //         activity_type: task.activity_type,
-        //         opportunity_id: task.opportunity_id,
-        //         sentiment: task.sentiment,
-        //         reminder_date: task.reminder_date,
-        //         date_started: task.date_started,
-        //         date_ended: task.date_ended,
-        //         title: task.title,
-        //         description: task.description,
-        //         geoloc: task.geoloc,
-        //         completed: task.completed == true ? false : true,
-        //     }
-        //
-        //     app.$parent.postSpecial(url, data)
-        //     .then(function(response)
-        //     { });
-        // },
 
         onEdit: function onEdit(data) {
             var app = this;

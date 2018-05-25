@@ -51,343 +51,343 @@
                     </div>
 
                     {{-- <div class="block-content">
-                        <ul class="nav-users push" v-for="item in items">
-                            <li>
-                                <a href="#" target="_blank">
-                                    <img class="img-avatar" src="/img/avatars/avatar0.jpg" alt="">
-                                    <i class="fa fa-circle text-success"></i> @{{ item.name }}
-                                    <div class="font-w400 font-size-xs text-muted">
-                                        <i class="fa fa-mail"></i> @{{ item.email }}
-                                    </div>
-                                </a>
-                            </li>
-                        </ul>
-                        <div>
-                            <div class="input-group">
-
-                                <div class="input-group-append">
-                                    <router-view name="SearchBoxItem" :current_company="{{request()->route('profile')}}"> </router-view>
-                                </div>
-                            </div>
-                        </div>
-                    </div> --}}
-
-
+                    <ul class="nav-users push" v-for="item in items">
+                    <li>
+                    <a href="#" target="_blank">
+                    <img class="img-avatar" src="/img/avatars/avatar0.jpg" alt="">
+                    <i class="fa fa-circle text-success"></i> @{{ item.name }}
+                    <div class="font-w400 font-size-xs text-muted">
+                    <i class="fa fa-mail"></i> @{{ item.email }}
                 </div>
-                <!-- END Items -->
+            </a>
+        </li>
+    </ul>
+    <div>
+    <div class="input-group">
 
-                <!-- Members -->
-                <div class="block block-rounded">
-                    <div class="block-header block-header-default">
-                        <h3 class="block-title">Members</h3>
+    <div class="input-group-append">
+    <router-view name="SearchBoxItem" :current_company="{{request()->route('profile')}}"> </router-view>
+</div>
+</div>
+</div>
+</div> --}}
 
-                    </div>
 
-                    <opportunity-member-form ref="member-form" inline-template>
-                        {{-- <div class="block-content"> --}}
+</div>
+<!-- END Items -->
 
-                        <b-field>
-                            <b-taginput v-model="$parent.members" :data="filteredProfiles"
-                            autocomplete field="name" icon="label" placeholder="Search for a Member"
-                            @typing="getProfiles" @add="addMember()">
-                                <template slot-scope="props">
-                                    <strong>@{{props.option.id}}</strong>: @{{props.option.slug}}
-                                </template>
-                                <template slot="empty">
-                                    There are no items
-                                </template>
-                            </b-taginput>
-                        </b-field>
+<!-- Members -->
+<div class="block block-rounded">
+    <div class="block-header block-header-default">
+        <h3 class="block-title">Members</h3>
 
-                        {{-- </div> --}}
-
-                    </opportunity-member-form>
-                </div>
-                <!-- END Members -->
-            </div>
-            <!-- END Collapsible Tasks Navigation -->
-        </div>
-        <div class="col-md-7 col-xl-9">
-            <!-- Tasks -->
-            <!-- Tasks functionality (initialized in js/pages/be_pages_generic_todo.js) -->
-            <div class="js-tasks">
-
-                <!-- Add task -->
-                <opportunity-task-form ref="task-form" inline-template>
-                    <section>
-                        <b-field expanded>
-                            <b-dropdown v-model="activity_type">
-                                <button class="button is-primary" type="button" slot="trigger">
-                                    <template v-if="activity_type == 1">
-                                        <b-icon icon="format-list-checks"></b-icon>
-                                        <span>Task</span>
-                                    </template>
-                                    <template v-else-if="activity_type == 2">
-                                        <b-icon icon="phone"></b-icon>
-                                        <span>Phone</span>
-                                    </template>
-                                    <template v-else-if="activity_type == 3">
-                                        <b-icon icon="video"></b-icon>
-                                        <span>Video Conf.</span>
-                                    </template>
-                                    <template v-else-if="activity_type == 4">
-                                        <b-icon icon="account-multiple"></b-icon>
-                                        <span>Meeting</span>
-                                    </template>
-                                    <template v-else-if="activity_type == 5">
-                                        <b-icon icon="map-marker-radius"></b-icon>
-                                        <span>Visit</span>
-                                    </template>
-                                    <template v-else>
-                                        <b-icon icon="email"></b-icon>
-                                        <span>Email</span>
-                                    </template>
-                                    <b-icon icon="menu-down"></b-icon>
-                                </button>
-
-                                <b-dropdown-item :value="1">
-                                    <div class="media">
-                                        <b-icon class="media-left" icon="format-list-checks"></b-icon>
-                                        <div class="media-content">
-                                            <h4>Task</h4>
-                                        </div>
-                                    </div>
-                                </b-dropdown-item>
-
-                                <b-dropdown-item :value="2">
-                                    <div class="media">
-                                        <b-icon class="media-left" icon="phone"></b-icon>
-                                        <div class="media-content">
-                                            <h4>Phone</h4>
-                                        </div>
-                                    </div>
-                                </b-dropdown-item>
-
-                                <b-dropdown-item :value="3">
-                                    <div class="media">
-                                        <b-icon class="media-left" icon="video"></b-icon>
-                                        <div class="media-content">
-                                            <h4>Video Conference</h4>
-                                        </div>
-                                    </div>
-                                </b-dropdown-item>
-
-                                <b-dropdown-item :value="4">
-                                    <div class="media">
-                                        <b-icon class="media-left" icon="account-multiple"></b-icon>
-                                        <div class="media-content">
-                                            <h4>Meeting</h4>
-                                        </div>
-                                    </div>
-                                </b-dropdown-item>
-
-                                <b-dropdown-item :value="5">
-                                    <div class="media">
-                                        <b-icon class="media-left" icon="map-marker-radius"></b-icon>
-                                        <div class="media-content">
-                                            <h4>Visit</h4>
-                                        </div>
-                                    </div>
-                                </b-dropdown-item>
-
-                                <b-dropdown-item :value="6">
-                                    <div class="media">
-                                        <b-icon class="media-left" icon="email"></b-icon>
-                                        <div class="media-content">
-                                            <h4>Email</h4>
-                                        </div>
-                                    </div>
-                                </b-dropdown-item>
-                            </b-dropdown>
-
-                            <b-input v-model="title" placeholder="What needs to be done?" expanded></b-input>
-
-                            <p class="control">
-                                <button @click="addTask()" class="button is-info">Create Task</button>
-                            </p>
-                        </b-field>
-
-                        <div class="block block-bordered" v-if="title != ''">
-                            <div class="block-content">
-
-                                <div class="row">
-                                    <div class="col-2">
-                                        <b-field label="Description" custom-class="is-small"></b-field>
-                                    </div>
-                                    <div class="col-10">
-                                        <b-field>
-                                            <b-input v-model="description"
-                                            placeholder="Write more detailed info on what the task entails."
-                                            type="textarea"></b-input>
-                                        </b-field>
-                                    </div>
-                                </div>
-                                <hr>
-                                <div class="row">
-                                    <div class="col-2">
-                                        <b-field label="Start and End Dates" custom-class="is-small"></b-field>
-                                    </div>
-                                    <div class="col-10">
-                                        <b-field grouped>
-                                            <b-field>
-                                                <b-field expanded>
-                                                    <b-datepicker v-model="date_started"
-                                                    placeholder="Start Date"></b-datepicker>
-                                                </b-field>
-                                                <b-field expanded>
-                                                    <b-datepicker v-model="date_ended"
-                                                    :min-date="date_started"
-                                                    placeholder="End Date"></b-datepicker>
-                                                </b-field>
-                                            </b-field>
-                                        </b-field>
-                                    </div>
-                                </div>
-
-                                <div class="row">
-                                    <div class="col-2">
-                                        <b-field label="Set a Reminder?" custom-class="is-small">
-                                        </b-field>
-                                    </div>
-                                    <div class="col-10">
-                                        <b-field grouped>
-                                            <b-field>
-                                                <b-switch v-model="remindMe"></b-switch>
-
-                                                <b-field v-if="remindMe == true">
-                                                    <b-datepicker v-model="reminder_date"
-                                                    :max-date="date_started"
-                                                    placeholder="Remind me on"></b-datepicker>
-                                                </b-field>
-                                            </b-field>
-                                        </b-field>
-
-                                    </div>
-                                </div>
-
-                                <div class="row">
-                                    <div class="col-2">
-                                        <b-field label="Assign Task:" custom-class="is-small"></b-field>
-                                    </div>
-                                    <div class="col-10">
-                                        <b-field grouped>
-                                            <b-radio v-for="member in $parent.members" v-model="assigned_to" native-value="member.id">
-                                                @{{ member.name }}
-                                            </b-radio>
-                                        </b-field>
-                                    </div>
-                                </div>
-
-                            </div>
-                            <div class="block-content block-content-full block-content-sm bg-body-light font-size-sm">
-                                <button @click="addTask()" class="button is-info">Create Task</button>
-                                <button @click="onReset()" class="btn btn-outline-secondary min-width-125">Cancel</button>
-                            </div>
-                        </div>
-                    </section>
-                </opportunity-task-form>
-
-                <!-- END Add task -->
-
-                <!-- Tasks List -->
-                {{-- <h2 class="content-heading">Active</h2> --}}
-                <h2>Active</h2>
-
-                <div class="js-task-list">
-                    <!-- Task -->
-                    <div  class="js-task block block-rounded mb-5 animated fadeIn" data-task-id="9" data-task-completed="false" data-task-starred="false">
-                        <table class="table table-borderless table-vcenter mb-0">
-                            <tbody>
-                                <tr v-for="task in activeTasks">
-                                    <td class="text-center" style="width: 50px;">
-                                        <label class="js-task-status css-control css-control-primary css-checkbox py-0">
-                                            <input type="checkbox" v-on:change="taskChecked(task)" class="css-control-input">
-                                            <span class="css-control-indicator"></span>
-                                        </label>
-                                    </td>
-                                    <td>
-
-                                    </td>
-                                    <td>
-                                        <template v-if="task.activity_type == 1">
-                                            <b-icon icon="format-list-checks"></b-icon>
-                                        </template>
-                                        <template v-else-if="task.activity_type == 2">
-                                            <b-icon icon="phone"></b-icon>
-                                        </template>
-                                        <template v-else-if="task.activity_type == 3">
-                                            <b-icon icon="video"></b-icon>
-                                        </template>
-                                        <template v-else-if="task.activity_type == 4">
-                                            <b-icon icon="account-multiple"></b-icon>
-                                        </template>
-                                        <template v-else-if="task.activity_type == 5">
-                                            <b-icon icon="map-marker-radius"></b-icon>
-                                        </template>
-                                        <template v-else>
-                                            <b-icon icon="email"></b-icon>
-                                        </template>
-                                    </td>
-                                    <td class="js-task-content">
-                                        <span class="font-w600">@{{ task.title }}</span>
-                                        <small>@{{ task.description }}</small>
-                                    </td>
-                                    <td class="text-right">
-                                        <button v-if="task.reminder_date != null" @click="editTask(task)" class="btn btn-sm btn-circle btn-alt-warning mr-5 mb-5" type="button">
-                                            <i class="si si-bell"></i>
-                                        </button>
-                                        <button @click="editTask(task)" class="js-task-star btn btn-sm btn-alt-info" type="button">
-                                            <i class="si si-pencil"></i>
-                                        </button>
-                                        <button @click="deleteTask(task)" class="js-task-remove btn btn-sm btn-alt-danger" type="button">
-                                            <i class="si si-close"></i>
-                                        </button>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <!-- END Task -->
-                </div>
-                <!-- END Tasks List -->
-
-                <!-- Tasks List Completed -->
-                <h2 class="content-heading">Completed</h2>
-                <div class="js-task-list-completed">
-                    <!-- Completed Task -->
-                    <div class="js-task block block-rounded mb-5 animated fadeIn" data-task-id="3" data-task-completed="true" data-task-starred="false">
-                        <table class="table table-borderless table-vcenter bg-body-light mb-0">
-                            <tbody>
-                                <tr v-for="task in completedTasks">
-                                    <td class="text-center" style="width: 50px;">
-                                        <label class="js-task-status css-control css-control-primary css-checkbox py-0">
-                                            <input type="checkbox" v-on:change="taskChecked(task)" class="css-control-input" checked>
-                                            <span class="css-control-indicator"></span>
-                                        </label>
-                                    </td>
-                                    <td class="js-task-content">
-                                        <del>
-                                            <span class="font-w600">@{{ task.title }}</span>
-                                            <small>@{{ task.description }}</small>
-                                        </del>
-                                    </td>
-                                    <td class="text-right" style="width: 100px;">
-                                        <button @click="editTask(task)" class="js-task-star btn btn-sm btn-alt-info" type="button">
-                                            <i class="fa fa-eye"></i>
-                                        </button>
-                                        <button @click="deleteTask(task)" class="js-task-remove btn btn-sm btn-alt-danger" type="button">
-                                            <i class="fa fa-times"></i>
-                                        </button>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <!-- END Completed Task -->
-                </div>
-                <!-- END Tasks -->
-            </div>
-        </div>
-        <!-- END Tasks Content -->
     </div>
+
+    <opportunity-member-form ref="member-form" inline-template>
+        {{-- <div class="block-content"> --}}
+
+        <b-field>
+            <b-taginput v-model="$parent.members" :data="filteredProfiles"
+            autocomplete field="name" icon="label" placeholder="Search for a Member"
+            @typing="getProfiles" @add="addMember()">
+            <template slot-scope="props">
+                <strong>@{{props.option.id}}</strong>: @{{props.option.slug}}
+            </template>
+            <template slot="empty">
+                There are no items
+            </template>
+        </b-taginput>
+    </b-field>
+
+    {{-- </div> --}}
+
+</opportunity-member-form>
+</div>
+<!-- END Members -->
+</div>
+<!-- END Collapsible Tasks Navigation -->
+</div>
+<div class="col-md-7 col-xl-9">
+    <!-- Tasks -->
+    <!-- Tasks functionality (initialized in js/pages/be_pages_generic_todo.js) -->
+    <div class="js-tasks">
+
+        <!-- Add task -->
+        <opportunity-task-form ref="task-form" inline-template>
+            <section>
+                <b-field expanded>
+                    <b-dropdown v-model="activity_type">
+                        <button class="button is-primary" type="button" slot="trigger">
+                            <template v-if="activity_type == 1">
+                                <b-icon icon="format-list-checks"></b-icon>
+                                <span>Task</span>
+                            </template>
+                            <template v-else-if="activity_type == 2">
+                                <b-icon icon="phone"></b-icon>
+                                <span>Phone</span>
+                            </template>
+                            <template v-else-if="activity_type == 3">
+                                <b-icon icon="video"></b-icon>
+                                <span>Video Conf.</span>
+                            </template>
+                            <template v-else-if="activity_type == 4">
+                                <b-icon icon="account-multiple"></b-icon>
+                                <span>Meeting</span>
+                            </template>
+                            <template v-else-if="activity_type == 5">
+                                <b-icon icon="map-marker-radius"></b-icon>
+                                <span>Visit</span>
+                            </template>
+                            <template v-else>
+                                <b-icon icon="email"></b-icon>
+                                <span>Email</span>
+                            </template>
+                            <b-icon icon="menu-down"></b-icon>
+                        </button>
+
+                        <b-dropdown-item :value="1">
+                            <div class="media">
+                                <b-icon class="media-left" icon="format-list-checks"></b-icon>
+                                <div class="media-content">
+                                    <h4>Task</h4>
+                                </div>
+                            </div>
+                        </b-dropdown-item>
+
+                        <b-dropdown-item :value="2">
+                            <div class="media">
+                                <b-icon class="media-left" icon="phone"></b-icon>
+                                <div class="media-content">
+                                    <h4>Phone</h4>
+                                </div>
+                            </div>
+                        </b-dropdown-item>
+
+                        <b-dropdown-item :value="3">
+                            <div class="media">
+                                <b-icon class="media-left" icon="video"></b-icon>
+                                <div class="media-content">
+                                    <h4>Video Conference</h4>
+                                </div>
+                            </div>
+                        </b-dropdown-item>
+
+                        <b-dropdown-item :value="4">
+                            <div class="media">
+                                <b-icon class="media-left" icon="account-multiple"></b-icon>
+                                <div class="media-content">
+                                    <h4>Meeting</h4>
+                                </div>
+                            </div>
+                        </b-dropdown-item>
+
+                        <b-dropdown-item :value="5">
+                            <div class="media">
+                                <b-icon class="media-left" icon="map-marker-radius"></b-icon>
+                                <div class="media-content">
+                                    <h4>Visit</h4>
+                                </div>
+                            </div>
+                        </b-dropdown-item>
+
+                        <b-dropdown-item :value="6">
+                            <div class="media">
+                                <b-icon class="media-left" icon="email"></b-icon>
+                                <div class="media-content">
+                                    <h4>Email</h4>
+                                </div>
+                            </div>
+                        </b-dropdown-item>
+                    </b-dropdown>
+
+                    <b-input v-model="title" placeholder="What needs to be done?" expanded></b-input>
+
+                    <p class="control">
+                        <button @click="addTask()" class="button is-info">Create Task</button>
+                    </p>
+                </b-field>
+
+                <div class="block block-bordered" v-if="title != ''">
+                    <div class="block-content">
+
+                        <div class="row">
+                            <div class="col-2">
+                                <b-field label="Description" custom-class="is-small"></b-field>
+                            </div>
+                            <div class="col-10">
+                                <b-field>
+                                    <b-input v-model="description"
+                                    placeholder="Write more detailed info on what the task entails."
+                                    type="textarea"></b-input>
+                                </b-field>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-2">
+                                <b-field label="Start and End Dates" custom-class="is-small"></b-field>
+                            </div>
+                            <div class="col-10">
+                                <b-field grouped>
+                                    <b-field>
+                                        <b-field expanded>
+                                            <b-datepicker v-model="date_started"
+                                            placeholder="Start Date"></b-datepicker>
+                                        </b-field>
+                                        <b-field expanded>
+                                            <b-datepicker v-model="date_ended"
+                                            :min-date="date_started"
+                                            placeholder="End Date"></b-datepicker>
+                                        </b-field>
+                                    </b-field>
+                                </b-field>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-2">
+                                <b-field label="Set a Reminder?" custom-class="is-small"></b-field>
+                            </div>
+                            <div class="col-10">
+                                <div class="row">
+                                    <div class="col-1">
+                                        <b-switch v-model="remindMe"></b-switch>
+                                    </div>
+                                    <div class="col-4">
+                                        <b-field v-if="remindMe == true" custom-class="is-small">
+                                            <b-datepicker v-model="reminder_date"
+                                            custom-class="is-small"
+                                            :max-date="date_started"
+                                            placeholder="Remind me on"></b-datepicker>
+                                        </b-field>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-2">
+                                <b-field label="Assign Task:" custom-class="is-small"></b-field>
+                            </div>
+                            <div class="col-10">
+                                <div v-for="member in $parent.members">
+                                    <b-radio v-model="assigned_to" :native-value="member.id">
+                                        @{{ member.name }}
+                                    </b-radio>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="block-content block-content-full block-content-sm bg-body-light font-size-sm">
+                        <button @click="addTask()" class="button is-info">Create Task</button>
+                        <button @click="onReset()" class="btn btn-outline-secondary min-width-125">Cancel</button>
+                    </div>
+                </div>
+            </section>
+        </opportunity-task-form>
+
+        <!-- END Add task -->
+
+        <!-- Tasks List -->
+        {{-- <h2 class="content-heading">Active</h2> --}}
+        <h2>Active</h2>
+
+        <div class="js-task-list">
+            <!-- Task -->
+            <div  class="js-task block block-rounded mb-5 animated fadeIn" data-task-id="9" data-task-completed="false" data-task-starred="false">
+                <table class="table table-borderless table-vcenter mb-0">
+                    <tbody>
+                        <tr v-for="task in activeTasks">
+                            <td class="text-center" style="width: 50px;">
+                                <label class="js-task-status css-control css-control-primary css-checkbox py-0">
+                                    <input type="checkbox" v-on:change="taskChecked(task)" class="css-control-input">
+                                    <span class="css-control-indicator"></span>
+                                </label>
+                            </td>
+                            <td>
+
+                            </td>
+                            <td>
+                                <template v-if="task.activity_type == 1">
+                                    <b-icon icon="format-list-checks"></b-icon>
+                                </template>
+                                <template v-else-if="task.activity_type == 2">
+                                    <b-icon icon="phone"></b-icon>
+                                </template>
+                                <template v-else-if="task.activity_type == 3">
+                                    <b-icon icon="video"></b-icon>
+                                </template>
+                                <template v-else-if="task.activity_type == 4">
+                                    <b-icon icon="account-multiple"></b-icon>
+                                </template>
+                                <template v-else-if="task.activity_type == 5">
+                                    <b-icon icon="map-marker-radius"></b-icon>
+                                </template>
+                                <template v-else>
+                                    <b-icon icon="email"></b-icon>
+                                </template>
+                            </td>
+                            <td class="js-task-content">
+                                <span class="font-w600">@{{ task.title }}</span>
+                                <small>@{{ task.description }}</small>
+                            </td>
+                            <td class="text-right">
+                                <button v-if="task.reminder_date != null" @click="editTask(task)" class="btn btn-sm btn-circle btn-alt-warning mr-5 mb-5" type="button">
+                                    <i class="si si-bell"></i>
+                                </button>
+                                <button @click="editTask(task)" class="js-task-star btn btn-sm btn-alt-info" type="button">
+                                    <i class="si si-pencil"></i>
+                                </button>
+                                <button @click="deleteTask(task)" class="js-task-remove btn btn-sm btn-alt-danger" type="button">
+                                    <i class="si si-close"></i>
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <!-- END Task -->
+        </div>
+        <!-- END Tasks List -->
+
+        <!-- Tasks List Completed -->
+        <h2 class="content-heading">Completed</h2>
+        <div class="js-task-list-completed">
+            <!-- Completed Task -->
+            <div class="js-task block block-rounded mb-5 animated fadeIn" data-task-id="3" data-task-completed="true" data-task-starred="false">
+                <table class="table table-borderless table-vcenter bg-body-light mb-0">
+                    <tbody>
+                        <tr v-for="task in completedTasks">
+                            <td class="text-center" style="width: 50px;">
+                                <label class="js-task-status css-control css-control-primary css-checkbox py-0">
+                                    <input type="checkbox" v-on:change="taskChecked(task)" class="css-control-input" checked>
+                                    <span class="css-control-indicator"></span>
+                                </label>
+                            </td>
+                            <td class="js-task-content">
+                                <del>
+                                    <span class="font-w600">@{{ task.title }}</span>
+                                    <small>@{{ task.description }}</small>
+                                </del>
+                            </td>
+                            <td class="text-right" style="width: 100px;">
+                                <button @click="editTask(task)" class="js-task-star btn btn-sm btn-alt-info" type="button">
+                                    <i class="fa fa-eye"></i>
+                                </button>
+                                <button @click="deleteTask(task)" class="js-task-remove btn btn-sm btn-alt-danger" type="button">
+                                    <i class="fa fa-times"></i>
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <!-- END Completed Task -->
+        </div>
+        <!-- END Tasks -->
+    </div>
+</div>
+<!-- END Tasks Content -->
+</div>
 </div>
