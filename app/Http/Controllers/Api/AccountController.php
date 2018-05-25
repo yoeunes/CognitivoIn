@@ -200,36 +200,40 @@ class AccountController extends Controller
         and `scheduals`.`id` = `account_movements`.`schedual_id`)) >0  order by scheduals.date_exp');
 
         $schedules = collect($schedules);
-        $value=0;
+        $remainvalue=$data['Value'];
         for ($i = 0; $i < count($schedules) ; $i++)
         {
-            $accountmovement = new AccountMovement();
-            $accountmovement->schedual_id = $schedules[$i]->id;
-            $accountmovement->account_id = $account->id;
-            $accountmovement->type = $data['Type'];
-            $accountmovement->currency = 'PYG';
-            $accountmovement->currency_rate = 1;
-            $accountmovement->date = Carbon::now();
-            if ($schedules[$i]->value > $data['Value'])
-            {
-                $value=$data['Value'];
-                $value=0;
-                $i=count($schedules);
+            if ($remainvalue>0) {
+
+
+                $accountmovement = new AccountMovement();
+                $accountmovement->schedual_id = $schedules[$i]->id;
+                $accountmovement->account_id = $account->id;
+                $accountmovement->type = $data['Type'];
+                $accountmovement->currency = 'PYG';
+                $accountmovement->currency_rate = 1;
+                $accountmovement->date = Carbon::now();
+                if ($schedules[$i]->value > $remainvalue)
+                {
+                    $value=$remainvalue;
+                    $remainvalue=0;
+                }
+                else {
+                    $value=$schedules[$i]->value;
+                    $remainvalue=$remainvalue - $schedules[$i]->value;
+                }
+                if ($data['Type'] == 1)
+                {
+                    $accountmovement->credit = $value;
+                    $accountmovement->debit = 0;
+                }
+                else
+                {
+                    $accountmovement->credit = 0;
+                    $accountmovement->debit = $value;
+                }
+                $accountmovement->save();
             }
-            else {
-                $value=$data['Value'] - $schedules[$i]->value;
-            }
-            if ($data['Type'] == 1)
-            {
-                $accountmovement->credit = $value;
-                $accountmovement->debit = 0;
-            }
-            else
-            {
-                $accountmovement->credit = 0;
-                $accountmovement->debit = $value;
-            }
-            $accountmovement->save();
         }
 
 
