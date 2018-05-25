@@ -141,12 +141,17 @@ class AccountController extends Controller
             $vatdetail = VatDetail::where('vat_id', $item->vat_id)->get();
 
             $values = [];
-            $item_value = $data_detail['quantity'] * $data_detail['unit_price'];
+            $item_value = $data_detail['sub_total_vat'];
+            $vatamount= $data_detail['vat']
             $i = 0;
 
             foreach ($vatdetail as $detail)
             {
-                $vat = (((($item_value) / (1 + $detail->coefficient)) - $item_value) * (-1)) * $detail->percent;
+                $vat =0;
+                if ($vatamount >0 )
+                {
+                    $vat = (((($item_value) / (1 + $detail->coefficient)) - $item_value) * (-1)) * $detail->percent;
+                }
 
                 $values[$i] = [
                     'coefficient' => ($detail->coefficient * 100) . "%" ,
@@ -154,6 +159,8 @@ class AccountController extends Controller
                 ];
 
                 $i = $i + 1;
+
+
             }
 
             $detail = new OrderDetail();
