@@ -58,7 +58,6 @@ Route::group(['middleware' => 'auth'], function ()
             ]);
 
             Route::post('opportunities/{opportunity}/tasks/checked', 'OpportunityTaskController@taskChecked');
-
         });
 
         Route::prefix('purchase')->group(function ()

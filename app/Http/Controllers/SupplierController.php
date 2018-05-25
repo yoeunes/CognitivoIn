@@ -61,11 +61,11 @@ class SupplierController extends Controller
     * @param  \App\Relationship  $relationship
     * @return \Illuminate\Http\Response
     */
-    public function destroy(Relationship $relationship)
+    public function destroy(Profile $profile, Relationship $relationship)
     {
         if ($profile->id != $relationship->customer_id)
         {
-            $customer->delete();
+            $relationship->delete();
             return response()->json('Ok', 200);
         }
 
