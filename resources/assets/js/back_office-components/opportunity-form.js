@@ -37,9 +37,10 @@ Vue.component('opportunity-form',
         completedTasks: function ()
         {
             var app = this;
-            return app.tasks.filter(function(i) {
+            return app.tasks.filter(function(i)
+            {
                 return i.completed == 1
-            })
+            }).sort((a) => new Date(a.date_started))
         },
     },
 
@@ -54,24 +55,7 @@ Vue.component('opportunity-form',
             app.$parent.postSpecial(url, task)
             .then(function(response)
             {
-                app.tasks = [];
-                for (var i = 0; i < response.length; i++)
-                {
-                    app.tasks.push({
-                        id: response[i].id,
-                        activity_type: response[i].activity_type,
-                        opportunity_id: response[i].opportunity_id,
-                        pipeline_stage_id: response[i].pipeline_stage_id,
-                        sentiment: response[i].sentiment,
-                        reminder_date: response[i].reminder_date,
-                        date_started: response[i].date_started,
-                        date_ended: response[i].date_ended,
-                        title: response[i].title,
-                        description: response[i].description,
-                        geoloc: response[i].geoloc,
-                        completed: response[i].completed,
-                    });
-                }
+                task.completed = task.completed == true ? false : true;
             });
         },
 
@@ -102,17 +86,28 @@ Vue.component('opportunity-form',
         deleteTask: function(task)
         {
             var app = this;
-            var url = '/back-office/' + app.$parent.profile + '/sales/opportunities/' + app.id + '/tasks';
+            var url = '/back-office/' + app.$parent.profile + '/sales/opportunities/' + app.id + '/tasks/' + task.id;
             var data =
             {
                 id: task.id,
+                activity_type: task.activity_type,
+                opportunity_id: task.opportunity_id,
+                sentiment: task.sentiment,
+                reminder_date: task.reminder_date,
+                date_started: task.date_started,
+                date_ended: task.date_ended,
+                title: task.title,
+                description: task.description,
+                geoloc: task.geoloc,
+                completed: task.completed
             }
 
-            app.$parent.deleteSpecial(url, data)
+            app.$parent.deleteSpecial(url)
             .then(function(response)
             {
-                // let index = app.tasks.findIndex(x => x.id === task.id);
-                // app.tasks.splice(index, 1);
+                // alert('done');
+                //let index = app.tasks.findIndex(x => x.id === task.id);
+                //app.tasks.splice(index, 1);
             });
         },
 

@@ -10,7 +10,7 @@
     <tbody>
         <tr v-for="invoice in list">
             <td>@{{ invoice.date }}</td>
-            <td>@{{ invoice.relationship.customer_alias }}</td>
+            <td>@{{ invoice.relationship_id }}</td>
             <td>@{{ invoice.number }}</td>
             <td class="text-center">
                 <div class="btn-group">

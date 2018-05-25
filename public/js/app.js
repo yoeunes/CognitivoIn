@@ -58043,6 +58043,8 @@ Vue.component('opportunity-form', {
             var app = this;
             return app.tasks.filter(function (i) {
                 return i.completed == 1;
+            }).sort(function (a) {
+                return new Date(a.date_started);
             });
         }
     },
@@ -58053,23 +58055,7 @@ Vue.component('opportunity-form', {
             var url = '/back-office/' + app.$parent.profile + '/sales/opportunities/' + app.id + '/tasks/checked';
 
             app.$parent.postSpecial(url, task).then(function (response) {
-                app.tasks = [];
-                for (var i = 0; i < response.length; i++) {
-                    app.tasks.push({
-                        id: response[i].id,
-                        activity_type: response[i].activity_type,
-                        opportunity_id: response[i].opportunity_id,
-                        pipeline_stage_id: response[i].pipeline_stage_id,
-                        sentiment: response[i].sentiment,
-                        reminder_date: response[i].reminder_date,
-                        date_started: response[i].date_started,
-                        date_ended: response[i].date_ended,
-                        title: response[i].title,
-                        description: response[i].description,
-                        geoloc: response[i].geoloc,
-                        completed: response[i].completed
-                    });
-                }
+                task.completed = task.completed == true ? false : true;
             });
         },
 
@@ -58095,14 +58081,25 @@ Vue.component('opportunity-form', {
 
         deleteTask: function deleteTask(task) {
             var app = this;
-            var url = '/back-office/' + app.$parent.profile + '/sales/opportunities/' + app.id + '/tasks';
+            var url = '/back-office/' + app.$parent.profile + '/sales/opportunities/' + app.id + '/tasks/' + task.id;
             var data = {
-                id: task.id
+                id: task.id,
+                activity_type: task.activity_type,
+                opportunity_id: task.opportunity_id,
+                sentiment: task.sentiment,
+                reminder_date: task.reminder_date,
+                date_started: task.date_started,
+                date_ended: task.date_ended,
+                title: task.title,
+                description: task.description,
+                geoloc: task.geoloc,
+                completed: task.completed
             };
 
-            app.$parent.deleteSpecial(url, data).then(function (response) {
-                // let index = app.tasks.findIndex(x => x.id === task.id);
-                // app.tasks.splice(index, 1);
+            app.$parent.deleteSpecial(url).then(function (response) {
+                // alert('done');
+                //let index = app.tasks.findIndex(x => x.id === task.id);
+                //app.tasks.splice(index, 1);
             });
         },
 
@@ -59402,7 +59399,7 @@ __WEBPACK_IMPORTED_MODULE_1_vue___default.a.component('model', {
 
 
         deleteSpecial: function () {
-            var _ref3 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee2(specialURL, $data) {
+            var _ref3 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee2(specialURL) {
                 var _this8 = this;
 
                 var app, resp;
@@ -59420,17 +59417,16 @@ __WEBPACK_IMPORTED_MODULE_1_vue___default.a.component('model', {
                                     showCancelButton: true,
                                     confirmButtonText: 'Yes, delete it!'
                                 }).then(function () {
-                                    __WEBPACK_IMPORTED_MODULE_4_axios___default.a.delete(specialURL + '/' + $data.id).then(function () {
+                                    __WEBPACK_IMPORTED_MODULE_4_axios___default.a.delete(specialURL).then(function () {
                                         resp = response.data;
+                                        return resp;
                                     }).catch(function (ex) {
                                         console.log(ex.response);
                                         _this8.$swal('Error trying to delete record.');
                                     });
                                 });
 
-                                return _context2.abrupt('return', resp);
-
-                            case 3:
+                            case 2:
                             case 'end':
                                 return _context2.stop();
                         }
@@ -59438,7 +59434,7 @@ __WEBPACK_IMPORTED_MODULE_1_vue___default.a.component('model', {
                 }, _callee2, this);
             }));
 
-            function deleteSpecial(_x3, _x4) {
+            function deleteSpecial(_x3) {
                 return _ref3.apply(this, arguments);
             }
 

@@ -306,9 +306,6 @@
                                 </label>
                             </td>
                             <td>
-
-                            </td>
-                            <td>
                                 <template v-if="task.activity_type == 1">
                                     <b-icon icon="format-list-checks"></b-icon>
                                 </template>
@@ -333,12 +330,12 @@
                                 <small>@{{ task.description }}</small>
                             </td>
                             <td class="text-right">
-                                <button v-if="task.reminder_date != null" @click="editTask(task)" class="btn btn-sm btn-circle btn-alt-warning mr-5 mb-5" type="button">
-                                    <i class="si si-bell"></i>
-                                </button>
-                                <button @click="editTask(task)" class="js-task-star btn btn-sm btn-alt-info" type="button">
+                                <a href="#">
+                                    <i v-if="task.reminder_date != null" class="si si-bell"></i>
+                                </a>
+                                {{-- <button @click="editTask(task)" class="js-task-star btn btn-sm btn-alt-info" type="button">
                                     <i class="si si-pencil"></i>
-                                </button>
+                                </button> --}}
                                 <button @click="deleteTask(task)" class="js-task-remove btn btn-sm btn-alt-danger" type="button">
                                     <i class="si si-close"></i>
                                 </button>

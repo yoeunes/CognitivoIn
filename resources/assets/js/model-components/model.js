@@ -246,7 +246,7 @@ Vue.component('model',
             });
         },
 
-        deleteSpecial: async function(specialURL, $data)
+        deleteSpecial: async function(specialURL)
         {
             var app = this;
             var resp;
@@ -259,17 +259,16 @@ Vue.component('model',
                 confirmButtonText: 'Yes, delete it!'
             })
             .then(() => {
-                axios.delete(specialURL + '/' + $data.id)
+                axios.delete(specialURL)
                 .then(() => {
                     resp = response.data;
+                    return resp;
                 })
                 .catch(ex => {
                     console.log(ex.response);
                     this.$swal('Error trying to delete record.');
                 });
             });
-
-            return resp;
         },
 
         onApprove($data)

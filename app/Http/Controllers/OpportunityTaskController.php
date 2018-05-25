@@ -59,11 +59,11 @@ class OpportunityTaskController extends Controller
 
         if ($opportunityTask)
         {
-            $opportunityTask->completed = !$request->completed;
+            $opportunityTask->completed = $request->completed == true ? false : true;
+            $opportunityTask->completed_at = Carbon::now();
             $opportunityTask->save();
-            $opportunityTasks = OpportunityTask::where('opportunity_id', $opportunityTask->opportunity_id)
-            ->get();
-            return response()->json($opportunityTasks, 200);
+
+            return response()->json('Ok', 200);
         }
 
         return response()->json('Resource not found', 401);
@@ -93,13 +93,8 @@ class OpportunityTaskController extends Controller
     */
     public function destroy(Profile $profile, Opportunity $opportunity, OpportunityTask $opportunityTask)
     {
-        //if ($opportunityTask->opportunity_id == $opportunity->id && $opportunity->profile_id == $profile->id)
-        //{
-            //No need for soft delete.
-            $opportunityTask->forceDelete();
-            return response()->json('200', 200);
-        //}
-
-        return response()->json('Resource not found', 401);
+        //No need for soft delete.
+        $opportunityTask->forceDelete();
+        return response()->json('Ok', 200);
     }
 }
