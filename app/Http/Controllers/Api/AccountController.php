@@ -142,7 +142,7 @@ class AccountController extends Controller
 
             $values = [];
             $item_value = $data_detail['sub_total_vat'];
-            $vatamount= $data_detail['vat']
+            $vatamount= $data_detail['vat'];
             $i = 0;
 
             foreach ($vatdetail as $detail)
