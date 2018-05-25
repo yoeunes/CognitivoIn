@@ -28,7 +28,7 @@ Vue.component('opportunity-member-form',
           $profileID=app.$parent.members[i].profile_id;
         }
       }
-      console.log($profileID);
+
       axios.post('/api/'+ app.$parent.$parent.profile +'/back-office/opportunities/' + this.$parent.id + '/members/', {profile_id:$profileID})
       .then(({ data }) =>
       {

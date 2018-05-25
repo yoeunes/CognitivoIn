@@ -50,7 +50,7 @@
                         <h3 class="block-title">Items</h3>
                     </div>
 
-                    <div class="block-content">
+                    {{-- <div class="block-content">
                         <ul class="nav-users push" v-for="item in items">
                             <li>
                                 <a href="#" target="_blank">
@@ -70,7 +70,9 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
+
+                
                 </div>
                 <!-- END Items -->
 
