@@ -76,11 +76,13 @@ class OpportunityController extends Controller
     * @param  \App\opportunity  $opportunity
     * @return \Illuminate\Http\Response
     */
-    public function show(Profile $profile, Opportunity $opportunity)
+    public function show(Profile $profile, $opportunityID)
     {
-        $opportunity = $opportunity
+        $opportunity = Opportunity::where('id', $opportunityID)
+        ->with('relationship')
         ->with('tasks')
         ->with('members')
+        ->with('items')
         ->first();
 
         return response()->json($opportunity);
@@ -92,9 +94,10 @@ class OpportunityController extends Controller
     * @param  \App\opportunity  $opportunity
     * @return \Illuminate\Http\Response
     */
-    public function edit(Profile $profile, Opportunity $opportunity)
+    public function edit(Profile $profile, $opportunityID)
     {
-        return response()->json(Opportunity::where('id',$opportunity->id)->with('relationship')->first());
+        $opportunity = Opportunity::where('id',$opportunityID)->with('relationship')->first();
+        return response()->json($opportunity);
     }
 
     /**

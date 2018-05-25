@@ -23,4 +23,5 @@
         </tr>
     </tbody>
 </table>
+
 @include('layouts/infinity-loading')
