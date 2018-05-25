@@ -22,16 +22,15 @@ class CustomerController extends Controller
 
     public function getAllCustomer (Profile $profile)
     {
-
         $customers = Relationship::GetCustomers()
-
         ->get();
 
         return response()->json($customers);
     }
+
     public function getCustomer (Profile $profile,$frase)
     {
-        
+
         $customers = Relationship::GetCustomers()
         ->where('customer_alias', 'LIKE', "%$frase%")
         ->orWhere('customer_taxid', 'LIKE', "%$frase%")
@@ -49,8 +48,6 @@ class CustomerController extends Controller
     */
     public function store(Request $request, Profile $profile)
     {
-
-
         $relationship =  $request->id == 0 ? new Relationship() : Relationship::where('id', $request->id)->first();
         $relationship->supplier_id = $profile->id;
         $relationship->supplier_accepted = true;
@@ -61,6 +58,7 @@ class CustomerController extends Controller
         $relationship->customer_telephone = $request->customer_telephone;
         $relationship->customer_email = $request->customer_email;
         $relationship->credit_limit = $request->credit_limit ?? 0;
+        $relationship->contract_ref = $request->contract_ref ?? 0;
 
         $relationship->save();
 
@@ -73,37 +71,9 @@ class CustomerController extends Controller
     * @param  \App\Relationship  $relationship
     * @return \Illuminate\Http\Response
     */
-    public function edit(Profile $profile,$relationship)
+    public function edit(Profile $profile, $relationshipID)
     {
-
-
-        return response()->json(Relationship::find($relationship));
-    }
-
-    /**
-    * Update the specified resource in storage.
-    *
-    * @param  \Illuminate\Http\Request  $request
-    * @param  \App\Relationship  $relationship
-    * @return \Illuminate\Http\Response
-    */
-    public function update(Request $request, Profile $profile, Relationship $relationship )
-    {
-
-        if ($profile->id != $relationship->supplier_id)
-        {
-            $relationship->customer_taxid = $request->customer_taxid;
-            $relationship->customer_alias = $request->customer_alias;
-            $relationship->customer_address = $request->customer_address;
-            $relationship->customer_telephone = $request->customer_telephone;
-            $relationship->customer_email = $request->customer_email;
-            $relationship->credit_limit = $request->credit_limit ?? 0;
-
-            $relationship->save();
-            return response()->json('Ok', 200);
-        }
-
-        return response()->json('Customer not found', 403);
+        return response()->json(Relationship::find($relationshipID));
     }
 
     /**

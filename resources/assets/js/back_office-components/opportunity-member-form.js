@@ -19,17 +19,17 @@ Vue.component('opportunity-member-form',
     {
         addMember: function()
         {
-
-            //code for adding tasks
             var app = this;
-            var $profileID=0;
+            var $profileID = 0;
             for (var i = 0; i <  app.$parent.members.length; i++) {
-                if (app.$parent.members[i].id==0) {
-                    $profileID=app.$parent.members[i].profile_id;
+                if (app.$parent.members[i].id == 0) {
+                    $profileID = app.$parent.members[i].profile_id;
                 }
             }
 
-            axios.post('/api/'+ app.$parent.$parent.profile +'/back-office/opportunities/' + this.$parent.id + '/members/', {profile_id:$profileID})
+            axios.post('/api/'+ app.$parent.$parent.profile +'/back-office/opportunities/' + this.$parent.id + '/members/', {
+                profile_id: $profileID
+            })
             .then(({ data }) =>
             {
                 for (var i = 0; i <  app.$parent.members.length; i++) {
@@ -76,29 +76,10 @@ Vue.component('opportunity-member-form',
                 this.$swal('Error trying to load records.');
             });
         },
-
-        getFilteredProfiles(text) {
-            var app = this;
-            this.filteredProfiles = app.profiles.filter((option) => {
-                return option.slug
-                .toString()
-                .toLowerCase()
-                .indexOf(text.toLowerCase()) >= 0
-                & option.name
-                .toString()
-                .toLowerCase()
-                .indexOf(text.toLowerCase()) >= 0
-                & option.alias
-                .toString()
-                .toLowerCase()
-                .indexOf(text.toLowerCase()) >= 0
-            })
-        }
     },
 
     mounted: function mounted()
     {
-        //var app=this;
-        //app.getProfiles();
+
     }
 });

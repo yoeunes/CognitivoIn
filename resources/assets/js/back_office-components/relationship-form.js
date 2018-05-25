@@ -16,6 +16,8 @@ Vue.component('relationship-form',
             supplier_telephone: '',
             supplier_email: '',
             supplier_telephone: '',
+            credit_limit: '',
+            contract_ref: ''
         }
     },
 
@@ -38,6 +40,8 @@ Vue.component('relationship-form',
             app.supplier_telephone = data.supplier_telephone;
             app.supplier_email = data.supplier_email;
             app.supplier_telephone = data.supplier_telephone;
+            app.credit_limit = data.credit_limit;
+            app.contract_ref = data.contract_ref;
         },
 
         onReset: function(isnew)
@@ -57,6 +61,8 @@ Vue.component('relationship-form',
             app.supplier_telephone = null;
             app.supplier_email = null;
             app.supplier_telephone = null;
+            app.credit_limit = null;
+            app.contract_ref = null;
         },
     },
 

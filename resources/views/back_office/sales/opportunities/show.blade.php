@@ -72,7 +72,7 @@
                         </div>
                     </div> --}}
 
-                
+
                 </div>
                 <!-- END Items -->
 
@@ -89,7 +89,7 @@
                         <b-field>
                             <b-taginput v-model="$parent.members" :data="filteredProfiles"
                             autocomplete field="name" icon="label" placeholder="Search for a Member"
-                            @typing="getFilteredProfiles" @add="addMember()">
+                            @typing="getProfiles" @add="addMember()">
                                 <template slot-scope="props">
                                     <strong>@{{props.option.id}}</strong>: @{{props.option.slug}}
                                 </template>

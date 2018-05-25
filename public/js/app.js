@@ -58345,7 +58345,6 @@ Vue.component('opportunity-member-form', {
         addMember: function addMember() {
             var _this = this;
 
-            //code for adding tasks
             var app = this;
             var $profileID = 0;
             for (var i = 0; i < app.$parent.members.length; i++) {
@@ -58354,7 +58353,9 @@ Vue.component('opportunity-member-form', {
                 }
             }
 
-            axios.post('/api/' + app.$parent.$parent.profile + '/back-office/opportunities/' + this.$parent.id + '/members/', { profile_id: $profileID }).then(function (_ref) {
+            axios.post('/api/' + app.$parent.$parent.profile + '/back-office/opportunities/' + this.$parent.id + '/members/', {
+                profile_id: $profileID
+            }).then(function (_ref) {
                 var data = _ref.data;
 
                 for (var i = 0; i < app.$parent.members.length; i++) {
@@ -58397,20 +58398,10 @@ Vue.component('opportunity-member-form', {
                 console.log(ex);
                 _this2.$swal('Error trying to load records.');
             });
-        },
-
-        getFilteredProfiles: function getFilteredProfiles(text) {
-            var app = this;
-            this.filteredProfiles = app.profiles.filter(function (option) {
-                return option.slug.toString().toLowerCase().indexOf(text.toLowerCase()) >= 0 & option.name.toString().toLowerCase().indexOf(text.toLowerCase()) >= 0 & option.alias.toString().toLowerCase().indexOf(text.toLowerCase()) >= 0;
-            });
         }
     },
 
-    mounted: function mounted() {
-        //var app=this;
-        //app.getProfiles();
-    }
+    mounted: function mounted() {}
 });
 
 /***/ }),
@@ -62434,7 +62425,7 @@ Vue.component('relationship-form', {
             customer_address: '',
             customer_telephone: '',
             customer_email: ''
-        }, _defineProperty(_ref, 'customer_telephone', ''), _defineProperty(_ref, 'supplier_alias', ''), _defineProperty(_ref, 'supplier_taxid', ''), _defineProperty(_ref, 'supplier_address', ''), _defineProperty(_ref, 'supplier_telephone', ''), _defineProperty(_ref, 'supplier_email', ''), _defineProperty(_ref, 'supplier_telephone', ''), _ref;
+        }, _defineProperty(_ref, 'customer_telephone', ''), _defineProperty(_ref, 'supplier_alias', ''), _defineProperty(_ref, 'supplier_taxid', ''), _defineProperty(_ref, 'supplier_address', ''), _defineProperty(_ref, 'supplier_telephone', ''), _defineProperty(_ref, 'supplier_email', ''), _defineProperty(_ref, 'supplier_telephone', ''), _defineProperty(_ref, 'credit_limit', ''), _defineProperty(_ref, 'contract_ref', ''), _ref;
     },
 
 
@@ -62455,6 +62446,8 @@ Vue.component('relationship-form', {
             app.supplier_telephone = data.supplier_telephone;
             app.supplier_email = data.supplier_email;
             app.supplier_telephone = data.supplier_telephone;
+            app.credit_limit = data.credit_limit;
+            app.contract_ref = data.contract_ref;
         },
 
         onReset: function onReset(isnew) {
@@ -62473,6 +62466,8 @@ Vue.component('relationship-form', {
             app.supplier_telephone = null;
             app.supplier_email = null;
             app.supplier_telephone = null;
+            app.credit_limit = null;
+            app.contract_ref = null;
         }
     },
 

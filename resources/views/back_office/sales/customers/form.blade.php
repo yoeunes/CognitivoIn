@@ -20,7 +20,7 @@
                 </b-field>
 
                 <b-field label="Default Contract" v-if="credit_limit != null">
-                    <b-input v-model="contract_id"></b-input>
+                    <b-input v-model="contract_ref"></b-input>
                 </b-field>
 
                 <b-field label="Credit Limit">
