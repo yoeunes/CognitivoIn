@@ -37,6 +37,7 @@ class SupplierController extends Controller
         $relationship->supplier_telephone = $request->supplier_telephone;
         $relationship->supplier_email = $request->supplier_email;
         $relationship->credit_limit = $request->credit_limit ?? 0;
+        $relationship->contract_ref = $request->contract_ref ?? 0;
 
         $relationship->save();
 

@@ -58053,10 +58053,8 @@ Vue.component('opportunity-form', {
             var url = '/back-office/' + app.$parent.profile + '/sales/opportunities/' + app.id + '/tasks/checked';
 
             app.$parent.postSpecial(url, task).then(function (response) {
-
                 app.tasks = [];
                 for (var i = 0; i < response.length; i++) {
-
                     app.tasks.push({
                         id: response[i].id,
                         activity_type: response[i].activity_type,
@@ -58095,7 +58093,7 @@ Vue.component('opportunity-form', {
             app.$parent.postSpecial(url, data).then(function (response) {});
         },
 
-        changeTaskState: function changeTaskState(task) {
+        deleteTask: function deleteTask(task) {
             var app = this;
             var url = '/back-office/' + app.$parent.profile + '/sales/opportunities/' + app.id + '/tasks';
             var data = {
@@ -58109,11 +58107,40 @@ Vue.component('opportunity-form', {
                 title: task.title,
                 description: task.description,
                 geoloc: task.geoloc,
-                completed: task.completed == true ? false : true
+                completed: task.completed
             };
 
-            app.$parent.postSpecial(url, data).then(function (response) {});
+            app.$parent.deleteSpecial(url, data).then(function (response) {
+                var index = this.tasks.findIndex(function (x) {
+                    return x.id === $data.id;
+                });
+                this.tasks.splice(index, 1);
+            });
         },
+
+        // changeTaskState: function(task)
+        // {
+        //     var app = this;
+        //     var url = '/back-office/' + app.$parent.profile + '/sales/opportunities/' + app.id + '/tasks';
+        //     var data =
+        //     {
+        //         id: task.id,
+        //         activity_type: task.activity_type,
+        //         opportunity_id: task.opportunity_id,
+        //         sentiment: task.sentiment,
+        //         reminder_date: task.reminder_date,
+        //         date_started: task.date_started,
+        //         date_ended: task.date_ended,
+        //         title: task.title,
+        //         description: task.description,
+        //         geoloc: task.geoloc,
+        //         completed: task.completed == true ? false : true,
+        //     }
+        //
+        //     app.$parent.postSpecial(url, data)
+        //     .then(function(response)
+        //     { });
+        // },
 
         onEdit: function onEdit(data) {
             var app = this;
@@ -59278,15 +59305,13 @@ __WEBPACK_IMPORTED_MODULE_1_vue___default.a.component('model', {
                 text: "This will cancel all changes made",
                 type: 'warning',
                 showCancelButton: true,
-                // confirmButtonColor: '#3085d6',
-                // cancelButtonColor: '#d33',
                 confirmButtonText: 'Yes, cancel it!'
             }).then(function () {
-                //clean property changes
                 app.$refs.back_officeForm.onReset();
                 app.showList = true;
             });
         },
+
 
         postSpecial: function () {
             var _ref2 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee(specialURL, $data) {
@@ -59305,7 +59330,7 @@ __WEBPACK_IMPORTED_MODULE_1_vue___default.a.component('model', {
                                         type: 'success',
                                         title: 'Done!',
                                         showConfirmButton: false,
-                                        timer: 1500
+                                        timer: 500
                                     });
 
                                     resp = response.data;
@@ -59410,8 +59435,54 @@ __WEBPACK_IMPORTED_MODULE_1_vue___default.a.component('model', {
                 });
             });
         },
+
+
+        deleteSpecial: function () {
+            var _ref3 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee2(specialURL, $data) {
+                var _this8 = this;
+
+                var app, resp;
+                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee2$(_context2) {
+                    while (1) {
+                        switch (_context2.prev = _context2.next) {
+                            case 0:
+                                app = this;
+
+
+                                this.$swal({
+                                    title: 'Delete Record',
+                                    text: "Sure? This action is non-reversable",
+                                    type: 'question',
+                                    showCancelButton: true,
+                                    confirmButtonText: 'Yes, delete it!'
+                                }).then(function () {
+                                    __WEBPACK_IMPORTED_MODULE_4_axios___default.a.delete(specialURL + '/' + $data.id).then(function () {
+                                        resp = response.data;
+                                    }).catch(function (ex) {
+                                        console.log(ex.response);
+                                        _this8.$swal('Error trying to delete record.');
+                                    });
+                                });
+
+                                return _context2.abrupt('return', resp);
+
+                            case 3:
+                            case 'end':
+                                return _context2.stop();
+                        }
+                    }
+                }, _callee2, this);
+            }));
+
+            function deleteSpecial(_x3, _x4) {
+                return _ref3.apply(this, arguments);
+            }
+
+            return deleteSpecial;
+        }(),
+
         onApprove: function onApprove($data) {
-            var _this8 = this;
+            var _this9 = this;
 
             var app = this;
 
@@ -59422,8 +59493,8 @@ __WEBPACK_IMPORTED_MODULE_1_vue___default.a.component('model', {
                 showCancelButton: true,
                 confirmButtonText: 'Yes, approve it!'
             }).then(function () {
-                __WEBPACK_IMPORTED_MODULE_4_axios___default.a.post('/api/' + _this8.profile + '/back-office/' + app.url + '/' + $data.id + '/approve', $data).then(function () {
-                    _this8.$swal({
+                __WEBPACK_IMPORTED_MODULE_4_axios___default.a.post('/api/' + _this9.profile + '/back-office/' + app.url + '/' + $data.id + '/approve', $data).then(function () {
+                    _this9.$swal({
                         position: 'top-end',
                         type: 'success',
                         title: 'Awsome! Your record has been approved',
@@ -59434,13 +59505,13 @@ __WEBPACK_IMPORTED_MODULE_1_vue___default.a.component('model', {
                     app.showList = true;
                 }).catch(function (ex) {
                     console.log(ex);
-                    _this8.$swal('Error trying to approve record.');
+                    _this9.$swal('Error trying to approve record.');
                 });
                 //Code to approve
             });
         },
         onAnnull: function onAnnull($data) {
-            var _this9 = this;
+            var _this10 = this;
 
             var app = this;
 
@@ -59452,8 +59523,8 @@ __WEBPACK_IMPORTED_MODULE_1_vue___default.a.component('model', {
                 confirmButtonText: 'Yes, annull it!'
             }).then(function () {
                 //Code to annull
-                __WEBPACK_IMPORTED_MODULE_4_axios___default.a.post('/api/' + _this9.profile + '/back-office/' + app.url + '/' + $data.id + '/annull', $data).then(function () {
-                    _this9.$swal({
+                __WEBPACK_IMPORTED_MODULE_4_axios___default.a.post('/api/' + _this10.profile + '/back-office/' + app.url + '/' + $data.id + '/annull', $data).then(function () {
+                    _this10.$swal({
                         position: 'top-end',
                         type: 'success',
                         title: 'Awsome! Your record has been annulled',
@@ -59463,7 +59534,7 @@ __WEBPACK_IMPORTED_MODULE_1_vue___default.a.component('model', {
                     app.showList = true;
                 }).catch(function (ex) {
                     console.log(ex);
-                    _this9.$swal('Error trying to annull record.');
+                    _this10.$swal('Error trying to annull record.');
                 });
             });
         }

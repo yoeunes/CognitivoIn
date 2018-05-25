@@ -361,7 +361,7 @@
                                 <tr v-for="task in completedTasks">
                                     <td class="text-center" style="width: 50px;">
                                         <label class="js-task-status css-control css-control-primary css-checkbox py-0">
-                                            <input type="checkbox" v-on:change="taskChecked(task)" class="css-control-input">
+                                            <input type="checkbox" v-on:change="taskChecked(task)" class="css-control-input" checked>
                                             <span class="css-control-indicator"></span>
                                         </label>
                                     </td>

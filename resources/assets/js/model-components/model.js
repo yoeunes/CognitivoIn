@@ -129,15 +129,13 @@ Vue.component('model',
                 text: "This will cancel all changes made",
                 type: 'warning',
                 showCancelButton: true,
-                // confirmButtonColor: '#3085d6',
-                // cancelButtonColor: '#d33',
                 confirmButtonText: 'Yes, cancel it!'
             }).then(() => {
-                //clean property changes
                 app.$refs.back_officeForm.onReset();
                 app.showList = true;
             })
         },
+
         postSpecial: async function(specialURL, $data)
         {
             var app = this;
@@ -151,7 +149,7 @@ Vue.component('model',
                     type: 'success',
                     title: 'Done!',
                     showConfirmButton: false,
-                    timer: 1500
+                    timer: 500
                 });
 
                 resp = response.data;
@@ -163,7 +161,6 @@ Vue.component('model',
 
             return resp;
         },
-
 
         onSave($data)
         {
@@ -247,6 +244,32 @@ Vue.component('model',
                     this.$swal('Error trying to delete record.');
                 });
             });
+        },
+
+        deleteSpecial: async function(specialURL, $data)
+        {
+            var app = this;
+            var resp;
+
+            this.$swal({
+                title: 'Delete Record',
+                text: "Sure? This action is non-reversable",
+                type: 'question',
+                showCancelButton: true,
+                confirmButtonText: 'Yes, delete it!'
+            })
+            .then(() => {
+                axios.delete(specialURL + '/' + $data.id)
+                .then(() => {
+                    resp = response.data;
+                })
+                .catch(ex => {
+                    console.log(ex.response);
+                    this.$swal('Error trying to delete record.');
+                });
+            });
+
+            return resp;
         },
 
         onApprove($data)

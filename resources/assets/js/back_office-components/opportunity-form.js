@@ -54,12 +54,9 @@ Vue.component('opportunity-form',
             app.$parent.postSpecial(url, task)
             .then(function(response)
             {
-
-                app.tasks=[];
+                app.tasks = [];
                 for (var i = 0; i < response.length; i++)
                 {
-
-
                     app.tasks.push({
                         id: response[i].id,
                         activity_type: response[i].activity_type,
@@ -75,7 +72,6 @@ Vue.component('opportunity-form',
                         completed: response[i].completed,
                     });
                 }
-
             });
         },
 
@@ -103,7 +99,7 @@ Vue.component('opportunity-form',
             { });
         },
 
-        changeTaskState: function(task)
+        deleteTask: function(task)
         {
             var app = this;
             var url = '/back-office/' + app.$parent.profile + '/sales/opportunities/' + app.id + '/tasks';
@@ -119,13 +115,40 @@ Vue.component('opportunity-form',
                 title: task.title,
                 description: task.description,
                 geoloc: task.geoloc,
-                completed: task.completed == true ? false : true,
+                completed: task.completed
             }
 
-            app.$parent.postSpecial(url, data)
+            app.$parent.deleteSpecial(url, data)
             .then(function(response)
-            { });
+            {
+                let index = this.tasks.findIndex(x => x.id === $data.id);
+                this.tasks.splice(index, 1);
+            });
         },
+
+        // changeTaskState: function(task)
+        // {
+        //     var app = this;
+        //     var url = '/back-office/' + app.$parent.profile + '/sales/opportunities/' + app.id + '/tasks';
+        //     var data =
+        //     {
+        //         id: task.id,
+        //         activity_type: task.activity_type,
+        //         opportunity_id: task.opportunity_id,
+        //         sentiment: task.sentiment,
+        //         reminder_date: task.reminder_date,
+        //         date_started: task.date_started,
+        //         date_ended: task.date_ended,
+        //         title: task.title,
+        //         description: task.description,
+        //         geoloc: task.geoloc,
+        //         completed: task.completed == true ? false : true,
+        //     }
+        //
+        //     app.$parent.postSpecial(url, data)
+        //     .then(function(response)
+        //     { });
+        // },
 
         onEdit: function(data)
         {
