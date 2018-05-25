@@ -13,6 +13,7 @@ use App\Order;
 use App\OrderDetail;
 use App\Contract;
 use App\ContractDetail;
+use App\ItemMovement;
 use Carbon\Carbon;
 use DB;
 use App\Http\Controllers\Controller;
