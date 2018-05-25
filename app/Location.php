@@ -25,11 +25,11 @@ class Location extends Model
         'country'
     ];
 
-    protected static function boot()
-    {
-        parent::boot();
-        static::addGlobalScope(new ProfileScope);
-    }
+    // protected static function boot()
+    // {
+    //     parent::boot();
+    //     static::addGlobalScope(new ProfileScope);
+    // }
 
     /**
     * The accountMovements that belong to the model.

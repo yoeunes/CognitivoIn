@@ -15,7 +15,7 @@ class LocationController extends Controller
     */
     public function index(Profile $profile, $skip)
     {
-        $location = Location::skip($skip)
+        $location = Location::where('profile_id', $profile->id)->skip($skip)
         ->take(100)
         ->get();
 

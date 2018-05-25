@@ -171,6 +171,23 @@ class AccountController extends Controller
             $detail->vat_id = $item->vat_id;
             $detail->unit_price = number_format($data_detail['unit_price'], 0, ',', '.');
             $detail->save();
+
+            $movement = new ItemMovement();
+            $movement->item_id = $data_detail['id'];
+            $movement->location_id = $data_detail['location_id'];
+            $movement->date = Carbon::now();;
+            if ($data['Type'] == 1)
+            {
+                $movement->credit = 0;
+                $movement->debit = number_format($data_detail['quantity'], 0, ',', '.');;
+            }
+            else
+            {
+                $movement->credit = number_format($data_detail['quantity'], 0, ',', '.');;
+                $movement->debit = 0;
+            }
+            $movement->save();
+
         }
         if ($data['contract_id'] >0 ) {
             $contract_details=ContractDetail::where('contract_id',$data['contract_id'])->get();
@@ -242,6 +259,7 @@ class AccountController extends Controller
                 $accountmovement->save();
             }
         }
+
 
 
 
