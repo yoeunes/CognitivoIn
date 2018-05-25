@@ -14,7 +14,7 @@
                         <div class="font-size-h2 font-w700 mb-0 text-success">
                             <img src="/img/logo/cognitivo-64.svg" width="46">
                         </div>
-                        <div class="font-size-sm font-w600 text-uppercase text-muted">Pipelines</div>
+                        <div class="font-size-sm font-w600 text-uppercase text-muted">Promotions</div>
                     </div>
                 </div>
             </div>
@@ -31,7 +31,7 @@
                         <div class="font-size-h2 font-w700 mb-0 text-success">
                             <i class="fa fa-plus"></i>
                         </div>
-                        <div class="font-size-sm font-w600 text-uppercase text-muted">Create new Pipeline</div>
+                        <div class="font-size-sm font-w600 text-uppercase text-muted">Create new Promotion</div>
                     </div>
                 </div>
             </a>
@@ -43,10 +43,10 @@
     <div class="block block-fx-shadow">
         <div class="block-content">
             <div v-if="showList">
-                @include('back_office/sales/pipelines/list')
+                @include('back_office/sales/promotions/list')
             </div>
             <div v-else>
-                @include('back_office/sales/pipelines/form')
+                @include('back_office/sales/promotions/form')
             </div>
         </div>
     </div>

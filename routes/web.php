@@ -43,9 +43,9 @@ Route::group(['middleware' => 'auth'], function ()
             Route::get('dashboard', 'BackOfficeController@dashboardSales');
             Route::resources([
                 'customers' => 'CustomerController',
-                'suppliers' => 'SupplierController',
                 'opportunities' => 'OpportunityController',
                 'opportunities/{opportunity}/tasks' => 'OpportunityTaskController',
+                'promotions' => 'ItemPromotionController',
                 'orders' => 'OrderController',
                 'pipelines' => 'PipelineController',
                 'pipelinestages' => 'PipelineStageController',
@@ -65,7 +65,7 @@ Route::group(['middleware' => 'auth'], function ()
         {
             Route::get('dashboard', 'BackOfficeController@dashboardPurchase');
             Route::resources([
-                'suppliers' => 'BackOfficeSupplierController',
+                'suppliers' => 'SupplierController',
                 'orders' => 'BackOfficePurchaseController',
             ]);
         });
@@ -75,6 +75,7 @@ Route::group(['middleware' => 'auth'], function ()
             Route::get('dashboard', 'BackOfficeController@dashboardStock');
             Route::resources([
                 'movements' => 'BackOfficeStockMovementController',
+                'items' => 'ItemController',
             ]);
         });
 

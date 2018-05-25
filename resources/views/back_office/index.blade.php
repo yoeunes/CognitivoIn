@@ -510,6 +510,10 @@
                             @include('back_office/sales/orders')
                         </div>
 
+                        <div v-if="showModule == 3.5">
+                            @include('back_office/sales/promotion')
+                        </div>
+
                         <div v-if="showModule == '4.1'">
                             @include('back_office/purchase/suppliers')
                         </div>
