@@ -57,7 +57,7 @@ Route::group(['middleware' => 'auth'], function ()
                 'contractdetail' => 'ContractDetailController'
             ]);
 
-            Route::post('opportunities/{opportunity}/tasks/checked', 'ProfileController@taskChecked');
+            Route::post('opportunities/{opportunity}/tasks/checked', 'OpportunityTaskController@taskChecked');
 
         });
 

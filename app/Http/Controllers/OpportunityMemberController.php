@@ -31,16 +31,22 @@ class OpportunityMemberController extends Controller
   */
   public function store(Request $request, Profile $profile, $opportunity)
   {
+
     $opportunity=Opportunity::find($opportunity);
 
     if ($profile->id == $opportunity->profile_id)
     {
-        
-      if (OpportunityMember::where('profile_id',$request->profile_id)->get()->count()==0) {
+      $count= OpportunityMember::where('profile_id',$request->profile_id)
+      ->where('opportunity_id',$opportunity->id)->get()->count();
+      if ($count==0) {
         $opportunityMembers = new OpportunityMember();
         $opportunityMembers->opportunity_id = $opportunity->id;
         $opportunityMembers->profile_id = $request->profile_id;
         $opportunityMembers->save();
+      }
+      else {
+        $opportunityMembers=OpportunityMember::where('profile_id',$request->profile_id)
+        ->where('opportunity_id',$opportunity->id)->first();
       }
 
     }

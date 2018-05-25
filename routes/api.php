@@ -114,7 +114,7 @@ Route::group(['middleware' => 'auth:api'], function ()
     Route::get('getCompanys/{slug}', 'ProfileController@get_companies');
     Route::get('login/{email}/{password}', 'Auth\SocialAuthController@Login');
     //for searchbox route
-    Route::get('getProfile/{frase}', 'ProfileController@getProfile');
+    Route::get('getProfile', 'ProfileController@getProfile');
     Route::get('getItem/{profile}/{frase}', 'ItemController@getItem');
     Route::get('getCustomer/{profile}/{frase}', 'CustomerController@getCustomer');
 

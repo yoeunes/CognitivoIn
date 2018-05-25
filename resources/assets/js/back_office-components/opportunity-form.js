@@ -43,16 +43,40 @@ Vue.component('opportunity-form',
         },
     },
 
+
     methods:
     {
         taskChecked: function(task)
         {
             var app = this;
-            var url = '/back-office/' + app.$parent.profile + '/sales/opportunities/' + app.id + '/tasks';
+            var url = '/back-office/' + app.$parent.profile + '/sales/opportunities/' + app.id + '/tasks/checked';
 
             app.$parent.postSpecial(url, task)
             .then(function(response)
-            { });
+            {
+
+                app.tasks=[];
+                for (var i = 0; i < response.length; i++)
+                {
+
+
+                    app.tasks.push({
+                        id: response[i].id,
+                        activity_type: response[i].activity_type,
+                        opportunity_id: response[i].opportunity_id,
+                        pipeline_stage_id: response[i].pipeline_stage_id,
+                        sentiment: response[i].sentiment,
+                        reminder_date: response[i].reminder_date,
+                        date_started: response[i].date_started,
+                        date_ended: response[i].date_ended,
+                        title: response[i].title,
+                        description: response[i].description,
+                        geoloc: response[i].geoloc,
+                        completed: response[i].completed,
+                    });
+                }
+
+            });
         },
 
         editTask: function(task)
@@ -123,7 +147,7 @@ Vue.component('opportunity-form',
         onShow: function(data)
         {
             var app = this;
-
+            //console.log(data);
             app.id = data.id;
             app.relationship_id = data.relationship_id;
             app.pipeline_stage_id  = data.pipeline_stage_id;

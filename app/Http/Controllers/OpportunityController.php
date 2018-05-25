@@ -103,9 +103,9 @@ class OpportunityController extends Controller
     * @param  \App\opportunity  $opportunity
     * @return \Illuminate\Http\Response
     */
-    public function destroy(Opportunity $opportunity)
+    public function destroy(Profile $profile,Opportunity $opportunity)
     {
-        $relationship = $opportunity->relationship();
+        $relationship = $opportunity->relationship()->first();
         if ($relationship->supplier_id == $profile->id)
         {
             //No need for soft delete.

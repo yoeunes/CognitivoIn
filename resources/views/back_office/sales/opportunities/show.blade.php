@@ -78,20 +78,25 @@
                 <div class="block block-rounded">
                     <div class="block-header block-header-default">
                         <h3 class="block-title">Members</h3>
+
                     </div>
 
                     <opportunity-member-form ref="member-form" inline-template>
                         {{-- <div class="block-content"> --}}
+
                         <b-field>
-                            <b-taginput v-model="$parent.members" :data="filteredTags" autocomplete field="members.name" icon="label" placeholder="Search for a Member" @typing="getFilteredTags">
+                            <b-taginput v-model="$parent.members" :data="filteredProfiles"
+                            autocomplete field="name" icon="label" placeholder="Search for a Member"
+                            @typing="getFilteredProfiles" @add="addMember()">
                                 <template slot-scope="props">
-                                    {{-- <strong>{{props.option.id}}</strong>: {{props.option.user.first_name}} --}}
+                                    <strong>@{{props.option.id}}</strong>: @{{props.option.slug}}
                                 </template>
                                 <template slot="empty">
                                     There are no items
                                 </template>
                             </b-taginput>
                         </b-field>
+
                         {{-- </div> --}}
 
                     </opportunity-member-form>
@@ -354,7 +359,7 @@
                                 <tr v-for="task in completedTasks">
                                     <td class="text-center" style="width: 50px;">
                                         <label class="js-task-status css-control css-control-primary css-checkbox py-0">
-                                            <input type="checkbox" class="css-control-input" checked="">
+                                            <input type="checkbox" v-on:change="taskChecked(task)" class="css-control-input">
                                             <span class="css-control-indicator"></span>
                                         </label>
                                     </td>

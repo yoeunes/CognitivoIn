@@ -61,8 +61,9 @@ class OpportunityTaskController extends Controller
         {
             $opportunityTask->completed = !$request->completed;
             $opportunityTask->save();
-
-            return response()->json($opportunityTask, 200);
+            $opportunityTasks = OpportunityTask::where('opportunity_id', $opportunityTask->opportunity_id)
+            ->get();
+            return response()->json($opportunityTasks, 200);
         }
 
         return response()->json('Resource not found', 401);

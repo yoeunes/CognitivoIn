@@ -243,7 +243,7 @@ Vue.component('model',
                     })
                 })
                 .catch(ex => {
-                    console.log(ex);
+                    console.log(ex.response);
                     this.$swal('Error trying to delete record.');
                 });
             });
