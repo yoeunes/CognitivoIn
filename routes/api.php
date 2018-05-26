@@ -82,7 +82,7 @@ Route::group(['middleware' => 'auth:api'], function ()
       //Annull movements on specific modules
       Route::prefix('approve')->group(function ()
       {
-        Route::post('orders/{id}', 'OrderController@approve');
+        Route::post('orders', 'OrderController@approve');
         Route::post('opportunities', 'OpportunityController@approve');
         //TODO
         Route::post('payment-made', 'AccountPayableController@store');

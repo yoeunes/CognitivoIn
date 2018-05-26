@@ -24,7 +24,7 @@
       </button>
 
       <!-- Collapsible Tasks Navigation -->
-      <div class="js-tasks-nav d-none d-md-block">
+      <div class="js-tasks-nav d-none d-block">
         <!-- Tasks Info -->
         <div class="block block-rounded">
           <div class="block-header block-header-default">
