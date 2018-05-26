@@ -23,35 +23,54 @@
                 Menu
             </button>
 
-            <!-- Collapsible Tasks Navigation -->
-            <div class="js-tasks-nav d-none d-block">
-                <!-- Tasks Info -->
-                <div class="block block-rounded">
-                    <div class="block-header block-header-default">
-                        <h3 class="block-title">Tasks</h3>
-                    </div>
-
-                    <button @click="Approve()" class="button is-success">
-                        <b-icon icon="check"></b-icon>
-                        <span>Won</span>
-                    </button>
-
-                    <button @click="Approve()" class="button is-success">Won</button>
-                    <button @click="Annull()" class="button is-danger">Lost</button>
-
-                    <ul class="list-group push">
-                        <li class="list-group-item">
-                            <span class="js-task-badge badge badge-primary float-right animated bounceIn">@{{ activeTasks.length }}</span>
-                            <i class="fa fa-fw fa-tasks mr-5"></i> Active
-                        </li>
-                        <li class="list-group-item">
-                            <span class="js-task-badge-completed badge badge-success float-right animated bounceIn">@{{ completedTasks.length }}</span>
-                            <i class="fa fa-fw fa-check mr-5"></i> Completed
-                        </li>
-                    </ul>
+            <div class="block text-center" href="javascript:void(0)">
+                <div class="block-content block-content-full bg-gd-sun">
+                    <img class="img-avatar img-avatar-thumb" src="/img/avatars/avatar6.jpg" alt="">
                 </div>
-                <!-- END Tasks Info -->
+                <div class="block-content block-content-full">
+                    <div class="font-w600 mb-5">@{{ relationship.customer_alias }}</div>
+                    <div class="font-size-sm text-muted">Web Designer</div>
+                </div>
+                <div class="block-content block-content-full block-content-sm bg-body-light">
+                    <span class="font-w600 font-size-sm text-danger">@{{ relationship.customer_email }}</span>
+                </div>
+                <div class="block-content">
+                    <div class="row items-push text-center">
+                        <div class="col-6">
+                            <div class="item item-circle bg-success-light mx-auto mb-10">
+                                <i class="fa fa-money text-success"></i>
+                            </div>
+                            <div class="text-muted"><small>@{{ currency }}</small> @{{ totalValue }}</div>
+                        </div>
+                        <div class="col-6">
+                            <div class="item item-circle bg-info-light mx-auto mb-10">
+                                <i class="fa fa-diamond text-info"></i>
+                            </div>
+                            <div class="text-muted">4 Awards</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="block-footer">
+                    <div class="btn-group">
+                        <button type="button" @click="onHold()" class="btn btn-sm btn-secondary js-tooltip-enabled" data-toggle="tooltip" title="" data-original-title="Edit">
+                            <i class="fa fa-pencil"></i> On Hold
+                        </button>
 
+                        <button type="button" @click="onWon()" v-if="status != 3" class="btn btn-sm btn-secondary js-tooltip-enabled" data-toggle="tooltip" title="" data-original-title="Delete">
+                            <i class="fa fa-times"></i> Won
+                        </button>
+                        <button type="button" v-else class="btn btn-sm btn-secondary" disabled>
+                            <i class="fa fa-times"></i> Won
+                        </button>
+
+                        <button type="button" @click="onLost()" v-if="status != 4" class="btn btn-sm btn-secondary js-tooltip-enabled" data-toggle="tooltip" title="" data-original-title="Delete">
+                            <i class="fa fa-times"></i> Lost
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="js-tasks-nav d-none d-block">
                 <!-- Items -->
                 <div class="block block-rounded">
                     <opportunity-item-form ref="item-form" inline-template>

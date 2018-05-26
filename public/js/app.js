@@ -58023,6 +58023,7 @@ Vue.component('opportunity-form', {
             currency: '',
             is_archived: false,
 
+            relationship: '',
             pipelines: [],
             tasks: [],
             items: [],
@@ -58037,6 +58038,8 @@ Vue.component('opportunity-form', {
 
             return app.tasks.filter(function (i) {
                 return i.completed == 0;
+            }).sort(function (a) {
+                return new Date(a.date_started);
             });
         },
 
@@ -58047,6 +58050,17 @@ Vue.component('opportunity-form', {
             }).sort(function (a) {
                 return new Date(a.date_started);
             });
+        },
+
+        totalValue: function totalValue() {
+            var app = this;
+            var subTotal = 0;
+
+            for (var i = 0; i < app.items.length; i++) {
+                subTotal += app.items[i].unit_price * app.items[i].quantity;
+            }
+
+            return Number(subTotal).toLocaleString();
         }
     },
 
@@ -58086,7 +58100,6 @@ Vue.component('opportunity-form', {
             };
 
             app.$parent.deleteSpecial(url).then(function (response) {
-
                 var index = app.tasks.findIndex(function (x) {
                     return x.id === task.id;
                 });
@@ -58121,6 +58134,9 @@ Vue.component('opportunity-form', {
             app.status = data.status;
             app.value = data.value;
             app.is_archived = data.is_archived;
+            app.currency = data.currency;
+
+            app.relationship = data.relationship;
 
             app.tasks = [];
             for (var i = 0; i < data.tasks.length; i++) {
@@ -58178,6 +58194,7 @@ Vue.component('opportunity-form', {
             app.status = '';
             app.value = '';
             app.is_archived = '';
+            app.currency = '';
 
             app.tasks = [];
             app.members = [];
@@ -58199,9 +58216,14 @@ Vue.component('opportunity-form', {
             });
         },
 
-        Approve: function Approve() {
+        onWon: function onWon() {
             var app = this;
             app.$parent.onApprove({ id: app.id });
+        },
+
+        onLost: function onLost() {
+            var app = this;
+            app.$parent.onAnnull({ id: app.id });
         }
     },
 
