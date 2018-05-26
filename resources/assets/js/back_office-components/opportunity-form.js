@@ -61,24 +61,11 @@ Vue.component('opportunity-form',
 
         editTask: function(task)
         {
+            console.log(task);
             var app = this;
             var url = '/back-office/' + app.$parent.profile + '/sales/opportunities/' + app.id + '/tasks';
-            var data =
-            {
-                id: task.id,
-                activity_type: task.activity_type,
-                opportunity_id: task.opportunity_id,
-                sentiment: task.sentiment,
-                reminder_date: task.reminder_date,
-                date_started: task.date_started,
-                date_ended: task.date_ended,
-                title: task.title,
-                description: task.description,
-                geoloc: task.geoloc,
-                completed: task.completed
-            }
 
-            app.$parent.postSpecial(url, data)
+            app.$parent.postSpecial(url, task)
             .then(function(response)
             { });
         },
@@ -105,9 +92,9 @@ Vue.component('opportunity-form',
             app.$parent.deleteSpecial(url)
             .then(function(response)
             {
-                // alert('done');
-                //let index = app.tasks.findIndex(x => x.id === task.id);
-                //app.tasks.splice(index, 1);
+
+                let index = app.tasks.findIndex(x => x.id === task.id);
+                app.tasks.splice(index, 1);
             });
         },
 
@@ -151,13 +138,14 @@ Vue.component('opportunity-form',
                     sentiment: data.tasks[i].sentiment,
 
                     reminder_date: data.tasks[i].reminder_date,
-                    date_started: data.tasks[i].date_started,
-                    date_ended: data.tasks[i].date_ended,
+                    date_started: new Date(data.tasks[i].date_started),
+                    date_ended:  new Date(data.tasks[i].date_ended),
 
                     title: data.tasks[i].title,
                     description: data.tasks[i].description,
                     geoloc: data.tasks[i].geoloc,
-                    completed: data.tasks[i].completed
+                    completed: data.tasks[i].completed,
+                    assigned_to:data.tasks[i].assigned_to
                 });
             }
 
@@ -220,6 +208,12 @@ Vue.component('opportunity-form',
                 }
             });
         },
+
+        Approve: function()
+        {
+            var app=this;
+            app.$parent.onApprove({id:app.id});
+        }
     },
 
     mounted: function mounted()

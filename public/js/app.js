@@ -58126,23 +58126,11 @@ Vue.component('opportunity-form', {
         },
 
         editTask: function editTask(task) {
+            console.log(task);
             var app = this;
             var url = '/back-office/' + app.$parent.profile + '/sales/opportunities/' + app.id + '/tasks';
-            var data = {
-                id: task.id,
-                activity_type: task.activity_type,
-                opportunity_id: task.opportunity_id,
-                sentiment: task.sentiment,
-                reminder_date: task.reminder_date,
-                date_started: task.date_started,
-                date_ended: task.date_ended,
-                title: task.title,
-                description: task.description,
-                geoloc: task.geoloc,
-                completed: task.completed
-            };
 
-            app.$parent.postSpecial(url, data).then(function (response) {});
+            app.$parent.postSpecial(url, task).then(function (response) {});
         },
 
         deleteTask: function deleteTask(task) {
@@ -58163,9 +58151,11 @@ Vue.component('opportunity-form', {
             };
 
             app.$parent.deleteSpecial(url).then(function (response) {
-                // alert('done');
-                //let index = app.tasks.findIndex(x => x.id === task.id);
-                //app.tasks.splice(index, 1);
+
+                var index = app.tasks.findIndex(function (x) {
+                    return x.id === task.id;
+                });
+                app.tasks.splice(index, 1);
             });
         },
 
@@ -58206,13 +58196,14 @@ Vue.component('opportunity-form', {
                     sentiment: data.tasks[i].sentiment,
 
                     reminder_date: data.tasks[i].reminder_date,
-                    date_started: data.tasks[i].date_started,
-                    date_ended: data.tasks[i].date_ended,
+                    date_started: new Date(data.tasks[i].date_started),
+                    date_ended: new Date(data.tasks[i].date_ended),
 
                     title: data.tasks[i].title,
                     description: data.tasks[i].description,
                     geoloc: data.tasks[i].geoloc,
-                    completed: data.tasks[i].completed
+                    completed: data.tasks[i].completed,
+                    assigned_to: data.tasks[i].assigned_to
                 });
             }
 
@@ -58271,6 +58262,11 @@ Vue.component('opportunity-form', {
                     });
                 }
             });
+        },
+
+        Approve: function Approve() {
+            var app = this;
+            app.$parent.onApprove({ id: app.id });
         }
     },
 
@@ -58506,15 +58502,13 @@ Vue.component('opportunity-item-form', {
         _this.$swal('Error trying to load records.');
       });;
     },
-
-    addQuantity: function addQuantity(item) {
+    updateItem: function updateItem(item) {
       var _this2 = this;
 
       var app = this;
-      item.quantity = parseInt(item.quantity) + 1;
-
       axios.put('/api/' + app.$parent.$parent.profile + '/back-office/opportunities/' + this.$parent.id + '/items/' + item.id, {
-        quantity: item.quantity
+        quantity: item.quantity,
+        unit_price: item.unit_price
       }).then(function (_ref2) {
         var data = _ref2.data;
       }).catch(function (ex) {
@@ -58522,45 +58516,43 @@ Vue.component('opportunity-item-form', {
         _this2.$swal('Error trying to load records.');
       });
     },
+
+    addQuantity: function addQuantity(item) {
+
+      var app = this;
+      item.quantity = parseInt(item.quantity) + 1;
+      this.updateItem(item);
+    },
     removeQuantity: function removeQuantity(item) {
-      var _this3 = this;
 
       var app = this;
       item.quantity = parseInt(item.quantity) - 1;
+      this.updateItem(item);
+    },
 
-      axios.put('/api/' + app.$parent.$parent.profile + '/back-office/opportunities/' + this.$parent.id + '/items/' + item.id, {
-        quantity: item.quantity
-      }).then(function (_ref3) {
+    deleteItem: function deleteItem(item) {
+      var _this3 = this;
+
+      var app = this;
+      axios.delete('/api/' + app.$parent.$parent.profile + '/back-office/opportunities/' + this.$parent.id + '/items/' + item.id).then(function (_ref3) {
         var data = _ref3.data;
+
+        var index = _this3.$parent.items.findIndex(function (x) {
+          return x.id === item.id;
+        });
+        _this3.$parent.items.splice(index, 1);
       }).catch(function (ex) {
         console.log(ex.response);
         _this3.$swal('Error trying to load records.');
       });
     },
 
-    deleteItem: function deleteItem(item) {
+    getItems: function getItems(query) {
       var _this4 = this;
 
       var app = this;
-      axios.delete('/api/' + app.$parent.$parent.profile + '/back-office/opportunities/' + this.$parent.id + '/items/' + item.id).then(function (_ref4) {
+      axios.get('/api/getItem/' + app.$parent.$parent.profile + '/' + query).then(function (_ref4) {
         var data = _ref4.data;
-
-        var index = _this4.$parent.items.findIndex(function (x) {
-          return x.id === item.id;
-        });
-        _this4.$parent.items.splice(index, 1);
-      }).catch(function (ex) {
-        console.log(ex.response);
-        _this4.$swal('Error trying to load records.');
-      });
-    },
-
-    getItems: function getItems(query) {
-      var _this5 = this;
-
-      var app = this;
-      axios.get('/api/getItem/' + app.$parent.$parent.profile + '/' + query).then(function (_ref5) {
-        var data = _ref5.data;
 
         if (data.length > 0) {
           app.items = [];
@@ -58570,7 +58562,7 @@ Vue.component('opportunity-item-form', {
         }
       }).catch(function (ex) {
         console.log(ex);
-        _this5.$swal('Error trying to load records.');
+        _this4.$swal('Error trying to load records.');
       });
     }
   },
@@ -59603,7 +59595,7 @@ __WEBPACK_IMPORTED_MODULE_1_vue___default.a.component('model', {
                                     showCancelButton: true,
                                     confirmButtonText: 'Yes, delete it!'
                                 }).then(function () {
-                                    __WEBPACK_IMPORTED_MODULE_4_axios___default.a.delete(specialURL).then(function () {
+                                    __WEBPACK_IMPORTED_MODULE_4_axios___default.a.delete(specialURL).then(function (response) {
                                         resp = response.data;
                                         return resp;
                                     }).catch(function (ex) {
@@ -59639,7 +59631,7 @@ __WEBPACK_IMPORTED_MODULE_1_vue___default.a.component('model', {
                 showCancelButton: true,
                 confirmButtonText: 'Yes, approve it!'
             }).then(function () {
-                __WEBPACK_IMPORTED_MODULE_4_axios___default.a.post('/api/' + _this9.profile + '/back-office/' + app.url + '/' + $data.id + '/approve', $data).then(function () {
+                __WEBPACK_IMPORTED_MODULE_4_axios___default.a.post('/api/' + _this9.profile + '/back-office/approve/' + app.url, $data).then(function () {
                     _this9.$swal({
                         position: 'top-end',
                         type: 'success',
@@ -59650,7 +59642,7 @@ __WEBPACK_IMPORTED_MODULE_1_vue___default.a.component('model', {
 
                     app.showList = true;
                 }).catch(function (ex) {
-                    console.log(ex);
+                    console.log(ex.response);
                     _this9.$swal('Error trying to approve record.');
                 });
                 //Code to approve

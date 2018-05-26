@@ -83,6 +83,7 @@ Route::group(['middleware' => 'auth:api'], function ()
       Route::prefix('approve')->group(function ()
       {
         Route::post('orders/{id}', 'OrderController@approve');
+        Route::post('opportunities', 'OpportunityController@approve');
         //TODO
         Route::post('payment-made', 'AccountPayableController@store');
         Route::post('payment-recieved', 'AccountReceivableController@store');

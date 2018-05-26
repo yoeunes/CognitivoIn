@@ -188,6 +188,8 @@ Vue.component('model',
             });
         },
 
+
+
         onSaveCreate($data)
         {
             var app = this;
@@ -260,7 +262,7 @@ Vue.component('model',
             })
             .then(() => {
                 axios.delete(specialURL)
-                .then(() => {
+                .then((response) => {
                     resp = response.data;
                     return resp;
                 })
@@ -282,7 +284,7 @@ Vue.component('model',
                 showCancelButton: true,
                 confirmButtonText: 'Yes, approve it!'
             }).then(() => {
-                axios.post('/api/' + this.profile + '/back-office/' + app.url + '/' + $data.id + '/approve', $data)
+                axios.post('/api/' + this.profile + '/back-office/approve/' + app.url  , $data)
                 .then(() =>
                 {
                     this.$swal({
@@ -296,7 +298,7 @@ Vue.component('model',
                     app.showList = true;
                 })
                 .catch(ex => {
-                    console.log(ex);
+                    console.log(ex.response);
                     this.$swal('Error trying to approve record.');
                 });
                 //Code to approve

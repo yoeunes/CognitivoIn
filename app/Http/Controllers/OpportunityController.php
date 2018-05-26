@@ -7,6 +7,8 @@ use App\OpportunityTask;
 use App\OpportunityMember;
 use App\Profile;
 use App\Cart;
+use App\Order;
+use App\OrderDetail;
 use App\PipelineStage;
 use App\Pipeline;
 use App\Relationship;
@@ -135,5 +137,35 @@ class OpportunityController extends Controller
         }
 
         return response()->json('Resource not found', 401);
+    }
+
+    public function approve(Request $request,Profile $profile)
+    {
+        $opportunity = Opportunity::where('id', $request->id)->first();
+        $carts=Cart::where('opportunity_id',$opportunity->id)->with('item')->get();
+        $order = new Order();
+        $order->relationship_id=$opportunity->relationship_id;
+        $order->currency='PYG';
+        $order->currency_rate=1;
+        $order->is_impex=0;
+        $order->is_printed=0;
+        $order->is_archived=0;
+        $order->save();
+
+
+        foreach ($carts as $cart) {
+            $orderDetail =new OrderDetail();
+            $orderDetail->order_id= $order->id;
+            $orderDetail->item_id= $cart->item_id;
+            $orderDetail->item_name= $cart->item->name;
+            $orderDetail->quantity= $cart->quantity;
+            $orderDetail->unit_price= $cart->unit_price;
+            $orderDetail->vat_id= $cart->vat_id;
+            $orderDetail->cart_id=$cart->id;
+            $orderDetail->save();
+
+
+        }
+        return response()->json('ok', 200);
     }
 }

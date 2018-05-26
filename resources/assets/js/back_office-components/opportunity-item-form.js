@@ -42,16 +42,13 @@ Vue.component('opportunity-item-form',
         this.$swal('Error trying to load records.');
       });;
     },
-
-    addQuantity: function(item)
+    updateItem: function(item)
     {
-
       var app = this;
-      item.quantity=parseInt(item.quantity)+1;
-
       axios.put('/api/'+ app.$parent.$parent.profile +'/back-office/opportunities/'
       + this.$parent.id + '/items/' + item.id,{
-        quantity:item.quantity
+        quantity:item.quantity,
+        unit_price:item.unit_price
       })
       .then(({ data }) =>
       {
@@ -62,6 +59,16 @@ Vue.component('opportunity-item-form',
         console.log(ex.response);
         this.$swal('Error trying to load records.');
       });
+    },
+
+
+    addQuantity: function(item)
+    {
+
+      var app = this;
+      item.quantity=parseInt(item.quantity)+1;
+      this.updateItem(item);
+
 
     },
     removeQuantity: function(item)
@@ -69,20 +76,8 @@ Vue.component('opportunity-item-form',
 
       var app = this;
       item.quantity=parseInt(item.quantity)-1;
+      this.updateItem(item);
 
-      axios.put('/api/'+ app.$parent.$parent.profile +'/back-office/opportunities/'
-      + this.$parent.id + '/items/' + item.id,{
-        quantity:item.quantity
-      })
-      .then(({ data }) =>
-      {
-
-
-
-      })  .catch(ex => {
-        console.log(ex.response);
-        this.$swal('Error trying to load records.');
-      });
 
     },
 

@@ -50,127 +50,135 @@
             <h3 class="block-title">Items</h3>
           </div>
           <opportunity-item-form ref="item-form" inline-template>
-                    <div class="block-content">
-                      <div  class="js-task block block-rounded mb-5 animated fadeIn" data-task-id="9" data-task-completed="false" data-task-starred="false">
+            <div class="block-content">
+              <div  class="js-task block block-rounded mb-5 animated fadeIn" data-task-id="9" data-task-completed="false" data-task-starred="false">
 
-                        <table class="table table-borderless table-vcenter mb-0">
-                          <tbody>
-                            <tr v-for="cart in $parent.items">
-
-
-                              <td class="js-task-content">
-                                <span class="font-w600">@{{ cart.name }}</span>
-                                <small>@{{ cart.sku }}</small>
-                              </td>
-                              <td class="js-task-content">
-                                <span class="font-w600">@{{ cart.quantity }}</span>
-                              </td>
-                              <td class="text-right">
-                                <button @click="addQuantity(cart)" class="js-task-remove btn btn-sm btn-alt-danger" type="button">
-                                  <i class="si si-plus"></i>
-                                </button>
-                              </td>
-                              <td class="text-right">
-                                <button @click="removeQuantity(cart)" class="js-task-remove btn btn-sm btn-alt-danger" type="button">
-                                  <i class="si si-minus"></i>
-                                </button>
-                              </td>
-                              <td class="text-right">
-                                <button @click="deleteItem(cart)" class="js-task-remove btn btn-sm btn-alt-danger" type="button">
-                                  <i class="si si-close"></i>
-                                </button>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
-
-                      <b-field>
-                        <b-autocomplete
-                        v-model="selectname"
-                        :data="items"
-                        placeholder="Search Item"
-                        field="name"
-                        :loading="isFetching"
-                        @input="getItems"
-                        @select="option =>addItem(option)">
+                <table class="table table-borderless table-vcenter mb-1">
+                  <tbody>
+                    <tr v-for="cart in $parent.items">
 
 
-                        <template slot-scope="props">
-                          <strong>@{{props.option.id}}</strong>: @{{props.option.sku}} || @{{props.option.name}}
-                        </template>
-                        <template slot="empty">
-                          There are no items
-                        </template>
-                      </b-autocomplete>
-                    </b-field>
+                      <td class="js-task-content">
+                        <span class="font-w600">@{{ cart.name }}</span>
+                        <small>@{{ cart.sku }}</small>
+                      </td>
+                      <td class="js-task-content">
+                        <span class="font-w600">@{{cart.quantity}}</span>
+                      </td>
+                      <td class="js-task-content">
+                        <span class="font-w600">@{{cart.unit_price}}</span>
+                      </td>
+                      {{-- <td class="text-right">
+                      <button @click="updateItem(cart)" class="js-task-remove btn btn-sm btn-alt-danger" type="button">
+                      <i class="si si-right">save</i>
+                    </button>
+                  </td> --}}
+                  <td class="text-right">
+                    <button @click="addQuantity(cart)" class="js-task-remove btn btn-sm btn-alt-danger" type="button">
+                      <i class="si si-plus"></i>
+                    </button>
+                  </td>
+                  <td class="text-right">
+                    <button @click="removeQuantity(cart)" class="js-task-remove btn btn-sm btn-alt-danger" type="button">
+                      <i class="si si-minus"></i>
+                    </button>
+                  </td>
+                  <td class="text-right">
+                    <button @click="deleteItem(cart)" class="js-task-remove btn btn-sm btn-alt-danger" type="button">
+                      <i class="si si-close"></i>
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
 
-                  </div>
+          <b-field>
+            <b-autocomplete
+            v-model="selectname"
+            :data="items"
+            placeholder="Search Item"
+            field="name"
+            :loading="isFetching"
+            @input="getItems"
+            @select="option =>addItem(option)">
 
-                </opportunity-item-form>
 
-
+            <template slot-scope="props">
+              <strong>@{{props.option.id}}</strong>: @{{props.option.sku}} || @{{props.option.name}}
+            </template>
+            <template slot="empty">
+              There are no items
+            </template>
+          </b-autocomplete>
+        </b-field>
 
       </div>
-      <!-- END Items -->
 
-      <!-- Members -->
-      <div class="block block-rounded">
-        <div class="block-header block-header-default">
-          <h3 class="block-title">Members</h3>
-
-        </div>
-
-        <opportunity-member-form ref="member-form" inline-template>
-          <div class="block-content">
-            <div  class="js-task block block-rounded mb-5 animated fadeIn" data-task-id="9" data-task-completed="false" data-task-starred="false">
-
-              <table class="table table-borderless table-vcenter mb-0">
-                <tbody>
-                  <tr v-for="member in $parent.members">
+    </opportunity-item-form>
 
 
-                    <td class="js-task-content">
-                      <span class="font-w600">@{{ member.name }}</span>
-                      <small>@{{ member.taxid }}</small>
-                    </td>
-                    <td class="text-right">
-                      <button @click="deleteMember(member)" class="js-task-remove btn btn-sm btn-alt-danger" type="button">
-                        <i class="si si-close"></i>
-                      </button>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
 
-            <b-field>
-              <b-autocomplete
-              v-model="selectname"
-              :data="profiles"
-              placeholder="Search members"
-              field="name"
-              :loading="isFetching"
-              @input="getProfiles"
-              @select="option =>addMember(option)">
-
-
-              <template slot-scope="props">
-                <strong>@{{props.option.id}}</strong>: @{{props.option.slug}}
-              </template>
-              <template slot="empty">
-                There are no items
-              </template>
-            </b-autocomplete>
-          </b-field>
-
-        </div>
-
-      </opportunity-member-form>
-    </div>
-    <!-- END Members -->
   </div>
-  <!-- END Collapsible Tasks Navigation -->
+  <!-- END Items -->
+
+  <!-- Members -->
+  <div class="block block-rounded">
+    <div class="block-header block-header-default">
+      <h3 class="block-title">Members</h3>
+
+    </div>
+
+    <opportunity-member-form ref="member-form" inline-template>
+      <div class="block-content">
+        <div  class="js-task block block-rounded mb-5 animated fadeIn" data-task-id="9" data-task-completed="false" data-task-starred="false">
+
+          <table class="table table-borderless table-vcenter mb-0">
+            <tbody>
+              <tr v-for="member in $parent.members">
+
+
+                <td class="js-task-content">
+                  <span class="font-w600">@{{ member.name }}</span>
+                  <small>@{{ member.taxid }}</small>
+                </td>
+                <td class="text-right">
+                  <button @click="deleteMember(member)" class="js-task-remove btn btn-sm btn-alt-danger" type="button">
+                    <i class="si si-close"></i>
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <b-field>
+          <b-autocomplete
+          v-model="selectname"
+          :data="profiles"
+          placeholder="Search members"
+          field="name"
+          :loading="isFetching"
+          @input="getProfiles"
+          @select="option =>addMember(option)">
+
+
+          <template slot-scope="props">
+            <strong>@{{props.option.id}}</strong>: @{{props.option.slug}}
+          </template>
+          <template slot="empty">
+            There are no items
+          </template>
+        </b-autocomplete>
+      </b-field>
+
+    </div>
+
+  </opportunity-member-form>
+</div>
+<!-- END Members -->
+</div>
+<!-- END Collapsible Tasks Navigation -->
 </div>
 <div class="col-md-7 col-xl-9">
   <!-- Tasks -->
@@ -442,16 +450,16 @@
             <b-field label="Assign Task" custom-class="is-small"></b-field>
           </div>
           <div class="col-10">
-            <b-select placeholder="Assign someone">
-              <option v-for="member in members" :value="props.row.assigned_to" :key="member.id">
+            <b-select placeholder="Assign someone"  v-model="props.row.assigned_to">
+              <option v-for="member in members" :value="member.id" >
                 @{{ member.name }}
               </option>
             </b-select>
           </div>
         </div>
         <div class="block-content block-content-full block-content-sm bg-body-light font-size-sm">
-          <button @click="taskEdit(prop.row)" class="button is-info">Save</button>
-          <button @click="onReset()" class="btn btn-outline-secondary min-width-125">Cancel</button>
+          <button @click="editTask(props.row)" class="button is-info">Save</button>
+          <button @click="" class="btn btn-outline-secondary min-width-125">Cancel</button>
         </div>
       </template>
     </b-table>
@@ -549,6 +557,8 @@
     <!-- END Completed Task -->
   </div>
   <!-- END Tasks -->
+
+  <button @click="Approve()" class="button is-info">Approve</button>
 </div>
 </div>
 <!-- END Tasks Content -->

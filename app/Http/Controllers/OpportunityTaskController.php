@@ -31,7 +31,7 @@ class OpportunityTaskController extends Controller
     */
     public function store(Request $request, Profile $profile, Opportunity $opportunity)
     {
-
+        
         if ($profile->id == $opportunity->profile_id && $request->title != '')
         {
             $opportunityTask = OpportunityTask::find($request->id) ?? new OpportunityTask();
@@ -93,8 +93,10 @@ class OpportunityTaskController extends Controller
     * @param  \App\OpportunityTask  $opportunityTask
     * @return \Illuminate\Http\Response
     */
-    public function destroy(Profile $profile, Opportunity $opportunity, OpportunityTask $opportunityTask)
+    public function destroy(Profile $profile, Opportunity $opportunity, $opportunityTaskID)
     {
+
+        $opportunityTask=OpportunityTask::where('id',$opportunityTaskID)->first();
         //No need for soft delete.
         $opportunityTask->forceDelete();
         return response()->json('Ok', 200);
