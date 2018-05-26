@@ -326,4 +326,27 @@ class OrderController extends Controller
 
     return response()->json($data2, '200');
   }
+
+  public function Generateschedual($relationship_id,$amount,$exp_date,$type)
+  {
+    $schedual = new Scheduals();
+    $schedual->relationship_id = $relationship_id;
+    $schedual->currency = 'PYG';
+    $schedual->currency_rate = 1;
+    $schedual->date = Carbon::now();
+    $schedual->date_exp =$exp_date ;
+
+    if ($type == 1)
+    {
+      $schedual->credit = 0;
+      $schedual->debit =$amount ;
+    }
+    else
+    {
+      $schedual->credit = $amount;
+      $schedual->debit = 0;
+    }
+
+    $schedual->save();
+  }
 }
