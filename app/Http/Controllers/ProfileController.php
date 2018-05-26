@@ -18,7 +18,7 @@ class ProfileController extends Controller
     */
     public function index()
     {
-          return response()->json(Profile::where('type',1)->get(), 200);
+        return response()->json(Profile::where('type',1)->get(), 200);
     }
 
     /**
@@ -30,7 +30,7 @@ class ProfileController extends Controller
     public function create()
     {
 
-            return view('company.form'); //->with('countries', $countries);
+        return view('company.form'); //->with('countries', $countries);
     }
 
     /**
@@ -164,11 +164,12 @@ class ProfileController extends Controller
         return response()->json($companies);
     }
 
-    public function getProfile()
+    public function getProfile($frase)
     {
-      $profiles = Profile::where('type', 1)
-     ->get();
+        $profiles = Profile::where('type', 1)
+        ->where('slug', 'LIKE', "%$frase%")
+        ->get();
 
-      return response()->json($profiles);
+        return response()->json($profiles);
     }
 }
