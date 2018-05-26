@@ -107,7 +107,7 @@ Route::group(['middleware' => 'auth:api'], function ()
     //Route::post('PaymentReceive', 'AccountMovementController@store');
     //Route::post('Anull', 'AccountMovementController@annull');
     //Route::post('PaymentDue', 'Api\AccountController@get_CustomerSchedual');
-    Route::post('ApproveSales', 'Api\AccountController@ApproveSales');
+    //Route::post('ApproveSales', 'Api\AccountController@ApproveSales');
     //Route::post('syncitem', 'Api\ItemController@syncItems');
     //Route::post('synccustomer', 'Api\CustomerController@syncCustomer');
     //Route::post('synctransaction', 'Api\TransactionController@uploadOrder');

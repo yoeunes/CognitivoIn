@@ -178,7 +178,7 @@ class OrderController extends Controller
       $order->contract_id = $data['contract_id'];
     }
 
-    $order->code_expiry = $data['code_expiry'];
+    $order->code_expiry = Carbon::parse($data['code_expiry']);
     $order->is_printed = $data['number'] != "" ? true : false;
     $order->date = Carbon::now();
     $order->currency = 'PYG';
