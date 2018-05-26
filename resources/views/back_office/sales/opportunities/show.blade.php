@@ -325,6 +325,9 @@
                 </b-table-column>
 
                 <b-table-column label="Actions" centered>
+                    <b-tooltip :label="props.row.reminder_date" dashed>
+                        <i class="si si-bell"></i>
+                    </b-tooltip>
                     <a class="delete" @click="deleteTask(props.row)"></a>
                 </b-table-column>
 
@@ -352,23 +355,37 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-3">
-
+                    <div class="col-2">
+                        <b-field label="Start & End Dates" custom-class="is-small"></b-field>
                     </div>
-                    <div class="col-9">
-
+                    <div class="col-10">
+                        <b-field grouped>
+                            <b-field expanded>
+                                <b-datepicker v-model="props.row.date_started"
+                                placeholder="Start Date"></b-datepicker>
+                            </b-field>
+                            <b-field expanded>
+                                <b-datepicker v-model="props.row.date_ended"
+                                :min-date="props.row.date_started"
+                                placeholder="End Date"></b-datepicker>
+                            </b-field>
+                        </b-field>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-3">
-
+                    <div class="col-2">
+                        <b-field label="Assign Task" custom-class="is-small"></b-field>
                     </div>
-                    <div class="col-9">
-
+                    <div class="col-10">
+                        <b-select placeholder="Assign someone">
+                            <option v-for="member in members" :value="props.row.assigned_to" :key="member.id">
+                                @{{ member.name }}
+                            </option>
+                        </b-select>
                     </div>
                 </div>
                 <div class="block-content block-content-full block-content-sm bg-body-light font-size-sm">
-                    <button @click="taskEdit(prop.row)" class="button is-info">Save Task</button>
+                    <button @click="taskEdit(prop.row)" class="button is-info">Save</button>
                     <button @click="onReset()" class="btn btn-outline-secondary min-width-125">Cancel</button>
                 </div>
             </template>
@@ -420,56 +437,53 @@
                             <a href="#">
                                 <i v-if="task.reminder_date != null" class="si si-bell"></i>
                             </a>
-                            {{-- <button @click="editTask(task)" class="js-task-star btn btn-sm btn-alt-info" type="button">
-                            <i class="si si-pencil"></i>
-                        </button> --}}
-                        <button @click="deleteTask(task)" class="js-task-remove btn btn-sm btn-alt-danger" type="button">
-                            <i class="si si-close"></i>
-                        </button>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+                            <button @click="deleteTask(task)" class="js-task-remove btn btn-sm btn-alt-danger" type="button">
+                                <i class="si si-close"></i>
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <!-- END Task -->
     </div>
-    <!-- END Task -->
-</div>
-<!-- END Tasks List -->
+    <!-- END Tasks List -->
 
-<!-- Tasks List Completed -->
-<h2 class="content-heading">Completed</h2>
-<div class="js-task-list-completed">
-    <!-- Completed Task -->
-    <div class="js-task block block-rounded mb-5 animated fadeIn" data-task-id="3" data-task-completed="true" data-task-starred="false">
-        <table class="table table-borderless table-vcenter bg-body-light mb-0">
-            <tbody>
-                <tr v-for="task in completedTasks">
-                    <td class="text-center" style="width: 50px;">
-                        <label class="js-task-status css-control css-control-primary css-checkbox py-0">
-                            <input type="checkbox" v-on:change="taskChecked(task)" class="css-control-input" checked>
-                            <span class="css-control-indicator"></span>
-                        </label>
-                    </td>
-                    <td class="js-task-content">
-                        <del>
-                            <span class="font-w600">@{{ task.title }}</span>
-                            <small>@{{ task.description }}</small>
-                        </del>
-                    </td>
-                    <td class="text-right" style="width: 100px;">
-                        <button @click="editTask(task)" class="js-task-star btn btn-sm btn-alt-info" type="button">
-                            <i class="fa fa-eye"></i>
-                        </button>
-                        <button @click="deleteTask(task)" class="js-task-remove btn btn-sm btn-alt-danger" type="button">
-                            <i class="fa fa-times"></i>
-                        </button>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+    <!-- Tasks List Completed -->
+    <h2 class="content-heading">Completed</h2>
+    <div class="js-task-list-completed">
+        <!-- Completed Task -->
+        <div class="js-task block block-rounded mb-5 animated fadeIn" data-task-id="3" data-task-completed="true" data-task-starred="false">
+            <table class="table table-borderless table-vcenter bg-body-light mb-0">
+                <tbody>
+                    <tr v-for="task in completedTasks">
+                        <td class="text-center" style="width: 50px;">
+                            <label class="js-task-status css-control css-control-primary css-checkbox py-0">
+                                <input type="checkbox" v-on:change="taskChecked(task)" class="css-control-input" checked>
+                                <span class="css-control-indicator"></span>
+                            </label>
+                        </td>
+                        <td class="js-task-content">
+                            <del>
+                                <span class="font-w600">@{{ task.title }}</span>
+                                <small>@{{ task.description }}</small>
+                            </del>
+                        </td>
+                        <td class="text-right" style="width: 100px;">
+                            <button @click="editTask(task)" class="js-task-star btn btn-sm btn-alt-info" type="button">
+                                <i class="fa fa-eye"></i>
+                            </button>
+                            <button @click="deleteTask(task)" class="js-task-remove btn btn-sm btn-alt-danger" type="button">
+                                <i class="fa fa-times"></i>
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <!-- END Completed Task -->
     </div>
-    <!-- END Completed Task -->
-</div>
-<!-- END Tasks -->
+    <!-- END Tasks -->
 </div>
 </div>
 <!-- END Tasks Content -->

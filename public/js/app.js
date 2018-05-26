@@ -58261,7 +58261,7 @@ Vue.component('opportunity-task-form', {
                 description: app.description,
                 geoloc: app.geoloc,
                 completed: app.completed,
-                assigned_to: app.completed
+                assigned_to: app.assigned_to
             };
 
             app.$parent.$parent.postSpecial(url, data).then(function (response) {
@@ -58277,7 +58277,8 @@ Vue.component('opportunity-task-form', {
                     title: response.title,
                     description: response.description,
                     geoloc: response.geoloc,
-                    completed: response.completed
+                    completed: response.completed,
+                    assigned_to: response.assigned_to
                 });
 
                 app.onReset();
@@ -58300,6 +58301,7 @@ Vue.component('opportunity-task-form', {
             app.title = '';
             app.description = '';
             app.geoloc = '';
+            app.assigned_to = '';
             app.completed = false;
             app.remindMe = false;
         }

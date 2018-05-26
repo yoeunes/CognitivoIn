@@ -45,6 +45,8 @@ class OpportunityTaskController extends Controller
             $opportunityTask->description = $request->description ?? null;
             $opportunityTask->geoloc = $request->geoloc ?? null;
             $opportunityTask->completed = $request->completed ?? 0;
+            $opportunityTask->assigned_to = $request->assigned_to ?? null;
+            //$opportunityTask->created_by = Auth::user()->profile_id;
             $opportunityTask->save();
 
             return response()->json($opportunityTask, 200);
