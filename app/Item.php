@@ -58,13 +58,15 @@ class Item extends Model
 
     public function cart()
     {
-        return $this->belongsTo(Cart::class);
+        return $this->hasMany(Cart::class);
     }
 
     public function faqs()
     {
         return $this->hasMany(ItemFaq::class);
     }
+
+
 
     public function properties()
     {

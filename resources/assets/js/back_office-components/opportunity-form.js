@@ -173,15 +173,16 @@ Vue.component('opportunity-form',
             }
 
             app.items = [];
-            // for (var i = 0; i < data.items.length; i++) {
-            //     app.items.push({
-            //         // id: data.members[i].id,
-            //         // member: data.members[i].name,
-            //         // email: data.members[i].email,
-            //         // profile_id: data.members[i].profile_id,
-            //         // opportunity_id: data.members[i].opportunity_id,
-            //     });
-            // }
+            for (var i = 0; i < data.items.length; i++) {
+                app.items.push({
+                    id: data.items[i].id,
+                    name: data.items[i].name,
+                    quantity: parseInt(data.items[i].quantity),
+                    unit_price: data.items[i].unit_price,
+                    vat_id: data.items[i].vat_id,
+                    opportunity_id: data.items[i].opportunity_id,
+                });
+            }
         },
 
         onReset: function()

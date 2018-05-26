@@ -81,8 +81,8 @@ class OpportunityController extends Controller
         $opportunity = Opportunity::where('id', $opportunityID)
         ->with('relationship')
         ->with('tasks')
-        ->with('members')
-        ->with('items')
+        ->with('members:opportunity_members.id,name,slug')
+        ->with('items:carts.id,items.name,carts.quantity,carts.unit_price')
         ->first();
 
         return response()->json($opportunity);

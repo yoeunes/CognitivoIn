@@ -24,4 +24,9 @@ class Cart extends Model
     {
         return $this->belongsTo(Relationship::class);
     }
+
+    public function item()
+    {
+        return $this->belongsTo(Item::class);
+    }
 }

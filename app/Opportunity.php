@@ -44,7 +44,7 @@ class Opportunity extends Model
 
     public function items()
     {
-        return $this->hasMany(Cart::class);
+        return $this->belongsToMany(Item::class, 'carts');
     }
 
     public function tasks()

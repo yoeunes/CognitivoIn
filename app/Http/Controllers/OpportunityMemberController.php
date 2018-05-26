@@ -60,11 +60,12 @@ class OpportunityMemberController extends Controller
   * @param  \App\OpportunityMember  $opportunityMember
   * @return \Illuminate\Http\Response
   */
-  public function destroy(OpportunityMember $opportunityMember)
+  public function destroy(Profile $profile,$id,$opportunityMemberID)
   {
     //No authentication check, figure out later based on user role if they can delete or not.
     //No need for soft delete.
-    $opportunity->forceDelete();
+    $OpportunityMember =  OpportunityMember::find($opportunityMemberID);
+    $OpportunityMember->forceDelete();
     return response()->json('Ok', 200);
   }
 }

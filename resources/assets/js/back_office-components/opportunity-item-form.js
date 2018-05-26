@@ -3,81 +3,131 @@ Vue.component('opportunity-item-form',
 {
   data() {
     return {
+      selected:null,
+      isFetching:false,
+      selectname:'',
+
       items:[],
-      filteredItems:[],
     }
   },
 
   methods:
   {
-    addItem: function()
+    addItem: function(item)
     {
 
-      //code for adding tasks
       var app = this;
-      var $itemID=0;
-      for (var i = 0; i <  app.$parent.items.length; i++) {
-        if (app.$parent.items[i].id==0) {
-          $itemID=app.$parent.items[i].item_id;
-        }
-      }
 
-      axios.post('/api/'+ app.$parent.$parent.profile +'/back-office/opportunities/' + this.$parent.id + '/items/', {item_id:$itemID})
+      axios.post('/api/'+ app.$parent.$parent.profile +'/back-office/opportunities/' + this.$parent.id + '/items/', {
+        item_id: item.id,
+        relationship_id:app.$parent.relationship_id,
+        unit_price:item.unit_price,
+        vat_id:item.vat_id
+      })
       .then(({ data }) =>
       {
-        for (var i = 0; i <  app.$parent.items.length; i++) {
-            app.$parent.items.splice(i,1);
-          app.$parent.items.push({
-            id: data.id,
-            name: data.item.name,
-            item_id: data.profile_id,
-            opportunity_id: data.opportunity_id,
-          });
-        }
+
+        app.$parent.items.push({
+          id: data.id,
+          name: data.item.name,
+          quantity: parseInt(data.quantity),
+          unit_price : data.unit_price,
+          vat_id : data.vat_id,
+          opportunity_id: data.opportunity_id
+        });
+
 
       })  .catch(ex => {
         console.log(ex.response);
         this.$swal('Error trying to load records.');
       });;
     },
-    getItems: function()
+
+    addQuantity: function(item)
     {
-      var app=this;
-      axios.get('/api/getItems/' +  app.$parent.$parent.profile)
+
+      var app = this;
+      item.quantity=parseInt(item.quantity)+1;
+
+      axios.put('/api/'+ app.$parent.$parent.profile +'/back-office/opportunities/'
+      + this.$parent.id + '/items/' + item.id,{
+        quantity:item.quantity
+      })
       .then(({ data }) =>
       {
 
+
+
+      })  .catch(ex => {
+        console.log(ex.response);
+        this.$swal('Error trying to load records.');
+      });
+
+    },
+    removeQuantity: function(item)
+    {
+
+      var app = this;
+      item.quantity=parseInt(item.quantity)-1;
+
+      axios.put('/api/'+ app.$parent.$parent.profile +'/back-office/opportunities/'
+      + this.$parent.id + '/items/' + item.id,{
+        quantity:item.quantity
+      })
+      .then(({ data }) =>
+      {
+
+
+
+      })  .catch(ex => {
+        console.log(ex.response);
+        this.$swal('Error trying to load records.');
+      });
+
+    },
+
+    deleteItem: function(item)
+    {
+
+      var app = this;
+      axios.delete('/api/'+ app.$parent.$parent.profile +'/back-office/opportunities/'
+      + this.$parent.id + '/items/' + item.id)
+      .then(({ data }) =>
+      {
+        let index = this.$parent.items.findIndex(x => x.id === item.id);
+        this.$parent.items.splice(index, 1);
+
+
+      })  .catch(ex => {
+        console.log(ex.response);
+        this.$swal('Error trying to load records.');
+      });
+    },
+
+    getItems: function(query)
+    {
+      var app = this;
+      axios.get('/api/getItem/' + app.$parent.$parent.profile + '/' + query)
+      .then(({ data }) =>
+      {
         if (data.length > 0)
         {
+          app.items=[];
           for (let i = 0; i < data.length; i++)
           {
-            app.items.push({id:0,name:data[i].name,item_id:data[i].id});
+            app.items.push(data[i]);
           }
-
-
         }
-
       })
       .catch(ex => {
         console.log(ex);
         this.$swal('Error trying to load records.');
       });
     },
-    getFilteredItems(text) {
-      var app=this;
-      this.filteredItems = app.items.filter((option) => {
-        return option.name
-        .toString()
-        .toLowerCase()
-        .indexOf(text.toLowerCase()) >= 0
-
-      })
-    }
   },
 
   mounted: function mounted()
   {
-    var app=this;
-    app.getItems();
+
   }
 });
