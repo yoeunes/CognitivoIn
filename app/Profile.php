@@ -17,6 +17,7 @@ use App\ProfileTeam;
 
 use Illuminate\Support\Facades\Auth;
 use Cviebrock\EloquentSluggable\Sluggable;
+use Plank\Metable\Metable;
 use Laravel\Scout\Searchable;
 
 use Overtrue\LaravelFollow\Traits\CanFollow;

@@ -34,8 +34,7 @@ class CreateSchedualsTable extends Migration
             $table->date('date');
             $table->date('due_date');
 
-            $table->decimal('debit', 20, 2)->unsigned()->default(0);
-            $table->decimal('credit', 20, 2)->unsigned()->default(0);
+            $table->decimal('value', 20, 2)->unsigned()->default(0);
 
             $table->string('reference')->nullable()->comment('Additional to the comment.');
             $table->string('comment')->nullable();

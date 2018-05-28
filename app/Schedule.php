@@ -32,7 +32,23 @@ class Schedule extends Model
 
     public function getBalance()
     {
-        return ($this->credit - $this->debit) - ($this->payments->sum('credit' - 'debit') ?? 0);
+        return $this->value - ($this->payments->sum('credit' - 'debit') ?? 0);
+    }
+
+    public function scopeReceivables($query)
+    {
+        //TODO figure out how to use this profile -> to filter out relationships without calling the relationship.
+        $profile = request()->route('profile');
+
+        return $query->where('balance', '>', 0);
+    }
+
+    public function scopePayables($query)
+    {
+        //TODO figure out how to use this profile -> to filter out relationships without calling the relationship.
+        $profile = request()->route('profile');
+
+        return $query->where('balance', '>', 0);
     }
 
     /**

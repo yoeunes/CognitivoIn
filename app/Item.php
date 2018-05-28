@@ -11,10 +11,11 @@ use App\ItemImage;
 use App\ItemReview;
 use App\ItemProperty;
 use App\ItemFaq;
+use Plank\Metable\Metable;
 
 //use Cviebrock\EloquentSluggable\Sluggable;
 use Laravel\Scout\Searchable;
-//
+
 // use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 // use Spatie\MediaLibrary\HasMedia\HasMedia;
 
