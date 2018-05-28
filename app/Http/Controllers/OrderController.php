@@ -151,28 +151,6 @@ class OrderController extends Controller
     foreach ($data['Selectditems'] as $data_detail)
     {
       $item = Item::where('id', $data_detail['id'])->first();
-      $vatdetail = VatDetail::where('vat_id', $item->vat_id)->get();
-
-      $values = [];
-      $item_value = $data_detail['sub_total_vat'];
-      $vatamount= $data_detail['vatamount'];
-      $i = 0;
-
-      foreach ($vatdetail as $detail)
-      {
-        $vat = 0;
-        if ($vatamount > 0 )
-        {
-          $vat = (((($item_value) / (1 + $detail->coefficient)) - $item_value) * (-1)) * $detail->percent;
-        }
-
-        $values[$i] = [
-          'coefficient' => ($detail->coefficient * 100) . "%" ,
-          'Value' => number_format($vat, 0, ',', '.'),
-        ];
-
-        $i = $i + 1;
-      }
 
       $detail = new OrderDetail();
       $detail->order_id = $order->id;
@@ -186,17 +164,47 @@ class OrderController extends Controller
 
     }
 
-    $this->approvenew($order->id,$data['total_amount'],$data['Type']);
-    $this->Make_payment($order->id,$data['total_amount'],$data['Type']);
+    $this->approvenew($order->id);
+    $this->Make_payment($order->id);
+
+    $vatdata = [];
+  
+    foreach ($order->detail as  $detail)
+    {
+
+      $vatdetails=VatDetail::where('vat_id',$detail->vat_id)->get();
+      foreach ($vatdetails as $vatdetail)
+      {
+        $vatamount=$vatamount + ($order->detail->unit_price * $vatdetails->percent) *  $vatdetails->coefficient;
+        $vatdata[i][j]
+      }
+
+    }
+    $data2 = [];
+    $data2[] = [
+      'Date' => $order->date->format('d-m-Y'),
+      'Detail'=> $values
+    ];
 
   }
 
-  public function approvenew($orderID,$amount,$type)
+  public function approvenew($orderID)
   {
     $order=Order::where('id',$orderID)->with('detail')->first();
+    $amount=0;
+    $vatamount=0;
     //for stock entry
     foreach ($order->detail as  $detail)
     {
+
+      $vatdetails=VatDetail::where('vat_id',$detail->vat_id)->get();
+      foreach ($vatdetails as $vatdetail)
+      {
+        $vatamount=$vatamount + ($order->detail->unit_price * $vatdetails->percent) *  $vatdetails->coefficient;
+      }
+      $amount=$amount + ($detail->unit_price + $vatamount);
+
+
       $item=Item::find($detail->item_id);
       if ($item->is_stockable)
       {
@@ -205,18 +213,8 @@ class OrderController extends Controller
         $movement->item_id = $item->id;
         $movement->location_id = $order->location_id;
         $movement->date = Carbon::now();
-
-        if ($type == 1)
-        {
-          $movement->credit = 0;
-          $movement->debit = $detail->quantity;
-        }
-        else
-        {
-          $movement->credit =  $detail->quantity;
-          $movement->debit = 0;
-        }
-
+        $movement->credit = 0;
+        $movement->debit = $detail->quantity;
         $movement->save();
       }
     }
@@ -224,19 +222,53 @@ class OrderController extends Controller
     if ($order->contract_id >0 )
     {
       $contract_details = ContractDetail::where('contract_id',$data['contract_id'])->get();
+
       foreach ($contract_details as $contract_detail )
       {
+        $schedual = new Scheduals();
+        $schedual->relationship_id = $relationship_id;
+        $schedual->currency = $order->currency;
+        $schedual->currency_rate = $order->currency_rate;
+        $schedual->date = Carbon::now();
+        $schedual->date_exp = Carbon::now()->addDays($contract_detail->offset) ;
+        $schedual->credit = 0;
+        $schedual->debit =$amount * $contract_detail->percent ;
+        $schedual->save();
 
-        $this->Generateschedual($relationship->id,
-        $amount * $contract_detail->percent,
-        Carbon::now()->addDays($contract_detail->offset),$type);
+
       }
     }
     else
     {
-      $this->Generateschedual($relationship->id,
-      $amount,
-      Carbon::now(),$type);
+      $schedual = new Scheduals();
+      $schedual->relationship_id = $relationship_id;
+      $schedual->currency = $order->currency;
+      $schedual->currency_rate = $order->currency_rate;
+      $schedual->date = Carbon::now();
+      $schedual->date_exp = Carbon::now() ;
+      $schedual->credit = 0;
+      $schedual->debit =$amount  ;
+      $schedual->save();
+
+    }
+
+  }
+
+  public function Make_payment($orderID,$amount,$type)
+  {
+    $order=Order::where('id',$orderID)->with('detail')->first();
+
+    $amount=0;
+    $vatamount=0;
+    //for stock entry
+    foreach ($order->detail as  $detail)
+    {
+      $vatdetails=VatDetail::where('vat_id',$detail->vat_id)->get();
+      foreach ($vatdetails as $vatdetail)
+      {
+        $vatamount=$vatamount + ($order->detail->unit_price * $vatdetails->percent) *  $vatdetails->coefficient;
+      }
+      $amount=$amount + ($detail->unit_price + $vatamount);
     }
 
     $account = Account::where('number', 1)->first() ?? new Account();
@@ -246,13 +278,6 @@ class OrderController extends Controller
     $account->currency ='PYG';
     $account->save();
 
-
-
-  }
-
-  public function Make_payment($orderID,$amount,$type)
-  {
-    $order=Order::where('id',$orderID)->with('detail')->first();
 
     $schedules = DB::select('
     select
@@ -288,22 +313,14 @@ class OrderController extends Controller
           $value = $schedules[$i]->value;
           $remainvalue = $remainvalue - $schedules[$i]->value;
         }
-        if ($data['Type'] == 1)
-        {
-          $accountmovement->credit = $value;
-          $accountmovement->debit = 0;
-        }
-        else
-        {
-          $accountmovement->credit = 0;
-          $accountmovement->debit = $value;
-        }
+        $accountmovement->credit = $value;
+        $accountmovement->debit = 0;
         $accountmovement->save();
       }
     }
   }
 
-
+  //remove this code after above function
   public function approve(Request $request, Profile $profile)
   {
     //return response()->json($request,'500');
@@ -485,7 +502,7 @@ class OrderController extends Controller
 
     return response()->json($data2, '200');
   }
-
+  //remove this code after above function
   public function Generateschedual($relationship_id, $amount, $exp_date, $type)
   {
     $schedual = new Scheduals();
