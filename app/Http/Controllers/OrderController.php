@@ -122,7 +122,7 @@ class OrderController extends Controller
     //
   }
 
-  public function save_approveNew(Profile $profile, Order $order)
+  public function save_approveNew(Request $request,Profile $profile)
   {
     $data = $request[0];
     if (isset($data) == false)
