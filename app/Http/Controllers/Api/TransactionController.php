@@ -13,6 +13,70 @@ use Illuminate\Http\Request;
 class TransactionController extends Controller
 {
 
+    public function SalesInvoice_createApprove(Request $request)
+    {
+        $data = $request[0];
+
+        if (isset($data) == false)
+        {
+            $data = $request;
+        }
+
+        //Run Validations and prevent malitious users from inserting data that is not supposed to be entered.
+
+        //$relationship = Relationship::GetCustomers()->find($data->relationship_id);
+
+        $order = new Order();
+
+        $order->number = $data['number'];
+        $order->relationship_id = $data->relationship_id;
+        $order->code = $data['range_code'];
+        $order->location_id = $data['location_id'];
+
+        if ($data['contract_id'] > 0)
+        {
+            $order->contract_id = $data['contract_id'];
+        }
+
+        $order->code_expiry = Carbon::parse($data['code_expiry']);
+
+        //TODO. wrong. let front end decide if it is printed or not.
+        $order->is_printed = $data['number'] != null ? true : false;
+        $order->is_impex = $data['isImpex'] != null ? true : false;
+
+
+        $order->date = $data['date'] ?? Carbon::now();
+        $order->currency = $data->currency ?? $profile->currency;
+        $order->currency_rate = ($data['rate'] ?? Swap::latest($profile->currency . '/' . $data->currency)->getValue()) ?? 1;
+        $order->save();
+
+        foreach ($data['Selectditems'] as $data_detail)
+        {
+            $detail = new OrderDetail();
+            $detail->order_id = $order->id;
+            $detail->item_id = $data_detail['id'];
+
+            $detail->item_sku = $data_detail['sku'];
+            $detail->item_name = $data_detail['name'];
+            $detail->quantity = (double)$data_detail['quantity'];
+            $detail->vat_id = $item->vat_id;
+            $detail->unit_price = (double)$data_detail['unit_price'];
+            $detail->save();
+        }
+
+        $orderController = new OrderController();
+        $orderController->approve($order->id);
+
+        $accountMovement = new AccountMovementController();
+        $accountMovement->makePayment($request);
+
+        $data2 = [];
+        $data2[] = [
+            'Date' => $order->date->format('d-m-Y'),
+            'Detail'=> $values
+        ];
+    }
+
     // TODO: Make chunks of data. learn from debehaber
     public function uploadOrder (Request $request, Profile $profile)
     {
@@ -100,8 +164,6 @@ class TransactionController extends Controller
         }
     }
 
-
-
     public function syncTransactionStatus(Request $request, Profile $profile)
     {
         $collection = collect();
@@ -151,8 +213,4 @@ class TransactionController extends Controller
         ->get();
         return response()->json($orders);
     }
-
-
-
-
 }

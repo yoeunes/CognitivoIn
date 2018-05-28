@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Account;
 use App\Profile;
 use App\Scheduals;
@@ -9,6 +10,7 @@ use App\Relationship;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Swap\Laravel\Facades\Swap;
+
 class AccountMovementController extends Controller
 {
     /**
@@ -39,11 +41,9 @@ class AccountMovementController extends Controller
     */
     public function store(Request $request, Profile $profile)
     {
-
         $return = ['Invoice Not Found ...'];
         $account = Account::where('profile_id', $profile->id)
         ->first();
-
 
         if (!isset($account))
         {
@@ -55,10 +55,8 @@ class AccountMovementController extends Controller
             $account->save();
         }
 
-
-
-
         $schedual = Scheduals::where('id',$request['InvoiceReference'])->first();
+
         if (isset($schedual))
         {
             $accountMovement = new AccountMovement();
@@ -87,7 +85,6 @@ class AccountMovementController extends Controller
                 'ResponseType' => 1
             ];
         }
-
 
         return response()->json($return, 200);
     }
@@ -143,10 +140,11 @@ class AccountMovementController extends Controller
             if ($account->profile_id == $profile->id)
             {
                 $accountMovement->delete();
+                return response()->json('Ok', 200);
             }
         }
 
-        return response()->json('Unkown Movement', '401');
+        return response()->json('Unkown Resource', 401);
     }
 
 
@@ -155,7 +153,6 @@ class AccountMovementController extends Controller
         $accountMovement = AccountMovement::where('schedual_id',$request['InvoiceReference'])
         ->with('account')
         ->first();
-
 
         if (isset($accountMovement))
         {
@@ -168,10 +165,78 @@ class AccountMovementController extends Controller
                 $accountMovement->status = 3;
                 $accountMovement->comment = $request['Comment'];
                 $accountMovement->save();
+
+                return response()->json('Ok', 200);
             }
         }
 
-        return response()->json('Unkown Movement', '401');
+        return response()->json('Unkown Resource', 401);
     }
 
+    public function makePayment(Request $request)
+    {
+        $data = $request[0];
+
+        if (isset($data) == false)
+        {
+            $data = $request;
+        }
+
+        $profile = request()->route('profile');
+
+
+        $account = Account::first();
+
+        if ($account != null)
+        {
+            $account = new Account();
+            $account->profile_id = $profile->id;
+            $account->name = "Cash A/C Of " . $profile->name;
+            $account->number = "xxx";
+            $account->currency = $profile->currency;
+            $account->save();
+        }
+
+        $schedules = DB::select('
+        select
+        scheduals.currency as code, (scheduals.debit-(select if(sum(credit) is null,0,sum(credit)) from account_movements where `account_movements`.`status` != 3
+        and `scheduals`.`id` = `account_movements`.`schedual_id`)) as value,
+        scheduals.id , scheduals.date as InvoiceDate, scheduals.date_exp as Deadline,
+        scheduals.reference as Reference from `scheduals`
+        where `relationship_id` = '. $order->relationship_id . ' and `scheduals`.`deleted_at` is null and (scheduals.debit-(select if(sum(credit) is null,0,sum(credit)) from account_movements where `account_movements`.`status` != 3
+        and `scheduals`.`id` = `account_movements`.`schedual_id`)) >0  order by scheduals.date_exp');
+
+        $schedules = collect($schedules);
+        $balance = $amount;
+
+        for ($i = 0; $i < count($schedules) ; $i++)
+        {
+            if ($balance > 0)
+            {
+                $accountMovement = new AccountMovement();
+                $accountMovement->schedual_id = $schedules[$i]->id;
+                $accountMovement->account_id = $account->id;
+                $accountMovement->type = $type;
+                $accountMovement->currency = $data->currency;
+                $accountMovement->currency_rate = ($data->rate ?? Swap::latest($profile->currency . '/' . $data->currency)->getValue()) ?? 1;
+                $accountMovement->date = Carbon::parse($data->date);
+
+                if ($schedules[$i]->value > $balance)
+                {
+                    $value = $balance;
+                    $balance = 0;
+                }
+                else
+                {
+                    $value = $schedules[$i]->value;
+                    $balance = $balance - $schedules[$i]->value;
+                }
+
+                $accountMovement->credit = $value;
+                $accountMovement->debit = 0;
+
+                $accountMovement->save();
+            }
+        }
+    }
 }
