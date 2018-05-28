@@ -43,14 +43,11 @@
                         </div>
                         <div class="form-group row">
                             <b-field label="Currency">
-                                <b-input placeholder="Currency" type="text" maxlength="3" has-counter>
+                                <b-input placeholder="Currency" v-model="currency" type="text" maxlength="3" has-counter>
                                 </b-input>
                             </b-field>
 
-                            <div class="col-6">
-                                <label>Currency</label>
-                                <input type="text" v-model="currency" class="form-control form-control-lg">
-                            </div>
+                          
                         </div>
                         <div class="form-group row">
                             <div class="col-6">

@@ -37,6 +37,11 @@
                 <b-field label="Global Product" v-if="is_global == false">
                     <b-input v-model="id_item"></b-input>
                 </b-field>
+
+                <div class="field">
+                    <b-switch v-model="is_stockable">This product is a Stockable</b-switch>
+                </div>
+            
             </div>
         </div>
         <!-- END User Profile -->
@@ -54,7 +59,10 @@
                 <div class="form-group row">
                     <div class="col-6">
                         <label>Currency</label>
-                        <input type="text" class="form-control form-control-lg" v-model="currency" disabled="">
+                        <b-field label="Currency">
+                            <b-input placeholder="Currency" v-model="currency" type="text" maxlength="3" has-counter>
+                            </b-input>
+                        </b-field>
                     </div>
 
                     <div class="col-6">
@@ -72,7 +80,7 @@
                     </div>
                     <div class="col-6">
                         <label>Selling Price with Tax</label>
-                        <input type="text" class="form-control form-control-lg" v-model="currency">
+                        <input type="text" class="form-control form-control-lg" v-model="UnitPriceVat">
                     </div>
                 </div>
 

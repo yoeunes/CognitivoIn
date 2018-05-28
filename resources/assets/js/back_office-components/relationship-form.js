@@ -17,7 +17,8 @@ Vue.component('relationship-form',
             supplier_email: '',
             supplier_telephone: '',
             credit_limit: '',
-            contract_ref: ''
+            contract_ref: '',
+            contracts:[]
         }
     },
 
@@ -68,6 +69,16 @@ Vue.component('relationship-form',
 
     mounted: function mounted()
     {
-
+      var app = this;
+      axios.get('/api/' + this.$parent.profile + '/back-office/list/0/contracts/1')
+      .then(({ data }) =>
+      {
+          app.contracts = data;
+          console.log()
+      })
+      .catch(error => {
+          console.log(error);
+          this.$swal('Error trying to edit record.');
+      });
     }
 });

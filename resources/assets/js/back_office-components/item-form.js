@@ -15,11 +15,63 @@ Vue.component('item-form',
             currency_id:'',
             unit_price:'',
             unit_cost: '',
+            unit_price_vat:'',
             is_active: true,
             is_global: true,
             currencies:[],
+            is_stockable:'',
             vats:[]
         }
+    },
+    computed:
+    {
+        UnitPriceVat:
+        {
+
+            get: function ()
+            {
+                var app = this;
+                if (app.unit_price==0)
+                {
+                    app.unit_price_vat=0;
+                }
+                let index = app.vats.findIndex(x => x.id === app.vat_id);
+                if (app.unit_price >0 && index>-1 && app.unit_price_vat==0) {
+
+                    var pricewithvat=0;
+                    var coefficient=0;
+                    for (var i = 0; i < app.vats[index].details.length; i++)
+                    {
+                        coefficient=coefficient+app.vats[index].details[i].coefficient;
+                    }
+                    app.unit_price_vat=parseInt(app.unit_price) + parseFloat(app.unit_price * coefficient);
+
+
+                }
+                return app.unit_price_vat;
+            },
+            // setter
+            set: function (pricewithvat) {
+                var app = this;
+                app.unit_price_vat=pricewithvat;
+                let index = app.vats.findIndex(x => x.id === app.vat_id);
+                if (app.unit_price_vat>0 && index>-1)
+                {
+                    var coefficient=0;
+                    for (var i = 0; i < app.vats[index].details.length; i++)
+                    {
+                        coefficient=coefficient+app.vats[index].details[i].coefficient;
+                    }
+                    pricewithoutvat=parseInt(app.unit_price_vat) / (parseInt(1) + parseFloat(coefficient));
+                    app.unit_price=Number(pricewithoutvat);
+                }
+
+            }
+
+
+        },
+
+
     },
 
     methods:

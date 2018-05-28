@@ -94,6 +94,7 @@ class ItemController extends Controller
     $item->unit_price = $request->unit_price;
     $item->currency = 'PRY';
     $item->vat_id = $request->vat_id;
+    $item->is_stockable = $request->is_stockable;
     $item->is_active = $request->is_active == 'on' ? true : false;
 
     $item->save();
