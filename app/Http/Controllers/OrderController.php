@@ -167,19 +167,7 @@ class OrderController extends Controller
     $this->approvenew($order->id);
     $this->Make_payment($order->id);
 
-    $vatdata = [];
-  
-    foreach ($order->detail as  $detail)
-    {
 
-      $vatdetails=VatDetail::where('vat_id',$detail->vat_id)->get();
-      foreach ($vatdetails as $vatdetail)
-      {
-        $vatamount=$vatamount + ($order->detail->unit_price * $vatdetails->percent) *  $vatdetails->coefficient;
-        $vatdata[i][j]
-      }
-
-    }
     $data2 = [];
     $data2[] = [
       'Date' => $order->date->format('d-m-Y'),
