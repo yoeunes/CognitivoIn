@@ -43,16 +43,15 @@ class AccountReceivableController extends Controller
     public function store(Request $request, Profile $profile)
     {
         $return = [];
-        $account = Account::where('id',$request->account_id)
-        ->first();
+        $account = Account::where('id',$request->account_id)->first();
 
         if (!isset($account))
         {
-            $account = Account::where('profile_id',$profile->id)
-            ->first();
-            if (!isset($account)) {
+            $account = Account::where('profile_id', $profile->id)->first();
+
+            if (!isset($account))
+            {
                 $account = new Account();
-                $account->profile_id = $profile->id;
                 $account->profile_id = $profile->id;
                 $account->name = "Cash Account for " . $profile->name;
                 $account->number = "...";
@@ -166,7 +165,7 @@ class AccountReceivableController extends Controller
     * @param  \App\AccountMovement  $accountMovement
     * @return \Illuminate\Http\Response
     */
-    public function destroy(AccountMovement $accountMovement, Profile $profile)
+    public function destroy(Profile $profile, AccountMovement $accountMovement)
     {
         if (isset($accountMovement))
         {
@@ -187,84 +186,56 @@ class AccountReceivableController extends Controller
     public function search(Request $request, Profile $profile)
     {
         $return = [];
+
         //return payment schedual. history of unpaid debt. by Customer TaxID
-
         $relationship = Relationship::GetCustomers()
-        ->where('customer_alias',$request->customer_alias)
-        ->orWhere('customer_taxid',$request->customer_taxid)->first();
-
-
-        if (isset($relationship)) {
-            $schedules = DB::select('
-            select
-            scheduals.currency as code, (scheduals.debit-(select if(sum(credit) is null,0,sum(credit)) from account_movements where `account_movements`.`status` != 3
-            and `scheduals`.`id` = `account_movements`.`schedual_id`)) as value,
-            scheduals.id as InvoiceNumber, scheduals.date as InvoiceDate, scheduals.date_exp as Deadline,
-            scheduals.reference as Reference from `scheduals`
-            where `relationship_id` = '. $relationship ->id . ' and `scheduals`.`deleted_at` is null and (scheduals.debit-(select if(sum(credit) is null,0,sum(credit)) from account_movements where `account_movements`.`status` != 3
-            and `scheduals`.`id` = `account_movements`.`schedual_id`)) >0 ');
-
-              $schedules = collect($schedules);
-
-            $values = [];
-            $j=0;
-            for ($i = 0; $i < count($schedules) ; $i++)
-            {
-                //if ((int)$schedules[$j]->value >0) {
-
-                $values[$j] = [
-                    'CurrencyCode' => $schedules[$j]->code ,
-                    'Value' => $schedules[$j]->value ,
-                    'ReferenceCode' => $schedules[$j]->Reference,
-                    'InvoiceNumber' => $schedules[$j]->InvoiceNumber,
-                    'InvoiceDate' => $schedules[$j]->InvoiceDate,
-                    'Deadline' => $schedules[$j]->Deadline,
-                ];
-                $j=$j+1;
-                //}
-
-            }
-
-            //for each currency requested, run loop and add into array
-
-            $return[] = [
-
-                'ReferenceName' => $request->customer_alias,
-                'ReferenceTaxID' => $request->customer_taxid,
-                'Details' =>$values
-            ];
-        }
-
-
-        return response()->json($return, '200');
-    }
-
-    public function annull(Request $request, Profile $profile,$id)
-    {
-        $accountMovement = AccountMovement::where('id',$id)
-        ->with('account')
+        ->where(function ($q) use ($request)
+        {
+            $q->where('customer_alias', $request->customer_alias)
+            ->orWhere('customer_taxid', $request->customer_taxid);
+        })
         ->first();
 
-        if (isset($accountMovement))
+        if (isset($relationship))
         {
-            $account = $accountMovement->account;
+            $schedules = DB::select(
+                'select
+                scheduals.currency as code, (scheduals.debit-(select if(sum(credit) is null,0,sum(credit)) from account_movements where `account_movements`.`status` != 3
+                and `scheduals`.`id` = `account_movements`.`schedual_id`)) as value,
+                scheduals.id as InvoiceNumber, scheduals.date as InvoiceDate, scheduals.date_exp as Deadline,
+                scheduals.reference as Reference from `scheduals`
+                where `relationship_id` = '. $relationship ->id . ' and `scheduals`.`deleted_at` is null and (scheduals.debit-(select if(sum(credit) is null,0,sum(credit)) from account_movements where `account_movements`.`status` != 3
+                and `scheduals`.`id` = `account_movements`.`schedual_id`)) > 0 ');
 
-            //Make sure that profile requesting change is owner of account movement. if not,
-            //we cannot allow user to delete something that does not belong to them.
-            if (isset($account))
-            {
-                if ($account->profile_id == $profile->id)
+                $schedules = collect($schedules);
+
+                $values = [];
+                $j = 0;
+
+                for ($i = 0; $i < count($schedules) ; $i++)
                 {
-                    $accountMovement->status = 3;
-                    $accountMovement->comment = $request['Comment'];
-                    $accountMovement->save();
+                    $values[$j] = [
+                        'CurrencyCode' => $schedules[$j]->code,
+                        'Value' => $schedules[$j]->value,
+                        'ReferenceCode' => $schedules[$j]->Reference,
+                        'InvoiceNumber' => $schedules[$j]->InvoiceNumber,
+                        'InvoiceDate' => $schedules[$j]->InvoiceDate,
+                        'Deadline' => $schedules[$j]->Deadline,
+                    ];
 
-                    return response()->json('Annulled', 200);
+                    $j = $j + 1;
                 }
+
+                //for each currency requested, run loop and add into array
+                $return[] = [
+                    'ReferenceName' => $request->customer_alias,
+                    'ReferenceTaxID' => $request->customer_taxid,
+                    'Details' => $values
+                ];
+
+                return response()->json($return, 200);
             }
 
+            return response()->json('Resource not found.', 401);
         }
-
-        return response()->json('Resource not found', 404);
     }
-}

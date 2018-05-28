@@ -10,7 +10,7 @@ use App\Relationship;
 use App\AccountMovement;
 use DB;
 
-class SchedualsController extends Controller
+class SchedualController extends Controller
 {
   /**
   * Display a listing of the resource.
@@ -92,6 +92,6 @@ class SchedualsController extends Controller
 
   }
 
-  
+
 
   }

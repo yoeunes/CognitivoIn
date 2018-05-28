@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Account;
 use App\Profile;
-use App\Scheduals;
+use App\Schedual;
 use App\AccountMovement;
 use App\Relationship;
 use Illuminate\Http\Request;
@@ -150,7 +150,7 @@ class AccountMovementController extends Controller
 
     public function annull(Request $request, Profile $profile)
     {
-        $accountMovement = AccountMovement::where('schedual_id',$request['InvoiceReference'])
+        $accountMovement = AccountMovement::where('schedual_id', $request['InvoiceReference'])
         ->with('account')
         ->first();
 
@@ -178,38 +178,41 @@ class AccountMovementController extends Controller
         $data = $request[0];
 
         if (isset($data) == false)
-        {
-            $data = $request;
-        }
+        { $data = $request; }
 
         $profile = request()->route('profile');
-
-
         $account = Account::first();
 
         if ($account != null)
         {
             $account = new Account();
             $account->profile_id = $profile->id;
-            $account->name = "Cash A/C Of " . $profile->name;
+            $account->name = "Cash A/C of " . $profile->name;
             $account->number = "xxx";
             $account->currency = $profile->currency;
             $account->save();
         }
 
+        //Run code to check actual balance.
+        $scheduals = Schedual::where('relationship_id', $data->relationship_id)->get();
+
         $schedules = DB::select('
         select
-        scheduals.currency as code, (scheduals.debit-(select if(sum(credit) is null,0,sum(credit)) from account_movements where `account_movements`.`status` != 3
-        and `scheduals`.`id` = `account_movements`.`schedual_id`)) as value,
-        scheduals.id , scheduals.date as InvoiceDate, scheduals.date_exp as Deadline,
-        scheduals.reference as Reference from `scheduals`
-        where `relationship_id` = '. $order->relationship_id . ' and `scheduals`.`deleted_at` is null and (scheduals.debit-(select if(sum(credit) is null,0,sum(credit)) from account_movements where `account_movements`.`status` != 3
-        and `scheduals`.`id` = `account_movements`.`schedual_id`)) >0  order by scheduals.date_exp');
+        scheduals.currency as code,
+        (scheduals.debit - (select if(sum(credit) is null,0,sum(credit)) from account_movements where account_movements.status != 3 and scheduals.id = account_movements.schedual_id)) as value,
+        scheduals.id,
+        scheduals.date as InvoiceDate,
+        scheduals.date_exp as Deadline,
+        scheduals.reference as Reference from scheduals
+        where relationship_id = ' . $order->relationship_id . '
+        and scheduals.deleted_at is null
+        and (scheduals.debit - (select if(sum(credit) is null, 0, sum(credit)) from account_movements where account_movements.status != 3
+        and scheduals.id = account_movements.schedual_id)) > 0  order by scheduals.date_exp');
 
         $schedules = collect($schedules);
         $balance = $amount;
 
-        for ($i = 0; $i < count($schedules) ; $i++)
+        for ($i = 0; $i < count($schedules); $i++)
         {
             if ($balance > 0)
             {
@@ -221,6 +224,7 @@ class AccountMovementController extends Controller
                 $accountMovement->currency_rate = ($data->rate ?? Swap::latest($profile->currency . '/' . $data->currency)->getValue()) ?? 1;
                 $accountMovement->date = Carbon::parse($data->date);
 
+                //Schedual Value is greater than balance, then make balance 0.
                 if ($schedules[$i]->value > $balance)
                 {
                     $value = $balance;
