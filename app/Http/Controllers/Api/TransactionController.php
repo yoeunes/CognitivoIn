@@ -41,8 +41,8 @@ class TransactionController extends Controller
         $order->code_expiry = Carbon::parse($data['code_expiry']);
 
         //TODO. wrong. let front end decide if it is printed or not.
-        $order->is_printed = $data['number'] != null ? true : false;
-        $order->is_impex = $data['isImpex'] != null ? true : false;
+        $order->is_printed = $data['isPrinted'] ?? false;
+        $order->is_impex = $data['isImpex'] ?? false;
 
 
         $order->date = $data['date'] ?? Carbon::now();
@@ -50,7 +50,7 @@ class TransactionController extends Controller
         $order->currency_rate = ($data['rate'] ?? Swap::latest($profile->currency . '/' . $data->currency)->getValue()) ?? 1;
         $order->save();
 
-        foreach ($data['Selectditems'] as $data_detail)
+        foreach ($data['details'] as $data_detail)
         {
             $detail = new OrderDetail();
             $detail->order_id = $order->id;
