@@ -69,7 +69,7 @@ class AccountMovementController extends Controller
             $accountMovement->currency = $request['Currency'];
 
             if ($request['Currency'] != $schedual->currency)
-            { $accountMovement->currency_rate = Swap::latest($schedual->currency . '/' . $request['Currency'])->getValue(); }
+            { $accountMovement->currency_rate = Swap::latest($schedual->currency . '/' . $request['Currency'])->getValue() ?? 1; }
             else
             { $accountMovement->currency_rate = 1; }
 
@@ -129,7 +129,7 @@ class AccountMovementController extends Controller
     * @param  \App\AccountMovement  $accountMovement
     * @return \Illuminate\Http\Response
     */
-    public function destroy(AccountMovement $accountMovement, Profile $profile)
+    public function destroy(Profile $profile, AccountMovement $accountMovement, )
     {
         if (isset($accountMovement))
         {
@@ -150,6 +150,7 @@ class AccountMovementController extends Controller
 
     public function annull(Request $request, Profile $profile)
     {
+
         $accountMovement = AccountMovement::where('schedual_id', $request['InvoiceReference'])
         ->with('account')
         ->first();
@@ -165,6 +166,9 @@ class AccountMovementController extends Controller
                 $accountMovement->status = 3;
                 $accountMovement->comment = $request['Comment'];
                 $accountMovement->save();
+
+                //finally perform a softdelete.
+                $accountMovement->delete();
 
                 return response()->json('Ok', 200);
             }
@@ -238,6 +242,77 @@ class AccountMovementController extends Controller
 
                 $accountMovement->credit = $value;
                 $accountMovement->debit = 0;
+
+                $accountMovement->save();
+            }
+        }
+    }
+
+    public function receivePayment(Request $request)
+    {
+        $data = $request[0];
+
+        if (isset($data) == false)
+        { $data = $request; }
+
+        $profile = request()->route('profile');
+        $account = Account::first();
+
+        if ($account != null)
+        {
+            $account = new Account();
+            $account->profile_id = $profile->id;
+            $account->name = "Cash A/C of " . $profile->name;
+            $account->number = "xxx";
+            $account->currency = $profile->currency;
+            $account->save();
+        }
+
+        //Run code to check actual balance.
+        $scheduals = Schedual::where('relationship_id', $data->relationship_id)->get();
+
+        $schedules = DB::select('
+        select
+        scheduals.currency as code,
+        (scheduals.debit - (select if(sum(credit) is null,0,sum(credit)) from account_movements where account_movements.status != 3 and scheduals.id = account_movements.schedual_id)) as value,
+        scheduals.id,
+        scheduals.date as InvoiceDate,
+        scheduals.date_exp as Deadline,
+        scheduals.reference as Reference from scheduals
+        where relationship_id = ' . $order->relationship_id . '
+        and scheduals.deleted_at is null
+        and (scheduals.debit - (select if(sum(credit) is null, 0, sum(credit)) from account_movements where account_movements.status != 3
+        and scheduals.id = account_movements.schedual_id)) > 0  order by scheduals.date_exp');
+
+        $schedules = collect($schedules);
+        $balance = $amount;
+
+        for ($i = 0; $i < count($schedules); $i++)
+        {
+            if ($balance > 0)
+            {
+                $accountMovement = new AccountMovement();
+                $accountMovement->schedual_id = $schedules[$i]->id;
+                $accountMovement->account_id = $account->id;
+                $accountMovement->type = $type;
+                $accountMovement->currency = $data->currency;
+                $accountMovement->currency_rate = ($data->rate ?? Swap::latest($profile->currency . '/' . $data->currency)->getValue()) ?? 1;
+                $accountMovement->date = Carbon::parse($data->date);
+
+                //Schedual Value is greater than balance, then make balance 0.
+                if ($schedules[$i]->value > $balance)
+                {
+                    $value = $balance;
+                    $balance = 0;
+                }
+                else
+                {
+                    $value = $schedules[$i]->value;
+                    $balance = $balance - $schedules[$i]->value;
+                }
+
+                $accountMovement->credit = 0;
+                $accountMovement->debit = $value;
 
                 $accountMovement->save();
             }

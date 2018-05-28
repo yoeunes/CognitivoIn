@@ -20,6 +20,9 @@ class CreatePipelineStagesTable extends Migration
 
             $table->integer('pipeline_id')->unsigned()->index();
             $table->foreign('pipeline_id')->references('id')->on('pipelines')->onDelete('cascade');
+
+            $table->unsignedTinyInteger('activity_type')->nullable()->after('sequence');
+
             $table->decimal('completed', 4, 2);
             $table->integer('sequence');
             $table->string('name');

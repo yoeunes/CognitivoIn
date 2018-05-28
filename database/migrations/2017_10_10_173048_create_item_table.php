@@ -40,7 +40,9 @@ class CreateItemTable extends Migration
             $table->decimal('unit_cost', 20, 2)->unsigned()->nullable();
 
             $table->boolean('is_active')->default(true);
+
             //store properties
+            $table->boolean('is_stockable')->default(false);
             $table->boolean('is_private')->default(false)->comment('true = Show only to Approved Relationships; false = Show to everyone');
             $table->boolean('show_price')->default(true);
 

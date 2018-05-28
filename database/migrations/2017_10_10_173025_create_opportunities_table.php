@@ -19,18 +19,24 @@ class CreateOpportunitiesTable extends Migration
         {
             $table->increments('id');
 
+            $table->unsignedInteger('profile_id')->nullable();
+            $table->foreign('profile_id')->references('id')->on('profiles')->onDelete('cascade');
+
             $table->integer('relationship_id')->unsigned()->index();
             $table->foreign('relationship_id')->references('id')->on('relationships');
 
-            $table->integer('pipeline_stage_id')->unsigned()->index();
-            $table->foreign('pipeline_stage_id')->references('id')->on('pipeline_stages')->onDelete('cascade');
+            $table->unsignedInteger('pipeline_id')->nullable();
+            $table->foreign('pipeline_id')->references('id')->on('pipelines')->onDelete('cascade');
 
             $table->date('deadline_date')->nullable();
 
+            $table->string('name')->nullable();
             $table->text('description')->nullable();
 
             $table->integer('status')->unsigned()->default(1)->comment('0 = Inactive; 1 = Active; 2 = On Hold; 3 = Won; 4 = Lost');
             $table->decimal('value', 20, 2)->unsigned()->nullable();
+
+            $table->string('currency', 3);
 
             $table->boolean('is_archived')->default(false);
 

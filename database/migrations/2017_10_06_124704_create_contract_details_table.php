@@ -19,7 +19,7 @@ class CreateContractDetailsTable extends Migration
             $table->foreign('contract_id')->references('id')->on('contracts');
 
             $table->unsignedTinyInteger('offset');
-            $table->unsignedDecimal('percent', 4, 4);
+            $table->unsignedDecimal('percent', 5, 4);
 
             $table->timestamps();
         });

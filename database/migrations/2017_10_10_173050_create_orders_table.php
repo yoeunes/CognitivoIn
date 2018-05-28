@@ -20,7 +20,7 @@ class CreateOrdersTable extends Migration
             $table->increments('id');
             $table->integer('ref_id')->unsigned()->nullable();
 
-            $table->integer('relationship_id')->unsigned();
+            $table->integer('relationship_id')->nullable()->unsigned();
             $table->foreign('relationship_id')->references('id')->on('relationships');
 
             $table->integer('recurring_order_id')->unsigned()->nullable();

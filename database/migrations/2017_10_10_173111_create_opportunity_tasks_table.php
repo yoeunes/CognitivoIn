@@ -24,6 +24,9 @@ class CreateOpportunityTasksTable extends Migration
             $table->integer('opportunity_id')->unsigned()->index();
             $table->foreign('opportunity_id')->references('id')->on('opportunities')->onDelete('cascade');
 
+            $table->unsignedInteger('pipeline_stage_id')->nullable();
+            $table->foreign('pipeline_stage_id')->references('id')->on('pipeline_stages')->onDelete('cascade');
+
             $table->integer('sentiment')->unsigned()->default(1);
             //$table->enum('sentiment', array('Good' ,'Bad', 'N/A'));
 
@@ -37,6 +40,7 @@ class CreateOpportunityTasksTable extends Migration
             $table->string('geoloc')->nullable();
 
             $table->boolean('completed')->default(false);
+            $table->timestamp('completed_at')->nullable();
 
             $table->timestamps();
             $table->softDeletes();

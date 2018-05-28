@@ -16,42 +16,29 @@ class CreateSchedualsTable extends Migration
     public function up()
     {
 
-        Schema::create('scheduals', function (Blueprint $table)
+        Schema::create('schedule', function (Blueprint $table)
         {
             $table->increments('id');
 
-            // $table->integer('status')->unsigned()->default(1);
-            //$table->enum('status', array('Pending' ,'Approved', 'Rejected'))->default('Pending');
-
-            // $table->integer('recurring_schedual_id')->unsigned()->nullable()->comment('Some scheduals can be grouped together for printing by creating a Group ID.');
-            // $table->foreign('recurring_schedual_id')->references('id')->on('recurring_scheduals')->onDelete('cascade');
-
-            // $table->integer('payment_detail_id')->unsigned()->nullable()->comment('Optional One-to-One relationship with Payment Detail. This helps counter the balance.');
-            // $table->foreign('payment_detail_id')->references('id')->on('payment_details')->onDelete('cascade');
-
-            // $table->integer('parent_id')->unsigned()->nullable();
-            // $table->foreign('parent_id')->references('id')->on('scheduals')->onDelete('cascade');
-
-            $table->integer('relationship_id')->unsigned();
+            $table->unsignedInteger('relationship_id')->nullable();
             $table->foreign('relationship_id')->references('id')->on('relationships');
 
-            // $table->integer('user_id')->unsigned()->index();
-            // $table->foreign('user_id')->references('id')->on('profiles');
+            $table->unsignedInteger('order_id')->nullable();
+            $table->foreign('order_id')->references('id')->on('orders');
 
             $table->string('currency', 3);
-            $table->decimal('currency_rate', 20, 5);
+            $table->decimal('currency_rate', 20, 5)->default(1)->unsigned();
 
             $table->tinyInteger('classification')->unsigned()->nullable();
 
             $table->date('date');
-            $table->date('date_exp');
+            $table->date('due_date');
 
-            $table->decimal('debit', 20, 2)->default(0);
-            $table->decimal('credit', 20, 2)->default(0);
+            $table->decimal('debit', 20, 2)->unsigned()->default(0);
+            $table->decimal('credit', 20, 2)->unsigned()->default(0);
 
             $table->string('reference')->nullable()->comment('Additional to the comment.');
             $table->string('comment')->nullable();
-            // $table->boolean('is_payable')->default(true);
 
             $table->timestamps();
             $table->softDeletes();

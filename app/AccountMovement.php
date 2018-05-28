@@ -36,8 +36,8 @@ class AccountMovement extends Model
         return $this->belongsTo(Location::class);
     }
 
-    public function schedual()
+    public function schedule()
     {
-        return $this->belongsTo(Schedual::class);
+        return $this->belongsTo(Schedule::class);
     }
 }

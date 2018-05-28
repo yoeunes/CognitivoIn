@@ -15,6 +15,10 @@ class CreateContractsTable extends Migration
     {
         Schema::create('contracts', function (Blueprint $table) {
             $table->increments('id');
+
+            $table->unsignedInteger('profile_id')->nullable();
+            $table->foreign('profile_id')->references('id')->on('profiles')->onDelete('cascade');
+
             $table->string('country', 3)->default('USA');
 
             $table->string('name');
