@@ -20,7 +20,12 @@ Vue.component('item-form',
             is_global: true,
             currencies:[],
             is_stockable:false,
-            vats:[]
+            vats:[],
+            selected:null,
+            isFetching:false,
+            selectname:'',
+
+            items:[],
         }
     },
     computed:
@@ -73,6 +78,33 @@ Vue.component('item-form',
 
     methods:
     {
+        addItem: function(item)
+        {
+
+            var app = this;
+            app.item_id=item.id;
+
+        },
+        getItems: function(query)
+        {
+            var app = this;
+            axios.get('/api/getItem/' + app.$parent.profile + '/' + query)
+            .then(({ data }) =>
+            {
+                if (data.length > 0)
+                {
+                    app.items=[];
+                    for (let i = 0; i < data.length; i++)
+                    {
+                        app.items.push(data[i]);
+                    }
+                }
+            })
+            .catch(ex => {
+                console.log(ex);
+                this.$swal('Error trying to load records.');
+            });
+        },
         onEdit: function(data)
         {
             var app = this;

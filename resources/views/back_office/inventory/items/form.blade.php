@@ -34,8 +34,15 @@
                 <div class="field">
                     <b-switch v-model="is_global">This product is a Global</b-switch>
                 </div>
-                <b-field label="Global Product" v-if="is_global == false">
-                    <b-input v-model="id_item"></b-input>
+                <b-field v-show="is_global">
+                    <b-autocomplete v-model="selectname" :data="items" placeholder="Search for Products or Services" field="name" :loading="isFetching" @input="getItems" @select="option => addItem(option)">
+                        <template slot-scope="props">
+                            @{{props.option.sku}} | <b>@{{props.option.name}}</b>
+                        </template>
+                        <template slot="empty">
+                            There are no items
+                        </template>
+                    </b-autocomplete>
                 </b-field>
 
                 <div class="field">
@@ -58,7 +65,7 @@
             <div class="col-lg-7 offset-lg-1">
                 <div class="form-group row">
                     <div class="col-6">
-                        
+
                         <b-field label="Currency">
                             <b-input placeholder="Currency" v-model="currency" type="text" maxlength="3" has-counter>
                             </b-input>

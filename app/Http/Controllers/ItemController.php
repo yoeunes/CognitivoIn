@@ -92,7 +92,8 @@ class ItemController extends Controller
     $item->short_description = $request->short_description;
     $item->long_description = $request->long_description;
     $item->unit_price = $request->unit_price;
-    $item->currency = 'PRY';
+    $item->currency =  $request->currency;
+    $item->item_id =  $request->item_id;
     $item->vat_id = $request->vat_id;
     $item->is_stockable = $request->is_stockable;
     $item->is_active = $request->is_active == 'on' ? true : false;
