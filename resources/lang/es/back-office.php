@@ -61,9 +61,8 @@ return [
     'Account Movements' => 'Movimients de Cuentas',
 
     //CUSTOMERS
-    'Name' => 'Nombre',
-    'Taxid' => 'Nº de Identificació',
-    'Default_Contract' => 'Contrato por Defecto',
-    'Credit_Limit' => 'Limite de Crédito',  
+
+    'Default Contract' => 'Contrato por Defecto',
+    'Credit Limit' => 'Limite de Crédito',  
 
 ];
