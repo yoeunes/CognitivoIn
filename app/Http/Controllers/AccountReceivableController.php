@@ -66,7 +66,7 @@ class AccountReceivableController extends Controller
         if (isset($schedual))
         {
             $accountMovement = new AccountMovement();
-            $accountMovement->schedual_id = $request->InvoiceNumber;
+            $accountMovement->schedule_id = $request->InvoiceNumber;
             $accountMovement->account_id = $account->id;
             $accountMovement->user_id = $request->user_id ?? null;
             $accountMovement->location_id = $request->location_id ?? null;
