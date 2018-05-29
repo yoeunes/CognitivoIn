@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Account;
 use App\Profile;
-use App\schedule;
+use App\Schedule;
 use App\AccountMovement;
 use App\Relationship;
 use App\Order;
@@ -217,7 +217,7 @@ class AccountMovementController extends Controller
         }
 
         //Run code to check actual balance.
-        $scheduals = schedule::where('relationship_id', $data->relationship_id)->get();
+        $scheduals = Schedule::where('relationship_id', $data->relationship_id)->get();
         // $schedules = DB::select('
         // select
         // schedule.currency as code,
