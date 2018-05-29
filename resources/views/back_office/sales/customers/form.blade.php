@@ -2,7 +2,7 @@
     <div>
 
         <!-- User Profile -->
-        <h2 class="content-heading text-black"> Commercial </h2>
+        <h2 class="content-heading text-black">@lang('back-office.Commercial')</h2>
         <div class="row items-push">
             <div class="col-lg-3">
                 <p class="text-muted">
@@ -11,21 +11,21 @@
             </div>
             <div class="col-lg-7 offset-lg-1">
 
-                <b-field label="Customer Name">
+                <b-field label="@lang('back-office.Name')">
                     <b-input v-model="customer_alias"></b-input>
                 </b-field>
 
-                <b-field label="Government TaxID">
+                <b-field label="@lang('back-office.Taxid')">
                     <b-input v-model="customer_taxid"></b-input>
                 </b-field>
 
-                <b-field label="Default Contract" v-if="credit_limit != null">
+                <b-field label="@lang('back-office.Default_Contract')" v-if="credit_limit != null">
                   <select v-model="contract_ref" required class="custom-select" >
                       <option v-for="contract in contracts" :value="contract.id">@{{ contract.name }}</option>
                   </select>
                 </b-field>
 
-                <b-field label="Credit Limit">
+                <b-field label="@lang('back-office.Credit_Limit')">
                     <b-input v-model="credit_limit"></b-input>
                 </b-field>
             </div>

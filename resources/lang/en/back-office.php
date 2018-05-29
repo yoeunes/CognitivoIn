@@ -59,4 +59,11 @@ return [
     'Finances' => 'Finances',
     'Accounts' => 'Accounts',
     'Account Movements' => 'Account Movements',
+
+    //CUSTOMERS
+    'Name' => 'Name',
+    'Taxid' => 'Taxid',
+    'Default_Contract' => 'Default_Contract',
+    'Credit_Limit' => 'Credit_Limit',
+    
 ];
