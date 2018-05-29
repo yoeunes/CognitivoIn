@@ -46,8 +46,6 @@
                                 <b-input placeholder="Currency" v-model="currency" type="text" maxlength="3" has-counter>
                                 </b-input>
                             </b-field>
-
-
                         </div>
                         <div class="form-group row">
                             <div class="col-6">
