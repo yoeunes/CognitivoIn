@@ -12,6 +12,8 @@ class Schedule extends Model
     protected $table = 'schedule';
     protected $with = ['payments'];
 
+    protected $appends = array('balance');
+
     /**
     * Fields that can be mass assigned.
     *
@@ -30,9 +32,9 @@ class Schedule extends Model
         'comment'
     ];
 
-    public function getBalance()
+    public function getBalanceAttribute()
     {
-     
+
         return $this->value - ($this->payments->sum('credit - debit') ?? 0);
     }
 
