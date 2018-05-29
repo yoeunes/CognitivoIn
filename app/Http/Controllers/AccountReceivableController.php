@@ -198,7 +198,7 @@ class AccountReceivableController extends Controller
 
         if (isset($relationship))
         {
-            $scheduals = Schedule::where('relationship_id', $data->relationship_id)->get();
+            $scheduals = Schedule::where('relationship_id', $relationship->id)->get();
 
             $values = [];
             $j = 0;
