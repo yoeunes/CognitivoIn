@@ -42,11 +42,11 @@ Vue.component('item-form',
                 {
                     var priceVAT = 0;
                     var coefficient = 0;
-                    coefficient=app.vats[index].details.reduce(function(total, item){
 
+                    coefficient = app.vats[index].details.reduce(function(total, item)
+                    {
                         return parseFloat(total) + parseFloat(item.coefficient);
-                    },0);
-                    
+                    }, 0);
 
                     app.unit_pricevat = parseInt(app.unit_price) + parseFloat(app.unit_price * coefficient);
                 }
@@ -54,20 +54,19 @@ Vue.component('item-form',
                 return app.unit_pricevat;
             },
             // setter
-            set: function (priceVAT)
+            set: function ()
             {
                 var app = this;
-                app.unit_pricevat = priceVAT;
+
                 let index = app.vats.findIndex(x => x.id === app.vat_id);
 
                 if (app.unit_pricevat > 0 && index>-1)
                 {
                     var coefficient = 0;
-
-                    coefficient=app.vats[index].details.reduce(function(total, item){
-
+                    coefficient = app.vats[index].details.reduce(function(total, item)
+                    {
                         return parseFloat(total) + parseFloat(item.coefficient);
-                    },0);
+                    }, 0);
 
                     pricewithoutvat = parseInt(app.unit_pricevat) / (parseInt(1) + parseFloat(coefficient));
                     app.unit_price = Math.round(parseFloat(pricewithoutvat),2);
