@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Scheduals;
+use App\Schedule;
 use App\Account;
 use App\Profile;
 use App\AccountMovement;
@@ -61,7 +61,7 @@ class AccountReceivableController extends Controller
 
         }
 
-        $schedual = Scheduals::where('id',$request->InvoiceNumber)->first();
+        $schedual = Schedule::where('id',$request->InvoiceNumber)->first();
 
         if (isset($schedual))
         {
