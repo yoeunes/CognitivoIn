@@ -206,12 +206,12 @@ class AccountReceivableController extends Controller
             foreach ($scheduals as $schedule)
             {
                 $values[$j] = [
-                    'CurrencyCode' => $scheduals->currency,
-                    'Value' => $scheduals->getBalance(),
-                    'ReferenceCode' => $scheduals->reference,
-                    'InvoiceNumber' => $scheduals->id,
-                    'InvoiceDate' => $scheduals->date,
-                    'Deadline' => $scheduals->due_date,
+                    'CurrencyCode' => $schedule->currency,
+                    'Value' => $schedule->getBalance(),
+                    'ReferenceCode' => $schedule->reference,
+                    'InvoiceNumber' => $schedule->id,
+                    'InvoiceDate' => $schedule->date,
+                    'Deadline' => $schedule->due_date,
                 ];
 
                 $j = $j + 1;
