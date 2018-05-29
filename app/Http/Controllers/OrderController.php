@@ -182,7 +182,7 @@ class OrderController extends Controller
         }
         else
         {
-            $schedule = new $schedule();
+            $schedule = new Schedule();
             $schedule->relationship_id = $relationship_id;
             $schedule->currency = $order->currency;
             $schedule->currency_rate = $order->currency_rate;
