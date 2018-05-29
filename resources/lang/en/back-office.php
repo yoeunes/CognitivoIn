@@ -25,6 +25,7 @@ return [
     'Modules' => 'Modules',
 
     'Sales' => 'Sales',
+    'Customer' => 'Customer',
     'Customers' => 'Customers',
     'Promotions' => 'Promotions',
     'Opportunities' => 'Opportunities',

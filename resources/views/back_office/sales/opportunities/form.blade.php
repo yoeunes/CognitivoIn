@@ -3,7 +3,7 @@
         <div class="block block-fx-shadow">
             <div class="block-content">
                 <!-- User Profile -->
-                <h2 class="content-heading text-black"> Opportunity </h2>
+                <h2 class="content-heading text-black"> @lang('back-office.Opportunities') </h2>
                 <div class="row items-push">
                     <div class="col-lg-3">
                         <p class="text-muted">
@@ -19,7 +19,7 @@
                         </b-field>
                         <div class="form-group row">
                             <div class="col-12">
-                                <label>Customer</label>
+                                <label>@lang('back-office.Customer')</label>
                                 <router-view name="SearchBoxCustomer"
                                 :current_company="{{request()->route('profile')}}" >
 
@@ -28,7 +28,7 @@
                     </div>
                     <div class="form-group row">
                         <div class="col-6">
-                            <label>Pipeline</label>
+                            <label>@lang('back-office.Pipeline')</label>
 
                             <select v-model="pipeline_id" required class="custom-select" >
                                 <option v-for="pipeline in pipelines" :value="pipeline.id">@{{ pipeline.name }}</option> </select>
@@ -47,7 +47,7 @@
                                 </b-input>
                             </b-field>
 
-                          
+
                         </div>
                         <div class="form-group row">
                             <div class="col-6">

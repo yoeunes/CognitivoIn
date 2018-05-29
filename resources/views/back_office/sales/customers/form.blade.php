@@ -33,7 +33,7 @@
         <!-- END User Profile -->
 
         <!-- Personal Details -->
-        <h2 class="content-heading text-black"> Contact </h2>
+        <h2 class="content-heading text-black"> @lang('back-office.Customer') </h2>
         <div class="row items-push">
             <div class="col-lg-3">
                 <p class="text-muted">
