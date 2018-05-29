@@ -27,7 +27,7 @@ class OrderController extends Controller
     *
     * @return \Illuminate\Http\Response
     */
-    public function index(Profile $profile,$skip)
+    public function index(Profile $profile, $skip)
     {
         $orders = Order::with('relationship')
         ->with('details')
@@ -54,19 +54,18 @@ class OrderController extends Controller
     * @param  \Illuminate\Http\Request  $request
     * @return \Illuminate\Http\Response
     */
-    public function store(Request $request,Profile $profile)
+    public function store(Request $request, Profile $profile)
     {
-
-        if (count($request->details)>0)
+        if (count($request->details) > 0)
         {
             $order = Order::where('id', $request->id)->first() ?? new Order();
 
             $order->relationship_id = $request->relationship_id;
-            $order->currency = 'PYG';
-            $order->currency_rate = 1;
-            $order->is_impex = 0;
-            $order->is_printed = 0;
-            $order->is_archived = 0;
+            $order->currency = $request->currency ?? $profile->currency;
+            $order->currency_rate = $request->currency_rate ?? 1;
+            $order->is_impex = $request->is_impex ?? 0;
+            $order->is_printed = $request->is_printed ?? 0;
+            $order->is_archived = $request->is_archived ?? 0;
 
             $order->save();
 
@@ -95,9 +94,10 @@ class OrderController extends Controller
     * @param  \App\Order  $order
     * @return \Illuminate\Http\Response
     */
-    public function show(Profile $profile,Order $order)
+    public function show(Profile $profile, Order $order)
     {
-        return response()->json($order->with('details')->first());
+        $order = Order::where('id', $order->id)->with('details')->first();
+        return response()->json($order);
     }
 
     /**
@@ -108,13 +108,8 @@ class OrderController extends Controller
     */
     public function edit(Profile $profile,Order $order)
     {
-        return response()->json(Order::with('details')->where('orders.id',$order->id)->first());
-    }
-
-    //Specifally used only for when changes occur to orders that are already approved.
-    public function update(Request $request, Order $order)
-    {
-        //
+        $order = Order::where('id', $order->id)->with('details')->first();
+        return response()->json($order);
     }
 
     public function destroy(Order $order)
@@ -203,15 +198,6 @@ class OrderController extends Controller
         //for stock entry
         foreach ($order->detail as  $detail)
         {
-            $vatDetails = VatDetail::where('vat_id', $detail->vat_id)->get();
-
-            foreach ($vatDetails as $vat)
-            {
-                $vatAmount = $vatAmount + (($order->detail->unit_price * $vat->percent) *  $vat->coefficient);
-            }
-
-            $amount = $amount + (($detail->unit_price + $vatAmount) * $detail->quantity);
-
             //TODO Get only required column. you are using one column only.
             $item = Item::find($detail->item_id);
 

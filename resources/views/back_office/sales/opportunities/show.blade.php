@@ -358,7 +358,7 @@
             <!-- END Add task -->
             <h2>This Week</h2>
 
-            <b-table :data="activeTasks" hoverable detailed checkable detail-key="id">
+            <b-table :data="activeTasks" check="taskChecked(props.row)" hoverable detailed checkable detail-key="id">
                 <template slot-scope="props">
 
                     <b-table-column label="" width="40">

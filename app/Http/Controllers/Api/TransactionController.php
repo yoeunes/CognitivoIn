@@ -31,8 +31,6 @@ class TransactionController extends Controller
 
         //Run Validations and prevent malitious users from inserting data that is not supposed to be entered.
 
-        //$relationship = Relationship::GetCustomers()->find($data->relationship_id);
-
         $order = new Order();
 
         $order->number = $data['number'];
@@ -50,7 +48,6 @@ class TransactionController extends Controller
         //TODO. wrong. let front end decide if it is printed or not.
         $order->is_printed = $data['isPrinted'] ?? false;
         $order->is_impex = $data['isImpex'] ?? false;
-
 
         $order->date = $data['date'] ?? Carbon::now();
         $order->currency = $data->currency ?? $profile->currency;
@@ -76,20 +73,23 @@ class TransactionController extends Controller
         $orderController->approve($order->id);
         //
         $accountMovement = new AccountMovementController();
-        $accountMovement->makePayment($request,$order->id);
+        $accountMovement->makePayment($request, $order->id);
 
-        $vatDetail=VatDetail::leftjoin('order_details', 'order_details.vat_id', 'vat_details.vat_id')
-        ->where('order_id',$order->id)
+        $vatDetail = VatDetail::leftjoin('order_details', 'order_details.vat_id', 'vat_details.vat_id')
+        ->where('order_id', $order->id)
         ->select(DB::raw('CONCAT(round(max(coefficient),2) * 100, "%" )as coefficient'),
         DB::raw('round(sum(percent * coefficient * unit_price * quantity),2) as value')
         )
-        ->groupBy('coefficient')->get();
+        ->groupBy('coefficient')
+        ->get();
+
         $data2 = [];
         $data2[] = [
             'Date' => $order->date->format('d-m-Y'),
             'Detail'=> $vatDetail
         ];
-            return response()->json($data2);
+
+        return response()->json($data2);
     }
 
     // TODO: Make chunks of data. learn from debehaber
