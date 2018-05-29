@@ -232,10 +232,10 @@
                                                 <a  class="nav-submenu" data-toggle="nav-submenu" href="#">@lang('back-office.Opportunities')</a>
                                                 <ul>
                                                     <li>
-                                                        <a @click="onList('pipelines', 3.3)" href="#">@lang('back-office.Pipeline')</a>
+                                                        <a @click="onList('pipelines', 3.3)" href="#">@lang('back-office.Pipelines')</a>
                                                     </li>
                                                     <li>
-                                                        <a @click="onList('opportunities', 3.2)" href="#">@lang('back-office.Opportunity')</a>
+                                                        <a @click="onList('opportunities', 3.2)" href="#">@lang('back-office.Opportunities')</a>
                                                     </li>
                                                 </ul>
                                             </li>
@@ -462,7 +462,7 @@
                 <!-- END Header Loader -->
             </header>
             <!-- END Header -->
-            
+
             <!-- Main Container -->
             <div class="main-container">
                 <div class="container">

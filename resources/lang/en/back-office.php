@@ -29,6 +29,10 @@ return [
     'Customers' => 'Customers',
     'Promotions' => 'Promotions',
     'Opportunities' => 'Opportunities',
+    'Pipelines' => 'Pipelines',
+    'Pipeline Stage' => 'Pipeline Stage',
+    'Task' => 'Task',
+
     'Orders' => 'Orders',
     'Account Receivables' => 'Account Receivables',
 

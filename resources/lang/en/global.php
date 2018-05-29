@@ -16,17 +16,26 @@ return [
     'Log Out' => 'Log Out',
     'Register' => 'Register',
     'Actions' => 'Actions',
-    
+
     'Basic Information' => 'Basic Information',
     'Save' => 'Save',
     'Save-and-New' => 'Save & New',
     'Cancel' => 'Cancel',
+
+    'Date' => 'Date',
+    'Deadline' => 'Deadline',
+    'Start Date' => 'Start Date',
+    'End Date' => 'End Date',
 
     'Profile' => 'Profile',
     'Name' => 'Name',
     'Email' => 'Email',
     'Telephone' => 'Telephone',
     'Address' => 'Address',
+    'Video Conference' => 'Video Conference',
+    'Meeting' => 'Meeting',
+    'Visit' => 'Visit',
+
     'TaxID' => 'TaxID',
     'Messages' => 'Message',
     'Market' => 'Market',
