@@ -183,7 +183,7 @@ class OrderController extends Controller
         else
         {
             $schedule = new Schedule();
-            $schedule->relationship_id = $relationship_id;
+            $schedule->relationship_id = $order->relationship_id;
             $schedule->currency = $order->currency;
             $schedule->currency_rate = $order->currency_rate;
             $schedule->date = Carbon::now();
