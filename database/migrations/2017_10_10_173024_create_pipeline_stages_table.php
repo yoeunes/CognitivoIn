@@ -9,10 +9,10 @@ use Illuminate\Support\Facades\DB;
 class CreatePipelineStagesTable extends Migration
 {
     /**
-     * Run the migrations.
-     *
-     * @return void
-     */
+    * Run the migrations.
+    *
+    * @return void
+    */
     public function up()
     {
         Schema::create('pipeline_stages', function (Blueprint $table) {
@@ -21,10 +21,10 @@ class CreatePipelineStagesTable extends Migration
             $table->integer('pipeline_id')->unsigned()->index();
             $table->foreign('pipeline_id')->references('id')->on('pipelines')->onDelete('cascade');
 
-            $table->unsignedTinyInteger('activity_type')->nullable()->after('sequence');
 
             $table->decimal('completed', 4, 2);
             $table->integer('sequence');
+            $table->unsignedTinyInteger('activity_type')->nullable();
             $table->string('name');
 
             $table->timestamps();
@@ -33,10 +33,10 @@ class CreatePipelineStagesTable extends Migration
     }
 
     /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
+    * Reverse the migrations.
+    *
+    * @return void
+    */
     public function down()
     {
         Schema::dropIfExists('pipeline_stages');

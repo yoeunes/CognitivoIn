@@ -9,7 +9,7 @@ use App\Relationship;
 use App\Profile;
 use App\Account;
 use App\AccountMovement;
-use App\Scheduals;
+use App\Schedule;
 use App\Order;
 use App\OrderDetail;
 use App\Contract;
@@ -124,18 +124,18 @@ class OrderController extends Controller
 
     public function approve($orderID)
     {
-        $order = Order::where('id', $orderID)->with('detail')->first();
+        $order = Order::where('id', $orderID)->with('details')->first();
         $amount = 0;
         $vatAmount = 0;
 
         //for stock entry
-        foreach ($order->detail as  $detail)
+        foreach ($order->details as  $detail)
         {
             $vatDetails = VatDetail::where('vat_id', $detail->vat_id)->get();
 
             foreach ($vatDetails as $vat)
             {
-                $vatAmount = $vatAmount + (($order->detail->unit_price * $vat->percent) *  $vat->coefficient);
+                $vatAmount = $vatAmount + (($detail->unit_price * $vat->percent) *  $vat->coefficient);
             }
 
             $amount = $amount + (($detail->unit_price + $vatAmount) * $detail->quantity);
@@ -163,35 +163,33 @@ class OrderController extends Controller
 
             foreach ($contractDetails as $detail)
             {
-                $schedual = new Scheduals();
-                $schedual->relationship_id = $order->relationship_id;
-                $schedual->currency = $order->currency;
-                $schedual->currency_rate = $order->currency_rate;
-                $schedual->date = Carbon::now();
-                $schedual->date_exp = Carbon::now()->addDays($detail->offset);
-                $schedual->credit = $amount * $detail->percent;
-                $schedual->debit = 0;
-                $schedual->save();
+                $schedule = new Schedule();
+                $schedule->relationship_id = $order->relationship_id;
+                $schedule->currency = $order->currency;
+                $schedule->currency_rate = $order->currency_rate;
+                $schedule->date = Carbon::now();
+                $schedule->due_date = Carbon::now()->addDays($detail->offset);
+                $schedule->value = $amount * $detail->percent;
+                $schedule->save();
 
-                $schedualAmount += $schedual->credit;
+                $schedualAmount += $schedule->credit;
             }
 
-            if ($schedual->credit != $amount)
+            if ($schedule->credit != $amount)
             {
                 // add difference to last schedual on list.
             }
         }
         else
         {
-            $schedual = new Scheduals();
-            $schedual->relationship_id = $relationship_id;
-            $schedual->currency = $order->currency;
-            $schedual->currency_rate = $order->currency_rate;
-            $schedual->date = Carbon::now();
-            $schedual->date_exp = Carbon::now();
-            $schedual->credit = $amount;
-            $schedual->debit = 0;
-            $schedual->save();
+            $schedule = new $schedule();
+            $schedule->relationship_id = $relationship_id;
+            $schedule->currency = $order->currency;
+            $schedule->currency_rate = $order->currency_rate;
+            $schedule->date = Carbon::now();
+            $schedule->due_date = Carbon::now();
+            $schedule->value = $amount;
+            $schedule->save();
         }
     }
 
@@ -237,7 +235,7 @@ class OrderController extends Controller
 
             foreach ($contractDetails as $detail)
             {
-                $schedual = new Scheduals();
+                $schedual = new schedule();
                 $schedual->relationship_id = $order->relationship_id;
                 $schedual->currency = $order->currency;
                 $schedual->currency_rate = $order->currency_rate;

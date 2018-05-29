@@ -58,7 +58,7 @@
             <div class="col-lg-7 offset-lg-1">
                 <div class="form-group row">
                     <div class="col-6">
-                        <label>Currency</label>
+                        
                         <b-field label="Currency">
                             <b-input placeholder="Currency" v-model="currency" type="text" maxlength="3" has-counter>
                             </b-input>

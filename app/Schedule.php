@@ -32,7 +32,8 @@ class Schedule extends Model
 
     public function getBalance()
     {
-        return $this->value - ($this->payments->sum('credit' - 'debit') ?? 0);
+     
+        return $this->value - ($this->payments->sum('credit - debit') ?? 0);
     }
 
     public function scopeReceivables($query)

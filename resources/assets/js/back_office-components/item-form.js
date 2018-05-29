@@ -1,7 +1,7 @@
 
 Vue.component('item-form',
 {
-    props: ['currency'],
+
     data() {
         return {
             id: 0,
@@ -12,14 +12,14 @@ Vue.component('item-form',
             vat_id:'',
             short_description:'',
             long_description:'',
-            currency_id:'',
+            currency:'',
             unit_price:'',
             unit_cost: '',
-            unit_priceVAT:'',
+            unit_pricevat:'',
             is_active: true,
             is_global: true,
             currencies:[],
-            is_stockable:'',
+            is_stockable:false,
             vats:[]
         }
     },
@@ -33,7 +33,7 @@ Vue.component('item-form',
 
                 let index = app.vats.findIndex(x => x.id === app.vat_id);
 
-                if (app.unit_price > 0 && index>-1 && app.unit_priceVAT == 0)
+                if (app.unit_price > 0 && index>-1 && app.unit_pricevat == 0)
                 {
                     var priceVAT = 0;
                     var coefficient = 0;
@@ -43,19 +43,19 @@ Vue.component('item-form',
                         coefficient = coefficient+app.vats[index].details[i].coefficient;
                     }
 
-                    app.unit_priceVAT = parseInt(app.unit_price) + parseFloat(app.unit_price * coefficient);
+                    app.unit_pricevat = parseInt(app.unit_price) + parseFloat(app.unit_price * coefficient);
                 }
 
-                return app.unit_priceVAT;
+                return app.unit_pricevat;
             },
             // setter
             set: function (priceVAT)
             {
                 var app = this;
-                app.unit_priceVAT = priceVAT;
+                app.unit_pricevat = priceVAT;
                 let index = app.vats.findIndex(x => x.id === app.vat_id);
 
-                if (app.unit_priceVAT > 0 && index>-1)
+                if (app.unit_pricevat > 0 && index>-1)
                 {
                     var coefficient = 0;
 
@@ -64,7 +64,7 @@ Vue.component('item-form',
                         coefficient = coefficient + app.vats[index].details[i].coefficient;
                     }
 
-                    pricewithoutvat = parseInt(app.unit_priceVAT) / (parseInt(1) + parseFloat(coefficient));
+                    pricewithoutvat = parseInt(app.unit_pricevat) / (parseInt(1) + parseFloat(coefficient));
                     app.unit_price = Number(pricewithoutvat);
                 }
             }

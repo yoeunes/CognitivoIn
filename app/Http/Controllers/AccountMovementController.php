@@ -4,11 +4,15 @@ namespace App\Http\Controllers;
 
 use App\Account;
 use App\Profile;
-use App\Schedual;
+use App\schedule;
 use App\AccountMovement;
 use App\Relationship;
+use App\Order;
+use App\OrderDetail;
+use App\VatDetail;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
+use DB;
 use Swap\Laravel\Facades\Swap;
 
 class AccountMovementController extends Controller
@@ -129,7 +133,7 @@ class AccountMovementController extends Controller
     * @param  \App\AccountMovement  $accountMovement
     * @return \Illuminate\Http\Response
     */
-    public function destroy(Profile $profile, AccountMovement $accountMovement, )
+    public function destroy(Profile $profile, AccountMovement $accountMovement )
     {
         if (isset($accountMovement))
         {
@@ -177,17 +181,32 @@ class AccountMovementController extends Controller
         return response()->json('Unkown Resource', 401);
     }
 
-    public function makePayment(Request $request)
+    public function makePayment(Request $request,$orderID)
     {
         $data = $request[0];
 
         if (isset($data) == false)
         { $data = $request; }
 
+        $order = Order::where('id', $orderID)->with('details')->first();
+        $amount=0;
+        $vatAmount=0;
+        foreach ($order->details as  $detail)
+        {
+            $vatDetails = VatDetail::where('vat_id', $detail->vat_id)->get();
+
+            foreach ($vatDetails as $vat)
+            {
+                $vatAmount = $vatAmount + (($detail->unit_price * $vat->percent) *  $vat->coefficient);
+            }
+
+            $amount = $amount + (($detail->unit_price + $vatAmount) * $detail->quantity);
+        }
+
         $profile = request()->route('profile');
         $account = Account::first();
 
-        if ($account != null)
+        if ($account == null)
         {
             $account = new Account();
             $account->profile_id = $profile->id;
@@ -198,46 +217,45 @@ class AccountMovementController extends Controller
         }
 
         //Run code to check actual balance.
-        $scheduals = Schedual::where('relationship_id', $data->relationship_id)->get();
+        $scheduals = schedule::where('relationship_id', $data->relationship_id)->get();
+        // $schedules = DB::select('
+        // select
+        // schedule.currency as code,
+        // (schedule.value - (select if(sum(credit) is null,0,sum(credit)) from account_movements where account_movements.status != 3 and schedule.id = account_movements.schedual_id)) as value,
+        // schedule.id,
+        // schedule.date as InvoiceDate,
+        // schedule.due_date as Deadline,
+        // schedule.reference as Reference from schedule
+        // where relationship_id = ' . $data->relationship_id . '
+        // and schedule.deleted_at is null
+        // and (schedule.value - (select if(sum(credit) is null, 0, sum(credit)) from account_movements where account_movements.status != 3
+        // and schedule.id = account_movements.schedual_id)) > 0  order by schedule.due_date');
 
-        $schedules = DB::select('
-        select
-        scheduals.currency as code,
-        (scheduals.debit - (select if(sum(credit) is null,0,sum(credit)) from account_movements where account_movements.status != 3 and scheduals.id = account_movements.schedual_id)) as value,
-        scheduals.id,
-        scheduals.date as InvoiceDate,
-        scheduals.date_exp as Deadline,
-        scheduals.reference as Reference from scheduals
-        where relationship_id = ' . $order->relationship_id . '
-        and scheduals.deleted_at is null
-        and (scheduals.debit - (select if(sum(credit) is null, 0, sum(credit)) from account_movements where account_movements.status != 3
-        and scheduals.id = account_movements.schedual_id)) > 0  order by scheduals.date_exp');
 
-        $schedules = collect($schedules);
         $balance = $amount;
 
-        for ($i = 0; $i < count($schedules); $i++)
+        for ($i = 0; $i < count($scheduals); $i++)
         {
             if ($balance > 0)
             {
                 $accountMovement = new AccountMovement();
-                $accountMovement->schedual_id = $schedules[$i]->id;
+                $accountMovement->schedule_id = $scheduals[$i]->id;
                 $accountMovement->account_id = $account->id;
-                $accountMovement->type = $type;
+                $accountMovement->type = 1;
                 $accountMovement->currency = $data->currency;
                 $accountMovement->currency_rate = ($data->rate ?? Swap::latest($profile->currency . '/' . $data->currency)->getValue()) ?? 1;
-                $accountMovement->date = Carbon::parse($data->date);
+                $accountMovement->date =$data->date? Carbon::parse($data->date):Carbon::now();
 
                 //Schedual Value is greater than balance, then make balance 0.
-                if ($schedules[$i]->value > $balance)
+                if ($scheduals[$i]->getBalance() > $balance)
                 {
                     $value = $balance;
                     $balance = 0;
                 }
                 else
                 {
-                    $value = $schedules[$i]->value;
-                    $balance = $balance - $schedules[$i]->value;
+                    $value = $scheduals[$i]->value;
+                    $balance = $balance - $scheduals[$i]->value;
                 }
 
                 $accountMovement->credit = $value;

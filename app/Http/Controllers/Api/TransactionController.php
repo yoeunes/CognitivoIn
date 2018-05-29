@@ -6,14 +6,21 @@ use App\Item;
 use App\Relationship;
 use App\Profile;
 use App\Order;
+use App\Vat;
+use App\VatDetail;
+use App\OrderDetail;
 use Carbon\Carbon;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\OrderController;
+use App\Http\Controllers\AccountMovementController;
 use Illuminate\Http\Request;
+use DB;
+use Swap\Laravel\Facades\Swap;
 
 class TransactionController extends Controller
 {
 
-    public function SalesInvoice_createApprove(Request $request)
+    public function SalesInvoice_createApprove(Request $request,Profile $profile)
     {
         $data = $request[0];
 
@@ -29,7 +36,7 @@ class TransactionController extends Controller
         $order = new Order();
 
         $order->number = $data['number'];
-        $order->relationship_id = $data->relationship_id;
+        $order->relationship_id = $data['relationship_id'];
         $order->code = $data['range_code'];
         $order->location_id = $data['location_id'];
 
@@ -38,7 +45,7 @@ class TransactionController extends Controller
             $order->contract_id = $data['contract_id'];
         }
 
-        $order->code_expiry = Carbon::parse($data['code_expiry']);
+        $order->code_expiry =$data['code_expiry'] ? Carbon::parse($data['code_expiry']):null;
 
         //TODO. wrong. let front end decide if it is printed or not.
         $order->is_printed = $data['isPrinted'] ?? false;
@@ -52,9 +59,10 @@ class TransactionController extends Controller
 
         foreach ($data['details'] as $data_detail)
         {
+            $item=Item::where('id',$data_detail['id'])->select('id','vat_id')->first();
             $detail = new OrderDetail();
             $detail->order_id = $order->id;
-            $detail->item_id = $data_detail['id'];
+            $detail->item_id =$item->id;
 
             $detail->item_sku = $data_detail['sku'];
             $detail->item_name = $data_detail['name'];
@@ -66,15 +74,22 @@ class TransactionController extends Controller
 
         $orderController = new OrderController();
         $orderController->approve($order->id);
-
+        //
         $accountMovement = new AccountMovementController();
-        $accountMovement->makePayment($request);
+        $accountMovement->makePayment($request,$order->id);
 
+        $vatDetail=VatDetail::leftjoin('order_details', 'order_details.vat_id', 'vat_details.vat_id')
+        ->where('order_id',$order->id)
+        ->select(DB::raw('CONCAT(round(max(coefficient),2) * 100, "%" )as coefficient'),
+        DB::raw('round(sum(percent * coefficient * unit_price * quantity),2) as value')
+        )
+        ->groupBy('coefficient')->get();
         $data2 = [];
         $data2[] = [
             'Date' => $order->date->format('d-m-Y'),
-            'Detail'=> $values
+            'Detail'=> $vatDetail
         ];
+            return response()->json($data2);
     }
 
     // TODO: Make chunks of data. learn from debehaber

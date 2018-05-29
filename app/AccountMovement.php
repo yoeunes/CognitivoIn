@@ -17,7 +17,7 @@ class AccountMovement extends Model
     * @var array
     */
     protected $fillable = [
-        'schedual_id',
+        'schedule_id',
         'account_id',
         'currency',
         'rate',
