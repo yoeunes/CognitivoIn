@@ -12,9 +12,23 @@ return [
     | you want to customize your views to better match your application.
     |
     */
-
+    'Log In' => 'Log In',
+    'Log Out' => 'Log Out',
+    'Register' => 'Register',
+    'Actions' => 'Actions',
+    
     'Basic Information' => 'Basic Information',
     'Save' => 'Save',
     'Save-and-New' => 'Save & New',
     'Cancel' => 'Cancel',
+
+    'Profile' => 'Profile',
+    'Name' => 'Name',
+    'Email' => 'Email',
+    'Telephone' => 'Telephone',
+    'Address' => 'Address',
+    'TaxID' => 'TaxID',
+    'Messages' => 'Message',
+    'Market' => 'Market',
+    'Create Company' => 'Create Company',
 ];

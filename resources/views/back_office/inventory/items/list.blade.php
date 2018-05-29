@@ -12,7 +12,7 @@
         <div class="">
             <tr v-for="item in list">
                 <td>
-                    <a class="font-w600" href="be_pages_ecom_product_edit.html">PID.424</a>
+                    <a class="font-w600" href="#" @click="onEdit(item, false)">PID.424</a>
                 </td>
                 <td class="d-none d-sm-table-cell">
                     @{{ item.sku }}
@@ -24,7 +24,7 @@
                     @{{ item.unit_price }}
                 </td>
                 <td class="text-right">
-                    <a @click="onEdit(item,false)" class="m-btn btn btn-secondary"><i class="la la-pencil m--font-brand"></i></a>
+                    <a @click="onEdit(item, false)" class="m-btn btn btn-secondary"><i class="la la-pencil m--font-brand"></i></a>
                     <a @click="onDelete(item)" class="m-btn btn btn-secondary"><i class="la la-trash m--font-danger"></i></a>
                 </td>
             </tr>

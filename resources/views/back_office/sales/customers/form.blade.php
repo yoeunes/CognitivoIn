@@ -41,13 +41,13 @@
                 </p>
             </div>
             <div class="col-lg-7 offset-lg-1">
-                <b-field label="Telephone">
+                <b-field label="@lang('global.Telephone')">
                     <b-input v-model="customer_telephone"></b-input>
                 </b-field>
-                <b-field label="Email">
+                <b-field label="@lang('global.Email')">
                     <b-input v-model="customer_email"></b-input>
                 </b-field>
-                <b-field label="Address">
+                <b-field label="@lang('global.Address')">
                     <b-input type="textarea" v-model="customer_address"></b-input>
                 </b-field>
             </div>

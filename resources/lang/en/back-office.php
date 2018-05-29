@@ -13,6 +13,34 @@ return [
     |
     */
 
-    'next' => 'Next &raquo;',
+    'Dashboard' => 'Dashboard',
 
+    'Company Profile' => 'Company Profile',
+    'Shops and Locations' => 'Shops & Locations',
+    'Teams and Followers' => 'Teams & Followers',
+    'Contracts' => 'Contracts',
+    'Sales Tax' => 'Sales Tax',
+    'Products and Services' => 'Products & Services',
+
+    'Modules' => 'Modules',
+
+    'Sales' => 'Sales',
+    'Customers' => 'Customers',
+    'Promotions' => 'Promotions',
+    'Opportunities' => 'Opportunities',
+    'Orders' => 'Orders',
+    'Account Receivables' => 'Account Receivables',
+
+    'Purchases' => 'Purchases',
+    'Suppliers' => 'Suppliers',
+    'Account Payables' => 'Account Payables',
+
+    'Stock' => 'Stock',
+    'Stock Levels' => 'Stock Levels',
+    'Movements' => 'Movements',
+    'Inventories' => 'Inventories',
+
+    'Finances' => 'Finances',
+    'Accounts' => 'Accounts',
+    'Account Movements' => 'Account Movements',
 ];

@@ -41,7 +41,7 @@
                 <div class="field">
                     <b-switch v-model="is_stockable">This product is a Stockable</b-switch>
                 </div>
-            
+
             </div>
         </div>
         <!-- END User Profile -->
@@ -80,29 +80,23 @@
                     </div>
                     <div class="col-6">
                         <label>Selling Price with Tax</label>
-                        <input type="text" class="form-control form-control-lg" v-model="UnitPriceVat">
+                        <input type="text" class="form-control form-control-lg" v-model="unit_priceVAT">
                     </div>
                 </div>
-
-                {{-- <div class="form-group row">
-                <div class="col-12">
-                <button type="submit" class="btn btn-alt-primary">Update</button>
             </div>
-        </div> --}}
-    </div>
-</div>
-<!-- END Personal Details -->
+        </div>
+        <!-- END Personal Details -->
 
-<div class="block-options">
-    <button v-on:click="$parent.onSave($data,false)" class="btn btn-sm btn-alt-primary">
-        <i class="fa fa-save"></i> @lang('global.Save')
-    </button>
-    <button v-on:click="$parent.onSave($data,true)" class="btn btn-sm btn-alt-primary">
-        <i class="fa fa-plus"></i> @lang('global.Save-and-New')
-    </button>
-    <button v-on:click="$parent.cancel()" class="btn btn-sm btn-alt-danger">
-        <i class="fa fa-close"></i> @lang('global.Cancel')
-    </button>
-</div>
-</div>
+        <div class="block-options">
+            <button v-on:click="$parent.onSave($data,false)" class="btn btn-sm btn-alt-primary">
+                <i class="fa fa-save"></i> @lang('global.Save')
+            </button>
+            <button v-on:click="$parent.onSave($data,true)" class="btn btn-sm btn-alt-primary">
+                <i class="fa fa-plus"></i> @lang('global.Save-and-New')
+            </button>
+            <button v-on:click="$parent.cancel()" class="btn btn-sm btn-alt-danger">
+                <i class="fa fa-close"></i> @lang('global.Cancel')
+            </button>
+        </div>
+    </div>
 </item-form>

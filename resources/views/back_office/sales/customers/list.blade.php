@@ -1,10 +1,10 @@
 <table>
     <thead>
         <tr>
-            <th>TaxID</th>
-            <th>Customer</th>
-            <th>Email</th>
-            <th class="text-center">Actions</th>
+            <th>@lang('global.TaxID')</th>
+            <th>@lang('back-office.Customer')</th>
+            <th>@lang('global.Email')</th>
+            <th class="text-center">@lang('global.Actions')</th>
         </tr>
     </thead>
     <tbody>
