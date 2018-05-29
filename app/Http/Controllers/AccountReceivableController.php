@@ -19,9 +19,15 @@ class AccountReceivableController extends Controller
     *
     * @return \Illuminate\Http\Response
     */
-    public function index()
+    public function index(Profile $profile, $skip)
     {
-        //
+
+        $schedule = Schedule::
+        skip($skip)
+        ->take(100)
+        ->get();
+
+        return response()->json($schedule);
     }
 
     /**
@@ -231,26 +237,26 @@ class AccountReceivableController extends Controller
         return response()->json('Resource not found.', 401);
     }
     public function annull(Request $request, Profile $profile,$id)
-   {
-       $accountMovement = AccountMovement::where('id',$id)
-       ->with('account')
-       ->first();
-       if (isset($accountMovement))
-       {
-           $account = $accountMovement->account;
-           //Make sure that profile requesting change is owner of account movement. if not,
-           //we cannot allow user to delete something that does not belong to them.
-           if (isset($account))
-           {
-               if ($account->profile_id == $profile->id)
-               {
-                   $accountMovement->status = 3;
-                   $accountMovement->comment = $request['Comment'];
-                   $accountMovement->save();
-                   return response()->json('Annulled', 200);
-               }
-           }
-       }
-       return response()->json('Resource not found', 404);
-   }
+    {
+        $accountMovement = AccountMovement::where('id',$id)
+        ->with('account')
+        ->first();
+        if (isset($accountMovement))
+        {
+            $account = $accountMovement->account;
+            //Make sure that profile requesting change is owner of account movement. if not,
+            //we cannot allow user to delete something that does not belong to them.
+            if (isset($account))
+            {
+                if ($account->profile_id == $profile->id)
+                {
+                    $accountMovement->status = 3;
+                    $accountMovement->comment = $request['Comment'];
+                    $accountMovement->save();
+                    return response()->json('Annulled', 200);
+                }
+            }
+        }
+        return response()->json('Resource not found', 404);
+    }
 }

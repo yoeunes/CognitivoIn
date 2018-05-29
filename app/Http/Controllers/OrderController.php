@@ -62,7 +62,7 @@ class OrderController extends Controller
 
             $order->relationship_id = $request->relationship_id;
             $order->currency = $request->currency ?? $profile->currency;
-            $order->currency_rate = $request->currency_rate ?? 1;
+            $order->currency_rate = ($request->rate ?? Swap::latest($profile->currency . '/' . $request->currency)->getValue()) ?? 1;
             $order->is_impex = $request->is_impex ?? 0;
             $order->is_printed = $request->is_printed ?? 0;
             $order->is_archived = $request->is_archived ?? 0;
