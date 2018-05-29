@@ -57986,7 +57986,6 @@ Vue.component('item-form', {
 
                         return parseFloat(total) + parseFloat(item.coefficient);
                     }, 0);
-                    console.log(coefficient);
 
                     app.unit_pricevat = parseInt(app.unit_price) + parseFloat(app.unit_price * coefficient);
                 }
