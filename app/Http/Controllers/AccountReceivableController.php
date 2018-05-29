@@ -22,7 +22,7 @@ class AccountReceivableController extends Controller
     public function index(Profile $profile, $skip)
     {
 
-        $schedule = Schedule::
+        $schedule = Schedule::with('relationship')->
         skip($skip)
         ->take(100)
         ->get();

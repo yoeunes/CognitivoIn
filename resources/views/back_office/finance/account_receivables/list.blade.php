@@ -4,14 +4,16 @@
             <th>TaxID</th>
             <th>Customer</th>
             <th>Email</th>
+            <th>Balance</th>
             <th class="text-center">Actions</th>
         </tr>
     </thead>
     <tbody>
         <tr v-for="customer in list">
-            <td>@{{ customer.customer_taxid }}</td>
-            <td>@{{ customer.customer_alias }}</td>
-            <td>@{{ customer.email }}</td>
+            <td>@{{ customer.relationship.customer_taxid }}</td>
+            <td>@{{ customer.relationship.customer_alias }}</td>
+            <td>@{{ customer.relationship.email }}</td>
+            <td>@{{ customer.balance }}</td>
             <td class="text-center">
                 <div class="btn-group">
                     <button v-on:click="onEdit(customer)" type="button" class="btn btn-sm btn-secondary js-tooltip-enabled" data-toggle="tooltip" data-original-title="Edit">
