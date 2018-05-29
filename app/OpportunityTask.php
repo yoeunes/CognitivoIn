@@ -20,7 +20,7 @@ class OpportunityTask extends Model
     protected $fillable = [
         'activity_type_id',
         'opportunity_id',
-        'reminder_date',
+        'date_reminder',
         'date_startes',
         'date_ended'
     ];

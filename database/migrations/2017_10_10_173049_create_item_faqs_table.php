@@ -34,7 +34,6 @@ class CreateItemFaqsTable extends Migration
             $table->boolean('is_verified')->default(false);
 
             $table->timestamps();
-            $table->softDeletes();
         });
     }
 

@@ -13,7 +13,8 @@ class CreateRelationshipsTable extends Migration
     */
     public function up()
     {
-        Schema::create('relationships', function (Blueprint $table) {
+        Schema::create('relationships', function (Blueprint $table)
+        {
             $table->increments('id');
 
             $table->unsignedInteger('customer_id')->nullable()->index();
@@ -42,7 +43,6 @@ class CreateRelationshipsTable extends Migration
 
             $table->decimal('credit_limit')->nullable();
             $table->unsignedInteger('contract_ref')->nullable();
-            
 
             $table->timestamps();
             $table->softDeletes();

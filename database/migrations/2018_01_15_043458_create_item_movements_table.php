@@ -23,7 +23,10 @@ class CreateItemMovementsTable extends Migration
             $table->integer('location_id')->unsigned()->index();
             $table->foreign('location_id')->references('id')->on('locations');
 
-            $table->date('date');
+            $table->unsignedInteger('order_id')->nullable();
+            $table->foreign('order_id')->references('id')->on('orders');
+
+            $table->dateTime('date');
 
             $table->decimal('debit')->default(0);
             $table->decimal('credit')->default(0);

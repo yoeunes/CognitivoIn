@@ -30,8 +30,8 @@ class CreateOpportunityTasksTable extends Migration
             $table->integer('sentiment')->unsigned()->default(1);
             //$table->enum('sentiment', array('Good' ,'Bad', 'N/A'));
 
-            $table->dateTime('reminder_date')->nullable();
-            $table->timestamp('date_started')->useCurrent = true;
+            $table->dateTime('date_reminder')->nullable();
+            $table->dateTime('date_started')->nullable();
             $table->dateTime('date_ended')->nullable();
 
             $table->string('title');
@@ -40,7 +40,7 @@ class CreateOpportunityTasksTable extends Migration
             $table->string('geoloc')->nullable();
 
             $table->boolean('completed')->default(false);
-            $table->timestamp('completed_at')->nullable();
+            $table->dateTime('completed_at')->nullable();
 
             $table->timestamps();
             $table->softDeletes();

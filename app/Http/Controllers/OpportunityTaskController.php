@@ -38,7 +38,7 @@ class OpportunityTaskController extends Controller
             $opportunityTask->activity_type = $request->activity_type ?? 1;
             $opportunityTask->opportunity_id = $opportunity->id;
             $opportunityTask->sentiment = $request->sentiment ?? 0;
-            $opportunityTask->reminder_date = $request->reminder_date != null ? Carbon::parse($request->reminder_date) : null;
+            $opportunityTask->date_reminder = $request->date_reminder != null ? Carbon::parse($request->date_reminder) : null;
             $opportunityTask->date_started = $request->date_started != null ? Carbon::parse($request->date_started) : Carbon::now();
             $opportunityTask->date_ended = $request->date_ended != null ? Carbon::parse($request->date_ended) : null;
             $opportunityTask->title = $request->title;
