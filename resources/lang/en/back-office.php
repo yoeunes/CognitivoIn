@@ -26,12 +26,17 @@ return [
 
     'Sales' => 'Sales',
     'Customer' => 'Customer',
+    'Credit Limit' => 'Credit Limit',
+    'Commercial' => 'Commercial',
     'Customers' => 'Customers',
     'Promotions' => 'Promotions',
     'Opportunities' => 'Opportunities',
     'Pipelines' => 'Pipelines',
     'Pipeline Stage' => 'Pipeline Stage',
     'Task' => 'Task',
+    'On Hold' => 'On Hold',
+    'Won' => 'Won',
+    'Lost' => 'Lost',
 
     'Orders' => 'Orders',
     'Account Receivables' => 'Account Receivables',

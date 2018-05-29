@@ -29,6 +29,9 @@ return [
 
     'Profile' => 'Profile',
     'Name' => 'Name',
+    'Description' => 'Description',
+    'Short Description' => 'Short Description',
+    'Long Description' => 'Long Description',
     'Email' => 'Email',
     'Telephone' => 'Telephone',
     'Address' => 'Address',
@@ -36,7 +39,7 @@ return [
     'Meeting' => 'Meeting',
     'Visit' => 'Visit',
 
-    'TaxID' => 'TaxID',
+    'TaxID' => 'Government TaxID',
     'Messages' => 'Message',
     'Market' => 'Market',
     'Create Company' => 'Create Company',
