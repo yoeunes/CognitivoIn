@@ -47,8 +47,6 @@ class CreateOrdersTable extends Migration
 
             $table->string('number')->nullable();
 
-            //$table->integer('credit_days')->default(0)->nullable();
-
             $table->dateTime('date')->nullable();
             $table->dateTime('date_deliver_by')->nullable();
 

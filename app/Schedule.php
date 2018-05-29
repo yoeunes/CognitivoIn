@@ -34,7 +34,6 @@ class Schedule extends Model
 
     public function getBalanceAttribute()
     {
-
         return $this->value - ($this->payments->sum('credit - debit') ?? 0);
     }
 

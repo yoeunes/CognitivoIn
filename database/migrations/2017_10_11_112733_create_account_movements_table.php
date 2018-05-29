@@ -26,7 +26,7 @@ class CreateAccountMovementsTable extends Migration
             $table->foreign('location_id')->references('id')->on('locations')->onDelete('cascade');
 
             $table->unsignedInteger('schedule_id')->nullable();
-            $table->foreign('schedule_id')->references('id')->on('schedule');
+            $table->foreign('schedule_id')->references('id')->on('schedules');
 
             $table->unsignedInteger('user_id')->nullable();
             $table->foreign('user_id')->references('id')->on('profiles');
