@@ -41,7 +41,7 @@ class CreateRelationshipsTable extends Migration
             $table->string('supplier_telephone')->nullable();
             $table->string('supplier_email')->nullable();
 
-            $table->decimal('credit_limit')->nullable();
+            $table->decimal('credit_limit', 18, 2)->nullable();
             $table->unsignedInteger('contract_ref')->nullable();
 
             $table->timestamps();
