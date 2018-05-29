@@ -42,11 +42,11 @@ Vue.component('item-form',
                 {
                     var priceVAT = 0;
                     var coefficient = 0;
+                    coefficient=app.vats[index].details.reduce(function(total, item){
 
-                    for (var i = 0; i < app.vats[index].details.length; i++)
-                    {
-                        coefficient = coefficient+app.vats[index].details[i].coefficient;
-                    }
+                        return parseFloat(total) + parseFloat(item.coefficient);
+                    },0);
+                    console.log(coefficient);
 
                     app.unit_pricevat = parseInt(app.unit_price) + parseFloat(app.unit_price * coefficient);
                 }
@@ -64,13 +64,13 @@ Vue.component('item-form',
                 {
                     var coefficient = 0;
 
-                    for (var i = 0; i < app.vats[index].details.length; i++)
-                    {
-                        coefficient = coefficient + app.vats[index].details[i].coefficient;
-                    }
+                    coefficient=app.vats[index].details.reduce(function(total, item){
+
+                        return parseFloat(total) + parseFloat(item.coefficient);
+                    },0);
 
                     pricewithoutvat = parseInt(app.unit_pricevat) / (parseInt(1) + parseFloat(coefficient));
-                    app.unit_price = Number(pricewithoutvat);
+                    app.unit_price = Math.round(parseFloat(pricewithoutvat),2);
                 }
             }
         },
