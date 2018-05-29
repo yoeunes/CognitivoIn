@@ -198,45 +198,36 @@ class AccountReceivableController extends Controller
 
         if (isset($relationship))
         {
-            $schedules = DB::select(
-                'select
-                scheduals.currency as code, (scheduals.debit-(select if(sum(credit) is null,0,sum(credit)) from account_movements where `account_movements`.`status` != 3
-                and `scheduals`.`id` = `account_movements`.`schedual_id`)) as value,
-                scheduals.id as InvoiceNumber, scheduals.date as InvoiceDate, scheduals.date_exp as Deadline,
-                scheduals.reference as Reference from `scheduals`
-                where `relationship_id` = '. $relationship ->id . ' and `scheduals`.`deleted_at` is null and (scheduals.debit-(select if(sum(credit) is null,0,sum(credit)) from account_movements where `account_movements`.`status` != 3
-                and `scheduals`.`id` = `account_movements`.`schedual_id`)) > 0 ');
+            $scheduals = Schedule::where('relationship_id', $data->relationship_id)->get();
 
-                $schedules = collect($schedules);
+            $values = [];
+            $j = 0;
 
-                $values = [];
-                $j = 0;
-
-                for ($i = 0; $i < count($schedules) ; $i++)
-                {
-                    $values[$j] = [
-                        'CurrencyCode' => $schedules[$j]->code,
-                        'Value' => $schedules[$j]->value,
-                        'ReferenceCode' => $schedules[$j]->Reference,
-                        'InvoiceNumber' => $schedules[$j]->InvoiceNumber,
-                        'InvoiceDate' => $schedules[$j]->InvoiceDate,
-                        'Deadline' => $schedules[$j]->Deadline,
-                    ];
-
-                    $j = $j + 1;
-                }
-
-                //for each currency requested, run loop and add into array
-                $return[] =
-                [
-                    'ReferenceName' => $request->customer_alias,
-                    'ReferenceTaxID' => $request->customer_taxid,
-                    'Details' => $values
+            foreach ($scheduals as $schedule)
+            {
+                $values[$j] = [
+                    'CurrencyCode' => $scheduals->currency,
+                    'Value' => $scheduals->getBalance(),
+                    'ReferenceCode' => $scheduals->reference,
+                    'InvoiceNumber' => $scheduals->id,
+                    'InvoiceDate' => $scheduals->date,
+                    'Deadline' => $scheduals->due_date,
                 ];
 
-                return response()->json($return, 200);
+                $j = $j + 1;
             }
 
-            return response()->json('Resource not found.', 401);
+            //for each currency requested, run loop and add into array
+            $return[] =
+            [
+                'ReferenceName' => $request->customer_alias,
+                'ReferenceTaxID' => $request->customer_taxid,
+                'Details' => $values
+            ];
+
+            return response()->json($return, 200);
         }
+
+        return response()->json('Resource not found.', 401);
     }
+}
