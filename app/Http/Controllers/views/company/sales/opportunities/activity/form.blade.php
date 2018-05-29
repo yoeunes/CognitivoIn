@@ -62,7 +62,7 @@ Create
                                 <!-- For more info and examples you can check out https://github.com/Eonasdan/bootstrap-datetimepicker -->
                                 <label for="project-name">Reminder Date</label>
                                 <div class="js-datetimepicker input-group date" data-format="YYYY/MM/DD">
-                                    <input class="form-control input-lg" type="text" id="reminder_date" name="reminder_date" placeholder="Do you have a reminder?" value="{{$opportunityActivity->reminder_date}}">
+                                    <input class="form-control input-lg" type="text" id="date_reminder" name="date_reminder" placeholder="Do you have a reminder?" value="{{$opportunityActivity->date_reminder}}">
                                     <span class="input-group-addon">
                                         <span class="fa fa-calendar"></span>
                                     </span>

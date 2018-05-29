@@ -33,9 +33,9 @@ class CreateOpportunitiesTable extends Migration
             $table->string('name')->nullable();
             $table->text('description')->nullable();
 
-            $table->integer('status')->unsigned()->default(1)->comment('0 = Inactive; 1 = Active; 2 = On Hold; 3 = Won; 4 = Lost');
-            $table->decimal('value', 20, 2)->unsigned()->nullable();
+            $table->unsignedInteger('status')->default(1)->comment('0 = Inactive; 1 = Active; 2 = On Hold; 3 = Won; 4 = Lost');
 
+            $table->unsignedDecimal('value', 20, 2)->nullable();
             $table->string('currency', 3);
 
             $table->boolean('is_archived')->default(false);

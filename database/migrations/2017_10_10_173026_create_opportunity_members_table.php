@@ -28,7 +28,6 @@ class CreateOpportunityMembersTable extends Migration
             $table->tinyInteger('role')->default(1)->comment('1 = Salesman; 2 = Manager; 3 = Customer/Buyer');
 
             $table->timestamps();
-            $table->softDeletes();
         });
     }
 

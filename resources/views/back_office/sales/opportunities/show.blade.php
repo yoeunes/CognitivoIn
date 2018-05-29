@@ -323,7 +323,7 @@
                                         </div>
                                         <div class="col-4">
                                             <b-field v-if="remindMe == true" custom-class="is-small">
-                                                <b-datepicker v-model="reminder_date"
+                                                <b-datepicker v-model="date_reminder"
                                                 custom-class="is-small"
                                                 :max-date="date_started"
                                                 placeholder="Remind me on"></b-datepicker>
@@ -393,7 +393,7 @@
                     </b-table-column>
 
                     <b-table-column label="Actions" centered>
-                        <b-tooltip :label="props.row.reminder_date" dashed>
+                        <b-tooltip :label="props.row.date_reminder" dashed>
                             <i class="si si-bell"></i>
                         </b-tooltip>
                         <a class="delete" @click="deleteTask(props.row)"></a>
@@ -503,7 +503,7 @@
                             </td>
                             <td class="text-right">
                                 <a href="#">
-                                    <i v-if="task.reminder_date != null" class="si si-bell"></i>
+                                    <i v-if="task.date_reminder != null" class="si si-bell"></i>
                                 </a>
                                 <button @click="deleteTask(task)" class="js-task-remove btn btn-sm btn-alt-danger" type="button">
                                     <i class="si si-close"></i>
