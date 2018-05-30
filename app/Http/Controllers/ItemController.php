@@ -27,6 +27,13 @@ class ItemController extends Controller
 
         return response()->json($items);
     }
+    public function get_itemsforApp(Profile $profile)
+    {
+        $items = Item::GetItems($profile->id)
+        ->get();
+
+        return response()->json($items);
+    }
 
     public function getItem(Profile $profile, $query)
     {

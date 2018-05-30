@@ -124,4 +124,4 @@ Route::group(['middleware' => 'auth:api'], function ()
     Route::get('getCustomers/{profile}', 'CustomerController@getAllCustomer');
 
 
-    Route::get('getItems/{profile}', 'ItemController@get_items');
+    Route::get('getItems/{profile}', 'ItemController@get_itemsforApp');
