@@ -58222,9 +58222,7 @@ Vue.component('opportunity-form', {
 
     methods: {
         addCustomer: function addCustomer(member) {
-
             var app = this;
-
             app.relationship_id = member.id;
         },
 
@@ -58248,12 +58246,12 @@ Vue.component('opportunity-form', {
         },
 
         taskChecked: function taskChecked(task) {
-
             var app = this;
             var url = '/back-office/' + app.$parent.profile + '/sales/opportunities/' + app.id + '/tasks/checked';
 
             app.$parent.postSpecial(url, task).then(function (response) {
                 task.completed = task.completed == true ? 0 : 1;
+                task.sentiment = null;
             });
         },
 

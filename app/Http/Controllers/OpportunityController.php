@@ -44,9 +44,9 @@ class OpportunityController extends Controller
     {
         $opportunity = Opportunity::where('id', $request->id)->first() ?? new Opportunity();
         $opportunity->profile_id = $profile->id;
-        $opportunity->relationship_id = $request->relationship_id;
-        $opportunity->pipeline_id = $request->pipeline_id;
-        $opportunity->deadline_date = $request->deadline_date;
+        $opportunity->relationship_id = $request->relationship_id ?? null;
+        $opportunity->pipeline_id = $request->pipeline_id ?? null;
+        $opportunity->deadline_date = $request->deadline_date ?? null;
         $opportunity->name = $request->name;
         $opportunity->description = $request->description;
         $opportunity->status = 1;
@@ -98,7 +98,7 @@ class OpportunityController extends Controller
     */
     public function edit(Profile $profile, $opportunityID)
     {
-        $opportunity = Opportunity::where('id',$opportunityID)->with('relationship')->first();
+        $opportunity = Opportunity::where('id', $opportunityID)->with('relationship')->first();
         return response()->json($opportunity);
     }
 
@@ -130,6 +130,7 @@ class OpportunityController extends Controller
     public function restore(Profile $profile, Opportunity $opportunity)
     {
         $relationship = $opportunity->relationship();
+
         if ($relationship->profile_id == $profile->id)
         {
             $opportunity->restore();
@@ -139,33 +140,93 @@ class OpportunityController extends Controller
         return response()->json('Resource not found', 401);
     }
 
-    public function approve(Request $request,Profile $profile)
+    public function approve(Request $request, Profile $profile)
     {
         $opportunity = Opportunity::where('id', $request->id)->first();
-        $carts=Cart::where('opportunity_id',$opportunity->id)->with('item')->get();
-        $order = new Order();
-        $order->relationship_id=$opportunity->relationship_id;
-        $order->currency='PYG';
-        $order->currency_rate=1;
-        $order->is_impex=0;
-        $order->is_printed=0;
-        $order->is_archived=0;
-        $order->save();
+        if (isset($opportunity))
+        {
+            $opportunity->status = 3;
+            $opportunity->save();
 
+            $carts = Cart::where('opportunity_id', $opportunity->id)->with('item')->get();
+            $order = new Order();
+            $order->relationship_id = $opportunity->relationship_id;
+            $order->currency = $opportunity->currency ?? $profile->currency;
+            //TODO add swap to get exchange rate correct.
+            $order->currency_rate = 1;
+            $order->is_impex = 0;
+            $order->is_printed = 0;
+            $order->is_archived = 0;
+            $order->save();
 
-        foreach ($carts as $cart) {
-            $orderDetail =new OrderDetail();
-            $orderDetail->order_id= $order->id;
-            $orderDetail->item_id= $cart->item_id;
-            $orderDetail->item_name= $cart->item->name;
-            $orderDetail->quantity= $cart->quantity;
-            $orderDetail->unit_price= $cart->unit_price;
-            $orderDetail->vat_id= $cart->vat_id;
-            $orderDetail->cart_id=$cart->id;
-            $orderDetail->save();
+            foreach ($carts as $cart)
+            {
+                $orderDetail = new OrderDetail();
+                $orderDetail->order_id = $order->id;
+                $orderDetail->item_id = $cart->item_id;
+                $orderDetail->item_name = $cart->item->name;
+                $orderDetail->quantity = $cart->quantity;
+                $orderDetail->unit_price = $cart->unit_price;
+                $orderDetail->vat_id = $cart->vat_id;
+                $orderDetail->cart_id = $cart->id;
+                $orderDetail->save();
+            }
 
-
+            return response()->json('ok', 200);
         }
-        return response()->json('ok', 200);
+
+        return response()->json('Resource not found', 401);
+    }
+
+    public function annul(Request $request, Profile $profile)
+    {
+        $opportunity = Opportunity::where('id', $request->id)->first();
+        if (isset($opportunity))
+        {
+            $opportunity->status = 3;
+            $opportunity->save();
+
+            // $order = new Order::where('id', $request->id)->first();
+            // $order->relationship_id = $opportunity->relationship_id;
+            //
+            // $order->currency = $opportunity->currency ?? $profile->currency;
+            // //TODO add swap to get exchange rate correct.
+            // $order->currency_rate = 1;
+            // $order->is_impex = 0;
+            // $order->is_printed = 0;
+            // $order->is_archived = 0;
+            // $order->save();
+            //
+            // foreach ($carts as $cart)
+            // {
+            //     $orderDetail = new OrderDetail();
+            //     $orderDetail->order_id = $order->id;
+            //     $orderDetail->cart_id = $cart->id;
+            //     $orderDetail->item_id = $cart->item_id;
+            //     $orderDetail->item_name = $cart->item->name;
+            //     $orderDetail->quantity = $cart->quantity;
+            //     $orderDetail->unit_price = $cart->unit_price;
+            //     $orderDetail->vat_id = $cart->vat_id;
+            //     $orderDetail->save();
+            // }
+
+            return response()->json('ok', 200);
+        }
+
+        return response()->json('Resource not found', 401);
+    }
+
+    public function hold(Request $request, Profile $profile)
+    {
+        $opportunity = Opportunity::where('id', $request->id)->first();
+        if (isset($opportunity))
+        {
+            $opportunity->status = 2;
+            $opportunity->save();
+
+            return response()->json('ok', 200);
+        }
+
+        return response()->json('Resource not found', 401);
     }
 }

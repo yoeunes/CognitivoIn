@@ -31,7 +31,7 @@ class OpportunityTaskController extends Controller
     */
     public function store(Request $request, Profile $profile, Opportunity $opportunity)
     {
-        
+
         if ($profile->id == $opportunity->profile_id && $request->title != '')
         {
             $opportunityTask = OpportunityTask::find($request->id) ?? new OpportunityTask();
@@ -46,6 +46,7 @@ class OpportunityTaskController extends Controller
             $opportunityTask->geoloc = $request->geoloc ?? null;
             $opportunityTask->completed = $request->completed ?? 0;
             $opportunityTask->assigned_to = $request->assigned_to ?? null;
+            $opportunityTask->created_by = ($request->id > 0 ? $opportunityTask->created_by : Auth::user()->profile_id) ?? null;
             //$opportunityTask->created_by = Auth::user()->profile_id;
             $opportunityTask->save();
 
@@ -62,7 +63,12 @@ class OpportunityTaskController extends Controller
         if ($opportunityTask)
         {
             $opportunityTask->completed = $request->completed == true ? false : true;
-            $opportunityTask->completed_at = Carbon::now();
+            $opportunityTask->completed_at = $request->completed == true ? Carbon::now() : null;
+            $opportunityTask->created_by = $request->completed == true ? Auth::user()->profile_id : null;
+
+            //Set Sentiment to Null each time the checked status changes.
+            $opportunityTask->sentiment = null;
+
             $opportunityTask->save();
 
             return response()->json('Ok', 200);

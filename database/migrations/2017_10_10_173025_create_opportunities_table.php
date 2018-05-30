@@ -19,10 +19,10 @@ class CreateOpportunitiesTable extends Migration
         {
             $table->increments('id');
 
-            $table->unsignedInteger('profile_id')->nullable();
+            $table->unsignedInteger('profile_id');
             $table->foreign('profile_id')->references('id')->on('profiles')->onDelete('cascade');
 
-            $table->integer('relationship_id')->unsigned()->index();
+            $table->integer('relationship_id')->unsigned()->nullable()->index();
             $table->foreign('relationship_id')->references('id')->on('relationships');
 
             $table->unsignedInteger('pipeline_id')->nullable();
@@ -33,7 +33,7 @@ class CreateOpportunitiesTable extends Migration
             $table->string('name')->nullable();
             $table->text('description')->nullable();
 
-            $table->unsignedInteger('status')->default(1)->comment('0 = Inactive; 1 = Active; 2 = On Hold; 3 = Won; 4 = Lost');
+            $table->unsignedInteger('status')->default(1)->comment('1 = Active; 2 = On Hold; 3 = Won; 4 = Lost');
 
             $table->unsignedDecimal('value', 20, 2)->nullable();
             $table->string('currency', 3);
@@ -43,8 +43,7 @@ class CreateOpportunitiesTable extends Migration
             $table->timestamps();
             $table->softDeletes();
 
-            $table->integer('creatd_by')->unsigned()->index()->nullable();
-            $table->foreign('creatd_by')->references('id')->on('profiles');
+            $table->unsignedInteger('creatd_by')->nullable();
         });
     }
 

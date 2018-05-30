@@ -41,12 +41,13 @@ class CreateOpportunityTasksTable extends Migration
 
             $table->boolean('completed')->default(false);
             $table->dateTime('completed_at')->nullable();
+            $table->unsignedInteger('completed_by')->nullable();
+
+            $table->unsignedInteger('created_by')->nullable();
+            $table->unsignedInteger('assigned_to')->nullable();
 
             $table->timestamps();
             $table->softDeletes();
-
-            $table->integer('created_by')->unsigned()->nullable();
-            $table->integer('assigned_to')->unsigned()->nullable();
         });
     }
 

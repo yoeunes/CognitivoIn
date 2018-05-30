@@ -69,13 +69,9 @@ Vue.component('opportunity-form',
     {
         addCustomer: function(member)
         {
-
             var app = this;
-
-            app.relationship_id=member.id;
+            app.relationship_id = member.id;
         },
-
-
 
         getCustomers: function(query)
         {
@@ -101,15 +97,14 @@ Vue.component('opportunity-form',
 
         taskChecked: function(task)
         {
-
             var app = this;
             var url = '/back-office/' + app.$parent.profile + '/sales/opportunities/' + app.id + '/tasks/checked';
-
 
             app.$parent.postSpecial(url, task)
             .then(function(response)
             {
                 task.completed = task.completed == true ? 0 : 1;
+                task.sentiment = null;
             });
         },
 
