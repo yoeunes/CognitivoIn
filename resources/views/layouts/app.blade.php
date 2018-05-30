@@ -56,7 +56,7 @@
     <script src="/js/jquery.min.js"></script>
     <script src="/js/codebase.min.js"></script>
     <script src="{{ mix('/js/app.js') }}"></script>
-
+    {{-- <script type="text/javascript" src="libs/jquery.slimscroll.min.js"></script> --}}
 </body>
 
 </html>
