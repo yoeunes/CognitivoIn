@@ -53,18 +53,18 @@
                 <div class="block-footer">
                     <div class="btn-group">
                         <button type="button" @click="onHold()" class="btn btn-sm btn-secondary js-tooltip-enabled" data-toggle="tooltip" title="" data-original-title="Edit">
-                            <i class="fa fa-pencil"></i> On Hold
+                            <i class="fa fa-clock text-warning"></i> On Hold
                         </button>
 
                         <button type="button" @click="onWon()" v-if="status != 3" class="btn btn-sm btn-secondary js-tooltip-enabled" data-toggle="tooltip" title="" data-original-title="Delete">
-                            <i class="fa fa-times"></i> Won
+                            <i class="fa fa-check text-success"></i> Won
                         </button>
                         <button type="button" v-else class="btn btn-sm btn-secondary" disabled>
-                            <i class="fa fa-times"></i> Won
+                            <i class="fa fa-check text-success"></i> Won
                         </button>
 
                         <button type="button" @click="onLost()" v-if="status != 4" class="btn btn-sm btn-secondary js-tooltip-enabled" data-toggle="tooltip" title="" data-original-title="Delete">
-                            <i class="fa fa-times"></i> Lost
+                            <i class="fa fa-times text-danger"></i> Lost
                         </button>
                     </div>
                 </div>
@@ -188,27 +188,27 @@
                             <button class="button is-primary" type="button" slot="trigger">
                                 <template v-if="activity_type == 1">
                                     <b-icon icon="format-list-checks"></b-icon>
-                                    <span>Task</span>
+                                    <span>@lang('back-office.Task')</span>
                                 </template>
                                 <template v-else-if="activity_type == 2">
                                     <b-icon icon="phone"></b-icon>
-                                    <span>Phone</span>
+                                    <span>@lang('global.Telephone')</span>
                                 </template>
                                 <template v-else-if="activity_type == 3">
                                     <b-icon icon="video"></b-icon>
-                                    <span>Video Conf.</span>
+                                    <span>@lang('global.Video Conference')</span>
                                 </template>
                                 <template v-else-if="activity_type == 4">
                                     <b-icon icon="account-multiple"></b-icon>
-                                    <span>Meeting</span>
+                                    <span>@lang('global.Meeting')</span>
                                 </template>
                                 <template v-else-if="activity_type == 5">
                                     <b-icon icon="map-marker-radius"></b-icon>
-                                    <span>Visit</span>
+                                    <span>@lang('global.Visit')</span>
                                 </template>
                                 <template v-else>
                                     <b-icon icon="email"></b-icon>
-                                    <span>Email</span>
+                                    <span>@lang('global.Email')</span>
                                 </template>
                                 <b-icon icon="menu-down"></b-icon>
                             </button>
@@ -217,7 +217,7 @@
                                 <div class="media">
                                     <b-icon class="media-left" icon="format-list-checks"></b-icon>
                                     <div class="media-content">
-                                        <h4>Task</h4>
+                                        <h4>@lang('back-office.Task')</h4>
                                     </div>
                                 </div>
                             </b-dropdown-item>
@@ -226,7 +226,7 @@
                                 <div class="media">
                                     <b-icon class="media-left" icon="phone"></b-icon>
                                     <div class="media-content">
-                                        <h4>Phone</h4>
+                                        <h4>@lang('global.Telephone')</h4>
                                     </div>
                                 </div>
                             </b-dropdown-item>
@@ -235,7 +235,7 @@
                                 <div class="media">
                                     <b-icon class="media-left" icon="video"></b-icon>
                                     <div class="media-content">
-                                        <h4>Video Conference</h4>
+                                        <h4>@lang('global.Video Conference')</h4>
                                     </div>
                                 </div>
                             </b-dropdown-item>
@@ -244,7 +244,7 @@
                                 <div class="media">
                                     <b-icon class="media-left" icon="account-multiple"></b-icon>
                                     <div class="media-content">
-                                        <h4>Meeting</h4>
+                                        <h4>@lang('global.Meeting')</h4>
                                     </div>
                                 </div>
                             </b-dropdown-item>
@@ -253,7 +253,7 @@
                                 <div class="media">
                                     <b-icon class="media-left" icon="map-marker-radius"></b-icon>
                                     <div class="media-content">
-                                        <h4>Visit</h4>
+                                        <h4>@lang('global.Visit')</h4>
                                     </div>
                                 </div>
                             </b-dropdown-item>
@@ -262,7 +262,7 @@
                                 <div class="media">
                                     <b-icon class="media-left" icon="email"></b-icon>
                                     <div class="media-content">
-                                        <h4>Email</h4>
+                                        <h4>@lang('global.Email')</h4>
                                     </div>
                                 </div>
                             </b-dropdown-item>
@@ -349,7 +349,7 @@
                         </div>
                         <div class="block-content block-content-full block-content-sm bg-body-light font-size-sm">
                             <button @click="addTask()" class="button is-info">Create Task</button>
-                            <button @click="onReset()" class="btn btn-outline-secondary min-width-125">Cancel</button>
+                            <button @click="onReset()" class="btn btn-outline-secondary min-width-125">@lang('global.Cancel')</button>
                         </div>
                     </div>
                 </section>
@@ -362,10 +362,8 @@
                 <template slot-scope="props">
                     <b-table-column>
                         <td class="text-center" style="width: 50px;">
-                             {{-- <div class="field">
-                                <b-checkbox v-model="props.row.completed"   :input="taskChecked(props.row)"></b-checkbox>
-                            </div> --}}
-                            <i class="si si-check" @click="taskChecked(props.row)"></i>
+                            <i v-if="props.row.completed" class="fa fa-check-square-o" @click="taskChecked(props.row)"></i>
+                            <i v-else class="fa fa-square-o text" @click="taskChecked(props.row)"></i>
                         </td>
                     </b-table-column>
 
@@ -400,16 +398,19 @@
                         </span>
                     </b-table-column>
 
-                    <b-table-column label="Actions" centered>
+                    <b-table-column label="@lang('global.Actions')" centered>
                         <div v-if="props.row.completed">
                             <a @click="sentimentTask(props.row, 2)">
-                                <img src="/img/icons/emojiHappy.svg" width="32" alt="">
+                                <img v-if="props.row.sentiment == 2" src="/img/icons/emojiHappy.svg" width="32" alt="">
+                                <img v-else src="/img/icons/emojiHappy.svg" style="opacity: 0.32" width="32" alt="">
                             </a>
                             <a @click="sentimentTask(props.row, 1)">
-                                <img src="/img/icons/emojiOk.svg" width="32" alt="">
+                                <img v-if="props.row.sentiment == 1" src="/img/icons/emojiOk.svg" width="32" alt="">
+                                <img v-else src="/img/icons/emojiOk.svg" style="opacity: 0.32" width="32" alt="">
                             </a>
                             <a @click="sentimentTask(props.row, 0)">
-                                <img src="/img/icons/emojiSad.svg" width="32" alt="">
+                                <img v-if="props.row.sentiment == 0" src="/img/icons/emojiSad.svg" width="32" alt="">
+                                <img v-else src="/img/icons/emojiSad.svg" style="opacity: 0.32" width="32" alt="">
                             </a>
                         </div>
                         <div v-else>
@@ -451,12 +452,12 @@
                             <b-field grouped>
                                 <b-field expanded>
                                     <b-datepicker v-model="props.row.date_started"
-                                    placeholder="Start Date"></b-datepicker>
+                                    placeholder="@lang('global.Start Date')"></b-datepicker>
                                 </b-field>
                                 <b-field expanded>
                                     <b-datepicker v-model="props.row.date_ended"
                                     :min-date="props.row.date_started"
-                                    placeholder="End Date"></b-datepicker>
+                                    placeholder="@lang('global.End Date')"></b-datepicker>
                                 </b-field>
                             </b-field>
                         </div>
@@ -474,107 +475,14 @@
                         </div>
                     </div>
                     <div class="block-content block-content-full block-content-sm bg-body-light font-size-sm">
-                        <button @click="editTask(props.row)" class="button is-info">Save</button>
-                        <button @click="" class="btn btn-outline-secondary min-width-125">Cancel</button>
+                        <button @click="editTask(props.row)" class="button is-info">@lang('global.Save')</button>
+                        <button @click="" class="btn btn-outline-secondary min-width-125">@lang('global.Cancel')</button>
                     </div>
                 </template>
             </b-table>
-
-            <!-- Tasks List -->
-            {{-- <h2 class="content-heading">Active</h2> --}}
-            <h2>Active</h2>
-
-            <div class="js-task-list">
-                <!-- Task -->
-                <div  class="js-task block block-rounded mb-5 animated fadeIn" data-task-id="9" data-task-completed="false" data-task-starred="false">
-
-                    <table class="table table-borderless table-vcenter mb-0">
-                        <tbody>
-                            <tr v-for="task in activeTasks">
-                                <td class="text-center" style="width: 50px;">
-                                    <i class="si si-check" @click="taskChecked(task)"></i>
-                                    {{-- <label class="js-task-status css-control css-control-primary css-checkbox py-0">
-                                    <input type="checkbox" v-on:change="taskChecked(task)" class="css-control-input">
-                                    <span class="css-control-indicator"></span>
-                                </label> --}}
-                            </td>
-                            <td>
-                                <template v-if="task.activity_type == 1">
-                                    <b-icon icon="format-list-checks"></b-icon>
-                                </template>
-                                <template v-else-if="task.activity_type == 2">
-                                    <b-icon icon="phone"></b-icon>
-                                </template>
-                                <template v-else-if="task.activity_type == 3">
-                                    <b-icon icon="video"></b-icon>
-                                </template>
-                                <template v-else-if="task.activity_type == 4">
-                                    <b-icon icon="account-multiple"></b-icon>
-                                </template>
-                                <template v-else-if="task.activity_type == 5">
-                                    <b-icon icon="map-marker-radius"></b-icon>
-                                </template>
-                                <template v-else>
-                                    <b-icon icon="email"></b-icon>
-                                </template>
-                            </td>
-                            <td class="js-task-content">
-                                <span class="font-w600">@{{ task.title }}</span>
-                                <small>@{{ task.description }}</small>
-                            </td>
-                            <td class="text-right">
-                                <a href="#">
-                                    <i v-if="task.date_reminder != null" class="si si-bell"></i>
-                                </a>
-                                <button @click="deleteTask(task)" class="js-task-remove btn btn-sm btn-alt-danger" type="button">
-                                    <i class="si si-close"></i>
-                                </button>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-            <!-- END Task -->
+            <!-- END Tasks -->
         </div>
-        <!-- END Tasks List -->
-
-        <!-- Tasks List Completed -->
-        <h2 class="content-heading">Completed</h2>
-        <div class="js-task-list-completed">
-            <!-- Completed Task -->
-            <div class="js-task block block-rounded mb-5 animated fadeIn" data-task-id="3" data-task-completed="true" data-task-starred="false">
-                <table class="table table-borderless table-vcenter bg-body-light mb-0">
-                    <tbody>
-                        <tr v-for="task in completedTasks">
-                            <td class="text-center" style="width: 50px;">
-                                <label class="js-task-status css-control css-control-primary css-checkbox py-0">
-                                    <input type="checkbox" v-on:change="taskChecked(task)" class="css-control-input" checked>
-                                    <span class="css-control-indicator"></span>
-                                </label>
-                            </td>
-                            <td class="js-task-content">
-                                <del>
-                                    <span class="font-w600">@{{ task.title }}</span>
-                                    <small>@{{ task.description }}</small>
-                                </del>
-                            </td>
-                            <td class="text-right" style="width: 100px;">
-                                <button @click="editTask(task)" class="js-task-star btn btn-sm btn-alt-info" type="button">
-                                    <i class="fa fa-eye"></i>
-                                </button>
-                                <button @click="deleteTask(task)" class="js-task-remove btn btn-sm btn-alt-danger" type="button">
-                                    <i class="fa fa-times"></i>
-                                </button>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-            <!-- END Completed Task -->
-        </div>
-        <!-- END Tasks -->
     </div>
-</div>
-<!-- END Tasks Content -->
+    <!-- END Tasks Content -->
 </div>
 </div>

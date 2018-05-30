@@ -58,7 +58,11 @@ Vue.component('model',
                     $state.complete();
                     //Log ex for help
                     console.log(ex);
-                    this.$swal('Error trying to load records.');
+                    this.$toast.open({
+                        duration: 5000,
+                        message: 'Error trying to load records',
+                        type: 'is-danger'
+                    })
                 });
             }
         },
@@ -100,7 +104,11 @@ Vue.component('model',
             .catch(ex => {
                 console.log(ex);
                 app.showList = true;
-                this.$swal('Error trying to edit record.');
+                this.$toast.open({
+                    duration: 5000,
+                    message: 'Error trying to show this record',
+                    type: 'is-danger'
+                })
             });
         },
 
@@ -116,7 +124,11 @@ Vue.component('model',
             .catch(ex => {
                 console.log(ex);
                 app.showList = true;
-                this.$swal('Error trying to edit record.');
+                this.$toast.open({
+                    duration: 5000,
+                    message: 'Error trying to edit this record',
+                    type: 'is-danger'
+                })
             });
         },
 
@@ -138,27 +150,23 @@ Vue.component('model',
 
         postSpecial: async function(specialURL, $data)
         {
-          console.log('af');
+            console.log('af');
             var app = this;
             var resp;
 
             await axios.post(specialURL, $data)
             .then((response) =>
             {
-
-                this.$swal({
-                    position: 'top-end',
-                    type: 'success',
-                    title: 'Done!',
-                    showConfirmButton: false,
-                    timer: 500
-                });
-
+                this.$snackbar.open('Done!');
                 resp = response.data;
             })
             .catch(ex => {
                 console.log(ex);
-                this.$swal('Error trying to preform action');
+                this.$toast.open({
+                    duration: 5000,
+                    message: 'Error trying to perform action',
+                    type: 'is-danger'
+                })
             });
 
             return resp;
@@ -171,13 +179,10 @@ Vue.component('model',
             axios.post('/back-office/'+ this.profile +'/sales/' + app.url, $data)
             .then(() =>
             {
-                this.$swal({
-                    position: 'top-end',
-                    type: 'success',
-                    title: 'Awsome! Your work has been saved',
-                    showConfirmButton: false,
-                    timer: 1500
-                });
+                this.$toast.open({
+                    message: 'Awsome! Your work has been saved',
+                    type: 'is-success'
+                })
 
                 app.showList = true;
 
@@ -186,11 +191,13 @@ Vue.component('model',
             })
             .catch(ex => {
                 console.log(ex.response);
-                this.$swal('Error trying to save record.');
+                this.$toast.open({
+                    duration: 5000,
+                    message: 'Error trying to save record',
+                    type: 'is-danger'
+                })
             });
         },
-
-
 
         onSaveCreate($data)
         {
@@ -200,19 +207,20 @@ Vue.component('model',
             .then(() =>
             {
                 //TODO run code to clean data.
-                this.$swal({
-                    position: 'top-end',
-                    type: 'success',
-                    title: 'Awsome! Your work has been saved',
-                    showConfirmButton: false,
-                    timer: 1500
-                });
+                this.$toast.open({
+                    message: 'Awsome! Your work has been saved',
+                    type: 'is-success'
+                })
 
                 app.showList = false;
             })
             .catch(ex => {
                 console.log(ex);
-                this.$swal('Error trying to save record.');
+                this.$toast.open({
+                    duration: 5000,
+                    message: 'Error trying to save record',
+                    type: 'is-danger'
+                })
             });
         },
 
@@ -235,17 +243,20 @@ Vue.component('model',
                     let index = this.list.findIndex(x => x.id === $data.id);
                     this.list.splice(index, 1);
 
-                    this.$swal({
-                        position: 'top-end',
-                        type: 'success',
-                        title: 'The record has been deleted',
-                        showConfirmButton: false,
-                        timer: 750
+                    this.$toast.open({
+                        duration: 750,
+                        message: 'The record has been deleted',
+                        position: 'is-bottom-right',
+                        type: 'is-danger'
                     })
                 })
                 .catch(ex => {
                     console.log(ex.response);
-                    this.$swal('Error trying to delete record.');
+                    this.$toast.open({
+                        duration: 5000,
+                        message: 'Error trying to delete record',
+                        type: 'is-danger'
+                    })
                 });
             });
         },
@@ -270,7 +281,12 @@ Vue.component('model',
                 })
                 .catch(ex => {
                     console.log(ex.response);
-                    this.$swal('Error trying to delete record.');
+
+                    this.$toast.open({
+                        duration: 5000,
+                        message: 'Error trying to delete record.',
+                        type: 'is-danger'
+                    })
                 });
             });
         },
@@ -289,19 +305,19 @@ Vue.component('model',
                 axios.post('/api/' + this.profile + '/back-office/approve/' + app.url  , $data)
                 .then(() =>
                 {
-                    this.$swal({
-                        position: 'top-end',
-                        type: 'success',
-                        title: 'Awsome! Your record has been approved',
-                        showConfirmButton: false,
-                        timer: 1500
+                    this.$toast.open({
+                        message: 'Awsome! Your record has been approved',
+                        type: 'is-success'
                     })
 
                     app.showList = true;
                 })
                 .catch(ex => {
                     console.log(ex.response);
-                    this.$swal('Error trying to approve record.');
+                    this.$toast.open({
+                        message: 'Error trying to approve record.',
+                        type: 'is-danger',
+                    })
                 });
                 //Code to approve
             });
@@ -322,18 +338,21 @@ Vue.component('model',
                 axios.post('/api/' + this.profile + '/back-office/' + app.url + '/' + $data.id + '/annull', $data)
                 .then(() =>
                 {
-                    this.$swal({
-                        position: 'top-end',
-                        type: 'success',
-                        title: 'Awsome! Your record has been annulled',
-                        showConfirmButton: false,
-                        timer: 1500
+                    this.$toast.open({
+                        message: 'Awsome! Your record has been annulled',
+                        type: 'is-danger',
+                        position: 'is-bottom-right',
                     })
+
                     app.showList = true;
                 })
                 .catch(ex => {
                     console.log(ex);
-                    this.$swal('Error trying to annull record.');
+
+                    this.$toast.open({
+                        message: 'Error trying to annull record.',
+                        type: 'is-danger',
+                    })
                 });
             });
         }
