@@ -221,35 +221,35 @@ class OrderController extends Controller
 
             foreach ($contractDetails as $detail)
             {
-                $schedual = new schedule();
-                $schedual->relationship_id = $order->relationship_id;
-                $schedual->currency = $order->currency;
-                $schedual->currency_rate = $order->currency_rate;
-                $schedual->date = Carbon::now();
-                $schedual->date_exp = Carbon::now()->addDays($detail->offset);
-                $schedual->credit = $amount * $detail->percent;
-                $schedual->debit = 0;
-                $schedual->save();
+                $schedule = new Schedule();
+                $schedule->relationship_id = $order->relationship_id;
+                $schedule->currency = $order->currency;
+                $schedule->currency_rate = $order->currency_rate;
+                $schedule->date = Carbon::now();
+                $schedule->date_exp = Carbon::now()->addDays($detail->offset);
+                $schedule->credit = $amount * $detail->percent;
+                $schedule->debit = 0;
+                $schedule->save();
 
-                $schedualAmount += $schedual->credit;
+                $schedualAmount += $schedule->credit;
             }
 
-            if ($schedual->credit != $amount)
+            if ($schedule->credit != $amount)
             {
                 // add difference to last schedual on list.
             }
         }
         else
         {
-            $schedual = new Scheduals();
-            $schedual->relationship_id = $relationship_id;
-            $schedual->currency = $order->currency;
-            $schedual->currency_rate = $order->currency_rate;
-            $schedual->date = Carbon::now();
-            $schedual->date_exp = Carbon::now();
-            $schedual->credit = $amount;
-            $schedual->debit = 0;
-            $schedual->save();
+            $schedule = new Schedule();
+            $schedule->relationship_id = $relationship_id;
+            $schedule->currency = $order->currency;
+            $schedule->currency_rate = $order->currency_rate;
+            $schedule->date = Carbon::now();
+            $schedule->date_exp = Carbon::now();
+            $schedule->credit = $amount;
+            $schedule->debit = 0;
+            $schedule->save();
         }
     }
 }

@@ -67,7 +67,7 @@ class AccountReceivableController extends Controller
 
         }
 
-        $schedual = Schedule::where('id',$request->InvoiceNumber)->first();
+        $schedual = Schedule::where('id', $request->InvoiceNumber)->first();
 
         if (isset($schedual))
         {
