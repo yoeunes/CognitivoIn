@@ -2,7 +2,8 @@
 
 @section('main')
     <model profile="{{ request()->route('profile')->slug }}" inline-template>
-        <div id="page-container" class="sidebar-o side-scroll page-header-modern main-content-boxed side-trans-enabled">
+        {{-- main-content-boxed --}}
+        <div id="page-container" class="sidebar-o page-header-modern side-trans-enabled">
             <!-- Side Overlay-->
             <aside id="side-overlay">
                 <!-- Side Overlay Scroll Container -->
