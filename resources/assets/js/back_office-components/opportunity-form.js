@@ -109,7 +109,7 @@ Vue.component('opportunity-form',
             app.$parent.postSpecial(url, task)
             .then(function(response)
             {
-                /task.completed = task.completed == true ? 0 : 1;
+                task.completed = task.completed == true ? 0 : 1;
             });
         },
 
