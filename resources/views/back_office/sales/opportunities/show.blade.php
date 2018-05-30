@@ -29,7 +29,7 @@
                 </div>
                 <div class="block-content block-content-full">
                     <div class="font-w600 mb-5">@{{ relationship.customer_alias }}</div>
-                    <div class="font-size-sm text-muted">Web Designer</div>
+                    <div class="font-size-sm text-muted">@{{ relationship.customer_taxid }}</div>
                 </div>
                 <div class="block-content block-content-full block-content-sm bg-body-light">
                     <span class="font-w600 font-size-sm text-danger">@{{ relationship.customer_email }}</span>
@@ -403,13 +403,13 @@
                     <b-table-column label="Actions" centered>
                         <div v-if="props.row.completed">
                             <a @click="sentimentTask(props.row, 2)">
-                                <img src="/img/icons/emojiHappy.svg" v-if="props.row == 2" width="32" alt="">
+                                <img src="/img/icons/emojiHappy.svg" width="32" alt="">
                             </a>
                             <a @click="sentimentTask(props.row, 1)">
-                                <img src="/img/icons/emojiOk.svg" v-if="props.row == 1" width="32" alt="">
+                                <img src="/img/icons/emojiOk.svg" width="32" alt="">
                             </a>
                             <a @click="sentimentTask(props.row, 0)">
-                                <img src="/img/icons/emojiSad.svg" v-if="props.row == 0" width="32" alt="">
+                                <img src="/img/icons/emojiSad.svg" width="32" alt="">
                             </a>
                         </div>
                         <div v-else>

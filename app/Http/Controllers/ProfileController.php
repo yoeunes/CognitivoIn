@@ -149,7 +149,6 @@ class ProfileController extends Controller
         return response()->json('save', 200);
     }
 
-
     public function get_followers($user,$profile)
     {
         $user = Profile::where('id', $user)->first();
