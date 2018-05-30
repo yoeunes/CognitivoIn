@@ -360,11 +360,13 @@
 
             <b-table :data="tasks"  hoverable detailed detail-key="id">
                 <template slot-scope="props">
-                    <b-table-column >
+                    <b-table-column>
                         <td class="text-center" style="width: 50px;">
-                            <i class="si si-check" @click="taskChecked(props.row)"></i>
-                        
-                    </td>
+                            <div class="field">
+                                <b-checkbox v-model="props.row.completed" true-value="1" false-value="0" input="taskChecked(props.row)"></b-checkbox>
+                            </div>
+                            {{-- <i class="si si-check" @click="taskChecked(props.row)"></i> --}}
+                        </td>
                     </b-table-column>
 
                     <b-table-column label="" width="40">
