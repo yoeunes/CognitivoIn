@@ -138,12 +138,14 @@ Vue.component('model',
 
         postSpecial: async function(specialURL, $data)
         {
+          console.log('af');
             var app = this;
             var resp;
 
             await axios.post(specialURL, $data)
             .then((response) =>
             {
+
                 this.$swal({
                     position: 'top-end',
                     type: 'success',

@@ -105,6 +105,7 @@ Vue.component('opportunity-form',
             var app = this;
             var url = '/back-office/' + app.$parent.profile + '/sales/opportunities/' + app.id + '/tasks/checked';
 
+
             app.$parent.postSpecial(url, task)
             .then(function(response)
             {
