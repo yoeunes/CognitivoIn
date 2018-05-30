@@ -10,22 +10,34 @@
     </thead>
     <tbody>
         <div class="">
-            <tr v-for="location in list">
+            <tr v-for="followers in list">
                 <td>
-                    <a class="font-w600" href="be_pages_ecom_product_edit.html">@{{ location.id }}</a>
+                    <a class="font-w600" href="be_pages_ecom_product_edit.html">@{{ followers.id }}</a>
                 </td>
                 <td class="d-none d-sm-table-cell">
-                    @{{ location.name }}
+                    @{{ followers.profile.name }}
                 </td>
                 <td class="d-none d-sm-table-cell">
-                    @{{ location.address }}
+                    @{{ followers.profile.address }}
                 </td>
-                <td>
-                    @{{ location.city }}
+                <td v-if="followers.role===1">
+                    Admin
+                </td>
+                <td v-if="followers.role===2">
+                    Manager
+                </td>
+                <td v-if="followers.role===3">
+                    Employee
+                </td>
+                <td v-if="followers.role===4">
+                    Member
+                </td>
+                <td v-if="followers.role===5">
+                    Follower
                 </td>
                 <td class="text-right">
-                    <a @click="onEdit(location,false)" class="m-btn btn btn-secondary"><i class="la la-pencil m--font-brand"></i></a>
-                    <a @click="onDelete(location)" class="m-btn btn btn-secondary"><i class="la la-trash m--font-danger"></i></a>
+                    <a @click="onEdit(followers,false)" class="m-btn btn btn-secondary"><i class="la la-pencil m--font-brand"></i></a>
+                    <a @click="onDelete(followers)" class="m-btn btn btn-secondary"><i class="la la-trash m--font-danger"></i></a>
                 </td>
             </tr>
         </div>

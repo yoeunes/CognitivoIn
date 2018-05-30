@@ -31,10 +31,10 @@
     <div class="block block-fx-shadow">
         <div class="block-content">
             <div v-if="showList">
-               @include('back_office/configs/locations/list')
+               @include('back_office/configs/teams/list')
             </div>
             <div v-else>
-                @include('back_office/configs/locations/form')
+                @include('back_office/configs/teams/form')
             </div>
         </div>
     </div>

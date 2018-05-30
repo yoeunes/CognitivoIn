@@ -10,3 +10,4 @@ require('./opportunity-item-form');
 require('./order-form');
 require('./pipeline-form');
 require('./vat-form');
+require('./team-form');

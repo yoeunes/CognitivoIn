@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class OpportunityMember extends Model
 {
-    use SoftDeletes;
+  //  use SoftDeletes;
     // use Searchable;
 
     protected $table = 'opportunity_members';

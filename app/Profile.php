@@ -14,6 +14,7 @@ use App\ProfilePost;
 use App\ProfileReview;
 use App\ProfileTag;
 use App\ProfileTeam;
+use App\Followable;
 
 use Illuminate\Support\Facades\Auth;
 use Cviebrock\EloquentSluggable\Sluggable;
@@ -153,6 +154,11 @@ class Profile extends Model implements HasMedia
     public function items()
     {
         return $this->hasMany(Item::class);
+    }
+
+    public function followables()
+    {
+        return $this->hasMany(Followable::class);
     }
 
     // public function registerMediaConversions(Media $media = null)

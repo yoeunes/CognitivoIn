@@ -9,7 +9,7 @@ class Schedule extends Model
 {
     use SoftDeletes;
 
-    protected $table = 'schedule';
+    protected $table = 'schedules';
     protected $with = ['payments'];
 
     protected $appends = array('balance');
