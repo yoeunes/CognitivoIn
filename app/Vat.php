@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Scopes\ProfileScope;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -20,6 +21,12 @@ class Vat extends Model
         'country',
         'applied_on'
     ];
+
+    protected static function boot()
+    {
+        parent::boot();
+        static::addGlobalScope(new ProfileScope);
+    }
 
     public function details()
     {
