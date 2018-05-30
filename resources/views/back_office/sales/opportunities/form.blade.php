@@ -20,10 +20,18 @@
                         <div class="form-group row">
                             <div class="col-12">
                                 <label>@lang('back-office.Customer')</label>
-                                <router-view name="SearchBoxCustomer"
-                                :current_company="{{request()->route('profile')}}" >
-
-                            </router-view>
+                                <b-field>
+                                    <b-autocomplete v-model="selectname" :data="customers" placeholder="Search Customer" field="customer_alias"
+                                    :loading="isFetching" @input="getCustomers" @select="option => addCustomer(option)">
+                                    <template slot-scope="props">
+                                        <strong>@{{props.option.customer_taxid}}</strong> | @{{props.option.customer_alias}}
+                                    </template>
+                                    <template slot="empty">
+                                        There are no customers
+                                    </template>
+                                </b-autocomplete>
+                            </b-field>
+                                
                         </div>
                     </div>
                     <div class="form-group row">

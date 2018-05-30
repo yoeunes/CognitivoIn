@@ -15,11 +15,17 @@ Vue.component('opportunity-form',
             currency: '',
             is_archived: false,
 
+            selected:null,
+            isFetching:false,
+            selectname:'',
+            customers:[],
+
             relationship: '',
             pipelines:[],
             tasks: [],
             items: [],
             members: []
+
         }
     },
 
@@ -61,8 +67,41 @@ Vue.component('opportunity-form',
 
     methods:
     {
+        addCustomer: function(member)
+        {
+
+            var app = this;
+
+            app.relationship_id=member.id;
+        },
+
+
+
+        getCustomers: function(query)
+        {
+            var app = this;
+            axios.get('/api/getCustomer/' + app.$parent.profile + '/' + query)
+            .then(({ data }) =>
+            {
+                if (data.length > 0)
+                {
+                    app.customers=[];
+                    for (let i = 0; i < data.length; i++)
+                    {
+                        app.customers.push(data[i]);
+                    }
+                }
+            })
+            .catch(ex => {
+                console.log(ex);
+                this.$swal('Error trying to load records.');
+            });
+        },
+
+
         taskChecked: function(task)
         {
+
             var app = this;
             var url = '/back-office/' + app.$parent.profile + '/sales/opportunities/' + app.id + '/tasks/checked';
 
@@ -70,12 +109,24 @@ Vue.component('opportunity-form',
             .then(function(response)
             {
                 task.completed = task.completed == true ? false : true;
+
             });
         },
 
         editTask: function(task)
         {
             console.log(task);
+            var app = this;
+            var url = '/back-office/' + app.$parent.profile + '/sales/opportunities/' + app.id + '/tasks';
+
+            app.$parent.postSpecial(url, task)
+            .then(function(response)
+            { });
+        },
+
+        sentimentTask: function(task,sentiment)
+        {
+            task.sentiment=sentiment;
             var app = this;
             var url = '/back-office/' + app.$parent.profile + '/sales/opportunities/' + app.id + '/tasks';
 

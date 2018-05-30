@@ -358,8 +358,14 @@
             <!-- END Add task -->
             <h2>This Week</h2>
 
-            <b-table :data="tasks" check="taskChecked(props.row)" hoverable detailed checkable detail-key="id">
+            <b-table :data="tasks"  hoverable detailed detail-key="id">
                 <template slot-scope="props">
+                    <b-table-column >
+                        <td class="text-center" style="width: 50px;">
+                            <i class="si si-check" @click="taskChecked(props.row)"></i>
+                        
+                    </td>
+                    </b-table-column>
 
                     <b-table-column label="" width="40">
                         <template v-if="props.row.activity_type == 1">
