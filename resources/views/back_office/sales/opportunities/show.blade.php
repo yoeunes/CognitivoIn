@@ -358,7 +358,7 @@
             <!-- END Add task -->
             <h2>This Week</h2>
 
-            <b-table :data="activeTasks" check="taskChecked(props.row)" hoverable detailed checkable detail-key="id">
+            <b-table :data="tasks" check="taskChecked(props.row)" hoverable detailed checkable detail-key="id">
                 <template slot-scope="props">
 
                     <b-table-column label="" width="40">
@@ -393,10 +393,23 @@
                     </b-table-column>
 
                     <b-table-column label="Actions" centered>
-                        <b-tooltip :label="props.row.date_reminder" dashed>
-                            <i class="si si-bell"></i>
-                        </b-tooltip>
-                        <a class="delete" @click="deleteTask(props.row)"></a>
+                        <div v-if="props.row.completed">
+                            <a @click="sentimentTask(props.row, 2)">
+                                <img src="/img/icons/emojiHappy.svg" width="32" alt="">
+                            </a>
+                            <a @click="sentimentTask(props.row, 1)">
+                                <img src="/img/icons/emojiOk.svg" width="32" alt="">
+                            </a>
+                            <a @click="sentimentTask(props.row, 0)">
+                                <img src="/img/icons/emojiSad.svg" width="32" alt="">
+                            </a>
+                        </div>
+                        <div v-else>
+                            <b-tooltip :label="props.row.date_reminder" dashed>
+                                <i class="si si-bell"></i>
+                            </b-tooltip>
+                            <a class="delete" @click="deleteTask(props.row)"></a>
+                        </div>
                     </b-table-column>
 
                 </template>
