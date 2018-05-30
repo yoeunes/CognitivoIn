@@ -117,7 +117,7 @@ class ProfileController extends Controller
         $profile->address = $request->address;
         $profile->zip = $request->zip;
         $profile->state = $request->state;
-        $profile->country = $request->country;
+        $profile->country = $request->country ?? 'PYG';
 
         $profile->currency = $request->currency;
         $profile->save();

@@ -403,13 +403,13 @@
                     <b-table-column label="Actions" centered>
                         <div v-if="props.row.completed">
                             <a @click="sentimentTask(props.row, 2)">
-                                <img src="/img/icons/emojiHappy.svg" width="32" alt="">
+                                <img src="/img/icons/emojiHappy.svg" v-if="props.row == 2" width="32" alt="">
                             </a>
                             <a @click="sentimentTask(props.row, 1)">
-                                <img src="/img/icons/emojiOk.svg" width="32" alt="">
+                                <img src="/img/icons/emojiOk.svg" v-if="props.row == 1" width="32" alt="">
                             </a>
                             <a @click="sentimentTask(props.row, 0)">
-                                <img src="/img/icons/emojiSad.svg" width="32" alt="">
+                                <img src="/img/icons/emojiSad.svg" v-if="props.row == 0" width="32" alt="">
                             </a>
                         </div>
                         <div v-else>
