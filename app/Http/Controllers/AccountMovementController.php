@@ -247,7 +247,7 @@ class AccountMovementController extends Controller
                 $accountMovement->date =$data->date? Carbon::parse($data->date):Carbon::now();
 
                 //Schedual Value is greater than balance, then make balance 0.
-                if ($scheduals[$i]->getBalance() > $balance)
+                if ($scheduals[$i]->balance > $balance)
                 {
                     $value = $balance;
                     $balance = 0;
