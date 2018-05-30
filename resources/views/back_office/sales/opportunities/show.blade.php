@@ -362,10 +362,10 @@
                 <template slot-scope="props">
                     <b-table-column>
                         <td class="text-center" style="width: 50px;">
-                             <div class="field">
+                             {{-- <div class="field">
                                 <b-checkbox v-model="props.row.completed"   :input="taskChecked(props.row)"></b-checkbox>
-                            </div>
-                            {{-- <i class="si si-check" @click="taskChecked(props.row)"></i> --}}
+                            </div> --}}
+                            <i class="si si-check" @click="taskChecked(props.row)"></i>
                         </td>
                     </b-table-column>
 
