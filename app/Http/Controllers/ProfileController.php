@@ -50,6 +50,7 @@ class ProfileController extends Controller
         $company->address = $request->address;
         $company->taxid = $request->taxID;
         $company->currency = $request->currency;
+        $company->country = $request->country ?? 'PYG';
         $company->type = 2;
         $company->save();
 
@@ -116,7 +117,7 @@ class ProfileController extends Controller
         $profile->address = $request->address;
         $profile->zip = $request->zip;
         $profile->state = $request->state;
-        $profile->country = $request->country;
+        $profile->country = $request->country ?? 'PYG';
 
         $profile->currency = $request->currency;
         $profile->save();
