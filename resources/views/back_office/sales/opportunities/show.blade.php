@@ -410,7 +410,7 @@
                                         @{{ props.row.title }} <span class="has-text-grey-light">| @{{ props.row.description }}</span>
                                     </b-table-column>
 
-                                    <b-table-column label="@lang('global.Actions')" centered>
+                                    <b-table-column label="@lang('global.Actions')" numeric>
                                         <b-field v-if="props.row.completed" grouped>
                                             <a @click="sentimentTask(props.row, 2)">
                                                 <img v-if="props.row.sentiment == 2" src="/img/icons/emojiHappy.svg" width="32" alt="">
@@ -425,12 +425,12 @@
                                                 <img v-else src="/img/icons/emojiSad.svg" style="opacity: 0.32" width="20" alt="">
                                             </a>
                                         </b-field>
-                                        <div v-else>
+                                        <b-field v-else grouped>
                                             <b-tooltip :label="props.row.date_reminder" dashed>
                                                 <i class="si si-bell"></i>
                                             </b-tooltip>
                                             <a class="delete" @click="deleteTask(props.row)"></a>
-                                        </div>
+                                        </b-field>
                                     </b-table-column>
                                 </template>
                                 <template slot="detail" slot-scope="props">
@@ -530,8 +530,8 @@
                                         @{{ props.row.title }} <span class="has-text-grey-light">| @{{ props.row.description }}</span>
                                     </b-table-column>
 
-                                    <b-table-column label="@lang('global.Actions')" centered>
-                                        <div v-if="props.row.completed">
+                                    <b-table-column label="@lang('global.Actions')" numeric>
+                                        <b-field v-if="props.row.completed" grouped>
                                             <a @click="sentimentTask(props.row, 2)">
                                                 <img v-if="props.row.sentiment == 2" src="/img/icons/emojiHappy.svg" width="32" alt="">
                                                 <img v-else src="/img/icons/emojiHappy.svg" style="opacity: 0.32" width="20" alt="">
@@ -544,13 +544,13 @@
                                                 <img v-if="props.row.sentiment == 0" src="/img/icons/emojiSad.svg" width="32" alt="">
                                                 <img v-else src="/img/icons/emojiSad.svg" style="opacity: 0.32" width="20" alt="">
                                             </a>
-                                        </div>
-                                        <div v-else>
+                                        </b-field>
+                                        <b-field v-else grouped>
                                             <b-tooltip :label="props.row.date_reminder" dashed>
                                                 <i class="si si-bell"></i>
                                             </b-tooltip>
                                             <a class="delete" @click="deleteTask(props.row)"></a>
-                                        </div>
+                                        </b-field>
                                     </b-table-column>
                                 </template>
                                 <template slot="empty">
