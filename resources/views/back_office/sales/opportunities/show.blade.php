@@ -407,7 +407,7 @@
                                     </b-table-column>
 
                                     <b-table-column field="title" label="@lang('back-office.Task')" sortable expanded>
-                                        @{{ props.row.title }} <span class="has-text-grey-light">| @{{ props.row.description.substring(0, 64) }}</span>
+                                        @{{ props.row.title }} <span class="has-text-grey-light">| @{{ props.row.description }}</span>
                                     </b-table-column>
 
                                     <b-table-column label="@lang('global.Actions')" centered>
