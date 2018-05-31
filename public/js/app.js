@@ -58208,6 +58208,15 @@ Vue.component('opportunity-form', {
             });
         },
 
+        otherTasks: function otherTasks() {
+            var app = this;
+            return app.tasks.filter(function (i) {
+                return i.assigned_to !== app.userid;
+            }).sort(function (a) {
+                return new Date(a.date_started);
+            });
+        },
+
         totalValue: function totalValue() {
             var app = this;
             var subTotal = 0;

@@ -50,6 +50,15 @@ Vue.component('opportunity-form',
             }).sort((a) => new Date(a.date_started))
         },
 
+        otherTasks: function ()
+        {
+            var app = this;
+            return app.tasks.filter(function(i)
+            {
+                return i.assigned_to !== app.userid
+            }).sort((a) => new Date(a.date_started))
+        },
+
         totalValue: function ()
         {
             var app = this;
