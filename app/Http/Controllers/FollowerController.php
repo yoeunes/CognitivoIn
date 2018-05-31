@@ -19,8 +19,9 @@ class FollowerController extends Controller
     public function index(Profile $profile, $skip)
     {
 
-        $members = Followable::with('profile')->
-        skip($skip)
+        $members = Followable::with('profile')
+        ->where('followable_id',$profile->id)
+        ->skip($skip)
         ->take(100)
         ->get();
 
