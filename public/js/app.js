@@ -58160,6 +58160,7 @@ Vue.component('location-form', {
 // Vue.use(Buefy.default)
 
 Vue.component('opportunity-form', {
+    props: ['userid'],
     data: function data() {
         return {
             id: 0,
@@ -58183,7 +58184,6 @@ Vue.component('opportunity-form', {
             tasks: [],
             items: [],
             members: []
-
         };
     },
 
@@ -58199,10 +58199,10 @@ Vue.component('opportunity-form', {
             });
         },
 
-        completedTasks: function completedTasks() {
+        myTasks: function myTasks() {
             var app = this;
             return app.tasks.filter(function (i) {
-                return i.completed == 1;
+                return i.assigned_to == app.userid;
             }).sort(function (a) {
                 return new Date(a.date_started);
             });
@@ -59393,7 +59393,6 @@ Vue.component('vat-form', {
             id: 0,
             name: '',
             details: []
-
         };
     },
 

@@ -44,8 +44,8 @@
         <div v-if="showList === true">
             @include('back_office/sales/opportunities/list')
         </div>
-        
-        <opportunity-form ref="back_officeForm" v-else inline-template>
+
+        <opportunity-form ref="back_officeForm" v-else :userid="{{ Auth::user()->profile_id }}" inline-template>
             <div>
                 <div v-if="$parent.showList === 2">
                     @include('back_office/sales/opportunities/show')

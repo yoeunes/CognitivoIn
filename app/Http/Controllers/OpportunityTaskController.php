@@ -7,6 +7,7 @@ use App\OpportunityMember;
 use App\OpportunityTask;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
+use Auth;
 
 class OpportunityTaskController extends Controller
 {
@@ -64,11 +65,10 @@ class OpportunityTaskController extends Controller
         {
             $opportunityTask->completed = $request->completed == true ? false : true;
             $opportunityTask->completed_at = $request->completed == true ? Carbon::now() : null;
-            $opportunityTask->created_by = $request->completed == true ? Auth::user()->profile_id : null;
+            $opportunityTask->completed_by = $request->completed == true ? Auth::user()->profile_id : null;
 
             //Set Sentiment to Null each time the checked status changes.
             $opportunityTask->sentiment = null;
-
             $opportunityTask->save();
 
             return response()->json('Ok', 200);
@@ -101,8 +101,7 @@ class OpportunityTaskController extends Controller
     */
     public function destroy(Profile $profile, Opportunity $opportunity, $opportunityTaskID)
     {
-
-        $opportunityTask=OpportunityTask::where('id',$opportunityTaskID)->first();
+        $opportunityTask = OpportunityTask::where('id', $opportunityTaskID)->first();
         //No need for soft delete.
         $opportunityTask->forceDelete();
         return response()->json('Ok', 200);

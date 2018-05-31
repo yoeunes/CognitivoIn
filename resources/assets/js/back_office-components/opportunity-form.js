@@ -2,6 +2,7 @@
 
 Vue.component('opportunity-form',
 {
+    props: ['userid'],
     data() {
         return {
             id: 0,
@@ -15,8 +16,8 @@ Vue.component('opportunity-form',
             currency: '',
             is_archived: false,
 
-            selected:null,
-            isFetching:false,
+            selected: null,
+            isFetching: false,
             selectname:'',
             customers:[],
 
@@ -25,7 +26,6 @@ Vue.component('opportunity-form',
             tasks: [],
             items: [],
             members: []
-
         }
     },
 
@@ -41,12 +41,12 @@ Vue.component('opportunity-form',
             }).sort((a) => new Date(a.date_started))
         },
 
-        completedTasks: function ()
+        myTasks: function ()
         {
             var app = this;
             return app.tasks.filter(function(i)
             {
-                return i.completed == 1
+                return i.assigned_to == app.userid
             }).sort((a) => new Date(a.date_started))
         },
 

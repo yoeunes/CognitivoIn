@@ -19,12 +19,14 @@
                     <b-input v-model="supplier_taxid"></b-input>
                 </b-field>
 
-                <b-field label="Default Contract" v-if="credit_limit != null">
-                    <b-input v-model="contract_ref"></b-input>
-                </b-field>
-
                 <b-field label="Credit Limit">
                     <b-input v-model="credit_limit"></b-input>
+                </b-field>
+
+                <b-field label="@lang('back-office.Default_Contract')" v-if="credit_limit != ''">
+                    <select v-model="contract_ref" required class="custom-select" >
+                        <option v-for="contract in contracts" :value="contract.id">@{{ contract.name }}</option>
+                    </select>
                 </b-field>
             </div>
         </div>

@@ -1,4 +1,3 @@
-
 <table>
     <thead>
         <tr>
@@ -13,11 +12,11 @@
         <tr v-for="opportunity in list">
             <td>@{{ opportunity.id }}</td>
             <td><a @click="onShow(opportunity)" href="#">@{{ opportunity.name }}</a></td>
-            <td>@{{ opportunity.relationship.customer_alias }}</td>
+            <td v-if="opportunity.relationship !== null">@{{ opportunity.relationship.customer_alias }}</td> <td v-else></td>
             <td>@{{ opportunity.value }}</td>
             <td class="text-center">
                 <div class="btn-group">
-                 
+
                     <button v-on:click="onShow(opportunity)" type="button" class="btn btn-sm btn-secondary js-tooltip-enabled" data-toggle="tooltip" data-original-title="Show">
                         <i class="fa fa-eye"></i>
                     </button>
@@ -32,4 +31,5 @@
         </tr>
     </tbody>
 </table>
+
 @include('layouts/infinity-loading')

@@ -3,12 +3,12 @@ import Items from './ItemComponent.vue';
 Vue.component('order-form',
 {
   components:{
-    'item':Items
+    'item': Items
   },
 
   data: function () {
     return {
-      id:0,
+      id: 0,
       relationship_id:'',
       customer_name:'',
       customer_address:'',

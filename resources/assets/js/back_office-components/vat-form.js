@@ -6,7 +6,6 @@ Vue.component('vat-form',
             id: 0,
             name: '',
             details: [],
-
         }
     },
     computed:
@@ -49,7 +48,7 @@ Vue.component('vat-form',
             app.id = data.id;
             app.name = data.name;
             app.details = [];
-        
+
             for (var i = 0; i < data.details.length; i++)
             {
                 app.details.push(data.details[i]);
@@ -59,9 +58,9 @@ Vue.component('vat-form',
         onReset: function(isnew)
         {
             var app = this;
-          app.id = null;
-          app.name = '';
-          app.details = [];
+            app.id = null;
+            app.name = '';
+            app.details = [];
         },
     },
 
