@@ -61,9 +61,28 @@ Vue.component('pipeline-form',
         stageCancel: function(stage)
         {
             var app = this;
+            axios.delete('/back-office/' + app.$parent.profile + '/sales/pipelinestages/' + stage.id)
+            .then(() => {
 
-            let index = this.stages.indexOf(stage);
-            this.stages.splice(index, 1);
+                let index = this.stages.indexOf(stage);
+                this.stages.splice(index, 1);
+
+                this.$toast.open({
+                    duration: 750,
+                    message: 'The record has been deleted',
+                    position: 'is-bottom-right',
+                    type: 'is-danger'
+                })
+            })
+            .catch(ex => {
+                console.log(ex.response);
+                this.$toast.open({
+                    duration: 5000,
+                    message: 'Error trying to delete record',
+                    type: 'is-danger'
+                })
+            });
+
         },
 
         onEdit: function(data)
@@ -72,7 +91,7 @@ Vue.component('pipeline-form',
             app.id = data.id;
             app.name = data.name;
 
-             app.stages=[];
+            app.stages=[];
 
             for (var i = 0; i < data.stages.length; i++) {
                 app.stages.push({

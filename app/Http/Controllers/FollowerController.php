@@ -108,8 +108,17 @@ class FollowerController extends Controller
     * @param  \App\AccountMovement  $accountMovement
     * @return \Illuminate\Http\Response
     */
-    public function destroy(Profile $profile, Followable $followable )
+    public function destroy(Profile $profile, $followable )
     {
+        $members = Followable::where('id', $followable)
+        ->with('profile')
+        ->first();
+        if ($members->followable_id == $profile->id)
+        {
+            $members->delete();
+            return response()->json('Done', 200);
+        }
+
 
 
         return response()->json('Unkown Resource', 401);

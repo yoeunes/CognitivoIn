@@ -16,7 +16,7 @@ class CreateContractDetailsTable extends Migration
         Schema::create('contract_details', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('contract_id')->unsigned()->index();
-            $table->foreign('contract_id')->references('id')->on('contracts');
+            $table->foreign('contract_id')->references('id')->on('contracts')->onDelete('cascade');
 
             $table->unsignedTinyInteger('offset');
             $table->unsignedDecimal('percent', 5, 4);

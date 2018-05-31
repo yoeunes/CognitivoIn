@@ -17,7 +17,7 @@ class CreateVatDetailsTable extends Migration
             $table->increments('id');
 
             $table->integer('vat_id')->unsigned()->index();
-            $table->foreign('vat_id')->references('id')->on('vats');
+            $table->foreign('vat_id')->references('id')->on('vats')->onDelete('cascade');
 
             $table->unsignedDecimal('coefficient', 4, 4);
             $table->unsignedDecimal('percent', 5, 4);

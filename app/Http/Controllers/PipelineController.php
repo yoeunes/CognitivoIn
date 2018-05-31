@@ -64,6 +64,7 @@ class PipelineController extends Controller
 
                 $pipelineStage->save();
             }
+          
 
         }
 

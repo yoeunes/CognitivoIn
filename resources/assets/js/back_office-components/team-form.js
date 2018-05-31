@@ -52,7 +52,7 @@ Vue.component('team-form',
 
             app.id = record.id;
             app.selectname=record.profile.name;
-            app.profile_id = record.followable_id;
+            app.profile_id = record.profile_id;
             app.role = record.role;
 
         },
