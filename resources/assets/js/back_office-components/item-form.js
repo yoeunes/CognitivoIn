@@ -115,7 +115,7 @@ Vue.component('item-form',
             app.vat_id = data.vat_id;
             app.short_description = data.short_description;
             app.long_description = data.long_description;
-            app.currency_id = data.currency_id;
+            app.currency= data.currency;
             app.unit_price = data.unit_price;
             app.unit_cost = data.unit_cost;
             app.is_active = data.is_active;

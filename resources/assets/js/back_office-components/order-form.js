@@ -187,7 +187,6 @@ Vue.component('order-form',
         axios.get('/api/getCustomers/' + app.$parent.profile)
         .then(function (resp)
         {
-          console.log(resp.data);
           app.customers = resp.data;
         })
         .catch(function (resp)
