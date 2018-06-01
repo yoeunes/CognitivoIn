@@ -1,13 +1,14 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Profile;
 use App\Opportunity;
 use App\OpportunityMember;
 use App\OpportunityTask;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
-use Auth;
+use Illuminate\Support\Facades\Auth;
 
 class OpportunityTaskController extends Controller
 {
@@ -16,9 +17,9 @@ class OpportunityTaskController extends Controller
     *
     * @return \Illuminate\Http\Response
     */
-    public function index(Profile $profile, $skip, $opportuntiyID)
+    public function index(Profile $profile, Opportunity $opportunity)
     {
-        $opportunityTasks = OpportunityTask::where('opportunity_id', $opportuntiyID)
+        $opportunityTasks = OpportunityTask::where('opportunity_id', $opportunity)
         ->get();
 
         return response()->json($opportunityTasks);

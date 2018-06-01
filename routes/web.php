@@ -33,12 +33,12 @@ Route::group(['middleware' => 'auth'], function ()
     Route::prefix('back-office/{profile}')->group(function ()
     {
         //TODO: Remove this from here and check with API.php
-        Route::prefix('search')->group(function ()
-        {
-            Route::get('profiles/{query}', 'ProfileController@search');
-            Route::get('customers/{query}', 'CustomerController@search');
-            Route::get('items/{query}', 'ItemController@search');
-        });
+        // Route::prefix('search')->group(function ()
+        // {
+        //     Route::get('profiles/{query}', 'ProfileController@search');
+        //     Route::get('customers/{query}', 'CustomerController@search');
+        //     Route::get('items/{query}', 'ItemController@search');
+        // });
 
         Route::post('update', 'ProfileController@update')->name('profile.update');
 
@@ -49,7 +49,7 @@ Route::group(['middleware' => 'auth'], function ()
             Route::resources([
                 'customers' => 'CustomerController',
                 'opportunities' => 'OpportunityController',
-                'opportunities/{opportunity}/tasks' => 'OpportunityTaskController',
+                // 'opportunities/{opportunity}/tasks' => 'OpportunityTaskController',
                 'promotions' => 'ItemPromotionController',
                 'followers' => 'FollowerController',
                 'orders' => 'OrderController',
@@ -62,7 +62,7 @@ Route::group(['middleware' => 'auth'], function ()
                 'contracts' => 'ContractController',
                 'contractdetail' => 'ContractDetailController'
             ]);
-
+            Route::resources('opportunities/{opportunity}/tasks', 'OpportunityTaskController');
             Route::post('opportunities/{opportunity}/tasks/checked', 'OpportunityTaskController@taskChecked');
         });
 
