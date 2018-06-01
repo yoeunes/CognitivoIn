@@ -59503,7 +59503,7 @@ Vue.component('team-form', {
             var _this = this;
 
             var app = this;
-            axios.get('/api/back-office/' + app.$parent.profile + '/search/profiles/' + query).then(function (_ref) {
+            axios.get('/api/' + app.$parent.profile + '/back-office/search/profiles/' + query).then(function (_ref) {
                 var data = _ref.data;
 
                 if (data.length > 0) {

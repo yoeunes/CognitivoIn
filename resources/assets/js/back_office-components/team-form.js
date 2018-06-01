@@ -24,7 +24,7 @@ Vue.component('team-form',
         getProfiles: function(query)
         {
             var app = this;
-            axios.get('/api/back-office/' + app.$parent.profile + '/search/profiles/' + query)
+            axios.get('/api/' + app.$parent.profile + '/back-office/search/profiles/' + query)
             .then(({ data }) =>
             {
                 if (data.length > 0)
