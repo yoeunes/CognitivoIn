@@ -58238,20 +58238,22 @@ Vue.component('opportunity-form', {
         getCustomers: function getCustomers(query) {
             var _this = this;
 
-            var app = this;
-            axios.get('/api/' + app.$parent.profile + '/back-office/search/customers/' + query).then(function (_ref) {
-                var data = _ref.data;
+            if (query.length > 2) {
+                var app = this;
+                axios.get('/api/' + app.$parent.profile + '/back-office/search/customers/' + query).then(function (_ref) {
+                    var data = _ref.data;
 
-                if (data.length > 0) {
-                    app.customers = [];
-                    for (var i = 0; i < data.length; i++) {
-                        app.customers.push(data[i]);
+                    if (data.length > 0) {
+                        app.customers = [];
+                        for (var i = 0; i < data.length; i++) {
+                            app.customers.push(data[i]);
+                        }
                     }
-                }
-            }).catch(function (ex) {
-                console.log(ex);
-                _this.$swal('Error trying to load records.');
-            });
+                }).catch(function (ex) {
+                    console.log(ex);
+                    _this.$swal('Error trying to load records.');
+                });
+            }
         },
 
         taskChecked: function taskChecked(task) {
@@ -59502,21 +59504,24 @@ Vue.component('team-form', {
         getProfiles: function getProfiles(query) {
             var _this = this;
 
-            var app = this;
-            axios.get('/api/' + app.$parent.profile + '/back-office/search/profiles/' + query).then(function (_ref) {
-                var data = _ref.data;
+            if (query.length > 2) {
+                var app = this;
+                axios.get('/api/' + app.$parent.profile + '/back-office/search/profiles/' + query).then(function (_ref) {
+                    var data = _ref.data;
 
-                if (data.length > 0) {
-                    app.profiles = [];
-                    for (var i = 0; i < data.length; i++) {
-                        app.profiles.push(data[i]);
+                    if (data.length > 0) {
+                        app.profiles = [];
+                        for (var i = 0; i < data.length; i++) {
+                            app.profiles.push(data[i]);
+                        }
                     }
-                }
-            }).catch(function (ex) {
-                console.log(ex);
-                _this.$swal('Error trying to load records.');
-            });
+                }).catch(function (ex) {
+                    console.log(ex);
+                    _this.$swal('Error trying to load records.');
+                });
+            }
         },
+
         onEdit: function onEdit(record) {
             console.log(record);
             var app = this;

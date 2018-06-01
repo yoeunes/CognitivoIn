@@ -23,24 +23,27 @@ Vue.component('team-form',
 
         getProfiles: function(query)
         {
-            var app = this;
-            axios.get('/api/' + app.$parent.profile + '/back-office/search/profiles/' + query)
-            .then(({ data }) =>
-            {
-                if (data.length > 0)
+            if (query.length > 2) {
+                var app = this;
+                axios.get('/api/' + app.$parent.profile + '/back-office/search/profiles/' + query)
+                .then(({ data }) =>
                 {
-                    app.profiles = [];
-                    for (let i = 0; i < data.length; i++)
+                    if (data.length > 0)
                     {
-                        app.profiles.push(data[i]);
+                        app.profiles = [];
+                        for (let i = 0; i < data.length; i++)
+                        {
+                            app.profiles.push(data[i]);
+                        }
                     }
-                }
-            })
-            .catch(ex => {
-                console.log(ex);
-                this.$swal('Error trying to load records.');
-            });
+                })
+                .catch(ex => {
+                    console.log(ex);
+                    this.$swal('Error trying to load records.');
+                });
+            }
         },
+        
         onEdit: function(record)
         {
             console.log(record);

@@ -84,23 +84,25 @@ Vue.component('opportunity-form',
 
         getCustomers: function(query)
         {
-            var app = this;
-            axios.get('/api/' + app.$parent.profile + '/back-office/search/customers/' + query)
-            .then(({ data }) =>
-            {
-                if (data.length > 0)
+            if (query.length > 2) {
+                var app = this;
+                axios.get('/api/' + app.$parent.profile + '/back-office/search/customers/' + query)
+                .then(({ data }) =>
                 {
-                    app.customers = [];
-                    for (let i = 0; i < data.length; i++)
+                    if (data.length > 0)
                     {
-                        app.customers.push(data[i]);
+                        app.customers = [];
+                        for (let i = 0; i < data.length; i++)
+                        {
+                            app.customers.push(data[i]);
+                        }
                     }
-                }
-            })
-            .catch(ex => {
-                console.log(ex);
-                this.$swal('Error trying to load records.');
-            });
+                })
+                .catch(ex => {
+                    console.log(ex);
+                    this.$swal('Error trying to load records.');
+                });
+            }
         },
 
 
