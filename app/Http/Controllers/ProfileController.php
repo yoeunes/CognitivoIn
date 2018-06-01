@@ -164,7 +164,7 @@ class ProfileController extends Controller
         return response()->json($companies);
     }
 
-    public function getProfile($frase)
+    public function search_profiles($frase)
     {
         $profiles = Profile::where('type', 1)
         ->where('name', 'LIKE', "%" . $frase . "%")

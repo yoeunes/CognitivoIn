@@ -119,7 +119,7 @@ Route::prefix('{profile}')->group(function ()
 Route::get('getCompanys/{slug}', 'ProfileController@get_companies');
 Route::get('login/{email}/{password}', 'Auth\SocialAuthController@Login');
 //for searchbox route
-Route::get('getProfile/{frase}', 'ProfileController@getProfile');
+Route::get('search_profiles/{frase}', 'ProfileController@search_profiles');
 
 Route::get('getItem/{profile}/{frase}', 'ItemController@getItem');
 Route::get('getCustomer/{profile}/{frase}', 'CustomerController@getCustomer');

@@ -24,7 +24,7 @@ Vue.component('team-form',
         getProfiles: function(query)
         {
             var app = this;
-            axios.get('/api/getProfile/'+ query)
+            axios.get('/api/search_profiles/'+ query)
             .then(({ data }) =>
             {
                 if (data.length > 0)
@@ -47,7 +47,7 @@ Vue.component('team-form',
             var app = this;
 
             app.id = record.id;
-            app.selectname=record.profile.name;
+            app.selectname = record.profile.name;
             app.profile_id = record.profile_id;
             app.role = record.role;
 
@@ -60,7 +60,7 @@ Vue.component('team-form',
             app.id = null;
             app.profile_id = null;
             app.role = null;
-            app.selectname='';
+            app.selectname = '';
         },
     },
 
