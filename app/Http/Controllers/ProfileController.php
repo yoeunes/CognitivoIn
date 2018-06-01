@@ -18,7 +18,7 @@ class ProfileController extends Controller
     */
     public function index()
     {
-        return response()->json(Profile::where('type',1)->get(), 200);
+        return response()->json(Profile::where('type', 1)->get(), 200);
     }
 
     /**
@@ -149,7 +149,7 @@ class ProfileController extends Controller
         return response()->json('save', 200);
     }
 
-    public function get_followers($user,$profile)
+    public function get_followers($user, $profile)
     {
         $user = Profile::where('id', $user)->first();
         $profile = Profile::where('id', $profile)->first();
@@ -167,7 +167,8 @@ class ProfileController extends Controller
     public function getProfile($frase)
     {
         $profiles = Profile::where('type', 1)
-        ->where('slug', 'LIKE', "%$frase%")
+        ->where('name', 'LIKE', "%" . $frase . "%")
+        ->orWhere('slug', 'LIKE', "%" . $frase . "%")
         ->get();
 
         return response()->json($profiles);

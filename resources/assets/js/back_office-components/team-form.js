@@ -17,13 +17,9 @@ Vue.component('team-form',
     {
         addMember: function(member)
         {
-
             var app = this;
-
-            app.profile_id=member.id;
+            app.profile_id = member.id;
         },
-
-
 
         getProfiles: function(query)
         {
@@ -33,7 +29,7 @@ Vue.component('team-form',
             {
                 if (data.length > 0)
                 {
-                    app.profiles=[];
+                    app.profiles = [];
                     for (let i = 0; i < data.length; i++)
                     {
                         app.profiles.push(data[i]);
