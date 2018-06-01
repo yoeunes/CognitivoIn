@@ -486,6 +486,8 @@
                         </div>
 
                         <div v-if="otherTasks.length > 0">
+                            <hr>
+
                             <h2>Other Tasks</h2>
 
                             <b-table :data="otherTasks"  hoverable detailed detail-key="id">
@@ -633,57 +635,58 @@
                                 <b-table-column field="unit_price" label="@lang('global.Price')" width="128" sortable>
                                     <b-field>
                                         <b-input placeholder="" v-model="props.row.unit_price" type="number" min="0"></b-input>
-                                    </b-table-column>
+                                    </b-field>
+                                </b-table-column>
 
-                                    <b-table-column field="sub_total" label="@lang('global.Sub Total')" sortable numeric>
-                                        @{{ Number(props.row.unit_price * props.row.quantity).toLocaleString() }}
-                                    </b-table-column>
+                                <b-table-column field="sub_total" label="@lang('global.Sub Total')" sortable numeric>
+                                    @{{ Number(props.row.unit_price * props.row.quantity).toLocaleString() }}
+                                </b-table-column>
 
-                                    <b-table-column label="@lang('global.Actions')" centered width="60">
-                                        <a class="delete" @click="deleteItem(props.row)"></a>
-                                    </b-table-column>
-                                </template>
-                                <template slot="footer">
-                                    <h3> @{{ totalValue }} </h3>
-                                    <button class="button is-info">Send Budget</button>
-                                </template>
-                                <template slot="detail" slot-scope="props">
-                                    <div class="row">
-                                        <div class="col-2">
-                                            <b-field label="Description" custom-class="is-small"></b-field>
-                                        </div>
-                                        <div class="col-10">
-                                            <b-field>
-                                                <b-input v-model="props.row.description" placeholder="Write more detailed info on what the task entails." type="textarea"></b-input>
-                                            </b-field>
-                                        </div>
+                                <b-table-column label="@lang('global.Actions')" centered width="24">
+                                    <a class="delete" @click="deleteItem(props.row)"></a>
+                                </b-table-column>
+                            </template>
+                            <template slot="footer">
+                                <h3> @{{ totalValue }} </h3>
+                                <button class="button is-info">Send Budget</button>
+                            </template>
+                            <template slot="detail" slot-scope="props">
+                                <div class="row">
+                                    <div class="col-2">
+                                        <b-field label="Description" custom-class="is-small"></b-field>
                                     </div>
-                                    <div class="row">
-                                        <div class="col-2">
-                                            <b-field label="Assign Task" custom-class="is-small"></b-field>
-                                        </div>
-                                        <div class="col-10">
-                                            <b-select placeholder="Assign someone"  v-model="props.row.assigned_to">
-                                                <option v-for="member in members" :value="member.id" >
-                                                    @{{ member.name }}
-                                                </option>
-                                            </b-select>
-                                        </div>
+                                    <div class="col-10">
+                                        <b-field>
+                                            <b-input v-model="props.row.description" placeholder="Write more detailed info on what the task entails." type="textarea"></b-input>
+                                        </b-field>
                                     </div>
-                                    <div class="block-content block-content-full block-content-sm bg-body-light font-size-sm">
-                                        <button @click="editTask(props.row)" class="button is-info">
-                                            @lang('global.Save')
-                                        </button>
-                                        <button @click="" class="btn btn-outline-secondary min-width-125">
-                                            @lang('global.Cancel')
-                                        </button>
+                                </div>
+                                <div class="row">
+                                    <div class="col-2">
+                                        <b-field label="Assign Task" custom-class="is-small"></b-field>
                                     </div>
-                                </template>
-                            </b-table>
-                        </b-tab-item>
-                    </b-tabs>
-                </div>
+                                    <div class="col-10">
+                                        <b-select placeholder="Assign someone"  v-model="props.row.assigned_to">
+                                            <option v-for="member in members" :value="member.id" >
+                                                @{{ member.name }}
+                                            </option>
+                                        </b-select>
+                                    </div>
+                                </div>
+                                <div class="block-content block-content-full block-content-sm bg-body-light font-size-sm">
+                                    <button @click="editTask(props.row)" class="button is-info">
+                                        @lang('global.Save')
+                                    </button>
+                                    <button @click="" class="btn btn-outline-secondary min-width-125">
+                                        @lang('global.Cancel')
+                                    </button>
+                                </div>
+                            </template>
+                        </b-table>
+                    </b-tab-item>
+                </b-tabs>
             </div>
-            <!-- END Tasks Content -->
         </div>
+        <!-- END Tasks Content -->
     </div>
+</div>
