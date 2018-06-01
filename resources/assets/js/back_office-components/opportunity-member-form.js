@@ -33,8 +33,6 @@ Vue.component('opportunity-member-form',
                     profile_id: data.profile_id,
                     opportunity_id: data.opportunity_id,
                 });
-
-
             })  .catch(ex => {
                 console.log(ex.response);
                 this.$swal('Error trying to load records.');
@@ -62,7 +60,7 @@ Vue.component('opportunity-member-form',
         getProfiles: function(query)
         {
             var app = this;
-            axios.get('/api/getProfile/'+ query)
+            axios.get('/back-office/' + app.$parent.$parent.profile + '/search/profiles/' + query)
             .then(({ data }) =>
             {
                 if (data.length > 0)

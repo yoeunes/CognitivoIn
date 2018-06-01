@@ -98,8 +98,19 @@ class CustomerController extends Controller
 
     }
 
+    // public function search(Profile $profile, $query)
+    // {
+    //     return Relationship::search($query)->where('supplier_id', $profile->id)->where('supplier_accepted', '1')->get();
+    // }
+
     public function search(Profile $profile, $query)
     {
-        return Relationship::search($query)->where('supplier_id', $profile->id)->where('supplier_accepted', '1')->get();
+        $customers = Relationship::GetCustomers()
+        ->where('customer_alias', 'LIKE', "%" . $query . "%")
+        ->orWhere('customer_taxid', 'LIKE', "%" . $query . "%")
+
+        ->get();
+
+        return response()->json($customers);
     }
 }

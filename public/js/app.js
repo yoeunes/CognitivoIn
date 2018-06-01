@@ -58239,7 +58239,7 @@ Vue.component('opportunity-form', {
             var _this = this;
 
             var app = this;
-            axios.get('/api/getCustomer/' + app.$parent.profile + '/' + query).then(function (_ref) {
+            axios.get('/back-office/' + app.$parent.profile + '/search/customers/' + query).then(function (_ref) {
                 var data = _ref.data;
 
                 if (data.length > 0) {
@@ -58593,7 +58593,7 @@ Vue.component('opportunity-member-form', {
             var _this3 = this;
 
             var app = this;
-            axios.get('/api/getProfile/' + query).then(function (_ref3) {
+            axios.get('/back-office/' + app.$parent.$parent.profile + '/search/profiles/' + query).then(function (_ref3) {
                 var data = _ref3.data;
 
                 if (data.length > 0) {
@@ -58618,111 +58618,111 @@ Vue.component('opportunity-member-form', {
 
 
 Vue.component('opportunity-item-form', {
-  data: function data() {
-    return {
-      selected: null,
-      isFetching: false,
-      selectname: '',
+    data: function data() {
+        return {
+            selected: null,
+            isFetching: false,
+            selectname: '',
 
-      items: []
-    };
-  },
-
-
-  methods: {
-    addItem: function addItem(item) {
-      var _this = this;
-
-      var app = this;
-
-      axios.post('/api/' + app.$parent.$parent.profile + '/back-office/opportunities/' + this.$parent.id + '/items/', {
-        item_id: item.id,
-        relationship_id: app.$parent.relationship_id,
-        unit_price: item.unit_price,
-        vat_id: item.vat_id
-      }).then(function (_ref) {
-        var data = _ref.data;
-
-
-        app.$parent.items.push({
-          id: data.id,
-          name: data.item.name,
-          quantity: parseInt(data.quantity),
-          unit_price: data.unit_price,
-          vat_id: data.vat_id,
-          opportunity_id: data.opportunity_id
-        });
-      }).catch(function (ex) {
-        console.log(ex.response);
-        _this.$swal('Error trying to load records.');
-      });;
-    },
-    updateItem: function updateItem(item) {
-      var _this2 = this;
-
-      var app = this;
-      axios.put('/api/' + app.$parent.$parent.profile + '/back-office/opportunities/' + this.$parent.id + '/items/' + item.id, {
-        quantity: item.quantity,
-        unit_price: item.unit_price
-      }).then(function (_ref2) {
-        var data = _ref2.data;
-      }).catch(function (ex) {
-        console.log(ex.response);
-        _this2.$swal('Error trying to load records.');
-      });
+            items: []
+        };
     },
 
-    addQuantity: function addQuantity(item) {
 
-      var app = this;
-      item.quantity = parseInt(item.quantity) + 1;
-      this.updateItem(item);
-    },
-    removeQuantity: function removeQuantity(item) {
+    methods: {
+        addItem: function addItem(item) {
+            var _this = this;
 
-      var app = this;
-      item.quantity = parseInt(item.quantity) - 1;
-      this.updateItem(item);
-    },
+            var app = this;
 
-    deleteItem: function deleteItem(item) {
-      var _this3 = this;
+            axios.post('/api/' + app.$parent.$parent.profile + '/back-office/opportunities/' + this.$parent.id + '/items/', {
+                item_id: item.id,
+                relationship_id: app.$parent.relationship_id,
+                unit_price: item.unit_price,
+                vat_id: item.vat_id
+            }).then(function (_ref) {
+                var data = _ref.data;
 
-      var app = this;
-      axios.delete('/api/' + app.$parent.$parent.profile + '/back-office/opportunities/' + this.$parent.id + '/items/' + item.id).then(function (_ref3) {
-        var data = _ref3.data;
 
-        var index = _this3.$parent.items.findIndex(function (x) {
-          return x.id === item.id;
-        });
-        _this3.$parent.items.splice(index, 1);
-      }).catch(function (ex) {
-        console.log(ex.response);
-        _this3.$swal('Error trying to load records.');
-      });
-    },
+                app.$parent.items.push({
+                    id: data.id,
+                    name: data.item.name,
+                    quantity: parseInt(data.quantity),
+                    unit_price: data.unit_price,
+                    vat_id: data.vat_id,
+                    opportunity_id: data.opportunity_id
+                });
+            }).catch(function (ex) {
+                console.log(ex.response);
+                _this.$swal('Error trying to load records.');
+            });;
+        },
 
-    getItems: function getItems(query) {
-      var _this4 = this;
+        updateItem: function updateItem(item) {
+            var _this2 = this;
 
-      var app = this;
-      axios.get('/api/getItem/' + app.$parent.$parent.profile + '/' + query).then(function (_ref4) {
-        var data = _ref4.data;
+            var app = this;
+            axios.put('/api/' + app.$parent.$parent.profile + '/back-office/opportunities/' + this.$parent.id + '/items/' + item.id, {
+                quantity: item.quantity,
+                unit_price: item.unit_price
+            }).then(function (_ref2) {
+                var data = _ref2.data;
+            }).catch(function (ex) {
+                console.log(ex.response);
+                _this2.$swal('Error trying to load records.');
+            });
+        },
 
-        if (data.length > 0) {
-          app.items = [];
-          for (var i = 0; i < data.length; i++) {
-            app.items.push(data[i]);
-          }
+        addQuantity: function addQuantity(item) {
+            var app = this;
+            item.quantity = parseInt(item.quantity) + 1;
+            this.updateItem(item);
+        },
+
+        removeQuantity: function removeQuantity(item) {
+            var app = this;
+            item.quantity = parseInt(item.quantity) - 1;
+            this.updateItem(item);
+        },
+
+        deleteItem: function deleteItem(item) {
+            var _this3 = this;
+
+            var app = this;
+            axios.delete('/api/' + app.$parent.$parent.profile + '/back-office/opportunities/' + this.$parent.id + '/items/' + item.id).then(function (_ref3) {
+                var data = _ref3.data;
+
+                var index = _this3.$parent.items.findIndex(function (x) {
+                    return x.id === item.id;
+                });
+                _this3.$parent.items.splice(index, 1);
+            }).catch(function (ex) {
+                console.log(ex.response);
+                _this3.$swal('Error trying to load records.');
+            });
+        },
+
+        getItems: function getItems(query) {
+            var _this4 = this;
+
+            var app = this;
+            axios.get('/back-office/' + app.$parent.$parent.profile + '/search/items/' + query).then(function (_ref4) {
+                var data = _ref4.data;
+
+                if (data.length > 0) {
+                    app.items = [];
+                    for (var i = 0; i < data.length; i++) {
+                        app.items.push(data[i]);
+                    }
+                }
+            }).catch(function (ex) {
+                console.log(ex);
+                _this4.$swal('Error trying to load records.');
+            });
         }
-      }).catch(function (ex) {
-        console.log(ex);
-        _this4.$swal('Error trying to load records.');
-      });
-    }
-  },
+    },
 
-  mounted: function mounted() {}
+    mounted: function mounted() {}
 });
 
 /***/ }),

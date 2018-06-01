@@ -36,6 +36,14 @@ Route::group(['middleware' => 'auth'], function ()
 
     Route::prefix('back-office/{profile}')->group(function ()
     {
+
+        Route::prefix('search')->group(function ()
+        {
+            Route::get('profiles/{query}', 'ProfileController@search');
+            Route::get('customers/{query}', 'CustomerController@search');
+            Route::get('items/{query}', 'ItemController@search');
+        });
+
         Route::post('update', 'ProfileController@update')->name('profile.update');
 
         Route::prefix('sales')->group(function ()
@@ -57,6 +65,9 @@ Route::group(['middleware' => 'auth'], function ()
                 'contracts' => 'ContractController',
                 'contractdetail' => 'ContractDetailController'
             ]);
+
+            //Annull movements on specific modules
+
 
             Route::post('opportunities/{opportunity}/tasks/checked', 'OpportunityTaskController@taskChecked');
         });
