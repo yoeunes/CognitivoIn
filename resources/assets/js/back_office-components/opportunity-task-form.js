@@ -36,6 +36,7 @@ Vue.component('opportunity-task-form',
             var url = '/back-office/' + app.$parent.$parent.profile + '/sales/opportunities/' + app.$parent.id + '/tasks';
             var data =
             {
+                id: 0,
                 activity_type: app.activity_type,
                 opportunity_id: app.opportunity_id,
                 sentiment: app.sentiment,
@@ -53,21 +54,24 @@ Vue.component('opportunity-task-form',
             app.$parent.$parent.postSpecial(url, data)
             .then(function(response)
             {
-                app.$parent.tasks.push({
-                    id: response.id,
-                    activity_type: response.activity_type,
-                    opportunity_id: response.opportunity_id,
-                    pipeline_stage_id: response.pipeline_stage_id,
-                    sentiment: response.sentiment,
-                    date_reminder: response.date_reminder != null ? response.date_reminder.date : null,
-                    date_started: response.date_started.date,
-                    date_ended: response.date_ended != null ? response.date_ended.date : null,
-                    title: response.title,
-                    description: response.description,
-                    geoloc: response.geoloc,
-                    completed: response.completed,
-                    assigned_to: response.assigned_to,
-                });
+                if (response != null)
+                {
+                    app.$parent.tasks.push({
+                        id: response.id,
+                        activity_type: response.activity_type,
+                        opportunity_id: response.opportunity_id,
+                        pipeline_stage_id: response.pipeline_stage_id,
+                        sentiment: response.sentiment,
+                        date_reminder: response.date_reminder != null ? response.date_reminder.date : null,
+                        date_started: response.date_started.date,
+                        date_ended: response.date_ended != null ? response.date_ended.date : null,
+                        title: response.title,
+                        description: response.description,
+                        geoloc: response.geoloc,
+                        completed: response.completed,
+                        assigned_to: response.assigned_to,
+                    });
+                }
 
                 app.onReset();
             });

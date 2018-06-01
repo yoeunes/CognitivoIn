@@ -45,6 +45,7 @@ Route::group(['middleware' => 'auth'], function ()
         Route::prefix('sales')->group(function ()
         {
             Route::get('dashboard', 'BackOfficeController@dashboardSales');
+
             Route::resources([
                 'customers' => 'CustomerController',
                 'opportunities' => 'OpportunityController',
@@ -61,9 +62,6 @@ Route::group(['middleware' => 'auth'], function ()
                 'contracts' => 'ContractController',
                 'contractdetail' => 'ContractDetailController'
             ]);
-
-            //Annull movements on specific modules
-
 
             Route::post('opportunities/{opportunity}/tasks/checked', 'OpportunityTaskController@taskChecked');
         });
