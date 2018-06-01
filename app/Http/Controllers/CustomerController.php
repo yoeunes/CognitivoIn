@@ -105,11 +105,16 @@ class CustomerController extends Controller
 
     public function search(Profile $profile, $query)
     {
-        $customers = Relationship::GetCustomers()
-        ->where('customer_alias', 'LIKE', "%" . $query . "%")
-        ->orWhere('customer_taxid', 'LIKE', "%" . $query . "%")
+        $customers = null;
 
-        ->get();
+        if (strlen($query) > 3)
+        {
+            $customers = Relationship::GetCustomers()
+            ->where('customer_alias', 'LIKE', "%" . $query . "%")
+            ->orWhere('customer_taxid', 'LIKE', "%" . $query . "%")
+            ->take(15)
+            ->get();
+        }
 
         return response()->json($customers);
     }

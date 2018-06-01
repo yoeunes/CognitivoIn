@@ -166,11 +166,16 @@ class ProfileController extends Controller
 
     public function search(Profile $profile, $query)
     {
-        $profiles = Profile::where('type', 1)
-        ->where('name', 'LIKE', "%" . $query . "%")
-        ->orWhere('slug', 'LIKE', "%" . $query . "%")
-        ->take(5)
-        ->get();
+        $profiles = null;
+
+        if (strlen($query) > 3)
+        {
+            $profiles = Profile::where('type', 1)
+            ->where('name', 'LIKE', "%" . $query . "%")
+            ->orWhere('slug', 'LIKE', "%" . $query . "%")
+            ->take(5)
+            ->get();
+        }
 
         return response()->json($profiles);
     }

@@ -90,7 +90,7 @@ Vue.component('opportunity-form',
             {
                 if (data.length > 0)
                 {
-                    app.customers=[];
+                    app.customers = [];
                     for (let i = 0; i < data.length; i++)
                     {
                         app.customers.push(data[i]);
