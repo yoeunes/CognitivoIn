@@ -34,6 +34,12 @@ return [
     'Start Date' => 'Fecha de Inicio',
     'End Date' => 'Fecha de Fin',
 
+    'Price' => 'Precio',
+    'Total' => 'Total',
+    'Sub Total' => 'Sub Total',
+    'Quantity' => 'Cantidad',
+    'Sales Tax' => 'IVA / Impuestos de Venta',
+
     'Profile' => 'Perfil',
     'Name' => 'Nombre',
     'Description' => 'Descripción',
