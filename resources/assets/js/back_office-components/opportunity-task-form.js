@@ -10,7 +10,7 @@ Vue.component('opportunity-task-form',
             sentiment: '',
             date_reminder: null,
             date_started: new Date(),
-            date_ended: '',
+            date_ended: null,
             title: '',
             description: '',
             geoloc: '',
@@ -84,7 +84,7 @@ Vue.component('opportunity-task-form',
 
             app.date_reminder = null;
             app.date_started = app.date_started;
-            app.date_ended = '';
+            app.date_ended = null;
 
             app.pipeline_stage_id = '';
             app.title = '';
