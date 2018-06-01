@@ -73,12 +73,14 @@ Route::prefix('{profile}')->group(function ()
         //Searches using ElasticSearch Server for index based search results.
         Route::prefix('search')->group(function ()
         {
+            Route::get('profiles/{query}', 'ProfileController@search');
             Route::get('customers/{query}', 'CustomerController@search');
             Route::get('suppliers/{query}', 'SupplierController@search');
             Route::get('items/{query}', 'ItemController@search');
+
+            //TODO
             Route::get('opportunities/{query}', 'OpportunityController@search');
             Route::get('orders/{query}', 'OrderController@search');
-            //TODO
             Route::post('account-receivables', 'AccountReceivableController@search');
         });
 
@@ -87,6 +89,7 @@ Route::prefix('{profile}')->group(function ()
         {
             Route::post('transaction', 'Api\TransactionController@SalesInvoice_createApprove');
             Route::post('opportunities', 'OpportunityController@approve');
+
             //TODO
             Route::post('payment-made', 'AccountPayableController@store');
             Route::post('payment-recieved', 'AccountReceivableController@store');
@@ -95,10 +98,12 @@ Route::prefix('{profile}')->group(function ()
         //Annull movements on specific modules
         Route::prefix('annull')->group(function ()
         {
-            Route::post('orders/{id}', 'OrderController@annull');
+            Route::post('orders/{id}', 'OrderController@annul');
+            Route::post('opportunities', 'OpportunityController@annul');
+
             //TODO
-            Route::post('payment-made/{id}', 'AccountPayableController@annull');
-            Route::post('payment-recieved/{id}', 'AccountReceivableController@annull');
+            Route::post('payment-made/{id}', 'AccountPayableController@annul');
+            Route::post('payment-recieved/{id}', 'AccountReceivableController@annul');
         });
 
 

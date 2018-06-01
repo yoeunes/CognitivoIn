@@ -58239,7 +58239,7 @@ Vue.component('opportunity-form', {
             var _this = this;
 
             var app = this;
-            axios.get('/back-office/' + app.$parent.profile + '/search/customers/' + query).then(function (_ref) {
+            axios.get('/api/back-office/' + app.$parent.profile + '/search/customers/' + query).then(function (_ref) {
                 var data = _ref.data;
 
                 if (data.length > 0) {
@@ -58593,7 +58593,7 @@ Vue.component('opportunity-member-form', {
             var _this3 = this;
 
             var app = this;
-            axios.get('/back-office/' + app.$parent.$parent.profile + '/search/profiles/' + query).then(function (_ref3) {
+            axios.get('/api/back-office/' + app.$parent.$parent.profile + '/search/profiles/' + query).then(function (_ref3) {
                 var data = _ref3.data;
 
                 if (data.length > 0) {
@@ -58706,7 +58706,7 @@ Vue.component('opportunity-item-form', {
             var _this4 = this;
 
             var app = this;
-            axios.get('/back-office/' + app.$parent.$parent.profile + '/search/items/' + query).then(function (_ref4) {
+            axios.get('/api/back-office/' + app.$parent.$parent.profile + '/search/items/' + query).then(function (_ref4) {
                 var data = _ref4.data;
 
                 if (data.length > 0) {
@@ -59503,7 +59503,7 @@ Vue.component('team-form', {
             var _this = this;
 
             var app = this;
-            axios.get('/api/search_profiles/' + query).then(function (_ref) {
+            axios.get('/api/back-office/' + app.$parent.$parent.profile + '/search/profiles/' + query).then(function (_ref) {
                 var data = _ref.data;
 
                 if (data.length > 0) {

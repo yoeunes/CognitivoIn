@@ -19,15 +19,11 @@ Route::get('/shop/{profile}', 'HomeController@indexStores')->name('shop.show');
 
 Route::group(['middleware' => 'auth'], function ()
 {
-
-    ///   Route::get('create', 'ProfileController@create');//->name('profile.create');
-
     Route::resources([
         'inbox' => 'MessageController',
         'profile' => 'ProfileController'
     ]);
 
-    // Route::get('/{profile?}', 'HomeController@index');
     Route::get('dashboard', 'BackOfficeController@index')->name('dashboard');
     Route::get('profile', 'BackOfficeController@indexProfile');
     Route::get('locations', 'BackOfficeController@indexStore');
@@ -36,7 +32,7 @@ Route::group(['middleware' => 'auth'], function ()
 
     Route::prefix('back-office/{profile}')->group(function ()
     {
-
+        //TODO: Remove this from here and check with API.php
         Route::prefix('search')->group(function ()
         {
             Route::get('profiles/{query}', 'ProfileController@search');
