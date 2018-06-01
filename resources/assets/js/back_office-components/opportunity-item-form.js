@@ -15,7 +15,6 @@ Vue.component('opportunity-item-form',
     {
         addItem: function(item)
         {
-
             var app = this;
 
             axios.post('/api/'+ app.$parent.$parent.profile +'/back-office/opportunities/' + this.$parent.id + '/items/', {
@@ -26,7 +25,6 @@ Vue.component('opportunity-item-form',
             })
             .then(({ data }) =>
             {
-
                 app.$parent.items.push({
                     id: data.id,
                     name: data.item.name,
@@ -35,30 +33,35 @@ Vue.component('opportunity-item-form',
                     vat_id : data.vat_id,
                     opportunity_id: data.opportunity_id
                 });
-
-
             })  .catch(ex => {
                 console.log(ex.response);
-                this.$swal('Error trying to load records.');
+                this.$toast.open({
+                    duration: 5000,
+                    message: 'Error trying to add item',
+                    type: 'is-danger'
+                })
             });;
         },
 
         updateItem: function(item)
         {
             var app = this;
-            axios.put('/api/'+ app.$parent.$parent.profile +'/back-office/opportunities/'
-            + this.$parent.id + '/items/' + item.id,{
+            axios.put('/api/'+ app.$parent.$parent.profile +'/back-office/opportunities/' + this.$parent.id + '/items/' + item.id,
+            {
                 quantity:item.quantity,
                 unit_price:item.unit_price
             })
             .then(({ data }) =>
             {
 
-
-
-            })  .catch(ex => {
+            })
+            .catch(ex => {
                 console.log(ex.response);
-                this.$swal('Error trying to load records.');
+                this.$toast.open({
+                    duration: 5000,
+                    message: 'Error trying to update item',
+                    type: 'is-danger'
+                })
             });
         },
 
@@ -87,7 +90,11 @@ Vue.component('opportunity-item-form',
                 this.$parent.items.splice(index, 1);
             }).catch(ex => {
                 console.log(ex.response);
-                this.$swal('Error trying to load records.');
+                this.$toast.open({
+                    duration: 5000,
+                    message: 'Error trying to delete item',
+                    type: 'is-danger'
+                })
             });
         },
 
@@ -108,7 +115,11 @@ Vue.component('opportunity-item-form',
             })
             .catch(ex => {
                 console.log(ex);
-                this.$swal('Error trying to load records.');
+                this.$toast.open({
+                    duration: 5000,
+                    message: 'Error trying to search items',
+                    type: 'is-danger'
+                })
             });
         },
     },

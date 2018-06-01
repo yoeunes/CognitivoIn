@@ -150,7 +150,6 @@ Vue.component('model',
 
         postSpecial: async function(specialURL, $data)
         {
-            console.log('af');
             var app = this;
             var resp;
 

@@ -58648,7 +58648,6 @@ Vue.component('opportunity-item-form', {
             }).then(function (_ref) {
                 var data = _ref.data;
 
-
                 app.$parent.items.push({
                     id: data.id,
                     name: data.item.name,
@@ -58659,7 +58658,11 @@ Vue.component('opportunity-item-form', {
                 });
             }).catch(function (ex) {
                 console.log(ex.response);
-                _this.$swal('Error trying to load records.');
+                _this.$toast.open({
+                    duration: 5000,
+                    message: 'Error trying to add item',
+                    type: 'is-danger'
+                });
             });;
         },
 
@@ -58674,7 +58677,11 @@ Vue.component('opportunity-item-form', {
                 var data = _ref2.data;
             }).catch(function (ex) {
                 console.log(ex.response);
-                _this2.$swal('Error trying to load records.');
+                _this2.$toast.open({
+                    duration: 5000,
+                    message: 'Error trying to update item',
+                    type: 'is-danger'
+                });
             });
         },
 
@@ -58703,7 +58710,11 @@ Vue.component('opportunity-item-form', {
                 _this3.$parent.items.splice(index, 1);
             }).catch(function (ex) {
                 console.log(ex.response);
-                _this3.$swal('Error trying to load records.');
+                _this3.$toast.open({
+                    duration: 5000,
+                    message: 'Error trying to delete item',
+                    type: 'is-danger'
+                });
             });
         },
 
@@ -58722,7 +58733,11 @@ Vue.component('opportunity-item-form', {
                 }
             }).catch(function (ex) {
                 console.log(ex);
-                _this4.$swal('Error trying to load records.');
+                _this4.$toast.open({
+                    duration: 5000,
+                    message: 'Error trying to search items',
+                    type: 'is-danger'
+                });
             });
         }
     },
@@ -59718,9 +59733,8 @@ __WEBPACK_IMPORTED_MODULE_1_vue___default.a.component('model', {
                     while (1) {
                         switch (_context.prev = _context.next) {
                             case 0:
-                                console.log('af');
                                 app = this;
-                                _context.next = 4;
+                                _context.next = 3;
                                 return __WEBPACK_IMPORTED_MODULE_4_axios___default.a.post(specialURL, $data).then(function (response) {
                                     _this4.$snackbar.open('Done!');
                                     resp = response.data;
@@ -59733,10 +59747,10 @@ __WEBPACK_IMPORTED_MODULE_1_vue___default.a.component('model', {
                                     });
                                 });
 
-                            case 4:
+                            case 3:
                                 return _context.abrupt('return', resp);
 
-                            case 5:
+                            case 4:
                             case 'end':
                                 return _context.stop();
                         }
