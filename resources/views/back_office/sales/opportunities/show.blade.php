@@ -185,9 +185,7 @@
         </div>
         <div class="col-md-7 col-xl-9">
             <!-- Tasks -->
-            <!-- Tasks functionality (initialized in js/pages/be_pages_generic_todo.js) -->
             <div class="js-tasks">
-
                 <!-- Add task -->
                 <opportunity-task-form ref="task-form" inline-template>
                     <section>
@@ -400,17 +398,7 @@
                                         </template>
                                     </b-table-column>
 
-                                    <b-table-column field="date" label="@lang('global.Deadline')" sortable centered width="30">
-                                        <span class="tag is-light">
-                                            @{{ new Date(props.row.date_started).toLocaleDateString() }}
-                                        </span>
-                                    </b-table-column>
-
-                                    <b-table-column field="title" label="@lang('back-office.Task')" sortable expanded>
-                                        @{{ props.row.title }} <span class="has-text-grey-light">| @{{ props.row.description }}</span>
-                                    </b-table-column>
-
-                                    <b-table-column label="@lang('global.Actions')" numeric>
+                                    <b-table-column field="date" sortable centered width="30">
                                         <b-field v-if="props.row.completed" grouped>
                                             <a @click="sentimentTask(props.row, 2)">
                                                 <img v-if="props.row.sentiment == 2" src="/img/icons/emojiHappy.svg" width="32" alt="">
@@ -425,7 +413,17 @@
                                                 <img v-else src="/img/icons/emojiSad.svg" style="opacity: 0.32" width="20" alt="">
                                             </a>
                                         </b-field>
-                                        <b-field v-else grouped>
+                                        <span v-else class="tag is-light">
+                                            @{{ new Date(props.row.date_started).toLocaleDateString() }}
+                                        </span>
+                                    </b-table-column>
+
+                                    <b-table-column field="title" label="@lang('back-office.Task')" sortable expanded>
+                                        @{{ props.row.title }} <span class="has-text-grey-light">| @{{ props.row.description }}</span>
+                                    </b-table-column>
+
+                                    <b-table-column label="@lang('global.Actions')" numeric>
+                                        <b-field grouped>
                                             <b-tooltip :label="props.row.date_reminder" dashed>
                                                 <i class="si si-bell"></i>
                                             </b-tooltip>
@@ -488,6 +486,8 @@
                         </div>
 
                         <div v-if="otherTasks.length > 0">
+                            <hr>
+
                             <h2>Other Tasks</h2>
 
                             <b-table :data="otherTasks"  hoverable detailed detail-key="id">
@@ -620,69 +620,35 @@
                     </b-tab-item>
 
                     <b-tab-item label="Products and Services" icon="diamond">
-
-                        <b-table :data="myTasks" hoverable detailed detail-key="id">
+                        <b-table :data="items" hoverable detailed detail-key="id">
                             <template slot-scope="props">
-                                <b-table-column width="40">
-                                    {{-- <b-icon icon="checkbox-marked" v-if="props.row.completed" @click="taskChecked(props.row)"></b-icon>
-                                    <b-icon icon="checkbox-blank-outline" v-else ></b-icon> --}}
-                                    <i class="fa fa-check-square text-info" v-if="props.row.completed" @click="taskChecked(props.row)"></i>
-                                    <i class="fa fa-square-o" v-else @click="taskChecked(props.row)"></i>
+                                <b-table-column field="quantity" label="@lang('global.Quantity')" sortable width="64">
+                                    <b-field>
+                                        <b-input placeholder="" v-model="props.row.quantity" type="number" min="1"></b-input>
+                                    </b-field>
                                 </b-table-column>
 
-                                <b-table-column label="" width="40">
-                                    <template v-if="props.row.activity_type == 1">
-                                        <b-icon class="has-text-info" icon="format-list-checks"></b-icon>
-                                    </template>
-                                    <template v-else-if="props.row.activity_type == 2">
-                                        <b-icon class="has-text-info" icon="phone"></b-icon>
-                                    </template>
-                                    <template v-else-if="props.row.activity_type == 3">
-                                        <b-icon class="has-text-info" icon="video"></b-icon>
-                                    </template>
-                                    <template v-else-if="props.row.activity_type == 4">
-                                        <b-icon class="has-text-info" icon="account-multiple"></b-icon>
-                                    </template>
-                                    <template v-else-if="props.row.activity_type == 5">
-                                        <b-icon class="has-text-info" icon="map-marker-radius"></b-icon>
-                                    </template>
-                                    <template v-else>
-                                        <b-icon class="has-text-info" icon="email"></b-icon>
-                                    </template>
+                                <b-table-column field="items" label="@lang('back-office.Products and Services')" sortable>
+                                    @{{ props.row.name }} <span class="has-text-grey-light">| @{{ props.row.sku }}</span>
                                 </b-table-column>
 
-                                <b-table-column field="title" label="@lang('back-office.Task')" sortable>
-                                    @{{ props.row.title }} <span class="has-text-grey-light">| @{{ props.row.description }}</span>
+                                <b-table-column field="unit_price" label="@lang('global.Price')" width="128" sortable>
+                                    <b-field>
+                                        <b-input placeholder="" v-model="props.row.unit_price" type="number" min="0"></b-input>
+                                    </b-field>
                                 </b-table-column>
 
-                                <b-table-column field="date" label="@lang('global.Deadline')" sortable centered>
-                                    <span class="tag is-info">
-                                        @{{ new Date(props.row.date_started).toLocaleDateString() }}
-                                    </span>
+                                <b-table-column field="sub_total" label="@lang('global.Sub Total')" sortable numeric>
+                                    @{{ Number(props.row.unit_price * props.row.quantity).toLocaleString() }}
                                 </b-table-column>
 
-                                <b-table-column label="@lang('global.Actions')" centered width="60">
-                                    <div v-if="props.row.completed">
-                                        <a @click="sentimentTask(props.row, 2)">
-                                            <img v-if="props.row.sentiment == 2" src="/img/icons/emojiHappy.svg" width="32" alt="">
-                                            <img v-else src="/img/icons/emojiHappy.svg" style="opacity: 0.32" width="32" alt="">
-                                        </a>
-                                        <a @click="sentimentTask(props.row, 1)">
-                                            <img v-if="props.row.sentiment == 1" src="/img/icons/emojiOk.svg" width="32" alt="">
-                                            <img v-else src="/img/icons/emojiOk.svg" style="opacity: 0.32" width="32" alt="">
-                                        </a>
-                                        <a @click="sentimentTask(props.row, 0)">
-                                            <img v-if="props.row.sentiment == 0" src="/img/icons/emojiSad.svg" width="32" alt="">
-                                            <img v-else src="/img/icons/emojiSad.svg" style="opacity: 0.32" width="32" alt="">
-                                        </a>
-                                    </div>
-                                    <div v-else>
-                                        <b-tooltip :label="props.row.date_reminder" dashed>
-                                            <i class="si si-bell"></i>
-                                        </b-tooltip>
-                                        <a class="delete" @click="deleteTask(props.row)"></a>
-                                    </div>
+                                <b-table-column label="@lang('global.Actions')" centered width="24">
+                                    <a class="delete" @click="deleteItem(props.row)"></a>
                                 </b-table-column>
+                            </template>
+                            <template slot="footer">
+                                <h3> @{{ totalValue }} </h3>
+                                <button class="button is-info">Send Budget</button>
                             </template>
                             <template slot="detail" slot-scope="props">
                                 <div class="row">
@@ -691,26 +657,7 @@
                                     </div>
                                     <div class="col-10">
                                         <b-field>
-                                            <b-input v-model="props.row.description" placeholder="Write more detailed info on what the task entails."
-                                            type="textarea"></b-input>
-                                        </b-field>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-2">
-                                        <b-field label="Start & End Dates" custom-class="is-small"></b-field>
-                                    </div>
-                                    <div class="col-10">
-                                        <b-field grouped>
-                                            <b-field expanded>
-                                                <b-datepicker v-model="props.row.date_started"
-                                                placeholder="@lang('global.Start Date')"></b-datepicker>
-                                            </b-field>
-                                            <b-field expanded>
-                                                <b-datepicker v-model="props.row.date_ended"
-                                                :min-date="props.row.date_started"
-                                                placeholder="@lang('global.End Date')"></b-datepicker>
-                                            </b-field>
+                                            <b-input v-model="props.row.description" placeholder="Write more detailed info on what the task entails." type="textarea"></b-input>
                                         </b-field>
                                     </div>
                                 </div>

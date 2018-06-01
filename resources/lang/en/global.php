@@ -34,6 +34,12 @@ return [
     'Start Date' => 'Start Date',
     'End Date' => 'End Date',
 
+    'Price' => 'Price',
+    'Total' => 'Total',
+    'Sub Total' => 'Sub Total',
+    'Quantity' => 'Quantity',
+    'Sales Tax' => 'Sales Tax',
+
     'Profile' => 'Profile',
     'Name' => 'Name',
     'Description' => 'Description',
