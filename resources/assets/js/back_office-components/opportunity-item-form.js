@@ -94,7 +94,7 @@ Vue.component('opportunity-item-form',
         getItems: function(query)
         {
             var app = this;
-            axios.get('/api/back-office/' + app.$parent.$parent.profile + '/search/items/' + query)
+            axios.get('/api/' + app.$parent.$parent.profile + '/back-office/search/items/' + query)
             .then(({ data }) =>
             {
                 if (data.length > 0)

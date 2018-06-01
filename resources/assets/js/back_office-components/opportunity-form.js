@@ -85,7 +85,7 @@ Vue.component('opportunity-form',
         getCustomers: function(query)
         {
             var app = this;
-            axios.get('/api/back-office/' + app.$parent.profile + '/search/customers/' + query)
+            axios.get('/api/' + app.$parent.profile + '/back-office/search/customers/' + query)
             .then(({ data }) =>
             {
                 if (data.length > 0)

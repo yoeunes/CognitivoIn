@@ -60,7 +60,7 @@ Vue.component('opportunity-member-form',
         getProfiles: function(query)
         {
             var app = this;
-            axios.get('/api/back-office/' + app.$parent.$parent.profile + '/search/profiles/' + query)
+            axios.get('/api/' + app.$parent.$parent.profile + '/back-office/search/profiles/' + query)
             .then(({ data }) =>
             {
                 if (data.length > 0)
