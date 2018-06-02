@@ -13,7 +13,7 @@ class CartController extends Controller
   *
   * @return \Illuminate\Http\Response
   */
-  public function index(Profile $profile, $skip, $filterBy)
+  public function index(Profile $profile, $skip)
   {
     $carts = Cart::FromCustomers()
     ->skip($skip)
