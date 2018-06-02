@@ -68,8 +68,8 @@ class OpportunityTaskController extends Controller
             $opportunityTask->completed_at = $request->completed == true ? Carbon::now() : null;
             $opportunityTask->completed_by = $request->completed == true ? Auth::user()->profile_id : null;
 
-            //Set Sentiment to Null each time the checked status changes.
-            $opportunityTask->sentiment = null;
+            //Set Sentiment to 0 each time the checked status changes.
+            $opportunityTask->sentiment = $request->sentiment ?? 0;
             $opportunityTask->save();
 
             return response()->json('Ok', 200);

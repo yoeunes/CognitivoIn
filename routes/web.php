@@ -17,8 +17,8 @@ Route::get('/{profile?}', 'HomeController@index')->name('home');
 Route::get('/market', 'HomeController@indexMarket')->name('market.index');
 Route::get('/shop/{profile}', 'HomeController@indexStores')->name('shop.show');
 
-// Route::group(['middleware' => 'auth'], function ()
-// {
+Route::group(['middleware' => 'auth'], function ()
+{
     Route::resources([
         'inbox' => 'MessageController',
         'profile' => 'ProfileController'
@@ -94,4 +94,4 @@ Route::get('/shop/{profile}', 'HomeController@indexStores')->name('shop.show');
             ]);
         });
     });
-// });
+});
