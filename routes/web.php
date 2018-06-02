@@ -45,11 +45,12 @@ Route::group(['middleware' => 'auth'], function ()
         Route::prefix('sales')->group(function ()
         {
             Route::get('dashboard', 'BackOfficeController@dashboardSales');
+            Route::post('opportunities/{opportunity}/tasks/checked', 'OpportunityTaskController@taskChecked');
 
             Route::resources([
                 'customers' => 'CustomerController',
                 'opportunities' => 'OpportunityController',
-                // 'opportunities/{opportunity}/tasks' => 'OpportunityTaskController',
+                'opportunities/{opportunity}/tasks' => 'OpportunityTaskController',
                 'promotions' => 'ItemPromotionController',
                 'followers' => 'FollowerController',
                 'orders' => 'OrderController',
@@ -62,8 +63,6 @@ Route::group(['middleware' => 'auth'], function ()
                 'contracts' => 'ContractController',
                 'contractdetail' => 'ContractDetailController'
             ]);
-            Route::resources('opportunities/{opportunity}/tasks', 'OpportunityTaskController');
-            Route::post('opportunities/{opportunity}/tasks/checked', 'OpportunityTaskController@taskChecked');
         });
 
         Route::prefix('purchase')->group(function ()

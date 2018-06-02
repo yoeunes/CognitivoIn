@@ -19,7 +19,7 @@ class OpportunityTaskController extends Controller
     */
     public function index(Profile $profile, Opportunity $opportunity)
     {
-        $opportunityTasks = OpportunityTask::where('opportunity_id', $opportunity)
+        $opportunityTasks = OpportunityTask::where('opportunity_id', $opportunity->id)
         ->get();
 
         return response()->json($opportunityTasks);
