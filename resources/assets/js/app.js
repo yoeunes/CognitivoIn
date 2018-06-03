@@ -11,24 +11,56 @@ import Vue from 'vue';
 import VueSweetalert2 from 'vue-sweetalert2';
 import VueRouter from 'vue-router';
 import VueResource from 'vue-resource';
-// import SearchBoxCustomer from './components/searchbox.vue';
-// import SearchBoxItem from './components/searchboxItem.vue';
-// import SearchBoxProfile from './components/searchboxProfile.vue';
 import Buefy from 'buefy';
 import 'buefy/lib/buefy.css';
 
 require('./bootstrap');
-require('./components/bootstrap');
+// require('./components/bootstrap');
 
 window.Vue.use(VueResource);
 window.Vue.use(VueRouter);
-
-// Vue.use(require('vue-shortkey'))
+Vue.use(require('vue-shortkey'))
 Vue.use(VueSweetalert2);
 Vue.use(Buefy);
-// Vue.use(Buefy, {
-//     defaultIconPack: 'fas',
-// })
+
+/**
+Back-Office views to be used for Ajax Loaded sites.
+*/
+
+import Dashboard from './views/Dashboard';
+import NotFoundComponent from './views/NotFoundComponent';
+
+import ProfileForm from './views/config/ProfileForm';
+import Location from './views/config/Location';
+import SalesTax from './views/config/SalesTax';
+import Contract from './views/config/Contract';
+import TeamMember from './views/config/TeamMember';
+
+import Crm_Dashboard from './views/crm/Dashboard';
+import Pipelines from './views/crm/Pipeline';
+import Opportunities from './views/crm/Opportunity';
+import OpportunityForm from './views/crm/OpportunityForm';
+
+import Sales_Dashboard from './views/sales/Dashboard';
+import Customers from './views/sales/Customer';
+import CustomerForm from './views/sales/CustomerForm';
+import Orders from './views/sales/Order';
+import OrderForm from './views/sales/OrderForm';
+
+import Purchase_Dashboard from './views/purchase/Dashboard';
+import Suppliers from './views/purchase/Supplier';
+import SupplierForm from './views/purchase/SupplierForm';
+
+import Stock_Dashboard from './views/stock/Dashboard';
+import Items from './views/stock/Item';
+import ItemForm from './views/stock/ItemForm';
+
+import Finance_Dashboard from './views/finance/Dashboard';
+import Accounts from './views/finance/Account';
+import AccountForm from './views/finance/AccountForm';
+import AccountPayables from './views/finance/AccountPayable';
+import AccountReceivables from './views/finance/AccountReceivable';
+import AccountMovements from './views/finance/AccountMovement';
 
 /**
 * Next, we will create a fresh Vue application instance and attach it to
@@ -40,56 +72,57 @@ Vue.component(
     'passport-clients',
     require('./components/passport/Clients.vue')
 );
-
 Vue.component(
     'passport-authorized-clients',
     require('./components/passport/AuthorizedClients.vue')
 );
-
 Vue.component(
     'passport-personal-access-tokens',
     require('./components/passport/PersonalAccessTokens.vue')
 );
 
-// const routes = [
-//     {
-//         path: '/',
-//         components: {
-//             SearchBoxCustomer:SearchBoxCustomer,
-//             SearchBoxItem:SearchBoxItem,
-//             SearchBoxProfile:SearchBoxProfile
-//         }
-//     },
-// ];
-
+//Note: These tasks are only needed to show views.
 const router = new VueRouter({
     mode: 'history',
     routes: [
         //This will cause 404 Errors to be redirected to proper site.
         { path: '*', component: NotFoundComponent },
 
-        //{ path: '/:profile/', name: 'dashboard', component: Dashboard },
-        { path: '/:profile/dashboard', name: 'dashboard', component: Dashboard },
+        //{ path: '', name: 'dashboard', component: Dashboard },
+        { path: 'dashboard', name: 'dashboard', component: Dashboard },
 
-        { path: '/:profile/crm/pipelines', name: 'pipeline.index', component: Pipelines },
-        { path: '/:profile/crm/pipeline/:id', name: 'pipeline.form', component: PipelineForm },
-        { path: '/:profile/crm/opportunities', name: 'opportunity.index', component: Opportunities },
-        { path: '/:profile/crm/opportunity/:id', name: 'opportunity.form', component: OpportunityForm },
+        { path: 'config/profile', name: 'profile.form', component: ProfileForm },
+        { path: 'config/locations', name: 'location.index', component: Location },
+        { path: 'config/sales-taxes', name: 'sales-taxes.index', component: SalesTax },
+        { path: 'config/contracts', name: 'contracts.index', component: Contract },
+        { path: 'config/team-members', name: 'team-members.index', component: TeamMember },
 
-        { path: '/:profile/sales/customers', name: 'customer.index', component: Customers },
-        { path: '/:profile/sales/customer/:id', name: 'customer.form', component: CustomerForm },
-        { path: '/:profile/sales/carts', name: 'carts', component: Carts },
-        { path: '/:profile/sales/orders', name: 'order.index', component: Orders },
-        { path: '/:profile/sales/order/:id', name: 'order.form', component: OrderForm },
+        { path: 'crm/dashboard', name: 'crm.dashboard', component: Dashboard },
+        { path: 'crm/pipelines', name: 'pipeline.index', component: Pipelines },
+        { path: 'crm/opportunities', name: 'opportunity.index', component: Opportunities },
+        { path: 'crm/opportunity/:id', name: 'opportunity.show', component: OpportunityForm },
 
-        { path: '/:profile/purchases/suppliers', name: 'supplier.index', component: Suppliers },
-        { path: '/:profile/purchases/supplier/:id', name: 'supplier.form', component: SupplierForm },
+        { path: 'sales/dashboard', name: 'sales.dashboard', component: Dashboard },
+        { path: 'sales/customers', name: 'customer.index', component: Customers },
+        { path: 'sales/customer/:id', name: 'customer.form', component: CustomerForm },
+        // { path: 'sales/carts', name: 'carts', component: Carts },
+        { path: 'sales/orders', name: 'order.index', component: Orders },
+        { path: 'sales/order/:id', name: 'order.form', component: OrderForm },
 
-        { path: '/:profile/stocks/items', name: 'item.index', component: Items },
-        { path: '/:profile/stocks/item/:id', name: 'item.form', component: ItemForm },
+        { path: 'purchases/dashboard', name: 'purchase.dashboard', component: Dashboard },
+        { path: 'purchases/suppliers', name: 'supplier.index', component: Suppliers },
+        { path: 'purchases/supplier/:id', name: 'supplier.form', component: SupplierForm },
 
-        { path: '/:profile/finances/items', name: 'item.index', component: Items },
-        { path: '/:profile/finances/item/:id', name: 'item.form', component: ItemForm },
+        { path: 'stocks/dashboard', name: 'stock.dashboard', component: Dashboard },
+        { path: 'stocks/items', name: 'item.index', component: Items },
+        { path: 'stocks/item/:id', name: 'item.form', component: ItemForm },
+
+        { path: 'finances/dashboard', name: 'finance.dashboard', component: Dashboard },
+        { path: 'finances/accounts', name: 'account.index', component: Accounts },
+        { path: 'finances/account/:id', name: 'account.form', component: AccountForm },
+        { path: 'finances/account-payables', name: 'account-payable.index', component: AccountPayables },
+        { path: 'finances/account-recievables', name: 'account-recievable.index', component: AccountReceivables },
+        { path: 'finances/account-movements', name: 'account_movement.index', component: AccountMovements },
     ]
 });
 
@@ -98,10 +131,3 @@ const app = new Vue({
     components: { App },
     router,
 }).$mount('#app');
-
-// TODO: should we make two vue components.
-// const back_office = new Vue({
-//     el: '#app',
-//     components: { App },
-//     router,
-// }).$mount('#back-office');

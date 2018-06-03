@@ -163,9 +163,10 @@
                             <div class="content-side content-side-full">
                                 <ul class="nav-main">
                                     <li>
-                                        <a @click="showModule = 1" href="#">
-                                            <i class="si si-pie-chart"></i>
-                                            <span class="sidebar-mini-hide">@lang('back-office.Dashboard')</span>
+                                        <a href="#">
+                                            <router-link :to="{ name: 'dashboard' }">
+                                                @lang('back-office.Dashboard')
+                                            </router-link>
                                         </a>
                                     </li>
 
@@ -176,37 +177,48 @@
                                         </a>
                                         <ul>
                                             <li>
-                                                <a @click="showModule = 2.1" href="#">
-                                                    <span class="sidebar-mini-hide">@lang('back-office.Company Profile')</span>
+                                                <a href="#">
+                                                    <router-link :to="{ name: 'profile.form' }">
+                                                        @lang('back-office.Company Profile')
+                                                    </router-link>
                                                 </a>
                                             </li>
                                             <li>
-                                                <a @click="onList('locations', 2.2)" href="#">
-                                                    <span class="sidebar-mini-hide">@lang('back-office.Shops and Locations')</span>
+                                                <a href="#">
+                                                    <router-link :to="{ name: 'location.index' }">
+                                                        @lang('back-office.Shops and Locations')
+                                                    </router-link>
                                                 </a>
                                             </li>
                                             <li>
-                                                <a @click="onList('followers', 2.3)" href="#">
-                                                    <span class="sidebar-mini-hide">@lang('back-office.Teams and Followers')</span>
+                                                <a href="#">
+                                                    <router-link :to="{ name: 'team-members.index' }">
+                                                        @lang('back-office.Teams and Followers')
+                                                    </router-link>
                                                 </a>
                                             </li>
                                             <li>
-                                                <a @click="onList('contracts', 2.4)" href="#">
-                                                    <span class="sidebar-mini-hide">@lang('back-office.Contracts')</span>
+                                                <a href="#">
+                                                    <router-link :to="{ name: 'contracts.index' }">
+                                                        @lang('back-office.Contracts')
+                                                    </router-link>
                                                 </a>
                                             </li>
                                             <li>
-                                                <a @click="onList('vats', 2.5)" href="#">
-                                                    <span class="sidebar-mini-hide">@lang('back-office.Sales Tax')</span>
+                                                <a href="#">
+                                                    <router-link :to="{ name: 'sales-taxes.index' }">
+                                                        @lang('back-office.Sales Tax')
+                                                    </router-link>
                                                 </a>
                                             </li>
                                         </ul>
                                     </li>
 
                                     <li>
-                                        <a @click="onList('items', 5.1)" href="#">
-                                            <i class="si si-diamond"></i>
-                                            <span class="sidebar-mini-hide">@lang('back-office.Products and Services')</span>
+                                        <a href="#">
+                                            <router-link :to="{ name: 'item.index' }">
+                                                @lang('back-office.Products and Services')
+                                            </router-link>
                                         </a>
                                     </li>
 
@@ -221,50 +233,82 @@
                                         </a>
                                         <ul>
                                             <li>
-                                                <a @click="showModule = '1.3'" href="#">@lang('back-office.Dashboard')</a>
+                                                <a href="#">
+                                                    <router-link :to="{ name: 'sales.dashboard' }">
+                                                        @lang('back-office.Dashboard')
+                                                    </router-link>
+                                                </a>
                                             </li>
                                             <li>
-                                                <a @click="onList('customers', 3.1)" href="#">@lang('back-office.Customers')</a>
-                                            </li>
-                                            <li>
-                                                <a @click="onList('promotions', 3.5)" href="#">@lang('back-office.Promotions')</a>
+                                                <a href="#">
+                                                    <router-link :to="{ name: 'customer.index' }">
+                                                        @lang('back-office.Customers')
+                                                    </router-link>
+                                                </a>
                                             </li>
                                             <li>
                                                 <a  class="nav-submenu" data-toggle="nav-submenu" href="#">@lang('back-office.Opportunities')</a>
                                                 <ul>
                                                     <li>
-                                                        <a @click="onList('pipelines', 3.3)" href="#">@lang('back-office.Pipelines')</a>
+                                                        <a href="#">
+                                                            <router-link :to="{ name: 'pipeline.index' }">
+                                                                @lang('back-office.Pipelines')
+                                                            </router-link>
+                                                        </a>
                                                     </li>
                                                     <li>
-                                                        <a @click="onList('opportunities', 3.2)" href="#">@lang('back-office.Opportunities')</a>
+                                                        <a href="#">
+                                                            <router-link :to="{ name: 'opportunity.index' }">
+                                                                @lang('back-office.Opportunities')
+                                                            </router-link>
+                                                        </a>
                                                     </li>
                                                 </ul>
                                             </li>
                                             <li>
-                                                <a @click="onList('orders', 3.4)" href="#">@lang('back-office.Orders')</a>
+                                                <a href="#">
+                                                    <router-link :to="{ name: 'order.index' }">
+                                                        @lang('back-office.Orders')
+                                                    </router-link>
+                                                </a>
                                             </li>
                                             <li>
-                                                <a @click="onList('account-receivables', 6.2)" href="#">@lang('back-office.Account Receivables')</a>
+                                                <a href="#">
+                                                    <router-link :to="{ name: 'account-recievable.index' }">
+                                                        @lang('back-office.Account Receivables')
+                                                    </router-link>
+                                                </a>
                                             </li>
                                         </ul>
                                     </li>
                                     <li>
                                         <a class="nav-submenu" data-toggle="nav-submenu" href="#">
                                             <i class="si si-basket"></i>
-                                            <span class="sidebar-mini-hide">@lang('back-office.Purchases')</span>
+                                            <span class="sidebar-mini-hide">
+                                                @lang('back-office.Purchases')
+                                            </span>
                                         </a>
                                         <ul>
                                             <li>
-                                                <a @click="showModule = '1.4'" href="#">@lang('back-office.Dashboard')</a>
+                                                <a href="#">
+                                                    <router-link :to="{ name: 'purchase.dashboard' }">
+                                                        @lang('back-office.Dashboard')
+                                                    </router-link>
+                                                </a>
                                             </li>
                                             <li>
-                                                <a @click="onList('suppliers', 4.1)" href="#">@lang('back-office.Suppliers')</a>
+                                                <a href="#">
+                                                    <router-link :to="{ name: 'supplier.index' }">
+                                                        @lang('back-office.Suppliers')
+                                                    </router-link>
+                                                </a>
                                             </li>
                                             <li>
-                                                <a @click="onList('purchases', 4.2)" href="#">@lang('back-office.Orders')</a>
-                                            </li>
-                                            <li>
-                                                <a @click="onList('account-payables', 6.3)" href="#">@lang('back-office.Account Payables')</a>
+                                                <a href="#">
+                                                    <router-link :to="{ name: 'account-payable.index' }">
+                                                        @lang('back-office.Account Payables')
+                                                    </router-link>
+                                                </a>
                                             </li>
                                         </ul>
                                     </li>
@@ -275,26 +319,17 @@
                                         </a>
                                         <ul>
                                             <li>
-                                                <a @click="showModule = '1.5'" href="#">@lang('back-office.Dashboard')</a>
-                                            </li>
-                                            <li>
-                                                <a @click="onList('items', 5.1)" href="#">
-                                                    <span class="sidebar-mini-hide">@lang('back-office.Products and Services')</span>
+                                                <a href="#">
+                                                    <router-link :to="{ name: 'stock.dashboard' }">
+                                                        @lang('back-office.Dashboard')
+                                                    </router-link>
                                                 </a>
                                             </li>
                                             <li>
-                                                <a @click="onList('stock', 5.2)" href="#">
-                                                    <span class="sidebar-mini-hide">@lang('back-office.Stock Levels')</span>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a @click="onList('items', 5.3)" href="#">
-                                                    <span class="sidebar-mini-hide">@lang('back-office.Movements')</span>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a @click="onList('items', 5.4)" href="#">
-                                                    <span class="sidebar-mini-hide">@lang('back-office.Inventories')</span>
+                                                <a href="#">
+                                                    <router-link :to="{ name: 'item.index' }">
+                                                        @lang('back-office.Products and Services')
+                                                    </router-link>
                                                 </a>
                                             </li>
                                         </ul>
@@ -306,19 +341,39 @@
                                         </a>
                                         <ul>
                                             <li>
-                                                <a @click="showModule = '1.6'" href="#">@lang('back-office.Dashboard')</a>
+                                                <a href="#">
+                                                    <router-link :to="{ name: 'finance.dashboard' }">
+                                                        @lang('back-office.Dashboard')
+                                                    </router-link>
+                                                </a>
                                             </li>
                                             <li>
-                                                <a @click="onList('accounts', 6.1)" href="#">@lang('back-office.Accounts')</a>
+                                                <a href="#">
+                                                    <router-link :to="{ name: 'account.index' }">
+                                                        @lang('back-office.Accounts')
+                                                    </router-link>
+                                                </a>
                                             </li>
                                             <li>
-                                                <a @click="onList('accounts', 6.2)" href="#">@lang('back-office.Account Recievables')</a>
+                                                <a href="#">
+                                                    <router-link :to="{ name: 'account-payable.index' }">
+                                                        @lang('back-office.Account Payables')
+                                                    </router-link>
+                                                </a>
                                             </li>
                                             <li>
-                                                <a @click="onList('accounts', 6.3)" href="#">@lang('back-office.Account Payables')</a>
+                                                <a href="#">
+                                                    <router-link :to="{ name: 'account-recievable.index' }">
+                                                        @lang('back-office.Account Recievables')
+                                                    </router-link>
+                                                </a>
                                             </li>
                                             <li>
-                                                <a @click="onList('accounts', 6.4)" href="#">@lang('back-office.Account Movements')</a>
+                                                <a href="#">
+                                                    <router-link :to="{ name: 'account_movement.index' }">
+                                                        @lang('back-office.Account Movements')
+                                                    </router-link>
+                                                </a>
                                             </li>
                                         </ul>
                                     </li>
@@ -467,97 +522,8 @@
             <!-- Main Container -->
             <div class="main-container">
                 <div class="container">
-                    <div v-if="showModule == '1'">
-                        @include('back_office/dashboard')
-                    </div>
-
-                    <div v-if="showModule == '2.1'">
-                        @include('back_office/configs/profile')
-                    </div>
-
-                    <div v-if="showModule == '2.3'">
-                        @include('back_office/configs/teams')
-                    </div>
-
-                    <div v-if="showModule == '2.2'">
-                        @include('back_office/configs/locations')
-                    </div>
-
-                    <div v-if="showModule == 2.4">
-                        @include('back_office/configs/contracts')
-                    </div>
-
-                    <div v-if="showModule == 2.5">
-                        @include('back_office/configs/vats')
-                    </div>
-
-                    <div v-if="showModule == '1.3'">
-                        @include('back_office/sales/dashboard')
-                    </div>
-
-                    <div v-if="showModule == 3.1">
-                        @include('back_office/sales/customers')
-                    </div>
-
-                    <div v-if="showModule == 3.3">
-                        @include('back_office/sales/pipeline')
-                    </div>
-
-                    <div v-if="showModule == 3.2">
-                        @include('back_office/sales/opportunity')
-                    </div>
-
-                    <div v-if="showModule == 3.4">
-                        @include('back_office/sales/orders')
-                    </div>
-
-                    <div v-if="showModule == 3.5">
-                        @include('back_office/sales/promotion')
-                    </div>
-
-                    <div v-if="showModule == '4.1'">
-                        @include('back_office/purchase/suppliers')
-                    </div>
-
-                    <div v-if="showModule == '1.4'">
-                        @include('back_office/purchase/dashboard')
-                    </div>
-
-                    <div v-if="showModule == '1.5'">
-                        @include('back_office/inventory/dashboard')
-                    </div>
-
-                    <div v-if="showModule == 5.1">
-                        @include('back_office/inventory/items')
-                    </div>
-
-                    <div v-if="showModule == 5.2">
-                        @include('back_office/inventory/items')
-                    </div>
-
-                    <div v-if="showModule == 5.3">
-                        @include('back_office/inventory/item_movements')
-                    </div>
-
-                    <div v-if="showModule == '1.6'">
-                        @include('back_office/finance/dashboard')
-                    </div>
-
-                    <div v-if="showModule == 6.1">
-                        @include('back_office/finance/accounts')
-                    </div>
-
-                    <div v-if="showModule == 6.2">
-                        @include('back_office/finance/account_receivables')
-                    </div>
-
-                    <div v-if="showModule == 6.3">
-                        @include('back_office/finance/account_payables')
-                    </div>
-
-                    <div v-if="showModule == 6.4">
-                        @include('back_office/finance/account_movements')
-                    </div>
+                    {{-- Used to load ajax-based views --}}
+                    <router-view></router-view>
                 </div>
             </div>
             <!-- END Main Container -->
