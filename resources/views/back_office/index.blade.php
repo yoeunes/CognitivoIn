@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('main')
-    <model profile="{{ request()->route('profile')->slug }}" inline-template>
+    {{-- <model profile="{{ request()->route('profile')->slug }}" inline-template> --}}
         {{-- main-content-boxed --}}
         <div id="page-container" class="sidebar-o page-header-modern side-trans-enabled">
             <!-- Side Overlay-->
@@ -540,5 +540,5 @@
             </footer>
             <!-- END Footer -->
         </div>
-    </model>
+    {{-- </model> --}}
 @endsection
