@@ -189,16 +189,17 @@ class AccountReceivableController extends Controller
         return response()->json('Resource not found', 404);
     }
 
-    public function search(Request $request, Profile $profile)
+    //GET Function to search for Accounts Receivables from Customer.
+    public function search(Profile $profile, $query)
     {
         $return = [];
 
         //return payment schedual. history of unpaid debt. by Customer TaxID
         $relationship = Relationship::GetCustomers()
-        ->where(function ($q) use ($request)
+        ->where(function ($q) use ($query)
         {
-            $q->where('customer_alias', $request->customer_alias)
-            ->orWhere('customer_taxid', $request->customer_taxid);
+            $q->where('customer_alias', 'LIKE', '"%' . $query . '%"')
+            ->orWhere('customer_taxid', 'LIKE', '"%' . $query . '%"');
         })
         ->first();
 
@@ -213,7 +214,7 @@ class AccountReceivableController extends Controller
             {
                 $values[$j] = [
                     'CurrencyCode' => $schedule->currency,
-                    'Value' => $schedule->getBalance(),
+                    'Value' => $schedule->balance,
                     'ReferenceCode' => $schedule->reference,
                     'InvoiceNumber' => $schedule->id,
                     'InvoiceDate' => $schedule->date,
@@ -236,11 +237,13 @@ class AccountReceivableController extends Controller
 
         return response()->json('Resource not found.', 401);
     }
+
     public function annull(Request $request, Profile $profile,$id)
     {
         $accountMovement = AccountMovement::where('id',$id)
         ->with('account')
         ->first();
+
         if (isset($accountMovement))
         {
             $account = $accountMovement->account;
@@ -257,6 +260,7 @@ class AccountReceivableController extends Controller
                 }
             }
         }
+
         return response()->json('Resource not found', 404);
     }
 }
