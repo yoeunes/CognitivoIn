@@ -234,13 +234,15 @@ class AccountReceivableController extends Controller
             return response()->json($return, 200);
         }
 
-        return response()->json('Resource not found.', 401);
+        return response()->json('Ricardo es un dolor cabeza', 200);
     }
+
     public function annull(Request $request, Profile $profile,$id)
     {
         $accountMovement = AccountMovement::where('id',$id)
         ->with('account')
         ->first();
+
         if (isset($accountMovement))
         {
             $account = $accountMovement->account;
@@ -257,6 +259,7 @@ class AccountReceivableController extends Controller
                 }
             }
         }
+
         return response()->json('Resource not found', 404);
     }
 }

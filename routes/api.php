@@ -81,6 +81,8 @@ Route::prefix('{profile}')->group(function ()
             //TODO
             Route::get('opportunities/{query}', 'OpportunityController@search');
             Route::get('orders/{query}', 'OrderController@search');
+
+            //Search Account Receivables by Customer
             Route::post('account-receivables', 'AccountReceivableController@search');
         });
 
@@ -90,7 +92,7 @@ Route::prefix('{profile}')->group(function ()
             Route::post('transaction', 'Api\TransactionController@SalesInvoice_createApprove');
             Route::post('opportunities', 'OpportunityController@approve');
 
-            //TODO
+            //TODO, change name to proper english. recEIved instead of recIEved
             Route::post('payment-made', 'AccountPayableController@store');
             Route::post('payment-recieved', 'AccountReceivableController@store');
         });
