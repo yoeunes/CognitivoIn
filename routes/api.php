@@ -81,13 +81,17 @@ Route::prefix('{profile}')->group(function ()
             //TODO
             Route::get('opportunities/{query}', 'OpportunityController@search');
             Route::get('orders/{query}', 'OrderController@search');
+            Route::get('account-receivables/{query}', 'AccountReceivableController@search');
+            Route::get('account-payables/{query}', 'AccountPayableController@search');
+
+            //Special Search using Post TODO Remove.
             Route::post('account-receivables', 'AccountReceivableController@search');
         });
 
         //Annull movements on specific modules
-        Route::prefix('approve')->group(function ()
+        Route::prefix('transact')->group(function ()
         {
-            Route::post('transaction', 'Api\TransactionController@SalesInvoice_createApprove');
+            Route::post('sales', 'Api\TransactionController@SalesInvoice_createApprove');
             Route::post('opportunities', 'OpportunityController@approve');
 
             //TODO
@@ -96,7 +100,7 @@ Route::prefix('{profile}')->group(function ()
         });
 
         //Annull movements on specific modules
-        Route::prefix('annull')->group(function ()
+        Route::prefix('revert')->group(function ()
         {
             Route::post('orders/{id}', 'OrderController@annul');
             Route::post('opportunities', 'OpportunityController@annul');
