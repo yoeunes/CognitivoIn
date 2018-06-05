@@ -83,7 +83,7 @@ Route::prefix('{profile}')->group(function ()
             Route::get('orders/{query}', 'OrderController@search');
             Route::get('account-receivables/{query}', 'AccountReceivableController@search');
             Route::get('account-payables/{query}', 'AccountPayableController@search');
-            
+
             //Search Account Receivables by Customer
             Route::post('account-receivables', 'AccountReceivableController@search');
         });
@@ -107,7 +107,7 @@ Route::prefix('{profile}')->group(function ()
 
             //TODO
             Route::post('payment-made/{id}', 'AccountPayableController@annul');
-            Route::post('payment-recieved/{id}', 'AccountReceivableController@annul');
+            Route::post('payment-recieved/{id}', 'AccountReceivableController@annull');
         });
 
 
