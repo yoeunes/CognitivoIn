@@ -189,27 +189,30 @@ class AccountReceivableController extends Controller
         return response()->json('Resource not found', 404);
     }
 
-    public function search(Request $request, Profile $profile)
+    public function search(Profile $profile, $query)
     {
         $return = [];
 
         //return payment schedual. history of unpaid debt. by Customer TaxID
         $relationship = Relationship::GetCustomers()
-        ->where(function ($q) use ($request)
+        ->where(function ($q) use ($query)
         {
-            $q->where('customer_alias', $request->customer_alias)
-            ->orWhere('customer_taxid', $request->customer_taxid);
+            $q->where('customer_alias', 'LIKE', '%' . $query . '%')
+            ->orWhere('customer_taxid', 'LIKE', '%' . $query . '%');
         })
         ->first();
 
         if (isset($relationship))
         {
-            $scheduals = Schedule::where('relationship_id', $relationship->id)->get();
+            //Bring only scheduals with positive balance. To make it less heavy.
+            $schedules = Schedule::where('relationship_id', $relationship->id)
+            // ->where('balance', '>', 0)
+            ->get();
 
             $values = [];
             $j = 0;
 
-            foreach ($scheduals as $schedule)
+            foreach ($schedules as $schedule)
             {
                 $values[$j] = [
                     'CurrencyCode' => $schedule->currency,
@@ -234,7 +237,7 @@ class AccountReceivableController extends Controller
             return response()->json($return, 200);
         }
 
-        return response()->json('Ricardo es un dolor cabeza', 200);
+        return response()->json('Customer not found.', 404);
     }
 
     public function annull(Request $request, Profile $profile,$id)
