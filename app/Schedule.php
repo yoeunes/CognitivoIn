@@ -34,7 +34,7 @@ class Schedule extends Model
 
     public function getBalanceAttribute()
     {
-        return $this->value - ($this->payments->sum('credit') ?? 0);
+        return $this->value - ($this->payments->where('status','!=',3)->sum('credit') ?? 0);
     }
 
     public function scopeReceivables($query)
