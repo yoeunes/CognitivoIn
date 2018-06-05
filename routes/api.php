@@ -46,7 +46,7 @@ Route::prefix('{profile}')->group(function ()
             'opportunities/{id}/items' => 'CartController',
             'orders' => 'OrderController',
 
-            'accounts' => 'AccountsController',
+            'accounts' => 'AccountController',
             'account-payables' => 'AccountPayableController',
             'account-receivables' => 'AccountReceivableController',
             'account-movement' => 'AccountMovementController'
@@ -64,7 +64,7 @@ Route::prefix('{profile}')->group(function ()
             Route::get('pipelines/{filterBy}', 'PipelineController@index');
             Route::get('opportunities/{filterBy}', 'OpportunityController@index');
             Route::get('orders/{filterBy}', 'OrderController@index');
-            Route::get('accounts/{filterBy}', 'AccountsController@index');
+            Route::get('accounts/{filterBy}', 'AccountController@index');
             Route::get('account-payables/{filterBy}', 'AccountPayableController@index');
             Route::get('account-receivables/{filterBy}', 'AccountReceivableController@index');
             Route::get('account-movement/{filterBy}', 'AccountMovementController@index');
