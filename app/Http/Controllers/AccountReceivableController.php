@@ -49,7 +49,7 @@ class AccountReceivableController extends Controller
     public function store(Request $request, Profile $profile)
     {
         $return = [];
-        $account = Account::where('id',$request->account_id)->first();
+        $account = Account::where('id', $request->account_id)->first();
 
         if (!isset($account))
         {
@@ -64,7 +64,6 @@ class AccountReceivableController extends Controller
                 $account->currency = $profile->currency;
                 $account->save();
             }
-
         }
 
         $schedual = Schedule::where('id', $request->InvoiceNumber)->first();
@@ -198,7 +197,7 @@ class AccountReceivableController extends Controller
         ->where(function ($q) use ($query)
         {
             $q->where('customer_alias', 'LIKE', '%' . $query . '%')
-            ->orWhere('customer_taxid', 'LIKE', '%' . $query . '%');
+            ->orWhere('customer_taxid', $query);
         })
         ->first();
 
@@ -221,6 +220,7 @@ class AccountReceivableController extends Controller
                     'InvoiceNumber' => $schedule->id,
                     'InvoiceDate' => $schedule->date,
                     'Deadline' => $schedule->due_date,
+                    'Currency' => $profile->currency
                 ];
 
                 $j = $j + 1;
@@ -229,8 +229,8 @@ class AccountReceivableController extends Controller
             //for each currency requested, run loop and add into array
             $return[] =
             [
-                'ReferenceName' => $relationship->customer_alias,
-                'ReferenceTaxID' => $relationship->customer_taxid,
+                'Customer' => $relationship->customer_alias,
+                'CustomerTaxID' => $relationship->customer_taxid,
                 'Details' => $values
             ];
 
@@ -258,11 +258,13 @@ class AccountReceivableController extends Controller
                     $accountMovement->status = 3;
                     $accountMovement->comment = $request['Comment'];
                     $accountMovement->save();
-                    return response()->json('Annulled', 200);
+                    $accountMovement->delete();
+
+                    return response()->json('Payment Annulled', 200);
                 }
             }
         }
 
-        return response()->json('Resource not found', 404);
+        return response()->json('Payment not found', 404);
     }
 }

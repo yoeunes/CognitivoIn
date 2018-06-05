@@ -96,7 +96,7 @@ Route::prefix('{profile}')->group(function ()
 
             //TODO, change name to proper english. recEIved instead of recIEved
             Route::post('payment-made', 'AccountPayableController@store');
-            Route::post('payment-recieved', 'AccountReceivableController@store');
+            Route::post('payment-received', 'AccountReceivableController@store');
         });
 
         //Annull movements on specific modules
