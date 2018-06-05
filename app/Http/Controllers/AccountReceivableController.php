@@ -226,8 +226,8 @@ class AccountReceivableController extends Controller
             //for each currency requested, run loop and add into array
             $return[] =
             [
-                'ReferenceName' => $request->customer_alias,
-                'ReferenceTaxID' => $request->customer_taxid,
+                'ReferenceName' => $relationship->customer_alias,
+                'ReferenceTaxID' => $relationship->customer_taxid,
                 'Details' => $values
             ];
 
