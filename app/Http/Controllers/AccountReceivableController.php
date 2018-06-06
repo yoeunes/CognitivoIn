@@ -205,9 +205,9 @@ class AccountReceivableController extends Controller
         {
             //Bring only scheduals with positive balance. To make it less heavy.
             $schedules = Schedule::where('relationship_id', $relationship->id)
-            ->where('balance', '>', 0)
+            //->where('balance', '>', 0)
             ->get();
-
+            $schedules=$schedules->where('balance', '>', 0)->get();
             $values = [];
             $j = 0;
 
