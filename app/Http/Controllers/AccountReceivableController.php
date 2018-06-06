@@ -49,7 +49,7 @@ class AccountReceivableController extends Controller
     public function store(Request $request, Profile $profile)
     {
         $return = [];
-        $account = Account::where('id', $request->account_id)->first();
+        $account = Account::where('id', $request->AccountId)->first();
 
         if (!isset($account))
         {
@@ -73,18 +73,17 @@ class AccountReceivableController extends Controller
             $accountMovement = new AccountMovement();
             $accountMovement->schedule_id = $request->InvoiceNumber;
             $accountMovement->account_id = $account->id;
-            $accountMovement->user_id = $request->user_id ?? null;
-            $accountMovement->location_id = $request->location_id ?? null;
-            $accountMovement->type = $request->payment_type ?? 1;
-            $accountMovement->currency = $request->currency;
+            $accountMovement->location_id = $request->LocationId ?? null;
+            $accountMovement->type = $request->PaymentType ?? 1;
+            $accountMovement->currency = $request->Currency;
 
             if ($request['Currency'] != $schedual->currency)
-            { $accountMovement->currency_rate = Swap::latest($schedual->currency . '/' . $request->currency)->getValue(); }
+            { $accountMovement->currency_rate = Swap::latest($request->Currency . '/' . $schedual->currency)->getValue(); }
             else
             { $accountMovement->currency_rate = 1; }
 
-            $accountMovement->date = $request->date ?? Carbon::now();
-            $accountMovement->credit = $request->value;
+            $accountMovement->date = $request->Date ?? Carbon::now();
+            $accountMovement->credit = $request->Value;
             $accountMovement->debit = 0;
 
             $accountMovement->save();
@@ -220,8 +219,8 @@ class AccountReceivableController extends Controller
                     'ReferenceCode' => $schedule->reference,
                     'InvoiceNumber' => $schedule->id,
                     'InvoiceDate' => $schedule->date,
-                    'Deadline' => $schedule->due_date,
-                    'Currency' => $profile->currency
+                    'Deadline' => $schedule->due_date
+
                 ];
 
                 $j = $j + 1;
