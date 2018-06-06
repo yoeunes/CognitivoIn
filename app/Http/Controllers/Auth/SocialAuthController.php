@@ -159,7 +159,7 @@ class SocialAuthController extends Controller
     {
       $user = User::where('email',$email)->first();
       Auth::login($user, true);
-      return response()->json([$user]);
+      return response()->json([$user],200);
     }
     else
     {
