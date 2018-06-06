@@ -78,7 +78,7 @@ class AccountReceivableController extends Controller
             $accountMovement->currency = $request->Currency;
 
             if ($request['Currency'] != $schedual->currency)
-            { $accountMovement->currency_rate = Swap::latest($request->Currency . '/' . $schedual->currency)->getValue(); }
+            { $accountMovement->currency_rate = Swap::latest($schedual->currency . '/' .$request->Currency)->getValue(); }
             else
             { $accountMovement->currency_rate = 1; }
 
