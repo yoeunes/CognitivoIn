@@ -207,6 +207,7 @@ class AccountReceivableController extends Controller
             $schedules = Schedule::where('relationship_id', $relationship->id)
             //->where('balance', '>', 0)
             ->get();
+            $schedules=collect($schedules);
             $schedules=$schedules->where('balance', '>', 0)->get();
             $values = [];
             $j = 0;
