@@ -66,32 +66,39 @@ class AccountReceivableController extends Controller
             }
         }
 
-        $schedual = Schedule::where('id', $request->InvoiceNumber)->first();
+        $schedual = Schedule::where('id', $request->ReferenceID)->first();
 
         if (isset($schedual))
         {
-            $accountMovement = new AccountMovement();
-            $accountMovement->schedule_id = $request->InvoiceNumber;
-            $accountMovement->account_id = $account->id;
-            $accountMovement->location_id = $request->LocationId ?? null;
-            $accountMovement->type = $request->PaymentType ?? 1;
-            $accountMovement->currency = $request->Currency;
+            if ($schedual->balance>0) {
 
-            if ($request['Currency'] != $schedual->currency)
-            { $accountMovement->currency_rate = Swap::latest($schedual->currency . '/' .$request->Currency)->getValue(); }
-            else
-            { $accountMovement->currency_rate = 1; }
 
-            $accountMovement->date = $request->Date ?? Carbon::now();
-            $accountMovement->credit = $request->Value;
-            $accountMovement->debit = 0;
+                $accountMovement = new AccountMovement();
+                $accountMovement->schedule_id = $request->ReferenceID;
+                $accountMovement->account_id = $account->id;
+                $accountMovement->location_id = $request->LocationId ?? null;
+                $accountMovement->type = $request->PaymentType ?? 1;
+                $accountMovement->currency = $request->Currency;
 
-            $accountMovement->save();
+                if ($request['Currency'] != $schedual->currency)
+                { $accountMovement->currency_rate = Swap::latest($schedual->currency . '/' .$request->Currency)->getValue(); }
+                else
+                { $accountMovement->currency_rate = 1; }
 
-            $return[] = [
-                'PaymentReference' => $accountMovement->id,
-                'ResponseType' => 1
-            ];
+                $accountMovement->date = $request->Date ?? Carbon::now();
+                $accountMovement->credit = $request->Value;
+                $accountMovement->debit = 0;
+
+                $accountMovement->save();
+
+                $return[] = [
+                    'PaymentReference' => $accountMovement->id,
+                    'ResponseType' => 1
+                ];
+            }
+            else {
+                return response()->json('Excess Payment ', 200);
+            }
         }
 
         return response()->json($return, 200);
@@ -215,9 +222,9 @@ class AccountReceivableController extends Controller
             {
                 $values[$j] = [
                     'CurrencyCode' => $schedule->currency,
-                    'Value' => $schedule->balance,
+                    'Balance' => $schedule->balance,
                     'ReferenceCode' => $schedule->reference,
-                    'InvoiceNumber' => $schedule->id,
+                    'ReferenceID' => $schedule->id,
                     'InvoiceDate' => $schedule->date,
                     'Deadline' => $schedule->due_date
 

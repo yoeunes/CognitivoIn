@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use DB;
 
 class Schedule extends Model
 {
@@ -24,8 +25,7 @@ class Schedule extends Model
         'order_id',
         'currency',
         'rate',
-        'debit',
-        'credit',
+        'value',
         'date',
         'due_date',
         'classification',
@@ -34,7 +34,10 @@ class Schedule extends Model
 
     public function getBalanceAttribute()
     {
-        return $this->value - ($this->payments->where('status','!=',3)->sum('credit') ?? 0);
+        $payments=$this->payments->where('status','!=',3);
+        return $this->value - ($payments->sum(function ($payment) {
+            return $payment->credit / $payment->currency_rate;
+        }));
     }
 
     public function scopeReceivables($query)
