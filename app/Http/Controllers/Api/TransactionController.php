@@ -50,8 +50,8 @@ class TransactionController extends Controller
         $order->is_impex = $data['isImpex'] ?? false;
 
         $order->date = $data['date'] ?? Carbon::now();
-        $order->currency = $data->currency ?? $profile->currency;
-        $order->currency_rate = ($data['rate'] ?? Swap::latest($profile->currency . '/' . $data->currency)->getValue()) ?? 1;
+        $order->currency = $data['currency']? $data['currency']:$profile->currency;
+        $order->currency_rate = ($data['rate'] ?? Swap::latest($profile->currency . '/' . $order->currency)->getValue()) ?? 1;
         $order->save();
 
         foreach ($data['details'] as $data_detail)

@@ -160,7 +160,9 @@ class ProfileController extends Controller
     public function get_companies($id)
     {
         $user = User::where('profile_id', $id)->first();
-        $companies = $user->profile->followings(\App\Profile::class)->where('role', '<', 4)->get();
+        $companies = $user->profile->followings(\App\Profile::class)
+        ->where('role', '<', 4)
+        ->get();
         return response()->json($companies);
     }
 
