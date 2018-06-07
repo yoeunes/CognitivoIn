@@ -50,16 +50,16 @@ class TransactionController extends Controller
         $order->is_impex = $data['isImpex'] ?? false;
 
         $order->date = $data['date'] ?? Carbon::now();
-        $order->currency = $data['currency']? $data['currency']:$profile->currency;
+        $order->currency = $data['currency'] ?? $profile->currency;
         $order->currency_rate = ($data['rate'] ?? Swap::latest($profile->currency . '/' . $order->currency)->getValue()) ?? 1;
         $order->save();
 
         foreach ($data['details'] as $data_detail)
         {
-            $item=Item::where('id',$data_detail['id'])->select('id','vat_id')->first();
+            $item = Item::where('id', $data_detail['id'])->select('id', 'vat_id')->first();
             $detail = new OrderDetail();
             $detail->order_id = $order->id;
-            $detail->item_id =$item->id;
+            $detail->item_id = $item->id;
 
             $detail->item_sku = $data_detail['sku'];
             $detail->item_name = $data_detail['name'];
@@ -152,7 +152,7 @@ class TransactionController extends Controller
         $order->save();
 
         //assign id to collection.
-        $data->ref_id=$order->id;
+        $data->ref_id = $order->id;
 
         //Is it possible to use $order instead of getting fresh data from db?
         //$order = Order::where('id', $order->id)->with('details')->first();
