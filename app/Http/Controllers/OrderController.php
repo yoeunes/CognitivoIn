@@ -163,6 +163,7 @@ class OrderController extends Controller
             foreach ($contractDetails as $detail)
             {
                 $schedule = new Schedule();
+                $schedule->order_id = $order->id;
                 $schedule->relationship_id = $order->relationship_id;
                 $schedule->reference = $order->number;
                 $schedule->currency = $order->currency;
@@ -183,7 +184,9 @@ class OrderController extends Controller
         else
         {
             $schedule = new Schedule();
+            $schedule->order_id = $order->id;
             $schedule->relationship_id = $order->relationship_id;
+            $schedule->reference = $order->number;
             $schedule->currency = $order->currency;
             $schedule->currency_rate = $order->currency_rate;
             $schedule->date = Carbon::now();
