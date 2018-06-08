@@ -16,7 +16,6 @@
             <td>@{{ opportunity.value }}</td>
             <td class="text-center">
                 <div class="btn-group">
-
                     <button v-on:click="onShow(opportunity)" type="button" class="btn btn-sm btn-secondary js-tooltip-enabled" data-toggle="tooltip" data-original-title="Show">
                         <i class="fa fa-eye"></i>
                     </button>

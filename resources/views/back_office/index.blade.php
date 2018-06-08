@@ -465,100 +465,96 @@
             <!-- END Header -->
 
             <!-- Main Container -->
-            <div class="main-container">
-                <div class="container">
-                    <div v-if="showModule == '1'">
-                        @include('back_office/dashboard')
-                    </div>
+            <div v-if="showModule == '1'">
+                @include('back_office/dashboard')
+            </div>
 
-                    <div v-if="showModule == '2.1'">
-                        @include('back_office/configs/profile')
-                    </div>
+            <div v-if="showModule == '2.1'">
+                @include('back_office/configs/profile')
+            </div>
 
-                    <div v-if="showModule == '2.3'">
-                        @include('back_office/configs/teams')
-                    </div>
+            <div v-if="showModule == '2.3'">
+                @include('back_office/configs/teams')
+            </div>
 
-                    <div v-if="showModule == '2.2'">
-                        @include('back_office/configs/locations')
-                    </div>
+            <div v-if="showModule == '2.2'">
+                @include('back_office/configs/locations')
+            </div>
 
-                    <div v-if="showModule == 2.4">
-                        @include('back_office/configs/contracts')
-                    </div>
+            <div v-if="showModule == 2.4">
+                @include('back_office/configs/contracts')
+            </div>
 
-                    <div v-if="showModule == 2.5">
-                        @include('back_office/configs/vats')
-                    </div>
+            <div v-if="showModule == 2.5">
+                @include('back_office/configs/vats')
+            </div>
 
-                    <div v-if="showModule == '1.3'">
-                        @include('back_office/sales/dashboard')
-                    </div>
+            <div v-if="showModule == '1.3'">
+                @include('back_office/sales/dashboard')
+            </div>
 
-                    <div v-if="showModule == 3.1">
-                        @include('back_office/sales/customers')
-                    </div>
+            <div v-if="showModule == 3.1">
+                @include('back_office/sales/customers')
+            </div>
 
-                    <div v-if="showModule == 3.3">
-                        @include('back_office/sales/pipeline')
-                    </div>
+            <div v-if="showModule == 3.3">
+                @include('back_office/sales/pipeline')
+            </div>
 
-                    <div v-if="showModule == 3.2">
-                        @include('back_office/sales/opportunity')
-                    </div>
+            <div v-if="showModule == 3.2">
+                @include('back_office/sales/opportunity')
+            </div>
 
-                    <div v-if="showModule == 3.4">
-                        @include('back_office/sales/orders')
-                    </div>
+            <div v-if="showModule == 3.4">
+                @include('back_office/sales/orders')
+            </div>
 
-                    <div v-if="showModule == 3.5">
-                        @include('back_office/sales/promotion')
-                    </div>
+            <div v-if="showModule == 3.5">
+                @include('back_office/sales/promotion')
+            </div>
 
-                    <div v-if="showModule == '4.1'">
-                        @include('back_office/purchase/suppliers')
-                    </div>
+            <div v-if="showModule == '4.1'">
+                @include('back_office/purchase/suppliers')
+            </div>
 
-                    <div v-if="showModule == '1.4'">
-                        @include('back_office/purchase/dashboard')
-                    </div>
+            <div v-if="showModule == '1.4'">
+                @include('back_office/purchase/dashboard')
+            </div>
 
-                    <div v-if="showModule == '1.5'">
-                        @include('back_office/inventory/dashboard')
-                    </div>
+            <div v-if="showModule == '1.5'">
+                @include('back_office/inventory/dashboard')
+            </div>
 
-                    <div v-if="showModule == 5.1">
-                        @include('back_office/inventory/items')
-                    </div>
+            <div v-if="showModule == 5.1">
+                @include('back_office/inventory/items')
+            </div>
 
-                    <div v-if="showModule == 5.2">
-                        @include('back_office/inventory/items')
-                    </div>
+            <div v-if="showModule == 5.2">
+                @include('back_office/inventory/items')
+            </div>
 
-                    <div v-if="showModule == 5.3">
-                        @include('back_office/inventory/item_movements')
-                    </div>
+            <div v-if="showModule == 5.3">
+                @include('back_office/inventory/item_movements')
+            </div>
 
-                    <div v-if="showModule == '1.6'">
-                        @include('back_office/finance/dashboard')
-                    </div>
+            <div v-if="showModule == '1.6'">
+                @include('back_office/finance/dashboard')
+            </div>
 
-                    <div v-if="showModule == 6.1">
-                        @include('back_office/finance/accounts')
-                    </div>
+            <div v-if="showModule == 6.1">
+                @include('back_office/finance/accounts')
+            </div>
 
-                    <div v-if="showModule == 6.2">
-                        @include('back_office/finance/account_receivables')
-                    </div>
+            <div v-if="showModule == 6.2">
+                @include('back_office/finance/account_receivables')
+            </div>
 
-                    <div v-if="showModule == 6.3">
-                        @include('back_office/finance/account_payables')
-                    </div>
+            <div v-if="showModule == 6.3">
+                @include('back_office/finance/account_payables')
+            </div>
 
-                    <div v-if="showModule == 6.4">
-                        @include('back_office/finance/account_movements')
-                    </div>
-                </div>
+            <div v-if="showModule == 6.4">
+                @include('back_office/finance/account_movements')
             </div>
             <!-- END Main Container -->
 

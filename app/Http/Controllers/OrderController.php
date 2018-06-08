@@ -94,9 +94,13 @@ class OrderController extends Controller
     * @param  \App\Order  $order
     * @return \Illuminate\Http\Response
     */
-    public function show(Profile $profile, Order $order)
+    public function show(Profile $profile, $orderID)
     {
-        $order = Order::where('id', $order->id)->with('details')->first();
+        $order = Order::where('id', $orderID)
+        ->with('details')
+        // ->with('customer')
+        ->first();
+
         return response()->json($order);
     }
 
