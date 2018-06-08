@@ -91,7 +91,7 @@ const router = new VueRouter({
         //{ path: '/', name: 'dashboard', component: Dashboard },
         { path: '/:profile/dashboard', name: 'dashboard', component: Dashboard },
 
-        { path: '/:profile/config/profile', name: 'profile.form', component: ProfileForm },
+        { path: '/config/profile', name: 'profile.form', component: ProfileForm },
         { path: '/:profile/config/locations', name: 'location.index', component: Location },
         { path: '/:profile/config/sales-taxes', name: 'sales-taxes.index', component: SalesTax },
         { path: '/:profile/config/contracts', name: 'contracts.index', component: Contract },

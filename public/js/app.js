@@ -715,7 +715,7 @@ if (typeof DEBUG !== 'undefined' && DEBUG) {
   ) }
 }
 
-var listToStyles = __webpack_require__(84)
+var listToStyles = __webpack_require__(86)
 
 /*
 type StyleObject = {
@@ -15240,7 +15240,7 @@ module.exports = Cancel;
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(16);
-module.exports = __webpack_require__(97);
+module.exports = __webpack_require__(99);
 
 
 /***/ }),
@@ -15260,59 +15260,59 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_buefy_lib_buefy_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_buefy_lib_buefy_css__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__views_Dashboard__ = __webpack_require__(55);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__views_Dashboard___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6__views_Dashboard__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__views_NotFoundComponent__ = __webpack_require__(111);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__views_NotFoundComponent__ = __webpack_require__(56);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__views_NotFoundComponent___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7__views_NotFoundComponent__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__views_config_ProfileForm__ = __webpack_require__(112);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__views_config_ProfileForm__ = __webpack_require__(57);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__views_config_ProfileForm___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_8__views_config_ProfileForm__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__views_config_Location__ = __webpack_require__(56);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__views_config_Location__ = __webpack_require__(58);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__views_config_Location___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_9__views_config_Location__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__views_config_SalesTax__ = __webpack_require__(57);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__views_config_SalesTax__ = __webpack_require__(59);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__views_config_SalesTax___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_10__views_config_SalesTax__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__views_config_Contract__ = __webpack_require__(58);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__views_config_Contract__ = __webpack_require__(60);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__views_config_Contract___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_11__views_config_Contract__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__views_config_TeamMember__ = __webpack_require__(59);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__views_config_TeamMember__ = __webpack_require__(61);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__views_config_TeamMember___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_12__views_config_TeamMember__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__views_crm_Dashboard__ = __webpack_require__(60);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__views_crm_Dashboard__ = __webpack_require__(62);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__views_crm_Dashboard___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_13__views_crm_Dashboard__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__views_crm_Pipeline__ = __webpack_require__(61);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__views_crm_Pipeline__ = __webpack_require__(63);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__views_crm_Pipeline___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_14__views_crm_Pipeline__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__views_crm_Opportunity__ = __webpack_require__(62);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__views_crm_Opportunity__ = __webpack_require__(64);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__views_crm_Opportunity___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_15__views_crm_Opportunity__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__views_crm_OpportunityForm__ = __webpack_require__(63);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__views_crm_OpportunityForm__ = __webpack_require__(65);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__views_crm_OpportunityForm___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_16__views_crm_OpportunityForm__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__views_sales_Dashboard__ = __webpack_require__(64);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__views_sales_Dashboard__ = __webpack_require__(66);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__views_sales_Dashboard___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_17__views_sales_Dashboard__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__views_sales_Customer__ = __webpack_require__(65);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__views_sales_Customer__ = __webpack_require__(67);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__views_sales_Customer___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_18__views_sales_Customer__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__views_sales_CustomerForm__ = __webpack_require__(66);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__views_sales_CustomerForm__ = __webpack_require__(68);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__views_sales_CustomerForm___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_19__views_sales_CustomerForm__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__views_sales_Order__ = __webpack_require__(67);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__views_sales_Order__ = __webpack_require__(69);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__views_sales_Order___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_20__views_sales_Order__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__views_sales_OrderForm__ = __webpack_require__(68);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__views_sales_OrderForm__ = __webpack_require__(70);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__views_sales_OrderForm___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_21__views_sales_OrderForm__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__views_purchase_Dashboard__ = __webpack_require__(69);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__views_purchase_Dashboard__ = __webpack_require__(71);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__views_purchase_Dashboard___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_22__views_purchase_Dashboard__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__views_purchase_Supplier__ = __webpack_require__(70);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__views_purchase_Supplier__ = __webpack_require__(72);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__views_purchase_Supplier___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_23__views_purchase_Supplier__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__views_purchase_SupplierForm__ = __webpack_require__(71);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__views_purchase_SupplierForm__ = __webpack_require__(73);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__views_purchase_SupplierForm___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_24__views_purchase_SupplierForm__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__views_stock_Dashboard__ = __webpack_require__(72);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__views_stock_Dashboard__ = __webpack_require__(74);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__views_stock_Dashboard___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_25__views_stock_Dashboard__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__views_stock_Item__ = __webpack_require__(73);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__views_stock_Item__ = __webpack_require__(75);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__views_stock_Item___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_26__views_stock_Item__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__views_stock_ItemForm__ = __webpack_require__(74);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__views_stock_ItemForm__ = __webpack_require__(76);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__views_stock_ItemForm___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_27__views_stock_ItemForm__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_28__views_finance_Dashboard__ = __webpack_require__(75);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_28__views_finance_Dashboard__ = __webpack_require__(77);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_28__views_finance_Dashboard___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_28__views_finance_Dashboard__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_29__views_finance_Account__ = __webpack_require__(76);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_29__views_finance_Account__ = __webpack_require__(78);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_29__views_finance_Account___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_29__views_finance_Account__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_30__views_finance_AccountForm__ = __webpack_require__(77);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_30__views_finance_AccountForm__ = __webpack_require__(79);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_30__views_finance_AccountForm___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_30__views_finance_AccountForm__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_31__views_finance_AccountPayable__ = __webpack_require__(78);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_31__views_finance_AccountPayable__ = __webpack_require__(80);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_31__views_finance_AccountPayable___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_31__views_finance_AccountPayable__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_32__views_finance_AccountReceivable__ = __webpack_require__(79);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_32__views_finance_AccountReceivable__ = __webpack_require__(81);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_32__views_finance_AccountReceivable___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_32__views_finance_AccountReceivable__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_33__views_finance_AccountMovement__ = __webpack_require__(80);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_33__views_finance_AccountMovement__ = __webpack_require__(82);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_33__views_finance_AccountMovement___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_33__views_finance_AccountMovement__);
 
 /**
@@ -15384,9 +15384,9 @@ Back-Office views to be used for Ajax Loaded sites.
 * or customize the JavaScript scaffolding to fit your unique needs.
 */
 
-__WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('passport-clients', __webpack_require__(81));
-__WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('passport-authorized-clients', __webpack_require__(87));
-__WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('passport-personal-access-tokens', __webpack_require__(92));
+__WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('passport-clients', __webpack_require__(83));
+__WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('passport-authorized-clients', __webpack_require__(89));
+__WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('passport-personal-access-tokens', __webpack_require__(94));
 
 //Note: These tasks are only needed to show views.
 var router = new __WEBPACK_IMPORTED_MODULE_2_vue_router__["a" /* default */]({
@@ -15396,7 +15396,7 @@ var router = new __WEBPACK_IMPORTED_MODULE_2_vue_router__["a" /* default */]({
     { path: '/*', component: __WEBPACK_IMPORTED_MODULE_7__views_NotFoundComponent___default.a },
 
     //{ path: '/', name: 'dashboard', component: Dashboard },
-    { path: '/:profile/dashboard', name: 'dashboard', component: __WEBPACK_IMPORTED_MODULE_6__views_Dashboard___default.a }, { path: '/:profile/config/profile', name: 'profile.form', component: __WEBPACK_IMPORTED_MODULE_8__views_config_ProfileForm___default.a }, { path: '/:profile/config/locations', name: 'location.index', component: __WEBPACK_IMPORTED_MODULE_9__views_config_Location___default.a }, { path: '/:profile/config/sales-taxes', name: 'sales-taxes.index', component: __WEBPACK_IMPORTED_MODULE_10__views_config_SalesTax___default.a }, { path: '/:profile/config/contracts', name: 'contracts.index', component: __WEBPACK_IMPORTED_MODULE_11__views_config_Contract___default.a }, { path: '/:profile/config/team-members', name: 'team-members.index', component: __WEBPACK_IMPORTED_MODULE_12__views_config_TeamMember___default.a }, { path: '/:profile/crm/dashboard', name: 'crm.dashboard', component: __WEBPACK_IMPORTED_MODULE_6__views_Dashboard___default.a }, { path: '/:profile/crm/pipelines', name: 'pipeline.index', component: __WEBPACK_IMPORTED_MODULE_14__views_crm_Pipeline___default.a }, { path: '/:profile/crm/opportunities', name: 'opportunity.index', component: __WEBPACK_IMPORTED_MODULE_15__views_crm_Opportunity___default.a }, { path: '/:profile/crm/opportunity/:id', name: 'opportunity.show', component: __WEBPACK_IMPORTED_MODULE_16__views_crm_OpportunityForm___default.a }, { path: '/:profile/sales/dashboard', name: 'sales.dashboard', component: __WEBPACK_IMPORTED_MODULE_6__views_Dashboard___default.a }, { path: '/:profile/sales/customers', name: 'customer.index', component: __WEBPACK_IMPORTED_MODULE_18__views_sales_Customer___default.a }, { path: '/:profile/sales/customer/:id', name: 'customer.form', component: __WEBPACK_IMPORTED_MODULE_19__views_sales_CustomerForm___default.a },
+    { path: '/:profile/dashboard', name: 'dashboard', component: __WEBPACK_IMPORTED_MODULE_6__views_Dashboard___default.a }, { path: '/config/profile', name: 'profile.form', component: __WEBPACK_IMPORTED_MODULE_8__views_config_ProfileForm___default.a }, { path: '/:profile/config/locations', name: 'location.index', component: __WEBPACK_IMPORTED_MODULE_9__views_config_Location___default.a }, { path: '/:profile/config/sales-taxes', name: 'sales-taxes.index', component: __WEBPACK_IMPORTED_MODULE_10__views_config_SalesTax___default.a }, { path: '/:profile/config/contracts', name: 'contracts.index', component: __WEBPACK_IMPORTED_MODULE_11__views_config_Contract___default.a }, { path: '/:profile/config/team-members', name: 'team-members.index', component: __WEBPACK_IMPORTED_MODULE_12__views_config_TeamMember___default.a }, { path: '/:profile/crm/dashboard', name: 'crm.dashboard', component: __WEBPACK_IMPORTED_MODULE_6__views_Dashboard___default.a }, { path: '/:profile/crm/pipelines', name: 'pipeline.index', component: __WEBPACK_IMPORTED_MODULE_14__views_crm_Pipeline___default.a }, { path: '/:profile/crm/opportunities', name: 'opportunity.index', component: __WEBPACK_IMPORTED_MODULE_15__views_crm_Opportunity___default.a }, { path: '/:profile/crm/opportunity/:id', name: 'opportunity.show', component: __WEBPACK_IMPORTED_MODULE_16__views_crm_OpportunityForm___default.a }, { path: '/:profile/sales/dashboard', name: 'sales.dashboard', component: __WEBPACK_IMPORTED_MODULE_6__views_Dashboard___default.a }, { path: '/:profile/sales/customers', name: 'customer.index', component: __WEBPACK_IMPORTED_MODULE_18__views_sales_Customer___default.a }, { path: '/:profile/sales/customer/:id', name: 'customer.form', component: __WEBPACK_IMPORTED_MODULE_19__views_sales_CustomerForm___default.a },
     // { path: '/:profile/sales/carts', name: 'carts', component: Carts },
     { path: '/:profile/sales/orders', name: 'order.index', component: __WEBPACK_IMPORTED_MODULE_20__views_sales_Order___default.a }, { path: '/:profile/sales/order/:id', name: 'order.form', component: __WEBPACK_IMPORTED_MODULE_21__views_sales_OrderForm___default.a }, { path: '/:profile/purchases/dashboard', name: 'purchase.dashboard', component: __WEBPACK_IMPORTED_MODULE_6__views_Dashboard___default.a }, { path: '/:profile/purchases/suppliers', name: 'supplier.index', component: __WEBPACK_IMPORTED_MODULE_23__views_purchase_Supplier___default.a }, { path: '/:profile/purchases/supplier/:id', name: 'supplier.form', component: __WEBPACK_IMPORTED_MODULE_24__views_purchase_SupplierForm___default.a }, { path: '/:profile/stocks/dashboard', name: 'stock.dashboard', component: __WEBPACK_IMPORTED_MODULE_6__views_Dashboard___default.a }, { path: '/:profile/stocks/items', name: 'item.index', component: __WEBPACK_IMPORTED_MODULE_26__views_stock_Item___default.a }, { path: '/:profile/stocks/item/:id', name: 'item.form', component: __WEBPACK_IMPORTED_MODULE_27__views_stock_ItemForm___default.a }, { path: '/:profile/finances/dashboard', name: 'finance.dashboard', component: __WEBPACK_IMPORTED_MODULE_6__views_Dashboard___default.a }, { path: '/:profile/finances/accounts', name: 'account.index', component: __WEBPACK_IMPORTED_MODULE_29__views_finance_Account___default.a }, { path: '/:profile/finances/account/:id', name: 'account.form', component: __WEBPACK_IMPORTED_MODULE_30__views_finance_AccountForm___default.a }, { path: '/:profile/finances/account-payables', name: 'account-payable.index', component: __WEBPACK_IMPORTED_MODULE_31__views_finance_AccountPayable___default.a }, { path: '/:profile/finances/account-recievables', name: 'account-recievable.index', component: __WEBPACK_IMPORTED_MODULE_32__views_finance_AccountReceivable___default.a }, { path: '/:profile/finances/account-movements', name: 'account_movement.index', component: __WEBPACK_IMPORTED_MODULE_33__views_finance_AccountMovement___default.a }]
 });
@@ -54461,7 +54461,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources/assets/js/views/config/Location.vue"
+Component.options.__file = "resources/assets/js/views/NotFoundComponent.vue"
 
 module.exports = Component.exports
 
@@ -54491,7 +54491,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources/assets/js/views/config/SalesTax.vue"
+Component.options.__file = "resources/assets/js/views/config/ProfileForm.vue"
 
 module.exports = Component.exports
 
@@ -54521,7 +54521,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources/assets/js/views/config/Contract.vue"
+Component.options.__file = "resources/assets/js/views/config/Location.vue"
 
 module.exports = Component.exports
 
@@ -54551,7 +54551,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources/assets/js/views/config/TeamMember.vue"
+Component.options.__file = "resources/assets/js/views/config/SalesTax.vue"
 
 module.exports = Component.exports
 
@@ -54581,7 +54581,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources/assets/js/views/crm/Dashboard.vue"
+Component.options.__file = "resources/assets/js/views/config/Contract.vue"
 
 module.exports = Component.exports
 
@@ -54611,7 +54611,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources/assets/js/views/crm/Pipeline.vue"
+Component.options.__file = "resources/assets/js/views/config/TeamMember.vue"
 
 module.exports = Component.exports
 
@@ -54641,7 +54641,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources/assets/js/views/crm/Opportunity.vue"
+Component.options.__file = "resources/assets/js/views/crm/Dashboard.vue"
 
 module.exports = Component.exports
 
@@ -54671,7 +54671,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources/assets/js/views/crm/OpportunityForm.vue"
+Component.options.__file = "resources/assets/js/views/crm/Pipeline.vue"
 
 module.exports = Component.exports
 
@@ -54701,7 +54701,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources/assets/js/views/sales/Dashboard.vue"
+Component.options.__file = "resources/assets/js/views/crm/Opportunity.vue"
 
 module.exports = Component.exports
 
@@ -54731,7 +54731,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources/assets/js/views/sales/Customer.vue"
+Component.options.__file = "resources/assets/js/views/crm/OpportunityForm.vue"
 
 module.exports = Component.exports
 
@@ -54761,7 +54761,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources/assets/js/views/sales/CustomerForm.vue"
+Component.options.__file = "resources/assets/js/views/sales/Dashboard.vue"
 
 module.exports = Component.exports
 
@@ -54791,7 +54791,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources/assets/js/views/sales/Order.vue"
+Component.options.__file = "resources/assets/js/views/sales/Customer.vue"
 
 module.exports = Component.exports
 
@@ -54821,7 +54821,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources/assets/js/views/sales/OrderForm.vue"
+Component.options.__file = "resources/assets/js/views/sales/CustomerForm.vue"
 
 module.exports = Component.exports
 
@@ -54851,7 +54851,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources/assets/js/views/purchase/Dashboard.vue"
+Component.options.__file = "resources/assets/js/views/sales/Order.vue"
 
 module.exports = Component.exports
 
@@ -54881,7 +54881,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources/assets/js/views/purchase/Supplier.vue"
+Component.options.__file = "resources/assets/js/views/sales/OrderForm.vue"
 
 module.exports = Component.exports
 
@@ -54911,7 +54911,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources/assets/js/views/purchase/SupplierForm.vue"
+Component.options.__file = "resources/assets/js/views/purchase/Dashboard.vue"
 
 module.exports = Component.exports
 
@@ -54941,7 +54941,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources/assets/js/views/stock/Dashboard.vue"
+Component.options.__file = "resources/assets/js/views/purchase/Supplier.vue"
 
 module.exports = Component.exports
 
@@ -54971,7 +54971,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources/assets/js/views/stock/Item.vue"
+Component.options.__file = "resources/assets/js/views/purchase/SupplierForm.vue"
 
 module.exports = Component.exports
 
@@ -55001,7 +55001,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources/assets/js/views/stock/ItemForm.vue"
+Component.options.__file = "resources/assets/js/views/stock/Dashboard.vue"
 
 module.exports = Component.exports
 
@@ -55031,7 +55031,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources/assets/js/views/finance/Dashboard.vue"
+Component.options.__file = "resources/assets/js/views/stock/Item.vue"
 
 module.exports = Component.exports
 
@@ -55061,7 +55061,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources/assets/js/views/finance/Account.vue"
+Component.options.__file = "resources/assets/js/views/stock/ItemForm.vue"
 
 module.exports = Component.exports
 
@@ -55091,7 +55091,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources/assets/js/views/finance/AccountForm.vue"
+Component.options.__file = "resources/assets/js/views/finance/Dashboard.vue"
 
 module.exports = Component.exports
 
@@ -55121,7 +55121,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources/assets/js/views/finance/AccountPayable.vue"
+Component.options.__file = "resources/assets/js/views/finance/Account.vue"
 
 module.exports = Component.exports
 
@@ -55151,7 +55151,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources/assets/js/views/finance/AccountReceivable.vue"
+Component.options.__file = "resources/assets/js/views/finance/AccountForm.vue"
 
 module.exports = Component.exports
 
@@ -55181,7 +55181,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources/assets/js/views/finance/AccountMovement.vue"
+Component.options.__file = "resources/assets/js/views/finance/AccountPayable.vue"
 
 module.exports = Component.exports
 
@@ -55190,16 +55190,76 @@ module.exports = Component.exports
 /* 81 */
 /***/ (function(module, exports, __webpack_require__) {
 
+var normalizeComponent = __webpack_require__(0)
+/* script */
+var __vue_script__ = null
+/* template */
+var __vue_template__ = null
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/views/finance/AccountReceivable.vue"
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 82 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var normalizeComponent = __webpack_require__(0)
+/* script */
+var __vue_script__ = null
+/* template */
+var __vue_template__ = null
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/views/finance/AccountMovement.vue"
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 83 */
+/***/ (function(module, exports, __webpack_require__) {
+
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(82)
+  __webpack_require__(84)
 }
 var normalizeComponent = __webpack_require__(0)
 /* script */
-var __vue_script__ = __webpack_require__(85)
+var __vue_script__ = __webpack_require__(87)
 /* template */
-var __vue_template__ = __webpack_require__(86)
+var __vue_template__ = __webpack_require__(88)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -55238,13 +55298,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 82 */
+/* 84 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(83);
+var content = __webpack_require__(85);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -55264,7 +55324,7 @@ if(false) {
 }
 
 /***/ }),
-/* 83 */
+/* 85 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(3)(false);
@@ -55278,7 +55338,7 @@ exports.push([module.i, "\n.action-link[data-v-5d1d7d82] {\n    cursor: pointer;
 
 
 /***/ }),
-/* 84 */
+/* 86 */
 /***/ (function(module, exports) {
 
 /**
@@ -55311,7 +55371,7 @@ module.exports = function listToStyles (parentId, list) {
 
 
 /***/ }),
-/* 85 */
+/* 87 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -55675,7 +55735,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 });
 
 /***/ }),
-/* 86 */
+/* 88 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -56236,19 +56296,19 @@ if (false) {
 }
 
 /***/ }),
-/* 87 */
+/* 89 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(88)
+  __webpack_require__(90)
 }
 var normalizeComponent = __webpack_require__(0)
 /* script */
-var __vue_script__ = __webpack_require__(90)
+var __vue_script__ = __webpack_require__(92)
 /* template */
-var __vue_template__ = __webpack_require__(91)
+var __vue_template__ = __webpack_require__(93)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -56287,13 +56347,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 88 */
+/* 90 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(89);
+var content = __webpack_require__(91);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -56313,7 +56373,7 @@ if(false) {
 }
 
 /***/ }),
-/* 89 */
+/* 91 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(3)(false);
@@ -56327,7 +56387,7 @@ exports.push([module.i, "\n.action-link[data-v-2ee9fe67] {\n    cursor: pointer;
 
 
 /***/ }),
-/* 90 */
+/* 92 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -56447,7 +56507,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 91 */
+/* 93 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -56556,19 +56616,19 @@ if (false) {
 }
 
 /***/ }),
-/* 92 */
+/* 94 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(93)
+  __webpack_require__(95)
 }
 var normalizeComponent = __webpack_require__(0)
 /* script */
-var __vue_script__ = __webpack_require__(95)
+var __vue_script__ = __webpack_require__(97)
 /* template */
-var __vue_template__ = __webpack_require__(96)
+var __vue_template__ = __webpack_require__(98)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -56607,13 +56667,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 93 */
+/* 95 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(94);
+var content = __webpack_require__(96);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -56633,7 +56693,7 @@ if(false) {
 }
 
 /***/ }),
-/* 94 */
+/* 96 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(3)(false);
@@ -56647,7 +56707,7 @@ exports.push([module.i, "\n.action-link[data-v-89c53f18] {\n    cursor: pointer;
 
 
 /***/ }),
-/* 95 */
+/* 97 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -56969,7 +57029,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 });
 
 /***/ }),
-/* 96 */
+/* 98 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -57347,83 +57407,10 @@ if (false) {
 }
 
 /***/ }),
-/* 97 */
+/* 99 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 98 */,
-/* 99 */,
-/* 100 */,
-/* 101 */,
-/* 102 */,
-/* 103 */,
-/* 104 */,
-/* 105 */,
-/* 106 */,
-/* 107 */,
-/* 108 */,
-/* 109 */,
-/* 110 */,
-/* 111 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var normalizeComponent = __webpack_require__(0)
-/* script */
-var __vue_script__ = null
-/* template */
-var __vue_template__ = null
-/* template functional */
-var __vue_template_functional__ = false
-/* styles */
-var __vue_styles__ = null
-/* scopeId */
-var __vue_scopeId__ = null
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __vue_script__,
-  __vue_template__,
-  __vue_template_functional__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "resources/assets/js/views/NotFoundComponent.vue"
-
-module.exports = Component.exports
-
-
-/***/ }),
-/* 112 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var normalizeComponent = __webpack_require__(0)
-/* script */
-var __vue_script__ = null
-/* template */
-var __vue_template__ = null
-/* template functional */
-var __vue_template_functional__ = false
-/* styles */
-var __vue_styles__ = null
-/* scopeId */
-var __vue_scopeId__ = null
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __vue_script__,
-  __vue_template__,
-  __vue_template_functional__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "resources/assets/js/views/config/ProfileForm.vue"
-
-module.exports = Component.exports
-
 
 /***/ })
 /******/ ]);
