@@ -15,7 +15,7 @@ import Buefy from 'buefy';
 import 'buefy/lib/buefy.css';
 
 require('./bootstrap');
-// require('./components/bootstrap');
+ require('./components/bootstrap');
 
 window.Vue.use(VueResource);
 window.Vue.use(VueRouter);

@@ -52,7 +52,7 @@ Route::prefix('{profile}')->group(function ()
             'account-movement' => 'AccountMovementController'
         ]);
 
-        Route::prefix('list/{skip}')->group(function ()
+        Route::prefix('list')->group(function ()
         {
             Route::get('locations/{filterBy}', 'LocationController@index');
             Route::get('vats/{filterBy}', 'VatController@index');

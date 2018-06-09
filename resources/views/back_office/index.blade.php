@@ -164,7 +164,7 @@
                             <ul class="nav-main">
                                 <li>
                                     <a href="#">
-                                        <router-link :to="{ name: 'dashboard' }">
+                                        <router-link :to="{ name: 'dashboard' ,params: { profile:'{{ request()->route('profile')->slug}}'} }">
                                             @lang('back-office.Dashboard')
                                         </router-link>
                                     </a>
@@ -178,35 +178,35 @@
                                     <ul>
                                         <li>
                                             <a href="#">
-                                                <router-link :to="{ name: 'profile.form' }">
+                                                <router-link :to="{ name: 'profile.form' ,params: { profile:'{{ request()->route('profile')->slug}}'} }">
                                                     @lang('back-office.Company Profile')
                                                 </router-link>
                                             </a>
                                         </li>
                                         <li>
                                             <a href="#">
-                                                <router-link :to="{ name: 'location.index' }">
+                                                <router-link :to="{ name: 'location.index' ,params: { profile:'{{ request()->route('profile')->slug}}'} }">
                                                     @lang('back-office.Shops and Locations')
                                                 </router-link>
                                             </a>
                                         </li>
                                         <li>
                                             <a href="#">
-                                                <router-link :to="{ name: 'team-members.index' }">
+                                                <router-link :to="{ name: 'team-members.index',params: { profile:'{{ request()->route('profile')->slug}}'} }">
                                                     @lang('back-office.Teams and Followers')
                                                 </router-link>
                                             </a>
                                         </li>
                                         <li>
                                             <a href="#">
-                                                <router-link :to="{ name: 'contracts.index' }">
+                                                <router-link :to="{ name: 'contracts.index',params: { profile:'{{ request()->route('profile')->slug}}'} }">
                                                     @lang('back-office.Contracts')
                                                 </router-link>
                                             </a>
                                         </li>
                                         <li>
                                             <a href="#">
-                                                <router-link :to="{ name: 'sales-taxes.index' }">
+                                                <router-link :to="{ name: 'sales-taxes.index',params: { profile:'{{ request()->route('profile')->slug}}'} }">
                                                     @lang('back-office.Sales Tax')
                                                 </router-link>
                                             </a>
@@ -216,7 +216,8 @@
 
                                 <li>
                                     <a href="#">
-                                        <router-link :to="{ name: 'item.index' }">
+
+                                        <router-link :to="{ name: 'item.index',params: { profile:'{{ request()->route('profile')->slug}}'} }">
                                             @lang('back-office.Products and Services')
                                         </router-link>
                                     </a>
@@ -234,14 +235,14 @@
                                     <ul>
                                         <li>
                                             <a href="#">
-                                                <router-link :to="{ name: 'sales.dashboard' }">
+                                                <router-link :to="{ name: 'sales.dashboard',params: { profile:'{{ request()->route('profile')->slug}}'} }">
                                                     @lang('back-office.Dashboard')
                                                 </router-link>
                                             </a>
                                         </li>
                                         <li>
                                             <a href="#">
-                                                <router-link :to="{ name: 'customer.index' }">
+                                                <router-link :to="{ name: 'customer.index' ,params: { profile:'{{ request()->route('profile')->slug}}'} }">
                                                     @lang('back-office.Customers')
                                                 </router-link>
                                             </a>
@@ -251,14 +252,14 @@
                                             <ul>
                                                 <li>
                                                     <a href="#">
-                                                        <router-link :to="{ name: 'pipeline.index' }">
+                                                        <router-link :to="{ name: 'pipeline.index' ,params: { profile:'{{ request()->route('profile')->slug}}'} }">
                                                             @lang('back-office.Pipelines')
                                                         </router-link>
                                                     </a>
                                                 </li>
                                                 <li>
                                                     <a href="#">
-                                                        <router-link :to="{ name: 'opportunity.index' }">
+                                                        <router-link :to="{ name: 'opportunity.index' ,params: { profile:'{{ request()->route('profile')->slug}}'} }">
                                                             @lang('back-office.Opportunities')
                                                         </router-link>
                                                     </a>
@@ -267,14 +268,14 @@
                                         </li>
                                         <li>
                                             <a href="#">
-                                                <router-link :to="{ name: 'order.index' }">
+                                                <router-link :to="{ name: 'order.index' ,params: { profile:'{{ request()->route('profile')->slug}}'} }">
                                                     @lang('back-office.Orders')
                                                 </router-link>
                                             </a>
                                         </li>
                                         <li>
                                             <a href="#">
-                                                <router-link :to="{ name: 'account-recievable.index' }">
+                                                <router-link :to="{ name: 'account-recievable.index' ,params: { profile:'{{ request()->route('profile')->slug}}'} }">
                                                     @lang('back-office.Account Receivables')
                                                 </router-link>
                                             </a>
@@ -291,21 +292,21 @@
                                     <ul>
                                         <li>
                                             <a href="#">
-                                                <router-link :to="{ name: 'purchase.dashboard' }">
+                                                <router-link :to="{ name: 'purchase.dashboard' ,params: { profile:'{{ request()->route('profile')->slug}}'} }">
                                                     @lang('back-office.Dashboard')
                                                 </router-link>
                                             </a>
                                         </li>
                                         <li>
                                             <a href="#">
-                                                <router-link :to="{ name: 'supplier.index' }">
+                                                <router-link :to="{ name: 'supplier.index' ,params: { profile:'{{ request()->route('profile')->slug}}'} }">
                                                     @lang('back-office.Suppliers')
                                                 </router-link>
                                             </a>
                                         </li>
                                         <li>
                                             <a href="#">
-                                                <router-link :to="{ name: 'account-payable.index' }">
+                                                <router-link :to="{ name: 'account-payable.index' ,params: { profile:'{{ request()->route('profile')->slug}}'} }">
                                                     @lang('back-office.Account Payables')
                                                 </router-link>
                                             </a>
@@ -320,14 +321,14 @@
                                     <ul>
                                         <li>
                                             <a href="#">
-                                                <router-link :to="{ name: 'stock.dashboard' }">
+                                                <router-link :to="{ name: 'stock.dashboard' ,params: { profile:'{{ request()->route('profile')->slug}}'} }">
                                                     @lang('back-office.Dashboard')
                                                 </router-link>
                                             </a>
                                         </li>
                                         <li>
                                             <a href="#">
-                                                <router-link :to="{ name: 'item.index' }">
+                                                <router-link :to="{ name: 'item.index',params: { profile:'{{ request()->route('profile')->slug}}'} }">
                                                     @lang('back-office.Products and Services')
                                                 </router-link>
                                             </a>
@@ -342,35 +343,35 @@
                                     <ul>
                                         <li>
                                             <a href="#">
-                                                <router-link :to="{ name: 'finance.dashboard' }">
+                                                <router-link :to="{ name: 'finance.dashboard' ,params: { profile:'{{ request()->route('profile')->slug}}'} }">
                                                     @lang('back-office.Dashboard')
                                                 </router-link>
                                             </a>
                                         </li>
                                         <li>
                                             <a href="#">
-                                                <router-link :to="{ name: 'account.index' }">
+                                                <router-link :to="{ name: 'account.index' ,params: { profile:'{{ request()->route('profile')->slug}}'} }">
                                                     @lang('back-office.Accounts')
                                                 </router-link>
                                             </a>
                                         </li>
                                         <li>
                                             <a href="#">
-                                                <router-link :to="{ name: 'account-payable.index' }">
+                                                <router-link :to="{ name: 'account-payable.index' ,params: { profile:'{{ request()->route('profile')->slug}}',} }">
                                                     @lang('back-office.Account Payables')
                                                 </router-link>
                                             </a>
                                         </li>
                                         <li>
                                             <a href="#">
-                                                <router-link :to="{ name: 'account-recievable.index' }">
+                                                <router-link :to="{ name: 'account-recievable.index' ,params: { profile:'{{ request()->route('profile')->slug}}'} }">
                                                     @lang('back-office.Account Recievables')
                                                 </router-link>
                                             </a>
                                         </li>
                                         <li>
                                             <a href="#">
-                                                <router-link :to="{ name: 'account_movement.index' }">
+                                                <router-link :to="{ name: 'account_movement.index' ,params: { profile:'{{ request()->route('profile')->slug}}'} }">
                                                     @lang('back-office.Account Movements')
                                                 </router-link>
                                             </a>
