@@ -129,16 +129,16 @@
         },
         {
             "name": "bugsnag/bugsnag",
-            "version": "v3.12.1",
+            "version": "v3.13.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/bugsnag/bugsnag-php.git",
-                "reference": "b1cd36a49a5a780824d9b3f369ad89275013b19f"
+                "reference": "f07dfa792db5d28bf38fb9321aebe75d6b352fc5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/bugsnag/bugsnag-php/zipball/b1cd36a49a5a780824d9b3f369ad89275013b19f",
-                "reference": "b1cd36a49a5a780824d9b3f369ad89275013b19f",
+                "url": "https://api.github.com/repos/bugsnag/bugsnag-php/zipball/f07dfa792db5d28bf38fb9321aebe75d6b352fc5",
+                "reference": "f07dfa792db5d28bf38fb9321aebe75d6b352fc5",
                 "shasum": ""
             },
             "require": {
@@ -184,7 +184,7 @@
                 "logging",
                 "tracking"
             ],
-            "time": "2018-02-28T12:14:17+00:00"
+            "time": "2018-06-06T16:58:57+00:00"
         },
         {
             "name": "bugsnag/bugsnag-laravel",

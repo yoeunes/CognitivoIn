@@ -6,6 +6,7 @@ use App\Item;
 use App\ItemReview;
 use App\ItemFaq;
 use App\Profile;
+use App\Http\Resources\ItemResource;
 use DB;
 use Illuminate\Http\Request;
 use Auth;
@@ -18,14 +19,16 @@ class ItemController extends Controller
     * @return \Illuminate\Http\Response
     */
     //for list of items
-    public function index(Profile $profile, $skip, $filterBy)
+    public function index(Profile $profile,  $filterBy)
     {
-        $items = Item::GetItems($profile->id)
-        ->skip($skip)
-        ->take(100)
-        ->get();
+        return ItemResource::collection(Item::GetItems($profile->id)->paginate(2));
 
-        return response()->json($items);
+        // $items = Item::GetItems($profile->id)
+        // ->skip(0)
+        // ->take($skip * 100)
+        // ->get();
+
+        //return response()->json($items);
     }
 
     public function get_itemsforApp(Profile $profile)

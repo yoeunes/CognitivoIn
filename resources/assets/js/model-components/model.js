@@ -33,7 +33,8 @@ Vue.component('model',
 
             if (app.url != '')
             {
-                axios.get('/api/' + this.profile + '/back-office/list/'  + app.skip + '/' + app.url + '/' + app.filterListBy,
+
+                axios.get('/api/' + this.$parent.profile + '/back-office/list/'  + app.skip + '/' + app.url + '/' + app.filterListBy,
                 { params: { page: app.list.length / this.pageSize + 1 } })
                 .then(({ data }) =>
                 {
@@ -360,6 +361,6 @@ Vue.component('model',
     mounted: function mounted()
     {
         var app = this;
-        app.showModule = 1;
+        console.log(app);
     }
 });

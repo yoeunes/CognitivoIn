@@ -46,13 +46,13 @@ Route::prefix('{profile}')->group(function ()
             'opportunities/{id}/items' => 'CartController',
             'orders' => 'OrderController',
 
-            'accounts' => 'AccountsController',
+            'accounts' => 'AccountController',
             'account-payables' => 'AccountPayableController',
             'account-receivables' => 'AccountReceivableController',
             'account-movement' => 'AccountMovementController'
         ]);
 
-        Route::prefix('list/{skip}')->group(function ()
+        Route::prefix('list')->group(function ()
         {
             Route::get('locations/{filterBy}', 'LocationController@index');
             Route::get('vats/{filterBy}', 'VatController@index');
@@ -64,7 +64,7 @@ Route::prefix('{profile}')->group(function ()
             Route::get('pipelines/{filterBy}', 'PipelineController@index');
             Route::get('opportunities/{filterBy}', 'OpportunityController@index');
             Route::get('orders/{filterBy}', 'OrderController@index');
-            Route::get('accounts/{filterBy}', 'AccountsController@index');
+            Route::get('accounts/{filterBy}', 'AccountController@index');
             Route::get('account-payables/{filterBy}', 'AccountPayableController@index');
             Route::get('account-receivables/{filterBy}', 'AccountReceivableController@index');
             Route::get('account-movement/{filterBy}', 'AccountMovementController@index');
@@ -89,9 +89,9 @@ Route::prefix('{profile}')->group(function ()
         });
 
         //Annull movements on specific modules
-        Route::prefix('approve')->group(function ()
+        Route::prefix('transact')->group(function ()
         {
-            Route::post('transaction', 'Api\TransactionController@SalesInvoice_createApprove');
+            Route::post('sales', 'Api\TransactionController@SalesInvoice_createApprove');
             Route::post('opportunities', 'OpportunityController@approve');
 
             //TODO, change name to proper english. recEIved instead of recIEved
@@ -100,7 +100,7 @@ Route::prefix('{profile}')->group(function ()
         });
 
         //Annull movements on specific modules
-        Route::prefix('annull')->group(function ()
+        Route::prefix('revert')->group(function ()
         {
             Route::post('orders/{id}', 'OrderController@annul');
             Route::post('opportunities', 'OpportunityController@annul');

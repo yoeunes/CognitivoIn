@@ -194,6 +194,7 @@ class AccountReceivableController extends Controller
         return response()->json('Resource not found', 404);
     }
 
+    //GET Function to search for Accounts Receivables from Customer.
     public function search(Profile $profile, $query)
     {
         $return = [];
@@ -227,7 +228,6 @@ class AccountReceivableController extends Controller
                     'ReferenceID' => $schedule->id,
                     'InvoiceDate' => $schedule->date,
                     'Deadline' => $schedule->due_date
-
                 ];
 
                 $j = $j + 1;
