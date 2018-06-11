@@ -22,4 +22,5 @@
         @endif
     @endisset
 
+    @include('profile.setting')
 @endsection
