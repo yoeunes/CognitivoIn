@@ -1,107 +1,139 @@
 <template>
-    <div>
-      <table>
-          <thead>
-              <tr>
-                  <th>@lang('global.TaxID')</th>
-                  <th>@lang('back-office.Customer')</th>
-                  <th>@lang('global.Email')</th>
-                  <th class="text-center">@lang('global.Actions')</th>
-              </tr>
-          </thead>
-          <tbody>
-              <tr v-for="customer in list">
-                  <td>@{{ customer.customer_taxid }}</td>
-                  <td>@{{ customer.customer_alias }}</td>
-                  <td>@{{ customer.customer_email }}</td>
-                  <td class="text-center">
-                      <div class="btn-group">
-                          <button v-on:click="onEdit(customer)" type="button" class="btn btn-sm btn-secondary js-tooltip-enabled" data-toggle="tooltip" data-original-title="Edit">
-                              <i class="fa fa-pencil"></i>
-                          </button>
-                          <button v-on:click="onDelete(customer)" type="button" class="btn btn-sm btn-secondary js-tooltip-enabled" data-toggle="tooltip" data-original-title="Delete">
-                              <i class="fa fa-times"></i>
-                          </button>
-                      </div>
-                  </td>
-              </tr>
-          </tbody>
-      </table>
-        <b-pagination
-        :total="total"
-        :current="current"
-        :simple="false"
-        :per-page="perPage"
-        order="is-right"
-        @change="pageChange">
-    </b-pagination>
+  <div>
+    <div class="col-md-6 col-xl-3">
+    <a class="block block-rounded block-link-shadow" @click="onCreate()" href="#">
+      <div class="block-content block-content-full block-sticky-options">
+        <div class="block-options">
+          <div class="block-options-item">
+            <i class="fa fa-archive fa-2x text-success-light"></i>
+          </div>
+        </div>
+        <div class="py-20 text-center">
+          <div class="font-size-h2 font-w700 mb-0 text-success">
+            <i class="fa fa-plus"></i>
+          </div>
+          <div class="font-size-sm font-w600 text-uppercase text-muted">New Customer</div>
+        </div>
+      </div>
+    </a>
+  </div>
+    <table>
+      <thead>
+        <tr>
+          <th>@lang('global.TaxID')</th>
+          <th>@lang('back-office.Customer')</th>
+          <th>@lang('global.Email')</th>
+          <th class="text-center">@lang('global.Actions')</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="customer in list">
+          <td>{{ customer.customer_taxid }}</td>
+          <td>{{ customer.customer_alias }}</td>
+          <td>{{ customer.customer_email }}</td>
+          <td class="text-center">
+            <div class="btn-group">
+              <router-link :to="{ name: 'customer.form',params: { profile:profile,id:customer.id} }">
+                  <button  type="button" class="btn btn-sm btn-secondary js-tooltip-enabled" data-toggle="tooltip" data-original-title="Edit">
+                    <i class="fa fa-pencil"></i>
+                  </button>
+                </router-link>
+
+                <button v-on:click="onDelete(customer)" type="button" class="btn btn-sm btn-secondary js-tooltip-enabled" data-toggle="tooltip" data-original-title="Delete">
+                  <i class="fa fa-times"></i>
+                </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <b-pagination
+    :total="meta.total"
+    :current.sync="meta.current_page"
+    :simple="false"
+    :per-page="meta.per_page"
+    @change="pageChange">
+  </b-pagination>
 </div>
 </template>
 <script>
 
-// const getItems = (page, callback,profile) => {
-//     const params = { page };
-//     axios
-//     .get('/api/' + profile +'/back-office/list/items/1', { params })
-//     .then(response => {
-//         callback(null, response.data);
-//     }).catch(error => {
-//         callback(error, error.response.data);
-//     });
-// };
-
 export default {
-    props: ['profile'],
-    data() {
-        return {
-            list: [],
-            total: 5,
-            current: 1,
-            perPage: 2,
-
-        };
-    },
-
-    methods: {
-        pageChange (page) {
-            this.current = page
-            this.onLoad(page) // api call
-        },
-        onLoad()
-        {
-            var app=this;
-            axios.get('/api/cognitivo/back-office/list/'  + app.current + '/customers/1')
-        .then(({ data }) =>
-        {
-            console.log(data);
-            if (data.length > 0)
-            {
-                app.list=[];
-                for (let i = 0; i < data.length; i++)
-                {
-                    app.list.push(data[i]);
-                }
+  data() {
+    return {
+      profile:'',
+      list: [],
+      meta: [{total:0}],
 
 
-            }
-            else
-            {
+    };
+  },
 
-            }
-        })
-        .catch(ex => {
-            //Stop loading with one ex.
+  methods: {
+    onLoad(page) {
+        this.profile=this.$route.params.profile;
+        axios
+        .get('/api/' + this.profile + '/back-office/list/customers/1?page=' + page  )
+        .then(response => {
 
-            //Log ex for help
-            console.log(ex);
+          this.list = response.data.data;
+          this.meta = response.data.meta;
+
+
+        }).catch(error => {
 
         });
-    }
-},
-mounted: function mounted()
-{
+
+      },
+      pageChange (page) {
+        var app = this;
+        app.setData(page);
+      },
+      onCreate () {
+        var app = this;
+        app.$router.push({ name: "customer.form", params: { id: 0 } });
+      },
+      onDelete($data)
+      {
+        var app = this;
+
+        this.$swal({
+          title: 'Delete Record',
+          text: "Sure? This action is non-reversable",
+          type: 'question',
+          showCancelButton: true,
+          confirmButtonText: 'Yes, delete it!'
+        })
+        .then(() => {
+
+          axios.delete('/api/' + this.profile + '/back-office/customers' + $data.id)
+          .then(() => {
+
+            let index = this.list.findIndex(x => x.id === $data.id);
+            this.list.splice(index, 1);
+
+            this.$toast.open({
+              duration: 750,
+              message: 'The record has been deleted',
+              position: 'is-bottom-right',
+              type: 'is-danger'
+            })
+          })
+          .catch(ex => {
+            console.log(ex.response);
+            this.$toast.open({
+              duration: 5000,
+              message: 'Error trying to delete record',
+              type: 'is-danger'
+            })
+          });
+        });
+      },
+  },
+  mounted: function mounted()
+  {
     var app = this;
     app.onLoad();
-}
+  }
 }
 </script>

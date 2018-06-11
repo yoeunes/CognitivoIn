@@ -1,87 +1,156 @@
 <template>
     <div>
-        <table class="table table-borderless table-striped">
-            <thead>
-                <tr>
-                    <th style="width: 100px;">ID</th>
-                    <th class="d-none d-sm-table-cell">@lang('global.Name')</th>
-                    <th>@lang('global.Address')</th>
-                    <th class="d-none d-md-table-cell">@lang('global.Role')</th>
-                    <th class="text-right">@lang('global.Actions')</th>
-                </tr>
-            </thead>
-            <tbody>
-                <div class="">
-                    <tr v-for="followers in list">
-                        <td>
-                            <a class="font-w600" href="be_pages_ecom_product_edit.html">@{{ followers.id }}</a>
-                        </td>
-                        <td class="d-none d-sm-table-cell">
-                            @{{ followers.profile.name }}
-                        </td>
-                        <td class="d-none d-sm-table-cell">
-                            @{{ followers.profile.address }}
-                        </td>
-                        <td v-if="followers.role===1">
-                            Admin
-                        </td>
-                        <td v-if="followers.role===2">
-                            Manager
-                        </td>
-                        <td v-if="followers.role===3">
-                            Employee
-                        </td>
-                        <td v-if="followers.role===4">
-                            Member
-                        </td>
-                        <td v-if="followers.role===5">
-                            Follower
-                        </td>
-                        <td class="text-right">
-                            <a @click="onEdit(followers,false)" class="m-btn btn btn-secondary"><i class="la la-pencil m--font-brand"></i></a>
-                            <a @click="onDelete(followers)" class="m-btn btn btn-secondary"><i class="la la-trash m--font-danger"></i></a>
-                        </td>
+        <div v-if="!showForm">
+            <div class="col-md-6 col-xl-3">
+                <a class="block block-rounded block-link-shadow" @click="onCreate()" href="#">
+                    <div class="block-content block-content-full block-sticky-options">
+                        <div class="block-options">
+                            <div class="block-options-item">
+                                <i class="fa fa-archive fa-2x text-success-light"></i>
+                            </div>
+                        </div>
+                        <div class="py-20 text-center">
+                            <div class="font-size-h2 font-w700 mb-0 text-success">
+                                <i class="fa fa-plus"></i>
+                            </div>
+                            <div class="font-size-sm font-w600 text-uppercase text-muted">New Member</div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <table class="table table-borderless table-striped">
+                <thead>
+                    <tr>
+                        <th style="width: 100px;">ID</th>
+                        <th class="d-none d-sm-table-cell">@lang('global.Name')</th>
+                        <th>@lang('global.Address')</th>
+                        <th class="d-none d-md-table-cell">@lang('global.Role')</th>
+                        <th class="text-right">@lang('global.Actions')</th>
                     </tr>
+                </thead>
+                <tbody>
+                    <div class="">
+                        <tr v-for="followers in list">
+                            <td>
+                                <a class="font-w600" href="be_pages_ecom_product_edit.html">@{{ followers.id }}</a>
+                            </td>
+                            <td class="d-none d-sm-table-cell">
+                                @{{ followers.profile.name }}
+                            </td>
+                            <td class="d-none d-sm-table-cell">
+                                @{{ followers.profile.address }}
+                            </td>
+                            <td v-if="followers.role===1">
+                                Admin
+                            </td>
+                            <td v-if="followers.role===2">
+                                Manager
+                            </td>
+                            <td v-if="followers.role===3">
+                                Employee
+                            </td>
+                            <td v-if="followers.role===4">
+                                Member
+                            </td>
+                            <td v-if="followers.role===5">
+                                Follower
+                            </td>
+                            <td class="text-right">
+                                <a @click="onEdit(followers,false)" class="m-btn btn btn-secondary"><i class="la la-pencil m--font-brand"></i></a>
+                                <a @click="onDelete(followers)" class="m-btn btn btn-secondary"><i class="la la-trash m--font-danger"></i></a>
+                            </td>
+                        </tr>
+                    </div>
+                </tbody>
+            </table>
+            <b-pagination
+            :total="meta.total"
+            :current.sync="meta.current_page"
+            :simple="false"
+            :per-page="meta.per_page"
+            @change="pageChange">
+        </b-pagination>
+    </div>
+    <div v-if="showForm">
+        <div class="block block-rounded block-themed">
+            <div class="block-header bg-gd-primary">
+                <h3 class="block-title">Basic Information</h3>
+                <div class="block-options">
+                    <button v-on:click="onSave($data,false)" class="btn btn-sm btn-alt-primary">
+                        <i class="fa fa-save"></i> @lang('global.Save')
+                    </button>
+                    <button v-on:click="onSave($data,true)" class="btn btn-sm btn-alt-primary">
+                        <i class="fa fa-plus"></i> @lang('global.Save-and-New')
+                    </button>
+                    <button v-on:click="cancel()" class="btn btn-sm btn-alt-danger">
+                        <i class="fa fa-close"></i> @lang('global.Cancel')
+                    </button>
                 </div>
-            </tbody>
-        </table>
-        <b-pagination
-        :total="meta.total"
-        :current.sync="meta.current_page"
-        :simple="false"
-        :per-page="meta.per_page"
-        @change="pageChange">
-    </b-pagination>
+            </div>
+        </div>
+        <div class="block-content block-content-full">
+            <div class="form-group row">
+                <label class="col-12" for="name">Member</label>
+                <div class="col-md-9">
+                    <b-field>
+                        <b-autocomplete v-model="selectname" :data="profiles" placeholder="Search Members" field="name"
+                        :loading="isFetching" @input="getProfiles" @select="option => addMember(option)">
+                        <template slot-scope="props">
+                            <strong>@{{props.option.name}}</strong> | @{{props.option.slug}}
+                        </template>
+                        <template slot="empty">
+                            There are no items
+                        </template>
+                    </b-autocomplete>
+                </b-field>
+            </div>
+        </div>
+        <div class="form-group row">
+                <label class="col-12" for="address">Role</label>
+                <div class="col-md-9">
+
+                    <select name="age" v-model="role">
+                        <option value="1">Admin</option>
+                        <option value="2">Manager</option>
+                        <option value="3">Employee</option>
+                        <option value="4">Member</option>
+                        <option value="5">Follower</option>
+                    </select>
+                </div>
+            </div>
+    </div>
+</div>
 </div>
 </template>
 <script>
+
 export default {
     data() {
         return {
             profile:'',
             list: [],
             meta: [{total:0}],
-            links: {
-                first: null,
-                last: null,
-                next: null,
-                prev: null,
-            },
+            showForm:false,
+            id:0,
+            selected:null,
+            isFetching:false,
+            selectname:'',
+            profile_id:0,
+            profiles:[],
+            role:0,
 
         };
     },
 
 
-
     methods: {
-        setData(page) {
+        onLoad(page) {
             this.profile=this.$route.params.profile;
             axios
             .get('/api/' + this.profile + '/back-office/list/followers/1?page=' + page  )
             .then(response => {
 
                 this.list = response.data.data;
-                this.links = response.data.links;
                 this.meta = response.data.meta;
 
             }).catch(error => {
@@ -91,15 +160,78 @@ export default {
         },
         pageChange (page) {
             var app = this;
-            app.setData(page);
+            app.onLoad(page);
+        },
+        onCreate()
+        {
+            var app = this;
+            app.showForm=true;
+        },
+        onEdit($data)
+        {
+            var app = this;
+            app.showForm=true;
+
+            axios.get('/api/' + app.profile + '/back-office/followers/' + $data.id + '/edit')
+            .then(function (response) {
+
+                app.id = response.data.id;
+                app.selectname = response.data.profile.name;
+                app.profile_id = response.data.profile_id;
+                app.role = response.data.role;
+
+
+            })
+            .catch(ex => {
+                console.log(ex);
+
+                app.$toast.open({
+                    duration: 5000,
+                    message: 'Error trying to edit this record',
+                    type: 'is-danger'
+                })
+            });
+            app.onLoad(1);
+        },
+        onCancel()
+        {
+            var app = this;
+            app.showForm=false;
+            app.id = null;
+            app.profile_id = null;
+            app.role = null;
+            app.selectname = '';
+        },
+
+        onSave($data)
+        {
+            var app = this;
+            axios.post('/api/' + app.profile + '/back-office/followers/', $data)
+            .then(() =>
+            {
+                app.onCancel();
+                this.$toast.open({
+                    message: 'Awsome! Your work has been saved',
+                    type: 'is-success'
+                })
+
+
+            })
+            .catch(ex => {
+                console.log(ex.response);
+                this.$toast.open({
+                    duration: 5000,
+                    message: 'Error trying to save record',
+                    type: 'is-danger'
+                })
+            });
         }
 
     },
     mounted: function mounted()
     {
         var app = this;
-        app.setData(1);
+        app.onLoad(1);
     }
 }
-
 </script>

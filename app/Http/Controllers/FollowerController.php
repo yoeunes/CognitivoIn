@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Followable;
 use App\Profile;
+use App\Http\Resources\FollowableResource;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use DB;
@@ -19,15 +20,17 @@ class FollowerController extends Controller
     public function index(Profile $profile, $skip)
     {
 
-        $members = Followable::with('profile')
-        ->where('followable_id',$profile->id)
-        ->skip($skip)
-        ->take(100)
-        ->get();
-
-
-
-        return response()->json($members);
+  return FollowableResource::collection(Followable::with('profile')
+  ->where('followable_id',$profile->id)->paginate(2));
+        // $members = Followable::with('profile')
+        // ->where('followable_id',$profile->id)
+        // ->skip($skip)
+        // ->take(100)
+        // ->get();
+        //
+        //
+        //
+        // return response()->json($members);
     }
 
     /**

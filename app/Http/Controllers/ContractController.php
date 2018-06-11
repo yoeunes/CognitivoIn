@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Contract;
 use App\ContractDetail;
 use App\Profile;
+use App\Http\Resources\ContractResource;
 use DB;
 use Illuminate\Http\Request;
 
@@ -15,31 +16,28 @@ class ContractController extends Controller
     *
     * @return \Illuminate\Http\Response
     */
-    public function index(Profile $profile, $skip, $filter)
+    public function index(Profile $profile, $filter)
     {
         if ($filter == 1)
         {
-            $contract = Contract::skip($skip)
-            ->take(100)
-            ->get();
+            return ContractResource::collection(Contract::paginate(2));
         }
         else if($filter == 2)
         {
-            $contract = Contract::skip($skip)
-            ->onlyTrashed()
-            ->take(100)
-            ->get();
+            return ContractResource::collection(Contract::onlyTrashed()->paginate(2));
+
         }
         else if($filter == 3)
         {
-            $contract = Contract::
+            return ContractResource::collection(Contract::
             join('contract_details', 'contract_details.contract_id', 'contracts.id')
             ->where('contract_details.percent' ,'>', 0)
             ->where('contracts.profile_id' ,$profile->id)
             ->groupBy('contracts.id')
             ->select(DB::raw('max(contracts.id) as id'),
             DB::raw('max(contracts.name) as name'))
-            ->get();
+            ->paginate(2));
+
         }
 
         return response()->json($contract);

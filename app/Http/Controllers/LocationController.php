@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Location;
 use App\Profile;
+use App\Http\Resources\LocationResource;
 use Illuminate\Http\Request;
 
 class LocationController extends Controller
@@ -15,11 +16,12 @@ class LocationController extends Controller
     */
     public function index(Profile $profile, $skip)
     {
-        $location = Location::where('profile_id', $profile->id)->skip($skip)
-        ->take(100)
-        ->get();
-
-        return response()->json($location);
+          return LocationResource::collection(Location::where('profile_id', $profile->id)->paginate(2));
+        // $location = Location::where('profile_id', $profile->id)->skip($skip)
+        // ->take(100)
+        // ->get();
+        //
+        // return response()->json($location);
     }
 
     /**

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Vat;
 use App\VatDetail;
 use App\Profile;
+use App\Http\Resources\VatResource;
 use Illuminate\Http\Request;
 
 class VatController extends Controller
@@ -16,10 +17,11 @@ class VatController extends Controller
     */
     public function index(Profile $profile,$skip)
     {
-        $location = Vat::with('details')->skip($skip)
-        ->take(100)->get();
-
-        return response()->json($location);
+        return VatResource::collection(Vat::with('details')->paginate(2));
+        // $location = Vat::with('details')->skip($skip)
+        // ->take(100)->get();
+        //
+        // return response()->json($location);
     }
 
     /**

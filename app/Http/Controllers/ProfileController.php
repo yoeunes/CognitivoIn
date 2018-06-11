@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\User;
 use App\Profile;
 use App\Followable;
+use App\Http\Resources\ProfileResource;
 use \Overtrue\LaravelFollow\Traits\CanFollow;
 
 class ProfileController extends Controller
@@ -18,7 +19,8 @@ class ProfileController extends Controller
     */
     public function index()
     {
-        return response()->json(Profile::where('type', 1)->get(), 200);
+        return ProfileResource::collection(Profile::where('type', 1)->paginate(2));
+        //return response()->json(Profile::where('type', 1)->get(), 200);
     }
 
     /**
