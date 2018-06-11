@@ -1,42 +1,32 @@
 <template>
     <div>
-        <table class="table table-borderless table-striped">
-            <thead>
-                <tr>
-                    <th style="width: 100px;">ID</th>
-                    <th class="d-none d-sm-table-cell">SKU</th>
-                    <th>Name</th>
-                    <th class="d-none d-md-table-cell">Price</th>
-                    <th class="text-right">Value</th>
-                </tr>
-            </thead>
-            <tbody>
-                <div class="">
-                    <tr v-for="item in list">
-                        <td>
-                            <a class="font-w600" href="#" @click="onEdit(item, false)">PID.424</a>
-                        </td>
-                        <td class="d-none d-sm-table-cell">
-                            @{{ item.sku }}
-                        </td>
-                        <td class="d-none d-sm-table-cell">
-                            @{{ item.name }}
-                        </td>
-                        <td>
-                            @{{ item.unit_price }}
-                        </td>
-                        <td >
-                            <button v-on:click="onEdit(customer)" type="button" class="btn btn-sm btn-secondary js-tooltip-enabled" data-toggle="tooltip" data-original-title="Edit">
-                                <i class="fa fa-pencil"></i>
-                            </button>
-                            <button v-on:click="onDelete(customer)" type="button" class="btn btn-sm btn-secondary js-tooltip-enabled" data-toggle="tooltip" data-original-title="Delete">
-                                <i class="fa fa-times"></i>
-                            </button>
-                        </td>
-                    </tr>
-                </div>
-            </tbody>
-        </table>
+      <table>
+          <thead>
+              <tr>
+                  <th>@lang('global.TaxID')</th>
+                  <th>@lang('back-office.Customer')</th>
+                  <th>@lang('global.Email')</th>
+                  <th class="text-center">@lang('global.Actions')</th>
+              </tr>
+          </thead>
+          <tbody>
+              <tr v-for="customer in list">
+                  <td>@{{ customer.customer_taxid }}</td>
+                  <td>@{{ customer.customer_alias }}</td>
+                  <td>@{{ customer.customer_email }}</td>
+                  <td class="text-center">
+                      <div class="btn-group">
+                          <button v-on:click="onEdit(customer)" type="button" class="btn btn-sm btn-secondary js-tooltip-enabled" data-toggle="tooltip" data-original-title="Edit">
+                              <i class="fa fa-pencil"></i>
+                          </button>
+                          <button v-on:click="onDelete(customer)" type="button" class="btn btn-sm btn-secondary js-tooltip-enabled" data-toggle="tooltip" data-original-title="Delete">
+                              <i class="fa fa-times"></i>
+                          </button>
+                      </div>
+                  </td>
+              </tr>
+          </tbody>
+      </table>
         <b-pagination
         :total="total"
         :current="current"

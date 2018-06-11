@@ -5,19 +5,20 @@ namespace App\Http\Controllers;
 use App\Relationship;
 use App\Profile;
 use Illuminate\Http\Request;
+use App\Http\Resources\CustomerResource;
 
 class CustomerController extends Controller
 {
 
     public function index(Profile $profile, $skip)
     {
-
-        $customers = Relationship::GetCustomers()
-        ->skip($skip)
-        ->take(100)
-        ->get();
-
-        return response()->json($customers);
+  return CustomerResource::collection(Relationship::GetCustomers()->paginate(2));
+        // $customers = Relationship::GetCustomers()
+        // ->skip($skip)
+        // ->take(100)
+        // ->get();
+        //
+        // return response()->json($customers);
     }
 
     public function getAllCustomer (Profile $profile)

@@ -32,7 +32,7 @@ Route::group(['middleware' => 'auth'], function ()
 
     Route::prefix('back-office/{profile}')->group(function ()
     {
-        Route::get('/{url?}', 'NavigationController@index')->where('any', '.*');
+        Route::get('/{url}', 'NavigationController@index')->where('any', '.*');
 
         // Route::post('update', 'ProfileController@update')->name('profile.update');
         //

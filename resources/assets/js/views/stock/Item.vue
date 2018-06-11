@@ -1,5 +1,6 @@
 <template>
     <div>
+
         <table class="table table-borderless table-striped">
             <thead>
                 <tr>
@@ -26,9 +27,12 @@
                             {{ item.unit_price }}
                         </td>
                         <td >
-                            <button v-on:click="onEdit(customer)" type="button" class="btn btn-sm btn-secondary js-tooltip-enabled" data-toggle="tooltip" data-original-title="Edit">
-                                <i class="fa fa-pencil"></i>
-                            </button>
+                            <router-link :to="{ name: 'item.form',params: { profile:profile,id:item.id} }">
+                                <button  type="button" class="btn btn-sm btn-secondary js-tooltip-enabled" data-toggle="tooltip" data-original-title="Edit">
+                                    <i class="fa fa-pencil"></i>
+                                </button>
+                            </router-link>
+
                             <button v-on:click="onDelete(customer)" type="button" class="btn btn-sm btn-secondary js-tooltip-enabled" data-toggle="tooltip" data-original-title="Delete">
                                 <i class="fa fa-times"></i>
                             </button>
@@ -44,6 +48,7 @@
         :per-page="meta.per_page"
         @change="pageChange">
     </b-pagination>
+
 </div>
 </template>
 <script>
@@ -55,7 +60,7 @@ export default {
             profile:'',
             list: [],
             meta: [{total:0}],
-        
+
 
         };
     },
@@ -73,6 +78,7 @@ export default {
                 this.links = response.data.links;
                 this.meta = response.data.meta;
 
+
             }).catch(error => {
 
             });
@@ -81,7 +87,43 @@ export default {
         pageChange (page) {
             var app = this;
             app.setData(page);
-        }
+        },
+        onDelete($data)
+        {
+            var app = this;
+
+            this.$swal({
+                title: 'Delete Record',
+                text: "Sure? This action is non-reversable",
+                type: 'question',
+                showCancelButton: true,
+                confirmButtonText: 'Yes, delete it!'
+            })
+            .then(() => {
+
+                axios.delete('/api/' + this.profile + '/back-office/items' + $data.id)
+                .then(() => {
+
+                    let index = this.list.findIndex(x => x.id === $data.id);
+                    this.list.splice(index, 1);
+
+                    this.$toast.open({
+                        duration: 750,
+                        message: 'The record has been deleted',
+                        position: 'is-bottom-right',
+                        type: 'is-danger'
+                    })
+                })
+                .catch(ex => {
+                    console.log(ex.response);
+                    this.$toast.open({
+                        duration: 5000,
+                        message: 'Error trying to delete record',
+                        type: 'is-danger'
+                    })
+                });
+            });
+        },
 
     },
     mounted: function mounted()
@@ -89,5 +131,6 @@ export default {
         var app = this;
         app.setData(1);
     }
+
 }
 </script>

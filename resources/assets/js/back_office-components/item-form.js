@@ -145,7 +145,7 @@ Vue.component('item-form',
     mounted: function mounted()
     {
         var app = this;
-        axios.get('/api/' + this.$parent.profile + '/back-office/list/0/vats/1')
+        axios.get('/api/' + this.$route.params.profile + '/back-office/list/vats/1')
         .then(({ data }) =>
         {
             app.vats = data;

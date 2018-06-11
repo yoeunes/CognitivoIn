@@ -15,7 +15,7 @@ import Buefy from 'buefy';
 import 'buefy/lib/buefy.css';
 
 require('./bootstrap');
- require('./components/bootstrap');
+require('./components/bootstrap');
 
 window.Vue.use(VueResource);
 window.Vue.use(VueRouter);
@@ -84,6 +84,7 @@ Vue.component(
 //Note: These tasks are only needed to show views.
 const router = new VueRouter({
     mode: 'history',
+
     routes: [
         //This will cause 404 Errors to be redirected to proper site.
         { path: '/*', component: NotFoundComponent },
@@ -123,6 +124,7 @@ const router = new VueRouter({
         { path: '/:profile/finances/account-payables', name: 'account-payable.index', component: AccountPayables },
         { path: '/:profile/finances/account-recievables', name: 'account-recievable.index', component: AccountReceivables },
         { path: '/:profile/finances/account-movements', name: 'account_movement.index', component: AccountMovements },
+        
     ]
 });
 
