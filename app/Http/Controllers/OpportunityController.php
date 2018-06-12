@@ -11,6 +11,7 @@ use App\Order;
 use App\OrderDetail;
 use App\PipelineStage;
 use App\Pipeline;
+use App\Http\Resources\OpportunityResource;
 use App\Relationship;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -22,16 +23,20 @@ class OpportunityController extends Controller
     *
     * @return \Illuminate\Http\Response
     */
-    public function index(Profile $profile, $skip, $filterBy)
+    public function index(Profile $profile, $filterBy)
     {
-        $opportunities = Opportunity::with('tasks')
+        return OpportunityResource::collection(Opportunity::with('tasks')
         ->with('relationship')
-        ->with('members')
-        ->skip($skip)
-        ->take(100)
-        ->get();
+        ->with('members')->paginate(2));
 
-        return response()->json($opportunities);
+        // $opportunities = Opportunity::with('tasks')
+        // ->with('relationship')
+        // ->with('members')
+        // ->skip($skip)
+        // ->take(100)
+        // ->get();
+        //
+        // return response()->json($opportunities);
     }
 
     /**

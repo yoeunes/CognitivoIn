@@ -40,6 +40,7 @@ import Crm_Dashboard from './views/crm/Dashboard';
 import Pipelines from './views/crm/Pipeline';
 import Opportunities from './views/crm/Opportunity';
 import OpportunityForm from './views/crm/OpportunityForm';
+import OpportunityShow from './views/crm/OpportunityShow';
 
 import Sales_Dashboard from './views/sales/Dashboard';
 import Customers from './views/sales/Customer';
@@ -100,8 +101,9 @@ const router = new VueRouter({
 
         { path: '/:profile/crm/dashboard', name: 'crm.dashboard', component: Dashboard },
         { path: '/:profile/crm/pipelines', name: 'pipeline.index', component: Pipelines },
-        { path: '/:profile/crm/opportunities', name: 'opportunity.index', component: Opportunities },
-        { path: '/:profile/crm/opportunity/:id', name: 'opportunity.show', component: OpportunityForm },
+        { path: '/:profile/crm/opportunities/:userid', name: 'opportunity.index', component: Opportunities },
+        { path: '/:profile/crm/opportunity/:id', name: 'opportunity.form', component: OpportunityForm },
+        { path: '/:profile/crm/opportunity/:id', name: 'opportunity.show', component: OpportunityShow },
 
         { path: '/:profile/sales/dashboard', name: 'sales.dashboard', component: Dashboard },
         { path: '/:profile/sales/customers', name: 'customer.index', component: Customers },
@@ -124,7 +126,7 @@ const router = new VueRouter({
         { path: '/:profile/finances/account-payables', name: 'account-payable.index', component: AccountPayables },
         { path: '/:profile/finances/account-recievables', name: 'account-recievable.index', component: AccountReceivables },
         { path: '/:profile/finances/account-movements', name: 'account_movement.index', component: AccountMovements },
-        
+
     ]
 });
 

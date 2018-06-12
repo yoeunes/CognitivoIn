@@ -11698,7 +11698,7 @@ if (typeof DEBUG !== 'undefined' && DEBUG) {
   ) }
 }
 
-var listToStyles = __webpack_require__(128)
+var listToStyles = __webpack_require__(135)
 
 /*
 type StyleObject = {
@@ -15257,7 +15257,7 @@ module.exports = Cancel;
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(18);
-module.exports = __webpack_require__(141);
+module.exports = __webpack_require__(148);
 
 
 /***/ }),
@@ -15295,42 +15295,44 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__views_crm_Pipeline___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_14__views_crm_Pipeline__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__views_crm_Opportunity__ = __webpack_require__(98);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__views_crm_Opportunity___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_15__views_crm_Opportunity__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__views_crm_OpportunityForm__ = __webpack_require__(99);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__views_crm_OpportunityForm__ = __webpack_require__(101);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__views_crm_OpportunityForm___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_16__views_crm_OpportunityForm__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__views_sales_Dashboard__ = __webpack_require__(100);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__views_sales_Dashboard___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_17__views_sales_Dashboard__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__views_sales_Customer__ = __webpack_require__(101);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__views_sales_Customer___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_18__views_sales_Customer__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__views_sales_CustomerForm__ = __webpack_require__(104);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__views_sales_CustomerForm___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_19__views_sales_CustomerForm__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__views_sales_Order__ = __webpack_require__(107);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__views_sales_Order___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_20__views_sales_Order__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__views_sales_OrderForm__ = __webpack_require__(108);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__views_sales_OrderForm___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_21__views_sales_OrderForm__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__views_purchase_Dashboard__ = __webpack_require__(109);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__views_purchase_Dashboard___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_22__views_purchase_Dashboard__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__views_purchase_Supplier__ = __webpack_require__(110);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__views_purchase_Supplier___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_23__views_purchase_Supplier__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__views_purchase_SupplierForm__ = __webpack_require__(111);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__views_purchase_SupplierForm___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_24__views_purchase_SupplierForm__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__views_stock_Dashboard__ = __webpack_require__(112);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__views_stock_Dashboard___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_25__views_stock_Dashboard__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__views_stock_Item__ = __webpack_require__(113);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__views_stock_Item___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_26__views_stock_Item__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__views_stock_ItemForm__ = __webpack_require__(116);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__views_stock_ItemForm___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_27__views_stock_ItemForm__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_28__views_finance_Dashboard__ = __webpack_require__(119);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_28__views_finance_Dashboard___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_28__views_finance_Dashboard__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_29__views_finance_Account__ = __webpack_require__(120);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_29__views_finance_Account___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_29__views_finance_Account__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_30__views_finance_AccountForm__ = __webpack_require__(121);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_30__views_finance_AccountForm___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_30__views_finance_AccountForm__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_31__views_finance_AccountPayable__ = __webpack_require__(122);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_31__views_finance_AccountPayable___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_31__views_finance_AccountPayable__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_32__views_finance_AccountReceivable__ = __webpack_require__(123);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_32__views_finance_AccountReceivable___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_32__views_finance_AccountReceivable__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_33__views_finance_AccountMovement__ = __webpack_require__(124);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_33__views_finance_AccountMovement___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_33__views_finance_AccountMovement__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__views_crm_OpportunityShow__ = __webpack_require__(104);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__views_crm_OpportunityShow___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_17__views_crm_OpportunityShow__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__views_sales_Dashboard__ = __webpack_require__(107);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__views_sales_Dashboard___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_18__views_sales_Dashboard__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__views_sales_Customer__ = __webpack_require__(108);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__views_sales_Customer___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_19__views_sales_Customer__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__views_sales_CustomerForm__ = __webpack_require__(111);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__views_sales_CustomerForm___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_20__views_sales_CustomerForm__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__views_sales_Order__ = __webpack_require__(114);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__views_sales_Order___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_21__views_sales_Order__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__views_sales_OrderForm__ = __webpack_require__(115);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__views_sales_OrderForm___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_22__views_sales_OrderForm__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__views_purchase_Dashboard__ = __webpack_require__(116);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__views_purchase_Dashboard___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_23__views_purchase_Dashboard__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__views_purchase_Supplier__ = __webpack_require__(117);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__views_purchase_Supplier___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_24__views_purchase_Supplier__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__views_purchase_SupplierForm__ = __webpack_require__(118);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__views_purchase_SupplierForm___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_25__views_purchase_SupplierForm__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__views_stock_Dashboard__ = __webpack_require__(119);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__views_stock_Dashboard___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_26__views_stock_Dashboard__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__views_stock_Item__ = __webpack_require__(120);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__views_stock_Item___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_27__views_stock_Item__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_28__views_stock_ItemForm__ = __webpack_require__(123);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_28__views_stock_ItemForm___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_28__views_stock_ItemForm__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_29__views_finance_Dashboard__ = __webpack_require__(126);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_29__views_finance_Dashboard___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_29__views_finance_Dashboard__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_30__views_finance_Account__ = __webpack_require__(127);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_30__views_finance_Account___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_30__views_finance_Account__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_31__views_finance_AccountForm__ = __webpack_require__(128);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_31__views_finance_AccountForm___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_31__views_finance_AccountForm__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_32__views_finance_AccountPayable__ = __webpack_require__(129);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_32__views_finance_AccountPayable___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_32__views_finance_AccountPayable__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_33__views_finance_AccountReceivable__ = __webpack_require__(130);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_33__views_finance_AccountReceivable___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_33__views_finance_AccountReceivable__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_34__views_finance_AccountMovement__ = __webpack_require__(131);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_34__views_finance_AccountMovement___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_34__views_finance_AccountMovement__);
 
 /**
 * First we will load all of this project's JavaScript dependencies which
@@ -15395,34 +15397,35 @@ Back-Office views to be used for Ajax Loaded sites.
 
 
 
+
 /**
 * Next, we will create a fresh Vue application instance and attach it to
 * the page. Then, you may begin adding components to this application
 * or customize the JavaScript scaffolding to fit your unique needs.
 */
 
-__WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('passport-clients', __webpack_require__(125));
-__WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('passport-authorized-clients', __webpack_require__(131));
-__WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('passport-personal-access-tokens', __webpack_require__(136));
+__WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('passport-clients', __webpack_require__(132));
+__WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('passport-authorized-clients', __webpack_require__(138));
+__WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('passport-personal-access-tokens', __webpack_require__(143));
 
 //Note: These tasks are only needed to show views.
 var router = new __WEBPACK_IMPORTED_MODULE_2_vue_router__["a" /* default */]({
-    mode: 'history',
+        mode: 'history',
 
-    routes: [
-    //This will cause 404 Errors to be redirected to proper site.
-    { path: '/*', component: __WEBPACK_IMPORTED_MODULE_7__views_NotFoundComponent___default.a },
+        routes: [
+        //This will cause 404 Errors to be redirected to proper site.
+        { path: '/*', component: __WEBPACK_IMPORTED_MODULE_7__views_NotFoundComponent___default.a },
 
-    //{ path: '/', name: 'dashboard', component: Dashboard },
-    { path: '/:profile/dashboard', name: 'dashboard', component: __WEBPACK_IMPORTED_MODULE_6__views_Dashboard___default.a }, { path: '/config/profile', name: 'profile.form', component: __WEBPACK_IMPORTED_MODULE_8__views_config_ProfileForm___default.a }, { path: '/:profile/config/locations', name: 'location.index', component: __WEBPACK_IMPORTED_MODULE_9__views_config_Location___default.a }, { path: '/:profile/config/sales-taxes', name: 'sales-taxes.index', component: __WEBPACK_IMPORTED_MODULE_10__views_config_SalesTax___default.a }, { path: '/:profile/config/contracts', name: 'contracts.index', component: __WEBPACK_IMPORTED_MODULE_11__views_config_Contract___default.a }, { path: '/:profile/config/team-members', name: 'team-members.index', component: __WEBPACK_IMPORTED_MODULE_12__views_config_TeamMember___default.a }, { path: '/:profile/crm/dashboard', name: 'crm.dashboard', component: __WEBPACK_IMPORTED_MODULE_6__views_Dashboard___default.a }, { path: '/:profile/crm/pipelines', name: 'pipeline.index', component: __WEBPACK_IMPORTED_MODULE_14__views_crm_Pipeline___default.a }, { path: '/:profile/crm/opportunities', name: 'opportunity.index', component: __WEBPACK_IMPORTED_MODULE_15__views_crm_Opportunity___default.a }, { path: '/:profile/crm/opportunity/:id', name: 'opportunity.show', component: __WEBPACK_IMPORTED_MODULE_16__views_crm_OpportunityForm___default.a }, { path: '/:profile/sales/dashboard', name: 'sales.dashboard', component: __WEBPACK_IMPORTED_MODULE_6__views_Dashboard___default.a }, { path: '/:profile/sales/customers', name: 'customer.index', component: __WEBPACK_IMPORTED_MODULE_18__views_sales_Customer___default.a }, { path: '/:profile/sales/customer/:id', name: 'customer.form', component: __WEBPACK_IMPORTED_MODULE_19__views_sales_CustomerForm___default.a },
-    // { path: '/:profile/sales/carts', name: 'carts', component: Carts },
-    { path: '/:profile/sales/orders', name: 'order.index', component: __WEBPACK_IMPORTED_MODULE_20__views_sales_Order___default.a }, { path: '/:profile/sales/order/:id', name: 'order.form', component: __WEBPACK_IMPORTED_MODULE_21__views_sales_OrderForm___default.a }, { path: '/:profile/purchases/dashboard', name: 'purchase.dashboard', component: __WEBPACK_IMPORTED_MODULE_6__views_Dashboard___default.a }, { path: '/:profile/purchases/suppliers', name: 'supplier.index', component: __WEBPACK_IMPORTED_MODULE_23__views_purchase_Supplier___default.a }, { path: '/:profile/purchases/supplier/:id', name: 'supplier.form', component: __WEBPACK_IMPORTED_MODULE_24__views_purchase_SupplierForm___default.a }, { path: '/:profile/stocks/dashboard', name: 'stock.dashboard', component: __WEBPACK_IMPORTED_MODULE_6__views_Dashboard___default.a }, { path: '/:profile/stocks/items', name: 'item.index', component: __WEBPACK_IMPORTED_MODULE_26__views_stock_Item___default.a }, { path: '/:profile/stocks/item/:id', name: 'item.form', component: __WEBPACK_IMPORTED_MODULE_27__views_stock_ItemForm___default.a }, { path: '/:profile/finances/dashboard', name: 'finance.dashboard', component: __WEBPACK_IMPORTED_MODULE_6__views_Dashboard___default.a }, { path: '/:profile/finances/accounts', name: 'account.index', component: __WEBPACK_IMPORTED_MODULE_29__views_finance_Account___default.a }, { path: '/:profile/finances/account/:id', name: 'account.form', component: __WEBPACK_IMPORTED_MODULE_30__views_finance_AccountForm___default.a }, { path: '/:profile/finances/account-payables', name: 'account-payable.index', component: __WEBPACK_IMPORTED_MODULE_31__views_finance_AccountPayable___default.a }, { path: '/:profile/finances/account-recievables', name: 'account-recievable.index', component: __WEBPACK_IMPORTED_MODULE_32__views_finance_AccountReceivable___default.a }, { path: '/:profile/finances/account-movements', name: 'account_movement.index', component: __WEBPACK_IMPORTED_MODULE_33__views_finance_AccountMovement___default.a }]
+        //{ path: '/', name: 'dashboard', component: Dashboard },
+        { path: '/:profile/dashboard', name: 'dashboard', component: __WEBPACK_IMPORTED_MODULE_6__views_Dashboard___default.a }, { path: '/config/profile', name: 'profile.form', component: __WEBPACK_IMPORTED_MODULE_8__views_config_ProfileForm___default.a }, { path: '/:profile/config/locations', name: 'location.index', component: __WEBPACK_IMPORTED_MODULE_9__views_config_Location___default.a }, { path: '/:profile/config/sales-taxes', name: 'sales-taxes.index', component: __WEBPACK_IMPORTED_MODULE_10__views_config_SalesTax___default.a }, { path: '/:profile/config/contracts', name: 'contracts.index', component: __WEBPACK_IMPORTED_MODULE_11__views_config_Contract___default.a }, { path: '/:profile/config/team-members', name: 'team-members.index', component: __WEBPACK_IMPORTED_MODULE_12__views_config_TeamMember___default.a }, { path: '/:profile/crm/dashboard', name: 'crm.dashboard', component: __WEBPACK_IMPORTED_MODULE_6__views_Dashboard___default.a }, { path: '/:profile/crm/pipelines', name: 'pipeline.index', component: __WEBPACK_IMPORTED_MODULE_14__views_crm_Pipeline___default.a }, { path: '/:profile/crm/opportunities/:userid', name: 'opportunity.index', component: __WEBPACK_IMPORTED_MODULE_15__views_crm_Opportunity___default.a }, { path: '/:profile/crm/opportunity/:id', name: 'opportunity.form', component: __WEBPACK_IMPORTED_MODULE_16__views_crm_OpportunityForm___default.a }, { path: '/:profile/crm/opportunity/:id', name: 'opportunity.show', component: __WEBPACK_IMPORTED_MODULE_17__views_crm_OpportunityShow___default.a }, { path: '/:profile/sales/dashboard', name: 'sales.dashboard', component: __WEBPACK_IMPORTED_MODULE_6__views_Dashboard___default.a }, { path: '/:profile/sales/customers', name: 'customer.index', component: __WEBPACK_IMPORTED_MODULE_19__views_sales_Customer___default.a }, { path: '/:profile/sales/customer/:id', name: 'customer.form', component: __WEBPACK_IMPORTED_MODULE_20__views_sales_CustomerForm___default.a },
+        // { path: '/:profile/sales/carts', name: 'carts', component: Carts },
+        { path: '/:profile/sales/orders', name: 'order.index', component: __WEBPACK_IMPORTED_MODULE_21__views_sales_Order___default.a }, { path: '/:profile/sales/order/:id', name: 'order.form', component: __WEBPACK_IMPORTED_MODULE_22__views_sales_OrderForm___default.a }, { path: '/:profile/purchases/dashboard', name: 'purchase.dashboard', component: __WEBPACK_IMPORTED_MODULE_6__views_Dashboard___default.a }, { path: '/:profile/purchases/suppliers', name: 'supplier.index', component: __WEBPACK_IMPORTED_MODULE_24__views_purchase_Supplier___default.a }, { path: '/:profile/purchases/supplier/:id', name: 'supplier.form', component: __WEBPACK_IMPORTED_MODULE_25__views_purchase_SupplierForm___default.a }, { path: '/:profile/stocks/dashboard', name: 'stock.dashboard', component: __WEBPACK_IMPORTED_MODULE_6__views_Dashboard___default.a }, { path: '/:profile/stocks/items', name: 'item.index', component: __WEBPACK_IMPORTED_MODULE_27__views_stock_Item___default.a }, { path: '/:profile/stocks/item/:id', name: 'item.form', component: __WEBPACK_IMPORTED_MODULE_28__views_stock_ItemForm___default.a }, { path: '/:profile/finances/dashboard', name: 'finance.dashboard', component: __WEBPACK_IMPORTED_MODULE_6__views_Dashboard___default.a }, { path: '/:profile/finances/accounts', name: 'account.index', component: __WEBPACK_IMPORTED_MODULE_30__views_finance_Account___default.a }, { path: '/:profile/finances/account/:id', name: 'account.form', component: __WEBPACK_IMPORTED_MODULE_31__views_finance_AccountForm___default.a }, { path: '/:profile/finances/account-payables', name: 'account-payable.index', component: __WEBPACK_IMPORTED_MODULE_32__views_finance_AccountPayable___default.a }, { path: '/:profile/finances/account-recievables', name: 'account-recievable.index', component: __WEBPACK_IMPORTED_MODULE_33__views_finance_AccountReceivable___default.a }, { path: '/:profile/finances/account-movements', name: 'account_movement.index', component: __WEBPACK_IMPORTED_MODULE_34__views_finance_AccountMovement___default.a }]
 });
 
 var app = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
-    el: '#app',
-    // components: { App },
-    router: router
+        el: '#app',
+        // components: { App },
+        router: router
 }).$mount('#app');
 
 /***/ }),
@@ -54828,6 +54831,7 @@ Vue.component('location-form', {
 /* 61 */
 /***/ (function(module, exports) {
 
+
 // Vue.use(Buefy.default)
 
 Vue.component('opportunity-form', {
@@ -55074,7 +55078,7 @@ Vue.component('opportunity-form', {
 
         getPipelines: function getPipelines(data) {
             var app = this;
-            axios.get('/api/' + app.$parent.profile + '/back-office/list/0/pipelines/1').then(function (_ref2) {
+            axios.get('/api/' + app.$parent.profile + '/back-office/list/pipelines/1').then(function (_ref2) {
                 var data = _ref2.data;
 
                 app.pipelines = [];
@@ -61919,11 +61923,12 @@ if (false) {
 /* 98 */
 /***/ (function(module, exports, __webpack_require__) {
 
+var disposed = false
 var normalizeComponent = __webpack_require__(0)
 /* script */
-var __vue_script__ = null
+var __vue_script__ = __webpack_require__(99)
 /* template */
-var __vue_template__ = null
+var __vue_template__ = __webpack_require__(100)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -61942,18 +61947,383 @@ var Component = normalizeComponent(
 )
 Component.options.__file = "resources\\assets\\js\\views\\crm\\Opportunity.vue"
 
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-31723c50", Component.options)
+  } else {
+    hotAPI.reload("data-v-31723c50", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
 module.exports = Component.exports
 
 
 /***/ }),
 /* 99 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      profile: '',
+      userid: '',
+      list: [],
+      meta: [{ total: 0 }]
+
+    };
+  },
+
+
+  methods: {
+    onLoad: function onLoad(page) {
+      var _this = this;
+
+      this.profile = this.$route.params.profile;
+      this.userid = this.$route.params.userid;
+      axios.get('/api/' + this.profile + '/back-office/list/opportunities/1?page=' + page).then(function (response) {
+
+        _this.list = response.data.data;
+        _this.meta = response.data.meta;
+      }).catch(function (error) {});
+    },
+    pageChange: function pageChange(page) {
+      var app = this;
+      app.onLoad(page);
+    },
+    onCreate: function onCreate() {
+      var app = this;
+      app.$router.push({ name: "opportunity.form", params: { id: 0 } });
+    },
+    onDelete: function onDelete($data) {
+      var _this2 = this;
+
+      var app = this;
+
+      this.$swal({
+        title: 'Delete Record',
+        text: "Sure? This action is non-reversable",
+        type: 'question',
+        showCancelButton: true,
+        confirmButtonText: 'Yes, delete it!'
+      }).then(function () {
+
+        axios.delete('/api/' + _this2.profile + '/back-office/opportunities/' + $data.id).then(function () {
+
+          var index = _this2.list.findIndex(function (x) {
+            return x.id === $data.id;
+          });
+          _this2.list.splice(index, 1);
+
+          _this2.$toast.open({
+            duration: 750,
+            message: 'The record has been deleted',
+            position: 'is-bottom-right',
+            type: 'is-danger'
+          });
+        }).catch(function (ex) {
+          console.log(ex.response);
+          _this2.$toast.open({
+            duration: 5000,
+            message: 'Error trying to delete record',
+            type: 'is-danger'
+          });
+        });
+      });
+    }
+  },
+  mounted: function mounted() {
+    var app = this;
+    app.onLoad(1);
+  }
+
+});
+
+/***/ }),
+/* 100 */
 /***/ (function(module, exports, __webpack_require__) {
 
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    [
+      _c("div", { staticClass: "col-md-6 col-xl-3" }, [
+        _c(
+          "a",
+          {
+            staticClass: "block block-rounded block-link-shadow",
+            attrs: { href: "#" },
+            on: {
+              click: function($event) {
+                _vm.onCreate()
+              }
+            }
+          },
+          [_vm._m(0)]
+        )
+      ]),
+      _vm._v(" "),
+      _c("table", [
+        _vm._m(1),
+        _vm._v(" "),
+        _c(
+          "tbody",
+          _vm._l(_vm.list, function(opportunity) {
+            return _c("tr", [
+              _c("td", [_vm._v("@" + _vm._s(opportunity.id))]),
+              _vm._v(" "),
+              _c("td", [
+                _c(
+                  "a",
+                  {
+                    attrs: { href: "#" },
+                    on: {
+                      click: function($event) {
+                        _vm.onShow(opportunity)
+                      }
+                    }
+                  },
+                  [_vm._v("@" + _vm._s(opportunity.name))]
+                )
+              ]),
+              _vm._v(" "),
+              opportunity.relationship !== null
+                ? _c("td", [
+                    _vm._v(
+                      "@" + _vm._s(opportunity.relationship.customer_alias)
+                    )
+                  ])
+                : _c("td"),
+              _vm._v(" "),
+              _c("td", [_vm._v("@" + _vm._s(opportunity.value))]),
+              _vm._v(" "),
+              _c("td", { staticClass: "text-center" }, [
+                _c("div", { staticClass: "btn-group" }, [
+                  _c(
+                    "button",
+                    {
+                      staticClass:
+                        "btn btn-sm btn-secondary js-tooltip-enabled",
+                      attrs: {
+                        type: "button",
+                        "data-toggle": "tooltip",
+                        "data-original-title": "Show"
+                      },
+                      on: {
+                        click: function($event) {
+                          _vm.onShow(opportunity)
+                        }
+                      }
+                    },
+                    [_c("i", { staticClass: "fa fa-eye" })]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "button",
+                    {
+                      staticClass:
+                        "btn btn-sm btn-secondary js-tooltip-enabled",
+                      attrs: {
+                        type: "button",
+                        "data-toggle": "tooltip",
+                        "data-original-title": "Edit"
+                      },
+                      on: {
+                        click: function($event) {
+                          _vm.onEdit(opportunity)
+                        }
+                      }
+                    },
+                    [_c("i", { staticClass: "fa fa-pencil" })]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "button",
+                    {
+                      staticClass:
+                        "btn btn-sm btn-secondary js-tooltip-enabled",
+                      attrs: {
+                        type: "button",
+                        "data-toggle": "tooltip",
+                        "data-original-title": "Delete"
+                      },
+                      on: {
+                        click: function($event) {
+                          _vm.onDelete(opportunity)
+                        }
+                      }
+                    },
+                    [_c("i", { staticClass: "fa fa-times" })]
+                  )
+                ])
+              ])
+            ])
+          })
+        )
+      ]),
+      _vm._v(" "),
+      _c("b-pagination", {
+        attrs: {
+          total: _vm.meta.total,
+          current: _vm.meta.current_page,
+          simple: false,
+          "per-page": _vm.meta.per_page
+        },
+        on: {
+          "update:current": function($event) {
+            _vm.$set(_vm.meta, "current_page", $event)
+          },
+          change: _vm.pageChange
+        }
+      })
+    ],
+    1
+  )
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      { staticClass: "block-content block-content-full block-sticky-options" },
+      [
+        _c("div", { staticClass: "block-options" }, [
+          _c("div", { staticClass: "block-options-item" }, [
+            _c("i", { staticClass: "fa fa-archive fa-2x text-success-light" })
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "py-20 text-center" }, [
+          _c(
+            "div",
+            { staticClass: "font-size-h2 font-w700 mb-0 text-success" },
+            [_c("i", { staticClass: "fa fa-plus" })]
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "font-size-sm font-w600 text-uppercase text-muted" },
+            [_vm._v("New Opportunity")]
+          )
+        ])
+      ]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", [
+      _c("tr", [
+        _c("td", [_vm._v("#")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Opportunity Name")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Customer")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Value")]),
+        _vm._v(" "),
+        _c("th", { staticClass: "text-center" }, [_vm._v("Actions")])
+      ])
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-31723c50", module.exports)
+  }
+}
+
+/***/ }),
+/* 101 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
 var normalizeComponent = __webpack_require__(0)
 /* script */
-var __vue_script__ = null
+var __vue_script__ = __webpack_require__(102)
 /* template */
-var __vue_template__ = null
+var __vue_template__ = __webpack_require__(103)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -61972,11 +62342,4892 @@ var Component = normalizeComponent(
 )
 Component.options.__file = "resources\\assets\\js\\views\\crm\\OpportunityForm.vue"
 
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-ede89e88", Component.options)
+  } else {
+    hotAPI.reload("data-v-ede89e88", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
 module.exports = Component.exports
 
 
 /***/ }),
-/* 100 */
+/* 102 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      profile: '',
+      user_id: ''
+
+    };
+  },
+
+
+  methods: {
+    onSave: function onSave($data) {
+      var _this = this;
+
+      var app = this;
+      axios.post('/api/' + app.profile + '/back-office/opportunities/', $data).then(function () {
+        _this.$toast.open({
+          message: 'Awsome! Your work has been saved',
+          type: 'is-success'
+        });
+
+        _this.$router.push({ name: "item.index" });
+      }).catch(function (ex) {
+        console.log(ex.response);
+        _this.$toast.open({
+          duration: 5000,
+          message: 'Error trying to save record',
+          type: 'is-danger'
+        });
+      });
+    },
+    onCancel: function onCancel() {
+      console.log(this);
+      this.$router.push({ name: "opportunity.index" });
+    }
+  },
+  mounted: function mounted() {
+
+    var app = this;
+    app.profile = this.$route.params.profile;
+    app.user_id = this.$parent.userid;
+    app.id = this.$route.params.id;
+    if (app.id > 0) {
+
+      axios.get('/api/' + app.profile + '/back-office/opportunities/' + app.id + '/edit').then(function (response) {
+        console.log(app);
+        app.$children[0].onEdit(response.data);
+      }).catch(function (ex) {
+        console.log(ex);
+
+        app.$toast.open({
+          duration: 5000,
+          message: 'Error trying to edit this record',
+          type: 'is-danger'
+        });
+      });
+    }
+  }
+
+});
+
+/***/ }),
+/* 103 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    [
+      _c("opportunity-form", {
+        ref: "back_officeForm",
+        attrs: { userid: "user_id" },
+        inlineTemplate: {
+          render: function() {
+            var _vm = this
+            var _h = _vm.$createElement
+            var _c = _vm._self._c || _h
+            return _c("div", { staticClass: "content" }, [
+              _c("div", { staticClass: "block block-fx-shadow" }, [
+                _c("div", { staticClass: "block-content" }, [
+                  _c("h2", { staticClass: "content-heading text-black" }, [
+                    _vm._v(" @lang('back-office.Opportunities') ")
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "row items-push" }, [
+                    _vm._m(0),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      { staticClass: "col-lg-7 offset-lg-1" },
+                      [
+                        _c(
+                          "b-field",
+                          {
+                            attrs: { label: "Opportunity Name", expanded: "" }
+                          },
+                          [
+                            _c("b-input", {
+                              attrs: {
+                                maxlength: "200",
+                                placeholder: "So whats this oportunity about?"
+                              },
+                              model: {
+                                value: _vm.name,
+                                callback: function($$v) {
+                                  _vm.name = $$v
+                                },
+                                expression: "name"
+                              }
+                            })
+                          ],
+                          1
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "b-field",
+                          { attrs: { label: "Description", expanded: "" } },
+                          [
+                            _c("b-input", {
+                              attrs: {
+                                maxlength: "200",
+                                placeholder: "So whats this oportunity about?",
+                                type: "textarea"
+                              },
+                              model: {
+                                value: _vm.description,
+                                callback: function($$v) {
+                                  _vm.description = $$v
+                                },
+                                expression: "description"
+                              }
+                            })
+                          ],
+                          1
+                        ),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "form-group row" }, [
+                          _c(
+                            "div",
+                            { staticClass: "col-12" },
+                            [
+                              _c("label", [
+                                _vm._v("@lang('back-office.Customer')")
+                              ]),
+                              _vm._v(" "),
+                              _c(
+                                "b-field",
+                                [
+                                  _c(
+                                    "b-autocomplete",
+                                    {
+                                      attrs: {
+                                        data: _vm.customers,
+                                        placeholder: "Search Customer",
+                                        field: "customer_alias",
+                                        loading: _vm.isFetching
+                                      },
+                                      on: {
+                                        input: _vm.getCustomers,
+                                        select: function(option) {
+                                          return _vm.addCustomer(option)
+                                        }
+                                      },
+                                      scopedSlots: _vm._u([
+                                        {
+                                          key: "default",
+                                          fn: function(props) {
+                                            return [
+                                              _c("strong", [
+                                                _vm._v(
+                                                  "@" +
+                                                    _vm._s(
+                                                      props.option
+                                                        .customer_taxid
+                                                    )
+                                                )
+                                              ]),
+                                              _vm._v(
+                                                " | @" +
+                                                  _vm._s(
+                                                    props.option.customer_alias
+                                                  ) +
+                                                  "\n                                    "
+                                              )
+                                            ]
+                                          }
+                                        }
+                                      ]),
+                                      model: {
+                                        value: _vm.selectname,
+                                        callback: function($$v) {
+                                          _vm.selectname = $$v
+                                        },
+                                        expression: "selectname"
+                                      }
+                                    },
+                                    [
+                                      _c("template", { slot: "empty" }, [
+                                        _vm._v(
+                                          "\n                                        There are no customers\n                                    "
+                                        )
+                                      ])
+                                    ],
+                                    2
+                                  )
+                                ],
+                                1
+                              )
+                            ],
+                            1
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "form-group row" }, [
+                          _c("div", { staticClass: "col-6" }, [
+                            _c("label", [
+                              _vm._v("@lang('back-office.Pipeline')")
+                            ]),
+                            _vm._v(" "),
+                            _c(
+                              "select",
+                              {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.pipeline_id,
+                                    expression: "pipeline_id"
+                                  }
+                                ],
+                                staticClass: "custom-select",
+                                attrs: { required: "" },
+                                on: {
+                                  change: function($event) {
+                                    var $$selectedVal = Array.prototype.filter
+                                      .call($event.target.options, function(o) {
+                                        return o.selected
+                                      })
+                                      .map(function(o) {
+                                        var val =
+                                          "_value" in o ? o._value : o.value
+                                        return val
+                                      })
+                                    _vm.pipeline_id = $event.target.multiple
+                                      ? $$selectedVal
+                                      : $$selectedVal[0]
+                                  }
+                                }
+                              },
+                              _vm._l(_vm.pipelines, function(pipeline) {
+                                return _c(
+                                  "option",
+                                  { domProps: { value: pipeline.id } },
+                                  [_vm._v("@" + _vm._s(pipeline.name))]
+                                )
+                              })
+                            )
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "form-group row" }, [
+                          _c("div", { staticClass: "col-6" }, [
+                            _c("label", [_vm._v("Opportunity Value")]),
+                            _vm._v(" "),
+                            _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.value,
+                                  expression: "value"
+                                }
+                              ],
+                              staticClass: "form-control form-control-lg",
+                              attrs: { type: "text" },
+                              domProps: { value: _vm.value },
+                              on: {
+                                input: function($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.value = $event.target.value
+                                }
+                              }
+                            })
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c(
+                          "div",
+                          { staticClass: "form-group row" },
+                          [
+                            _c(
+                              "b-field",
+                              { attrs: { label: "Currency" } },
+                              [
+                                _c("b-input", {
+                                  attrs: {
+                                    placeholder: "Currency",
+                                    type: "text",
+                                    maxlength: "3",
+                                    "has-counter": ""
+                                  },
+                                  model: {
+                                    value: _vm.currency,
+                                    callback: function($$v) {
+                                      _vm.currency = $$v
+                                    },
+                                    expression: "currency"
+                                  }
+                                })
+                              ],
+                              1
+                            )
+                          ],
+                          1
+                        ),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "form-group row" }, [
+                          _c("div", { staticClass: "col-6" }, [
+                            _c("label", [_vm._v("Deadline Date")]),
+                            _vm._v(" "),
+                            _c(
+                              "div",
+                              {
+                                staticClass:
+                                  "js-datetimepicker input-group date",
+                                attrs: { "data-format": "YYYY/MM/DD" }
+                              },
+                              [
+                                _c("input", {
+                                  directives: [
+                                    {
+                                      name: "model",
+                                      rawName: "v-model",
+                                      value: _vm.deadline_date,
+                                      expression: "deadline_date"
+                                    }
+                                  ],
+                                  staticClass: "form-control input-lg",
+                                  attrs: {
+                                    type: "date",
+                                    placeholder: "Do you have a deadline?"
+                                  },
+                                  domProps: { value: _vm.deadline_date },
+                                  on: {
+                                    input: function($event) {
+                                      if ($event.target.composing) {
+                                        return
+                                      }
+                                      _vm.deadline_date = $event.target.value
+                                    }
+                                  }
+                                }),
+                                _vm._v(" "),
+                                _vm._m(1)
+                              ]
+                            )
+                          ])
+                        ])
+                      ],
+                      1
+                    )
+                  ])
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "row" }, [
+                _c(
+                  "button",
+                  {
+                    staticClass:
+                      "btn btn-outline-primary min-width-125 js-click-ripple-enabled m",
+                    attrs: { "data-toggle": "click-ripple" },
+                    on: {
+                      click: function($event) {
+                        _vm.onSave(_vm.$data)
+                      }
+                    }
+                  },
+                  [
+                    _vm._v(
+                      "\n                @lang('global.Save')\n            "
+                    )
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "button",
+                  {
+                    staticClass:
+                      "btn btn-alt-secondary min-width-125 js-click-ripple-enabled",
+                    attrs: { "data-toggle": "click-ripple" },
+                    on: {
+                      click: function($event) {
+                        _vm.onCancel()
+                      }
+                    }
+                  },
+                  [
+                    _vm._v(
+                      "\n                @lang('global.Cancel')\n            "
+                    )
+                  ]
+                )
+              ])
+            ])
+          },
+          staticRenderFns: [
+            function() {
+              var _vm = this
+              var _h = _vm.$createElement
+              var _c = _vm._self._c || _h
+              return _c("div", { staticClass: "col-lg-3" }, [
+                _c("p", { staticClass: "text-muted" }, [
+                  _vm._v(
+                    "\n                            Opportunities are a great way to plan and remind yourself of potential sales. And how to convert those opportunities to actual sales.\n                        "
+                  )
+                ])
+              ])
+            },
+            function() {
+              var _vm = this
+              var _h = _vm.$createElement
+              var _c = _vm._self._c || _h
+              return _c("span", { staticClass: "input-group-addon" }, [
+                _c("span", { staticClass: "fa fa-calendar" })
+              ])
+            }
+          ]
+        }
+      })
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-ede89e88", module.exports)
+  }
+}
+
+/***/ }),
+/* 104 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(0)
+/* script */
+var __vue_script__ = __webpack_require__(105)
+/* template */
+var __vue_template__ = __webpack_require__(106)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\views\\crm\\OpportunityShow.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-589dba75", Component.options)
+  } else {
+    hotAPI.reload("data-v-589dba75", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 105 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      profile: '',
+      user_id: ''
+
+    };
+  },
+
+
+  methods: {
+    onSave: function onSave($data) {
+      var _this = this;
+
+      var app = this;
+      axios.post('/api/' + app.profile + '/back-office/opportunities/', $data).then(function () {
+        _this.$toast.open({
+          message: 'Awsome! Your work has been saved',
+          type: 'is-success'
+        });
+
+        _this.$router.push({ name: "item.index" });
+      }).catch(function (ex) {
+        console.log(ex.response);
+        _this.$toast.open({
+          duration: 5000,
+          message: 'Error trying to save record',
+          type: 'is-danger'
+        });
+      });
+    },
+    onCancel: function onCancel() {
+      console.log(this);
+      this.$router.push({ name: "opportunity.index" });
+    }
+  },
+  mounted: function mounted() {
+
+    var app = this;
+    app.profile = this.$route.params.profile;
+    app.user_id = this.$parent.userid;
+    app.id = this.$route.params.id;
+    if (app.id > 0) {
+
+      axios.get('/api/' + app.profile + '/back-office/opportunities/' + app.id + '/edit').then(function (response) {
+        console.log(app);
+        app.$children[0].onEdit(response.data);
+      }).catch(function (ex) {
+        console.log(ex);
+
+        app.$toast.open({
+          duration: 5000,
+          message: 'Error trying to edit this record',
+          type: 'is-danger'
+        });
+      });
+    }
+  }
+
+});
+
+/***/ }),
+/* 106 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    [
+      _c("opportunity-form", {
+        ref: "back_officeForm",
+        attrs: { userid: "user_id" },
+        inlineTemplate: {
+          render: function() {
+            var _vm = this
+            var _h = _vm.$createElement
+            var _c = _vm._self._c || _h
+            return _c("div", [
+              _c("div", { staticClass: "block block-rounded" }, [
+                _c(
+                  "div",
+                  {
+                    staticClass: "block-content bg-pattern",
+                    staticStyle: {
+                      "background-image":
+                        "url('/img/backgrounds/bg-pattern-inverse.png')"
+                    }
+                  },
+                  [
+                    _c("div", { staticClass: "py-20 text-center" }, [
+                      _c("h1", { staticClass: "h3 mb-5" }, [
+                        _vm._v("@" + _vm._s(_vm.name))
+                      ]),
+                      _vm._v(" "),
+                      _c("p", { staticClass: "mb-10 text-muted" }, [
+                        _c("em", [_vm._v("@" + _vm._s(_vm.deadline_date))])
+                      ]),
+                      _vm._v(" "),
+                      _c("p", [
+                        _vm._v(
+                          "\n                          @" +
+                            _vm._s(_vm.description) +
+                            "\n                      "
+                        )
+                      ])
+                    ])
+                  ]
+                )
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "row" }, [
+                _c("div", { staticClass: "col-md-5 col-xl-3" }, [
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-block btn-primary d-md-none mb-10",
+                      attrs: {
+                        type: "button",
+                        "data-toggle": "class-toggle",
+                        "data-target": ".js-tasks-nav",
+                        "data-class": "d-none d-md-block"
+                      }
+                    },
+                    [_vm._v("\n                      Menu\n                  ")]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    {
+                      staticClass: "block text-center",
+                      attrs: { href: "javascript:void(0)" }
+                    },
+                    [
+                      _vm._m(0),
+                      _vm._v(" "),
+                      _vm.relationship !== null
+                        ? _c(
+                            "div",
+                            { staticClass: "block-content block-content-full" },
+                            [
+                              _c("div", { staticClass: "font-w600 mb-5" }, [
+                                _vm._v(
+                                  "@" + _vm._s(_vm.relationship.customer_alias)
+                                )
+                              ]),
+                              _vm._v(" "),
+                              _c(
+                                "div",
+                                { staticClass: "font-size-sm text-muted" },
+                                [
+                                  _vm._v(
+                                    "@" +
+                                      _vm._s(_vm.relationship.customer_taxid)
+                                  )
+                                ]
+                              )
+                            ]
+                          )
+                        : _vm._e(),
+                      _vm._v(" "),
+                      _vm.relationship != null &&
+                      _vm.relationship.customer_email != null
+                        ? _c(
+                            "div",
+                            {
+                              staticClass:
+                                "block-content block-content-full block-content-sm bg-body-light"
+                            },
+                            [
+                              _c(
+                                "span",
+                                {
+                                  staticClass:
+                                    "font-w600 font-size-sm text-danger"
+                                },
+                                [
+                                  _vm._v(
+                                    "@" +
+                                      _vm._s(_vm.relationship.customer_email)
+                                  )
+                                ]
+                              )
+                            ]
+                          )
+                        : _vm._e(),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "block-content" }, [
+                        _c(
+                          "div",
+                          { staticClass: "row items-push text-center" },
+                          [
+                            _c("div", { staticClass: "col-6" }, [
+                              _vm._m(1),
+                              _vm._v(" "),
+                              _c("div", { staticClass: "text-muted" }, [
+                                _c("small", [
+                                  _vm._v("@" + _vm._s(_vm.currency))
+                                ]),
+                                _vm._v(" @" + _vm._s(_vm.totalValue))
+                              ])
+                            ]),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "col-6" }, [
+                              _vm._m(2),
+                              _vm._v(" "),
+                              _c("div", { staticClass: "text-muted" }, [
+                                _vm._v("@" + _vm._s(_vm.items.length))
+                              ])
+                            ])
+                          ]
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "block-footer" }, [
+                        _vm.status != 2
+                          ? _c(
+                              "button",
+                              {
+                                staticClass: "button is-warning",
+                                attrs: { expanded: "" },
+                                on: {
+                                  click: function($event) {
+                                    _vm.onHold()
+                                  }
+                                }
+                              },
+                              [
+                                _c("b-icon", { attrs: { icon: "clock" } }),
+                                _vm._v(" "),
+                                _c("span", [
+                                  _vm._v("@lang('back-office.On Hold')")
+                                ])
+                              ],
+                              1
+                            )
+                          : _c(
+                              "button",
+                              {
+                                staticClass: "button is-warning",
+                                attrs: { disabled: "", expanded: "" }
+                              },
+                              [
+                                _c("b-icon", { attrs: { icon: "clock" } }),
+                                _vm._v(" "),
+                                _c("span", [
+                                  _vm._v("@lang('back-office.On Hold')")
+                                ])
+                              ],
+                              1
+                            ),
+                        _vm._v(" "),
+                        _vm.status != 3
+                          ? _c(
+                              "button",
+                              {
+                                staticClass: "button is-success",
+                                attrs: { expanded: "" },
+                                on: {
+                                  click: function($event) {
+                                    _vm.onWon()
+                                  }
+                                }
+                              },
+                              [
+                                _c("b-icon", { attrs: { icon: "approval" } }),
+                                _vm._v(" "),
+                                _c("span", [_vm._v("@lang('back-office.Won')")])
+                              ],
+                              1
+                            )
+                          : _c(
+                              "button",
+                              {
+                                staticClass: "button is-success",
+                                attrs: { expanded: "", disabled: "" }
+                              },
+                              [
+                                _c("b-icon", { attrs: { icon: "approval" } }),
+                                _vm._v(" "),
+                                _c("span", [_vm._v("@lang('back-office.Won')")])
+                              ],
+                              1
+                            ),
+                        _vm._v(" "),
+                        _vm.status != 4
+                          ? _c(
+                              "button",
+                              {
+                                staticClass: "button is-danger",
+                                attrs: { expanded: "" },
+                                on: {
+                                  click: function($event) {
+                                    _vm.onLost()
+                                  }
+                                }
+                              },
+                              [
+                                _c("b-icon", { attrs: { icon: "cancel" } }),
+                                _vm._v(" "),
+                                _c("span", [
+                                  _vm._v("@lang('back-office.Lost')")
+                                ])
+                              ],
+                              1
+                            )
+                          : _c(
+                              "button",
+                              {
+                                staticClass: "button is-danger",
+                                attrs: { disabled: "", expanded: "" }
+                              },
+                              [
+                                _c("b-icon", { attrs: { icon: "cancel" } }),
+                                _vm._v(" "),
+                                _c("span", [
+                                  _vm._v("@lang('back-office.Lost')")
+                                ])
+                              ],
+                              1
+                            ),
+                        _vm._v(" "),
+                        _c("hr")
+                      ])
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    { staticClass: "js-tasks-nav d-none d-block" },
+                    [
+                      _c(
+                        "div",
+                        { staticClass: "block block-rounded" },
+                        [
+                          _c("opportunity-item-form", {
+                            ref: "item-form",
+                            inlineTemplate: {
+                              render: function() {
+                                var _vm = this
+                                var _h = _vm.$createElement
+                                var _c = _vm._self._c || _h
+                                return _c("div", {}, [
+                                  _c(
+                                    "div",
+                                    {
+                                      staticClass:
+                                        "block-header block-header-default"
+                                    },
+                                    [
+                                      _c(
+                                        "b-field",
+                                        [
+                                          _c(
+                                            "b-autocomplete",
+                                            {
+                                              attrs: {
+                                                data: _vm.items,
+                                                placeholder:
+                                                  "Search for Products or Services",
+                                                field: "name",
+                                                loading: _vm.isFetching
+                                              },
+                                              on: {
+                                                input: _vm.getItems,
+                                                select: function(option) {
+                                                  return _vm.addItem(option)
+                                                }
+                                              },
+                                              scopedSlots: _vm._u([
+                                                {
+                                                  key: "default",
+                                                  fn: function(props) {
+                                                    return [
+                                                      _vm._v(
+                                                        "\n                                                  @" +
+                                                          _vm._s(
+                                                            props.option.sku
+                                                          ) +
+                                                          " | "
+                                                      ),
+                                                      _c("b", [
+                                                        _vm._v(
+                                                          "@" +
+                                                            _vm._s(
+                                                              props.option.name
+                                                            )
+                                                        )
+                                                      ])
+                                                    ]
+                                                  }
+                                                }
+                                              ]),
+                                              model: {
+                                                value: _vm.selectname,
+                                                callback: function($$v) {
+                                                  _vm.selectname = $$v
+                                                },
+                                                expression: "selectname"
+                                              }
+                                            },
+                                            [
+                                              _c(
+                                                "template",
+                                                { slot: "empty" },
+                                                [
+                                                  _vm._v(
+                                                    "\n                                                  There are no items\n                                              "
+                                                  )
+                                                ]
+                                              )
+                                            ],
+                                            2
+                                          )
+                                        ],
+                                        1
+                                      )
+                                    ],
+                                    1
+                                  ),
+                                  _vm._v(" "),
+                                  _c("div", { staticClass: "block-content" }, [
+                                    _c(
+                                      "div",
+                                      {
+                                        staticClass:
+                                          "js-task block block-rounded mb-5 animated fadeIn",
+                                        attrs: {
+                                          "data-task-id": "9",
+                                          "data-task-completed": "false",
+                                          "data-task-starred": "false"
+                                        }
+                                      },
+                                      [
+                                        _c(
+                                          "table",
+                                          {
+                                            staticClass:
+                                              "table table-borderless table-vcenter"
+                                          },
+                                          _vm._l(_vm.$parent.items, function(
+                                            cart
+                                          ) {
+                                            return _c("tbody", [
+                                              _c("tr", [
+                                                _c(
+                                                  "td",
+                                                  { attrs: { colspan: "2" } },
+                                                  [
+                                                    _c("small", [
+                                                      _vm._v(
+                                                        "@" + _vm._s(cart.sku)
+                                                      )
+                                                    ]),
+                                                    _vm._v(
+                                                      " |\n                                                          "
+                                                    ),
+                                                    _c(
+                                                      "span",
+                                                      {
+                                                        staticClass: "font-w600"
+                                                      },
+                                                      [
+                                                        _vm._v(
+                                                          "@" +
+                                                            _vm._s(cart.name)
+                                                        )
+                                                      ]
+                                                    )
+                                                  ]
+                                                ),
+                                                _vm._v(" "),
+                                                _c(
+                                                  "td",
+                                                  { staticClass: "text-right" },
+                                                  [
+                                                    _c(
+                                                      "a",
+                                                      {
+                                                        staticClass:
+                                                          "is-danger",
+                                                        attrs: { href: "#" },
+                                                        on: {
+                                                          click: function(
+                                                            $event
+                                                          ) {
+                                                            _vm.deleteItem(cart)
+                                                          }
+                                                        }
+                                                      },
+                                                      [
+                                                        _c("i", {
+                                                          staticClass:
+                                                            "si si-trash"
+                                                        })
+                                                      ]
+                                                    )
+                                                  ]
+                                                )
+                                              ]),
+                                              _vm._v(" "),
+                                              _c("tr", [
+                                                _c(
+                                                  "td",
+                                                  { attrs: { colspan: "2" } },
+                                                  [
+                                                    _c(
+                                                      "span",
+                                                      {
+                                                        staticClass: "font-w600"
+                                                      },
+                                                      [
+                                                        _c(
+                                                          "a",
+                                                          {
+                                                            on: {
+                                                              click: function(
+                                                                $event
+                                                              ) {
+                                                                _vm.removeQuantity(
+                                                                  cart
+                                                                )
+                                                              }
+                                                            }
+                                                          },
+                                                          [
+                                                            _c("i", {
+                                                              staticClass:
+                                                                "si si-minus is-warning"
+                                                            })
+                                                          ]
+                                                        ),
+                                                        _vm._v(
+                                                          "\n                                                              @" +
+                                                            _vm._s(
+                                                              cart.quantity
+                                                            ) +
+                                                            "\n                                                              "
+                                                        ),
+                                                        _c(
+                                                          "a",
+                                                          {
+                                                            on: {
+                                                              click: function(
+                                                                $event
+                                                              ) {
+                                                                _vm.addQuantity(
+                                                                  cart
+                                                                )
+                                                              }
+                                                            }
+                                                          },
+                                                          [
+                                                            _c("i", {
+                                                              staticClass:
+                                                                "si si-plus is-success"
+                                                            })
+                                                          ]
+                                                        )
+                                                      ]
+                                                    )
+                                                  ]
+                                                ),
+                                                _vm._v(" "),
+                                                _c("td", [
+                                                  _c(
+                                                    "span",
+                                                    {
+                                                      staticClass: "font-w600"
+                                                    },
+                                                    [
+                                                      _vm._v(
+                                                        "\n                                                              @" +
+                                                          _vm._s(
+                                                            Number(
+                                                              cart.unit_price *
+                                                                cart.quantity
+                                                            ).toLocaleString()
+                                                          ) +
+                                                          "\n                                                          "
+                                                      )
+                                                    ]
+                                                  )
+                                                ])
+                                              ])
+                                            ])
+                                          })
+                                        )
+                                      ]
+                                    )
+                                  ])
+                                ])
+                              },
+                              staticRenderFns: []
+                            }
+                          })
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c("opportunity-member-form", {
+                        ref: "member-form",
+                        inlineTemplate: {
+                          render: function() {
+                            var _vm = this
+                            var _h = _vm.$createElement
+                            var _c = _vm._self._c || _h
+                            return _c(
+                              "div",
+                              { staticClass: "block block-rounded" },
+                              [
+                                _c(
+                                  "div",
+                                  {
+                                    staticClass:
+                                      "block-header block-header-default"
+                                  },
+                                  [
+                                    _c(
+                                      "b-field",
+                                      [
+                                        _c(
+                                          "b-autocomplete",
+                                          {
+                                            attrs: {
+                                              data: _vm.profiles,
+                                              placeholder: "Search Members",
+                                              field: "name",
+                                              loading: _vm.isFetching
+                                            },
+                                            on: {
+                                              input: _vm.getProfiles,
+                                              select: function(option) {
+                                                return _vm.addMember(option)
+                                              }
+                                            },
+                                            scopedSlots: _vm._u([
+                                              {
+                                                key: "default",
+                                                fn: function(props) {
+                                                  return [
+                                                    _c("strong", [
+                                                      _vm._v(
+                                                        "@" +
+                                                          _vm._s(
+                                                            props.option.name
+                                                          )
+                                                      )
+                                                    ]),
+                                                    _vm._v(
+                                                      " | @" +
+                                                        _vm._s(
+                                                          props.option.slug
+                                                        ) +
+                                                        "\n                                          "
+                                                    )
+                                                  ]
+                                                }
+                                              }
+                                            ]),
+                                            model: {
+                                              value: _vm.selectname,
+                                              callback: function($$v) {
+                                                _vm.selectname = $$v
+                                              },
+                                              expression: "selectname"
+                                            }
+                                          },
+                                          [
+                                            _c("template", { slot: "empty" }, [
+                                              _vm._v(
+                                                "\n                                              There are no items\n                                          "
+                                              )
+                                            ])
+                                          ],
+                                          2
+                                        )
+                                      ],
+                                      1
+                                    )
+                                  ],
+                                  1
+                                ),
+                                _vm._v(" "),
+                                _c("div", { staticClass: "block-content" }, [
+                                  _c(
+                                    "div",
+                                    {
+                                      staticClass:
+                                        "js-task block block-rounded mb-5 animated fadeIn",
+                                      attrs: {
+                                        "data-task-id": "9",
+                                        "data-task-completed": "false",
+                                        "data-task-starred": "false"
+                                      }
+                                    },
+                                    [
+                                      _c(
+                                        "table",
+                                        {
+                                          staticClass:
+                                            "table table-borderless table-vcenter mb-0"
+                                        },
+                                        [
+                                          _c(
+                                            "tbody",
+                                            _vm._l(
+                                              _vm.$parent.members,
+                                              function(member) {
+                                                return _c("tr", [
+                                                  _c(
+                                                    "td",
+                                                    {
+                                                      staticClass:
+                                                        "js-task-content"
+                                                    },
+                                                    [
+                                                      _c(
+                                                        "span",
+                                                        {
+                                                          staticClass:
+                                                            "font-w600"
+                                                        },
+                                                        [
+                                                          _vm._v(
+                                                            "@" +
+                                                              _vm._s(
+                                                                member.name
+                                                              )
+                                                          )
+                                                        ]
+                                                      ),
+                                                      _vm._v(" "),
+                                                      _c("small", [
+                                                        _vm._v(
+                                                          "@" +
+                                                            _vm._s(member.taxid)
+                                                        )
+                                                      ])
+                                                    ]
+                                                  ),
+                                                  _vm._v(" "),
+                                                  _c(
+                                                    "td",
+                                                    {
+                                                      staticClass: "text-right"
+                                                    },
+                                                    [
+                                                      _c(
+                                                        "button",
+                                                        {
+                                                          staticClass:
+                                                            "js-task-remove btn btn-sm btn-alt-danger",
+                                                          attrs: {
+                                                            type: "button"
+                                                          },
+                                                          on: {
+                                                            click: function(
+                                                              $event
+                                                            ) {
+                                                              _vm.deleteMember(
+                                                                member
+                                                              )
+                                                            }
+                                                          }
+                                                        },
+                                                        [
+                                                          _c("i", {
+                                                            staticClass:
+                                                              "si si-close"
+                                                          })
+                                                        ]
+                                                      )
+                                                    ]
+                                                  )
+                                                ])
+                                              }
+                                            )
+                                          )
+                                        ]
+                                      )
+                                    ]
+                                  )
+                                ])
+                              ]
+                            )
+                          },
+                          staticRenderFns: []
+                        }
+                      })
+                    ],
+                    1
+                  )
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-md-7 col-xl-9" }, [
+                  _c(
+                    "div",
+                    { staticClass: "js-tasks" },
+                    [
+                      _c("opportunity-task-form", {
+                        ref: "task-form",
+                        inlineTemplate: {
+                          render: function() {
+                            var _vm = this
+                            var _h = _vm.$createElement
+                            var _c = _vm._self._c || _h
+                            return _c(
+                              "section",
+                              [
+                                _c(
+                                  "b-field",
+                                  { attrs: { expanded: "" } },
+                                  [
+                                    _c(
+                                      "b-dropdown",
+                                      {
+                                        model: {
+                                          value: _vm.activity_type,
+                                          callback: function($$v) {
+                                            _vm.activity_type = $$v
+                                          },
+                                          expression: "activity_type"
+                                        }
+                                      },
+                                      [
+                                        _c(
+                                          "button",
+                                          {
+                                            staticClass: "button is-primary",
+                                            attrs: {
+                                              slot: "trigger",
+                                              type: "button"
+                                            },
+                                            slot: "trigger"
+                                          },
+                                          [
+                                            _vm.activity_type == 1
+                                              ? [
+                                                  _c("b-icon", {
+                                                    attrs: {
+                                                      icon: "format-list-checks"
+                                                    }
+                                                  }),
+                                                  _vm._v(" "),
+                                                  _c("span", [
+                                                    _vm._v(
+                                                      "@lang('back-office.Task')"
+                                                    )
+                                                  ])
+                                                ]
+                                              : _vm.activity_type == 2
+                                                ? [
+                                                    _c("b-icon", {
+                                                      attrs: { icon: "phone" }
+                                                    }),
+                                                    _vm._v(" "),
+                                                    _c("span", [
+                                                      _vm._v(
+                                                        "@lang('global.Telephone')"
+                                                      )
+                                                    ])
+                                                  ]
+                                                : _vm.activity_type == 3
+                                                  ? [
+                                                      _c("b-icon", {
+                                                        attrs: { icon: "video" }
+                                                      }),
+                                                      _vm._v(" "),
+                                                      _c("span", [
+                                                        _vm._v(
+                                                          "@lang('global.Video Conference')"
+                                                        )
+                                                      ])
+                                                    ]
+                                                  : _vm.activity_type == 4
+                                                    ? [
+                                                        _c("b-icon", {
+                                                          attrs: {
+                                                            icon:
+                                                              "account-multiple"
+                                                          }
+                                                        }),
+                                                        _vm._v(" "),
+                                                        _c("span", [
+                                                          _vm._v(
+                                                            "@lang('global.Meeting')"
+                                                          )
+                                                        ])
+                                                      ]
+                                                    : _vm.activity_type == 5
+                                                      ? [
+                                                          _c("b-icon", {
+                                                            attrs: {
+                                                              icon:
+                                                                "map-marker-radius"
+                                                            }
+                                                          }),
+                                                          _vm._v(" "),
+                                                          _c("span", [
+                                                            _vm._v(
+                                                              "@lang('global.Visit')"
+                                                            )
+                                                          ])
+                                                        ]
+                                                      : [
+                                                          _c("b-icon", {
+                                                            attrs: {
+                                                              icon: "email"
+                                                            }
+                                                          }),
+                                                          _vm._v(" "),
+                                                          _c("span", [
+                                                            _vm._v(
+                                                              "@lang('global.Email')"
+                                                            )
+                                                          ])
+                                                        ],
+                                            _vm._v(" "),
+                                            _c("b-icon", {
+                                              attrs: { icon: "menu-down" }
+                                            })
+                                          ],
+                                          2
+                                        ),
+                                        _vm._v(" "),
+                                        _c(
+                                          "b-dropdown-item",
+                                          { attrs: { value: 1 } },
+                                          [
+                                            _c(
+                                              "div",
+                                              { staticClass: "media" },
+                                              [
+                                                _c("b-icon", {
+                                                  staticClass: "media-left",
+                                                  attrs: {
+                                                    icon: "format-list-checks"
+                                                  }
+                                                }),
+                                                _vm._v(" "),
+                                                _c(
+                                                  "div",
+                                                  {
+                                                    staticClass: "media-content"
+                                                  },
+                                                  [
+                                                    _vm._v(
+                                                      "\n                                                  @lang('back-office.Task')\n                                              "
+                                                    )
+                                                  ]
+                                                )
+                                              ],
+                                              1
+                                            )
+                                          ]
+                                        ),
+                                        _vm._v(" "),
+                                        _c(
+                                          "b-dropdown-item",
+                                          { attrs: { value: 2 } },
+                                          [
+                                            _c(
+                                              "div",
+                                              { staticClass: "media" },
+                                              [
+                                                _c("b-icon", {
+                                                  staticClass: "media-left",
+                                                  attrs: { icon: "phone" }
+                                                }),
+                                                _vm._v(" "),
+                                                _c(
+                                                  "div",
+                                                  {
+                                                    staticClass: "media-content"
+                                                  },
+                                                  [
+                                                    _vm._v(
+                                                      "\n                                                  @lang('global.Telephone')\n                                              "
+                                                    )
+                                                  ]
+                                                )
+                                              ],
+                                              1
+                                            )
+                                          ]
+                                        ),
+                                        _vm._v(" "),
+                                        _c(
+                                          "b-dropdown-item",
+                                          { attrs: { value: 3 } },
+                                          [
+                                            _c(
+                                              "div",
+                                              { staticClass: "media" },
+                                              [
+                                                _c("b-icon", {
+                                                  staticClass: "media-left",
+                                                  attrs: { icon: "video" }
+                                                }),
+                                                _vm._v(" "),
+                                                _c(
+                                                  "div",
+                                                  {
+                                                    staticClass: "media-content"
+                                                  },
+                                                  [
+                                                    _vm._v(
+                                                      "\n                                                  @lang('global.Video Conference')\n                                              "
+                                                    )
+                                                  ]
+                                                )
+                                              ],
+                                              1
+                                            )
+                                          ]
+                                        ),
+                                        _vm._v(" "),
+                                        _c(
+                                          "b-dropdown-item",
+                                          { attrs: { value: 4 } },
+                                          [
+                                            _c(
+                                              "div",
+                                              { staticClass: "media" },
+                                              [
+                                                _c("b-icon", {
+                                                  staticClass: "media-left",
+                                                  attrs: {
+                                                    icon: "account-multiple"
+                                                  }
+                                                }),
+                                                _vm._v(" "),
+                                                _c(
+                                                  "div",
+                                                  {
+                                                    staticClass: "media-content"
+                                                  },
+                                                  [
+                                                    _vm._v(
+                                                      "\n                                                  @lang('global.Meeting')\n                                              "
+                                                    )
+                                                  ]
+                                                )
+                                              ],
+                                              1
+                                            )
+                                          ]
+                                        ),
+                                        _vm._v(" "),
+                                        _c(
+                                          "b-dropdown-item",
+                                          { attrs: { value: 5 } },
+                                          [
+                                            _c(
+                                              "div",
+                                              { staticClass: "media" },
+                                              [
+                                                _c("b-icon", {
+                                                  staticClass: "media-left",
+                                                  attrs: {
+                                                    icon: "map-marker-radius"
+                                                  }
+                                                }),
+                                                _vm._v(" "),
+                                                _c(
+                                                  "div",
+                                                  {
+                                                    staticClass: "media-content"
+                                                  },
+                                                  [
+                                                    _vm._v(
+                                                      "\n                                                  @lang('global.Visit')\n                                              "
+                                                    )
+                                                  ]
+                                                )
+                                              ],
+                                              1
+                                            )
+                                          ]
+                                        ),
+                                        _vm._v(" "),
+                                        _c(
+                                          "b-dropdown-item",
+                                          { attrs: { value: 6 } },
+                                          [
+                                            _c(
+                                              "div",
+                                              { staticClass: "media" },
+                                              [
+                                                _c("b-icon", {
+                                                  staticClass: "media-left",
+                                                  attrs: { icon: "email" }
+                                                }),
+                                                _vm._v(" "),
+                                                _c(
+                                                  "div",
+                                                  {
+                                                    staticClass: "media-content"
+                                                  },
+                                                  [
+                                                    _vm._v(
+                                                      "\n                                                  @lang('global.Email')\n                                              "
+                                                    )
+                                                  ]
+                                                )
+                                              ],
+                                              1
+                                            )
+                                          ]
+                                        )
+                                      ],
+                                      1
+                                    ),
+                                    _vm._v(" "),
+                                    _c("b-input", {
+                                      attrs: {
+                                        placeholder: "What needs to be done?",
+                                        expanded: ""
+                                      },
+                                      model: {
+                                        value: _vm.title,
+                                        callback: function($$v) {
+                                          _vm.title = $$v
+                                        },
+                                        expression: "title"
+                                      }
+                                    }),
+                                    _vm._v(" "),
+                                    _c("p", { staticClass: "control" }, [
+                                      _c(
+                                        "button",
+                                        {
+                                          staticClass: "button is-info",
+                                          on: {
+                                            click: function($event) {
+                                              _vm.addTask()
+                                            }
+                                          }
+                                        },
+                                        [
+                                          _vm._v(
+                                            "@lang('global.New Model', ['model' => __('back-office.Task')])"
+                                          )
+                                        ]
+                                      )
+                                    ])
+                                  ],
+                                  1
+                                ),
+                                _vm._v(" "),
+                                _vm.title != ""
+                                  ? _c(
+                                      "div",
+                                      { staticClass: "block block-bordered" },
+                                      [
+                                        _c(
+                                          "div",
+                                          { staticClass: "block-content" },
+                                          [
+                                            _c("div", { staticClass: "row" }, [
+                                              _c(
+                                                "div",
+                                                { staticClass: "col-2" },
+                                                [
+                                                  _c("b-field", {
+                                                    attrs: {
+                                                      label: "Description",
+                                                      "custom-class": "is-small"
+                                                    }
+                                                  })
+                                                ],
+                                                1
+                                              ),
+                                              _vm._v(" "),
+                                              _c(
+                                                "div",
+                                                { staticClass: "col-10" },
+                                                [
+                                                  _c(
+                                                    "b-field",
+                                                    [
+                                                      _c("b-input", {
+                                                        attrs: {
+                                                          placeholder:
+                                                            "Write more detailed info on what the task entails.",
+                                                          type: "textarea"
+                                                        },
+                                                        model: {
+                                                          value:
+                                                            _vm.description,
+                                                          callback: function(
+                                                            $$v
+                                                          ) {
+                                                            _vm.description = $$v
+                                                          },
+                                                          expression:
+                                                            "description"
+                                                        }
+                                                      })
+                                                    ],
+                                                    1
+                                                  )
+                                                ],
+                                                1
+                                              )
+                                            ]),
+                                            _vm._v(" "),
+                                            _c("hr"),
+                                            _vm._v(" "),
+                                            _c("div", { staticClass: "row" }, [
+                                              _c(
+                                                "div",
+                                                { staticClass: "col-2" },
+                                                [
+                                                  _c("b-field", {
+                                                    attrs: {
+                                                      label:
+                                                        "Start and End Dates",
+                                                      "custom-class": "is-small"
+                                                    }
+                                                  })
+                                                ],
+                                                1
+                                              ),
+                                              _vm._v(" "),
+                                              _c(
+                                                "div",
+                                                { staticClass: "col-10" },
+                                                [
+                                                  _c(
+                                                    "b-field",
+                                                    { attrs: { grouped: "" } },
+                                                    [
+                                                      _c(
+                                                        "b-field",
+                                                        [
+                                                          _c(
+                                                            "b-field",
+                                                            {
+                                                              attrs: {
+                                                                expanded: ""
+                                                              }
+                                                            },
+                                                            [
+                                                              _c(
+                                                                "b-datepicker",
+                                                                {
+                                                                  attrs: {
+                                                                    placeholder:
+                                                                      "Start Date"
+                                                                  },
+                                                                  model: {
+                                                                    value:
+                                                                      _vm.date_started,
+                                                                    callback: function(
+                                                                      $$v
+                                                                    ) {
+                                                                      _vm.date_started = $$v
+                                                                    },
+                                                                    expression:
+                                                                      "date_started"
+                                                                  }
+                                                                }
+                                                              )
+                                                            ],
+                                                            1
+                                                          ),
+                                                          _vm._v(" "),
+                                                          _c(
+                                                            "b-field",
+                                                            {
+                                                              attrs: {
+                                                                expanded: ""
+                                                              }
+                                                            },
+                                                            [
+                                                              _c(
+                                                                "b-datepicker",
+                                                                {
+                                                                  attrs: {
+                                                                    "min-date":
+                                                                      _vm.date_started,
+                                                                    placeholder:
+                                                                      "End Date"
+                                                                  },
+                                                                  model: {
+                                                                    value:
+                                                                      _vm.date_ended,
+                                                                    callback: function(
+                                                                      $$v
+                                                                    ) {
+                                                                      _vm.date_ended = $$v
+                                                                    },
+                                                                    expression:
+                                                                      "date_ended"
+                                                                  }
+                                                                }
+                                                              )
+                                                            ],
+                                                            1
+                                                          )
+                                                        ],
+                                                        1
+                                                      )
+                                                    ],
+                                                    1
+                                                  )
+                                                ],
+                                                1
+                                              )
+                                            ]),
+                                            _vm._v(" "),
+                                            _c("div", { staticClass: "row" }, [
+                                              _c(
+                                                "div",
+                                                { staticClass: "col-2" },
+                                                [
+                                                  _c("b-field", {
+                                                    attrs: {
+                                                      label: "Set a Reminder?",
+                                                      "custom-class": "is-small"
+                                                    }
+                                                  })
+                                                ],
+                                                1
+                                              ),
+                                              _vm._v(" "),
+                                              _c(
+                                                "div",
+                                                { staticClass: "col-10" },
+                                                [
+                                                  _c(
+                                                    "div",
+                                                    { staticClass: "row" },
+                                                    [
+                                                      _c(
+                                                        "div",
+                                                        {
+                                                          staticClass: "col-1"
+                                                        },
+                                                        [
+                                                          _c("b-switch", {
+                                                            model: {
+                                                              value:
+                                                                _vm.remindMe,
+                                                              callback: function(
+                                                                $$v
+                                                              ) {
+                                                                _vm.remindMe = $$v
+                                                              },
+                                                              expression:
+                                                                "remindMe"
+                                                            }
+                                                          })
+                                                        ],
+                                                        1
+                                                      ),
+                                                      _vm._v(" "),
+                                                      _c(
+                                                        "div",
+                                                        {
+                                                          staticClass: "col-4"
+                                                        },
+                                                        [
+                                                          _vm.remindMe == true
+                                                            ? _c(
+                                                                "b-field",
+                                                                {
+                                                                  attrs: {
+                                                                    "custom-class":
+                                                                      "is-small"
+                                                                  }
+                                                                },
+                                                                [
+                                                                  _c(
+                                                                    "b-datepicker",
+                                                                    {
+                                                                      attrs: {
+                                                                        "custom-class":
+                                                                          "is-small",
+                                                                        "max-date":
+                                                                          _vm.date_started,
+                                                                        placeholder:
+                                                                          "Remind me on"
+                                                                      },
+                                                                      model: {
+                                                                        value:
+                                                                          _vm.date_reminder,
+                                                                        callback: function(
+                                                                          $$v
+                                                                        ) {
+                                                                          _vm.date_reminder = $$v
+                                                                        },
+                                                                        expression:
+                                                                          "date_reminder"
+                                                                      }
+                                                                    }
+                                                                  )
+                                                                ],
+                                                                1
+                                                              )
+                                                            : _vm._e()
+                                                        ],
+                                                        1
+                                                      )
+                                                    ]
+                                                  )
+                                                ]
+                                              )
+                                            ]),
+                                            _vm._v(" "),
+                                            _c("div", { staticClass: "row" }, [
+                                              _c(
+                                                "div",
+                                                { staticClass: "col-2" },
+                                                [
+                                                  _c("b-field", {
+                                                    attrs: {
+                                                      label: "Assign Task:",
+                                                      "custom-class": "is-small"
+                                                    }
+                                                  })
+                                                ],
+                                                1
+                                              ),
+                                              _vm._v(" "),
+                                              _c(
+                                                "div",
+                                                { staticClass: "col-10" },
+                                                _vm._l(
+                                                  _vm.$parent.members,
+                                                  function(member) {
+                                                    return _c(
+                                                      "div",
+                                                      [
+                                                        _c(
+                                                          "b-radio",
+                                                          {
+                                                            attrs: {
+                                                              "native-value":
+                                                                member.id
+                                                            },
+                                                            model: {
+                                                              value:
+                                                                _vm.assigned_to,
+                                                              callback: function(
+                                                                $$v
+                                                              ) {
+                                                                _vm.assigned_to = $$v
+                                                              },
+                                                              expression:
+                                                                "assigned_to"
+                                                            }
+                                                          },
+                                                          [
+                                                            _vm._v(
+                                                              "\n                                                      @" +
+                                                                _vm._s(
+                                                                  member.name
+                                                                ) +
+                                                                "\n                                                  "
+                                                            )
+                                                          ]
+                                                        )
+                                                      ],
+                                                      1
+                                                    )
+                                                  }
+                                                )
+                                              )
+                                            ])
+                                          ]
+                                        ),
+                                        _vm._v(" "),
+                                        _c(
+                                          "div",
+                                          {
+                                            staticClass:
+                                              "block-content block-content-full block-content-sm bg-body-light font-size-sm"
+                                          },
+                                          [
+                                            _c(
+                                              "button",
+                                              {
+                                                staticClass: "button is-info",
+                                                on: {
+                                                  click: function($event) {
+                                                    _vm.addTask()
+                                                  }
+                                                }
+                                              },
+                                              [_vm._v("Create Task")]
+                                            ),
+                                            _vm._v(" "),
+                                            _c(
+                                              "button",
+                                              {
+                                                staticClass:
+                                                  "btn btn-outline-secondary min-width-125",
+                                                on: {
+                                                  click: function($event) {
+                                                    _vm.onReset()
+                                                  }
+                                                }
+                                              },
+                                              [_vm._v("@lang('global.Cancel')")]
+                                            )
+                                          ]
+                                        )
+                                      ]
+                                    )
+                                  : _vm._e()
+                              ],
+                              1
+                            )
+                          },
+                          staticRenderFns: []
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c(
+                        "b-tabs",
+                        { attrs: { type: "is-boxed" } },
+                        [
+                          _c(
+                            "b-tab-item",
+                            {
+                              attrs: {
+                                label: "Tasks",
+                                icon: "format-list-checks"
+                              }
+                            },
+                            [
+                              _vm.myTasks.length > 0
+                                ? _c(
+                                    "div",
+                                    [
+                                      _c("h2", [_vm._v("My Tasks")]),
+                                      _vm._v(" "),
+                                      _c("b-table", {
+                                        attrs: {
+                                          data: _vm.myTasks,
+                                          hoverable: "",
+                                          detailed: "",
+                                          "detail-key": "id"
+                                        },
+                                        scopedSlots: _vm._u([
+                                          {
+                                            key: "default",
+                                            fn: function(props) {
+                                              return [
+                                                _c(
+                                                  "b-table-column",
+                                                  { attrs: { width: "40" } },
+                                                  [
+                                                    _vm._v(
+                                                      "\n                                              {{-- "
+                                                    ),
+                                                    props.row.completed
+                                                      ? _c("b-icon", {
+                                                          attrs: {
+                                                            icon:
+                                                              "checkbox-marked"
+                                                          },
+                                                          on: {
+                                                            click: function(
+                                                              $event
+                                                            ) {
+                                                              _vm.taskChecked(
+                                                                props.row
+                                                              )
+                                                            }
+                                                          }
+                                                        })
+                                                      : _c("b-icon", {
+                                                          attrs: {
+                                                            icon:
+                                                              "checkbox-blank-outline"
+                                                          }
+                                                        }),
+                                                    _vm._v(
+                                                      " --}}\n                                              "
+                                                    ),
+                                                    props.row.completed
+                                                      ? _c("i", {
+                                                          staticClass:
+                                                            "fa fa-check-square text-info",
+                                                          on: {
+                                                            click: function(
+                                                              $event
+                                                            ) {
+                                                              _vm.taskChecked(
+                                                                props.row
+                                                              )
+                                                            }
+                                                          }
+                                                        })
+                                                      : _c("i", {
+                                                          staticClass:
+                                                            "fa fa-square-o",
+                                                          on: {
+                                                            click: function(
+                                                              $event
+                                                            ) {
+                                                              _vm.taskChecked(
+                                                                props.row
+                                                              )
+                                                            }
+                                                          }
+                                                        })
+                                                  ],
+                                                  1
+                                                ),
+                                                _vm._v(" "),
+                                                _c(
+                                                  "b-table-column",
+                                                  {
+                                                    attrs: {
+                                                      label: "",
+                                                      width: "40"
+                                                    }
+                                                  },
+                                                  [
+                                                    props.row.activity_type == 1
+                                                      ? [
+                                                          _c("b-icon", {
+                                                            staticClass:
+                                                              "has-text-info",
+                                                            attrs: {
+                                                              icon:
+                                                                "format-list-checks"
+                                                            }
+                                                          })
+                                                        ]
+                                                      : props.row
+                                                          .activity_type == 2
+                                                        ? [
+                                                            _c("b-icon", {
+                                                              staticClass:
+                                                                "has-text-info",
+                                                              attrs: {
+                                                                icon: "phone"
+                                                              }
+                                                            })
+                                                          ]
+                                                        : props.row
+                                                            .activity_type == 3
+                                                          ? [
+                                                              _c("b-icon", {
+                                                                staticClass:
+                                                                  "has-text-info",
+                                                                attrs: {
+                                                                  icon: "video"
+                                                                }
+                                                              })
+                                                            ]
+                                                          : props.row
+                                                              .activity_type ==
+                                                            4
+                                                            ? [
+                                                                _c("b-icon", {
+                                                                  staticClass:
+                                                                    "has-text-info",
+                                                                  attrs: {
+                                                                    icon:
+                                                                      "account-multiple"
+                                                                  }
+                                                                })
+                                                              ]
+                                                            : props.row
+                                                                .activity_type ==
+                                                              5
+                                                              ? [
+                                                                  _c("b-icon", {
+                                                                    staticClass:
+                                                                      "has-text-info",
+                                                                    attrs: {
+                                                                      icon:
+                                                                        "map-marker-radius"
+                                                                    }
+                                                                  })
+                                                                ]
+                                                              : [
+                                                                  _c("b-icon", {
+                                                                    staticClass:
+                                                                      "has-text-info",
+                                                                    attrs: {
+                                                                      icon:
+                                                                        "email"
+                                                                    }
+                                                                  })
+                                                                ]
+                                                  ],
+                                                  2
+                                                ),
+                                                _vm._v(" "),
+                                                _c(
+                                                  "b-table-column",
+                                                  {
+                                                    attrs: {
+                                                      field: "date",
+                                                      sortable: "",
+                                                      centered: "",
+                                                      width: "30"
+                                                    }
+                                                  },
+                                                  [
+                                                    props.row.completed
+                                                      ? _c(
+                                                          "b-field",
+                                                          {
+                                                            attrs: {
+                                                              grouped: ""
+                                                            }
+                                                          },
+                                                          [
+                                                            _c(
+                                                              "a",
+                                                              {
+                                                                on: {
+                                                                  click: function(
+                                                                    $event
+                                                                  ) {
+                                                                    _vm.sentimentTask(
+                                                                      props.row,
+                                                                      2
+                                                                    )
+                                                                  }
+                                                                }
+                                                              },
+                                                              [
+                                                                props.row
+                                                                  .sentiment ==
+                                                                2
+                                                                  ? _c("img", {
+                                                                      attrs: {
+                                                                        src:
+                                                                          "/img/icons/emojiHappy.svg",
+                                                                        width:
+                                                                          "32",
+                                                                        alt: ""
+                                                                      }
+                                                                    })
+                                                                  : _c("img", {
+                                                                      staticStyle: {
+                                                                        opacity:
+                                                                          "0.32"
+                                                                      },
+                                                                      attrs: {
+                                                                        src:
+                                                                          "/img/icons/emojiHappy.svg",
+                                                                        width:
+                                                                          "20",
+                                                                        alt: ""
+                                                                      }
+                                                                    })
+                                                              ]
+                                                            ),
+                                                            _vm._v(" "),
+                                                            _c(
+                                                              "a",
+                                                              {
+                                                                on: {
+                                                                  click: function(
+                                                                    $event
+                                                                  ) {
+                                                                    _vm.sentimentTask(
+                                                                      props.row,
+                                                                      1
+                                                                    )
+                                                                  }
+                                                                }
+                                                              },
+                                                              [
+                                                                props.row
+                                                                  .sentiment ==
+                                                                1
+                                                                  ? _c("img", {
+                                                                      attrs: {
+                                                                        src:
+                                                                          "/img/icons/emojiOk.svg",
+                                                                        width:
+                                                                          "32",
+                                                                        alt: ""
+                                                                      }
+                                                                    })
+                                                                  : _c("img", {
+                                                                      staticStyle: {
+                                                                        opacity:
+                                                                          "0.32"
+                                                                      },
+                                                                      attrs: {
+                                                                        src:
+                                                                          "/img/icons/emojiOk.svg",
+                                                                        width:
+                                                                          "20",
+                                                                        alt: ""
+                                                                      }
+                                                                    })
+                                                              ]
+                                                            ),
+                                                            _vm._v(" "),
+                                                            _c(
+                                                              "a",
+                                                              {
+                                                                on: {
+                                                                  click: function(
+                                                                    $event
+                                                                  ) {
+                                                                    _vm.sentimentTask(
+                                                                      props.row,
+                                                                      0
+                                                                    )
+                                                                  }
+                                                                }
+                                                              },
+                                                              [
+                                                                props.row
+                                                                  .sentiment ==
+                                                                0
+                                                                  ? _c("img", {
+                                                                      attrs: {
+                                                                        src:
+                                                                          "/img/icons/emojiSad.svg",
+                                                                        width:
+                                                                          "32",
+                                                                        alt: ""
+                                                                      }
+                                                                    })
+                                                                  : _c("img", {
+                                                                      staticStyle: {
+                                                                        opacity:
+                                                                          "0.32"
+                                                                      },
+                                                                      attrs: {
+                                                                        src:
+                                                                          "/img/icons/emojiSad.svg",
+                                                                        width:
+                                                                          "20",
+                                                                        alt: ""
+                                                                      }
+                                                                    })
+                                                              ]
+                                                            )
+                                                          ]
+                                                        )
+                                                      : _c(
+                                                          "span",
+                                                          {
+                                                            staticClass:
+                                                              "tag is-light"
+                                                          },
+                                                          [
+                                                            _vm._v(
+                                                              "\n                                                  @" +
+                                                                _vm._s(
+                                                                  new Date(
+                                                                    props.row.date_started
+                                                                  ).toLocaleDateString()
+                                                                ) +
+                                                                "\n                                              "
+                                                            )
+                                                          ]
+                                                        )
+                                                  ],
+                                                  1
+                                                ),
+                                                _vm._v(" "),
+                                                _c(
+                                                  "b-table-column",
+                                                  {
+                                                    attrs: {
+                                                      field: "title",
+                                                      label:
+                                                        "@lang('back-office.Task')",
+                                                      sortable: "",
+                                                      expanded: ""
+                                                    }
+                                                  },
+                                                  [
+                                                    _vm._v(
+                                                      "\n                                              @" +
+                                                        _vm._s(
+                                                          props.row.title
+                                                        ) +
+                                                        " "
+                                                    ),
+                                                    _c(
+                                                      "span",
+                                                      {
+                                                        staticClass:
+                                                          "has-text-grey-light"
+                                                      },
+                                                      [
+                                                        _vm._v(
+                                                          "| @" +
+                                                            _vm._s(
+                                                              props.row
+                                                                .description
+                                                            )
+                                                        )
+                                                      ]
+                                                    )
+                                                  ]
+                                                ),
+                                                _vm._v(" "),
+                                                _c(
+                                                  "b-table-column",
+                                                  {
+                                                    attrs: {
+                                                      label:
+                                                        "@lang('global.Actions')",
+                                                      numeric: ""
+                                                    }
+                                                  },
+                                                  [
+                                                    _c(
+                                                      "b-field",
+                                                      {
+                                                        attrs: { grouped: "" }
+                                                      },
+                                                      [
+                                                        _c(
+                                                          "b-tooltip",
+                                                          {
+                                                            attrs: {
+                                                              label:
+                                                                props.row
+                                                                  .date_reminder,
+                                                              dashed: ""
+                                                            }
+                                                          },
+                                                          [
+                                                            _c("i", {
+                                                              staticClass:
+                                                                "si si-bell"
+                                                            })
+                                                          ]
+                                                        ),
+                                                        _vm._v(" "),
+                                                        _c("a", {
+                                                          staticClass: "delete",
+                                                          on: {
+                                                            click: function(
+                                                              $event
+                                                            ) {
+                                                              _vm.deleteTask(
+                                                                props.row
+                                                              )
+                                                            }
+                                                          }
+                                                        })
+                                                      ],
+                                                      1
+                                                    )
+                                                  ],
+                                                  1
+                                                )
+                                              ]
+                                            }
+                                          },
+                                          {
+                                            key: "detail",
+                                            fn: function(props) {
+                                              return [
+                                                _c(
+                                                  "div",
+                                                  { staticClass: "row" },
+                                                  [
+                                                    _c(
+                                                      "div",
+                                                      { staticClass: "col-2" },
+                                                      [
+                                                        _c("b-field", {
+                                                          attrs: {
+                                                            label:
+                                                              "Description",
+                                                            "custom-class":
+                                                              "is-small"
+                                                          }
+                                                        })
+                                                      ],
+                                                      1
+                                                    ),
+                                                    _vm._v(" "),
+                                                    _c(
+                                                      "div",
+                                                      { staticClass: "col-10" },
+                                                      [
+                                                        _c(
+                                                          "b-field",
+                                                          [
+                                                            _c("b-input", {
+                                                              attrs: {
+                                                                placeholder:
+                                                                  "Write more detailed info on what the task entails.",
+                                                                type: "textarea"
+                                                              },
+                                                              model: {
+                                                                value:
+                                                                  props.row
+                                                                    .description,
+                                                                callback: function(
+                                                                  $$v
+                                                                ) {
+                                                                  _vm.$set(
+                                                                    props.row,
+                                                                    "description",
+                                                                    $$v
+                                                                  )
+                                                                },
+                                                                expression:
+                                                                  "props.row.description"
+                                                              }
+                                                            })
+                                                          ],
+                                                          1
+                                                        )
+                                                      ],
+                                                      1
+                                                    )
+                                                  ]
+                                                ),
+                                                _vm._v(" "),
+                                                _c(
+                                                  "div",
+                                                  { staticClass: "row" },
+                                                  [
+                                                    _c(
+                                                      "div",
+                                                      { staticClass: "col-2" },
+                                                      [
+                                                        _c("b-field", {
+                                                          attrs: {
+                                                            label:
+                                                              "Start & End Dates",
+                                                            "custom-class":
+                                                              "is-small"
+                                                          }
+                                                        })
+                                                      ],
+                                                      1
+                                                    ),
+                                                    _vm._v(" "),
+                                                    _c(
+                                                      "div",
+                                                      { staticClass: "col-10" },
+                                                      [
+                                                        _c(
+                                                          "b-field",
+                                                          {
+                                                            attrs: {
+                                                              grouped: ""
+                                                            }
+                                                          },
+                                                          [
+                                                            _c(
+                                                              "b-field",
+                                                              {
+                                                                attrs: {
+                                                                  expanded: ""
+                                                                }
+                                                              },
+                                                              [
+                                                                _c(
+                                                                  "b-datepicker",
+                                                                  {
+                                                                    attrs: {
+                                                                      placeholder:
+                                                                        "@lang('global.Start Date')"
+                                                                    },
+                                                                    model: {
+                                                                      value:
+                                                                        props
+                                                                          .row
+                                                                          .date_started,
+                                                                      callback: function(
+                                                                        $$v
+                                                                      ) {
+                                                                        _vm.$set(
+                                                                          props.row,
+                                                                          "date_started",
+                                                                          $$v
+                                                                        )
+                                                                      },
+                                                                      expression:
+                                                                        "props.row.date_started"
+                                                                    }
+                                                                  }
+                                                                )
+                                                              ],
+                                                              1
+                                                            ),
+                                                            _vm._v(" "),
+                                                            _c(
+                                                              "b-field",
+                                                              {
+                                                                attrs: {
+                                                                  expanded: ""
+                                                                }
+                                                              },
+                                                              [
+                                                                _c(
+                                                                  "b-datepicker",
+                                                                  {
+                                                                    attrs: {
+                                                                      "min-date":
+                                                                        props
+                                                                          .row
+                                                                          .date_started,
+                                                                      placeholder:
+                                                                        "@lang('global.End Date')"
+                                                                    },
+                                                                    model: {
+                                                                      value:
+                                                                        props
+                                                                          .row
+                                                                          .date_ended,
+                                                                      callback: function(
+                                                                        $$v
+                                                                      ) {
+                                                                        _vm.$set(
+                                                                          props.row,
+                                                                          "date_ended",
+                                                                          $$v
+                                                                        )
+                                                                      },
+                                                                      expression:
+                                                                        "props.row.date_ended"
+                                                                    }
+                                                                  }
+                                                                )
+                                                              ],
+                                                              1
+                                                            )
+                                                          ],
+                                                          1
+                                                        )
+                                                      ],
+                                                      1
+                                                    )
+                                                  ]
+                                                ),
+                                                _vm._v(" "),
+                                                _c(
+                                                  "div",
+                                                  { staticClass: "row" },
+                                                  [
+                                                    _c(
+                                                      "div",
+                                                      { staticClass: "col-2" },
+                                                      [
+                                                        _c("b-field", {
+                                                          attrs: {
+                                                            label:
+                                                              "Assign Task",
+                                                            "custom-class":
+                                                              "is-small"
+                                                          }
+                                                        })
+                                                      ],
+                                                      1
+                                                    ),
+                                                    _vm._v(" "),
+                                                    _c(
+                                                      "div",
+                                                      { staticClass: "col-10" },
+                                                      [
+                                                        _c(
+                                                          "b-select",
+                                                          {
+                                                            attrs: {
+                                                              placeholder:
+                                                                "Assign someone"
+                                                            },
+                                                            model: {
+                                                              value:
+                                                                props.row
+                                                                  .assigned_to,
+                                                              callback: function(
+                                                                $$v
+                                                              ) {
+                                                                _vm.$set(
+                                                                  props.row,
+                                                                  "assigned_to",
+                                                                  $$v
+                                                                )
+                                                              },
+                                                              expression:
+                                                                "props.row.assigned_to"
+                                                            }
+                                                          },
+                                                          _vm._l(
+                                                            _vm.members,
+                                                            function(member) {
+                                                              return _c(
+                                                                "option",
+                                                                {
+                                                                  domProps: {
+                                                                    value:
+                                                                      member.id
+                                                                  }
+                                                                },
+                                                                [
+                                                                  _vm._v(
+                                                                    "\n                                                          @" +
+                                                                      _vm._s(
+                                                                        member.name
+                                                                      ) +
+                                                                      "\n                                                      "
+                                                                  )
+                                                                ]
+                                                              )
+                                                            }
+                                                          )
+                                                        )
+                                                      ],
+                                                      1
+                                                    )
+                                                  ]
+                                                ),
+                                                _vm._v(" "),
+                                                _c(
+                                                  "div",
+                                                  {
+                                                    staticClass:
+                                                      "block-content block-content-full block-content-sm bg-body-light font-size-sm"
+                                                  },
+                                                  [
+                                                    _c(
+                                                      "button",
+                                                      {
+                                                        staticClass:
+                                                          "button is-info",
+                                                        on: {
+                                                          click: function(
+                                                            $event
+                                                          ) {
+                                                            _vm.editTask(
+                                                              props.row
+                                                            )
+                                                          }
+                                                        }
+                                                      },
+                                                      [
+                                                        _vm._v(
+                                                          "\n                                                  @lang('global.Save')\n                                              "
+                                                        )
+                                                      ]
+                                                    ),
+                                                    _vm._v(" "),
+                                                    _c(
+                                                      "button",
+                                                      {
+                                                        staticClass:
+                                                          "btn btn-outline-secondary min-width-125",
+                                                        on: {
+                                                          click: function(
+                                                            $event
+                                                          ) {}
+                                                        }
+                                                      },
+                                                      [
+                                                        _vm._v(
+                                                          "\n                                                  @lang('global.Cancel')\n                                              "
+                                                        )
+                                                      ]
+                                                    )
+                                                  ]
+                                                )
+                                              ]
+                                            }
+                                          }
+                                        ])
+                                      })
+                                    ],
+                                    1
+                                  )
+                                : _vm._e(),
+                              _vm._v(" "),
+                              _vm.otherTasks.length > 0
+                                ? _c(
+                                    "div",
+                                    [
+                                      _c("hr"),
+                                      _vm._v(" "),
+                                      _c("h2", [_vm._v("Other Tasks")]),
+                                      _vm._v(" "),
+                                      _c(
+                                        "b-table",
+                                        {
+                                          attrs: {
+                                            data: _vm.otherTasks,
+                                            hoverable: "",
+                                            detailed: "",
+                                            "detail-key": "id"
+                                          },
+                                          scopedSlots: _vm._u([
+                                            {
+                                              key: "default",
+                                              fn: function(props) {
+                                                return [
+                                                  _c(
+                                                    "b-table-column",
+                                                    { attrs: { width: "40" } },
+                                                    [
+                                                      _vm._v(
+                                                        "\n                                              {{-- "
+                                                      ),
+                                                      props.row.completed
+                                                        ? _c("b-icon", {
+                                                            attrs: {
+                                                              icon:
+                                                                "checkbox-marked"
+                                                            },
+                                                            on: {
+                                                              click: function(
+                                                                $event
+                                                              ) {
+                                                                _vm.taskChecked(
+                                                                  props.row
+                                                                )
+                                                              }
+                                                            }
+                                                          })
+                                                        : _c("b-icon", {
+                                                            attrs: {
+                                                              icon:
+                                                                "checkbox-blank-outline"
+                                                            }
+                                                          }),
+                                                      _vm._v(
+                                                        " --}}\n                                              "
+                                                      ),
+                                                      props.row.completed
+                                                        ? _c("i", {
+                                                            staticClass:
+                                                              "fa fa-check-square text-info",
+                                                            on: {
+                                                              click: function(
+                                                                $event
+                                                              ) {
+                                                                _vm.taskChecked(
+                                                                  props.row
+                                                                )
+                                                              }
+                                                            }
+                                                          })
+                                                        : _c("i", {
+                                                            staticClass:
+                                                              "fa fa-square-o",
+                                                            on: {
+                                                              click: function(
+                                                                $event
+                                                              ) {
+                                                                _vm.taskChecked(
+                                                                  props.row
+                                                                )
+                                                              }
+                                                            }
+                                                          })
+                                                    ],
+                                                    1
+                                                  ),
+                                                  _vm._v(" "),
+                                                  _c(
+                                                    "b-table-column",
+                                                    {
+                                                      attrs: {
+                                                        label: "",
+                                                        width: "40"
+                                                      }
+                                                    },
+                                                    [
+                                                      props.row.activity_type ==
+                                                      1
+                                                        ? [
+                                                            _c("b-icon", {
+                                                              staticClass:
+                                                                "has-text-info",
+                                                              attrs: {
+                                                                icon:
+                                                                  "format-list-checks"
+                                                              }
+                                                            })
+                                                          ]
+                                                        : props.row
+                                                            .activity_type == 2
+                                                          ? [
+                                                              _c("b-icon", {
+                                                                staticClass:
+                                                                  "has-text-info",
+                                                                attrs: {
+                                                                  icon: "phone"
+                                                                }
+                                                              })
+                                                            ]
+                                                          : props.row
+                                                              .activity_type ==
+                                                            3
+                                                            ? [
+                                                                _c("b-icon", {
+                                                                  staticClass:
+                                                                    "has-text-info",
+                                                                  attrs: {
+                                                                    icon:
+                                                                      "video"
+                                                                  }
+                                                                })
+                                                              ]
+                                                            : props.row
+                                                                .activity_type ==
+                                                              4
+                                                              ? [
+                                                                  _c("b-icon", {
+                                                                    staticClass:
+                                                                      "has-text-info",
+                                                                    attrs: {
+                                                                      icon:
+                                                                        "account-multiple"
+                                                                    }
+                                                                  })
+                                                                ]
+                                                              : props.row
+                                                                  .activity_type ==
+                                                                5
+                                                                ? [
+                                                                    _c(
+                                                                      "b-icon",
+                                                                      {
+                                                                        staticClass:
+                                                                          "has-text-info",
+                                                                        attrs: {
+                                                                          icon:
+                                                                            "map-marker-radius"
+                                                                        }
+                                                                      }
+                                                                    )
+                                                                  ]
+                                                                : [
+                                                                    _c(
+                                                                      "b-icon",
+                                                                      {
+                                                                        staticClass:
+                                                                          "has-text-info",
+                                                                        attrs: {
+                                                                          icon:
+                                                                            "email"
+                                                                        }
+                                                                      }
+                                                                    )
+                                                                  ]
+                                                    ],
+                                                    2
+                                                  ),
+                                                  _vm._v(" "),
+                                                  _c(
+                                                    "b-table-column",
+                                                    {
+                                                      attrs: {
+                                                        field: "date",
+                                                        label:
+                                                          "@lang('global.Deadline')",
+                                                        sortable: "",
+                                                        centered: "",
+                                                        width: "30"
+                                                      }
+                                                    },
+                                                    [
+                                                      _c(
+                                                        "span",
+                                                        {
+                                                          staticClass:
+                                                            "tag is-light"
+                                                        },
+                                                        [
+                                                          _vm._v(
+                                                            "\n                                                  @" +
+                                                              _vm._s(
+                                                                new Date(
+                                                                  props.row.date_started
+                                                                ).toLocaleDateString()
+                                                              ) +
+                                                              "\n                                              "
+                                                          )
+                                                        ]
+                                                      )
+                                                    ]
+                                                  ),
+                                                  _vm._v(" "),
+                                                  _c(
+                                                    "b-table-column",
+                                                    {
+                                                      attrs: {
+                                                        field: "title",
+                                                        label:
+                                                          "@lang('back-office.Task')",
+                                                        sortable: ""
+                                                      }
+                                                    },
+                                                    [
+                                                      _vm._v(
+                                                        "\n                                              @" +
+                                                          _vm._s(
+                                                            props.row.title
+                                                          ) +
+                                                          " "
+                                                      ),
+                                                      _c(
+                                                        "span",
+                                                        {
+                                                          staticClass:
+                                                            "has-text-grey-light"
+                                                        },
+                                                        [
+                                                          _vm._v(
+                                                            "| @" +
+                                                              _vm._s(
+                                                                props.row
+                                                                  .description
+                                                              )
+                                                          )
+                                                        ]
+                                                      )
+                                                    ]
+                                                  ),
+                                                  _vm._v(" "),
+                                                  _c(
+                                                    "b-table-column",
+                                                    {
+                                                      attrs: {
+                                                        label:
+                                                          "@lang('global.Actions')",
+                                                        numeric: ""
+                                                      }
+                                                    },
+                                                    [
+                                                      props.row.completed
+                                                        ? _c(
+                                                            "b-field",
+                                                            {
+                                                              attrs: {
+                                                                grouped: ""
+                                                              }
+                                                            },
+                                                            [
+                                                              _c(
+                                                                "a",
+                                                                {
+                                                                  on: {
+                                                                    click: function(
+                                                                      $event
+                                                                    ) {
+                                                                      _vm.sentimentTask(
+                                                                        props.row,
+                                                                        2
+                                                                      )
+                                                                    }
+                                                                  }
+                                                                },
+                                                                [
+                                                                  props.row
+                                                                    .sentiment ==
+                                                                  2
+                                                                    ? _c(
+                                                                        "img",
+                                                                        {
+                                                                          attrs: {
+                                                                            src:
+                                                                              "/img/icons/emojiHappy.svg",
+                                                                            width:
+                                                                              "32",
+                                                                            alt:
+                                                                              ""
+                                                                          }
+                                                                        }
+                                                                      )
+                                                                    : _c(
+                                                                        "img",
+                                                                        {
+                                                                          staticStyle: {
+                                                                            opacity:
+                                                                              "0.32"
+                                                                          },
+                                                                          attrs: {
+                                                                            src:
+                                                                              "/img/icons/emojiHappy.svg",
+                                                                            width:
+                                                                              "20",
+                                                                            alt:
+                                                                              ""
+                                                                          }
+                                                                        }
+                                                                      )
+                                                                ]
+                                                              ),
+                                                              _vm._v(" "),
+                                                              _c(
+                                                                "a",
+                                                                {
+                                                                  on: {
+                                                                    click: function(
+                                                                      $event
+                                                                    ) {
+                                                                      _vm.sentimentTask(
+                                                                        props.row,
+                                                                        1
+                                                                      )
+                                                                    }
+                                                                  }
+                                                                },
+                                                                [
+                                                                  props.row
+                                                                    .sentiment ==
+                                                                  1
+                                                                    ? _c(
+                                                                        "img",
+                                                                        {
+                                                                          attrs: {
+                                                                            src:
+                                                                              "/img/icons/emojiOk.svg",
+                                                                            width:
+                                                                              "32",
+                                                                            alt:
+                                                                              ""
+                                                                          }
+                                                                        }
+                                                                      )
+                                                                    : _c(
+                                                                        "img",
+                                                                        {
+                                                                          staticStyle: {
+                                                                            opacity:
+                                                                              "0.32"
+                                                                          },
+                                                                          attrs: {
+                                                                            src:
+                                                                              "/img/icons/emojiOk.svg",
+                                                                            width:
+                                                                              "20",
+                                                                            alt:
+                                                                              ""
+                                                                          }
+                                                                        }
+                                                                      )
+                                                                ]
+                                                              ),
+                                                              _vm._v(" "),
+                                                              _c(
+                                                                "a",
+                                                                {
+                                                                  on: {
+                                                                    click: function(
+                                                                      $event
+                                                                    ) {
+                                                                      _vm.sentimentTask(
+                                                                        props.row,
+                                                                        0
+                                                                      )
+                                                                    }
+                                                                  }
+                                                                },
+                                                                [
+                                                                  props.row
+                                                                    .sentiment ==
+                                                                  0
+                                                                    ? _c(
+                                                                        "img",
+                                                                        {
+                                                                          attrs: {
+                                                                            src:
+                                                                              "/img/icons/emojiSad.svg",
+                                                                            width:
+                                                                              "32",
+                                                                            alt:
+                                                                              ""
+                                                                          }
+                                                                        }
+                                                                      )
+                                                                    : _c(
+                                                                        "img",
+                                                                        {
+                                                                          staticStyle: {
+                                                                            opacity:
+                                                                              "0.32"
+                                                                          },
+                                                                          attrs: {
+                                                                            src:
+                                                                              "/img/icons/emojiSad.svg",
+                                                                            width:
+                                                                              "20",
+                                                                            alt:
+                                                                              ""
+                                                                          }
+                                                                        }
+                                                                      )
+                                                                ]
+                                                              )
+                                                            ]
+                                                          )
+                                                        : _c(
+                                                            "b-field",
+                                                            {
+                                                              attrs: {
+                                                                grouped: ""
+                                                              }
+                                                            },
+                                                            [
+                                                              _c(
+                                                                "b-tooltip",
+                                                                {
+                                                                  attrs: {
+                                                                    label:
+                                                                      props.row
+                                                                        .date_reminder,
+                                                                    dashed: ""
+                                                                  }
+                                                                },
+                                                                [
+                                                                  _c("i", {
+                                                                    staticClass:
+                                                                      "si si-bell"
+                                                                  })
+                                                                ]
+                                                              ),
+                                                              _vm._v(" "),
+                                                              _c("a", {
+                                                                staticClass:
+                                                                  "delete",
+                                                                on: {
+                                                                  click: function(
+                                                                    $event
+                                                                  ) {
+                                                                    _vm.deleteTask(
+                                                                      props.row
+                                                                    )
+                                                                  }
+                                                                }
+                                                              })
+                                                            ],
+                                                            1
+                                                          )
+                                                    ],
+                                                    1
+                                                  )
+                                                ]
+                                              }
+                                            },
+                                            {
+                                              key: "detail",
+                                              fn: function(props) {
+                                                return [
+                                                  _c(
+                                                    "div",
+                                                    { staticClass: "row" },
+                                                    [
+                                                      _c(
+                                                        "div",
+                                                        {
+                                                          staticClass: "col-2"
+                                                        },
+                                                        [
+                                                          _c("b-field", {
+                                                            attrs: {
+                                                              label:
+                                                                "Description",
+                                                              "custom-class":
+                                                                "is-small"
+                                                            }
+                                                          })
+                                                        ],
+                                                        1
+                                                      ),
+                                                      _vm._v(" "),
+                                                      _c(
+                                                        "div",
+                                                        {
+                                                          staticClass: "col-10"
+                                                        },
+                                                        [
+                                                          _c(
+                                                            "b-field",
+                                                            [
+                                                              _c("b-input", {
+                                                                attrs: {
+                                                                  placeholder:
+                                                                    "Write more detailed info on what the task entails.",
+                                                                  type:
+                                                                    "textarea"
+                                                                },
+                                                                model: {
+                                                                  value:
+                                                                    props.row
+                                                                      .description,
+                                                                  callback: function(
+                                                                    $$v
+                                                                  ) {
+                                                                    _vm.$set(
+                                                                      props.row,
+                                                                      "description",
+                                                                      $$v
+                                                                    )
+                                                                  },
+                                                                  expression:
+                                                                    "props.row.description"
+                                                                }
+                                                              })
+                                                            ],
+                                                            1
+                                                          )
+                                                        ],
+                                                        1
+                                                      )
+                                                    ]
+                                                  ),
+                                                  _vm._v(" "),
+                                                  _c(
+                                                    "div",
+                                                    { staticClass: "row" },
+                                                    [
+                                                      _c(
+                                                        "div",
+                                                        {
+                                                          staticClass: "col-2"
+                                                        },
+                                                        [
+                                                          _c("b-field", {
+                                                            attrs: {
+                                                              label:
+                                                                "Start & End Dates",
+                                                              "custom-class":
+                                                                "is-small"
+                                                            }
+                                                          })
+                                                        ],
+                                                        1
+                                                      ),
+                                                      _vm._v(" "),
+                                                      _c(
+                                                        "div",
+                                                        {
+                                                          staticClass: "col-10"
+                                                        },
+                                                        [
+                                                          _c(
+                                                            "b-field",
+                                                            {
+                                                              attrs: {
+                                                                grouped: ""
+                                                              }
+                                                            },
+                                                            [
+                                                              _c(
+                                                                "b-field",
+                                                                {
+                                                                  attrs: {
+                                                                    expanded: ""
+                                                                  }
+                                                                },
+                                                                [
+                                                                  _c(
+                                                                    "b-datepicker",
+                                                                    {
+                                                                      attrs: {
+                                                                        placeholder:
+                                                                          "@lang('global.Start Date')"
+                                                                      },
+                                                                      model: {
+                                                                        value:
+                                                                          props
+                                                                            .row
+                                                                            .date_started,
+                                                                        callback: function(
+                                                                          $$v
+                                                                        ) {
+                                                                          _vm.$set(
+                                                                            props.row,
+                                                                            "date_started",
+                                                                            $$v
+                                                                          )
+                                                                        },
+                                                                        expression:
+                                                                          "props.row.date_started"
+                                                                      }
+                                                                    }
+                                                                  )
+                                                                ],
+                                                                1
+                                                              ),
+                                                              _vm._v(" "),
+                                                              _c(
+                                                                "b-field",
+                                                                {
+                                                                  attrs: {
+                                                                    expanded: ""
+                                                                  }
+                                                                },
+                                                                [
+                                                                  _c(
+                                                                    "b-datepicker",
+                                                                    {
+                                                                      attrs: {
+                                                                        "min-date":
+                                                                          props
+                                                                            .row
+                                                                            .date_started,
+                                                                        placeholder:
+                                                                          "@lang('global.End Date')"
+                                                                      },
+                                                                      model: {
+                                                                        value:
+                                                                          props
+                                                                            .row
+                                                                            .date_ended,
+                                                                        callback: function(
+                                                                          $$v
+                                                                        ) {
+                                                                          _vm.$set(
+                                                                            props.row,
+                                                                            "date_ended",
+                                                                            $$v
+                                                                          )
+                                                                        },
+                                                                        expression:
+                                                                          "props.row.date_ended"
+                                                                      }
+                                                                    }
+                                                                  )
+                                                                ],
+                                                                1
+                                                              )
+                                                            ],
+                                                            1
+                                                          )
+                                                        ],
+                                                        1
+                                                      )
+                                                    ]
+                                                  ),
+                                                  _vm._v(" "),
+                                                  _c(
+                                                    "div",
+                                                    { staticClass: "row" },
+                                                    [
+                                                      _c(
+                                                        "div",
+                                                        {
+                                                          staticClass: "col-2"
+                                                        },
+                                                        [
+                                                          _c("b-field", {
+                                                            attrs: {
+                                                              label:
+                                                                "Assign Task",
+                                                              "custom-class":
+                                                                "is-small"
+                                                            }
+                                                          })
+                                                        ],
+                                                        1
+                                                      ),
+                                                      _vm._v(" "),
+                                                      _c(
+                                                        "div",
+                                                        {
+                                                          staticClass: "col-10"
+                                                        },
+                                                        [
+                                                          _c(
+                                                            "b-select",
+                                                            {
+                                                              attrs: {
+                                                                placeholder:
+                                                                  "Assign someone"
+                                                              },
+                                                              model: {
+                                                                value:
+                                                                  props.row
+                                                                    .assigned_to,
+                                                                callback: function(
+                                                                  $$v
+                                                                ) {
+                                                                  _vm.$set(
+                                                                    props.row,
+                                                                    "assigned_to",
+                                                                    $$v
+                                                                  )
+                                                                },
+                                                                expression:
+                                                                  "props.row.assigned_to"
+                                                              }
+                                                            },
+                                                            _vm._l(
+                                                              _vm.members,
+                                                              function(member) {
+                                                                return _c(
+                                                                  "option",
+                                                                  {
+                                                                    domProps: {
+                                                                      value:
+                                                                        member.id
+                                                                    }
+                                                                  },
+                                                                  [
+                                                                    _vm._v(
+                                                                      "\n                                                          @" +
+                                                                        _vm._s(
+                                                                          member.name
+                                                                        ) +
+                                                                        "\n                                                      "
+                                                                    )
+                                                                  ]
+                                                                )
+                                                              }
+                                                            )
+                                                          )
+                                                        ],
+                                                        1
+                                                      )
+                                                    ]
+                                                  ),
+                                                  _vm._v(" "),
+                                                  _c(
+                                                    "div",
+                                                    {
+                                                      staticClass:
+                                                        "block-content block-content-full block-content-sm bg-body-light font-size-sm"
+                                                    },
+                                                    [
+                                                      _c(
+                                                        "button",
+                                                        {
+                                                          staticClass:
+                                                            "button is-info",
+                                                          on: {
+                                                            click: function(
+                                                              $event
+                                                            ) {
+                                                              _vm.editTask(
+                                                                props.row
+                                                              )
+                                                            }
+                                                          }
+                                                        },
+                                                        [
+                                                          _vm._v(
+                                                            "\n                                                  @lang('global.Save')\n                                              "
+                                                          )
+                                                        ]
+                                                      ),
+                                                      _vm._v(" "),
+                                                      _c(
+                                                        "button",
+                                                        {
+                                                          staticClass:
+                                                            "btn btn-outline-secondary min-width-125",
+                                                          on: {
+                                                            click: function(
+                                                              $event
+                                                            ) {}
+                                                          }
+                                                        },
+                                                        [
+                                                          _vm._v(
+                                                            "\n                                                  @lang('global.Cancel')\n                                              "
+                                                          )
+                                                        ]
+                                                      )
+                                                    ]
+                                                  )
+                                                ]
+                                              }
+                                            }
+                                          ])
+                                        },
+                                        [
+                                          _c("template", { slot: "empty" }, [
+                                            _c(
+                                              "section",
+                                              { staticClass: "section" },
+                                              [
+                                                _c(
+                                                  "div",
+                                                  {
+                                                    staticClass:
+                                                      "content has-text-grey has-text-centered"
+                                                  },
+                                                  [
+                                                    _c(
+                                                      "p",
+                                                      [
+                                                        _c("b-icon", {
+                                                          attrs: {
+                                                            icon:
+                                                              "emoticon-sad",
+                                                            size: "is-large"
+                                                          }
+                                                        })
+                                                      ],
+                                                      1
+                                                    ),
+                                                    _vm._v(" "),
+                                                    _c("p", [
+                                                      _vm._v("Nothing here.")
+                                                    ])
+                                                  ]
+                                                )
+                                              ]
+                                            )
+                                          ])
+                                        ],
+                                        2
+                                      )
+                                    ],
+                                    1
+                                  )
+                                : _vm._e()
+                            ]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "b-tab-item",
+                            {
+                              attrs: {
+                                label: "Products and Services",
+                                icon: "diamond"
+                              }
+                            },
+                            [
+                              _c(
+                                "b-table",
+                                {
+                                  attrs: {
+                                    data: _vm.items,
+                                    hoverable: "",
+                                    detailed: "",
+                                    "detail-key": "id"
+                                  },
+                                  scopedSlots: _vm._u([
+                                    {
+                                      key: "default",
+                                      fn: function(props) {
+                                        return [
+                                          _c(
+                                            "b-table-column",
+                                            {
+                                              attrs: {
+                                                field: "quantity",
+                                                label:
+                                                  "@lang('global.Quantity')",
+                                                sortable: "",
+                                                width: "64"
+                                              }
+                                            },
+                                            [
+                                              _c(
+                                                "b-field",
+                                                [
+                                                  _c("b-input", {
+                                                    attrs: {
+                                                      placeholder: "",
+                                                      type: "number",
+                                                      min: "1"
+                                                    },
+                                                    model: {
+                                                      value: props.row.quantity,
+                                                      callback: function($$v) {
+                                                        _vm.$set(
+                                                          props.row,
+                                                          "quantity",
+                                                          $$v
+                                                        )
+                                                      },
+                                                      expression:
+                                                        "props.row.quantity"
+                                                    }
+                                                  })
+                                                ],
+                                                1
+                                              )
+                                            ],
+                                            1
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "b-table-column",
+                                            {
+                                              attrs: {
+                                                field: "items",
+                                                label:
+                                                  "@lang('back-office.Products and Services')",
+                                                sortable: ""
+                                              }
+                                            },
+                                            [
+                                              _vm._v(
+                                                "\n                                          @" +
+                                                  _vm._s(props.row.name) +
+                                                  " "
+                                              ),
+                                              _c(
+                                                "span",
+                                                {
+                                                  staticClass:
+                                                    "has-text-grey-light"
+                                                },
+                                                [
+                                                  _vm._v(
+                                                    "| @" +
+                                                      _vm._s(props.row.sku)
+                                                  )
+                                                ]
+                                              )
+                                            ]
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "b-table-column",
+                                            {
+                                              attrs: {
+                                                field: "unit_price",
+                                                label: "@lang('global.Price')",
+                                                width: "128",
+                                                sortable: ""
+                                              }
+                                            },
+                                            [
+                                              _c(
+                                                "b-field",
+                                                [
+                                                  _c("b-input", {
+                                                    attrs: {
+                                                      placeholder: "",
+                                                      type: "number",
+                                                      min: "0"
+                                                    },
+                                                    model: {
+                                                      value:
+                                                        props.row.unit_price,
+                                                      callback: function($$v) {
+                                                        _vm.$set(
+                                                          props.row,
+                                                          "unit_price",
+                                                          $$v
+                                                        )
+                                                      },
+                                                      expression:
+                                                        "props.row.unit_price"
+                                                    }
+                                                  })
+                                                ],
+                                                1
+                                              )
+                                            ],
+                                            1
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "b-table-column",
+                                            {
+                                              attrs: {
+                                                field: "sub_total",
+                                                label:
+                                                  "@lang('global.Sub Total')",
+                                                sortable: "",
+                                                numeric: ""
+                                              }
+                                            },
+                                            [
+                                              _vm._v(
+                                                "\n                                          @" +
+                                                  _vm._s(
+                                                    Number(
+                                                      props.row.unit_price *
+                                                        props.row.quantity
+                                                    ).toLocaleString()
+                                                  ) +
+                                                  "\n                                      "
+                                              )
+                                            ]
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "b-table-column",
+                                            {
+                                              attrs: {
+                                                label:
+                                                  "@lang('global.Actions')",
+                                                centered: "",
+                                                width: "24"
+                                              }
+                                            },
+                                            [
+                                              _c("a", {
+                                                staticClass: "delete",
+                                                on: {
+                                                  click: function($event) {
+                                                    _vm.deleteItem(props.row)
+                                                  }
+                                                }
+                                              })
+                                            ]
+                                          )
+                                        ]
+                                      }
+                                    },
+                                    {
+                                      key: "detail",
+                                      fn: function(props) {
+                                        return [
+                                          _c("div", { staticClass: "row" }, [
+                                            _c(
+                                              "div",
+                                              { staticClass: "col-2" },
+                                              [
+                                                _c("b-field", {
+                                                  attrs: {
+                                                    label: "Description",
+                                                    "custom-class": "is-small"
+                                                  }
+                                                })
+                                              ],
+                                              1
+                                            ),
+                                            _vm._v(" "),
+                                            _c(
+                                              "div",
+                                              { staticClass: "col-10" },
+                                              [
+                                                _c(
+                                                  "b-field",
+                                                  [
+                                                    _c("b-input", {
+                                                      attrs: {
+                                                        placeholder:
+                                                          "Write more detailed info on what the task entails.",
+                                                        type: "textarea"
+                                                      },
+                                                      model: {
+                                                        value:
+                                                          props.row.description,
+                                                        callback: function(
+                                                          $$v
+                                                        ) {
+                                                          _vm.$set(
+                                                            props.row,
+                                                            "description",
+                                                            $$v
+                                                          )
+                                                        },
+                                                        expression:
+                                                          "props.row.description"
+                                                      }
+                                                    })
+                                                  ],
+                                                  1
+                                                )
+                                              ],
+                                              1
+                                            )
+                                          ]),
+                                          _vm._v(" "),
+                                          _c("div", { staticClass: "row" }, [
+                                            _c(
+                                              "div",
+                                              { staticClass: "col-2" },
+                                              [
+                                                _c("b-field", {
+                                                  attrs: {
+                                                    label: "Assign Task",
+                                                    "custom-class": "is-small"
+                                                  }
+                                                })
+                                              ],
+                                              1
+                                            ),
+                                            _vm._v(" "),
+                                            _c(
+                                              "div",
+                                              { staticClass: "col-10" },
+                                              [
+                                                _c(
+                                                  "b-select",
+                                                  {
+                                                    attrs: {
+                                                      placeholder:
+                                                        "Assign someone"
+                                                    },
+                                                    model: {
+                                                      value:
+                                                        props.row.assigned_to,
+                                                      callback: function($$v) {
+                                                        _vm.$set(
+                                                          props.row,
+                                                          "assigned_to",
+                                                          $$v
+                                                        )
+                                                      },
+                                                      expression:
+                                                        "props.row.assigned_to"
+                                                    }
+                                                  },
+                                                  _vm._l(_vm.members, function(
+                                                    member
+                                                  ) {
+                                                    return _c(
+                                                      "option",
+                                                      {
+                                                        domProps: {
+                                                          value: member.id
+                                                        }
+                                                      },
+                                                      [
+                                                        _vm._v(
+                                                          "\n                                                      @" +
+                                                            _vm._s(
+                                                              member.name
+                                                            ) +
+                                                            "\n                                                  "
+                                                        )
+                                                      ]
+                                                    )
+                                                  })
+                                                )
+                                              ],
+                                              1
+                                            )
+                                          ]),
+                                          _vm._v(" "),
+                                          _c(
+                                            "div",
+                                            {
+                                              staticClass:
+                                                "block-content block-content-full block-content-sm bg-body-light font-size-sm"
+                                            },
+                                            [
+                                              _c(
+                                                "button",
+                                                {
+                                                  staticClass: "button is-info",
+                                                  on: {
+                                                    click: function($event) {
+                                                      _vm.editTask(props.row)
+                                                    }
+                                                  }
+                                                },
+                                                [
+                                                  _vm._v(
+                                                    "\n                                              @lang('global.Save')\n                                          "
+                                                  )
+                                                ]
+                                              ),
+                                              _vm._v(" "),
+                                              _c(
+                                                "button",
+                                                {
+                                                  staticClass:
+                                                    "btn btn-outline-secondary min-width-125",
+                                                  on: {
+                                                    click: function($event) {}
+                                                  }
+                                                },
+                                                [
+                                                  _vm._v(
+                                                    "\n                                              @lang('global.Cancel')\n                                          "
+                                                  )
+                                                ]
+                                              )
+                                            ]
+                                          )
+                                        ]
+                                      }
+                                    }
+                                  ])
+                                },
+                                [
+                                  _c("template", { slot: "footer" }, [
+                                    _c("h3", [
+                                      _vm._v(
+                                        " @" + _vm._s(_vm.totalValue) + " "
+                                      )
+                                    ]),
+                                    _vm._v(" "),
+                                    _c(
+                                      "button",
+                                      { staticClass: "button is-info" },
+                                      [_vm._v("Send Budget")]
+                                    )
+                                  ])
+                                ],
+                                2
+                              )
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  )
+                ])
+              ])
+            ])
+          },
+          staticRenderFns: [
+            function() {
+              var _vm = this
+              var _h = _vm.$createElement
+              var _c = _vm._self._c || _h
+              return _c(
+                "div",
+                { staticClass: "block-content block-content-full bg-gd-dusk" },
+                [
+                  _c("img", {
+                    staticClass: "img-avatar img-avatar-thumb",
+                    attrs: { src: "/img/avatars/avatar6.jpg", alt: "" }
+                  })
+                ]
+              )
+            },
+            function() {
+              var _vm = this
+              var _h = _vm.$createElement
+              var _c = _vm._self._c || _h
+              return _c(
+                "div",
+                {
+                  staticClass: "item item-circle bg-success-light mx-auto mb-10"
+                },
+                [_c("i", { staticClass: "fa fa-money text-success" })]
+              )
+            },
+            function() {
+              var _vm = this
+              var _h = _vm.$createElement
+              var _c = _vm._self._c || _h
+              return _c(
+                "div",
+                { staticClass: "item item-circle bg-info-light mx-auto mb-10" },
+                [_c("i", { staticClass: "fa fa-diamond text-info" })]
+              )
+            }
+          ]
+        }
+      })
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-589dba75", module.exports)
+  }
+}
+
+/***/ }),
+/* 107 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var normalizeComponent = __webpack_require__(0)
@@ -62006,15 +67257,15 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 101 */
+/* 108 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(0)
 /* script */
-var __vue_script__ = __webpack_require__(102)
+var __vue_script__ = __webpack_require__(109)
 /* template */
-var __vue_template__ = __webpack_require__(103)
+var __vue_template__ = __webpack_require__(110)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -62053,7 +67304,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 102 */
+/* 109 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -62192,7 +67443,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 103 */
+/* 110 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -62368,15 +67619,15 @@ if (false) {
 }
 
 /***/ }),
-/* 104 */
+/* 111 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(0)
 /* script */
-var __vue_script__ = __webpack_require__(105)
+var __vue_script__ = __webpack_require__(112)
 /* template */
-var __vue_template__ = __webpack_require__(106)
+var __vue_template__ = __webpack_require__(113)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -62415,7 +67666,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 105 */
+/* 112 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -62558,7 +67809,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 106 */
+/* 113 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -62852,7 +68103,7 @@ if (false) {
 }
 
 /***/ }),
-/* 107 */
+/* 114 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var normalizeComponent = __webpack_require__(0)
@@ -62882,7 +68133,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 108 */
+/* 115 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var normalizeComponent = __webpack_require__(0)
@@ -62912,7 +68163,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 109 */
+/* 116 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var normalizeComponent = __webpack_require__(0)
@@ -62942,7 +68193,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 110 */
+/* 117 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var normalizeComponent = __webpack_require__(0)
@@ -62972,7 +68223,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 111 */
+/* 118 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var normalizeComponent = __webpack_require__(0)
@@ -63002,7 +68253,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 112 */
+/* 119 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var normalizeComponent = __webpack_require__(0)
@@ -63032,15 +68283,15 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 113 */
+/* 120 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(0)
 /* script */
-var __vue_script__ = __webpack_require__(114)
+var __vue_script__ = __webpack_require__(121)
 /* template */
-var __vue_template__ = __webpack_require__(115)
+var __vue_template__ = __webpack_require__(122)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -63079,7 +68330,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 114 */
+/* 121 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -63180,7 +68431,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     pageChange: function pageChange(page) {
       var app = this;
-      app.setData(page);
+      app.onLoad(page);
     },
     onCreate: function onCreate() {
       var app = this;
@@ -63231,7 +68482,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 115 */
+/* 122 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -63437,15 +68688,15 @@ if (false) {
 }
 
 /***/ }),
-/* 116 */
+/* 123 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(0)
 /* script */
-var __vue_script__ = __webpack_require__(117)
+var __vue_script__ = __webpack_require__(124)
 /* template */
-var __vue_template__ = __webpack_require__(118)
+var __vue_template__ = __webpack_require__(125)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -63484,7 +68735,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 117 */
+/* 124 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -63665,7 +68916,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 118 */
+/* 125 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -64132,7 +69383,7 @@ if (false) {
 }
 
 /***/ }),
-/* 119 */
+/* 126 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var normalizeComponent = __webpack_require__(0)
@@ -64162,7 +69413,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 120 */
+/* 127 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var normalizeComponent = __webpack_require__(0)
@@ -64192,7 +69443,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 121 */
+/* 128 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var normalizeComponent = __webpack_require__(0)
@@ -64222,7 +69473,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 122 */
+/* 129 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var normalizeComponent = __webpack_require__(0)
@@ -64252,7 +69503,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 123 */
+/* 130 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var normalizeComponent = __webpack_require__(0)
@@ -64282,7 +69533,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 124 */
+/* 131 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var normalizeComponent = __webpack_require__(0)
@@ -64312,19 +69563,19 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 125 */
+/* 132 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(126)
+  __webpack_require__(133)
 }
 var normalizeComponent = __webpack_require__(0)
 /* script */
-var __vue_script__ = __webpack_require__(129)
+var __vue_script__ = __webpack_require__(136)
 /* template */
-var __vue_template__ = __webpack_require__(130)
+var __vue_template__ = __webpack_require__(137)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -64363,13 +69614,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 126 */
+/* 133 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(127);
+var content = __webpack_require__(134);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -64389,7 +69640,7 @@ if(false) {
 }
 
 /***/ }),
-/* 127 */
+/* 134 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(4)(false);
@@ -64403,7 +69654,7 @@ exports.push([module.i, "\n.action-link[data-v-3f99fc75] {\n    cursor: pointer;
 
 
 /***/ }),
-/* 128 */
+/* 135 */
 /***/ (function(module, exports) {
 
 /**
@@ -64436,7 +69687,7 @@ module.exports = function listToStyles (parentId, list) {
 
 
 /***/ }),
-/* 129 */
+/* 136 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -64800,7 +70051,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 });
 
 /***/ }),
-/* 130 */
+/* 137 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -65361,19 +70612,19 @@ if (false) {
 }
 
 /***/ }),
-/* 131 */
+/* 138 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(132)
+  __webpack_require__(139)
 }
 var normalizeComponent = __webpack_require__(0)
 /* script */
-var __vue_script__ = __webpack_require__(134)
+var __vue_script__ = __webpack_require__(141)
 /* template */
-var __vue_template__ = __webpack_require__(135)
+var __vue_template__ = __webpack_require__(142)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -65412,13 +70663,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 132 */
+/* 139 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(133);
+var content = __webpack_require__(140);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -65438,7 +70689,7 @@ if(false) {
 }
 
 /***/ }),
-/* 133 */
+/* 140 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(4)(false);
@@ -65452,7 +70703,7 @@ exports.push([module.i, "\n.action-link[data-v-0b76a99a] {\n    cursor: pointer;
 
 
 /***/ }),
-/* 134 */
+/* 141 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -65572,7 +70823,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 135 */
+/* 142 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -65681,19 +70932,19 @@ if (false) {
 }
 
 /***/ }),
-/* 136 */
+/* 143 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(137)
+  __webpack_require__(144)
 }
 var normalizeComponent = __webpack_require__(0)
 /* script */
-var __vue_script__ = __webpack_require__(139)
+var __vue_script__ = __webpack_require__(146)
 /* template */
-var __vue_template__ = __webpack_require__(140)
+var __vue_template__ = __webpack_require__(147)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -65732,13 +70983,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 137 */
+/* 144 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(138);
+var content = __webpack_require__(145);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -65758,7 +71009,7 @@ if(false) {
 }
 
 /***/ }),
-/* 138 */
+/* 145 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(4)(false);
@@ -65772,7 +71023,7 @@ exports.push([module.i, "\n.action-link[data-v-50e40461] {\n    cursor: pointer;
 
 
 /***/ }),
-/* 139 */
+/* 146 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -66094,7 +71345,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 });
 
 /***/ }),
-/* 140 */
+/* 147 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -66472,7 +71723,7 @@ if (false) {
 }
 
 /***/ }),
-/* 141 */
+/* 148 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin

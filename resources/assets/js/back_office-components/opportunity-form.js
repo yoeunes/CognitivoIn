@@ -1,3 +1,4 @@
+
 // Vue.use(Buefy.default)
 
 Vue.component('opportunity-form',
@@ -269,7 +270,7 @@ Vue.component('opportunity-form',
         getPipelines: function(data)
         {
             var app = this;
-            axios.get('/api/' + app.$parent.profile + '/back-office/list/0/pipelines/1')
+            axios.get('/api/' + app.$parent.profile + '/back-office/list/pipelines/1')
             .then(({ data }) =>
             {
                 app.pipelines = [];

@@ -259,7 +259,7 @@
                                                 </li>
                                                 <li>
                                                     <a href="#">
-                                                        <router-link :to="{ name: 'opportunity.index' ,params: { profile:'{{ request()->route('profile')->slug}}'} }">
+                                                        <router-link :to="{ name: 'opportunity.index' ,params: { profile:'{{ request()->route('profile')->slug}}',userid :'{{  Auth::user()->profile_id }}'} }">
                                                             @lang('back-office.Opportunities')
                                                         </router-link>
                                                     </a>
