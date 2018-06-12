@@ -1,3 +1,7 @@
+@section('scripts')
+    <script src='https://www.google.com/recaptcha/api.js'></script>
+@endsection
+
 @extends('layouts.app')
 
 @section('main')
@@ -79,6 +83,9 @@
                                 @endif
                             </div>
                         </div>
+
+                        <div class="g-recaptcha" data-sitekey="6LdtgV4UAAAAAGH53fzq326PImq4ggJfiOGneCbG"></div>
+
                         <div class="form-group">
                             <button type="submit" class="btn btn-hero">
                                 {{ __('Register') }}
