@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Profile;
 use App\Pipeline;
 use App\PipelineStage;
+use App\Http\Resources\PipelineResource;
 use Illuminate\Http\Request;
 
 class PipelineController extends Controller
@@ -16,13 +17,15 @@ class PipelineController extends Controller
     */
     public function index(Profile $profile, $skip)
     {
-        $pipelines = Pipeline::My($profile)
-        ->with('stages')
-        ->skip($skip)
-        ->take(100)
-        ->get();
-
-        return response()->json($pipelines);
+        return PipelineResource::collection(Pipeline::My($profile)
+        ->with('stages')->paginate(2));
+        // $pipelines = Pipeline::My($profile)
+        // ->with('stages')
+        // ->skip($skip)
+        // ->take(100)
+        // ->get();
+        //
+        // return response()->json($pipelines);
     }
 
     /**
@@ -64,7 +67,7 @@ class PipelineController extends Controller
 
                 $pipelineStage->save();
             }
-          
+
 
         }
 

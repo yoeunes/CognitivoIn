@@ -273,6 +273,42 @@ export default {
                 });
             }
         },
+        onDelete($data)
+        {
+          var app = this;
+
+          this.$swal({
+            title: 'Delete Record',
+            text: "Sure? This action is non-reversable",
+            type: 'question',
+            showCancelButton: true,
+            confirmButtonText: 'Yes, delete it!'
+          })
+          .then(() => {
+
+            axios.delete('/api/' + this.profile + '/back-office/contracts/' + $data.id)
+            .then(() => {
+
+              let index = this.list.findIndex(x => x.id === $data.id);
+              this.list.splice(index, 1);
+
+              this.$toast.open({
+                duration: 750,
+                message: 'The record has been deleted',
+                position: 'is-bottom-right',
+                type: 'is-danger'
+              })
+            })
+            .catch(ex => {
+              console.log(ex.response);
+              this.$toast.open({
+                duration: 5000,
+                message: 'Error trying to delete record',
+                type: 'is-danger'
+              })
+            });
+          });
+        },
         onSave($data)
         {
             var app = this;

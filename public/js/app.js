@@ -54597,7 +54597,7 @@ Vue.component('relationship-form', {
         var _this = this;
 
         var app = this;
-        axios.get('/api/' + this.$parent.profile + '/back-office/list/0/contracts/1').then(function (_ref2) {
+        axios.get('/api/' + app.$parent.profile + '/back-office/list/contracts/1').then(function (_ref2) {
             var data = _ref2.data;
 
             app.contracts = data;
@@ -57826,6 +57826,42 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var app = this;
             app.showForm = true;
         },
+        onDelete: function onDelete($data) {
+            var _this2 = this;
+
+            var app = this;
+
+            this.$swal({
+                title: 'Delete Record',
+                text: "Sure? This action is non-reversable",
+                type: 'question',
+                showCancelButton: true,
+                confirmButtonText: 'Yes, delete it!'
+            }).then(function () {
+
+                axios.delete('/api/' + _this2.profile + '/back-office/locations/' + $data.id).then(function () {
+
+                    var index = _this2.list.findIndex(function (x) {
+                        return x.id === $data.id;
+                    });
+                    _this2.list.splice(index, 1);
+
+                    _this2.$toast.open({
+                        duration: 750,
+                        message: 'The record has been deleted',
+                        position: 'is-bottom-right',
+                        type: 'is-danger'
+                    });
+                }).catch(function (ex) {
+                    console.log(ex.response);
+                    _this2.$toast.open({
+                        duration: 5000,
+                        message: 'Error trying to delete record',
+                        type: 'is-danger'
+                    });
+                });
+            });
+        },
         onEdit: function onEdit($data) {
             var app = this;
             app.showForm = true;
@@ -57866,18 +57902,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             app.hours = [];
         },
         onSave: function onSave($data) {
-            var _this2 = this;
+            var _this3 = this;
 
             var app = this;
             axios.post('/api/' + app.profile + '/back-office/locations/', $data).then(function () {
                 app.onCancel();
-                _this2.$toast.open({
+                _this3.$toast.open({
                     message: 'Awsome! Your work has been saved',
                     type: 'is-success'
                 });
             }).catch(function (ex) {
                 console.log(ex.response);
-                _this2.$toast.open({
+                _this3.$toast.open({
                     duration: 5000,
                     message: 'Error trying to save record',
                     type: 'is-danger'
@@ -58746,6 +58782,42 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 _this.meta = response.data.meta;
             }).catch(function (error) {});
         },
+        onDelete: function onDelete($data) {
+            var _this2 = this;
+
+            var app = this;
+
+            this.$swal({
+                title: 'Delete Record',
+                text: "Sure? This action is non-reversable",
+                type: 'question',
+                showCancelButton: true,
+                confirmButtonText: 'Yes, delete it!'
+            }).then(function () {
+
+                axios.delete('/api/' + _this2.profile + '/back-office/vats/' + $data.id).then(function () {
+
+                    var index = _this2.list.findIndex(function (x) {
+                        return x.id === $data.id;
+                    });
+                    _this2.list.splice(index, 1);
+
+                    _this2.$toast.open({
+                        duration: 750,
+                        message: 'The record has been deleted',
+                        position: 'is-bottom-right',
+                        type: 'is-danger'
+                    });
+                }).catch(function (ex) {
+                    console.log(ex.response);
+                    _this2.$toast.open({
+                        duration: 5000,
+                        message: 'Error trying to delete record',
+                        type: 'is-danger'
+                    });
+                });
+            });
+        },
         pageChange: function pageChange(page) {
             var app = this;
             app.onLoad(page);
@@ -58804,18 +58876,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         },
 
         onSave: function onSave($data) {
-            var _this2 = this;
+            var _this3 = this;
 
             var app = this;
             axios.post('/api/' + app.profile + '/back-office/vats/', $data).then(function () {
                 app.onCancel();
-                _this2.$toast.open({
+                _this3.$toast.open({
                     message: 'Awsome! Your work has been saved',
                     type: 'is-success'
                 });
             }).catch(function (ex) {
                 console.log(ex.response);
-                _this2.$toast.open({
+                _this3.$toast.open({
                     duration: 5000,
                     message: 'Error trying to save record',
                     type: 'is-danger'
@@ -59564,19 +59636,55 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 });
             }
         },
-        onSave: function onSave($data) {
+        onDelete: function onDelete($data) {
             var _this2 = this;
+
+            var app = this;
+
+            this.$swal({
+                title: 'Delete Record',
+                text: "Sure? This action is non-reversable",
+                type: 'question',
+                showCancelButton: true,
+                confirmButtonText: 'Yes, delete it!'
+            }).then(function () {
+
+                axios.delete('/api/' + _this2.profile + '/back-office/contracts/' + $data.id).then(function () {
+
+                    var index = _this2.list.findIndex(function (x) {
+                        return x.id === $data.id;
+                    });
+                    _this2.list.splice(index, 1);
+
+                    _this2.$toast.open({
+                        duration: 750,
+                        message: 'The record has been deleted',
+                        position: 'is-bottom-right',
+                        type: 'is-danger'
+                    });
+                }).catch(function (ex) {
+                    console.log(ex.response);
+                    _this2.$toast.open({
+                        duration: 5000,
+                        message: 'Error trying to delete record',
+                        type: 'is-danger'
+                    });
+                });
+            });
+        },
+        onSave: function onSave($data) {
+            var _this3 = this;
 
             var app = this;
             axios.post('/api/' + app.profile + '/back-office/contracts/', $data).then(function () {
                 app.onCancel();
-                _this2.$toast.open({
+                _this3.$toast.open({
                     message: 'Awsome! Your work has been saved',
                     type: 'is-success'
                 });
             }).catch(function (ex) {
                 console.log(ex.response);
-                _this2.$toast.open({
+                _this3.$toast.open({
                     duration: 5000,
                     message: 'Error trying to save record',
                     type: 'is-danger'
@@ -60263,6 +60371,42 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var app = this;
             app.showForm = true;
         },
+        onDelete: function onDelete($data) {
+            var _this2 = this;
+
+            var app = this;
+
+            this.$swal({
+                title: 'Delete Record',
+                text: "Sure? This action is non-reversable",
+                type: 'question',
+                showCancelButton: true,
+                confirmButtonText: 'Yes, delete it!'
+            }).then(function () {
+
+                axios.delete('/api/' + _this2.profile + '/back-office/followers/' + $data.id).then(function () {
+
+                    var index = _this2.list.findIndex(function (x) {
+                        return x.id === $data.id;
+                    });
+                    _this2.list.splice(index, 1);
+
+                    _this2.$toast.open({
+                        duration: 750,
+                        message: 'The record has been deleted',
+                        position: 'is-bottom-right',
+                        type: 'is-danger'
+                    });
+                }).catch(function (ex) {
+                    console.log(ex.response);
+                    _this2.$toast.open({
+                        duration: 5000,
+                        message: 'Error trying to delete record',
+                        type: 'is-danger'
+                    });
+                });
+            });
+        },
         onEdit: function onEdit($data) {
             var app = this;
             app.showForm = true;
@@ -60293,18 +60437,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             app.selectname = '';
         },
         onSave: function onSave($data) {
-            var _this2 = this;
+            var _this3 = this;
 
             var app = this;
             axios.post('/api/' + app.profile + '/back-office/followers/', $data).then(function () {
                 app.onCancel();
-                _this2.$toast.open({
+                _this3.$toast.open({
                     message: 'Awsome! Your work has been saved',
                     type: 'is-success'
                 });
             }).catch(function (ex) {
                 console.log(ex.response);
-                _this2.$toast.open({
+                _this3.$toast.open({
                     duration: 5000,
                     message: 'Error trying to save record',
                     type: 'is-danger'
@@ -61046,7 +61190,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var _this = this;
 
             var app = this;
-            axios.delete('/back-office/' + app.$parent.profile + '/sales/pipelinestages/' + stage.id).then(function () {
+            axios.delete('/back-office/' + app.profile + '/sales/pipelinestages/' + stage.id).then(function () {
 
                 var index = _this.stages.indexOf(stage);
                 _this.stages.splice(index, 1);
@@ -61090,17 +61234,17 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
             axios.get('/api/' + app.profile + '/back-office/pipelines/' + $data.id + '/edit').then(function (response) {
 
-                app.id = data.id;
-                app.name = data.name;
+                app.id = response.data.id;
+                app.name = response.data.name;
 
                 app.stages = [];
 
-                for (var i = 0; i < data.stages.length; i++) {
+                for (var i = 0; i < response.data.stages.length; i++) {
                     app.stages.push({
-                        id: data.stages[i].id,
-                        stage_name: data.stages[i].name,
-                        stage_completed: data.stages[i].completed,
-                        stage_sequence: data.stages[i].sequence
+                        id: response.data.stages[i].id,
+                        stage_name: response.data.stages[i].name,
+                        stage_completed: response.data.stages[i].completed,
+                        stage_sequence: response.data.stages[i].sequence
                     });
                 }
             }).catch(function (ex) {
@@ -61114,6 +61258,42 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             });
             app.onLoad(1);
         },
+        onDelete: function onDelete($data) {
+            var _this3 = this;
+
+            var app = this;
+
+            this.$swal({
+                title: 'Delete Record',
+                text: "Sure? This action is non-reversable",
+                type: 'question',
+                showCancelButton: true,
+                confirmButtonText: 'Yes, delete it!'
+            }).then(function () {
+
+                axios.delete('/api/' + _this3.profile + '/back-office/pipelines/' + $data.id).then(function () {
+
+                    var index = _this3.list.findIndex(function (x) {
+                        return x.id === $data.id;
+                    });
+                    _this3.list.splice(index, 1);
+
+                    _this3.$toast.open({
+                        duration: 750,
+                        message: 'The record has been deleted',
+                        position: 'is-bottom-right',
+                        type: 'is-danger'
+                    });
+                }).catch(function (ex) {
+                    console.log(ex.response);
+                    _this3.$toast.open({
+                        duration: 5000,
+                        message: 'Error trying to delete record',
+                        type: 'is-danger'
+                    });
+                });
+            });
+        },
         onCancel: function onCancel() {
             var app = this;
             app.showForm = false;
@@ -61122,18 +61302,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             app.stages = [];
         },
         onSave: function onSave($data) {
-            var _this3 = this;
+            var _this4 = this;
 
             var app = this;
             axios.post('/api/' + app.profile + '/back-office/pipelines/', $data).then(function () {
                 app.onCancel();
-                _this3.$toast.open({
+                _this4.$toast.open({
                     message: 'Awsome! Your work has been saved',
                     type: 'is-success'
                 });
             }).catch(function (ex) {
                 console.log(ex.response);
-                _this3.$toast.open({
+                _this4.$toast.open({
                     duration: 5000,
                     message: 'Error trying to save record',
                     type: 'is-danger'
@@ -61962,7 +62142,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     pageChange: function pageChange(page) {
       var app = this;
-      app.setData(page);
+      app.onLoad(page);
     },
     onCreate: function onCreate() {
       var app = this;
@@ -62991,6 +63171,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       var _this = this;
 
       this.profile = this.$route.params.profile;
+
       axios.get('/api/' + this.profile + '/back-office/list/items/1?page=' + page).then(function (response) {
 
         _this.list = response.data.data;
@@ -63018,7 +63199,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         confirmButtonText: 'Yes, delete it!'
       }).then(function () {
 
-        axios.delete('/api/' + _this2.profile + '/back-office/items' + $data.id).then(function () {
+        axios.delete('/api/' + _this2.profile + '/back-office/items/' + $data.id).then(function () {
 
           var index = _this2.list.findIndex(function (x) {
             return x.id === $data.id;
@@ -63163,7 +63344,7 @@ var render = function() {
                         },
                         on: {
                           click: function($event) {
-                            _vm.onDelete(_vm.customer)
+                            _vm.onDelete(item)
                           }
                         }
                       },

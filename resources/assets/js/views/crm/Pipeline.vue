@@ -224,7 +224,7 @@ export default {
         stageCancel: function(stage)
         {
             var app = this;
-            axios.delete('/back-office/' + app.$parent.profile + '/sales/pipelinestages/' + stage.id)
+            axios.delete('/back-office/' + app.profile + '/sales/pipelinestages/' + stage.id)
             .then(() => {
 
                 let index = this.stages.indexOf(stage);
@@ -278,17 +278,17 @@ export default {
             axios.get('/api/' + app.profile + '/back-office/pipelines/' + $data.id + '/edit')
             .then(function (response) {
 
-                app.id = data.id;
-                app.name = data.name;
+                app.id = response.data.id;
+                app.name = response.data.name;
 
                 app.stages=[];
 
-                for (var i = 0; i < data.stages.length; i++) {
+                for (var i = 0; i < response.data.stages.length; i++) {
                     app.stages.push({
-                        id: data.stages[i].id,
-                        stage_name: data.stages[i].name,
-                        stage_completed: data.stages[i].completed,
-                        stage_sequence: data.stages[i].sequence
+                        id: response.data.stages[i].id,
+                        stage_name: response.data.stages[i].name,
+                        stage_completed: response.data.stages[i].completed,
+                        stage_sequence: response.data.stages[i].sequence
                     });
                 }
             })
@@ -303,6 +303,42 @@ export default {
             });
             app.onLoad(1);
         },
+        onDelete($data)
+            {
+              var app = this;
+
+              this.$swal({
+                title: 'Delete Record',
+                text: "Sure? This action is non-reversable",
+                type: 'question',
+                showCancelButton: true,
+                confirmButtonText: 'Yes, delete it!'
+              })
+              .then(() => {
+
+                axios.delete('/api/' + this.profile + '/back-office/pipelines/' + $data.id)
+                .then(() => {
+
+                  let index = this.list.findIndex(x => x.id === $data.id);
+                  this.list.splice(index, 1);
+
+                  this.$toast.open({
+                    duration: 750,
+                    message: 'The record has been deleted',
+                    position: 'is-bottom-right',
+                    type: 'is-danger'
+                  })
+                })
+                .catch(ex => {
+                  console.log(ex.response);
+                  this.$toast.open({
+                    duration: 5000,
+                    message: 'Error trying to delete record',
+                    type: 'is-danger'
+                  })
+                });
+              });
+            },
         onCancel()
         {
             var app = this;

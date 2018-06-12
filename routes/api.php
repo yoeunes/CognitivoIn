@@ -18,7 +18,7 @@
 // });
 
 Route::group(['middleware' => 'auth:api'], function ()
-{
+{});
     Route::resource('profile', 'ProfileController');
 
     Route::prefix('{profile}')->group(function ()
@@ -121,7 +121,7 @@ Route::group(['middleware' => 'auth:api'], function ()
         //Route::post('synccustomer', 'Api\CustomerController@syncCustomer');
         //Route::post('synctransaction', 'Api\TransactionController@uploadOrder');
     });
-});
+
 
 Route::get('getCompanys/{slug}', 'ProfileController@get_companies');
 Route::get('login/{email}/{password}', 'Auth\SocialAuthController@Login');

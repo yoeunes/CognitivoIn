@@ -87,7 +87,7 @@ export default {
       },
       pageChange (page) {
         var app = this;
-        app.setData(page);
+        app.onLoad(page);
       },
       onCreate () {
         var app = this;

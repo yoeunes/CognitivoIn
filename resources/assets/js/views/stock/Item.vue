@@ -49,7 +49,7 @@
                 </button>
               </router-link>
 
-              <button v-on:click="onDelete(customer)" type="button" class="btn btn-sm btn-secondary js-tooltip-enabled" data-toggle="tooltip" data-original-title="Delete">
+              <button v-on:click="onDelete(item)" type="button" class="btn btn-sm btn-secondary js-tooltip-enabled" data-toggle="tooltip" data-original-title="Delete">
                 <i class="fa fa-times"></i>
               </button>
             </td>
@@ -86,6 +86,7 @@ export default {
   methods: {
     onLoad(page) {
       this.profile=this.$route.params.profile;
+
       axios
       .get('/api/' + this.profile + '/back-office/list/items/1?page=' + page  )
       .then(response => {
@@ -120,7 +121,7 @@ export default {
       })
       .then(() => {
 
-        axios.delete('/api/' + this.profile + '/back-office/items' + $data.id)
+        axios.delete('/api/' + this.profile + '/back-office/items/' + $data.id)
         .then(() => {
 
           let index = this.list.findIndex(x => x.id === $data.id);
