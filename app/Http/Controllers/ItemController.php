@@ -189,7 +189,7 @@ class ItemController extends Controller
     {
         $items = null;
 
-        if (strlen($query) > 3)
+        if (strlen($query) >= 3)
         {
             $items = Item::where('items.profile_id', $profile->id)
             ->where('items.name', 'LIKE', "%" . $query . "%")

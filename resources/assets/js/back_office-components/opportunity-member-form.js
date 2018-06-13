@@ -17,8 +17,8 @@ Vue.component('opportunity-member-form',
         {
 
             var app = this;
-
-            axios.post('/api/'+ app.$parent.$parent.profile +'/back-office/opportunities/' + this.$parent.id + '/members/', {
+ '/tasks'
+            axios.post('/api/' + app.$parent.$parent.profile + '/back-office/opportunities/' + app.$parent.id  + '/members/', {
                 profile_id: member.id
             })
             .then(({ data }) =>
@@ -43,8 +43,7 @@ Vue.component('opportunity-member-form',
         {
 
             var app = this;
-            axios.delete('/api/'+ app.$parent.$parent.profile +'/back-office/opportunities/'
-            + this.$parent.id + '/members/' + member.id)
+            axios.delete('/api/' + app.$parent.$parent.profile + '/back-office/opportunities/' + app.$parent.id + '/members/' + member.id)
             .then(({ data }) =>
             {
                 let index = this.$parent.members.findIndex(x => x.id === member.id);

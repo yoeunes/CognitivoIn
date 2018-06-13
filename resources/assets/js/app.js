@@ -102,7 +102,7 @@ const router = new VueRouter({
         { path: '/:profile/crm/dashboard', name: 'crm.dashboard', component: Dashboard },
         { path: '/:profile/crm/pipelines', name: 'pipeline.index', component: Pipelines },
         { path: '/:profile/crm/opportunities/:userid', name: 'opportunity.index', component: Opportunities },
-        { path: '/:profile/crm/opportunity/:id', name: 'opportunity.form', component: OpportunityForm },
+        { path: '/:profile/crm/opportunity/:id/:user_id', name: 'opportunity.form', component: OpportunityForm },
         { path: '/:profile/crm/opportunity/:id', name: 'opportunity.show', component: OpportunityShow },
 
         { path: '/:profile/sales/dashboard', name: 'sales.dashboard', component: Dashboard },

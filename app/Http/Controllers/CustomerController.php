@@ -108,8 +108,9 @@ class CustomerController extends Controller
     {
         $customers = null;
 
-        if (strlen($query) > 3)
+        if (strlen($query) >= 3)
         {
+
             $customers = Relationship::GetCustomers()
             ->where('customer_alias', 'LIKE', "%" . $query . "%")
             ->orWhere('customer_taxid', 'LIKE', "%" . $query . "%")

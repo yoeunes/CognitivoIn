@@ -17,7 +17,7 @@ Vue.component('opportunity-item-form',
         {
             var app = this;
 
-            axios.post('/api/'+ app.$parent.$parent.profile +'/back-office/opportunities/' + this.$parent.id + '/items/', {
+            axios.post('/api/' + app.$parent.$parent.profile + '/back-office/opportunities/' + app.$parent.id + '/items/', {
                 item_id: item.id,
                 relationship_id:app.$parent.relationship_id,
                 unit_price:item.unit_price,
@@ -46,7 +46,7 @@ Vue.component('opportunity-item-form',
         updateItem: function(item)
         {
             var app = this;
-            axios.put('/api/'+ app.$parent.$parent.profile +'/back-office/opportunities/' + this.$parent.id + '/items/' + item.id,
+            axios.put('/api/' + app.$parent.$parent.profile + '/back-office/opportunities/' + app.$parent.id + '/items/' + item.id,
             {
                 quantity:item.quantity,
                 unit_price:item.unit_price
@@ -82,8 +82,7 @@ Vue.component('opportunity-item-form',
         deleteItem: function(item)
         {
             var app = this;
-            axios.delete('/api/'+ app.$parent.$parent.profile +'/back-office/opportunities/'
-            + this.$parent.id + '/items/' + item.id)
+            axios.delete('/api/' + app.$parent.$parent.profile + '/back-office/opportunities/' + app.$parent.id + '/items/' + item.id)
             .then(({ data }) =>
             {
                 let index = this.$parent.items.findIndex(x => x.id === item.id);

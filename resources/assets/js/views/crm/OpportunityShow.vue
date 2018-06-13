@@ -726,7 +726,7 @@ export default {
           type: 'is-success'
         })
 
-        this.$router.push({ name: "item.index" });
+        this.$router.push({ name: "opportunity.index", params: { userid:app.user_id } });
       })
       .catch(ex => {
         console.log(ex.response);
@@ -740,8 +740,31 @@ export default {
     onCancel()
     {
       console.log(this)
-      this.$router.push({ name: "opportunity.index" });
-    }
+        this.$router.push({ name: "opportunity.index", params: { userid:app.user_id } });
+    },
+    postSpecial: async function(specialURL, $data)
+    {
+        var app = this;
+        var resp;
+
+        await axios.post(specialURL, $data)
+        .then((response) =>
+        {
+            this.$snackbar.open('Done!');
+            resp = response.data;
+        })
+        .catch(ex => {
+            console.log(ex.response);
+            this.$toast.open({
+                duration: 5000,
+                message: 'Error trying to perform action',
+                type: 'is-danger'
+            })
+        });
+
+        return resp;
+    },
+
 
   },
   mounted: function mounted()
@@ -749,15 +772,15 @@ export default {
 
     var app = this;
     app.profile=this.$route.params.profile;
-    app.user_id=this.$parent.userid;
+    app.user_id=this.$route.params.user_id;
     app.id=this.$route.params.id;
     if (app.id>0) {
 
 
-      axios.get('/api/' + app.profile + '/back-office/opportunities/' + app.id + '/edit')
+      axios.get('/api/' + app.profile + '/back-office/opportunities/' + app.id )
       .then(function (response) {
         console.log(app);
-        app.$children[0].onEdit(response.data)
+        app.$children[0].onShow(response.data)
       })
       .catch(ex => {
         console.log(ex);

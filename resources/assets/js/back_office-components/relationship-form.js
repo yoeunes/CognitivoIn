@@ -70,7 +70,7 @@ Vue.component('relationship-form',
     mounted: function mounted()
     {
       var app = this;
-           axios.get('/api/' + app.$parent.profile + '/back-office/list/contracts/1')
+           axios.get('/api/' + app.$route.params.profile + '/back-office/list/contracts/1')
       .then(({ data }) =>
       {
           app.contracts = data;

@@ -3,7 +3,7 @@
 
 Vue.component('opportunity-form',
 {
-    props: ['userid'],
+
     data() {
         return {
             id: 0,
@@ -15,6 +15,7 @@ Vue.component('opportunity-form',
             status: '',
             value: '',
             currency: '',
+            profile_id:'',
             is_archived: false,
 
             selected: null,
@@ -85,9 +86,11 @@ Vue.component('opportunity-form',
 
         getCustomers: function(query)
         {
+
             if (query.length > 2) {
                 var app = this;
-                axios.get('/api/' + app.$parent.profile + '/back-office/search/customers/' + query)
+
+                axios.get('/api/' + app.$route.params.profile + '/back-office/search/customers/' + query)
                 .then(({ data }) =>
                 {
                     if (data.length > 0)
@@ -110,7 +113,7 @@ Vue.component('opportunity-form',
         taskChecked: function(task)
         {
             var app = this;
-            var url = '/back-office/' + app.$parent.profile + '/sales/opportunities/' + app.id + '/tasks/checked';
+            var url = '/api/' + app.$route.params.profile + '/back-office/opportunities/' + app.$parent.id +  '/tasks/checked';
 
             app.$parent.postSpecial(url, task)
             .then(function(response)
@@ -124,7 +127,7 @@ Vue.component('opportunity-form',
         {
             console.log(task);
             var app = this;
-            var url = '/back-office/' + app.$parent.profile + '/sales/opportunities/' + app.id + '/tasks';
+            var url = '/back-office/' + app.$route.params.profile + '/sales/opportunities/' + app.id + '/tasks';
 
             app.$parent.postSpecial(url, task)
             .then(function(response)
@@ -135,7 +138,7 @@ Vue.component('opportunity-form',
         {
             task.sentiment=sentiment;
             var app = this;
-            var url = '/back-office/' + app.$parent.profile + '/sales/opportunities/' + app.id + '/tasks';
+            var url = '/back-office/' + app.$route.params.profile + '/sales/opportunities/' + app.id + '/tasks';
 
             app.$parent.postSpecial(url, task)
             .then(function(response)
@@ -145,7 +148,7 @@ Vue.component('opportunity-form',
         deleteTask: function(task)
         {
             var app = this;
-            var url = '/back-office/' + app.$parent.profile + '/sales/opportunities/' + app.id + '/tasks/' + task.id;
+            var url = '/back-office/' + app.$route.params.profile + '/sales/opportunities/' + app.id + '/tasks/' + task.id;
             var data =
             {
                 id: task.id,
@@ -267,18 +270,20 @@ Vue.component('opportunity-form',
             app.items = [];
         },
 
-        getPipelines: function(data)
+        getPipelines: function()
         {
             var app = this;
-            axios.get('/api/' + app.$parent.profile + '/back-office/list/pipelines/1')
+
+            axios.get('/api/' + app.$route.params.profile + '/back-office/list/pipelines/1')
             .then(({ data }) =>
             {
+
                 app.pipelines = [];
-                for(let i = 0; i < data.length; i++)
+                for(let i = 0; i < data.data.length; i++)
                 {
                     app.pipelines.push({
-                        name: data[i]['name'],
-                        id: data[i]['id']
+                        name: data.data[i]['name'],
+                        id: data.data[i]['id']
                     });
                 }
             });
@@ -299,6 +304,8 @@ Vue.component('opportunity-form',
 
     mounted: function mounted()
     {
-        this.getPipelines();
+        var app=this;
+        app.profile_id=app.$route.params.user_id;
+        app.getPipelines();
     }
 });

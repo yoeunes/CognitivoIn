@@ -35,12 +35,17 @@
                 <td>@{{ opportunity.value }}</td>
                 <td class="text-center">
                     <div class="btn-group">
-                        <button v-on:click="onShow(opportunity)" type="button" class="btn btn-sm btn-secondary js-tooltip-enabled" data-toggle="tooltip" data-original-title="Show">
-                            <i class="fa fa-eye"></i>
+                      <router-link :to="{ name: 'opportunity.show',params: { profile:profile,id:opportunity.id,user_id:userid} }">
+                        <button  type="button" class="btn btn-sm btn-secondary js-tooltip-enabled" data-toggle="tooltip" data-original-title="Edit">
+                          <i class="fa fa-eye"></i>
                         </button>
-                        <button v-on:click="onEdit(opportunity)" type="button" class="btn btn-sm btn-secondary js-tooltip-enabled" data-toggle="tooltip" data-original-title="Edit">
-                            <i class="fa fa-pencil"></i>
+                      </router-link>
+                      <router-link :to="{ name: 'opportunity.form',params: { profile:profile,id:opportunity.id,user_id:userid} }">
+                        <button  type="button" class="btn btn-sm btn-secondary js-tooltip-enabled" data-toggle="tooltip" data-original-title="Edit">
+                          <i class="fa fa-eye"></i>
                         </button>
+                      </router-link>
+
                         <button v-on:click="onDelete(opportunity)" type="button" class="btn btn-sm btn-secondary js-tooltip-enabled" data-toggle="tooltip" data-original-title="Delete">
                             <i class="fa fa-times"></i>
                         </button>
@@ -99,7 +104,7 @@ export default {
     },
     onCreate () {
       var app = this;
-      app.$router.push({ name: "opportunity.form", params: { id: 0 } });
+      app.$router.push({ name: "opportunity.form", params: { id: 0,user_id:app.userid } });
     },
     onDelete($data)
     {

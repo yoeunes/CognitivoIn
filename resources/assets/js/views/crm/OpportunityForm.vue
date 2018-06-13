@@ -1,6 +1,6 @@
 <template>
   <div>
-      <opportunity-form ref="back_officeForm" userid="user_id" inline-template>
+      <opportunity-form ref="back_officeForm"  inline-template>
       <div class="content">
           <div class="block block-fx-shadow">
               <div class="block-content">
@@ -75,11 +75,11 @@
               </div>
           </div>
           <div class="row">
-              <button v-on:click="onSave($data)" class="btn btn-outline-primary min-width-125 js-click-ripple-enabled m" data-toggle="click-ripple">
+              <button v-on:click="$parent.onSave($data)" class="btn btn-outline-primary min-width-125 js-click-ripple-enabled m" data-toggle="click-ripple">
                   @lang('global.Save')
               </button>
 
-              <button v-on:click="onCancel()" class="btn btn-alt-secondary min-width-125 js-click-ripple-enabled" data-toggle="click-ripple">
+              <button v-on:click="$parent.onCancel()" class="btn btn-alt-secondary min-width-125 js-click-ripple-enabled" data-toggle="click-ripple">
                   @lang('global.Cancel')
               </button>
           </div>
@@ -116,7 +116,7 @@ export default {
           type: 'is-success'
         })
 
-        this.$router.push({ name: "item.index" });
+        this.$router.push({ name: "opportunity.index", params: { userid:app.user_id } });
       })
       .catch(ex => {
         console.log(ex.response);
@@ -130,7 +130,7 @@ export default {
     onCancel()
     {
       console.log(this)
-      this.$router.push({ name: "opportunity.index" });
+      this.$router.push({ name: "opportunity.index", params: { userid:app.user_id } });
     }
 
   },
@@ -139,7 +139,7 @@ export default {
 
     var app = this;
     app.profile=this.$route.params.profile;
-    app.user_id=this.$parent.userid;
+    app.user_id=this.$route.params.user_id;
     app.id=this.$route.params.id;
     if (app.id>0) {
 

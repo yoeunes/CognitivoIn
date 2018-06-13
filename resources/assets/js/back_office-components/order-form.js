@@ -210,7 +210,7 @@ Vue.component('order-form',
             //this.itemscomponent = this.$children;
             var app = this;
 
-            axios.get('/api/getCustomers/' + app.$parent.profile)
+            axios.get('/api/getCustomers/' + app.$route.params.profile)
             .then(function (resp)
             {
                 app.customers = resp.data;

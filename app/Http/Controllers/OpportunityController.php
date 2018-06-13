@@ -68,7 +68,8 @@ class OpportunityController extends Controller
         {
             $member = new OpportunityMember();
             $member->opportunity_id = $opportunity->id;
-            $member->profile_id = Auth::user()->profile_id;
+
+            $member->profile_id = $request->profile_id;
             $member->role = 1;
             $member->save();
         }

@@ -172,7 +172,7 @@ class ProfileController extends Controller
     {
         $profiles = null;
 
-        if (strlen($query) > 3)
+        if (strlen($query) >= 3)
         {
             $profiles = Profile::where('type', 1)
             ->where('name', 'LIKE', "%" . $query . "%")
