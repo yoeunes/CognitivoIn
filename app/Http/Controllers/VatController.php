@@ -15,7 +15,7 @@ class VatController extends Controller
     *
     * @return \Illuminate\Http\Response
     */
-    public function index(Profile $profile,$skip)
+    public function index(Profile $profile)
     {
         return VatResource::collection(Vat::with('details')->paginate(2));
         // $location = Vat::with('details')->skip($skip)

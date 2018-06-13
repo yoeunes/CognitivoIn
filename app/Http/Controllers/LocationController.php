@@ -14,7 +14,7 @@ class LocationController extends Controller
     *
     * @return \Illuminate\Http\Response
     */
-    public function index(Profile $profile, $skip)
+    public function index(Profile $profile)
     {
           return LocationResource::collection(Location::where('profile_id', $profile->id)->paginate(2));
         // $location = Location::where('profile_id', $profile->id)->skip($skip)

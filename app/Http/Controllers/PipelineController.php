@@ -15,7 +15,7 @@ class PipelineController extends Controller
     *
     * @return \Illuminate\Http\Response
     */
-    public function index(Profile $profile, $skip)
+    public function index(Profile $profile)
     {
         return PipelineResource::collection(Pipeline::My($profile)
         ->with('stages')->paginate(2));
