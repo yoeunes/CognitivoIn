@@ -33,59 +33,44 @@ Route::group(['middleware' => 'auth'], function ()
     Route::prefix('back-office/{profile}')->group(function ()
     {
         Route::get('/{url}', 'NavigationController@index')->where('any', '.*');
-
-        // Route::post('update', 'ProfileController@update')->name('profile.update');
-        //
-        // Route::prefix('sales')->group(function ()
-        // {
-        //     Route::get('dashboard', 'BackOfficeController@dashboardSales');
-        //     Route::post('opportunities/{opportunity}/tasks/checked', 'OpportunityTaskController@taskChecked');
-        //
-        //     Route::resources([
-        //         'customers' => 'CustomerController',
-        //         'opportunities' => 'OpportunityController',
-        //         'opportunities/{opportunity}/tasks' => 'OpportunityTaskController',
-        //         'promotions' => 'ItemPromotionController',
-        //         'followers' => 'FollowerController',
-        //         'orders' => 'OrderController',
-        //         'pipelines' => 'PipelineController',
-        //         'pipelinestages' => 'PipelineStageController',
-        //         'items' => 'ItemController',
-        //         'locations' => 'LocationController',
-        //         'vats' => 'VatController',
-        //         'vatdetail' => 'VatDetailController',
-        //         'contracts' => 'ContractController',
-        //         'contractdetail' => 'ContractDetailController'
-        //     ]);
-        // });
-        //
-        // Route::prefix('purchase')->group(function ()
-        // {
-        //     Route::get('dashboard', 'BackOfficeController@dashboardPurchase');
-        //     Route::resources([
-        //         'suppliers' => 'SupplierController',
-        //         'orders' => 'BackOfficePurchaseController',
-        //     ]);
-        // });
-        //
-        // Route::prefix('stock')->group(function ()
-        // {
-        //     Route::get('dashboard', 'BackOfficeController@dashboardStock');
-        //     Route::resources([
-        //         'movements' => 'BackOfficeStockMovementController',
-        //         'items' => 'ItemController',
-        //     ]);
-        // });
-        //
-        // Route::prefix('finance')->group(function ()
-        // {
-        //     Route::get('dashboard', 'BackOfficeController@dashboardFinance');
-        //     Route::resources([
-        //         'accounts' => 'BackOfficeAccountController',
-        //         'account-receivables' => 'BackOfficeAccountReceivableController',
-        //         'account-payables' => 'BackOfficeAccountPayableController',
-        //         'account-movements' => 'BackOfficeAccountMovementController',
-        //     ]);
-        // });
     });
+});
+
+Route::get('/js/lang.js', function () {
+    $strings = Cache::rememberForever('lang.js', function () {
+        $lang = config('app.locale');
+
+        $files   = glob(resource_path('lang/' . $lang . '/*.php'));
+        $strings = [];
+
+        foreach ($files as $file) {
+            $name           = basename($file, '.php');
+            $strings[$name] = require $file;
+        }
+
+        return $strings;
+    });
+
+    header('Content-Type: text/javascript');
+    echo('window.i18n = ' . json_encode($strings) . ';');
+    exit();
+})->name('assets.lang');
+
+Route::get('js/lang-{locale}.js', function ($locale) {
+    // config('app.locales') gives all supported locales
+    if (!array_key_exists($locale, config('app.locales'))) {
+        $locale = config('app.fallback_locale');
+    }
+
+    // Add locale to the cache key
+    $json = \Cache::rememberForever("lang-{$locale}.js", function () use ($locale) {
+        ///...
+        return $data;
+    });
+
+    $contents = 'window.i18n = ' . json_encode($json, config('app.debug', false) ? JSON_PRETTY_PRINT : 0) . ';';
+    $response = \Response::make($contents, 200);
+    $response->header('Content-Type', 'application/javascript');
+
+    return $response;
 });
