@@ -181,6 +181,7 @@ export default {
     },
     methods: {
         onLoad(page) {
+          console.log('Load')
             this.profile=this.$route.params.profile;
             axios
             .get('/api/' + this.profile + '/back-office/list/contracts/1?page=' + page  )
