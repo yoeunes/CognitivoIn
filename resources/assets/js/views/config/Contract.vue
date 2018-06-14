@@ -181,7 +181,7 @@ export default {
     },
     methods: {
         onLoad(page) {
-          console.log('Load')
+            
             this.profile=this.$route.params.profile;
             axios
             .get('/api/' + this.profile + '/back-office/list/contracts/1?page=' + page  )
@@ -276,39 +276,39 @@ export default {
         },
         onDelete($data)
         {
-          var app = this;
+            var app = this;
 
-          this.$swal({
-            title: 'Delete Record',
-            text: "Sure? This action is non-reversable",
-            type: 'question',
-            showCancelButton: true,
-            confirmButtonText: 'Yes, delete it!'
-          })
-          .then(() => {
-
-            axios.delete('/api/' + this.profile + '/back-office/contracts/' + $data.id)
+            this.$swal({
+                title: 'Delete Record',
+                text: "Sure? This action is non-reversable",
+                type: 'question',
+                showCancelButton: true,
+                confirmButtonText: 'Yes, delete it!'
+            })
             .then(() => {
 
-              let index = this.list.findIndex(x => x.id === $data.id);
-              this.list.splice(index, 1);
+                axios.delete('/api/' + this.profile + '/back-office/contracts/' + $data.id)
+                .then(() => {
 
-              this.$toast.open({
-                duration: 750,
-                message: 'The record has been deleted',
-                position: 'is-bottom-right',
-                type: 'is-danger'
-              })
-            })
-            .catch(ex => {
-              console.log(ex.response);
-              this.$toast.open({
-                duration: 5000,
-                message: 'Error trying to delete record',
-                type: 'is-danger'
-              })
+                    let index = this.list.findIndex(x => x.id === $data.id);
+                    this.list.splice(index, 1);
+
+                    this.$toast.open({
+                        duration: 750,
+                        message: 'The record has been deleted',
+                        position: 'is-bottom-right',
+                        type: 'is-danger'
+                    })
+                })
+                .catch(ex => {
+                    console.log(ex.response);
+                    this.$toast.open({
+                        duration: 5000,
+                        message: 'Error trying to delete record',
+                        type: 'is-danger'
+                    })
+                });
             });
-          });
         },
         onSave($data)
         {
@@ -316,6 +316,7 @@ export default {
             axios.post('/api/' + app.profile + '/back-office/contracts/', $data)
             .then(() =>
             {
+                app.onLoad(1);
                 app.onCancel();
                 this.$toast.open({
                     message: 'Awsome! Your work has been saved',
