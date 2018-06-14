@@ -102,8 +102,9 @@ class ProfileController extends Controller
     * @param  int  $id
     * @return \Illuminate\Http\Response
     */
-    public function update(Request $request, Profile $profile)
+    public function update(Request $request,  $profile)
     {
+        $profile=Profile::find($profile);
         $profile->taxid = $request->taxid;
         $profile->name = $request->name;
         $profile->alias = $request->alias;
@@ -124,7 +125,7 @@ class ProfileController extends Controller
         $profile->currency = $request->currency;
         $profile->save();
 
-        return redirect()->back();
+        return response()->json($profile, 200);
     }
 
     /**

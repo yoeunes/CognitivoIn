@@ -106,18 +106,18 @@
             </div>
         </div>
         <div class="form-group row">
-                <label class="col-12" for="address">Role</label>
-                <div class="col-md-9">
+            <label class="col-12" for="address">Role</label>
+            <div class="col-md-9">
 
-                    <select name="age" v-model="role">
-                        <option value="1">Admin</option>
-                        <option value="2">Manager</option>
-                        <option value="3">Employee</option>
-                        <option value="4">Member</option>
-                        <option value="5">Follower</option>
-                    </select>
-                </div>
+                <select name="age" v-model="role">
+                    <option value="1">Admin</option>
+                    <option value="2">Manager</option>
+                    <option value="3">Employee</option>
+                    <option value="4">Member</option>
+                    <option value="5">Follower</option>
+                </select>
             </div>
+        </div>
     </div>
 </div>
 </div>
@@ -169,41 +169,41 @@ export default {
             app.showForm=true;
         },
         onDelete($data)
-            {
-              var app = this;
+        {
+            var app = this;
 
-              this.$swal({
+            this.$swal({
                 title: 'Delete Record',
                 text: "Sure? This action is non-reversable",
                 type: 'question',
                 showCancelButton: true,
                 confirmButtonText: 'Yes, delete it!'
-              })
-              .then(() => {
+            })
+            .then(() => {
 
                 axios.delete('/api/' + this.profile + '/back-office/followers/' + $data.id)
                 .then(() => {
 
-                  let index = this.list.findIndex(x => x.id === $data.id);
-                  this.list.splice(index, 1);
+                    let index = this.list.findIndex(x => x.id === $data.id);
+                    this.list.splice(index, 1);
 
-                  this.$toast.open({
-                    duration: 750,
-                    message: 'The record has been deleted',
-                    position: 'is-bottom-right',
-                    type: 'is-danger'
-                  })
+                    this.$toast.open({
+                        duration: 750,
+                        message: 'The record has been deleted',
+                        position: 'is-bottom-right',
+                        type: 'is-danger'
+                    })
                 })
                 .catch(ex => {
-                  console.log(ex.response);
-                  this.$toast.open({
-                    duration: 5000,
-                    message: 'Error trying to delete record',
-                    type: 'is-danger'
-                  })
+                    console.log(ex.response);
+                    this.$toast.open({
+                        duration: 5000,
+                        message: 'Error trying to delete record',
+                        type: 'is-danger'
+                    })
                 });
-              });
-            },
+            });
+        },
         onEdit($data)
         {
             var app = this;
@@ -262,6 +262,33 @@ export default {
                     type: 'is-danger'
                 })
             });
+        },
+        getProfiles: function(query)
+        {
+            if (query.length > 2) {
+                var app = this;
+                axios.get('/api/' + app.profile + '/back-office/search/profiles/' + query)
+                .then(({ data }) =>
+                {
+                    if (data.length > 0)
+                    {
+                        app.profiles = [];
+                        for (let i = 0; i < data.length; i++)
+                        {
+                            app.profiles.push(data[i]);
+                        }
+                    }
+                })
+                .catch(ex => {
+                    console.log(ex);
+                    this.$swal('Error trying to load records.');
+                });
+            }
+        },
+        addMember: function(member)
+        {
+            var app = this;
+            app.profile_id = member.id;
         }
 
     },

@@ -148,7 +148,7 @@ Vue.component('item-form',
         axios.get('/api/' + this.$route.params.profile + '/back-office/list/vats/1')
         .then(({ data }) =>
         {
-            app.vats = data;
+            app.vats = data.data;
             console.log()
         })
         .catch(error => {

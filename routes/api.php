@@ -42,7 +42,6 @@ Route::group(['middleware' => 'auth:api'], function ()
         'opportunities/{id}/members' => 'OpportunityMemberController',
         'opportunities/{id}/items' => 'CartController',
         'orders' => 'OrderController',
-
         'accounts' => 'AccountController',
         'account-payables' => 'AccountPayableController',
         'account-receivables' => 'AccountReceivableController',

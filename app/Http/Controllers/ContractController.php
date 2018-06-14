@@ -16,18 +16,18 @@ class ContractController extends Controller
     *
     * @return \Illuminate\Http\Response
     */
-    public function index(Profile $profile, $filter)
+    public function index(Profile $profile, $filterBy)
     {
-        if ($filter == 1)
+        if ($filterBy == 1)
         {
             return ContractResource::collection(Contract::paginate(2));
         }
-        else if($filter == 2)
+        else if($filterBy == 2)
         {
             return ContractResource::collection(Contract::onlyTrashed()->paginate(2));
 
         }
-        else if($filter == 3)
+        else if($filterBy == 3)
         {
             return ContractResource::collection(Contract::
             join('contract_details', 'contract_details.contract_id', 'contracts.id')

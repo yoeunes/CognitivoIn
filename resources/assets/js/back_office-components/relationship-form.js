@@ -73,7 +73,7 @@ Vue.component('relationship-form',
            axios.get('/api/' + app.$route.params.profile + '/back-office/list/contracts/1')
       .then(({ data }) =>
       {
-          app.contracts = data;
+          app.contracts = data.data;
           console.log()
       })
       .catch(error => {

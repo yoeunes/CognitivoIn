@@ -338,6 +338,7 @@ export default {
                     type: 'is-danger'
                 })
             });
+              app.onLoad(1);
         }
 
     },

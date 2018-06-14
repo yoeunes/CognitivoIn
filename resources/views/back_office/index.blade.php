@@ -178,7 +178,7 @@
                                     <ul>
                                         <li>
                                             <a href="#">
-                                                <router-link :to="{ name: 'profile.form' ,params: { profile:'{{ request()->route('profile')->slug}}'} }">
+                                                <router-link :to="{ name: 'profile.form' ,params: { profile:'{{ request()->route('profile') }}'} }">
                                                     @lang('back-office.Company Profile')
                                                 </router-link>
                                             </a>
