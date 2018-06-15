@@ -185,6 +185,7 @@ class ItemController extends Controller
         return redirect()->back();
     }
 
+    //TODO: Change this query. keep item search simple
     public function search(Profile $profile, $query)
     {
         $items = null;

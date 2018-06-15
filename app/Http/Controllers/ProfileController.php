@@ -173,6 +173,7 @@ class ProfileController extends Controller
     {
         $profiles = null;
 
+        //TODO change this to Elastic Search "search" function for quicker response
         if (strlen($query) >= 3)
         {
             $profiles = Profile::where('type', 1)
