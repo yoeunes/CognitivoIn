@@ -10,35 +10,9 @@ use App\Http\Resources\CustomerResource;
 class CustomerController extends Controller
 {
 
-    public function index(Profile $profile, $skip)
+    public function index(Profile $profile)
     {
-  return CustomerResource::collection(Relationship::GetCustomers()->paginate(2));
-        // $customers = Relationship::GetCustomers()
-        // ->skip($skip)
-        // ->take(100)
-        // ->get();
-        //
-        // return response()->json($customers);
-    }
-
-    public function getAllCustomer (Profile $profile)
-    {
-        $customers = Relationship::GetCustomers()
-        ->get();
-
-        return response()->json($customers);
-    }
-
-    public function getCustomer (Profile $profile,$frase)
-    {
-
-        $customers = Relationship::GetCustomers()
-        ->where('customer_alias', 'LIKE', "%$frase%")
-        ->orWhere('customer_taxid', 'LIKE', "%$frase%")
-
-        ->get();
-
-        return response()->json($customers);
+        return CustomerResource::collection(Relationship::GetCustomers()->paginate(2));
     }
 
     /**

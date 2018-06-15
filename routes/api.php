@@ -129,9 +129,3 @@ Route::group(['middleware' => 'auth:api'], function ()
 
   Route::get('getItem/{profile}/{frase}', 'ItemController@getItem');
   Route::get('getCustomer/{profile}/{frase}', 'CustomerController@getCustomer');
-
-  //TODO DELETE THESE ROUTES
-  Route::get('getCustomers/{profile}', 'CustomerController@getAllCustomer');
-
-
-  Route::get('getItems/{profile}', 'ItemController@get_itemsforApp');
