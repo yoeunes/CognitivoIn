@@ -181,7 +181,7 @@ export default {
     },
     methods: {
         onLoad(page) {
-            
+
             this.profile=this.$route.params.profile;
             axios
             .get('/api/' + this.profile + '/back-office/list/contracts/1?page=' + page  )
@@ -313,7 +313,7 @@ export default {
         onSave($data)
         {
             var app = this;
-            axios.post('/api/' + app.profile + '/back-office/contracts/', $data)
+            axios.post('/back-office/' + app.profile + '/contracts/', $data)
             .then(() =>
             {
                 app.onLoad(1);

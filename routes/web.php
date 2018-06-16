@@ -32,6 +32,26 @@ Route::group(['middleware' => 'auth'], function ()
 
     Route::prefix('back-office/{profile}')->group(function ()
     {
+      Route::resources([
+        'locations' => 'LocationController',
+        'vats' => 'VatController',
+        'contracts' => 'ContractController',
+        'followers' => 'FollowerController',
+        'customers' => 'CustomerController',
+        'suppliers' => 'SupplierController',
+        'items' => 'ItemController',
+        'pipelines' => 'PipelineController',
+        'pipeline-stages' => 'PipelineStageController',
+        'opportunities' => 'OpportunityController',
+        'opportunities/{id}/tasks' => 'OpportunityTaskController',
+        'opportunities/{id}/members' => 'OpportunityMemberController',
+        'opportunities/{id}/items' => 'CartController',
+        'orders' => 'OrderController',
+        'accounts' => 'AccountController',
+        'account-payables' => 'AccountPayableController',
+        'account-receivables' => 'AccountReceivableController',
+        'account-movement' => 'AccountMovementController'
+      ]);
         Route::get('{url}', 'NavigationController@index')->where('any', '.*');
     });
 });
@@ -55,7 +75,7 @@ Route::group(['middleware' => 'auth'], function ()
 //     echo('window.i18n = ' . json_encode($strings) . ';');
 //     exit();
 // })->name('assets.lang');
-// 
+//
 // Route::get('js/lang-{locale}.js', function ($locale) {
 //     // config('app.locales') gives all supported locales
 //     if (!array_key_exists($locale, config('app.locales'))) {

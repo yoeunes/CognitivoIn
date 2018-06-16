@@ -109,7 +109,6 @@ Route::group(['middleware' => 'auth:api'], function ()
         'account-receivables' => 'AccountReceivableController',
         'account-movement' => 'AccountMovementController'
       ]);
-      
       Route::get('list-currency', 'Api\ApiController@list_currency');
     });
 
