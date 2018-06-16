@@ -15417,22 +15417,22 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('passport-personal-access-
 
 //Note: These tasks are only needed to show views.
 var router = new __WEBPACK_IMPORTED_MODULE_2_vue_router__["a" /* default */]({
-    mode: 'history',
+        mode: 'history',
 
-    routes: [
-    //This will cause 404 Errors to be redirected to proper site.
-    { path: '/*', component: __WEBPACK_IMPORTED_MODULE_7__views_NotFoundComponent___default.a },
+        routes: [
+        //This will cause 404 Errors to be redirected to proper site.
+        { path: '/*', component: __WEBPACK_IMPORTED_MODULE_7__views_NotFoundComponent___default.a },
 
-    //{ path: '/', name: 'dashboard', component: Dashboard },
-    { path: '/:profile/dashboard', name: 'dashboard', component: __WEBPACK_IMPORTED_MODULE_6__views_Dashboard___default.a }, { path: '/config/profile', name: 'profile.form', component: __WEBPACK_IMPORTED_MODULE_8__views_config_ProfileForm___default.a }, { path: '/:profile/config/locations', name: 'location.index', component: __WEBPACK_IMPORTED_MODULE_9__views_config_Location___default.a }, { path: '/:profile/config/sales-taxes', name: 'sales-taxes.index', component: __WEBPACK_IMPORTED_MODULE_10__views_config_SalesTax___default.a }, { path: '/:profile/config/contracts', name: 'contracts.index', component: __WEBPACK_IMPORTED_MODULE_11__views_config_Contract___default.a }, { path: '/:profile/config/team-members', name: 'team-members.index', component: __WEBPACK_IMPORTED_MODULE_12__views_config_TeamMember___default.a }, { path: '/:profile/crm/dashboard', name: 'crm.dashboard', component: __WEBPACK_IMPORTED_MODULE_6__views_Dashboard___default.a }, { path: '/:profile/crm/pipelines', name: 'pipeline.index', component: __WEBPACK_IMPORTED_MODULE_14__views_crm_Pipeline___default.a }, { path: '/:profile/crm/opportunities/:userid', name: 'opportunity.index', component: __WEBPACK_IMPORTED_MODULE_15__views_crm_Opportunity___default.a }, { path: '/:profile/crm/opportunity/:id/:user_id', name: 'opportunity.form', component: __WEBPACK_IMPORTED_MODULE_16__views_crm_OpportunityForm___default.a }, { path: '/:profile/crm/opportunity/:id', name: 'opportunity.show', component: __WEBPACK_IMPORTED_MODULE_17__views_crm_OpportunityShow___default.a }, { path: '/:profile/sales/dashboard', name: 'sales.dashboard', component: __WEBPACK_IMPORTED_MODULE_6__views_Dashboard___default.a }, { path: '/:profile/sales/customers', name: 'customer.index', component: __WEBPACK_IMPORTED_MODULE_19__views_sales_Customer___default.a }, { path: '/:profile/sales/customer/:id', name: 'customer.form', component: __WEBPACK_IMPORTED_MODULE_20__views_sales_CustomerForm___default.a },
-    // { path: '/:profile/sales/carts', name: 'carts', component: Carts },
-    { path: '/:profile/sales/orders', name: 'order.index', component: __WEBPACK_IMPORTED_MODULE_21__views_sales_Order___default.a }, { path: '/:profile/sales/order/:id', name: 'order.form', component: __WEBPACK_IMPORTED_MODULE_22__views_sales_OrderForm___default.a }, { path: '/:profile/purchases/dashboard', name: 'purchase.dashboard', component: __WEBPACK_IMPORTED_MODULE_6__views_Dashboard___default.a }, { path: '/:profile/purchases/suppliers', name: 'supplier.index', component: __WEBPACK_IMPORTED_MODULE_24__views_purchase_Supplier___default.a }, { path: '/:profile/purchases/supplier/:id', name: 'supplier.form', component: __WEBPACK_IMPORTED_MODULE_25__views_purchase_SupplierForm___default.a }, { path: '/:profile/stocks/dashboard', name: 'stock.dashboard', component: __WEBPACK_IMPORTED_MODULE_6__views_Dashboard___default.a }, { path: '/:profile/stocks/items', name: 'item.index', component: __WEBPACK_IMPORTED_MODULE_27__views_stock_Item___default.a }, { path: '/:profile/stocks/item/:id', name: 'item.form', component: __WEBPACK_IMPORTED_MODULE_28__views_stock_ItemForm___default.a }, { path: '/:profile/finances/dashboard', name: 'finance.dashboard', component: __WEBPACK_IMPORTED_MODULE_6__views_Dashboard___default.a }, { path: '/:profile/finances/accounts', name: 'account.index', component: __WEBPACK_IMPORTED_MODULE_30__views_finance_Account___default.a }, { path: '/:profile/finances/account/:id', name: 'account.form', component: __WEBPACK_IMPORTED_MODULE_31__views_finance_AccountForm___default.a }, { path: '/:profile/finances/account-payables', name: 'account-payable.index', component: __WEBPACK_IMPORTED_MODULE_32__views_finance_AccountPayable___default.a }, { path: '/:profile/finances/account-recievables', name: 'account-recievable.index', component: __WEBPACK_IMPORTED_MODULE_33__views_finance_AccountReceivable___default.a }, { path: '/:profile/finances/account-movements', name: 'account_movement.index', component: __WEBPACK_IMPORTED_MODULE_34__views_finance_AccountMovement___default.a }]
+        //{ path: '/', name: 'dashboard', component: Dashboard },
+        { path: '/:profile/dashboard', name: 'dashboard', component: __WEBPACK_IMPORTED_MODULE_6__views_Dashboard___default.a }, { path: '/config/profile', name: 'profile.form', component: __WEBPACK_IMPORTED_MODULE_8__views_config_ProfileForm___default.a }, { path: '/:profile/config/locations', name: 'location.index', component: __WEBPACK_IMPORTED_MODULE_9__views_config_Location___default.a }, { path: '/:profile/config/sales-taxes', name: 'sales-taxes.index', component: __WEBPACK_IMPORTED_MODULE_10__views_config_SalesTax___default.a }, { path: '/:profile/config/contracts', name: 'contracts.index', component: __WEBPACK_IMPORTED_MODULE_11__views_config_Contract___default.a }, { path: '/:profile/config/team-members', name: 'team-members.index', component: __WEBPACK_IMPORTED_MODULE_12__views_config_TeamMember___default.a }, { path: '/:profile/crm/dashboard', name: 'crm.dashboard', component: __WEBPACK_IMPORTED_MODULE_6__views_Dashboard___default.a }, { path: '/:profile/crm/pipelines', name: 'pipeline.index', component: __WEBPACK_IMPORTED_MODULE_14__views_crm_Pipeline___default.a }, { path: '/:profile/crm/opportunities/:userid', name: 'opportunity.index', component: __WEBPACK_IMPORTED_MODULE_15__views_crm_Opportunity___default.a }, { path: '/:profile/crm/opportunity/:id/:user_id', name: 'opportunity.form', component: __WEBPACK_IMPORTED_MODULE_16__views_crm_OpportunityForm___default.a }, { path: '/:profile/crm/opportunity/:id', name: 'opportunity.show', component: __WEBPACK_IMPORTED_MODULE_17__views_crm_OpportunityShow___default.a }, { path: '/:profile/sales/dashboard', name: 'sales.dashboard', component: __WEBPACK_IMPORTED_MODULE_6__views_Dashboard___default.a }, { path: '/:profile/sales/customers', name: 'customer.index', component: __WEBPACK_IMPORTED_MODULE_19__views_sales_Customer___default.a }, { path: '/:profile/sales/customer/:id', name: 'customer.form', component: __WEBPACK_IMPORTED_MODULE_20__views_sales_CustomerForm___default.a },
+        // { path: '/:profile/sales/carts', name: 'carts', component: Carts },
+        { path: '/:profile/sales/orders', name: 'order.index', component: __WEBPACK_IMPORTED_MODULE_21__views_sales_Order___default.a }, { path: '/:profile/sales/order/:id', name: 'order.form', component: __WEBPACK_IMPORTED_MODULE_22__views_sales_OrderForm___default.a }, { path: '/:profile/purchases/dashboard', name: 'purchase.dashboard', component: __WEBPACK_IMPORTED_MODULE_6__views_Dashboard___default.a }, { path: '/:profile/purchases/suppliers', name: 'supplier.index', component: __WEBPACK_IMPORTED_MODULE_24__views_purchase_Supplier___default.a }, { path: '/:profile/purchases/supplier/:id', name: 'supplier.form', component: __WEBPACK_IMPORTED_MODULE_25__views_purchase_SupplierForm___default.a }, { path: '/:profile/stocks/dashboard', name: 'stock.dashboard', component: __WEBPACK_IMPORTED_MODULE_6__views_Dashboard___default.a }, { path: '/:profile/stocks/items', name: 'item.index', component: __WEBPACK_IMPORTED_MODULE_27__views_stock_Item___default.a }, { path: '/:profile/stocks/item/:id', name: 'item.form', component: __WEBPACK_IMPORTED_MODULE_28__views_stock_ItemForm___default.a }, { path: '/:profile/finances/dashboard', name: 'finance.dashboard', component: __WEBPACK_IMPORTED_MODULE_6__views_Dashboard___default.a }, { path: '/:profile/finances/accounts', name: 'account.index', component: __WEBPACK_IMPORTED_MODULE_30__views_finance_Account___default.a }, { path: '/:profile/finances/account/:id', name: 'account.form', component: __WEBPACK_IMPORTED_MODULE_31__views_finance_AccountForm___default.a }, { path: '/:profile/finances/account-payables', name: 'account-payable.index', component: __WEBPACK_IMPORTED_MODULE_32__views_finance_AccountPayable___default.a }, { path: '/:profile/finances/account-recievables', name: 'account-recievable.index', component: __WEBPACK_IMPORTED_MODULE_33__views_finance_AccountReceivable___default.a }, { path: '/:profile/finances/account-movements', name: 'account_movement.index', component: __WEBPACK_IMPORTED_MODULE_34__views_finance_AccountMovement___default.a }]
 });
 
 var app = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
-    el: '#app',
-    // components: { App },
-    router: router
+        el: '#app',
+        // components: { App },
+        router: router
 }).$mount('#app');
 
 /***/ }),
@@ -55455,12 +55455,15 @@ Vue.component('order-form', {
     data: function data() {
         return {
             id: 0,
+            item_name: '',
             relationship_id: '',
             customer_name: '',
             customer_address: '',
             customer_telephone: '',
             customer_email: '',
+            currency: 'PYG',
             customers: [],
+            items: [],
             //itemscomponent:[],
             details: []
         };
@@ -55471,7 +55474,7 @@ Vue.component('order-form', {
             var app = this;
 
             app.id = data.id;
-            app.relationship_id = data.relationship_id, app.customer_name = data.customer_name, app.customer_address = data.customer_address, app.customer_telephone = data.customer_telephone, app.customer_email = data.customer_email, app.details = [];
+            app.relationship_id = data.relationship_id, app.customer_name = data.relationship.customer_alias, app.customer_address = data.relationship.customer_address, app.customer_telephone = data.relationship.customer_telephone, app.customer_email = data.relationship.customer_email, app.details = [];
             for (var i = 0; i < data.details.length; i++) {
                 app.details.push({
                     id: data.details[i].id,
@@ -55491,7 +55494,7 @@ Vue.component('order-form', {
             var app = this;
 
             app.id = data.id;
-            app.relationship_id = data.relationship_id, app.customer_name = data.customer_name, app.customer_address = data.customer_address, app.customer_telephone = data.customer_telephone, app.customer_email = data.customer_email, app.details = [];
+            app.relationship_id = data.relationship_id, app.customer_name = data.customer_alias, app.customer_address = data.customer_address, app.customer_telephone = data.customer_telephone, app.customer_email = data.customer_email, app.details = [];
             for (var i = 0; i < data.details.length; i++) {
                 app.details.push({
                     id: data.details[i].id,
@@ -55577,19 +55580,78 @@ Vue.component('order-form', {
             }
         },
 
-        onContactChange: function onContactChange() {
+        addCustomer: function addCustomer(member) {
             var app = this;
-            if (app.relationship_id !== '') {
-                axios.get('/api/' + app.$parent.profile + '/back-office/customers' + '/' + app.relationship_id + '/edit').then(function (resp) {
+            if (member != null) {
+                app.relationship_id = member.id;
+                app.customer_name = member.customer_alias;
+                app.customer_address = member.customer_address;
+                app.customer_telephone = member.customer_telephone;
+                app.customer_email = member.customer_email;
+            }
+        },
 
-                    app.customer_name = '(' + resp.data.customer_taxid + ') - ' + resp.data.customer_alias;
-                    app.customer_address = resp.data.customer_address;
-                    app.customer_telephone = resp.data.customer_telephone;
-                    app.customer_email = resp.data.customer_email;
-                }).catch(function (resp) {
-                    console.log(resp);
-                    alert("Could not execute onContactChange in Order Component");
+        getCustomers: function getCustomers(query) {
+            var _this = this;
+
+            if (query != null) {
+                if (query.length > 2) {
+                    var app = this;
+
+                    axios.get('/api/' + app.$route.params.profile + '/back-office/search/customers/' + query).then(function (_ref) {
+                        var data = _ref.data;
+
+                        if (data.length > 0) {
+                            app.customers = [];
+                            for (var i = 0; i < data.length; i++) {
+                                app.customers.push(data[i]);
+                            }
+                        }
+                    }).catch(function (ex) {
+                        console.log(ex);
+                        _this.$swal('Error trying to load records.');
+                    });
+                }
+            }
+        },
+
+        addItem: function addItem(data) {
+            var app = this;
+            if (data != null) {
+                app.details.push({
+
+                    price: data.unit_price,
+                    sku: data.sku,
+                    unit_price: data.unit_price,
+                    sub_total: data.unit_price,
+                    name: data.name,
+                    quantity: 1,
+                    item_id: data.id
                 });
+            }
+        },
+
+        getItems: function getItems(query) {
+            var _this2 = this;
+
+            if (query != null) {
+                if (query.length > 2) {
+                    var app = this;
+
+                    axios.get('/api/' + app.$route.params.profile + '/back-office/search/items/' + query).then(function (_ref2) {
+                        var data = _ref2.data;
+
+                        if (data.length > 0) {
+                            app.items = [];
+                            for (var i = 0; i < data.length; i++) {
+                                app.items.push(data[i]);
+                            }
+                        }
+                    }).catch(function (ex) {
+                        console.log(ex);
+                        _this2.$swal('Error trying to load records.');
+                    });
+                }
             }
         }
     },
@@ -55613,13 +55675,8 @@ Vue.component('order-form', {
 
     mounted: function mounted() {
         //this.itemscomponent = this.$children;
-        var app = this;
 
-        axios.get('/api/getCustomers/' + app.$route.params.profile).then(function (resp) {
-            app.customers = resp.data;
-        }).catch(function (resp) {
-            alert(' Could not load Slug, "' + slug + '" on Order Component ');
-        });
+
     }
 });
 
@@ -55649,7 +55706,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources/assets/js/back_office-components/ItemComponent.vue"
+Component.options.__file = "resources\\assets\\js\\back_office-components\\ItemComponent.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -55658,9 +55715,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-2a8d009c", Component.options)
+    hotAPI.createRecord("data-v-d947e048", Component.options)
   } else {
-    hotAPI.reload("data-v-2a8d009c", Component.options)
+    hotAPI.reload("data-v-d947e048", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -56007,7 +56064,7 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-2a8d009c", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-d947e048", module.exports)
   }
 }
 
@@ -57491,7 +57548,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources/assets/js/views/Dashboard.vue"
+Component.options.__file = "resources\\assets\\js\\views\\Dashboard.vue"
 
 module.exports = Component.exports
 
@@ -57521,7 +57578,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources/assets/js/views/NotFoundComponent.vue"
+Component.options.__file = "resources\\assets\\js\\views\\NotFoundComponent.vue"
 
 module.exports = Component.exports
 
@@ -57552,7 +57609,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources/assets/js/views/config/ProfileForm.vue"
+Component.options.__file = "resources\\assets\\js\\views\\config\\ProfileForm.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -57561,9 +57618,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-00c42cda", Component.options)
+    hotAPI.createRecord("data-v-39abb580", Component.options)
   } else {
-    hotAPI.reload("data-v-00c42cda", Component.options)
+    hotAPI.reload("data-v-39abb580", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -58298,7 +58355,7 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-00c42cda", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-39abb580", module.exports)
   }
 }
 
@@ -58328,7 +58385,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources/assets/js/views/config/Location.vue"
+Component.options.__file = "resources\\assets\\js\\views\\config\\Location.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -58337,9 +58394,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-694a5f1f", Component.options)
+    hotAPI.createRecord("data-v-1320e252", Component.options)
   } else {
-    hotAPI.reload("data-v-694a5f1f", Component.options)
+    hotAPI.reload("data-v-1320e252", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -59311,7 +59368,7 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-694a5f1f", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-1320e252", module.exports)
   }
 }
 
@@ -59341,7 +59398,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources/assets/js/views/config/SalesTax.vue"
+Component.options.__file = "resources\\assets\\js\\views\\config\\SalesTax.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -59350,9 +59407,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-e7a0452e", Component.options)
+    hotAPI.createRecord("data-v-3606609c", Component.options)
   } else {
-    hotAPI.reload("data-v-e7a0452e", Component.options)
+    hotAPI.reload("data-v-3606609c", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -60081,7 +60138,7 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-e7a0452e", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-3606609c", module.exports)
   }
 }
 
@@ -60111,7 +60168,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources/assets/js/views/config/Contract.vue"
+Component.options.__file = "resources\\assets\\js\\views\\config\\Contract.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -60120,9 +60177,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-192dd9fc", Component.options)
+    hotAPI.createRecord("data-v-79f745a2", Component.options)
   } else {
-    hotAPI.reload("data-v-192dd9fc", Component.options)
+    hotAPI.reload("data-v-79f745a2", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -60915,7 +60972,7 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-192dd9fc", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-79f745a2", module.exports)
   }
 }
 
@@ -60945,7 +61002,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources/assets/js/views/config/TeamMember.vue"
+Component.options.__file = "resources\\assets\\js\\views\\config\\TeamMember.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -60954,9 +61011,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-74075141", Component.options)
+    hotAPI.createRecord("data-v-0249d3b4", Component.options)
   } else {
-    hotAPI.reload("data-v-74075141", Component.options)
+    hotAPI.reload("data-v-0249d3b4", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -61676,7 +61733,7 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-74075141", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-0249d3b4", module.exports)
   }
 }
 
@@ -61705,7 +61762,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources/assets/js/views/crm/Dashboard.vue"
+Component.options.__file = "resources\\assets\\js\\views\\crm\\Dashboard.vue"
 
 module.exports = Component.exports
 
@@ -61736,7 +61793,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources/assets/js/views/crm/Pipeline.vue"
+Component.options.__file = "resources\\assets\\js\\views\\crm\\Pipeline.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -61745,9 +61802,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-093cc4f4", Component.options)
+    hotAPI.createRecord("data-v-d9c53d26", Component.options)
   } else {
-    hotAPI.reload("data-v-093cc4f4", Component.options)
+    hotAPI.reload("data-v-d9c53d26", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -62702,7 +62759,7 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-093cc4f4", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-d9c53d26", module.exports)
   }
 }
 
@@ -62732,7 +62789,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources/assets/js/views/crm/Opportunity.vue"
+Component.options.__file = "resources\\assets\\js\\views\\crm\\Opportunity.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -62741,9 +62798,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-f856f9c2", Component.options)
+    hotAPI.createRecord("data-v-31723c50", Component.options)
   } else {
-    hotAPI.reload("data-v-f856f9c2", Component.options)
+    hotAPI.reload("data-v-31723c50", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -63026,7 +63083,7 @@ var render = function() {
                               "data-original-title": "Edit"
                             }
                           },
-                          [_c("i", { staticClass: "fa fa-eye" })]
+                          [_c("i", { staticClass: "fa fa-pencil" })]
                         )
                       ]
                     ),
@@ -63131,7 +63188,7 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-f856f9c2", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-31723c50", module.exports)
   }
 }
 
@@ -63161,7 +63218,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources/assets/js/views/crm/OpportunityForm.vue"
+Component.options.__file = "resources\\assets\\js\\views\\crm\\OpportunityForm.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -63170,9 +63227,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-106d52fa", Component.options)
+    hotAPI.createRecord("data-v-ede89e88", Component.options)
   } else {
-    hotAPI.reload("data-v-106d52fa", Component.options)
+    hotAPI.reload("data-v-ede89e88", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -63724,7 +63781,7 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-106d52fa", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-ede89e88", module.exports)
   }
 }
 
@@ -63754,7 +63811,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources/assets/js/views/crm/OpportunityShow.vue"
+Component.options.__file = "resources\\assets\\js\\views\\crm\\OpportunityShow.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -63763,9 +63820,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-71493f88", Component.options)
+    hotAPI.createRecord("data-v-589dba75", Component.options)
   } else {
-    hotAPI.reload("data-v-71493f88", Component.options)
+    hotAPI.reload("data-v-589dba75", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -68090,7 +68147,7 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-71493f88", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-589dba75", module.exports)
   }
 }
 
@@ -68119,7 +68176,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources/assets/js/views/sales/Dashboard.vue"
+Component.options.__file = "resources\\assets\\js\\views\\sales\\Dashboard.vue"
 
 module.exports = Component.exports
 
@@ -68150,7 +68207,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources/assets/js/views/sales/Customer.vue"
+Component.options.__file = "resources\\assets\\js\\views\\sales\\Customer.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -68159,9 +68216,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-218ce4d8", Component.options)
+    hotAPI.createRecord("data-v-aeeb2a0a", Component.options)
   } else {
-    hotAPI.reload("data-v-218ce4d8", Component.options)
+    hotAPI.reload("data-v-aeeb2a0a", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -68481,7 +68538,7 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-218ce4d8", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-aeeb2a0a", module.exports)
   }
 }
 
@@ -68511,7 +68568,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources/assets/js/views/sales/CustomerForm.vue"
+Component.options.__file = "resources\\assets\\js\\views\\sales\\CustomerForm.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -68520,9 +68577,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-87ebc310", Component.options)
+    hotAPI.createRecord("data-v-7d4ff05f", Component.options)
   } else {
-    hotAPI.reload("data-v-87ebc310", Component.options)
+    hotAPI.reload("data-v-7d4ff05f", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -68965,7 +69022,7 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-87ebc310", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-7d4ff05f", module.exports)
   }
 }
 
@@ -68995,7 +69052,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources/assets/js/views/sales/Order.vue"
+Component.options.__file = "resources\\assets\\js\\views\\sales\\Order.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -69004,9 +69061,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-86be64f0", Component.options)
+    hotAPI.createRecord("data-v-26a84181", Component.options)
   } else {
-    hotAPI.reload("data-v-86be64f0", Component.options)
+    hotAPI.reload("data-v-26a84181", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -69022,6 +69079,8 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
 //
 //
 //
@@ -69205,64 +69264,77 @@ var render = function() {
               _c("td", [_vm._v("@" + _vm._s(invoice.number))]),
               _vm._v(" "),
               _c("td", { staticClass: "text-center" }, [
-                _c("div", { staticClass: "btn-group" }, [
-                  _c(
-                    "button",
-                    {
-                      staticClass:
-                        "btn btn-sm btn-secondary js-tooltip-enabled",
-                      attrs: {
-                        type: "button",
-                        "data-toggle": "tooltip",
-                        "data-original-title": "Show"
-                      },
-                      on: {
-                        click: function($event) {
-                          _vm.onShow(invoice)
+                _c(
+                  "div",
+                  { staticClass: "btn-group" },
+                  [
+                    _c(
+                      "button",
+                      {
+                        staticClass:
+                          "btn btn-sm btn-secondary js-tooltip-enabled",
+                        attrs: {
+                          type: "button",
+                          "data-toggle": "tooltip",
+                          "data-original-title": "Show"
+                        },
+                        on: {
+                          click: function($event) {
+                            _vm.onShow(invoice)
+                          }
                         }
-                      }
-                    },
-                    [_c("i", { staticClass: "fa fa-eye" })]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "button",
-                    {
-                      staticClass:
-                        "btn btn-sm btn-secondary js-tooltip-enabled",
-                      attrs: {
-                        type: "button",
-                        "data-toggle": "tooltip",
-                        "data-original-title": "Edit"
                       },
-                      on: {
-                        click: function($event) {
-                          _vm.onEdit(invoice)
+                      [_c("i", { staticClass: "fa fa-eye" })]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "router-link",
+                      {
+                        attrs: {
+                          to: {
+                            name: "order.form",
+                            params: { profile: _vm.profile, id: invoice.id }
+                          }
                         }
-                      }
-                    },
-                    [_c("i", { staticClass: "fa fa-pencil" })]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "button",
-                    {
-                      staticClass:
-                        "btn btn-sm btn-secondary js-tooltip-enabled",
-                      attrs: {
-                        type: "button",
-                        "data-toggle": "tooltip",
-                        "data-original-title": "Delete"
                       },
-                      on: {
-                        click: function($event) {
-                          _vm.onDelete(invoice)
+                      [
+                        _c(
+                          "button",
+                          {
+                            staticClass:
+                              "btn btn-sm btn-secondary js-tooltip-enabled",
+                            attrs: {
+                              type: "button",
+                              "data-toggle": "tooltip",
+                              "data-original-title": "Edit"
+                            }
+                          },
+                          [_c("i", { staticClass: "fa fa-pencil" })]
+                        )
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "button",
+                      {
+                        staticClass:
+                          "btn btn-sm btn-secondary js-tooltip-enabled",
+                        attrs: {
+                          type: "button",
+                          "data-toggle": "tooltip",
+                          "data-original-title": "Delete"
+                        },
+                        on: {
+                          click: function($event) {
+                            _vm.onDelete(invoice)
+                          }
                         }
-                      }
-                    },
-                    [_c("i", { staticClass: "fa fa-times" })]
-                  )
-                ])
+                      },
+                      [_c("i", { staticClass: "fa fa-times" })]
+                    )
+                  ],
+                  1
+                )
               ])
             ])
           })
@@ -69340,7 +69412,7 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-86be64f0", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-26a84181", module.exports)
   }
 }
 
@@ -69370,7 +69442,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources/assets/js/views/sales/OrderForm.vue"
+Component.options.__file = "resources\\assets\\js\\views\\sales\\OrderForm.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -69379,9 +69451,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-0328446c", Component.options)
+    hotAPI.createRecord("data-v-73f313e5", Component.options)
   } else {
-    hotAPI.reload("data-v-0328446c", Component.options)
+    hotAPI.reload("data-v-73f313e5", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -69397,31 +69469,6 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -69676,7 +69723,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     if (app.id > 0) {
 
       axios.get('/api/' + app.profile + '/back-office/orders/' + app.id + '/edit').then(function (response) {
-        console.log(app);
+        console.log(response.data);
         app.$children[0].onEdit(response.data);
       }).catch(function (ex) {
         console.log(ex);
@@ -69710,600 +69757,580 @@ var render = function() {
             var _vm = this
             var _h = _vm.$createElement
             var _c = _vm._self._c || _h
-            return _vm._m(0)
-          },
-          staticRenderFns: [
-            function() {
-              var _vm = this
-              var _h = _vm.$createElement
-              var _c = _vm._self._c || _h
-              return _c("div", { staticClass: "content" }, [
+            return _c("div", { staticClass: "content" }, [
+              _vm._m(0),
+              _vm._v(" "),
+              _vm._m(1),
+              _vm._v(" "),
+              _c(
+                "h2",
+                { staticClass: "content-heading" },
+                [
+                  _vm._m(2),
+                  _vm._v("\n            Customer\n            "),
+                  _c(
+                    "b-field",
+                    [
+                      _c(
+                        "b-autocomplete",
+                        {
+                          attrs: {
+                            data: _vm.customers,
+                            placeholder: "Search Customer",
+                            field: "customer_alias",
+                            loading: _vm.isFetching
+                          },
+                          on: {
+                            input: _vm.getCustomers,
+                            select: function(option) {
+                              return _vm.addCustomer(option)
+                            }
+                          },
+                          scopedSlots: _vm._u([
+                            {
+                              key: "default",
+                              fn: function(props) {
+                                return [
+                                  _c("strong", [
+                                    _vm._v(
+                                      "@" + _vm._s(props.option.customer_taxid)
+                                    )
+                                  ]),
+                                  _vm._v(
+                                    " | @" +
+                                      _vm._s(props.option.customer_alias) +
+                                      "\n                "
+                                  )
+                                ]
+                              }
+                            }
+                          ]),
+                          model: {
+                            value: _vm.customer_name,
+                            callback: function($$v) {
+                              _vm.customer_name = $$v
+                            },
+                            expression: "customer_name"
+                          }
+                        },
+                        [
+                          _c("template", { slot: "empty" }, [
+                            _vm._v(
+                              "\n                    There are no customers\n                "
+                            )
+                          ])
+                        ],
+                        2
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c("div", { staticClass: "row row-deck" }, [
                 _c("h2", { staticClass: "content-heading" }, [
-                  _c(
-                    "button",
-                    {
-                      staticClass: "btn btn-sm btn-secondary float-right",
-                      attrs: { type: "button" }
-                    },
-                    [
-                      _c("i", { staticClass: "fa fa-check text-success mr-5" }),
-                      _vm._v("Complete\n            ")
-                    ]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "button",
-                    {
-                      staticClass: "btn btn-sm btn-secondary float-right mr-5",
-                      attrs: { type: "button" }
-                    },
-                    [
-                      _c("i", { staticClass: "fa fa-times text-danger mr-5" }),
-                      _vm._v("Cancel\n            ")
-                    ]
-                  ),
-                  _vm._v("\n            Progress\n        ")
+                  _vm._v("Addresses")
                 ]),
                 _vm._v(" "),
-                _c("div", { staticClass: "row gutters-tiny" }, [
-                  _c("div", { staticClass: "col-md-6 col-xl-3" }, [
+                _c("div", { staticClass: "row row-deck gutters-tiny" }, [
+                  _c("div", { staticClass: "col-md-6" }, [
                     _c("div", { staticClass: "block block-rounded" }, [
-                      _c(
-                        "div",
-                        { staticClass: "block-content block-content-full" },
-                        [
-                          _c("div", { staticClass: "py-20 text-center" }, [
-                            _c("div", { staticClass: "mb-20" }, [
-                              _c("i", {
-                                staticClass: "fa fa-check fa-3x text-success"
-                              })
-                            ]),
-                            _vm._v(" "),
-                            _c(
-                              "div",
-                              {
-                                staticClass:
-                                  "font-size-sm font-w600 text-uppercase text-success"
-                              },
-                              [_vm._v("1. Submitted")]
-                            )
+                      _vm._m(3),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "block-content" }, [
+                        _c(
+                          "div",
+                          { staticClass: "font-size-lg text-black mb-5" },
+                          [_vm._v(_vm._s(_vm.customer_name))]
+                        ),
+                        _vm._v(" "),
+                        _c("address", [
+                          _vm._v(
+                            "\n                                " +
+                              _vm._s(_vm.customer_address)
+                          ),
+                          _c("br"),
+                          _vm._v(" "),
+                          _c("i", { staticClass: "fa fa-phone mr-5" }),
+                          _vm._v(" " + _vm._s(_vm.customer_telephone)),
+                          _c("br"),
+                          _vm._v(" "),
+                          _c("i", { staticClass: "fa fa-envelope-o mr-5" }),
+                          _vm._v(" "),
+                          _c("a", { attrs: { href: "javascript:void(0)" } }, [
+                            _vm._v(_vm._s(_vm.customer_email))
                           ])
-                        ]
-                      )
+                        ])
+                      ])
                     ])
                   ]),
                   _vm._v(" "),
-                  _c("div", { staticClass: "col-md-6 col-xl-3" }, [
+                  _c("div", { staticClass: "col-md-6" }, [
                     _c("div", { staticClass: "block block-rounded" }, [
-                      _c(
-                        "div",
-                        { staticClass: "block-content block-content-full" },
-                        [
-                          _c("div", { staticClass: "py-20 text-center" }, [
-                            _c("div", { staticClass: "mb-20" }, [
-                              _c("i", {
-                                staticClass: "fa fa-check fa-3x text-success"
-                              })
-                            ]),
-                            _vm._v(" "),
-                            _c(
-                              "div",
-                              {
-                                staticClass:
-                                  "font-size-sm font-w600 text-uppercase text-success"
-                              },
-                              [_vm._v("2. Payment")]
-                            )
+                      _vm._m(4),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "block-content" }, [
+                        _c(
+                          "div",
+                          { staticClass: "font-size-lg text-black mb-5" },
+                          [_vm._v(_vm._s(_vm.customer_name))]
+                        ),
+                        _vm._v(" "),
+                        _c("address", [
+                          _vm._v(
+                            "\n                              " +
+                              _vm._s(_vm.customer_address)
+                          ),
+                          _c("br"),
+                          _vm._v(" "),
+                          _c("i", { staticClass: "fa fa-phone mr-5" }),
+                          _vm._v(" " + _vm._s(_vm.customer_telephone)),
+                          _c("br"),
+                          _vm._v(" "),
+                          _c("i", { staticClass: "fa fa-envelope-o mr-5" }),
+                          _vm._v(" "),
+                          _c("a", { attrs: { href: "javascript:void(0)" } }, [
+                            _vm._v(_vm._s(_vm.customer_email))
                           ])
-                        ]
-                      )
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "col-md-6 col-xl-3" }, [
-                    _c("div", { staticClass: "block block-rounded" }, [
-                      _c(
-                        "div",
-                        { staticClass: "block-content block-content-full" },
-                        [
-                          _c("div", { staticClass: "py-20 text-center" }, [
-                            _c("div", { staticClass: "mb-20" }, [
-                              _c("i", {
-                                staticClass:
-                                  "fa fa-spinner fa-3x fa-spin text-warning"
-                              })
-                            ]),
-                            _vm._v(" "),
-                            _c(
-                              "div",
-                              {
-                                staticClass:
-                                  "font-size-sm font-w600 text-uppercase text-warning"
-                              },
-                              [_vm._v("3. Packaging")]
-                            )
-                          ])
-                        ]
-                      )
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "col-md-6 col-xl-3" }, [
-                    _c("div", { staticClass: "block block-rounded" }, [
-                      _c(
-                        "div",
-                        { staticClass: "block-content block-content-full" },
-                        [
-                          _c("div", { staticClass: "py-20 text-center" }, [
-                            _c("div", { staticClass: "mb-20" }, [
-                              _c("i", {
-                                staticClass: "fa fa-times fa-3x text-muted"
-                              })
-                            ]),
-                            _vm._v(" "),
-                            _c(
-                              "div",
-                              {
-                                staticClass:
-                                  "font-size-sm font-w600 text-uppercase text-muted"
-                              },
-                              [_vm._v("4. Completed")]
-                            )
-                          ])
-                        ]
-                      )
+                        ])
+                      ])
                     ])
                   ])
                 ]),
                 _vm._v(" "),
                 _c("h2", { staticClass: "content-heading" }, [
-                  _c(
-                    "button",
-                    {
-                      staticClass: "btn btn-sm btn-secondary float-right",
-                      attrs: { type: "button" }
-                    },
-                    [
-                      _c("i", {
-                        staticClass: "fa fa-envelope-o text-info mr-5"
-                      }),
-                      _vm._v("Contact\n            ")
-                    ]
-                  ),
-                  _vm._v("\n            Customer\n        ")
+                  _vm._v("Products (5)")
                 ]),
                 _vm._v(" "),
-                _c("div", { staticClass: "row row-deck" }, [
-                  _c("h2", { staticClass: "content-heading" }, [
-                    _vm._v("Addresses")
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "row row-deck gutters-tiny" }, [
-                    _c("div", { staticClass: "col-md-6" }, [
-                      _c("div", { staticClass: "block block-rounded" }, [
+                _c("div", { staticClass: "block block-rounded" }, [
+                  _c("div", { staticClass: "block-content" }, [
+                    _c(
+                      "div",
+                      { staticClass: "table-responsive" },
+                      [
                         _c(
-                          "div",
-                          { staticClass: "block-header block-header-default" },
+                          "b-field",
                           [
-                            _c("h3", { staticClass: "block-title" }, [
-                              _vm._v("Billing Address")
-                            ])
-                          ]
+                            _c(
+                              "b-autocomplete",
+                              {
+                                attrs: {
+                                  data: _vm.items,
+                                  placeholder: "Search Item",
+                                  field: "name",
+                                  loading: _vm.isFetching
+                                },
+                                on: {
+                                  input: _vm.getItems,
+                                  select: function(option) {
+                                    return _vm.addItem(option)
+                                  }
+                                },
+                                scopedSlots: _vm._u([
+                                  {
+                                    key: "default",
+                                    fn: function(props) {
+                                      return [
+                                        _c("strong", [
+                                          _vm._v(
+                                            "@" + _vm._s(props.option.name)
+                                          )
+                                        ]),
+                                        _vm._v(
+                                          " | @" +
+                                            _vm._s(props.option.code) +
+                                            "\n                          "
+                                        )
+                                      ]
+                                    }
+                                  }
+                                ]),
+                                model: {
+                                  value: _vm.item_name,
+                                  callback: function($$v) {
+                                    _vm.item_name = $$v
+                                  },
+                                  expression: "item_name"
+                                }
+                              },
+                              [
+                                _c("template", { slot: "empty" }, [
+                                  _vm._v(
+                                    "\n                              There are no items\n                          "
+                                  )
+                                ])
+                              ],
+                              2
+                            )
+                          ],
+                          1
                         ),
                         _vm._v(" "),
-                        _c("div", { staticClass: "block-content" }, [
-                          _c(
-                            "div",
-                            { staticClass: "font-size-lg text-black mb-5" },
-                            [_vm._v("John Smith")]
-                          ),
-                          _vm._v(" "),
-                          _c("address", [
-                            _vm._v(
-                              "\n                                5110 8th Ave"
-                            ),
-                            _c("br"),
-                            _vm._v(
-                              "\n                                New York 11220"
-                            ),
-                            _c("br"),
-                            _vm._v(
-                              "\n                                United States"
-                            ),
-                            _c("br"),
-                            _c("br"),
-                            _vm._v(" "),
-                            _c("i", { staticClass: "fa fa-phone mr-5" }),
-                            _vm._v(" (999) 111-222222"),
-                            _c("br"),
-                            _vm._v(" "),
-                            _c("i", { staticClass: "fa fa-envelope-o mr-5" }),
-                            _vm._v(" "),
-                            _c("a", { attrs: { href: "javascript:void(0)" } }, [
-                              _vm._v("company@example.com")
-                            ])
-                          ])
-                        ])
-                      ])
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "col-md-6" }, [
-                      _c("div", { staticClass: "block block-rounded" }, [
-                        _c(
-                          "div",
-                          { staticClass: "block-header block-header-default" },
-                          [
-                            _c("h3", { staticClass: "block-title" }, [
-                              _vm._v("Shipping Address")
-                            ])
-                          ]
-                        ),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "block-content" }, [
-                          _c(
-                            "div",
-                            { staticClass: "font-size-lg text-black mb-5" },
-                            [_vm._v("John Smith")]
-                          ),
-                          _vm._v(" "),
-                          _c("address", [
-                            _vm._v(
-                              "\n                                5110 8th Ave"
-                            ),
-                            _c("br"),
-                            _vm._v(
-                              "\n                                New York 11220"
-                            ),
-                            _c("br"),
-                            _vm._v(
-                              "\n                                United States"
-                            ),
-                            _c("br"),
-                            _c("br"),
-                            _vm._v(" "),
-                            _c("i", { staticClass: "fa fa-phone mr-5" }),
-                            _vm._v(" (999) 111-222222"),
-                            _c("br"),
-                            _vm._v(" "),
-                            _c("i", { staticClass: "fa fa-envelope-o mr-5" }),
-                            _vm._v(" "),
-                            _c("a", { attrs: { href: "javascript:void(0)" } }, [
-                              _vm._v("company@example.com")
-                            ])
-                          ])
-                        ])
-                      ])
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("h2", { staticClass: "content-heading" }, [
-                    _vm._v("Products (5)")
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "block block-rounded" }, [
-                    _c("div", { staticClass: "block-content" }, [
-                      _c("div", { staticClass: "table-responsive" }, [
                         _c(
                           "table",
                           {
                             staticClass: "table table-borderless table-striped"
                           },
                           [
-                            _c("thead", [
-                              _c("tr", [
-                                _c("th", { staticStyle: { width: "100px" } }, [
-                                  _vm._v("ID")
-                                ]),
-                                _vm._v(" "),
-                                _c("th", [_vm._v("Product")]),
-                                _vm._v(" "),
-                                _c("th", { staticClass: "text-center" }, [
-                                  _vm._v("Stock")
-                                ]),
-                                _vm._v(" "),
-                                _c("th", { staticClass: "text-center" }, [
-                                  _vm._v("QTY")
-                                ]),
-                                _vm._v(" "),
-                                _c(
-                                  "th",
-                                  {
-                                    staticClass: "text-right",
-                                    staticStyle: { width: "10%" }
-                                  },
-                                  [_vm._v("UNIT")]
-                                ),
-                                _vm._v(" "),
-                                _c(
-                                  "th",
-                                  {
-                                    staticClass: "text-right",
-                                    staticStyle: { width: "10%" }
-                                  },
-                                  [_vm._v("PRICE")]
-                                )
-                              ])
-                            ]),
+                            _vm._m(5),
                             _vm._v(" "),
-                            _c("tbody", [
-                              _c("tr", [
-                                _c("td", [
-                                  _c(
-                                    "a",
-                                    {
-                                      staticClass: "font-w600",
-                                      attrs: {
-                                        href: "be_pages_ecom_product_edit.html"
-                                      }
-                                    },
-                                    [_vm._v("PID.258")]
-                                  )
-                                ]),
+                            _c(
+                              "tbody",
+                              [
+                                _vm._l(_vm.details, function(detail) {
+                                  return _c("tr", [
+                                    _vm._m(6, true),
+                                    _vm._v(" "),
+                                    _c("td", [
+                                      _c(
+                                        "a",
+                                        {
+                                          attrs: {
+                                            href:
+                                              "be_pages_ecom_product_edit.html"
+                                          }
+                                        },
+                                        [_vm._v(_vm._s(detail.name))]
+                                      )
+                                    ]),
+                                    _vm._v(" "),
+                                    _c("td", { staticClass: "text-center" }, [
+                                      _vm._v(_vm._s(detail.quantity))
+                                    ]),
+                                    _vm._v(" "),
+                                    _c("td", { staticClass: "text-right" }, [
+                                      _vm._v(_vm._s(detail.unit_price))
+                                    ]),
+                                    _vm._v(" "),
+                                    _c("td", { staticClass: "text-right" }, [
+                                      _vm._v(_vm._s(detail.sub_total))
+                                    ])
+                                  ])
+                                }),
                                 _vm._v(" "),
-                                _c("td", [
-                                  _c(
-                                    "a",
-                                    {
-                                      attrs: {
-                                        href: "be_pages_ecom_product_edit.html"
-                                      }
-                                    },
-                                    [_vm._v("Dark Souls III")]
-                                  )
-                                ]),
+                                _vm._m(7),
                                 _vm._v(" "),
-                                _c("td", { staticClass: "text-center" }, [
-                                  _vm._v("92")
-                                ]),
+                                _vm._m(8),
                                 _vm._v(" "),
-                                _c(
-                                  "td",
-                                  { staticClass: "text-center font-w600" },
-                                  [_vm._v("1")]
-                                ),
-                                _vm._v(" "),
-                                _c("td", { staticClass: "text-right" }, [
-                                  _vm._v("$69,00")
-                                ]),
-                                _vm._v(" "),
-                                _c("td", { staticClass: "text-right" }, [
-                                  _vm._v("$69,00")
-                                ])
-                              ]),
-                              _vm._v(" "),
-                              _c("tr", [
-                                _c("td", [
-                                  _c(
-                                    "a",
-                                    {
-                                      staticClass: "font-w600",
-                                      attrs: {
-                                        href: "be_pages_ecom_product_edit.html"
-                                      }
-                                    },
-                                    [_vm._v("PID.263")]
-                                  )
-                                ]),
-                                _vm._v(" "),
-                                _c("td", [
-                                  _c(
-                                    "a",
-                                    {
-                                      attrs: {
-                                        href: "be_pages_ecom_product_edit.html"
-                                      }
-                                    },
-                                    [_vm._v("Bloodborne")]
-                                  )
-                                ]),
-                                _vm._v(" "),
-                                _c("td", { staticClass: "text-center" }, [
-                                  _vm._v("32")
-                                ]),
-                                _vm._v(" "),
-                                _c(
-                                  "td",
-                                  { staticClass: "text-center font-w600" },
-                                  [_vm._v("1")]
-                                ),
-                                _vm._v(" "),
-                                _c("td", { staticClass: "text-right" }, [
-                                  _vm._v("$29,00")
-                                ]),
-                                _vm._v(" "),
-                                _c("td", { staticClass: "text-right" }, [
-                                  _vm._v("$29,00")
-                                ])
-                              ]),
-                              _vm._v(" "),
-                              _c("tr", [
-                                _c("td", [
-                                  _c(
-                                    "a",
-                                    {
-                                      staticClass: "font-w600",
-                                      attrs: {
-                                        href: "be_pages_ecom_product_edit.html"
-                                      }
-                                    },
-                                    [_vm._v("PID.214")]
-                                  )
-                                ]),
-                                _vm._v(" "),
-                                _c("td", [
-                                  _c(
-                                    "a",
-                                    {
-                                      attrs: {
-                                        href: "be_pages_ecom_product_edit.html"
-                                      }
-                                    },
-                                    [_vm._v("The Surge")]
-                                  )
-                                ]),
-                                _vm._v(" "),
-                                _c("td", { staticClass: "text-center" }, [
-                                  _vm._v("15")
-                                ]),
-                                _vm._v(" "),
-                                _c(
-                                  "td",
-                                  { staticClass: "text-center font-w600" },
-                                  [_vm._v("1")]
-                                ),
-                                _vm._v(" "),
-                                _c("td", { staticClass: "text-right" }, [
-                                  _vm._v("$59,00")
-                                ]),
-                                _vm._v(" "),
-                                _c("td", { staticClass: "text-right" }, [
-                                  _vm._v("$59,00")
-                                ])
-                              ]),
-                              _vm._v(" "),
-                              _c("tr", [
-                                _c("td", [
-                                  _c(
-                                    "a",
-                                    {
-                                      staticClass: "font-w600",
-                                      attrs: {
-                                        href: "be_pages_ecom_product_edit.html"
-                                      }
-                                    },
-                                    [_vm._v("PID.358")]
-                                  )
-                                ]),
-                                _vm._v(" "),
-                                _c("td", [
-                                  _c(
-                                    "a",
-                                    {
-                                      attrs: {
-                                        href: "be_pages_ecom_product_edit.html"
-                                      }
-                                    },
-                                    [_vm._v("Bioshock Collection")]
-                                  )
-                                ]),
-                                _vm._v(" "),
-                                _c("td", { staticClass: "text-center" }, [
-                                  _vm._v("77")
-                                ]),
-                                _vm._v(" "),
-                                _c(
-                                  "td",
-                                  { staticClass: "text-center font-w600" },
-                                  [_vm._v("1")]
-                                ),
-                                _vm._v(" "),
-                                _c("td", { staticClass: "text-right" }, [
-                                  _vm._v("$39,00")
-                                ]),
-                                _vm._v(" "),
-                                _c("td", { staticClass: "text-right" }, [
-                                  _vm._v("$39,00")
-                                ])
-                              ]),
-                              _vm._v(" "),
-                              _c("tr", [
-                                _c("td", [
-                                  _c(
-                                    "a",
-                                    {
-                                      staticClass: "font-w600",
-                                      attrs: {
-                                        href: "be_pages_ecom_product_edit.html"
-                                      }
-                                    },
-                                    [_vm._v("PID.425")]
-                                  )
-                                ]),
-                                _vm._v(" "),
-                                _c("td", [
-                                  _c(
-                                    "a",
-                                    {
-                                      attrs: {
-                                        href: "be_pages_ecom_product_edit.html"
-                                      }
-                                    },
-                                    [_vm._v("Until Dawn")]
-                                  )
-                                ]),
-                                _vm._v(" "),
-                                _c("td", { staticClass: "text-center" }, [
-                                  _vm._v("25")
-                                ]),
-                                _vm._v(" "),
-                                _c(
-                                  "td",
-                                  { staticClass: "text-center font-w600" },
-                                  [_vm._v("1")]
-                                ),
-                                _vm._v(" "),
-                                _c("td", { staticClass: "text-right" }, [
-                                  _vm._v("$49,00")
-                                ]),
-                                _vm._v(" "),
-                                _c("td", { staticClass: "text-right" }, [
-                                  _vm._v("$49,00")
-                                ])
-                              ]),
-                              _vm._v(" "),
-                              _c("tr", [
-                                _c(
-                                  "td",
-                                  {
-                                    staticClass: "text-right font-w600",
-                                    attrs: { colspan: "5" }
-                                  },
-                                  [_vm._v("Total Price:")]
-                                ),
-                                _vm._v(" "),
-                                _c("td", { staticClass: "text-right" }, [
-                                  _vm._v("$245,00")
-                                ])
-                              ]),
-                              _vm._v(" "),
-                              _c("tr", [
-                                _c(
-                                  "td",
-                                  {
-                                    staticClass: "text-right font-w600",
-                                    attrs: { colspan: "5" }
-                                  },
-                                  [_vm._v("Total Paid:")]
-                                ),
-                                _vm._v(" "),
-                                _c("td", { staticClass: "text-right" }, [
-                                  _vm._v("$245,00")
-                                ])
-                              ]),
-                              _vm._v(" "),
-                              _c("tr", { staticClass: "table-success" }, [
-                                _c(
-                                  "td",
-                                  {
-                                    staticClass:
-                                      "text-right font-w600 text-uppercase",
-                                    attrs: { colspan: "5" }
-                                  },
-                                  [_vm._v("Total Due:")]
-                                ),
-                                _vm._v(" "),
-                                _c(
-                                  "td",
-                                  { staticClass: "text-right font-w600" },
-                                  [_vm._v("$0,00")]
-                                )
-                              ])
-                            ])
+                                _vm._m(9)
+                              ],
+                              2
+                            )
                           ]
                         )
-                      ])
-                    ])
+                      ],
+                      1
+                    )
                   ])
+                ]),
+                _vm._v(" "),
+                _c(
+                  "button",
+                  {
+                    staticClass:
+                      "btn btn-outline-primary min-width-125 js-click-ripple-enabled m",
+                    attrs: { "data-toggle": "click-ripple" },
+                    on: {
+                      click: function($event) {
+                        _vm.$parent.onSave(_vm.$data, false)
+                      }
+                    }
+                  },
+                  [_vm._v("\n              @lang('global.Save')\n            ")]
+                )
+              ])
+            ])
+          },
+          staticRenderFns: [
+            function() {
+              var _vm = this
+              var _h = _vm.$createElement
+              var _c = _vm._self._c || _h
+              return _c("h2", { staticClass: "content-heading" }, [
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-sm btn-secondary float-right",
+                    attrs: { type: "button" }
+                  },
+                  [
+                    _c("i", { staticClass: "fa fa-check text-success mr-5" }),
+                    _vm._v("Complete\n            ")
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-sm btn-secondary float-right mr-5",
+                    attrs: { type: "button" }
+                  },
+                  [
+                    _c("i", { staticClass: "fa fa-times text-danger mr-5" }),
+                    _vm._v("Cancel\n            ")
+                  ]
+                ),
+                _vm._v("\n            Progress\n        ")
+              ])
+            },
+            function() {
+              var _vm = this
+              var _h = _vm.$createElement
+              var _c = _vm._self._c || _h
+              return _c("div", { staticClass: "row gutters-tiny" }, [
+                _c("div", { staticClass: "col-md-6 col-xl-3" }, [
+                  _c("div", { staticClass: "block block-rounded" }, [
+                    _c(
+                      "div",
+                      { staticClass: "block-content block-content-full" },
+                      [
+                        _c("div", { staticClass: "py-20 text-center" }, [
+                          _c("div", { staticClass: "mb-20" }, [
+                            _c("i", {
+                              staticClass: "fa fa-check fa-3x text-success"
+                            })
+                          ]),
+                          _vm._v(" "),
+                          _c(
+                            "div",
+                            {
+                              staticClass:
+                                "font-size-sm font-w600 text-uppercase text-success"
+                            },
+                            [_vm._v("1. Submitted")]
+                          )
+                        ])
+                      ]
+                    )
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-md-6 col-xl-3" }, [
+                  _c("div", { staticClass: "block block-rounded" }, [
+                    _c(
+                      "div",
+                      { staticClass: "block-content block-content-full" },
+                      [
+                        _c("div", { staticClass: "py-20 text-center" }, [
+                          _c("div", { staticClass: "mb-20" }, [
+                            _c("i", {
+                              staticClass: "fa fa-check fa-3x text-success"
+                            })
+                          ]),
+                          _vm._v(" "),
+                          _c(
+                            "div",
+                            {
+                              staticClass:
+                                "font-size-sm font-w600 text-uppercase text-success"
+                            },
+                            [_vm._v("2. Payment")]
+                          )
+                        ])
+                      ]
+                    )
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-md-6 col-xl-3" }, [
+                  _c("div", { staticClass: "block block-rounded" }, [
+                    _c(
+                      "div",
+                      { staticClass: "block-content block-content-full" },
+                      [
+                        _c("div", { staticClass: "py-20 text-center" }, [
+                          _c("div", { staticClass: "mb-20" }, [
+                            _c("i", {
+                              staticClass:
+                                "fa fa-spinner fa-3x fa-spin text-warning"
+                            })
+                          ]),
+                          _vm._v(" "),
+                          _c(
+                            "div",
+                            {
+                              staticClass:
+                                "font-size-sm font-w600 text-uppercase text-warning"
+                            },
+                            [_vm._v("3. Packaging")]
+                          )
+                        ])
+                      ]
+                    )
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-md-6 col-xl-3" }, [
+                  _c("div", { staticClass: "block block-rounded" }, [
+                    _c(
+                      "div",
+                      { staticClass: "block-content block-content-full" },
+                      [
+                        _c("div", { staticClass: "py-20 text-center" }, [
+                          _c("div", { staticClass: "mb-20" }, [
+                            _c("i", {
+                              staticClass: "fa fa-times fa-3x text-muted"
+                            })
+                          ]),
+                          _vm._v(" "),
+                          _c(
+                            "div",
+                            {
+                              staticClass:
+                                "font-size-sm font-w600 text-uppercase text-muted"
+                            },
+                            [_vm._v("4. Completed")]
+                          )
+                        ])
+                      ]
+                    )
+                  ])
+                ])
+              ])
+            },
+            function() {
+              var _vm = this
+              var _h = _vm.$createElement
+              var _c = _vm._self._c || _h
+              return _c(
+                "button",
+                {
+                  staticClass: "btn btn-sm btn-secondary float-right",
+                  attrs: { type: "button" }
+                },
+                [
+                  _c("i", { staticClass: "fa fa-envelope-o text-info mr-5" }),
+                  _vm._v("Contact\n            ")
+                ]
+              )
+            },
+            function() {
+              var _vm = this
+              var _h = _vm.$createElement
+              var _c = _vm._self._c || _h
+              return _c(
+                "div",
+                { staticClass: "block-header block-header-default" },
+                [
+                  _c("h3", { staticClass: "block-title" }, [
+                    _vm._v("Billing Address")
+                  ])
+                ]
+              )
+            },
+            function() {
+              var _vm = this
+              var _h = _vm.$createElement
+              var _c = _vm._self._c || _h
+              return _c(
+                "div",
+                { staticClass: "block-header block-header-default" },
+                [
+                  _c("h3", { staticClass: "block-title" }, [
+                    _vm._v("Shipping Address")
+                  ])
+                ]
+              )
+            },
+            function() {
+              var _vm = this
+              var _h = _vm.$createElement
+              var _c = _vm._self._c || _h
+              return _c("thead", [
+                _c("tr", [
+                  _c("th", { staticStyle: { width: "100px" } }, [_vm._v("ID")]),
+                  _vm._v(" "),
+                  _c("th", [_vm._v("Product")]),
+                  _vm._v(" "),
+                  _c("th", { staticClass: "text-center" }, [_vm._v("QTY")]),
+                  _vm._v(" "),
+                  _c(
+                    "th",
+                    {
+                      staticClass: "text-right",
+                      staticStyle: { width: "10%" }
+                    },
+                    [_vm._v("UNIT")]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "th",
+                    {
+                      staticClass: "text-right",
+                      staticStyle: { width: "10%" }
+                    },
+                    [_vm._v("PRICE")]
+                  )
+                ])
+              ])
+            },
+            function() {
+              var _vm = this
+              var _h = _vm.$createElement
+              var _c = _vm._self._c || _h
+              return _c("td", [
+                _c(
+                  "a",
+                  {
+                    staticClass: "font-w600",
+                    attrs: { href: "be_pages_ecom_product_edit.html" }
+                  },
+                  [_vm._v("detail.id")]
+                )
+              ])
+            },
+            function() {
+              var _vm = this
+              var _h = _vm.$createElement
+              var _c = _vm._self._c || _h
+              return _c("tr", [
+                _c(
+                  "td",
+                  {
+                    staticClass: "text-right font-w600",
+                    attrs: { colspan: "5" }
+                  },
+                  [_vm._v("Total Price:")]
+                ),
+                _vm._v(" "),
+                _c("td", { staticClass: "text-right" }, [_vm._v("$245,00")])
+              ])
+            },
+            function() {
+              var _vm = this
+              var _h = _vm.$createElement
+              var _c = _vm._self._c || _h
+              return _c("tr", [
+                _c(
+                  "td",
+                  {
+                    staticClass: "text-right font-w600",
+                    attrs: { colspan: "5" }
+                  },
+                  [_vm._v("Total Paid:")]
+                ),
+                _vm._v(" "),
+                _c("td", { staticClass: "text-right" }, [_vm._v("$245,00")])
+              ])
+            },
+            function() {
+              var _vm = this
+              var _h = _vm.$createElement
+              var _c = _vm._self._c || _h
+              return _c("tr", { staticClass: "table-success" }, [
+                _c(
+                  "td",
+                  {
+                    staticClass: "text-right font-w600 text-uppercase",
+                    attrs: { colspan: "5" }
+                  },
+                  [_vm._v("Total Due:")]
+                ),
+                _vm._v(" "),
+                _c("td", { staticClass: "text-right font-w600" }, [
+                  _vm._v("$0,00")
                 ])
               ])
             }
@@ -70320,7 +70347,7 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-0328446c", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-73f313e5", module.exports)
   }
 }
 
@@ -70349,7 +70376,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources/assets/js/views/purchase/Dashboard.vue"
+Component.options.__file = "resources\\assets\\js\\views\\purchase\\Dashboard.vue"
 
 module.exports = Component.exports
 
@@ -70379,7 +70406,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources/assets/js/views/purchase/Supplier.vue"
+Component.options.__file = "resources\\assets\\js\\views\\purchase\\Supplier.vue"
 
 module.exports = Component.exports
 
@@ -70409,7 +70436,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources/assets/js/views/purchase/SupplierForm.vue"
+Component.options.__file = "resources\\assets\\js\\views\\purchase\\SupplierForm.vue"
 
 module.exports = Component.exports
 
@@ -70439,7 +70466,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources/assets/js/views/stock/Dashboard.vue"
+Component.options.__file = "resources\\assets\\js\\views\\stock\\Dashboard.vue"
 
 module.exports = Component.exports
 
@@ -70470,7 +70497,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources/assets/js/views/stock/Item.vue"
+Component.options.__file = "resources\\assets\\js\\views\\stock\\Item.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -70479,9 +70506,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-2ed3bb02", Component.options)
+    hotAPI.createRecord("data-v-17786934", Component.options)
   } else {
-    hotAPI.reload("data-v-2ed3bb02", Component.options)
+    hotAPI.reload("data-v-17786934", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -70845,7 +70872,7 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-2ed3bb02", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-17786934", module.exports)
   }
 }
 
@@ -70875,7 +70902,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources/assets/js/views/stock/ItemForm.vue"
+Component.options.__file = "resources\\assets\\js\\views\\stock\\ItemForm.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -70884,9 +70911,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-4c27743a", Component.options)
+    hotAPI.createRecord("data-v-d985b96c", Component.options)
   } else {
-    hotAPI.reload("data-v-4c27743a", Component.options)
+    hotAPI.reload("data-v-d985b96c", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -71540,7 +71567,7 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-4c27743a", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-d985b96c", module.exports)
   }
 }
 
@@ -71569,7 +71596,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources/assets/js/views/finance/Dashboard.vue"
+Component.options.__file = "resources\\assets\\js\\views\\finance\\Dashboard.vue"
 
 module.exports = Component.exports
 
@@ -71599,7 +71626,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources/assets/js/views/finance/Account.vue"
+Component.options.__file = "resources\\assets\\js\\views\\finance\\Account.vue"
 
 module.exports = Component.exports
 
@@ -71629,7 +71656,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources/assets/js/views/finance/AccountForm.vue"
+Component.options.__file = "resources\\assets\\js\\views\\finance\\AccountForm.vue"
 
 module.exports = Component.exports
 
@@ -71659,7 +71686,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources/assets/js/views/finance/AccountPayable.vue"
+Component.options.__file = "resources\\assets\\js\\views\\finance\\AccountPayable.vue"
 
 module.exports = Component.exports
 
@@ -71689,7 +71716,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources/assets/js/views/finance/AccountReceivable.vue"
+Component.options.__file = "resources\\assets\\js\\views\\finance\\AccountReceivable.vue"
 
 module.exports = Component.exports
 
@@ -71719,7 +71746,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources/assets/js/views/finance/AccountMovement.vue"
+Component.options.__file = "resources\\assets\\js\\views\\finance\\AccountMovement.vue"
 
 module.exports = Component.exports
 
@@ -71743,7 +71770,7 @@ var __vue_template_functional__ = false
 /* styles */
 var __vue_styles__ = injectStyle
 /* scopeId */
-var __vue_scopeId__ = "data-v-5d1d7d82"
+var __vue_scopeId__ = "data-v-3f99fc75"
 /* moduleIdentifier (server only) */
 var __vue_module_identifier__ = null
 var Component = normalizeComponent(
@@ -71754,7 +71781,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources/assets/js/components/passport/Clients.vue"
+Component.options.__file = "resources\\assets\\js\\components\\passport\\Clients.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -71763,9 +71790,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-5d1d7d82", Component.options)
+    hotAPI.createRecord("data-v-3f99fc75", Component.options)
   } else {
-    hotAPI.reload("data-v-5d1d7d82", Component.options)
+    hotAPI.reload("data-v-3f99fc75", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -71786,13 +71813,13 @@ var content = __webpack_require__(140);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(8)("2a28cc49", content, false, {});
+var update = __webpack_require__(8)("a44a1dd2", content, false, {});
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
  if(!content.locals) {
-   module.hot.accept("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-5d1d7d82\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Clients.vue", function() {
-     var newContent = require("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-5d1d7d82\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Clients.vue");
+   module.hot.accept("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-3f99fc75\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Clients.vue", function() {
+     var newContent = require("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-3f99fc75\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Clients.vue");
      if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
      update(newContent);
    });
@@ -71810,7 +71837,7 @@ exports = module.exports = __webpack_require__(4)(false);
 
 
 // module
-exports.push([module.i, "\n.action-link[data-v-5d1d7d82] {\n    cursor: pointer;\n}\n", ""]);
+exports.push([module.i, "\n.action-link[data-v-3f99fc75] {\n    cursor: pointer;\n}\n", ""]);
 
 // exports
 
@@ -72769,7 +72796,7 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-5d1d7d82", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-3f99fc75", module.exports)
   }
 }
 
@@ -72792,7 +72819,7 @@ var __vue_template_functional__ = false
 /* styles */
 var __vue_styles__ = injectStyle
 /* scopeId */
-var __vue_scopeId__ = "data-v-2ee9fe67"
+var __vue_scopeId__ = "data-v-0b76a99a"
 /* moduleIdentifier (server only) */
 var __vue_module_identifier__ = null
 var Component = normalizeComponent(
@@ -72803,7 +72830,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources/assets/js/components/passport/AuthorizedClients.vue"
+Component.options.__file = "resources\\assets\\js\\components\\passport\\AuthorizedClients.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -72812,9 +72839,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-2ee9fe67", Component.options)
+    hotAPI.createRecord("data-v-0b76a99a", Component.options)
   } else {
-    hotAPI.reload("data-v-2ee9fe67", Component.options)
+    hotAPI.reload("data-v-0b76a99a", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -72835,13 +72862,13 @@ var content = __webpack_require__(146);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(8)("10846595", content, false, {});
+var update = __webpack_require__(8)("437dd684", content, false, {});
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
  if(!content.locals) {
-   module.hot.accept("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-2ee9fe67\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./AuthorizedClients.vue", function() {
-     var newContent = require("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-2ee9fe67\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./AuthorizedClients.vue");
+   module.hot.accept("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-0b76a99a\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./AuthorizedClients.vue", function() {
+     var newContent = require("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-0b76a99a\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./AuthorizedClients.vue");
      if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
      update(newContent);
    });
@@ -72859,7 +72886,7 @@ exports = module.exports = __webpack_require__(4)(false);
 
 
 // module
-exports.push([module.i, "\n.action-link[data-v-2ee9fe67] {\n    cursor: pointer;\n}\n", ""]);
+exports.push([module.i, "\n.action-link[data-v-0b76a99a] {\n    cursor: pointer;\n}\n", ""]);
 
 // exports
 
@@ -73089,7 +73116,7 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-2ee9fe67", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-0b76a99a", module.exports)
   }
 }
 
@@ -73112,7 +73139,7 @@ var __vue_template_functional__ = false
 /* styles */
 var __vue_styles__ = injectStyle
 /* scopeId */
-var __vue_scopeId__ = "data-v-89c53f18"
+var __vue_scopeId__ = "data-v-50e40461"
 /* moduleIdentifier (server only) */
 var __vue_module_identifier__ = null
 var Component = normalizeComponent(
@@ -73123,7 +73150,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources/assets/js/components/passport/PersonalAccessTokens.vue"
+Component.options.__file = "resources\\assets\\js\\components\\passport\\PersonalAccessTokens.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -73132,9 +73159,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-89c53f18", Component.options)
+    hotAPI.createRecord("data-v-50e40461", Component.options)
   } else {
-    hotAPI.reload("data-v-89c53f18", Component.options)
+    hotAPI.reload("data-v-50e40461", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -73155,13 +73182,13 @@ var content = __webpack_require__(151);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(8)("4e7bd74e", content, false, {});
+var update = __webpack_require__(8)("174f2f0a", content, false, {});
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
  if(!content.locals) {
-   module.hot.accept("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-89c53f18\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./PersonalAccessTokens.vue", function() {
-     var newContent = require("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-89c53f18\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./PersonalAccessTokens.vue");
+   module.hot.accept("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-50e40461\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./PersonalAccessTokens.vue", function() {
+     var newContent = require("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-50e40461\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./PersonalAccessTokens.vue");
      if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
      update(newContent);
    });
@@ -73179,7 +73206,7 @@ exports = module.exports = __webpack_require__(4)(false);
 
 
 // module
-exports.push([module.i, "\n.action-link[data-v-89c53f18] {\n    cursor: pointer;\n}\n", ""]);
+exports.push([module.i, "\n.action-link[data-v-50e40461] {\n    cursor: pointer;\n}\n", ""]);
 
 // exports
 
@@ -73880,7 +73907,7 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-89c53f18", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-50e40461", module.exports)
   }
 }
 

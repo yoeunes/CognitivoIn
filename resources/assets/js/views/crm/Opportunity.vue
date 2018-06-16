@@ -42,7 +42,7 @@
                       </router-link>
                       <router-link :to="{ name: 'opportunity.form',params: { profile:profile,id:opportunity.id,user_id:userid} }">
                         <button  type="button" class="btn btn-sm btn-secondary js-tooltip-enabled" data-toggle="tooltip" data-original-title="Edit">
-                          <i class="fa fa-eye"></i>
+                          <i class="fa fa-pencil"></i>
                         </button>
                       </router-link>
 

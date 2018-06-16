@@ -81,6 +81,17 @@
                   <i class="fa fa-envelope-o text-info mr-5"></i>Contact
               </button>
               Customer
+              <b-field>
+                  <b-autocomplete v-model="customer_name" :data="customers" placeholder="Search Customer" field="customer_alias"
+                  :loading="isFetching" @input="getCustomers" @select="option => addCustomer(option)">
+                  <template slot-scope="props">
+                      <strong>@{{props.option.customer_taxid}}</strong> | @{{props.option.customer_alias}}
+                  </template>
+                  <template slot="empty">
+                      There are no customers
+                  </template>
+              </b-autocomplete>
+          </b-field>
           </h2>
           <div class="row row-deck">
 
@@ -95,13 +106,12 @@
                               <h3 class="block-title">Billing Address</h3>
                           </div>
                           <div class="block-content">
-                              <div class="font-size-lg text-black mb-5">John Smith</div>
+                              <div class="font-size-lg text-black mb-5">{{customer_name}}</div>
                               <address>
-                                  5110 8th Ave<br>
-                                  New York 11220<br>
-                                  United States<br><br>
-                                  <i class="fa fa-phone mr-5"></i> (999) 111-222222<br>
-                                  <i class="fa fa-envelope-o mr-5"></i> <a href="javascript:void(0)">company@example.com</a>
+                                  {{customer_address}}<br>
+
+                                  <i class="fa fa-phone mr-5"></i> {{customer_telephone}}<br>
+                                  <i class="fa fa-envelope-o mr-5"></i> <a href="javascript:void(0)">{{customer_email}}</a>
                               </address>
                           </div>
                       </div>
@@ -115,14 +125,13 @@
                               <h3 class="block-title">Shipping Address</h3>
                           </div>
                           <div class="block-content">
-                              <div class="font-size-lg text-black mb-5">John Smith</div>
-                              <address>
-                                  5110 8th Ave<br>
-                                  New York 11220<br>
-                                  United States<br><br>
-                                  <i class="fa fa-phone mr-5"></i> (999) 111-222222<br>
-                                  <i class="fa fa-envelope-o mr-5"></i> <a href="javascript:void(0)">company@example.com</a>
-                              </address>
+                            <div class="font-size-lg text-black mb-5">{{customer_name}}</div>
+                            <address>
+                                {{customer_address}}<br>
+
+                                <i class="fa fa-phone mr-5"></i> {{customer_telephone}}<br>
+                                <i class="fa fa-envelope-o mr-5"></i> <a href="javascript:void(0)">{{customer_email}}</a>
+                            </address>
                           </div>
                       </div>
                   </div>
@@ -136,78 +145,40 @@
               <div class="block block-rounded">
                   <div class="block-content">
                       <div class="table-responsive">
+                        <b-field>
+                            <b-autocomplete v-model="item_name" :data="items" placeholder="Search Item" field="name"
+                            :loading="isFetching" @input="getItems" @select="option => addItem(option)">
+                            <template slot-scope="props">
+                                <strong>@{{props.option.name}}</strong> | @{{props.option.code}}
+                            </template>
+                            <template slot="empty">
+                                There are no items
+                            </template>
+                        </b-autocomplete>
+                    </b-field>
                           <table class="table table-borderless table-striped">
                               <thead>
                                   <tr>
                                       <th style="width: 100px;">ID</th>
                                       <th>Product</th>
-                                      <th class="text-center">Stock</th>
                                       <th class="text-center">QTY</th>
                                       <th class="text-right" style="width: 10%;">UNIT</th>
                                       <th class="text-right" style="width: 10%;">PRICE</th>
                                   </tr>
                               </thead>
                               <tbody>
-                                  <tr>
+                                  <tr v-for="detail in details">
                                       <td>
-                                          <a class="font-w600" href="be_pages_ecom_product_edit.html">PID.258</a>
+                                          <a class="font-w600" href="be_pages_ecom_product_edit.html">detail.id</a>
                                       </td>
                                       <td>
-                                          <a href="be_pages_ecom_product_edit.html">Dark Souls III</a>
+                                          <a href="be_pages_ecom_product_edit.html">{{detail.name}}</a>
                                       </td>
-                                      <td class="text-center">92</td>
-                                      <td class="text-center font-w600">1</td>
-                                      <td class="text-right">$69,00</td>
-                                      <td class="text-right">$69,00</td>
+                                      <td class="text-center">{{detail.quantity}}</td>
+                                      <td class="text-right">{{detail.unit_price}}</td>
+                                      <td class="text-right">{{detail.sub_total}}</td>
                                   </tr>
-                                  <tr>
-                                      <td>
-                                          <a class="font-w600" href="be_pages_ecom_product_edit.html">PID.263</a>
-                                      </td>
-                                      <td>
-                                          <a href="be_pages_ecom_product_edit.html">Bloodborne</a>
-                                      </td>
-                                      <td class="text-center">32</td>
-                                      <td class="text-center font-w600">1</td>
-                                      <td class="text-right">$29,00</td>
-                                      <td class="text-right">$29,00</td>
-                                  </tr>
-                                  <tr>
-                                      <td>
-                                          <a class="font-w600" href="be_pages_ecom_product_edit.html">PID.214</a>
-                                      </td>
-                                      <td>
-                                          <a href="be_pages_ecom_product_edit.html">The Surge</a>
-                                      </td>
-                                      <td class="text-center">15</td>
-                                      <td class="text-center font-w600">1</td>
-                                      <td class="text-right">$59,00</td>
-                                      <td class="text-right">$59,00</td>
-                                  </tr>
-                                  <tr>
-                                      <td>
-                                          <a class="font-w600" href="be_pages_ecom_product_edit.html">PID.358</a>
-                                      </td>
-                                      <td>
-                                          <a href="be_pages_ecom_product_edit.html">Bioshock Collection</a>
-                                      </td>
-                                      <td class="text-center">77</td>
-                                      <td class="text-center font-w600">1</td>
-                                      <td class="text-right">$39,00</td>
-                                      <td class="text-right">$39,00</td>
-                                  </tr>
-                                  <tr>
-                                      <td>
-                                          <a class="font-w600" href="be_pages_ecom_product_edit.html">PID.425</a>
-                                      </td>
-                                      <td>
-                                          <a href="be_pages_ecom_product_edit.html">Until Dawn</a>
-                                      </td>
-                                      <td class="text-center">25</td>
-                                      <td class="text-center font-w600">1</td>
-                                      <td class="text-right">$49,00</td>
-                                      <td class="text-right">$49,00</td>
-                                  </tr>
+
                                   <tr>
                                       <td colspan="5" class="text-right font-w600">Total Price:</td>
                                       <td class="text-right">$245,00</td>
@@ -226,6 +197,10 @@
                   </div>
               </div>
               <!-- END Products -->
+
+              <button v-on:click="$parent.onSave($data, false)" class="btn btn-outline-primary min-width-125 js-click-ripple-enabled m" data-toggle="click-ripple">
+                @lang('global.Save')
+              </button>
           </div>
         </div>
     </order-form>
@@ -289,7 +264,7 @@ export default {
 
       axios.get('/api/' + app.profile + '/back-office/orders/' + app.id + '/edit')
       .then(function (response) {
-        console.log(app);
+        console.log(response.data);
         app.$children[0].onEdit(response.data)
       })
       .catch(ex => {

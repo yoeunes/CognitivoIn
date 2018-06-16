@@ -9,12 +9,15 @@ Vue.component('order-form',
     data: function () {
         return {
             id: 0,
+            item_name:'',
             relationship_id:'',
             customer_name:'',
             customer_address:'',
             customer_telephone:'',
             customer_email:'',
+            currency:'PYG',
             customers:[],
+            items:[],
             //itemscomponent:[],
             details:[]
         }
@@ -27,10 +30,10 @@ Vue.component('order-form',
 
             app.id = data.id;
             app.relationship_id = data.relationship_id,
-            app.customer_name = data.customer_name,
-            app.customer_address = data.customer_address,
-            app.customer_telephone = data.customer_telephone,
-            app.customer_email = data.customer_email,
+            app.customer_name = data.relationship.customer_alias,
+            app.customer_address = data.relationship.customer_address,
+            app.customer_telephone = data.relationship.customer_telephone,
+            app.customer_email = data.relationship.customer_email,
             app.details  =  [];
             for (var i = 0; i < data.details.length; i++)
             {
@@ -54,7 +57,7 @@ Vue.component('order-form',
 
             app.id = data.id;
             app.relationship_id = data.relationship_id,
-            app.customer_name = data.customer_name,
+            app.customer_name = data.customer_alias,
             app.customer_address = data.customer_address,
             app.customer_telephone = data.customer_telephone,
             app.customer_email = data.customer_email,
@@ -162,24 +165,90 @@ Vue.component('order-form',
                 }
             },
 
-            onContactChange: function ()
+            addCustomer: function(member)
             {
                 var app = this;
-                if(app.relationship_id !== '')
-                {
-                    axios.get('/api/'+ app.$parent.profile  + '/back-office/customers' + '/'  +  app.relationship_id + '/edit' )
-                    .then(function (resp) {
+                if (member!=null) {
+                    app.relationship_id = member.id;
+                    app.customer_name= member.customer_alias;
+                    app.customer_address= member.customer_address;
+                    app.customer_telephone= member.customer_telephone;
+                    app.customer_email= member.customer_email;
+                }
 
-                        app.customer_name = '('+ resp.data.customer_taxid + ') - ' +  resp.data.customer_alias  ;
-                        app.customer_address = resp.data.customer_address;
-                        app.customer_telephone = resp.data.customer_telephone;
-                        app.customer_email = resp.data.customer_email;
-                    })
-                    .catch(function (resp) {
-                        console.log(resp);
-                        alert("Could not execute onContactChange in Order Component");
+            },
+
+            getCustomers: function(query)
+            {
+                if (query !=null) {
+                    if(query.length > 2) {
+                        var app = this;
+
+                        axios.get('/api/' + app.$route.params.profile + '/back-office/search/customers/' + query)
+                        .then(({ data }) =>
+                        {
+                            if (data.length > 0)
+                            {
+                                app.customers = [];
+                                for (let i = 0; i < data.length; i++)
+                                {
+                                    app.customers.push(data[i]);
+                                }
+                            }
+                        })
+                        .catch(ex => {
+                            console.log(ex);
+                            this.$swal('Error trying to load records.');
+                        });
+                    }
+                }
+
+            },
+
+            addItem: function(data)
+            {
+                var app = this;
+                if (data!=null) {
+                    app.details.push({
+
+                        price: data.unit_price,
+                        sku: data.sku,
+                        unit_price: data.unit_price,
+                        sub_total: data.unit_price,
+                        name:  data.name,
+                        quantity: 1,
+                        item_id: data.id
                     });
                 }
+
+            },
+
+            getItems: function(query)
+            {
+
+                if (query !=null) {
+                    if(query.length > 2) {
+                        var app = this;
+
+                        axios.get('/api/' + app.$route.params.profile + '/back-office/search/items/' + query)
+                        .then(({ data }) =>
+                        {
+                            if (data.length > 0)
+                            {
+                                app.items = [];
+                                for (let i = 0; i < data.length; i++)
+                                {
+                                    app.items.push(data[i]);
+                                }
+                            }
+                        })
+                        .catch(ex => {
+                            console.log(ex);
+                            this.$swal('Error trying to load records.');
+                        });
+                    }
+                }
+
             },
         },
 
@@ -208,17 +277,9 @@ Vue.component('order-form',
         mounted()
         {
             //this.itemscomponent = this.$children;
-            var app = this;
 
-            axios.get('/api/getCustomers/' + app.$route.params.profile)
-            .then(function (resp)
-            {
-                app.customers = resp.data;
-            })
-            .catch(function (resp)
-            {
-                alert(' Could not load Slug, "' + slug + '" on Order Component ');
-            });
+
+
 
         }
     });

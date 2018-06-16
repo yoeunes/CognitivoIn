@@ -29,6 +29,6 @@ class Order extends Model
 
     public function relationship()
     {
-        return $this->belongsTo(Relationship::class);
+        return $this->belongsTo(Relationship::class,'id');
     }
 }

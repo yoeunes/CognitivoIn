@@ -36,9 +36,11 @@
                       <button v-on:click="onShow(invoice)" type="button" class="btn btn-sm btn-secondary js-tooltip-enabled" data-toggle="tooltip" data-original-title="Show">
                           <i class="fa fa-eye"></i>
                       </button>
-                      <button v-on:click="onEdit(invoice)" type="button" class="btn btn-sm btn-secondary js-tooltip-enabled" data-toggle="tooltip" data-original-title="Edit">
-                          <i class="fa fa-pencil"></i>
-                      </button>
+                      <router-link :to="{ name: 'order.form',params: { profile:profile,id:invoice.id} }">
+                          <button  type="button" class="btn btn-sm btn-secondary js-tooltip-enabled" data-toggle="tooltip" data-original-title="Edit">
+                              <i class="fa fa-pencil"></i>
+                          </button>
+                      </router-link>
                       <button v-on:click="onDelete(invoice)" type="button" class="btn btn-sm btn-secondary js-tooltip-enabled" data-toggle="tooltip" data-original-title="Delete">
                           <i class="fa fa-times"></i>
                       </button>

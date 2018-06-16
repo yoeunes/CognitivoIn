@@ -16,6 +16,7 @@ use App\Contract;
 use App\ContractDetail;
 use App\ItemMovement;
 use App\Http\Resources\OrderResource;
+use Swap\Laravel\Facades\Swap;
 use Carbon\Carbon;
 use DB;
 
@@ -30,7 +31,7 @@ class OrderController extends Controller
     */
     public function index(Profile $profile,$filterBy)
     {
-        return OrderResource::collection( Order::with('relationship')
+        return OrderResource::collection( Order::mySales()->with('relationship')
         ->with('details')->paginate(2));
 
 
@@ -97,7 +98,7 @@ class OrderController extends Controller
     {
         $order = Order::where('id', $orderID)
         ->with('details')
-        // ->with('customer')
+        ->with('relationship')
         ->first();
 
         return response()->json($order);
@@ -111,7 +112,7 @@ class OrderController extends Controller
     */
     public function edit(Profile $profile,Order $order)
     {
-        $order = Order::where('id', $order->id)->with('details')->first();
+        $order = Order::where('orders.id', $order->id)->with('details')->with('relationship') ->first();
         return response()->json($order);
     }
 

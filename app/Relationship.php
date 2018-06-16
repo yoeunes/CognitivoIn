@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Scout\Searchable;
 use App\Profile;
+use App\Order;
 
 class Relationship extends Model
 {
@@ -64,5 +65,10 @@ class Relationship extends Model
   public function supplier()
   {
     return $this->belongsTo(Profile::class, 'supplier_id');
+  }
+
+  public function order()
+  {
+    return $this->hasMany(Order::class,'relationship_id');
   }
 }
