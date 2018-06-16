@@ -27,26 +27,7 @@ Route::group(['middleware' => 'auth:api'], function ()
     {
       Route::post('customers/store', 'CustomerController@store');
       Route::post('opportunities/{opportunity}/tasks/checked', 'OpportunityTaskController@taskChecked');
-      Route::resources([
-        'locations' => 'LocationController',
-        'vats' => 'VatController',
-        'contracts' => 'ContractController',
-        'followers' => 'FollowerController',
-        'customers' => 'CustomerController',
-        'suppliers' => 'SupplierController',
-        'items' => 'ItemController',
-        'pipelines' => 'PipelineController',
-        'pipeline-stages' => 'PipelineStageController',
-        'opportunities' => 'OpportunityController',
-        'opportunities/{id}/tasks' => 'OpportunityTaskController',
-        'opportunities/{id}/members' => 'OpportunityMemberController',
-        'opportunities/{id}/items' => 'CartController',
-        'orders' => 'OrderController',
-        'accounts' => 'AccountController',
-        'account-payables' => 'AccountPayableController',
-        'account-receivables' => 'AccountReceivableController',
-        'account-movement' => 'AccountMovementController'
-      ]);
+
 
       Route::prefix('list')->group(function ()
       {
@@ -84,6 +65,8 @@ Route::group(['middleware' => 'auth:api'], function ()
         Route::post('account-receivables', 'AccountReceivableController@search');
       });
 
+
+
       //Annull movements on specific modules
       Route::prefix('transact')->group(function ()
       {
@@ -106,7 +89,27 @@ Route::group(['middleware' => 'auth:api'], function ()
         Route::post('payment-recieved/{id}', 'AccountReceivableController@annull');
       });
 
-
+      Route::resources([
+        'locations' => 'LocationController',
+        'vats' => 'VatController',
+        'contracts' => 'ContractController',
+        'followers' => 'FollowerController',
+        'customers' => 'CustomerController',
+        'suppliers' => 'SupplierController',
+        'items' => 'ItemController',
+        'pipelines' => 'PipelineController',
+        'pipeline-stages' => 'PipelineStageController',
+        'opportunities' => 'OpportunityController',
+        'opportunities/{id}/tasks' => 'OpportunityTaskController',
+        'opportunities/{id}/members' => 'OpportunityMemberController',
+        'opportunities/{id}/items' => 'CartController',
+        'orders' => 'OrderController',
+        'accounts' => 'AccountController',
+        'account-payables' => 'AccountPayableController',
+        'account-receivables' => 'AccountReceivableController',
+        'account-movement' => 'AccountMovementController'
+      ]);
+      
       Route::get('list-currency', 'Api\ApiController@list_currency');
     });
 
