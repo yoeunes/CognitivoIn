@@ -316,17 +316,17 @@ export default {
             axios.post('/api/' + app.profile + '/back-office/contracts/', $data)
             .then(() =>
             {
-                app.onLoad(1);
-                app.onCancel();
-                this.$toast.open({
-                    message: 'Awsome! Your work has been saved',
-                    type: 'is-success'
-                })
+                // app.onLoad(1);
+                // app.onCancel();
+                // this.$toast.open({
+                //     message: 'Awsome! Your work has been saved',
+                //     type: 'is-success'
+                // })
 
 
             })
             .catch(ex => {
-                console.log(ex.response);
+                console.log(ex);
                 this.$toast.open({
                     duration: 5000,
                     message: 'Error trying to save record',
