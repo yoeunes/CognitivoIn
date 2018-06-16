@@ -88,7 +88,7 @@ Route::group(['middleware' => 'auth:api'], function ()
         Route::post('payment-made/{id}', 'AccountPayableController@annul');
         Route::post('payment-recieved/{id}', 'AccountReceivableController@annull');
       });
-  Route::get('list-currency', 'Api\ApiController@list_currency');
+      Route::get('list-currency', 'Api\ApiController@list_currency');
       Route::resources([
         'locations' => 'LocationController',
         'vats' => 'VatController',
