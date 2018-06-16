@@ -210,7 +210,7 @@ Vue.component('order-form',
                 var app = this;
                 if (data!=null) {
                     app.details.push({
-
+                        id:0,
                         price: data.unit_price,
                         sku: data.sku,
                         unit_price: data.unit_price,
