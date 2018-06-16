@@ -151,7 +151,7 @@
                     <p class="text-muted">
                         Mark your working hours to help customers know if your shop is open or not.
                     </p>
-                    <button v-on:click="$parent.onSave($data, false)" class="btn btn-sm btn-alt-primary">
+                    <button v-on:click="onSave($data, false)" class="btn btn-sm btn-alt-primary">
                         <i class="fa fa-plus"></i> @lang('global.AddRow')
                     </button>
                 </div>
@@ -303,7 +303,6 @@ export default {
         onCancel()
         {
             var app = this;
-            app.showForm=false;
             app.id = null;
             app.name = '';
             app.telephone = '';
