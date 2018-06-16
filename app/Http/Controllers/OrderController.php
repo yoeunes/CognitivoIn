@@ -15,6 +15,7 @@ use App\OrderDetail;
 use App\Contract;
 use App\ContractDetail;
 use App\ItemMovement;
+use App\Http\Resources\OrderResource;
 use Carbon\Carbon;
 use DB;
 
@@ -27,13 +28,11 @@ class OrderController extends Controller
     *
     * @return \Illuminate\Http\Response
     */
-    public function index(Profile $profile, $skip)
+    public function index(Profile $profile,$filterBy)
     {
-        $orders = Order::with('relationship')
-        ->with('details')
-        ->skip($skip)
-        ->take(100)
-        ->get();
+        return OrderResource::collection( Order::with('relationship')
+        ->with('details')->paginate(2));
+
 
         return response()->json($orders);
     }

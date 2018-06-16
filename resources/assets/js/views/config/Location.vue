@@ -318,6 +318,7 @@ export default {
 
         onSave($data)
         {
+            console.log($data);
             var app = this;
             axios.post('/api/' + app.profile + '/back-office/locations/', $data)
             .then(() =>
@@ -327,7 +328,7 @@ export default {
                     message: 'Awsome! Your work has been saved',
                     type: 'is-success'
                 })
-
+                  app.onLoad(1);
 
             })
             .catch(ex => {
