@@ -32,26 +32,7 @@ Route::group(['middleware' => 'auth'], function ()
 
     Route::prefix('back-office/{profile}')->group(function ()
     {
-      Route::resources([
-        'locations' => 'LocationController',
-        'vats' => 'VatController',
-        'contracts' => 'ContractController',
-        'followers' => 'FollowerController',
-        'customers' => 'CustomerController',
-        'suppliers' => 'SupplierController',
-        'items' => 'ItemController',
-        'pipelines' => 'PipelineController',
-        'pipeline-stages' => 'PipelineStageController',
-        'opportunities' => 'OpportunityController',
-        'opportunities/{id}/tasks' => 'OpportunityTaskController',
-        'opportunities/{id}/members' => 'OpportunityMemberController',
-        'opportunities/{id}/items' => 'CartController',
-        'orders' => 'OrderController',
-        'accounts' => 'AccountController',
-        'account-payables' => 'AccountPayableController',
-        'account-receivables' => 'AccountReceivableController',
-        'account-movement' => 'AccountMovementController'
-      ]);
+      
         Route::get('{url}', 'NavigationController@index')->where('any', '.*');
     });
 });

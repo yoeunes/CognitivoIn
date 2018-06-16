@@ -313,7 +313,7 @@ export default {
         onSave($data)
         {
             var app = this;
-            axios.post('/back-office/' + app.profile + '/contracts/', $data)
+            axios.post('/api/' + app.profile + '/back-office/contracts/', $data)
             .then(() =>
             {
                 app.onLoad(1);
