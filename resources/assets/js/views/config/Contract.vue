@@ -326,7 +326,7 @@ export default {
 
             })
             .catch(ex => {
-                console.log(ex);
+                console.log(ex.response);
                 this.$toast.open({
                     duration: 5000,
                     message: 'Error trying to save record',
