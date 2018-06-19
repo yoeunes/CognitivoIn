@@ -28,8 +28,8 @@
                 </thead>
                 <tbody>
                     <tr v-for="pipeline in list">
-                        <td>@{{ pipeline.id }}</td>
-                        <td>@{{ pipeline.name }}</td>
+                        <td>{{ pipeline.id }}</td>
+                        <td>{{ pipeline.name }}</td>
                         <td class="text-center">
                             <div class="btn-group">
                                 <button v-on:click="onEdit(pipeline)" type="button" class="btn btn-sm btn-secondary js-tooltip-enabled" data-toggle="tooltip" data-original-title="Edit">
@@ -346,6 +346,7 @@ export default {
             app.id = null;
             app.name = null;
             app.stages = [];
+            app.onLoad(1);
         },
 
 

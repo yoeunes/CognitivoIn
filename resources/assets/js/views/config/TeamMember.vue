@@ -32,13 +32,13 @@
                     <div class="">
                         <tr v-for="followers in list">
                             <td>
-                                <a class="font-w600" href="be_pages_ecom_product_edit.html">@{{ followers.id }}</a>
+                                <a class="font-w600" href="be_pages_ecom_product_edit.html">{{ followers.id }}</a>
                             </td>
                             <td class="d-none d-sm-table-cell">
-                                @{{ followers.profile.name }}
+                                {{ followers.profile.name }}
                             </td>
                             <td class="d-none d-sm-table-cell">
-                                @{{ followers.profile.address }}
+                                {{ followers.profile.address }}
                             </td>
                             <td v-if="followers.role===1">
                                 Admin
@@ -56,9 +56,16 @@
                                 Follower
                             </td>
                             <td class="text-right">
-                                <a @click="onEdit(followers,false)" class="m-btn btn btn-secondary"><i class="la la-pencil m--font-brand"></i></a>
-                                <a @click="onDelete(followers)" class="m-btn btn btn-secondary"><i class="la la-trash m--font-danger"></i></a>
+                                <div class="btn-group">
+                                    <button v-on:click="onEdit(followers)" type="button" class="btn btn-sm btn-secondary js-tooltip-enabled" data-toggle="tooltip" data-original-title="Edit">
+                                        <i class="fa fa-pencil"></i>
+                                    </button>
+                                    <button v-on:click="onDelete(followers)" type="button" class="btn btn-sm btn-secondary js-tooltip-enabled" data-toggle="tooltip" data-original-title="Delete">
+                                        <i class="fa fa-times"></i>
+                                    </button>
+                                </div>
                             </td>
+
                         </tr>
                     </div>
                 </tbody>
@@ -238,6 +245,7 @@ export default {
             app.profile_id = null;
             app.role = null;
             app.selectname = '';
+            app.onLoad(1);
         },
 
         onSave($data)

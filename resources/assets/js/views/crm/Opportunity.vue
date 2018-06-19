@@ -29,10 +29,10 @@
         </thead>
         <tbody>
             <tr v-for="opportunity in list">
-                <td>@{{ opportunity.id }}</td>
-                <td><a @click="onShow(opportunity)" href="#">@{{ opportunity.name }}</a></td>
-                <td v-if="opportunity.relationship !== null">@{{ opportunity.relationship.customer_alias }}</td> <td v-else></td>
-                <td>@{{ opportunity.value }}</td>
+                <td>{{ opportunity.id }}</td>
+                <td><a @click="onShow(opportunity)" href="#">{{ opportunity.name }}</a></td>
+                <td v-if="opportunity.relationship !== null">{{ opportunity.relationship.customer_alias }}</td> <td v-else></td>
+                <td>{{ opportunity.value }}</td>
                 <td class="text-center">
                     <div class="btn-group">
                       <router-link :to="{ name: 'opportunity.show',params: { profile:profile,id:opportunity.id,user_id:userid} }">

@@ -30,22 +30,21 @@
                     <div class="">
                         <tr v-for="contract in list">
                             <td>
-                                <a class="font-w600" href="be_pages_ecom_product_edit.html">@{{ contract.id }}</a>
+                                <a class="font-w600" href="be_pages_ecom_product_edit.html">{{ contract.id }}</a>
                             </td>
                             <td class="d-none d-sm-table-cell">
                                 {{ contract.name }}
                             </td>
 
                             <td class="text-right">
-
-                                <button v-on:click="onEdit(contract)" type="button" class="btn btn-sm btn-secondary js-tooltip-enabled" data-toggle="tooltip" data-original-title="Edit">
-                                    <i class="fa fa-pencil"></i>
-                                </button>
-
-
-                                <button v-on:click="onDelete(contract)" type="button" class="btn btn-sm btn-secondary js-tooltip-enabled" data-toggle="tooltip" data-original-title="Delete">
-                                    <i class="fa fa-times"></i>
-                                </button>
+                                <div class="btn-group">
+                                    <button v-on:click="onEdit(contract)" type="button" class="btn btn-sm btn-secondary js-tooltip-enabled" data-toggle="tooltip" data-original-title="Edit">
+                                        <i class="fa fa-pencil"></i>
+                                    </button>
+                                    <button v-on:click="onDelete(contract)" type="button" class="btn btn-sm btn-secondary js-tooltip-enabled" data-toggle="tooltip" data-original-title="Delete">
+                                        <i class="fa fa-times"></i>
+                                    </button>
+                                </div>
                             </td>
                         </tr>
                     </div>
@@ -239,6 +238,7 @@ export default {
             app.id = null;
             app.name = '';
             app.details = [];
+            app.onLoad(1);
         },
         addDetail: function()
         {
@@ -316,12 +316,12 @@ export default {
             axios.post('/api/' + app.profile + '/back-office/contracts/', $data)
             .then(() =>
             {
-                // app.onLoad(1);
-                // app.onCancel();
-                // this.$toast.open({
-                //     message: 'Awsome! Your work has been saved',
-                //     type: 'is-success'
-                // })
+
+                app.onCancel();
+                this.$toast.open({
+                    message: 'Awsome! Your work has been saved',
+                    type: 'is-success'
+                })
 
 
             })

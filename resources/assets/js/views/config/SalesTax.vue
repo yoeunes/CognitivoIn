@@ -30,15 +30,21 @@
                     <div class="">
                         <tr v-for="vat in list">
                             <td>
-                                <a class="font-w600" href="be_pages_ecom_product_edit.html">@{{ vat.id }}</a>
+                                <a class="font-w600" href="be_pages_ecom_product_edit.html">{{ vat.id }}</a>
                             </td>
                             <td class="d-none d-sm-table-cell">
-                                @{{ vat.name }}
+                                {{ vat.name }}
                             </td>
 
                             <td class="text-right">
-                                <a @click="onEdit(vat,false)" class="m-btn btn btn-secondary"><i class="la la-pencil m--font-brand"></i></a>
-                                <a @click="onDelete(vat)" class="m-btn btn btn-secondary"><i class="la la-trash m--font-danger"></i></a>
+                                <div class="btn-group">
+                                    <button v-on:click="onEdit(vat)" type="button" class="btn btn-sm btn-secondary js-tooltip-enabled" data-toggle="tooltip" data-original-title="Edit">
+                                        <i class="fa fa-pencil"></i>
+                                    </button>
+                                    <button v-on:click="onDelete(vat)" type="button" class="btn btn-sm btn-secondary js-tooltip-enabled" data-toggle="tooltip" data-original-title="Delete">
+                                        <i class="fa fa-times"></i>
+                                    </button>
+                                </div>
                             </td>
                         </tr>
                     </div>
@@ -261,6 +267,7 @@ export default {
             app.id = null;
             app.name = '';
             app.details = [];
+            app.onLoad(1);
         },
         addDetail: function()
         {

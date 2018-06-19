@@ -43,15 +43,19 @@
               {{ item.unit_price }}
             </td>
             <td >
-              <router-link :to="{ name: 'item.form',params: { profile:profile,id:item.id} }">
-                <button  type="button" class="btn btn-sm btn-secondary js-tooltip-enabled" data-toggle="tooltip" data-original-title="Edit">
-                  <i class="fa fa-pencil"></i>
-                </button>
-              </router-link>
+              <div class="btn-group">
 
-              <button v-on:click="onDelete(item)" type="button" class="btn btn-sm btn-secondary js-tooltip-enabled" data-toggle="tooltip" data-original-title="Delete">
-                <i class="fa fa-times"></i>
-              </button>
+
+                <router-link :to="{ name: 'item.form',params: { profile:profile,id:item.id} }">
+                  <button  type="button" class="btn btn-sm btn-secondary js-tooltip-enabled" data-toggle="tooltip" data-original-title="Edit">
+                    <i class="fa fa-pencil"></i>
+                  </button>
+                </router-link>
+
+                <button v-on:click="onDelete(item)" type="button" class="btn btn-sm btn-secondary js-tooltip-enabled" data-toggle="tooltip" data-original-title="Delete">
+                  <i class="fa fa-times"></i>
+                </button>
+              </div>
             </td>
           </tr>
         </div>

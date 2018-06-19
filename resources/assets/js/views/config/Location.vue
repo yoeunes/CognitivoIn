@@ -25,16 +25,16 @@
                             #
                         </th>
                         <th class="d-none d-sm-table-cell">
-                            @lang('global.Name')
+                            lang('global.Name')
                         </th>
                         <th>
-                            @lang('global.City')
+                            lang('global.City')
                         </th>
                         <th class="d-none d-md-table-cell">
-                            @lang('global.State')
+                            lang('global.State')
                         </th>
                         <th class="text-right">
-                            @lang('global.Actions')
+                            lang('global.Actions')
                         </th>
                     </tr>
                 </thead>
@@ -42,16 +42,16 @@
                     <div class="">
                         <tr v-for="location in list">
                             <td>
-                                @{{ location.id }}
+                                {{ location.id }}
                             </td>
                             <td class="d-none d-sm-table-cell">
-                                <a href="#" @click="onEdit(location)">@{{ location.name }}</a>
+                                <a href="#" @click="onEdit(location)">{{ location.name }}</a>
                             </td>
                             <td>
-                                @{{ location.city }}
+                                {{ location.city }}
                             </td>
                             <td>
-                                @{{ location.state }}
+                                {{ location.state }}
                             </td>
                             <td class="text-right">
                                 <div class="btn-group">
@@ -110,7 +110,7 @@
                     <div class="form-group row">
                         <div class="col-12">
                             <label>Address</label>
-                            <textarea class="form-control form-control-lg">@{{ address }}</textarea>
+                            <textarea class="form-control form-control-lg">{{ address }}</textarea>
                         </div>
                     </div>
                     <div class="form-group row">
@@ -235,41 +235,41 @@ export default {
             app.showForm=true;
         },
         onDelete($data)
-          {
+        {
             var app = this;
 
             this.$swal({
-              title: 'Delete Record',
-              text: "Sure? This action is non-reversable",
-              type: 'question',
-              showCancelButton: true,
-              confirmButtonText: 'Yes, delete it!'
+                title: 'Delete Record',
+                text: "Sure? This action is non-reversable",
+                type: 'question',
+                showCancelButton: true,
+                confirmButtonText: 'Yes, delete it!'
             })
             .then(() => {
 
-              axios.delete('/api/' + this.profile + '/back-office/locations/' + $data.id)
-              .then(() => {
+                axios.delete('/api/' + this.profile + '/back-office/locations/' + $data.id)
+                .then(() => {
 
-                let index = this.list.findIndex(x => x.id === $data.id);
-                this.list.splice(index, 1);
+                    let index = this.list.findIndex(x => x.id === $data.id);
+                    this.list.splice(index, 1);
 
-                this.$toast.open({
-                  duration: 750,
-                  message: 'The record has been deleted',
-                  position: 'is-bottom-right',
-                  type: 'is-danger'
+                    this.$toast.open({
+                        duration: 750,
+                        message: 'The record has been deleted',
+                        position: 'is-bottom-right',
+                        type: 'is-danger'
+                    })
                 })
-              })
-              .catch(ex => {
-                console.log(ex.response);
-                this.$toast.open({
-                  duration: 5000,
-                  message: 'Error trying to delete record',
-                  type: 'is-danger'
-                })
-              });
+                .catch(ex => {
+                    console.log(ex.response);
+                    this.$toast.open({
+                        duration: 5000,
+                        message: 'Error trying to delete record',
+                        type: 'is-danger'
+                    })
+                });
             });
-          },
+        },
         onEdit($data)
         {
             var app = this;
@@ -313,6 +313,8 @@ export default {
             app.country = '';
 
             app.hours = [];
+            app.showForm=false;
+            app.onLoad(1);
         },
 
         onSave($data)
@@ -327,7 +329,7 @@ export default {
                     message: 'Awsome! Your work has been saved',
                     type: 'is-success'
                 })
-                  app.onLoad(1);
+
 
             })
             .catch(ex => {
@@ -338,7 +340,7 @@ export default {
                     type: 'is-danger'
                 })
             });
-              app.onLoad(1);
+
         }
 
     },

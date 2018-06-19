@@ -27,7 +27,7 @@
 
             <b-field label="@lang('back-office.Default_Contract')" v-if="credit_limit != ''">
               <select v-model="contract_ref" required class="custom-select" >
-                <option v-for="contract in contracts" :value="contract.id">@{{ contract.name }}</option>
+                <option v-for="contract in contracts" :value="contract.id">{{ contract.name }}</option>
               </select>
             </b-field>
           </div>

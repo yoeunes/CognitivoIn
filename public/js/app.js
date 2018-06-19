@@ -58716,6 +58716,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             app.country = '';
 
             app.hours = [];
+            app.showForm = false;
+            app.onLoad(1);
         },
         onSave: function onSave($data) {
             var _this3 = this;
@@ -58728,7 +58730,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     message: 'Awsome! Your work has been saved',
                     type: 'is-success'
                 });
-                app.onLoad(1);
             }).catch(function (ex) {
                 console.log(ex.response);
                 _this3.$toast.open({
@@ -58737,7 +58738,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     type: 'is-danger'
                 });
             });
-            app.onLoad(1);
         }
     },
     mounted: function mounted() {
@@ -58789,7 +58789,7 @@ var render = function() {
                       return _c("tr", [
                         _c("td", [
                           _vm._v(
-                            "\n                                @" +
+                            "\n                                " +
                               _vm._s(location.id) +
                               "\n                            "
                           )
@@ -58806,13 +58806,13 @@ var render = function() {
                                 }
                               }
                             },
-                            [_vm._v("@" + _vm._s(location.name))]
+                            [_vm._v(_vm._s(location.name))]
                           )
                         ]),
                         _vm._v(" "),
                         _c("td", [
                           _vm._v(
-                            "\n                                @" +
+                            "\n                                " +
                               _vm._s(location.city) +
                               "\n                            "
                           )
@@ -58820,7 +58820,7 @@ var render = function() {
                         _vm._v(" "),
                         _c("td", [
                           _vm._v(
-                            "\n                                @" +
+                            "\n                                " +
                               _vm._s(location.state) +
                               "\n                            "
                           )
@@ -58973,7 +58973,7 @@ var render = function() {
                     _c(
                       "textarea",
                       { staticClass: "form-control form-control-lg" },
-                      [_vm._v("@" + _vm._s(_vm.address))]
+                      [_vm._v(_vm._s(_vm.address))]
                     )
                   ])
                 ]),
@@ -59302,25 +59302,25 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", { staticClass: "d-none d-sm-table-cell" }, [
           _vm._v(
-            "\n                            @lang('global.Name')\n                        "
+            "\n                            lang('global.Name')\n                        "
           )
         ]),
         _vm._v(" "),
         _c("th", [
           _vm._v(
-            "\n                            @lang('global.City')\n                        "
+            "\n                            lang('global.City')\n                        "
           )
         ]),
         _vm._v(" "),
         _c("th", { staticClass: "d-none d-md-table-cell" }, [
           _vm._v(
-            "\n                            @lang('global.State')\n                        "
+            "\n                            lang('global.State')\n                        "
           )
         ]),
         _vm._v(" "),
         _c("th", { staticClass: "text-right" }, [
           _vm._v(
-            "\n                            @lang('global.Actions')\n                        "
+            "\n                            lang('global.Actions')\n                        "
           )
         ])
       ])
@@ -59425,6 +59425,12 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -59674,6 +59680,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             app.id = null;
             app.name = '';
             app.details = [];
+            app.onLoad(1);
         },
 
         addDetail: function addDetail() {
@@ -59768,52 +59775,58 @@ var render = function() {
                               staticClass: "font-w600",
                               attrs: { href: "be_pages_ecom_product_edit.html" }
                             },
-                            [_vm._v("@" + _vm._s(vat.id))]
+                            [_vm._v(_vm._s(vat.id))]
                           )
                         ]),
                         _vm._v(" "),
                         _c("td", { staticClass: "d-none d-sm-table-cell" }, [
                           _vm._v(
-                            "\n                                @" +
+                            "\n                                " +
                               _vm._s(vat.name) +
                               "\n                            "
                           )
                         ]),
                         _vm._v(" "),
                         _c("td", { staticClass: "text-right" }, [
-                          _c(
-                            "a",
-                            {
-                              staticClass: "m-btn btn btn-secondary",
-                              on: {
-                                click: function($event) {
-                                  _vm.onEdit(vat, false)
+                          _c("div", { staticClass: "btn-group" }, [
+                            _c(
+                              "button",
+                              {
+                                staticClass:
+                                  "btn btn-sm btn-secondary js-tooltip-enabled",
+                                attrs: {
+                                  type: "button",
+                                  "data-toggle": "tooltip",
+                                  "data-original-title": "Edit"
+                                },
+                                on: {
+                                  click: function($event) {
+                                    _vm.onEdit(vat)
+                                  }
                                 }
-                              }
-                            },
-                            [
-                              _c("i", {
-                                staticClass: "la la-pencil m--font-brand"
-                              })
-                            ]
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "a",
-                            {
-                              staticClass: "m-btn btn btn-secondary",
-                              on: {
-                                click: function($event) {
-                                  _vm.onDelete(vat)
+                              },
+                              [_c("i", { staticClass: "fa fa-pencil" })]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "button",
+                              {
+                                staticClass:
+                                  "btn btn-sm btn-secondary js-tooltip-enabled",
+                                attrs: {
+                                  type: "button",
+                                  "data-toggle": "tooltip",
+                                  "data-original-title": "Delete"
+                                },
+                                on: {
+                                  click: function($event) {
+                                    _vm.onDelete(vat)
+                                  }
                                 }
-                              }
-                            },
-                            [
-                              _c("i", {
-                                staticClass: "la la-trash m--font-danger"
-                              })
-                            ]
-                          )
+                              },
+                              [_c("i", { staticClass: "fa fa-times" })]
+                            )
+                          ])
                         ])
                       ])
                     })
@@ -60343,7 +60356,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -60422,6 +60434,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             app.id = null;
             app.name = '';
             app.details = [];
+            app.onLoad(1);
         },
 
         addDetail: function addDetail() {
@@ -60496,14 +60509,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
             var app = this;
             axios.post('/api/' + app.profile + '/back-office/contracts/', $data).then(function () {
-                // app.onLoad(1);
-                // app.onCancel();
-                // this.$toast.open({
-                //     message: 'Awsome! Your work has been saved',
-                //     type: 'is-success'
-                // })
 
-
+                app.onCancel();
+                _this3.$toast.open({
+                    message: 'Awsome! Your work has been saved',
+                    type: 'is-success'
+                });
             }).catch(function (ex) {
                 console.log(ex);
                 _this3.$toast.open({
@@ -60568,7 +60579,7 @@ var render = function() {
                               staticClass: "font-w600",
                               attrs: { href: "be_pages_ecom_product_edit.html" }
                             },
-                            [_vm._v("@" + _vm._s(contract.id))]
+                            [_vm._v(_vm._s(contract.id))]
                           )
                         ]),
                         _vm._v(" "),
@@ -60581,43 +60592,45 @@ var render = function() {
                         ]),
                         _vm._v(" "),
                         _c("td", { staticClass: "text-right" }, [
-                          _c(
-                            "button",
-                            {
-                              staticClass:
-                                "btn btn-sm btn-secondary js-tooltip-enabled",
-                              attrs: {
-                                type: "button",
-                                "data-toggle": "tooltip",
-                                "data-original-title": "Edit"
-                              },
-                              on: {
-                                click: function($event) {
-                                  _vm.onEdit(contract)
+                          _c("div", { staticClass: "btn-group" }, [
+                            _c(
+                              "button",
+                              {
+                                staticClass:
+                                  "btn btn-sm btn-secondary js-tooltip-enabled",
+                                attrs: {
+                                  type: "button",
+                                  "data-toggle": "tooltip",
+                                  "data-original-title": "Edit"
+                                },
+                                on: {
+                                  click: function($event) {
+                                    _vm.onEdit(contract)
+                                  }
                                 }
-                              }
-                            },
-                            [_c("i", { staticClass: "fa fa-pencil" })]
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "button",
-                            {
-                              staticClass:
-                                "btn btn-sm btn-secondary js-tooltip-enabled",
-                              attrs: {
-                                type: "button",
-                                "data-toggle": "tooltip",
-                                "data-original-title": "Delete"
                               },
-                              on: {
-                                click: function($event) {
-                                  _vm.onDelete(contract)
+                              [_c("i", { staticClass: "fa fa-pencil" })]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "button",
+                              {
+                                staticClass:
+                                  "btn btn-sm btn-secondary js-tooltip-enabled",
+                                attrs: {
+                                  type: "button",
+                                  "data-toggle": "tooltip",
+                                  "data-original-title": "Delete"
+                                },
+                                on: {
+                                  click: function($event) {
+                                    _vm.onDelete(contract)
+                                  }
                                 }
-                              }
-                            },
-                            [_c("i", { staticClass: "fa fa-times" })]
-                          )
+                              },
+                              [_c("i", { staticClass: "fa fa-times" })]
+                            )
+                          ])
                         ])
                       ])
                     })
@@ -61153,6 +61166,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -61257,6 +61277,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             app.profile_id = null;
             app.role = null;
             app.selectname = '';
+            app.onLoad(1);
         },
         onSave: function onSave($data) {
             var _this3 = this;
@@ -61358,13 +61379,13 @@ var render = function() {
                               staticClass: "font-w600",
                               attrs: { href: "be_pages_ecom_product_edit.html" }
                             },
-                            [_vm._v("@" + _vm._s(followers.id))]
+                            [_vm._v(_vm._s(followers.id))]
                           )
                         ]),
                         _vm._v(" "),
                         _c("td", { staticClass: "d-none d-sm-table-cell" }, [
                           _vm._v(
-                            "\n                                @" +
+                            "\n                                " +
                               _vm._s(followers.profile.name) +
                               "\n                            "
                           )
@@ -61372,7 +61393,7 @@ var render = function() {
                         _vm._v(" "),
                         _c("td", { staticClass: "d-none d-sm-table-cell" }, [
                           _vm._v(
-                            "\n                                @" +
+                            "\n                                " +
                               _vm._s(followers.profile.address) +
                               "\n                            "
                           )
@@ -61419,39 +61440,45 @@ var render = function() {
                           : _vm._e(),
                         _vm._v(" "),
                         _c("td", { staticClass: "text-right" }, [
-                          _c(
-                            "a",
-                            {
-                              staticClass: "m-btn btn btn-secondary",
-                              on: {
-                                click: function($event) {
-                                  _vm.onEdit(followers, false)
+                          _c("div", { staticClass: "btn-group" }, [
+                            _c(
+                              "button",
+                              {
+                                staticClass:
+                                  "btn btn-sm btn-secondary js-tooltip-enabled",
+                                attrs: {
+                                  type: "button",
+                                  "data-toggle": "tooltip",
+                                  "data-original-title": "Edit"
+                                },
+                                on: {
+                                  click: function($event) {
+                                    _vm.onEdit(followers)
+                                  }
                                 }
-                              }
-                            },
-                            [
-                              _c("i", {
-                                staticClass: "la la-pencil m--font-brand"
-                              })
-                            ]
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "a",
-                            {
-                              staticClass: "m-btn btn btn-secondary",
-                              on: {
-                                click: function($event) {
-                                  _vm.onDelete(followers)
+                              },
+                              [_c("i", { staticClass: "fa fa-pencil" })]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "button",
+                              {
+                                staticClass:
+                                  "btn btn-sm btn-secondary js-tooltip-enabled",
+                                attrs: {
+                                  type: "button",
+                                  "data-toggle": "tooltip",
+                                  "data-original-title": "Delete"
+                                },
+                                on: {
+                                  click: function($event) {
+                                    _vm.onDelete(followers)
+                                  }
                                 }
-                              }
-                            },
-                            [
-                              _c("i", {
-                                staticClass: "la la-trash m--font-danger"
-                              })
-                            ]
-                          )
+                              },
+                              [_c("i", { staticClass: "fa fa-times" })]
+                            )
+                          ])
                         ])
                       ])
                     })
@@ -62148,6 +62175,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             app.id = null;
             app.name = null;
             app.stages = [];
+            app.onLoad(1);
         },
         onSave: function onSave($data) {
             var _this4 = this;
@@ -62214,9 +62242,9 @@ var render = function() {
                 "tbody",
                 _vm._l(_vm.list, function(pipeline) {
                   return _c("tr", [
-                    _c("td", [_vm._v("@" + _vm._s(pipeline.id))]),
+                    _c("td", [_vm._v(_vm._s(pipeline.id))]),
                     _vm._v(" "),
-                    _c("td", [_vm._v("@" + _vm._s(pipeline.name))]),
+                    _c("td", [_vm._v(_vm._s(pipeline.name))]),
                     _vm._v(" "),
                     _c("td", { staticClass: "text-center" }, [
                       _c("div", { staticClass: "btn-group" }, [
@@ -62994,7 +63022,7 @@ var render = function() {
           "tbody",
           _vm._l(_vm.list, function(opportunity) {
             return _c("tr", [
-              _c("td", [_vm._v("@" + _vm._s(opportunity.id))]),
+              _c("td", [_vm._v(_vm._s(opportunity.id))]),
               _vm._v(" "),
               _c("td", [
                 _c(
@@ -63007,19 +63035,17 @@ var render = function() {
                       }
                     }
                   },
-                  [_vm._v("@" + _vm._s(opportunity.name))]
+                  [_vm._v(_vm._s(opportunity.name))]
                 )
               ]),
               _vm._v(" "),
               opportunity.relationship !== null
                 ? _c("td", [
-                    _vm._v(
-                      "@" + _vm._s(opportunity.relationship.customer_alias)
-                    )
+                    _vm._v(_vm._s(opportunity.relationship.customer_alias))
                   ])
                 : _c("td"),
               _vm._v(" "),
-              _c("td", [_vm._v("@" + _vm._s(opportunity.value))]),
+              _c("td", [_vm._v(_vm._s(opportunity.value))]),
               _vm._v(" "),
               _c("td", { staticClass: "text-center" }, [
                 _c(
@@ -68856,7 +68882,7 @@ var render = function() {
                                 return _c(
                                   "option",
                                   { domProps: { value: contract.id } },
-                                  [_vm._v("@" + _vm._s(contract.name))]
+                                  [_vm._v(_vm._s(contract.name))]
                                 )
                               })
                             )
@@ -70593,6 +70619,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -70742,57 +70772,60 @@ var render = function() {
                   )
                 ]),
                 _vm._v(" "),
-                _c(
-                  "td",
-                  [
-                    _c(
-                      "router-link",
-                      {
-                        attrs: {
-                          to: {
-                            name: "item.form",
-                            params: { profile: _vm.profile, id: item.id }
-                          }
-                        }
-                      },
-                      [
-                        _c(
-                          "button",
-                          {
-                            staticClass:
-                              "btn btn-sm btn-secondary js-tooltip-enabled",
-                            attrs: {
-                              type: "button",
-                              "data-toggle": "tooltip",
-                              "data-original-title": "Edit"
+                _c("td", [
+                  _c(
+                    "div",
+                    { staticClass: "btn-group" },
+                    [
+                      _c(
+                        "router-link",
+                        {
+                          attrs: {
+                            to: {
+                              name: "item.form",
+                              params: { profile: _vm.profile, id: item.id }
                             }
-                          },
-                          [_c("i", { staticClass: "fa fa-pencil" })]
-                        )
-                      ]
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "button",
-                      {
-                        staticClass:
-                          "btn btn-sm btn-secondary js-tooltip-enabled",
-                        attrs: {
-                          type: "button",
-                          "data-toggle": "tooltip",
-                          "data-original-title": "Delete"
-                        },
-                        on: {
-                          click: function($event) {
-                            _vm.onDelete(item)
                           }
-                        }
-                      },
-                      [_c("i", { staticClass: "fa fa-times" })]
-                    )
-                  ],
-                  1
-                )
+                        },
+                        [
+                          _c(
+                            "button",
+                            {
+                              staticClass:
+                                "btn btn-sm btn-secondary js-tooltip-enabled",
+                              attrs: {
+                                type: "button",
+                                "data-toggle": "tooltip",
+                                "data-original-title": "Edit"
+                              }
+                            },
+                            [_c("i", { staticClass: "fa fa-pencil" })]
+                          )
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "button",
+                        {
+                          staticClass:
+                            "btn btn-sm btn-secondary js-tooltip-enabled",
+                          attrs: {
+                            type: "button",
+                            "data-toggle": "tooltip",
+                            "data-original-title": "Delete"
+                          },
+                          on: {
+                            click: function($event) {
+                              _vm.onDelete(item)
+                            }
+                          }
+                        },
+                        [_c("i", { staticClass: "fa fa-times" })]
+                      )
+                    ],
+                    1
+                  )
+                ])
               ])
             })
           )
