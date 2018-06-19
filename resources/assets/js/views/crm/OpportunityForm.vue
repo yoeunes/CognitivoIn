@@ -108,7 +108,7 @@ export default {
     onSave($data)
     {
       var app = this;
-      axios.post('/api/' + app.profile + '/back-office/opportunities/', $data)
+      axios.post('/api/' + app.profile + '/back-office/opportunities', $data)
       .then(() =>
       {
         this.$toast.open({

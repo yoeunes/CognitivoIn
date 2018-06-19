@@ -293,7 +293,7 @@ export default {
         onSave($data)
         {
             var app = this;
-            axios.post('/api/' + app.profile + '/back-office/vats/', $data)
+            axios.post('/api/' + app.profile + '/back-office/vats', $data)
             .then(() =>
             {
                 app.onCancel();

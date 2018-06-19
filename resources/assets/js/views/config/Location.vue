@@ -321,7 +321,7 @@ export default {
         {
             console.log($data);
             var app = this;
-            axios.post('/api/' + app.profile + '/back-office/locations/', $data)
+            axios.post('/api/' + app.profile + '/back-office/locations', $data)
             .then(() =>
             {
                 app.onCancel();
