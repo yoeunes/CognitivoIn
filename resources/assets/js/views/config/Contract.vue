@@ -313,7 +313,7 @@ export default {
         onSave($data)
         {
             var app = this;
-            axios.post('/' + app.profile + '/back-office/contracts/', $data)
+            axios.post('/api/' + app.profile + '/back-office/contracts', $data)
             .then(() =>
             {
 
@@ -326,7 +326,7 @@ export default {
 
             })
             .catch(ex => {
-                console.log(ex.response);
+                console.log(ex);
                 this.$toast.open({
                     duration: 5000,
                     message: 'Error trying to save record',
