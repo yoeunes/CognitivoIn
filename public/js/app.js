@@ -69274,20 +69274,19 @@ var render = function() {
           "tbody",
           _vm._l(_vm.list, function(invoice) {
             return _c("tr", [
-              _c("td", [_vm._v("@" + _vm._s(invoice.date))]),
+              _c("td", [_vm._v(_vm._s(invoice.date))]),
               _vm._v(" "),
               _c("td", [
                 _vm._v(
-                  "@" +
-                    _vm._s(
-                      invoice.relationship != null
-                        ? invoice.relationship.customer_alias
-                        : "N/A"
-                    )
+                  _vm._s(
+                    invoice.relationship != null
+                      ? invoice.relationship.customer_alias
+                      : "N/A"
+                  )
                 )
               ]),
               _vm._v(" "),
-              _c("td", [_vm._v("@" + _vm._s(invoice.number))]),
+              _c("td", [_vm._v(_vm._s(invoice.number))]),
               _vm._v(" "),
               _c("td", { staticClass: "text-center" }, [
                 _c(
