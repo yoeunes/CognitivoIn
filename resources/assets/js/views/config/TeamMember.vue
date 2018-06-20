@@ -251,7 +251,7 @@ export default {
         onSave($data)
         {
             var app = this;
-            axios.post('/api/' + app.profile + '/back-office/followers', $data)
+            axios.post('/api/' + app.profile + '/back-office/followers/', $data)
             .then(() =>
             {
                 app.onCancel();
