@@ -49,7 +49,7 @@ class FollowerController extends Controller
     * @param  \Illuminate\Http\Request  $request
     * @return \Illuminate\Http\Response
     */
-    public function store(Request $request, Profile $profile)
+    public function store(Profile $profile, Request $request)
     {
 
         $followable = Followable::where('id', $request->id)->first() ?? new Followable();
