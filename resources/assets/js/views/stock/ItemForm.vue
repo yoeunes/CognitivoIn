@@ -167,6 +167,7 @@ export default {
     if (app.id>0) {
 
 
+
       axios.get('/api/' + app.profile + '/back-office/items/' + app.id + '/edit')
       .then(function (response) {
         console.log(app);
