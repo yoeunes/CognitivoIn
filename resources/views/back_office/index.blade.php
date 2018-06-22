@@ -163,11 +163,10 @@
                         <div class="content-side content-side-full">
                             <ul class="nav-main">
                                 <li>
-                                    <a href="#">
-                                        <router-link :to="{ name: 'dashboard' ,params: { profile:'{{ request()->route('profile')->slug}}'} }">
-                                            @lang('back-office.Dashboard')
-                                        </router-link>
-                                    </a>
+                                    <router-link :to="{ name: 'dashboard' ,params: { profile:'{{ request()->route('profile')->slug}}'} }">
+                                        <i class="si si-chart"></i>
+                                        @lang('back-office.Dashboard')
+                                    </router-link>
                                 </li>
 
                                 <li>
@@ -184,7 +183,7 @@
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="#">
+                                            <a class="nav-submenu" href="#">
                                                 <router-link :to="{ name: 'location.index' ,params: { profile:'{{ request()->route('profile')->slug}}'} }">
                                                     @lang('back-office.Shops and Locations')
                                                 </router-link>
@@ -215,12 +214,10 @@
                                 </li>
 
                                 <li>
-                                    <a href="#">
-
-                                        <router-link :to="{ name: 'item.index',params: { profile:'{{ request()->route('profile')->slug}}'} }">
-                                            @lang('back-office.Products and Services')
-                                        </router-link>
-                                    </a>
+                                    <router-link :to="{ name: 'item.index',params: { profile:'{{ request()->route('profile')->slug}}'} }">
+                                        <i class="si si-puzzle"></i>
+                                        @lang('back-office.Products and Services')
+                                    </router-link>
                                 </li>
 
                                 <li class="nav-main-heading">
@@ -521,7 +518,10 @@
         <!-- END Header -->
 
         <!-- Main Container -->
-        <router-view></router-view>
+        <div class="container">
+            <router-view></router-view>
+
+        </div>
         <!-- END Main Container -->
 
         <!-- Footer -->
