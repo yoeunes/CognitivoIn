@@ -21,7 +21,7 @@ class ItemController extends Controller
     //for list of items
     public function index(Profile $profile,  $filterBy)
     {
-      return response()->json($profile);
+      return response()->json(Item::GetItems($profile->id));
         return ItemResource::collection(Item::GetItems($profile->id)->paginate(2));
 
         // $items = Item::GetItems($profile->id)
