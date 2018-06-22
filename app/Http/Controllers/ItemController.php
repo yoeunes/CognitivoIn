@@ -119,18 +119,6 @@ class ItemController extends Controller
     }
 
     /**
-    * Update the specified resource in storage.
-    *
-    * @param  \Illuminate\Http\Request  $request
-    * @param  \App\Item  $item
-    * @return \Illuminate\Http\Response
-    */
-    public function update(Request $request, Profile $profile, Item $item)
-    {
-
-    }
-
-    /**
     * Remove the specified resource from storage.
     *
     * @param  \App\Item  $item
@@ -140,8 +128,28 @@ class ItemController extends Controller
     {
         if ($item->profile_id == $profile->id)
         {
+            //Soft Delete
             $item->delete();
             return response()->json('Done', 200);
+        }
+
+        return response()->json('Resource not found', 401);
+    }
+
+    //Force Destroy an Item
+    public function forceDestroy(Profile $profile, Item $item)
+    {
+        if ($item->profile_id == $profile->id)
+        {
+            try
+            {
+                $item->forceDelete();
+                return response()->json('Done', 200);
+            }
+            catch (\Exception $e)
+            {
+                return response()->json('Resource used elsewhere. Unable to Delete.', 500);
+            }
         }
 
         return response()->json('Resource not found', 401);
@@ -154,10 +162,22 @@ class ItemController extends Controller
         $faq->item_id = $item->id;
         $faq->profile_id = Auth::user()->profile_id;
         $faq->type = 1; //Question
-
         $faq->save();
 
-        return redirect()->back();
+        return response()->json('Done', 200);
+    }
+
+    public function answerQuestion(Request $request, $profileSlug, Item $item)
+    {
+        $faq = new ItemFaq();
+        $faq->item_faq_id = $request->item_faq_id;
+        $faq->comment = $request->answer;
+        $faq->item_id = $item->id;
+        $faq->profile_id = Auth::user()->profile_id;
+        $faq->type = 2; //Answer
+        $faq->save();
+
+        return response()->json('Done', 200);
     }
 
     public function rateItem($profileSlug, Item $item, $intRate)
@@ -174,8 +194,7 @@ class ItemController extends Controller
 
         $rate->rating = $intRate;
         $rate->save();
-
-        return redirect()->back();
+        return response()->json('Done', 200);
     }
 
     //TODO: Change this query. keep item search simple
