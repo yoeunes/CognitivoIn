@@ -7,9 +7,9 @@ use App\ItemReview;
 use App\ItemFaq;
 use App\Profile;
 use App\Http\Resources\ItemResource;
-use DB;
 use Illuminate\Http\Request;
 use Auth;
+use DB;
 
 class ItemController extends Controller
 {
@@ -21,15 +21,7 @@ class ItemController extends Controller
     //for list of items
     public function index(Profile $profile,  $filterBy)
     {
-     
         return ItemResource::collection(Item::GetItems($profile->id)->paginate(2));
-
-        // $items = Item::GetItems($profile->id)
-        // ->skip(0)
-        // ->take($skip * 100)
-        // ->get();
-
-        //return response()->json($items);
     }
 
     public function get_itemsforApp(Profile $profile)
@@ -56,7 +48,7 @@ class ItemController extends Controller
         ->where('items.name', 'LIKE', "%" . $query . "%")
         ->orWhere('items.sku', 'LIKE', "%" . $query . "%")
         ->leftjoin('vats', 'items.vat_id', 'vats.id')
-        ->leftjoin('vat_details', 'vat_details.vat_id', 'items.id')
+        ->leftjoin('vat_details', 'vat_details.vat_id', 'vats.id')
         ->select(DB::raw('max(items.id) as id'),
         DB::raw('max(items.name) as name'),
         DB::raw('max(items.sku) as sku'),
@@ -155,7 +147,7 @@ class ItemController extends Controller
         return response()->json('Resource not found', 401);
     }
 
-    public function askQuestion(Request $request, Profile $profile, Item $item)
+    public function askQuestion(Request $request, $profileSlug, Item $item)
     {
         $faq = new ItemFaq();
         $faq->comment = $request->question;
@@ -168,7 +160,7 @@ class ItemController extends Controller
         return redirect()->back();
     }
 
-    public function rateItem(Profile $profile, Item $item, $intRate)
+    public function rateItem($profileSlug, Item $item, $intRate)
     {
         $rate = ItemReview::where('profile_id', Auth::user()->profile_id)->first();
 
@@ -193,20 +185,22 @@ class ItemController extends Controller
 
         if (strlen($query) >= 3)
         {
-            $items = Item::where('items.profile_id', $profile->id)
-            ->where('items.name', 'LIKE', "%" . $query . "%")
-            ->orWhere('items.sku', 'LIKE', "%" . $query . "%")
-            ->leftjoin('vats', 'items.vat_id', 'vats.id')
-            ->leftjoin('vat_details', 'vat_details.vat_id', 'items.id')
-            ->select(DB::raw('max(items.id) as id'),
-            DB::raw('max(items.name) as name'),
-            DB::raw('max(items.sku) as sku'),
-            DB::raw('max(items.unit_price) as unit_price'),
-            DB::raw('max(items.unit_price) + (max(items.unit_price)*sum(vat_details.coefficient)) as unit_price_vat')
-            )
-            ->groupBy('items.id')
-            ->take(15)
-            ->get();
+            $items = Item::search($query)->where('profile_id', $profile_id)->get();
+
+            // $items = Item::where('items.profile_id', $profile->id)
+            // ->where('items.name', 'LIKE', "%" . $query . "%")
+            // ->orWhere('items.sku', 'LIKE', "%" . $query . "%")
+            // ->leftJoin('vats', 'items.vat_id', 'vats.id')
+            // ->leftJoin('vat_details', 'vat_details.vat_id', 'vats.id')
+            // ->select(DB::raw('max(items.id) as id'),
+            // DB::raw('max(items.name) as name'),
+            // DB::raw('max(items.sku) as sku'),
+            // DB::raw('max(items.unit_price) as unit_price'),
+            // DB::raw('max(items.unit_price) + (max(items.unit_price)*sum(vat_details.coefficient)) as unit_price_vat')
+            // )
+            // ->groupBy('items.id')
+            // ->take(15)
+            // ->get();
         }
 
         return response()->json($items);
