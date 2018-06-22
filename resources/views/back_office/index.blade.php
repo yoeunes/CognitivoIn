@@ -520,7 +520,6 @@
         <!-- Main Container -->
         <div class="container">
             <router-view></router-view>
-
         </div>
         <!-- END Main Container -->
 
@@ -530,8 +529,7 @@
                 <div class="float-right">
                     <a class="font-w600" href="mailto:hola@cognitivo.in" target="_blank">Cognitivo</a> &copy; <span class="js-year-copy"></span>
                 </div>
-                <div class="float-left">
-                </div>
+                <div class="float-left"> </div>
             </div>
         </footer>
         <!-- END Footer -->

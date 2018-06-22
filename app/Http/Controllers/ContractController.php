@@ -37,7 +37,6 @@ class ContractController extends Controller
             ->select(DB::raw('max(contracts.id) as id'),
             DB::raw('max(contracts.name) as name'))
             ->paginate(2));
-
         }
 
         return response()->json($contract);

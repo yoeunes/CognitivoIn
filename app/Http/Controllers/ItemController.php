@@ -19,46 +19,9 @@ class ItemController extends Controller
     * @return \Illuminate\Http\Response
     */
     //for list of items
-    public function index(Profile $profile,  $filterBy)
+    public function index(Profile $profile, $filterBy)
     {
-        return ItemResource::collection(Item::GetItems($profile->id)->paginate(2));
-    }
-
-    public function get_itemsforApp(Profile $profile)
-    {
-        $items = Item::where('items.profile_id', $profile->id)
-        ->leftjoin('vats', 'items.vat_id', 'vats.id')
-        ->leftjoin('vat_details', 'vat_details.vat_id', 'vats.id')
-        ->select(DB::raw('max(items.id) as id'),
-        DB::raw('max(items.name) as name'),
-        DB::raw('max(items.sku) as sku'),
-        DB::raw('max(items.unit_price) as unit_price'),
-        DB::raw('sum(vat_details.coefficient) as coefficient'),
-        DB::raw('max(items.unit_price) + (max(items.unit_price)*sum(vat_details.coefficient)) as unit_price_vat')
-        )
-        ->groupBy('items.id')
-        ->get();
-
-        return response()->json($items);
-    }
-
-    public function getItem(Profile $profile, $query)
-    {
-        $items = Item::where('items.profile_id', $profile->id)
-        ->where('items.name', 'LIKE', "%" . $query . "%")
-        ->orWhere('items.sku', 'LIKE', "%" . $query . "%")
-        ->leftjoin('vats', 'items.vat_id', 'vats.id')
-        ->leftjoin('vat_details', 'vat_details.vat_id', 'vats.id')
-        ->select(DB::raw('max(items.id) as id'),
-        DB::raw('max(items.name) as name'),
-        DB::raw('max(items.sku) as sku'),
-        DB::raw('max(items.unit_price) as unit_price'),
-        DB::raw('max(items.unit_price) + (max(items.unit_price)*sum(vat_details.coefficient)) as unit_price_vat')
-        )
-        ->groupBy('items.id')
-        ->get();
-
-        return response()->json($items);
+        return ItemResource::collection(Item::GetItems($profile->id)->paginate(100));
     }
 
     /**
