@@ -32,4 +32,8 @@ class Vat extends Model
     {
         return $this->hasMany('App\VatDetail');
     }
+    public function item()
+      {
+          return $this->hasMany(Item::class);
+      }
 }

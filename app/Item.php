@@ -59,7 +59,7 @@ class Item extends Model
 
     public function vat()
     {
-        return $this->belongsTo(Vat::class);
+        return $this->belongsTo(Vat::class,"vat_id");
     }
 
     public function cart()
