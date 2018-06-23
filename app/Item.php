@@ -57,6 +57,11 @@ class Item extends Model
         return $this->belongsTo(Profile::class, 'user_id');
     }
 
+    public function vat()
+    {
+        return $this->belongsTo(Vat::class);
+    }
+
     public function cart()
     {
         return $this->hasMany(Cart::class);
