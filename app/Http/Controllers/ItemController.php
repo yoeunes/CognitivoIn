@@ -21,7 +21,12 @@ class ItemController extends Controller
     //for list of items
     public function index(Profile $profile, $filterBy)
     {
-        return ItemResource::collection(Item::GetItems($profile->id)->with("vat")->paginate(100));
+        return ItemResource::collection(Item::GetItems($profile->id)->with(['content' => function($query) use ()
+    {
+
+        $query->with("details");
+
+])->paginate(100));
     }
 
     /**
