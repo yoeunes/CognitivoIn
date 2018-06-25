@@ -11,7 +11,7 @@ use App\Order;
 
 class Relationship extends Model
 {
-  use Searchable;
+  use Searchable,Notifiable;
 
   protected $table = 'relationships';
   //Filters records belonging to me.
