@@ -79,8 +79,11 @@ class CustomerController extends Controller
         $customers = null;
 
 
-            $customers = Relationship::where('customer_alias', $query)
-            ->orWhere('customer_taxid', $query)
+            $customers = Relationship::where(function ($q) use ($query)
+              {
+                  $q->where('customer_alias', 'LIKE', '%' . $query . '%')
+                  ->orWhere('customer_taxid', 'LIKE', '%' . $query . '%');
+              })
             ->where('supplier_id', $profile->id)
             ->get();
 
