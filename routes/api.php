@@ -71,7 +71,7 @@ Route::prefix('{profile}')->group(function ()
             Route::post('sales', 'Api\TransactionController@SalesInvoice_createApprove');
             Route::post('opportunities', 'OpportunityController@approve');
 
-            //TODO, change name to proper english. recEIved instead of recIEved
+
             Route::post('payment-made', 'AccountPayableController@store');
             Route::post('payment-received', 'AccountReceivableController@store');
         });
