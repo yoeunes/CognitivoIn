@@ -78,13 +78,12 @@ class CustomerController extends Controller
     {
         $customers = null;
 
-        if (strlen($query) >= 3)
-        {
+
             $customers = Relationship::where('customer_alias', $query)
         ->orWhere('customer_taxid', $query)
             ->where('supplier_id', $profile->id)
             ->get();
-        }
+
 
         return response()->json($customers);
     }
