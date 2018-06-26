@@ -79,8 +79,7 @@ class CustomerController extends Controller
         $customers = null;
 
 
-            $customers = Relationship::search($query)
-            ->where('supplier_id', $profile->id)
+            $customers = Relationship::where('supplier_id', $profile->id)
             ->get();
 
 
