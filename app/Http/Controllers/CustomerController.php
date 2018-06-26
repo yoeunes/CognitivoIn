@@ -85,6 +85,6 @@ class CustomerController extends Controller
             ->get();
         }
 
-        return response()->json($customers);
+        return response()->json($profile->id);
     }
 }
