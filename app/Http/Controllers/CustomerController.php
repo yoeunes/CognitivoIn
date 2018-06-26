@@ -80,7 +80,8 @@ class CustomerController extends Controller
 
         if (strlen($query) >= 3)
         {
-            $customers = Relationship::search($query)
+            $customers = Relationship::where('customer_alias', $query)
+        ->orWhere('customer_taxid', $query)
             ->where('supplier_id', $profile->id)
             ->get();
         }
