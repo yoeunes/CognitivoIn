@@ -79,7 +79,9 @@ class CustomerController extends Controller
         $customers = null;
 
 
-            $customers = Relationship::where('supplier_id', $profile->id)
+            $customers = Relationship::where('customer_alias', $query)
+            ->orWhere('customer_taxid', $query)
+            ->where('supplier_id', $profile->id)
             ->get();
 
 
