@@ -85,7 +85,7 @@ class TransactionController extends Controller
 
         $data2 = [];
         $data2[] = [
-            'Date' => $order->date->format('d-m-Y'),
+            'Date' => $order->date,
             'Detail'=> $vatDetail
         ];
 
