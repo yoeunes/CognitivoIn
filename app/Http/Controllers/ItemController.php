@@ -172,7 +172,7 @@ class ItemController extends Controller
 
         if (strlen($query) >= 3)
         {
-            $items = Item::search($query)->where('profile_id', $profile_id)->get();
+            $items = Item::search($query)->where('profile_id', $profile->id)->get();
 
             // $items = Item::where('items.profile_id', $profile->id)
             // ->where('items.name', 'LIKE', "%" . $query . "%")
