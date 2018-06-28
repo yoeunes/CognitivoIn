@@ -28,6 +28,7 @@ Route::prefix('{profile}')->group(function ()
     {
         Route::post('customers/store', 'CustomerController@store');
         Route::post('opportunities/{opportunity}/tasks/checked', 'OpportunityTaskController@taskChecked');
+        Route::get('companys/{id}', 'ProfileController@get_companies');
 
         Route::prefix('list')->group(function ()
         {

@@ -74,7 +74,7 @@ class OrderController extends Controller
                 $orderDetail = OrderDetail::where('id', $detail['id'])->first() ?? new OrderDetail();
                 $orderDetail->order_id = $order->id;
                 $orderDetail->item_id = $detail['item_id'];
-                $orderDetail->item_name = $detail['sku'];
+                $orderDetail->item_sku = $detail['sku'];
                 $orderDetail->item_name = $detail['name'];
                 $orderDetail->quantity = $detail['quantity'];
                 $orderDetail->unit_price = $detail['price'];
