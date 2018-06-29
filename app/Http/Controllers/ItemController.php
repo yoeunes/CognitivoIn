@@ -45,6 +45,7 @@ class ItemController extends Controller
     * @param  \Illuminate\Http\Request  $request
     * @return \Illuminate\Http\Response
     */
+    
     public function store(Request $request, Profile $profile)
     {
         $item = Item::where('id', $request->id)->first() ?? new Item();
