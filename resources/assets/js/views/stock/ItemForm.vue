@@ -131,6 +131,7 @@ export default {
 
     onSave($data)
     {
+      console.log('sadf');
       var app = this;
       axios.post('/api/' + app.profile + '/back-office/items', $data)
       .then(() =>
