@@ -50,6 +50,29 @@ Vue.component('order-form',
                 });
             }
         },
+        onApprove($data)
+        {
+
+          var app = this;
+          axios.get('/api/' + app.$route.params.profile + '/back-office/transact/salesApprove/' + $data.id)
+          .then(() =>
+          {
+            this.$toast.open({
+              message: 'Awsome! Your work has been saved',
+              type: 'is-success'
+            })
+
+            this.$router.push({ name: "order.index" });
+          })
+          .catch(ex => {
+            console.log(ex.response);
+            this.$toast.open({
+              duration: 5000,
+              message: 'Error trying to save record',
+              type: 'is-danger'
+            })
+          });
+        },
 
         onShow: function(data)
         {

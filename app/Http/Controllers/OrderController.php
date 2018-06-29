@@ -121,8 +121,9 @@ class OrderController extends Controller
         //
     }
 
-    public function approve($orderID)
+    public function approve($profile,$orderID)
     {
+     
         $order = Order::where('id', $orderID)->with('details')->first();
         $amount = 0;
         $vatAmount = 0;

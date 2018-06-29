@@ -4,7 +4,7 @@
       <div class="content">
           <!-- Progress -->
           <h2 class="content-heading">
-              <button type="button" class="btn btn-sm btn-secondary float-right">
+              <button type="button"  v-on:click="onApprove($data)" class="btn btn-sm btn-secondary float-right">
                   <i class="fa fa-check text-success mr-5"></i>Complete
               </button>
               <button type="button" class="btn btn-sm btn-secondary float-right mr-5">
@@ -255,6 +255,7 @@ export default {
   },
   mounted: function mounted()
   {
+
 
     var app = this;
     app.profile=this.$route.params.profile;

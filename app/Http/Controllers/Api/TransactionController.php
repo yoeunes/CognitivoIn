@@ -70,7 +70,7 @@ class TransactionController extends Controller
         }
 
         $orderController = new OrderController();
-        $orderController->approve($order->id);
+        $orderController->approve($profile,$order->id);
         //
         $accountMovement = new AccountMovementController();
         $accountMovement->makePayment($request, $order->id);

@@ -70,6 +70,7 @@ Route::prefix('{profile}')->group(function ()
         Route::prefix('transact')->group(function ()
         {
             Route::post('sales', 'Api\TransactionController@SalesInvoice_createApprove');
+            Route::get('salesApprove/{orderID}', 'OrderController@approve');
             Route::post('opportunities', 'OpportunityController@approve');
 
 
