@@ -127,7 +127,7 @@ Vue.component('opportunity-form',
         {
             console.log(task);
             var app = this;
-            var url = '/back-office/' + app.$route.params.profile + '/sales/opportunities/' + app.id + '/tasks';
+              var url = '/api/' + app.$route.params.profile + '/back-office/opportunities/' + app.$parent.id + '/tasks';
 
             app.$parent.postSpecial(url, task)
             .then(function(response)
@@ -138,7 +138,7 @@ Vue.component('opportunity-form',
         {
             task.sentiment=sentiment;
             var app = this;
-            var url = '/back-office/' + app.$route.params.profile + '/sales/opportunities/' + app.id + '/tasks';
+            var url = '/api/' + app.$route.params.profile + '/back-office/opportunities/' + app.$parent.id + '/tasks';
 
             app.$parent.postSpecial(url, task)
             .then(function(response)
@@ -148,7 +148,7 @@ Vue.component('opportunity-form',
         deleteTask: function(task)
         {
             var app = this;
-            var url = '/back-office/' + app.$route.params.profile + '/sales/opportunities/' + app.id + '/tasks/' + task.id;
+            var url = '/api/' + app.$route.params.profile + '/back-office/opportunities/' + app.$parent.id + '/tasks/' + task.id;
             var data =
             {
                 id: task.id,

@@ -6,12 +6,12 @@
             <div class="block block-rounded">
                 <div class="block-content bg-pattern" style="background-image: url('/img/backgrounds/bg-pattern-inverse.png');">
                     <div class="py-20 text-center">
-                        <h1 class="h3 mb-5">@{{ name }}</h1>
+                        <h1 class="h3 mb-5">{{ name }}</h1>
                         <p class="mb-10 text-muted">
-                            <em>@{{ deadline_date }}</em>
+                            <em>{{ deadline_date }}</em>
                         </p>
                         <p>
-                            @{{ description }}
+                            {{ description }}
                         </p>
                     </div>
                 </div>
@@ -31,11 +31,11 @@
                             <img class="img-avatar img-avatar-thumb" src="/img/avatars/avatar6.jpg" alt="">
                         </div>
                         <div v-if="relationship !== null" class="block-content block-content-full">
-                            <div class="font-w600 mb-5">@{{ relationship.customer_alias }}</div>
-                            <div class="font-size-sm text-muted">@{{ relationship.customer_taxid }}</div>
+                            <div class="font-w600 mb-5">{{ relationship.customer_alias }}</div>
+                            <div class="font-size-sm text-muted">{{ relationship.customer_taxid }}</div>
                         </div>
                         <div v-if="relationship != null && relationship.customer_email != null" class="block-content block-content-full block-content-sm bg-body-light">
-                            <span class="font-w600 font-size-sm text-danger">@{{ relationship.customer_email }}</span>
+                            <span class="font-w600 font-size-sm text-danger">{{ relationship.customer_email }}</span>
                         </div>
                         <div class="block-content">
                             <div class="row items-push text-center">
@@ -43,13 +43,13 @@
                                     <div class="item item-circle bg-success-light mx-auto mb-10">
                                         <i class="fa fa-money text-success"></i>
                                     </div>
-                                    <div class="text-muted"><small>@{{ currency }}</small> @{{ totalValue }}</div>
+                                    <div class="text-muted"><small>{{ currency }}</small> {{ totalValue }}</div>
                                 </div>
                                 <div class="col-6">
                                     <div class="item item-circle bg-info-light mx-auto mb-10">
                                         <i class="fa fa-diamond text-info"></i>
                                     </div>
-                                    <div class="text-muted">@{{ items.length }}</div>
+                                    <div class="text-muted">{{ items.length }}</div>
                                 </div>
                             </div>
                         </div>
@@ -280,7 +280,7 @@
                                     <b-input v-model="title" placeholder="What needs to be done?" expanded></b-input>
 
                                     <p class="control">
-                                        <button @click="addTask()" class="button is-info">@lang('global.New Model', ['model' => __('back-office.Task')])</button>
+                                        <button @click="addTask()" class="button is-info">Add</button>
                                     </p>
                                 </b-field>
 
@@ -374,8 +374,7 @@
                                     <b-table :data="myTasks" hoverable detailed detail-key="id">
                                         <template slot-scope="props">
                                             <b-table-column width="40">
-                                                {{-- <b-icon icon="checkbox-marked" v-if="props.row.completed" @click="taskChecked(props.row)"></b-icon>
-                                                <b-icon icon="checkbox-blank-outline" v-else ></b-icon> --}}
+
                                                 <i class="fa fa-check-square text-info" v-if="props.row.completed" @click="taskChecked(props.row)"></i>
                                                 <i class="fa fa-square-o" v-else @click="taskChecked(props.row)"></i>
                                             </b-table-column>
@@ -496,8 +495,7 @@
                                     <b-table :data="otherTasks"  hoverable detailed detail-key="id">
                                         <template slot-scope="props">
                                             <b-table-column width="40">
-                                                {{-- <b-icon icon="checkbox-marked" v-if="props.row.completed" @click="taskChecked(props.row)"></b-icon>
-                                                <b-icon icon="checkbox-blank-outline" v-else ></b-icon> --}}
+                                            
                                                 <i class="fa fa-check-square text-info" v-if="props.row.completed" @click="taskChecked(props.row)"></i>
                                                 <i class="fa fa-square-o" v-else @click="taskChecked(props.row)"></i>
                                             </b-table-column>
