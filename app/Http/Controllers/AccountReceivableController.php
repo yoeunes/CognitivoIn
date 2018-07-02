@@ -24,7 +24,7 @@ class AccountReceivableController extends Controller
 
         $schedule = Schedule::with('relationship')->
         skip($skip)
-        ->take(100)
+        ->take(5)
         ->get();
 
         return response()->json($schedule);
@@ -247,7 +247,7 @@ class AccountReceivableController extends Controller
         return response()->json('Customer not found.', 404);
     }
 
-    public function annull(Request $request, Profile $profile,$id)
+    public function annull(Request $request, Profile $profile, $id)
     {
         $accountMovement = AccountMovement::where('id',$id)
         ->with('account')
