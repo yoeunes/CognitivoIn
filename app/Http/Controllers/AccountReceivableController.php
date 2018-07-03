@@ -24,7 +24,7 @@ class AccountReceivableController extends Controller
 
         $schedule = Schedule::with('relationship')->
         skip($skip)
-        ->take(5)
+        ->take(100)
         ->get();
 
         return response()->json($schedule);
@@ -210,15 +210,16 @@ class AccountReceivableController extends Controller
 
         if (isset($relationship))
         {
-            //Bring only scheduals with positive balance. To make it less heavy.
+            //Bring only scheduals with positive balance. Also take only 5. To make it less heavy.
             $schedules = Schedule::where('relationship_id', $relationship->id)
-            //->where('balance', '>', 0)
+            ->take(5)
             ->get();
-            $schedules=collect($schedules);
-            $schedules=$schedules->where('balance', '>', 0);
-            $values = [];
-            $j = 0;
 
+            $schedules = collect($schedules);
+            $schedules = $schedules->where('balance', '>', 0);
+            $values = [];
+
+            $j = 0;
             foreach ($schedules as $schedule)
             {
                 $values[$j] = [
