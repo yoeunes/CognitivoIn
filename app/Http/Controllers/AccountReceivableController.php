@@ -250,7 +250,7 @@ class AccountReceivableController extends Controller
 
     public function annull(Request $request, Profile $profile, $id)
     {
-        $accountMovement = AccountMovement::where('id',$id)
+        $accountMovement = AccountMovement::where('id', $id)
         ->with('account')
         ->first();
 
@@ -265,6 +265,7 @@ class AccountReceivableController extends Controller
                 {
                     $accountMovement->status = 3;
                     $accountMovement->comment = $request['Comment'];
+                    $accountMovement->reference = $request['Reference'];
                     $accountMovement->save();
                     $accountMovement->delete();
 
