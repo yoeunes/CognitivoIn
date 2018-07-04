@@ -20,15 +20,24 @@ Route::get('/shop/{profile}/item/{item}', 'ItemController@indexStores')->name('s
 
 Route::group(['middleware' => 'auth'], function ()
 {
-    Route::resources([
-        'inbox' => 'MessageController',
-        'profile' => 'ProfileController'
-    ]);
+  Route::resources([
+    'inbox' => 'MessageController',
+    'profile' => 'ProfileController'
+  ]);
 
-    Route::prefix('back-office/{profile}')->group(function ()
-    {
-        Route::get('{url}', 'NavigationController@index')->where('any', '.*');
-    });
+  Route::prefix('back-office/{profile}')->group(function ()
+  {
+    Route::get('{url}', 'NavigationController@index')->where('any', '.*');
+  });
+
+
+  Route::prefix('reports')->group(function ()
+  {
+    Route::get('/', 'ReportController@index')->name('reports.index');
+
+
+    Route::get('opportunities/{strDate}/{endDate}', 'ReportController@opportunity')->name('reports.opportunities');
+  });
 });
 
 // Route::get('/js/lang.js', function () {

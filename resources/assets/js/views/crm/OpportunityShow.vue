@@ -57,29 +57,29 @@
 
                             <button v-if="status != 2" class="button is-warning" @click="onHold()" expanded>
                                 <b-icon icon="clock"></b-icon>
-                                <span>@lang('back-office.On Hold')</span>
+                                <span>On Hold</span>
                             </button>
                             <button v-else class="button is-warning" disabled expanded>
                                 <b-icon icon="clock"></b-icon>
-                                <span>@lang('back-office.On Hold')</span>
+                                <span>On Hold</span>
                             </button>
 
                             <button v-if="status != 3" class="button is-success" @click="onWon()" expanded>
                                 <b-icon icon="approval"></b-icon>
-                                <span>@lang('back-office.Won')</span>
+                                <span>Won</span>
                             </button>
                             <button v-else class="button is-success" expanded disabled>
                                 <b-icon icon="approval"></b-icon>
-                                <span>@lang('back-office.Won')</span>
+                                <span>Won</span>
                             </button>
 
                             <button v-if="status != 4" class="button is-danger" @click="onLost()" expanded>
                                 <b-icon icon="cancel"></b-icon>
-                                <span>@lang('back-office.Lost')</span>
+                                <span>Lost</span>
                             </button>
                             <button v-else class="button is-danger" disabled expanded>
                                 <b-icon icon="cancel"></b-icon>
-                                <span>@lang('back-office.Lost')</span>
+                                <span>Lost</span>
                             </button>
 
                             <hr>
@@ -95,7 +95,7 @@
                                         <b-field>
                                             <b-autocomplete v-model="selectname" :data="items" placeholder="Search for Products or Services" field="name" :loading="isFetching" @input="getItems" @select="option => addItem(option)">
                                                 <template slot-scope="props">
-                                                    @{{props.option.sku}} | <b>@{{props.option.name}}</b>
+                                                    {{props.option.sku}} | <b>{{props.option.name}}</b>
                                                 </template>
                                                 <template slot="empty">
                                                     There are no items
@@ -109,8 +109,8 @@
                                                 <tbody v-for="cart in $parent.items">
                                                     <tr>
                                                         <td colspan="2">
-                                                            <small>@{{ cart.sku }}</small> |
-                                                            <span class="font-w600">@{{ cart.name }}</span>
+                                                            <small>{{ cart.sku }}</small> |
+                                                            <span class="font-w600">{{ cart.name }}</span>
                                                         </td>
                                                         <td class="text-right">
                                                             <a @click="deleteItem(cart)" class="is-danger" href="#" >
@@ -124,7 +124,7 @@
                                                                 <a @click="removeQuantity(cart)">
                                                                     <i class="si si-minus is-warning"></i>
                                                                 </a>
-                                                                @{{ cart.quantity }}
+                                                                {{ cart.quantity }}
                                                                 <a @click="addQuantity(cart)">
                                                                     <i class="si si-plus is-success"></i>
                                                                 </a>
@@ -132,7 +132,7 @@
                                                         </td>
                                                         <td>
                                                             <span class="font-w600">
-                                                                @{{ Number(cart.unit_price * cart.quantity).toLocaleString() }}
+                                                                {{ Number(cart.unit_price * cart.quantity).toLocaleString() }}
                                                             </span>
                                                         </td>
                                                     </tr>
@@ -153,7 +153,7 @@
                                     <b-field>
                                         <b-autocomplete v-model="selectname" :data="profiles" placeholder="Search Members" field="name" :loading="isFetching" @input="getProfiles" @select="option => addMember(option)">
                                             <template slot-scope="props">
-                                                <strong>@{{props.option.name}}</strong> | @{{props.option.slug}}
+                                                <strong>{{props.option.name}}</strong> | {{props.option.slug}}
                                             </template>
                                             <template slot="empty">
                                                 There are no items
@@ -167,8 +167,8 @@
                                             <tbody>
                                                 <tr v-for="member in $parent.members">
                                                     <td class="js-task-content">
-                                                        <span class="font-w600">@{{ member.name }}</span>
-                                                        <small>@{{ member.taxid }}</small>
+                                                        <span class="font-w600">{{ member.name }}</span>
+                                                        <small>{{ member.taxid }}</small>
                                                     </td>
                                                     <td class="text-right">
                                                         <button @click="deleteMember(member)" class="js-task-remove btn btn-sm btn-alt-danger" type="button">
@@ -197,27 +197,27 @@
                                         <button class="button is-primary" type="button" slot="trigger">
                                             <template v-if="activity_type == 1">
                                                 <b-icon icon="format-list-checks"></b-icon>
-                                                <span>@lang('back-office.Task')</span>
+                                                <span>Task</span>
                                             </template>
                                             <template v-else-if="activity_type == 2">
                                                 <b-icon icon="phone"></b-icon>
-                                                <span>@lang('global.Telephone')</span>
+                                                <span>Telephone</span>
                                             </template>
                                             <template v-else-if="activity_type == 3">
                                                 <b-icon icon="video"></b-icon>
-                                                <span>@lang('global.Video Conference')</span>
+                                                <span>Video Conference</span>
                                             </template>
                                             <template v-else-if="activity_type == 4">
                                                 <b-icon icon="account-multiple"></b-icon>
-                                                <span>@lang('global.Meeting')</span>
+                                                <span>global.Meeting</span>
                                             </template>
                                             <template v-else-if="activity_type == 5">
                                                 <b-icon icon="map-marker-radius"></b-icon>
-                                                <span>@lang('global.Visit')</span>
+                                                <span>global.Visit</span>
                                             </template>
                                             <template v-else>
                                                 <b-icon icon="email"></b-icon>
-                                                <span>@lang('global.Email')</span>
+                                                <span>Email</span>
                                             </template>
                                             <b-icon icon="menu-down"></b-icon>
                                         </button>
@@ -226,7 +226,7 @@
                                             <div class="media">
                                                 <b-icon class="media-left" icon="format-list-checks"></b-icon>
                                                 <div class="media-content">
-                                                    @lang('back-office.Task')
+                                              Task
                                                 </div>
                                             </div>
                                         </b-dropdown-item>
@@ -235,7 +235,7 @@
                                             <div class="media">
                                                 <b-icon class="media-left" icon="phone"></b-icon>
                                                 <div class="media-content">
-                                                    @lang('global.Telephone')
+                                                  Telephone
                                                 </div>
                                             </div>
                                         </b-dropdown-item>
@@ -244,7 +244,7 @@
                                             <div class="media">
                                                 <b-icon class="media-left" icon="video"></b-icon>
                                                 <div class="media-content">
-                                                    @lang('global.Video Conference')
+                                                  Video Conference
                                                 </div>
                                             </div>
                                         </b-dropdown-item>
@@ -253,7 +253,7 @@
                                             <div class="media">
                                                 <b-icon class="media-left" icon="account-multiple"></b-icon>
                                                 <div class="media-content">
-                                                    @lang('global.Meeting')
+                                                    global.Meeting
                                                 </div>
                                             </div>
                                         </b-dropdown-item>
@@ -262,7 +262,7 @@
                                             <div class="media">
                                                 <b-icon class="media-left" icon="map-marker-radius"></b-icon>
                                                 <div class="media-content">
-                                                    @lang('global.Visit')
+                                                  Visit
                                                 </div>
                                             </div>
                                         </b-dropdown-item>
@@ -271,7 +271,7 @@
                                             <div class="media">
                                                 <b-icon class="media-left" icon="email"></b-icon>
                                                 <div class="media-content">
-                                                    @lang('global.Email')
+                                                Email
                                                 </div>
                                             </div>
                                         </b-dropdown-item>
@@ -349,7 +349,7 @@
                                             <div class="col-10">
                                                 <div v-for="member in $parent.members">
                                                     <b-radio v-model="assigned_to" :native-value="member.id">
-                                                        @{{ member.name }}
+                                                        {{ member.name }}
                                                     </b-radio>
                                                 </div>
                                             </div>
@@ -358,7 +358,7 @@
                                     </div>
                                     <div class="block-content block-content-full block-content-sm bg-body-light font-size-sm">
                                         <button @click="addTask()" class="button is-info">Create Task</button>
-                                        <button @click="onReset()" class="btn btn-outline-secondary min-width-125">@lang('global.Cancel')</button>
+                                        <button @click="onReset()" class="btn btn-outline-secondary min-width-125">Cancel</button>
                                     </div>
                                 </div>
                             </section>
@@ -420,11 +420,11 @@
                                                 </span>
                                             </b-table-column>
 
-                                            <b-table-column field="title" label="@lang('back-office.Task')" sortable expanded>
-                                                @{{ props.row.title }} <span class="has-text-grey-light">| @{{ props.row.description }}</span>
+                                            <b-table-column field="title" label="Task" sortable expanded>
+                                                {{ props.row.title }} <span class="has-text-grey-light">||{{ props.row.description }}</span>
                                             </b-table-column>
 
-                                            <b-table-column label="@lang('global.Actions')" numeric>
+                                            <b-table-column label="Actions" numeric>
                                                 <b-field grouped>
                                                     <b-tooltip :label="props.row.date_reminder" dashed>
                                                         <i class="si si-bell"></i>
@@ -453,12 +453,12 @@
                                                     <b-field grouped>
                                                         <b-field expanded>
                                                             <b-datepicker v-model="props.row.date_started"
-                                                            placeholder="@lang('global.Start Date')"></b-datepicker>
+                                                            placeholder="Start Date"></b-datepicker>
                                                         </b-field>
                                                         <b-field expanded>
                                                             <b-datepicker v-model="props.row.date_ended"
                                                             :min-date="props.row.date_started"
-                                                            placeholder="@lang('global.End Date')"></b-datepicker>
+                                                            placeholder="End Date"></b-datepicker>
                                                         </b-field>
                                                     </b-field>
                                                 </div>
@@ -470,17 +470,17 @@
                                                 <div class="col-10">
                                                     <b-select placeholder="Assign someone"  v-model="props.row.assigned_to">
                                                         <option v-for="member in members" :value="member.id" >
-                                                            @{{ member.name }}
+                                                            {{ member.name }}
                                                         </option>
                                                     </b-select>
                                                 </div>
                                             </div>
                                             <div class="block-content block-content-full block-content-sm bg-body-light font-size-sm">
                                                 <button @click="editTask(props.row)" class="button is-info">
-                                                    @lang('global.Save')
+                                                Save
                                                 </button>
                                                 <button @click="" class="btn btn-outline-secondary min-width-125">
-                                                    @lang('global.Cancel')
+                                                Cancel
                                                 </button>
                                             </div>
                                         </template>
@@ -495,7 +495,7 @@
                                     <b-table :data="otherTasks"  hoverable detailed detail-key="id">
                                         <template slot-scope="props">
                                             <b-table-column width="40">
-                                            
+
                                                 <i class="fa fa-check-square text-info" v-if="props.row.completed" @click="taskChecked(props.row)"></i>
                                                 <i class="fa fa-square-o" v-else @click="taskChecked(props.row)"></i>
                                             </b-table-column>
@@ -521,17 +521,17 @@
                                                 </template>
                                             </b-table-column>
 
-                                            <b-table-column field="date" label="@lang('global.Deadline')" sortable centered width="30">
+                                            <b-table-column field="date" label="Deadline" sortable centered width="30">
                                                 <span class="tag is-light">
-                                                    @{{ new Date(props.row.date_started).toLocaleDateString() }}
+                                                    {{ new Date(props.row.date_started).toLocaleDateString() }}
                                                 </span>
                                             </b-table-column>
 
-                                            <b-table-column field="title" label="@lang('back-office.Task')" sortable>
-                                                @{{ props.row.title }} <span class="has-text-grey-light">| @{{ props.row.description }}</span>
+                                            <b-table-column field="title" label="Task" sortable>
+                                              {{ props.row.title }} <span class="has-text-grey-light">| {{ props.row.description }}</span>
                                             </b-table-column>
 
-                                            <b-table-column label="@lang('global.Actions')" numeric>
+                                            <b-table-column label="Actions" numeric>
                                                 <b-field v-if="props.row.completed" grouped>
                                                     <a @click="sentimentTask(props.row, 2)">
                                                         <img v-if="props.row.sentiment == 2" src="/img/icons/emojiHappy.svg" width="32" alt="">
@@ -584,12 +584,12 @@
                                                     <b-field grouped>
                                                         <b-field expanded>
                                                             <b-datepicker v-model="props.row.date_started"
-                                                            placeholder="@lang('global.Start Date')"></b-datepicker>
+                                                            placeholder="Start Date"></b-datepicker>
                                                         </b-field>
                                                         <b-field expanded>
                                                             <b-datepicker v-model="props.row.date_ended"
                                                             :min-date="props.row.date_started"
-                                                            placeholder="@lang('global.End Date')"></b-datepicker>
+                                                            placeholder="End Date"></b-datepicker>
                                                         </b-field>
                                                     </b-field>
                                                 </div>
@@ -601,17 +601,17 @@
                                                 <div class="col-10">
                                                     <b-select placeholder="Assign someone"  v-model="props.row.assigned_to">
                                                         <option v-for="member in members" :value="member.id" >
-                                                            @{{ member.name }}
+                                                            {{ member.name }}
                                                         </option>
                                                     </b-select>
                                                 </div>
                                             </div>
                                             <div class="block-content block-content-full block-content-sm bg-body-light font-size-sm">
                                                 <button @click="editTask(props.row)" class="button is-info">
-                                                    @lang('global.Save')
+                                                  Save
                                                 </button>
                                                 <button @click="" class="btn btn-outline-secondary min-width-125">
-                                                    @lang('global.Cancel')
+                                                  Cancel
                                                 </button>
                                             </div>
                                         </template>
@@ -623,32 +623,32 @@
                             <b-tab-item label="Products and Services" icon="diamond">
                                 <b-table :data="items" hoverable detailed detail-key="id">
                                     <template slot-scope="props">
-                                        <b-table-column field="quantity" label="@lang('global.Quantity')" sortable width="64">
+                                        <b-table-column field="quantity" label="Quantity" sortable width="64">
                                             <b-field>
                                                 <b-input placeholder="" v-model="props.row.quantity" type="number" min="1"></b-input>
                                             </b-field>
                                         </b-table-column>
 
-                                        <b-table-column field="items" label="@lang('back-office.Products and Services')" sortable>
-                                            @{{ props.row.name }} <span class="has-text-grey-light">| @{{ props.row.sku }}</span>
+                                        <b-table-column field="items" label="Products and Services" sortable>
+                                            {{ props.row.name }} <span class="has-text-grey-light">| {{ props.row.sku }}</span>
                                         </b-table-column>
 
-                                        <b-table-column field="unit_price" label="@lang('global.Price')" width="128" sortable>
+                                        <b-table-column field="unit_price" label="Price" width="128" sortable>
                                             <b-field>
                                                 <b-input placeholder="" v-model="props.row.unit_price" type="number" min="0"></b-input>
                                             </b-field>
                                         </b-table-column>
 
-                                        <b-table-column field="sub_total" label="@lang('global.Sub Total')" sortable numeric>
-                                            @{{ Number(props.row.unit_price * props.row.quantity).toLocaleString() }}
+                                        <b-table-column field="sub_total" label=Sub Total" sortable numeric>
+                                            {{ Number(props.row.unit_price * props.row.quantity).toLocaleString() }}
                                         </b-table-column>
 
-                                        <b-table-column label="@lang('global.Actions')" centered width="24">
+                                        <b-table-column label="Actions" centered width="24">
                                             <a class="delete" @click="deleteItem(props.row)"></a>
                                         </b-table-column>
                                     </template>
                                     <template slot="footer">
-                                        <h3> @{{ totalValue }} </h3>
+                                        <h3> {{ totalValue }} </h3>
                                         <button class="button is-info">Send Budget</button>
                                     </template>
                                     <template slot="detail" slot-scope="props">
@@ -676,10 +676,10 @@
                                         </div>
                                         <div class="block-content block-content-full block-content-sm bg-body-light font-size-sm">
                                             <button @click="editTask(props.row)" class="button is-info">
-                                                @lang('global.Save')
+                                              Save
                                             </button>
                                             <button @click="" class="btn btn-outline-secondary min-width-125">
-                                                @lang('global.Cancel')
+                                              Cancel
                                             </button>
                                         </div>
                                     </template>

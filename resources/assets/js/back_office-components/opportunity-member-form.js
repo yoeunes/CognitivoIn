@@ -59,22 +59,26 @@ Vue.component('opportunity-member-form',
         getProfiles: function(query)
         {
             var app = this;
-            axios.get('/api/' + app.$parent.$parent.profile + '/back-office/search/profiles/' + query)
-            .then(({ data }) =>
-            {
-                if (data.length > 0)
-                {
-                    app.profiles=[];
-                    for (let i = 0; i < data.length; i++)
-                    {
-                        app.profiles.push(data[i]);
-                    }
-                }
-            })
-            .catch(ex => {
-                console.log(ex);
-                this.$swal('Error trying to load records.');
-            });
+            console.log(query);
+            if (query!='') {
+              axios.get('/api/' + app.$parent.$parent.profile + '/back-office/search/profiles/' + query)
+              .then(({ data }) =>
+              {
+                  if (data.length > 0)
+                  {
+                      app.profiles=[];
+                      for (let i = 0; i < data.length; i++)
+                      {
+                          app.profiles.push(data[i]);
+                      }
+                  }
+              })
+              .catch(ex => {
+                  console.log(ex);
+                  this.$swal('Error trying to load records.');
+              });
+            }
+
         },
     },
 

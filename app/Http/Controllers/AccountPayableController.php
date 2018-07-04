@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Scheduals;
+use App\Schedule;
 use App\Account;
 use App\Profile;
 use App\AccountMovement;
 use App\Relationship;
+use App\Http\Resources\ScheduleResource;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Swap\Laravel\Facades\Swap;
@@ -18,9 +19,11 @@ class AccountPayableController extends Controller
   *
   * @return \Illuminate\Http\Response
   */
-  public function index()
+  public function index(Profile $profile)
   {
-
+    $schedules=Schedule::with("relationship")->get();
+      $schedules=collect($schedules);
+      return ScheduleResource::collection($schedules->where('relationship.customer_id',$profile->id)->where('balance', '>', 0));
   }
 
   /**
