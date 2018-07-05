@@ -7,6 +7,7 @@ use App\Account;
 use App\Profile;
 use App\AccountMovement;
 use App\Relationship;
+use App\Http\Resources\ScheduleResource;
 use DB;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
@@ -26,6 +27,10 @@ class AccountReceivableController extends Controller
         skip($skip)
         ->take(100)
         ->get();
+        $schedule=collect($schedule);
+        return ScheduleResource::collection($schedule
+        ->where('relationship.supplier_id',$profile->id)->where('balance', '>', 0));
+
 
         return response()->json($schedule);
     }

@@ -3,7 +3,7 @@
 <html>
 <head>
     <title>
-        @yield('reportName') | {{ request()->route('taxPayer')->alias }}
+        @yield('reportName') | {{ request()->route('profile')->slug }}
     </title>
 
     <link href="{{url('/')}}/css/normalize.css" rel="stylesheet" type="text/css" />
@@ -148,7 +148,7 @@
     </div>
 
     @php
-        $taxIDName = Config::get('countries.' . request()->route('taxPayer')->country . '.taxpayer-id')
+        $taxIDName = Config::get('countries.' . request()->route('profile')->country . '.taxpayer-id')
     @endphp
 
     <div class="container">
@@ -158,15 +158,12 @@
                     <td style="text-align:right">@lang('global.Taxpayer')</td>
                     <td style="text-align:left"><b>{{ $header->name }}</b></td>
 
-                    <td style="text-align:right">@lang('global.LegalRepresentative')</td>
-                    <td style="text-align:left"><b>{{ $header->setting->agent_name }}</b></td>
                 </tr>
                 <tr>
                     <td style="text-align:right">{{ $taxIDName }}</td>
                     <td style="text-align:left"><b>{{ $header->taxid }}-{{ $header->code }}</b></td>
 
-                    <td style="text-align:right">@lang('global.LegalRepresentative') {{ $taxIDName }}</td>
-                    <td style="text-align:left"><b>{{ $header->setting->agent_taxid }}</b></td>
+                    
                 </tr>
                 <tr>
                     <td style="text-align:right">@lang('global.DateRange')</td>

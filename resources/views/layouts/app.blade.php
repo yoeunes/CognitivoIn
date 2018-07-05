@@ -10,7 +10,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
 
     <title>Cognitivo | The Social Network for Businesses</title>
-
+    <link rel="apple-touch-icon" sizes="57x57" href="/img/favicon/apple-icon-57x57.png">
+    
     <meta name="description" content="The Social Network for Businesses">
     <meta name="author" content="Cognitivo">
     <meta name="robots" content="noindex, nofollow">

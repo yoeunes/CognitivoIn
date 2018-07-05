@@ -373,13 +373,10 @@
                                                 </router-link>
                                             </a>
                                         </li>
+
                                     </ul>
                                 </li>
-                                <li>
-                                  <a href="{{ route('reports.index', [request()->route('profile')->slug]) }}">
-                                      reports
-                                  </a>
-                                </li>
+                                
 
                             </ul>
                         </div>

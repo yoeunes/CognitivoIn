@@ -33,10 +33,10 @@ Route::group(['middleware' => 'auth'], function ()
 
   Route::prefix('reports')->group(function ()
   {
-    Route::get('/', 'ReportController@index')->name('reports.index');
+    Route::get('/index', 'ReportController@index')->name('reports.index');
 
 
-    Route::get('opportunities/{strDate}/{endDate}', 'ReportController@opportunity')->name('reports.opportunities');
+    Route::get('opportunities/{profile}/{strDate}/{endDate}', 'ReportController@opportunity')->name('reports.opportunities');
   });
 });
 

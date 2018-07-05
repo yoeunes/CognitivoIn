@@ -47,13 +47,7 @@
                 </tr>
             </tbody>
         </table>
-        <b-pagination
-        :total="meta.total"
-        :current.sync="meta.current_page"
-        :simple="false"
-        :per-page="meta.per_page"
-        @change="pageChange">
-    </b-pagination>
+      
 </div>
 </template>
 <script>

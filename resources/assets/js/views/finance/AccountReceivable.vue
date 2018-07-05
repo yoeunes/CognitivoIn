@@ -58,7 +58,7 @@ export default {
     mounted: function mounted()
     {
         var app = this;
-        app.onLoad();
+        app.onLoad(1);
     }
 }
 </script>

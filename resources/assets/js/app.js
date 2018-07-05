@@ -11,6 +11,7 @@ import Vue from 'vue';
 import VueSweetalert2 from 'vue-sweetalert2';
 import VueRouter from 'vue-router';
 import VueResource from 'vue-resource';
+import ElementUI from 'element-ui';
 import Buefy from 'buefy';
 import 'buefy/lib/buefy.css';
 
@@ -19,6 +20,7 @@ require('./components/bootstrap');
 
 window.Vue.use(VueResource);
 window.Vue.use(VueRouter);
+Vue.use(ElementUI);
 Vue.use(require('vue-shortkey'))
 Vue.use(VueSweetalert2);
 Vue.use(Buefy);

@@ -17,6 +17,41 @@
         </div>
       </a>
     </div>
+    <div class="col-md-6 col-xl-3">
+      <reports name="reports" inline-template>
+        <div>
+      <h3 class="col-md-6 col-xl-3">
+          @lang('global.DateRange')
+          <el-date-picker v-model="dateRange"
+          type="daterange"
+          align="right"
+          unlink-panels
+          range-separator="|"
+          start-placeholder="@lang('global.StartDate')"
+          end-placeholder="@lang('global.EndDate')"
+          format = "dd/MM/yyyy"
+          value-format = "yyyy-MM-dd"
+          :picker-options="pickerOptions2"></el-date-picker>
+      </h3>
+      <a class="block block-rounded block-link-shadow"  v-bind:href="'/reports/opportunities/we-paraguay/'+ dateRange[0] +'/' + dateRange[1] ">
+        <div class="block-content block-content-full block-sticky-options">
+          <div class="block-options">
+            <div class="block-options-item">
+              <i class="fa fa-archive fa-2x text-success-light"></i>
+            </div>
+          </div>
+          <div class="py-20 text-center">
+            <div class="font-size-h2 font-w700 mb-0 text-success">
+              <i class="fa fa-plus"></i>
+            </div>
+            <div class="font-size-sm font-w600 text-uppercase text-muted">Report</div>
+          </div>
+        </div>
+      </a>
+    </div>
+    </reports>
+
+    </div>
     <table>
         <thead>
             <tr>
@@ -106,6 +141,7 @@ export default {
       var app = this;
       app.$router.push({ name: "opportunity.form", params: { id: 0,user_id:app.userid } });
     },
+
     onDelete($data)
     {
       var app = this;
