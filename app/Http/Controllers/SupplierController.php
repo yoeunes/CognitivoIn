@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Relationship;
 use App\Profile;
 use Illuminate\Http\Request;
+use App\Http\Resources\CustomerResource;
 
 class SupplierController extends Controller
 {
@@ -12,7 +13,7 @@ class SupplierController extends Controller
     public function index(Profile $profile, $skip)
     {
         return CustomerResource::collection(Relationship::GetSuppliers()->paginate(2));
-      
+
     }
 
     /**
