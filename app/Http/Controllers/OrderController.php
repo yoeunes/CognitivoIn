@@ -32,7 +32,13 @@ class OrderController extends Controller
     public function index(Profile $profile,$filterBy)
     {
         return OrderResource::collection( Order::mySales()->with('relationship')
-        ->with('details')->paginate(2));
+        ->with('details')->
+        select('orders.id','ref_id','relationship_id','recurring_order_id','location_id',
+        'buyer_profile_id','agent_profile_id','contract_id','currency','currency_rate',
+        'classification','tracking_code','code','code_expiry','number','date','date_deliver_by',
+        'comment','note_for_customer','note_for_billing','note_for_shipping','geoloc',
+        'is_impex','is_printed','is_archived','orders.created_at','orders.updated_at','orders.deleted_at')
+        ->paginate(2));
 
 
         return response()->json($orders);
@@ -123,7 +129,7 @@ class OrderController extends Controller
 
     public function approve($profile,$orderID)
     {
-     
+
         $order = Order::where('id', $orderID)->with('details')->first();
         $amount = 0;
         $vatAmount = 0;
