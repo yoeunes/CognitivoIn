@@ -47,7 +47,7 @@
                 </tr>
             </tbody>
         </table>
-      
+
 </div>
 </template>
 <script>
@@ -69,8 +69,9 @@ export default {
             axios
             .get('/api/' + this.profile + '/back-office/list/suppliers/1?page=' + page  )
             .then(response => {
-                this.list = response.data.data;
-                this.meta = response.data.meta;
+
+                this.list = response.data;
+                this.meta = response.data;
             }).catch(error => {
 
             });
