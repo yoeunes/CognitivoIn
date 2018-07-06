@@ -11,8 +11,8 @@ import Vue from 'vue';
 import VueSweetalert2 from 'vue-sweetalert2';
 import VueRouter from 'vue-router';
 import VueResource from 'vue-resource';
-import ElementUI from 'element-ui';
 import Buefy from 'buefy';
+import Reports from './components/reports.vue';
 import 'buefy/lib/buefy.css';
 
 require('./bootstrap');
@@ -20,7 +20,6 @@ require('./components/bootstrap');
 
 window.Vue.use(VueResource);
 window.Vue.use(VueRouter);
-Vue.use(ElementUI);
 Vue.use(require('vue-shortkey'))
 Vue.use(VueSweetalert2);
 Vue.use(Buefy);
@@ -93,43 +92,47 @@ const router = new VueRouter({
         { path: '/*', component: NotFoundComponent },
 
         //{ path: '/', name: 'dashboard', component: Dashboard },
-        { path: '/:profile/dashboard', name: 'dashboard', component: Dashboard },
+        { path: '/:profile-dashboard', name: 'dashboard', component: Dashboard },
 
         { path: '/config/profile', name: 'profile.form', component: ProfileForm },
-        { path: '/:profile/config/locations', name: 'location.index', component: Location },
-        { path: '/:profile/config/sales-taxes', name: 'sales-taxes.index', component: SalesTax },
-        { path: '/:profile/config/contracts', name: 'contracts.index', component: Contract },
-        { path: '/:profile/config/team-members', name: 'team-members.index', component: TeamMember },
+        { path: '/:profile/config-locations', name: 'location.index', component: Location },
+        { path: '/:profile/config-sales-taxes', name: 'sales-taxes.index', component: SalesTax },
+        { path: '/:profile/config-contracts', name: 'contracts.index', component: Contract },
+        { path: '/:profile/config-team-members', name: 'team-members.index', component: TeamMember },
 
-        { path: '/:profile/crm/dashboard', name: 'crm.dashboard', component: Dashboard },
-        { path: '/:profile/crm/pipelines', name: 'pipeline.index', component: Pipelines },
-        { path: '/:profile/crm/opportunities/:userid', name: 'opportunity.index', component: Opportunities },
-        { path: '/:profile/crm/opportunity/:id/:user_id', name: 'opportunity.form', component: OpportunityForm },
-        { path: '/:profile/crm/opportunity/:id', name: 'opportunity.show', component: OpportunityShow },
+        { path: '/:profile/crm-dashboard', name: 'crm.dashboard', component: Dashboard },
+        { path: '/:profile/crm-pipelines', name: 'pipeline.index', component: Pipelines },
+        { path: '/:profile/crm-opportunities-:userid', name: 'opportunity.index', component: Opportunities },
+        { path: '/:profile/crm-opportunity-:id-:user_id', name: 'opportunity.form', component: OpportunityForm },
+        { path: '/:profile/crm-opportunity-:id', name: 'opportunity.show', component: OpportunityShow },
 
-        { path: '/:profile/sales/dashboard', name: 'sales.dashboard', component: Dashboard },
-        { path: '/:profile/sales/customers', name: 'customer.index', component: Customers },
-        { path: '/:profile/sales/customer/:id', name: 'customer.form', component: CustomerForm },
+        { path: '/:profile/sales-dashboard', name: 'sales.dashboard', component: Dashboard },
+        { path: '/:profile/sales-customers', name: 'customer.index', component: Customers },
+        { path: '/:profile/sales-customer-:id', name: 'customer.form', component: CustomerForm },
         // { path: '/:profile/sales/carts', name: 'carts', component: Carts },
-        { path: '/:profile/sales/orders', name: 'order.index', component: Orders },
-        { path: '/:profile/sales/order/:id', name: 'order.form', component: OrderForm },
+        { path: '/:profile/sales-orders', name: 'order.index', component: Orders },
+        { path: '/:profile/sales-order-:id', name: 'order.form', component: OrderForm },
 
-        { path: '/:profile/purchases/dashboard', name: 'purchase.dashboard', component: Dashboard },
-        { path: '/:profile/purchases/suppliers', name: 'supplier.index', component: Suppliers },
-        { path: '/:profile/purchases/supplier/:id', name: 'supplier.form', component: SupplierForm },
+        { path: '/:profile/purchases-dashboard', name: 'purchase.dashboard', component: Dashboard },
+        { path: '/:profile/purchases-suppliers', name: 'supplier.index', component: Suppliers },
+        { path: '/:profile/purchases-supplier-:id', name: 'supplier.form', component: SupplierForm },
 
-        { path: '/:profile/stocks/dashboard', name: 'stock.dashboard', component: Dashboard },
-        { path: '/:profile/stocks/items', name: 'item.index', component: Items },
-        { path: '/:profile/stocks/item/:id', name: 'item.form', component: ItemForm },
+        { path: '/:profile/stocks-dashboard', name: 'stock.dashboard', component: Dashboard },
+        { path: '/:profile/stocks-items', name: 'item.index', component: Items },
+        { path: '/:profile/stocks-item-:id', name: 'item.form', component: ItemForm },
 
-        { path: '/:profile/finances/dashboard', name: 'finance.dashboard', component: Dashboard },
-        { path: '/:profile/finances/accounts', name: 'account.index', component: Accounts },
-        { path: '/:profile/finances/account/:id', name: 'account.form', component: AccountForm },
-        { path: '/:profile/finances/account-payables', name: 'account-payable.index', component: AccountPayables },
-        { path: '/:profile/finances/account-recievables', name: 'account-recievable.index', component: AccountReceivables },
-        { path: '/:profile/finances/account-movements', name: 'account_movement.index', component: AccountMovements },
+        { path: '/:profile/finances-dashboard', name: 'finance.dashboard', component: Dashboard },
+        { path: '/:profile/finances-accounts', name: 'account.index', component: Accounts },
+        { path: '/:profile/finances-account-:id', name: 'account.form', component: AccountForm },
+        { path: '/:profile/finances-account-payables', name: 'account-payable.index', component: AccountPayables },
+        { path: '/:profile/finances-account-recievables', name: 'account-recievable.index', component: AccountReceivables },
+        { path: '/:profile/finances-account-movements', name: 'account_movement.index', component: AccountMovements },
 
-    ]
+    ],
+    components: {
+            Reports : Reports
+
+        }
 });
 
 const app = new Vue({

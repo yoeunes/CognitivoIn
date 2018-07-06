@@ -104,6 +104,9 @@ export default {
       });
 
     },
+    created () {
+      console.log('a');
+    },
     pageChange (page) {
       var app = this;
       app.onLoad(page);

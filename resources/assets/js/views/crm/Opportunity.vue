@@ -16,24 +16,7 @@
           </div>
         </div>
       </a>
-    </div>
-    <div class="col-md-6 col-xl-3">
-      <reports name="reports" inline-template>
-        <div>
-      <h3 class="col-md-6 col-xl-3">
-          @lang('global.DateRange')
-          <el-date-picker v-model="dateRange"
-          type="daterange"
-          align="right"
-          unlink-panels
-          range-separator="|"
-          start-placeholder="@lang('global.StartDate')"
-          end-placeholder="@lang('global.EndDate')"
-          format = "dd/MM/yyyy"
-          value-format = "yyyy-MM-dd"
-          :picker-options="pickerOptions2"></el-date-picker>
-      </h3>
-      <a class="block block-rounded block-link-shadow"  v-bind:href="'/reports/opportunities/we-paraguay/'+ dateRange[0] +'/' + dateRange[1] ">
+      <a class="block block-rounded block-link-shadow"  v-bind:href="'/reports/opportunities/we-paraguay/'+ start_date +'/' + end_date ">
         <div class="block-content block-content-full block-sticky-options">
           <div class="block-options">
             <div class="block-options-item">
@@ -49,45 +32,43 @@
         </div>
       </a>
     </div>
-    </reports>
 
-    </div>
     <table>
-        <thead>
-            <tr>
-                <td>#</td>
-                <th>Opportunity Name</th>
-                <th>Customer</th>
-                <th>Value</th>
-                <th class="text-center">Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr v-for="opportunity in list">
-                <td>{{ opportunity.id }}</td>
-                <td><a @click="onShow(opportunity)" href="#">{{ opportunity.name }}</a></td>
-                <td v-if="opportunity.relationship !== null">{{ opportunity.relationship.customer_alias }}</td> <td v-else></td>
-                <td>{{ opportunity.value }}</td>
-                <td class="text-center">
-                    <div class="btn-group">
-                      <router-link :to="{ name: 'opportunity.show',params: { profile:profile,id:opportunity.id,user_id:userid} }">
-                        <button  type="button" class="btn btn-sm btn-secondary js-tooltip-enabled" data-toggle="tooltip" data-original-title="Edit">
-                          <i class="fa fa-eye"></i>
-                        </button>
-                      </router-link>
-                      <router-link :to="{ name: 'opportunity.form',params: { profile:profile,id:opportunity.id,user_id:userid} }">
-                        <button  type="button" class="btn btn-sm btn-secondary js-tooltip-enabled" data-toggle="tooltip" data-original-title="Edit">
-                          <i class="fa fa-pencil"></i>
-                        </button>
-                      </router-link>
+      <thead>
+        <tr>
+          <td>#</td>
+          <th>Opportunity Name</th>
+          <th>Customer</th>
+          <th>Value</th>
+          <th class="text-center">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="opportunity in list">
+          <td>{{ opportunity.id }}</td>
+          <td><a @click="onShow(opportunity)" href="#">{{ opportunity.name }}</a></td>
+          <td v-if="opportunity.relationship !== null">{{ opportunity.relationship.customer_alias }}</td> <td v-else></td>
+          <td>{{ opportunity.value }}</td>
+          <td class="text-center">
+            <div class="btn-group">
+              <router-link :to="{ name: 'opportunity.show',params: { profile:profile,id:opportunity.id,user_id:userid} }">
+                <button  type="button" class="btn btn-sm btn-secondary js-tooltip-enabled" data-toggle="tooltip" data-original-title="Edit">
+                  <i class="fa fa-eye"></i>
+                </button>
+              </router-link>
+              <router-link :to="{ name: 'opportunity.form',params: { profile:profile,id:opportunity.id,user_id:userid} }">
+                <button  type="button" class="btn btn-sm btn-secondary js-tooltip-enabled" data-toggle="tooltip" data-original-title="Edit">
+                  <i class="fa fa-pencil"></i>
+                </button>
+              </router-link>
 
-                        <button v-on:click="onDelete(opportunity)" type="button" class="btn btn-sm btn-secondary js-tooltip-enabled" data-toggle="tooltip" data-original-title="Delete">
-                            <i class="fa fa-times"></i>
-                        </button>
-                    </div>
-                </td>
-            </tr>
-        </tbody>
+              <button v-on:click="onDelete(opportunity)" type="button" class="btn btn-sm btn-secondary js-tooltip-enabled" data-toggle="tooltip" data-original-title="Delete">
+                <i class="fa fa-times"></i>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
     </table>
     <b-pagination
     :total="meta.total"
@@ -106,6 +87,8 @@ export default {
   data() {
     return {
       profile:'',
+      start_date:'',
+      end_date:'',
       userid:'',
       list: [],
       meta: [{total:0}],
@@ -183,6 +166,8 @@ export default {
   mounted: function mounted()
   {
     var app = this;
+    app.start_date=moment().subtract(1, 'months').startOf('month').format("YYYY-MM-DD");
+      app.end_date=moment().subtract(1, 'months').endOf('month').format("YYYY-MM-DD");
     app.onLoad(1);
   }
 

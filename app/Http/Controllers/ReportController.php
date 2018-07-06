@@ -47,6 +47,7 @@ class ReportController extends Controller
 
     public function opportunityQuery(Profile $profile, $startDate, $endDate)
     {
+
         DB::connection()->disableQueryLog();
 
          $raw = DB::select('SELECT opp.created_at as date,opp.name,opp.description,opp.value,opp.currency,
@@ -57,7 +58,8 @@ class ReportController extends Controller
   (select max(quantity) from carts where carts.opportunity_id=opp.id) as quantity,
   (select  name from profiles where id= (select max(ot.completed_by) from opportunity_tasks ot  where ot.opportunity_id=opp.id) ) as complete_by,
   (select max(ot.completed_at) from opportunity_tasks ot  where ot.opportunity_id=opp.id) as complete_date
-  FROM cog.opportunities as opp');
+  FROM cog.opportunities as opp
+  where opp.created_at between "' . $startDate . '" and "' . $endDate .'"');
 
           $raw = collect($raw);
           return $raw;

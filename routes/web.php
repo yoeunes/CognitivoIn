@@ -25,9 +25,9 @@ Route::group(['middleware' => 'auth'], function ()
     'profile' => 'ProfileController'
   ]);
 
-  Route::prefix('back-office/{profile}')->group(function ()
+  Route::prefix('/{profile}')->group(function ()
   {
-    Route::get('{url}', 'NavigationController@index')->where('any', '.*');
+    Route::get('/{url}', 'NavigationController@index')->where('any', '.*');
   });
 
 
