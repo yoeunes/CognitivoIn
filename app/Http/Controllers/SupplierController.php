@@ -11,12 +11,8 @@ class SupplierController extends Controller
 
     public function index(Profile $profile, $skip)
     {
-        $relationships = Relationship::GetSuppliers()
-        ->skip($skip)
-        ->take(100)
-        ->get();
-
-        return response()->json($relationships);
+        return CustomerResource::collection(Relationship::GetSuppliers()->paginate(2));
+      
     }
 
     /**

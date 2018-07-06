@@ -40,7 +40,7 @@ export default {
         onLoad(page) {
             this.profile=this.$route.params.profile;
             axios
-            .get('/api/' + this.profile + '/back-office/list/account-paybles/1?page=' + page  )
+            .get('/api/' + this.profile + '/back-office/list/account-payables/1?page=' + page  )
             .then(response => {
                 console.log(response.data);
                 this.list = response.data.data;
