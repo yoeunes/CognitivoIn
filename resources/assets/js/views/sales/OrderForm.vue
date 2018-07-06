@@ -169,7 +169,7 @@
                               <tbody>
                                   <tr v-for="detail in details">
                                       <td>
-                                          <a class="font-w600" href="be_pages_ecom_product_edit.html">detail.id</a>
+                                          <a class="font-w600" href="be_pages_ecom_product_edit.html">{{detail.id}}</a>
                                       </td>
                                       <td>
                                           <a href="be_pages_ecom_product_edit.html">{{detail.name}}</a>
