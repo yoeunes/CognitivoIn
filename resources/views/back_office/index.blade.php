@@ -330,6 +330,13 @@
                                                 </router-link>
                                             </a>
                                         </li>
+                                        <li>
+                                            <a href="#">
+                                                <router-link :to="{ name: 'itempromotion.index',params: { profile:'{{ request()->route('profile')->slug}}'} }">
+                                                    @lang('back-office.Promotion')
+                                                </router-link>
+                                            </a>
+                                        </li>
                                     </ul>
                                 </li>
                                 <li>

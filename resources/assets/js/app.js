@@ -56,6 +56,8 @@ import SupplierForm from './views/purchase/SupplierForm';
 import Stock_Dashboard from './views/stock/Dashboard';
 import Items from './views/stock/Item';
 import ItemForm from './views/stock/ItemForm';
+import Promotion from './views/stock/Promotion';
+import PromotionForm from './views/stock/PromotionForm';
 
 import Finance_Dashboard from './views/finance/Dashboard';
 import Accounts from './views/finance/Account';
@@ -85,7 +87,7 @@ Vue.component(
 
 //Note: These tasks are only needed to show views.
 const router = new VueRouter({
-    mode: 'abstract',
+    
 
     routes: [
         //This will cause 404 Errors to be redirected to proper site.
@@ -120,6 +122,8 @@ const router = new VueRouter({
         { path: '/:profile/stocks-dashboard', name: 'stock.dashboard', component: Dashboard },
         { path: '/:profile/stocks-items', name: 'item.index', component: Items },
         { path: '/:profile/stocks-item-:id', name: 'item.form', component: ItemForm },
+        { path: '/:profile/stocks-itempromotions', name: 'itempromotion.index', component: Promotion },
+        { path: '/:profile/stocks-itempromotions-:id', name: 'itempromotion.form', component: PromotionForm },
 
         { path: '/:profile/finances-dashboard', name: 'finance.dashboard', component: Dashboard },
         { path: '/:profile/finances-accounts', name: 'account.index', component: Accounts },

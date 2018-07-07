@@ -31716,18 +31716,22 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_28__views_stock_Item___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_28__views_stock_Item__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_29__views_stock_ItemForm__ = __webpack_require__(261);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_29__views_stock_ItemForm___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_29__views_stock_ItemForm__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_30__views_finance_Dashboard__ = __webpack_require__(264);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_30__views_finance_Dashboard___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_30__views_finance_Dashboard__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_31__views_finance_Account__ = __webpack_require__(265);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_31__views_finance_Account___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_31__views_finance_Account__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_32__views_finance_AccountForm__ = __webpack_require__(266);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_32__views_finance_AccountForm___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_32__views_finance_AccountForm__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_33__views_finance_AccountPayable__ = __webpack_require__(267);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_33__views_finance_AccountPayable___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_33__views_finance_AccountPayable__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_34__views_finance_AccountReceivable__ = __webpack_require__(270);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_34__views_finance_AccountReceivable___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_34__views_finance_AccountReceivable__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_35__views_finance_AccountMovement__ = __webpack_require__(273);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_35__views_finance_AccountMovement___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_35__views_finance_AccountMovement__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_30__views_stock_Promotion__ = __webpack_require__(306);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_30__views_stock_Promotion___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_30__views_stock_Promotion__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_31__views_stock_PromotionForm__ = __webpack_require__(309);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_31__views_stock_PromotionForm___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_31__views_stock_PromotionForm__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_32__views_finance_Dashboard__ = __webpack_require__(264);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_32__views_finance_Dashboard___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_32__views_finance_Dashboard__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_33__views_finance_Account__ = __webpack_require__(265);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_33__views_finance_Account___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_33__views_finance_Account__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_34__views_finance_AccountForm__ = __webpack_require__(266);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_34__views_finance_AccountForm___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_34__views_finance_AccountForm__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_35__views_finance_AccountPayable__ = __webpack_require__(267);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_35__views_finance_AccountPayable___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_35__views_finance_AccountPayable__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_36__views_finance_AccountReceivable__ = __webpack_require__(270);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_36__views_finance_AccountReceivable___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_36__views_finance_AccountReceivable__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_37__views_finance_AccountMovement__ = __webpack_require__(273);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_37__views_finance_AccountMovement___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_37__views_finance_AccountMovement__);
 
 /**
 * First we will load all of this project's JavaScript dependencies which
@@ -31794,6 +31798,8 @@ Back-Office views to be used for Ajax Loaded sites.
 
 
 
+
+
 /**
 * Next, we will create a fresh Vue application instance and attach it to
 * the page. Then, you may begin adding components to this application
@@ -31806,7 +31812,6 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('passport-personal-access-
 
 //Note: These tasks are only needed to show views.
 var router = new __WEBPACK_IMPORTED_MODULE_2_vue_router__["a" /* default */]({
-        mode: 'abstract',
 
         routes: [
         //This will cause 404 Errors to be redirected to proper site.
@@ -31815,7 +31820,7 @@ var router = new __WEBPACK_IMPORTED_MODULE_2_vue_router__["a" /* default */]({
         //{ path: '/', name: 'dashboard', component: Dashboard },
         { path: '/:profile-dashboard', name: 'dashboard', component: __WEBPACK_IMPORTED_MODULE_7__views_Dashboard___default.a }, { path: '/config/profile', name: 'profile.form', component: __WEBPACK_IMPORTED_MODULE_9__views_config_ProfileForm___default.a }, { path: '/:profile/config-locations', name: 'location.index', component: __WEBPACK_IMPORTED_MODULE_10__views_config_Location___default.a }, { path: '/:profile/config-sales-taxes', name: 'sales-taxes.index', component: __WEBPACK_IMPORTED_MODULE_11__views_config_SalesTax___default.a }, { path: '/:profile/config-contracts', name: 'contracts.index', component: __WEBPACK_IMPORTED_MODULE_12__views_config_Contract___default.a }, { path: '/:profile/config-team-members', name: 'team-members.index', component: __WEBPACK_IMPORTED_MODULE_13__views_config_TeamMember___default.a }, { path: '/:profile/crm-dashboard', name: 'crm.dashboard', component: __WEBPACK_IMPORTED_MODULE_7__views_Dashboard___default.a }, { path: '/:profile/crm-pipelines', name: 'pipeline.index', component: __WEBPACK_IMPORTED_MODULE_15__views_crm_Pipeline___default.a }, { path: '/:profile/crm-opportunities-:userid', name: 'opportunity.index', component: __WEBPACK_IMPORTED_MODULE_16__views_crm_Opportunity___default.a }, { path: '/:profile/crm-opportunity-:id-:user_id', name: 'opportunity.form', component: __WEBPACK_IMPORTED_MODULE_17__views_crm_OpportunityForm___default.a }, { path: '/:profile/crm-opportunity-:id', name: 'opportunity.show', component: __WEBPACK_IMPORTED_MODULE_18__views_crm_OpportunityShow___default.a }, { path: '/:profile/sales-dashboard', name: 'sales.dashboard', component: __WEBPACK_IMPORTED_MODULE_7__views_Dashboard___default.a }, { path: '/:profile/sales-customers', name: 'customer.index', component: __WEBPACK_IMPORTED_MODULE_20__views_sales_Customer___default.a }, { path: '/:profile/sales-customer-:id', name: 'customer.form', component: __WEBPACK_IMPORTED_MODULE_21__views_sales_CustomerForm___default.a },
         // { path: '/:profile/sales/carts', name: 'carts', component: Carts },
-        { path: '/:profile/sales-orders', name: 'order.index', component: __WEBPACK_IMPORTED_MODULE_22__views_sales_Order___default.a }, { path: '/:profile/sales-order-:id', name: 'order.form', component: __WEBPACK_IMPORTED_MODULE_23__views_sales_OrderForm___default.a }, { path: '/:profile/purchases-dashboard', name: 'purchase.dashboard', component: __WEBPACK_IMPORTED_MODULE_7__views_Dashboard___default.a }, { path: '/:profile/purchases-suppliers', name: 'supplier.index', component: __WEBPACK_IMPORTED_MODULE_25__views_purchase_Supplier___default.a }, { path: '/:profile/purchases-supplier-:id', name: 'supplier.form', component: __WEBPACK_IMPORTED_MODULE_26__views_purchase_SupplierForm___default.a }, { path: '/:profile/stocks-dashboard', name: 'stock.dashboard', component: __WEBPACK_IMPORTED_MODULE_7__views_Dashboard___default.a }, { path: '/:profile/stocks-items', name: 'item.index', component: __WEBPACK_IMPORTED_MODULE_28__views_stock_Item___default.a }, { path: '/:profile/stocks-item-:id', name: 'item.form', component: __WEBPACK_IMPORTED_MODULE_29__views_stock_ItemForm___default.a }, { path: '/:profile/finances-dashboard', name: 'finance.dashboard', component: __WEBPACK_IMPORTED_MODULE_7__views_Dashboard___default.a }, { path: '/:profile/finances-accounts', name: 'account.index', component: __WEBPACK_IMPORTED_MODULE_31__views_finance_Account___default.a }, { path: '/:profile/finances-account-:id', name: 'account.form', component: __WEBPACK_IMPORTED_MODULE_32__views_finance_AccountForm___default.a }, { path: '/:profile/finances-account-payables', name: 'account-payable.index', component: __WEBPACK_IMPORTED_MODULE_33__views_finance_AccountPayable___default.a }, { path: '/:profile/finances-account-recievables', name: 'account-recievable.index', component: __WEBPACK_IMPORTED_MODULE_34__views_finance_AccountReceivable___default.a }, { path: '/:profile/finances-account-movements', name: 'account_movement.index', component: __WEBPACK_IMPORTED_MODULE_35__views_finance_AccountMovement___default.a }],
+        { path: '/:profile/sales-orders', name: 'order.index', component: __WEBPACK_IMPORTED_MODULE_22__views_sales_Order___default.a }, { path: '/:profile/sales-order-:id', name: 'order.form', component: __WEBPACK_IMPORTED_MODULE_23__views_sales_OrderForm___default.a }, { path: '/:profile/purchases-dashboard', name: 'purchase.dashboard', component: __WEBPACK_IMPORTED_MODULE_7__views_Dashboard___default.a }, { path: '/:profile/purchases-suppliers', name: 'supplier.index', component: __WEBPACK_IMPORTED_MODULE_25__views_purchase_Supplier___default.a }, { path: '/:profile/purchases-supplier-:id', name: 'supplier.form', component: __WEBPACK_IMPORTED_MODULE_26__views_purchase_SupplierForm___default.a }, { path: '/:profile/stocks-dashboard', name: 'stock.dashboard', component: __WEBPACK_IMPORTED_MODULE_7__views_Dashboard___default.a }, { path: '/:profile/stocks-items', name: 'item.index', component: __WEBPACK_IMPORTED_MODULE_28__views_stock_Item___default.a }, { path: '/:profile/stocks-item-:id', name: 'item.form', component: __WEBPACK_IMPORTED_MODULE_29__views_stock_ItemForm___default.a }, { path: '/:profile/stocks-itempromotions', name: 'itempromotion.index', component: __WEBPACK_IMPORTED_MODULE_30__views_stock_Promotion___default.a }, { path: '/:profile/stocks-itempromotions-:id', name: 'itempromotion.form', component: __WEBPACK_IMPORTED_MODULE_31__views_stock_PromotionForm___default.a }, { path: '/:profile/finances-dashboard', name: 'finance.dashboard', component: __WEBPACK_IMPORTED_MODULE_7__views_Dashboard___default.a }, { path: '/:profile/finances-accounts', name: 'account.index', component: __WEBPACK_IMPORTED_MODULE_33__views_finance_Account___default.a }, { path: '/:profile/finances-account-:id', name: 'account.form', component: __WEBPACK_IMPORTED_MODULE_34__views_finance_AccountForm___default.a }, { path: '/:profile/finances-account-payables', name: 'account-payable.index', component: __WEBPACK_IMPORTED_MODULE_35__views_finance_AccountPayable___default.a }, { path: '/:profile/finances-account-recievables', name: 'account-recievable.index', component: __WEBPACK_IMPORTED_MODULE_36__views_finance_AccountReceivable___default.a }, { path: '/:profile/finances-account-movements', name: 'account_movement.index', component: __WEBPACK_IMPORTED_MODULE_37__views_finance_AccountMovement___default.a }],
         components: {
                 Reports: __WEBPACK_IMPORTED_MODULE_5__components_reports_vue___default.a
 
@@ -91858,6 +91863,927 @@ if (false) {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 291 */,
+/* 292 */,
+/* 293 */,
+/* 294 */,
+/* 295 */,
+/* 296 */,
+/* 297 */,
+/* 298 */,
+/* 299 */,
+/* 300 */,
+/* 301 */,
+/* 302 */,
+/* 303 */,
+/* 304 */,
+/* 305 */,
+/* 306 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(1)
+/* script */
+var __vue_script__ = __webpack_require__(307)
+/* template */
+var __vue_template__ = __webpack_require__(308)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\views\\stock\\Promotion.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-0c9a9360", Component.options)
+  } else {
+    hotAPI.reload("data-v-0c9a9360", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 307 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      profile: '',
+      list: [],
+      meta: [{ total: 0 }]
+
+    };
+  },
+
+
+  methods: {
+    onLoad: function onLoad(page) {
+      var _this = this;
+
+      this.profile = this.$route.params.profile;
+
+      axios.get('/api/' + this.profile + '/back-office/list/itempromotions/1?page=' + page).then(function (response) {
+
+        _this.list = response.data.data;
+        _this.meta = response.data.meta;
+      }).catch(function (error) {});
+    },
+    created: function created() {
+      console.log('a');
+    },
+    pageChange: function pageChange(page) {
+      var app = this;
+      app.onLoad(page);
+    },
+    onCreate: function onCreate() {
+      var app = this;
+      app.$router.push({ name: "promotion.form", params: { id: 0 } });
+    },
+    onBack: function onBack() {
+
+      if (this.$router.history.stack[this.$router.history.index - 1].params.id != null) {
+        this.$router.push({ name: this.$router.history.stack[this.$router.history.index - 1].name, params: { id: this.$router.history.stack[this.$router.history.index - 1].params.id } });
+      } else {
+        this.$router.push({ name: this.$router.history.stack[this.$router.history.index - 1].name });
+      }
+    },
+    onDelete: function onDelete($data) {
+      var _this2 = this;
+
+      var app = this;
+
+      this.$swal({
+        title: 'Delete Record',
+        text: "Sure? This action is non-reversable",
+        type: 'question',
+        showCancelButton: true,
+        confirmButtonText: 'Yes, delete it!'
+      }).then(function () {
+
+        axios.delete('/api/' + _this2.profile + '/back-office/itempromotions/' + $data.id).then(function () {
+
+          var index = _this2.list.findIndex(function (x) {
+            return x.id === $data.id;
+          });
+          _this2.list.splice(index, 1);
+
+          _this2.$toast.open({
+            duration: 750,
+            message: 'The record has been deleted',
+            position: 'is-bottom-right',
+            type: 'is-danger'
+          });
+        }).catch(function (ex) {
+          console.log(ex.response);
+          _this2.$toast.open({
+            duration: 5000,
+            message: 'Error trying to delete record',
+            type: 'is-danger'
+          });
+        });
+      });
+    }
+  },
+  mounted: function mounted() {
+    console.log(this.$router);
+    var app = this;
+    app.onLoad(1);
+  }
+
+});
+
+/***/ }),
+/* 308 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    [
+      _c(
+        "button",
+        {
+          staticClass: "btn btn-sm btn-alt-danger",
+          on: {
+            click: function($event) {
+              _vm.onBack()
+            }
+          }
+        },
+        [_c("i", { staticClass: "fa fa-arrow-left" })]
+      ),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          staticClass: "btn btn-sm btn-alt-danger",
+          on: {
+            click: function($event) {
+              _vm.onBack()
+            }
+          }
+        },
+        [_c("i", { staticClass: "fa fa-arrow-right" })]
+      ),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-md-6 col-xl-3" }, [
+        _c(
+          "a",
+          {
+            staticClass: "block block-rounded block-link-shadow",
+            attrs: { href: "#" },
+            on: {
+              click: function($event) {
+                _vm.onCreate()
+              }
+            }
+          },
+          [_vm._m(0)]
+        )
+      ]),
+      _vm._v(" "),
+      _c("table", { staticClass: "table table-borderless table-striped" }, [
+        _vm._m(1),
+        _vm._v(" "),
+        _c("tbody", [
+          _c(
+            "div",
+            {},
+            _vm._l(_vm.list, function(item) {
+              return _c("tr", [
+                _c("td", [
+                  _c(
+                    "a",
+                    {
+                      staticClass: "font-w600",
+                      attrs: { href: "#" },
+                      on: {
+                        click: function($event) {
+                          _vm.onEdit(item, false)
+                        }
+                      }
+                    },
+                    [_vm._v(_vm._s(item.id))]
+                  )
+                ]),
+                _vm._v(" "),
+                _c("td", { staticClass: "d-none d-sm-table-cell" }, [
+                  _vm._v(
+                    "\n              " + _vm._s(item.type) + "\n            "
+                  )
+                ]),
+                _vm._v(" "),
+                _c("td", { staticClass: "d-none d-sm-table-cell" }, [
+                  _vm._v(
+                    "\n              " +
+                      _vm._s(item.start_date) +
+                      "\n            "
+                  )
+                ]),
+                _vm._v(" "),
+                _c("td", [
+                  _vm._v(
+                    "\n              " +
+                      _vm._s(item.end_date) +
+                      "\n            "
+                  )
+                ])
+              ])
+            })
+          )
+        ])
+      ]),
+      _vm._v(" "),
+      _c("b-pagination", {
+        attrs: {
+          total: _vm.meta.total,
+          current: _vm.meta.current_page,
+          simple: false,
+          "per-page": _vm.meta.per_page
+        },
+        on: {
+          "update:current": function($event) {
+            _vm.$set(_vm.meta, "current_page", $event)
+          },
+          change: _vm.pageChange
+        }
+      })
+    ],
+    1
+  )
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      { staticClass: "block-content block-content-full block-sticky-options" },
+      [
+        _c("div", { staticClass: "block-options" }, [
+          _c("div", { staticClass: "block-options-item" }, [
+            _c("i", { staticClass: "fa fa-archive fa-2x text-success-light" })
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "py-20 text-center" }, [
+          _c(
+            "div",
+            { staticClass: "font-size-h2 font-w700 mb-0 text-success" },
+            [_c("i", { staticClass: "fa fa-plus" })]
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "font-size-sm font-w600 text-uppercase text-muted" },
+            [_vm._v("New Promotion")]
+          )
+        ])
+      ]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", [
+      _c("tr", [
+        _c("th", { staticStyle: { width: "100px" } }, [_vm._v("ID")]),
+        _vm._v(" "),
+        _c("th", { staticClass: "d-none d-sm-table-cell" }, [_vm._v("Type")]),
+        _vm._v(" "),
+        _c("th", { staticClass: "d-none d-md-table-cell" }, [
+          _vm._v("Start Date")
+        ]),
+        _vm._v(" "),
+        _c("th", { staticClass: "d-none d-md-table-cell" }, [
+          _vm._v("End Date")
+        ])
+      ])
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-0c9a9360", module.exports)
+  }
+}
+
+/***/ }),
+/* 309 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(1)
+/* script */
+var __vue_script__ = __webpack_require__(310)
+/* template */
+var __vue_template__ = __webpack_require__(311)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\views\\stock\\PromotionForm.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-dac94378", Component.options)
+  } else {
+    hotAPI.reload("data-v-dac94378", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 310 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      profile: ''
+
+    };
+  },
+
+
+  methods: {
+    onSave: function onSave($data) {
+      var _this = this;
+
+      var app = this;
+      axios.post('/api/' + app.profile + '/back-office/itempromotions', $data).then(function () {
+        _this.$toast.open({
+          message: 'Awsome! Your work has been saved',
+          type: 'is-success'
+        });
+
+        _this.$router.push({ name: "item.index" });
+      }).catch(function (ex) {
+        console.log(ex.response);
+        _this.$toast.open({
+          duration: 5000,
+          message: 'Error trying to save record',
+          type: 'is-danger'
+        });
+      });
+    },
+    onCancel: function onCancel() {
+      console.log(this);
+      this.$router.push({ name: "itempromotion.index" });
+    },
+    onBack: function onBack() {
+
+      this.$router.push({ name: this.$router.history.stack[this.$router.history.index - 1].name });
+    }
+  },
+
+  mounted: function mounted() {
+    console.log(this.$router);
+    var app = this;
+    app.profile = this.$route.params.profile;
+    app.id = this.$route.params.id;
+    if (app.id > 0) {
+
+      axios.get('/api/' + app.profile + '/back-office/itempromotions/' + app.id + '/edit').then(function (response) {
+        console.log(app);
+        //  app.$children[0].onEdit(response.data)
+      }).catch(function (ex) {
+        console.log(ex);
+
+        app.$toast.open({
+          duration: 5000,
+          message: 'Error trying to edit this record',
+          type: 'is-danger'
+        });
+      });
+    }
+  }
+
+});
+
+/***/ }),
+/* 311 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    [
+      _c(
+        "button",
+        {
+          staticClass: "btn btn-sm btn-alt-danger",
+          on: {
+            click: function($event) {
+              _vm.onBack()
+            }
+          }
+        },
+        [
+          _c("i", { staticClass: "fa fa-close" }),
+          _vm._v(" @lang('global.Back')\n  ")
+        ]
+      ),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          staticClass: "btn btn-sm btn-alt-danger",
+          on: {
+            click: function($event) {
+              _vm.onForward()
+            }
+          }
+        },
+        [
+          _c("i", { staticClass: "fa fa-close" }),
+          _vm._v(" @lang('global.Back')\n  ")
+        ]
+      ),
+      _vm._v(" "),
+      _c("item-form", {
+        ref: "back_officeForm",
+        inlineTemplate: {
+          render: function() {
+            var _vm = this
+            var _h = _vm.$createElement
+            var _c = _vm._self._c || _h
+            return _c("div", [
+              _c("h2", { staticClass: "content-heading text-black" }, [
+                _vm._v("General")
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "row items-push" }, [
+                _vm._m(0),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-lg-7 offset-lg-1" }, [
+                  _c("div", { staticClass: "form-group row" }, [
+                    _c("div", { staticClass: "col-12" }, [
+                      _c("label", [_vm._v("Type")]),
+                      _vm._v(" "),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.type,
+                            expression: "type"
+                          }
+                        ],
+                        staticClass: "form-control form-control-lg",
+                        attrs: { type: "text" },
+                        domProps: { value: _vm.type },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.type = $event.target.value
+                          }
+                        }
+                      })
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "form-group row" }, [
+                    _c(
+                      "div",
+                      { staticClass: "col-12" },
+                      [
+                        _c(
+                          "label",
+                          { attrs: { for: "crypto-settings-email" } },
+                          [_vm._v("input")]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "b-field",
+                          [
+                            _c(
+                              "b-autocomplete",
+                              {
+                                attrs: {
+                                  data: _vm.items,
+                                  placeholder: "Search Item",
+                                  field: "name",
+                                  loading: _vm.isFetching
+                                },
+                                on: {
+                                  input: _vm.getItems,
+                                  select: function(option) {
+                                    return _vm.addItem(option)
+                                  }
+                                },
+                                scopedSlots: _vm._u([
+                                  {
+                                    key: "default",
+                                    fn: function(props) {
+                                      return [
+                                        _c("strong", [
+                                          _vm._v(
+                                            "@" + _vm._s(props.option.name)
+                                          )
+                                        ]),
+                                        _vm._v(
+                                          " | @" +
+                                            _vm._s(props.option.code) +
+                                            "\n                  "
+                                        )
+                                      ]
+                                    }
+                                  }
+                                ]),
+                                model: {
+                                  value: _vm.input_value,
+                                  callback: function($$v) {
+                                    _vm.input_value = $$v
+                                  },
+                                  expression: "input_value"
+                                }
+                              },
+                              [
+                                _c("template", { slot: "empty" }, [
+                                  _vm._v(
+                                    "\n                      There are no items\n                  "
+                                  )
+                                ])
+                              ],
+                              2
+                            )
+                          ],
+                          1
+                        )
+                      ],
+                      1
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "form-group row" }, [
+                    _c(
+                      "div",
+                      { staticClass: "col-12" },
+                      [
+                        _c(
+                          "label",
+                          { attrs: { for: "crypto-settings-email" } },
+                          [_vm._v("output")]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "b-field",
+                          [
+                            _c(
+                              "b-autocomplete",
+                              {
+                                attrs: {
+                                  data: _vm.items,
+                                  placeholder: "Search Item",
+                                  field: "name",
+                                  loading: _vm.isFetching
+                                },
+                                on: {
+                                  input: _vm.getItems,
+                                  select: function(option) {
+                                    return _vm.addItem(option)
+                                  }
+                                },
+                                scopedSlots: _vm._u([
+                                  {
+                                    key: "default",
+                                    fn: function(props) {
+                                      return [
+                                        _c("strong", [
+                                          _vm._v(
+                                            "@" + _vm._s(props.option.name)
+                                          )
+                                        ]),
+                                        _vm._v(
+                                          " | @" +
+                                            _vm._s(props.option.code) +
+                                            "\n                  "
+                                        )
+                                      ]
+                                    }
+                                  }
+                                ]),
+                                model: {
+                                  value: _vm.output_value,
+                                  callback: function($$v) {
+                                    _vm.output_value = $$v
+                                  },
+                                  expression: "output_value"
+                                }
+                              },
+                              [
+                                _c("template", { slot: "empty" }, [
+                                  _vm._v(
+                                    "\n                      There are no items\n                  "
+                                  )
+                                ])
+                              ],
+                              2
+                            )
+                          ],
+                          1
+                        )
+                      ],
+                      1
+                    )
+                  ])
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "block-options" }, [
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-sm btn-alt-primary",
+                    on: {
+                      click: function($event) {
+                        _vm.$parent.onSave(_vm.$data, false)
+                      }
+                    }
+                  },
+                  [
+                    _c("i", { staticClass: "fa fa-save" }),
+                    _vm._v(" @lang('global.Save')\n        ")
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-sm btn-alt-primary",
+                    on: {
+                      click: function($event) {
+                        _vm.$parent.onSave(_vm.$data, true)
+                      }
+                    }
+                  },
+                  [
+                    _c("i", { staticClass: "fa fa-plus" }),
+                    _vm._v(" @lang('global.Save-and-New')\n        ")
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-sm btn-alt-danger",
+                    on: {
+                      click: function($event) {
+                        _vm.$parent.onCancel()
+                      }
+                    }
+                  },
+                  [
+                    _c("i", { staticClass: "fa fa-close" }),
+                    _vm._v(" @lang('global.Cancel')\n        ")
+                  ]
+                )
+              ])
+            ])
+          },
+          staticRenderFns: [
+            function() {
+              var _vm = this
+              var _h = _vm.$createElement
+              var _c = _vm._self._c || _h
+              return _c("div", { staticClass: "col-lg-3" }, [
+                _c("p", { staticClass: "text-muted" }, [
+                  _vm._v(
+                    "\n            Your account’s vital info. Your nickname will be publicly visible.\n          "
+                  )
+                ])
+              ])
+            }
+          ]
+        }
+      })
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-dac94378", module.exports)
+  }
+}
 
 /***/ })
 /******/ ]);
