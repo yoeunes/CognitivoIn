@@ -69,7 +69,7 @@ export default {
             axios
             .get('/api/' + this.profile + '/back-office/list/suppliers/1?page=' + page  )
             .then(response => {
-                console.log(response.data.data);
+                
                 this.list = response.data.data;
                 this.meta = response.data.meta;
             }).catch(error => {

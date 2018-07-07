@@ -85,11 +85,11 @@ Vue.component(
 
 //Note: These tasks are only needed to show views.
 const router = new VueRouter({
-    mode: 'history',
+    mode: 'abstract',
 
     routes: [
         //This will cause 404 Errors to be redirected to proper site.
-        { path: '/*', component: NotFoundComponent },
+        { path: '/*', component: Dashboard },
 
         //{ path: '/', name: 'dashboard', component: Dashboard },
         { path: '/:profile-dashboard', name: 'dashboard', component: Dashboard },

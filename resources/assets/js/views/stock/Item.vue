@@ -1,5 +1,11 @@
 <template>
   <div>
+    <button v-on:click="onBack()" class="btn btn-sm btn-alt-danger">
+      <i class="fa fa-arrow-left"></i> 
+    </button>
+    <button v-on:click="onBack()" class="btn btn-sm btn-alt-danger">
+      <i class="fa fa-arrow-right"></i>
+    </button>
     <div class="col-md-6 col-xl-3">
       <a class="block block-rounded block-link-shadow" @click="onCreate()" href="#">
         <div class="block-content block-content-full block-sticky-options">
@@ -115,6 +121,18 @@ export default {
       var app = this;
       app.$router.push({ name: "item.form", params: { id: 0 } });
     },
+    onBack()
+    {
+
+      if ( this.$router.history.stack[this.$router.history.index-1].params.id!=null) {
+        this.$router.push({ name: this.$router.history.stack[this.$router.history.index-1].name,params: { id:this.$router.history.stack[this.$router.history.index-1].params.id} });
+      }
+      else {
+      this.$router.push({ name: this.$router.history.stack[this.$router.history.index-1].name });
+      }
+
+    },
+
     onDelete($data)
     {
       var app = this;
@@ -155,6 +173,7 @@ export default {
   },
   mounted: function mounted()
   {
+    console.log(this.$router);
     var app = this;
     app.onLoad(1);
   }

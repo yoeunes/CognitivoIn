@@ -376,7 +376,7 @@
 
                                     </ul>
                                 </li>
-                                
+
 
                             </ul>
                         </div>
@@ -522,7 +522,11 @@
 
         <!-- Main Container -->
         <div class="container">
-            <router-view></router-view>
+            <transition>
+                <keep-alive>
+                    <router-view></router-view>
+                </keep-alive>
+            </transition>
         </div>
         <!-- END Main Container -->
 

@@ -126,6 +126,10 @@ export default {
             });
         },
     },
+    created () {
+      console.log(this);
+  //  this.$router.push({ name: 'item.index',params: { profile:this.profile} })
+    },
     mounted: function mounted()
     {
         var app = this;
