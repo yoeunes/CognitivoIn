@@ -84,14 +84,50 @@ Vue.component(
     'passport-personal-access-tokens',
     require('./components/passport/PersonalAccessTokens.vue')
 );
+const UserEmailsSubscriptions = {
+	template: `
+<div>
+	<h3>Email Subscriptions</h3>
+</div>
+  `
+}
 
+const UserProfile = {
+	template: `
+<div>
+	<h3>Edit your profile</h3>
+</div>
+  `
+}
+
+const UserSettings = {
+	template: `
+<div class="us">
+  <h2>User Settings</h2>
+  <UserSettingsNav/>
+  <router-view/>
+
+</div>
+  `
+}
 //Note: These tasks are only needed to show views.
 const router = new VueRouter({
-    
+
 
     routes: [
         //This will cause 404 Errors to be redirected to proper site.
-        { path: '/*', component: Dashboard },
+
+        {
+            path: '/dashboard',
+            component: UserSettings,
+            children: [{
+                path: 'items',
+                component: UserEmailsSubscriptions},
+                {
+                    path:'customers',
+                    component: UserProfile
+            }]
+        },
 
         //{ path: '/', name: 'dashboard', component: Dashboard },
         { path: '/:profile-dashboard', name: 'dashboard', component: Dashboard },
@@ -134,9 +170,9 @@ const router = new VueRouter({
 
     ],
     components: {
-            Reports : Reports
+        Reports : Reports
 
-        }
+    }
 });
 
 const app = new Vue({

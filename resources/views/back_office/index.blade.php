@@ -214,9 +214,15 @@
                                 </li>
 
                                 <li>
-                                    <router-link :to="{ name: 'item.index',params: { profile:'{{ request()->route('profile')->slug}}'} }">
+                                    <router-link to="/dashboard/items">
                                         <i class="si si-puzzle"></i>
                                         @lang('back-office.Products and Services')
+                                    </router-link>
+                                </li>
+                                <li>
+                                    <router-link to="/dashboard/customers">
+                                        <i class="si si-puzzle"></i>
+                                        @lang('back-office.Customers')
                                     </router-link>
                                 </li>
 
