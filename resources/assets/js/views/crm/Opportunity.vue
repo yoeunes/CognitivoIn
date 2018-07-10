@@ -16,7 +16,7 @@
           </div>
         </div>
       </a>
-      <a class="block block-rounded block-link-shadow"  v-bind:href="'/reports/opportunities/we-paraguay/'+ start_date +'/' + end_date ">
+      <a class="block block-rounded block-link-shadow"  v-bind:href="'/reports/opportunities/' + profile +'/'+ start_date +'/' + end_date ">
         <div class="block-content block-content-full block-sticky-options">
           <div class="block-options">
             <div class="block-options-item">
@@ -27,7 +27,22 @@
             <div class="font-size-h2 font-w700 mb-0 text-success">
               <i class="fa fa-plus"></i>
             </div>
-            <div class="font-size-sm font-w600 text-uppercase text-muted">Report</div>
+            <div class="font-size-sm font-w600 text-uppercase text-muted">opportunity Report</div>
+          </div>
+        </div>
+      </a>
+      <a class="block block-rounded block-link-shadow"  v-bind:href="'/reports/opportunitiesTask/' + profile +'/'+ start_date +'/' + end_date ">
+        <div class="block-content block-content-full block-sticky-options">
+          <div class="block-options">
+            <div class="block-options-item">
+              <i class="fa fa-archive fa-2x text-success-light"></i>
+            </div>
+          </div>
+          <div class="py-20 text-center">
+            <div class="font-size-h2 font-w700 mb-0 text-success">
+              <i class="fa fa-plus"></i>
+            </div>
+            <div class="font-size-sm font-w600 text-uppercase text-muted">Task Report</div>
           </div>
         </div>
       </a>

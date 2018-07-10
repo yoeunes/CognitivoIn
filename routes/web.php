@@ -25,7 +25,7 @@ Route::group(['middleware' => 'auth'], function ()
     'profile' => 'ProfileController'
   ]);
 
-  Route::prefix('/{profile}')->group(function ()
+  Route::prefix('/dashboard/{profile}')->group(function ()
   {
     Route::get('/{url}', 'NavigationController@index')->where('any', '.*');
   });
@@ -37,6 +37,7 @@ Route::group(['middleware' => 'auth'], function ()
 
 
     Route::get('opportunities/{profile}/{strDate}/{endDate}', 'ReportController@opportunity')->name('reports.opportunities');
+    Route::get('opportunitiesTask/{profile}/{strDate}/{endDate}', 'ReportController@opportunityTask')->name('reports.opportunitiesTask');
   });
 });
 

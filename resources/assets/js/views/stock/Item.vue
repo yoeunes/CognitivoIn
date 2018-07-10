@@ -1,7 +1,7 @@
 <template>
   <div>
     <button v-on:click="onBack()" class="btn btn-sm btn-alt-danger">
-      <i class="fa fa-arrow-left"></i> 
+      <i class="fa fa-arrow-left"></i>
     </button>
     <button v-on:click="onBack()" class="btn btn-sm btn-alt-danger">
       <i class="fa fa-arrow-right"></i>
