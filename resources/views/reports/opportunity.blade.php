@@ -19,12 +19,9 @@
           <th>@lang('global.Description')</th>
           <th>@lang('global.Customer')</th>
           <th>@lang('global.quantity')</th>
-          <th>@lang('global.contact')</th>
-          <th>@lang('global.email')</th>
           <th class="number">@lang('global.Value')</th>
           <th>@lang('global.Currency')</th>
-          <th>@lang('global.Complete')</th>
-          <th>@lang('global.completed Date')</th>
+
         </tr>
       </thead>
       @foreach ($data as $row)
@@ -32,19 +29,16 @@
           <td>{{ $row->date }}</td>
           <td>{{ $row->name }}</td>
           <td>{{ $row->description }}</td>
-          <td>{{ $row->customer }}</td>
-          <td>{{ $row->quantity }}</td>
-          <td>{{ $row->contact }}</td>
-          <td>{{ $row->email }}</td>
+          <td>{{ $row->relationship->customer_alias }}</td>
+          <td>{{ $row->carts->first()->quantity }}</td>
           <td class="number">{{ $row->value }}</td>
           <td>{{ $row->currency }}</td>
-          <td>{{ $row->complete_by }}</td>
-          <td>{{ $row->complete_date }}</td>
+
         </tr>
       @endforeach
     </tbody>
   </table>
-  
+
 
 
 @endsection

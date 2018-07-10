@@ -17,7 +17,7 @@
       </thead>
       @foreach ($data as $row)
         <tr>
-          <td>{{ $row->date }}</td>
+          <td>{{ $row->created_date }}</td>
           <td>{{ $row->name }}</td>
           <td>{{ $row->description }}</td>
           <td>{{ $row->title }}</td>
