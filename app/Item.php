@@ -66,6 +66,10 @@ class Item extends Model
     {
         return $this->hasMany(Cart::class);
     }
+    public function itemmovement()
+    {
+        return $this->hasMany(ItemMovement::class);
+    }
 
     public function faqs()
     {

@@ -10,6 +10,7 @@ use App\Relationship;
 use App\Order;
 use App\OrderDetail;
 use App\VatDetail;
+use App\Http\Resources\AccountMovementResource;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use DB;
@@ -22,9 +23,11 @@ class AccountMovementController extends Controller
     *
     * @return \Illuminate\Http\Response
     */
-    public function index(Profile $profile, $skip)
+    public function index(Profile $profile, $filterBy)
     {
-
+      return AccountMovementResource::collection(
+              AccountMovement::with('account')->orderBy('account_id')->paginate(100));
+          }
     }
 
     /**

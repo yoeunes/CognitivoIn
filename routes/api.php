@@ -38,6 +38,7 @@ Route::prefix('{profile}')->group(function ()
       Route::get('customers/{filterBy}', 'CustomerController@index');
       Route::get('suppliers/{filterBy}', 'SupplierController@index');
       Route::get('items/{filterBy}', 'ItemController@index');
+      Route::get('itemmovement/{filterBy}', 'ItemMovementController@index');
       Route::get('itempromotions/{filterBy}', 'ItemPromotionController@index');
       Route::get('followers/{filterBy}', 'FollowerController@index');
       Route::get('pipelines/{filterBy}', 'PipelineController@index');

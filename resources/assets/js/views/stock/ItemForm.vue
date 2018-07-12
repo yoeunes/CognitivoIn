@@ -1,11 +1,6 @@
 <template>
   <div>
-    <button v-on:click="onBack()" class="btn btn-sm btn-alt-danger">
-      <i class="fa fa-close"></i> @lang('global.Back')
-    </button>
-    <button v-on:click="onForward()" class="btn btn-sm btn-alt-danger">
-      <i class="fa fa-close"></i> @lang('global.Back')
-    </button>
+
     <item-form ref="back_officeForm" inline-template>
       <div>
         <!-- User Profile -->
@@ -162,12 +157,8 @@ export default {
     {
       console.log(this)
       this.$router.push({ name: "item.index" });
-    },
-    onBack()
-    {
-
-      this.$router.push({ name: this.$router.history.stack[this.$router.history.index-1].name });
     }
+
 
 
 

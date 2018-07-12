@@ -55,6 +55,7 @@ import SupplierForm from './views/purchase/SupplierForm';
 
 import Stock_Dashboard from './views/stock/Dashboard';
 import Items from './views/stock/Item';
+import StockMovement from './views/stock/StockMovement';
 import ItemForm from './views/stock/ItemForm';
 import Promotion from './views/stock/Promotion';
 import PromotionForm from './views/stock/PromotionForm';
@@ -207,6 +208,11 @@ const router = new VueRouter({
           name: 'item.index'
         },
         {
+          path: 'stocks-movement',
+          component: StockMovement,
+          name: 'stockmovement.index'
+        },
+        {
           path: 'stocks-item-:id',
           component: ItemForm,
           name:'item.form'
@@ -245,12 +251,12 @@ const router = new VueRouter({
           path: 'finances-account-recievables',
           component: AccountReceivables,
           name: 'account-recievable.index'
+        },
+        {
+          path: 'finances-account-movements',
+          component: AccountMovements,
+          name: 'account_movement.index'
         }
-        // {
-        //   path: 'finances-account-movements',
-        //   component: AccountMovements,
-        //   name: 'account_movement.index'
-        // }
       ]
     },
 

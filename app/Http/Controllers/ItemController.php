@@ -45,7 +45,7 @@ class ItemController extends Controller
     * @param  \Illuminate\Http\Request  $request
     * @return \Illuminate\Http\Response
     */
-    
+
     public function store(Request $request, Profile $profile)
     {
         $item = Item::where('id', $request->id)->first() ?? new Item();
@@ -173,22 +173,22 @@ class ItemController extends Controller
 
         if (strlen($query) >= 3)
         {
-            $items = Item::search($query)->where('profile_id', $profile->id)->get();
+          //  $items = Item::search($query)->where('profile_id', $profile->id)->get();
 
-            // $items = Item::where('items.profile_id', $profile->id)
-            // ->where('items.name', 'LIKE', "%" . $query . "%")
-            // ->orWhere('items.sku', 'LIKE', "%" . $query . "%")
-            // ->leftJoin('vats', 'items.vat_id', 'vats.id')
-            // ->leftJoin('vat_details', 'vat_details.vat_id', 'vats.id')
-            // ->select(DB::raw('max(items.id) as id'),
-            // DB::raw('max(items.name) as name'),
-            // DB::raw('max(items.sku) as sku'),
-            // DB::raw('max(items.unit_price) as unit_price'),
-            // DB::raw('max(items.unit_price) + (max(items.unit_price)*sum(vat_details.coefficient)) as unit_price_vat')
-            // )
-            // ->groupBy('items.id')
-            // ->take(15)
-            // ->get();
+            $items = Item::where('items.profile_id', $profile->id)
+            ->where('items.name', 'LIKE', "%" . $query . "%")
+            ->orWhere('items.sku', 'LIKE', "%" . $query . "%")
+            ->leftJoin('vats', 'items.vat_id', 'vats.id')
+            ->leftJoin('vat_details', 'vat_details.vat_id', 'vats.id')
+            ->select(DB::raw('max(items.id) as id'),
+            DB::raw('max(items.name) as name'),
+            DB::raw('max(items.sku) as sku'),
+            DB::raw('max(items.unit_price) as unit_price'),
+            DB::raw('max(items.unit_price) + (max(items.unit_price)*sum(vat_details.coefficient)) as unit_price_vat')
+            )
+            ->groupBy('items.id')
+            ->take(15)
+            ->get();
         }
 
         return response()->json($items);

@@ -21,4 +21,8 @@ class ItemMovement extends Model
         'credit',
         'comment'
     ];
+    public function item()
+    {
+      return $this->belongsTo(Item::class);
+    }
 }

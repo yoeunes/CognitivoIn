@@ -4,6 +4,7 @@
       <thead>
         <tr>
           <th style="width: 100px;">ID</th>
+          <th class="d-none d-sm-table-cell">SKU</th>
           <th>Name</th>
           <th class="text-right">Debit</th>
           <th class="text-right">Credit</th>
@@ -14,7 +15,10 @@
         <div class="">
           <tr v-for="data in list">
             <td class="d-none d-sm-table-cell">
-              {{ data.account.name }}
+              {{ data.item.sku }}
+            </td>
+            <td class="d-none d-sm-table-cell">
+              {{ data.item.name }}
             </td>
             <td>
               {{ data.debit }}
@@ -60,7 +64,7 @@ export default {
       this.profile=this.$route.params.profile;
 
       axios
-      .get('/api/' + this.profile + '/back-office/list/account-movement/1?page=' + page  )
+      .get('/api/' + this.profile + '/back-office/list/itemmovement/1?page=' + page  )
       .then(response => {
 
         this.list = response.data.data;
@@ -80,7 +84,7 @@ export default {
       app.onLoad(page);
     }
 
-
+    
 
   },
   mounted: function mounted()

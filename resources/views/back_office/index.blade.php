@@ -339,6 +339,13 @@
                         </router-link>
                       </a>
                     </li>
+                    <li>
+                      <a href="#">
+                        <router-link to="/dashboard/{{ request()->route('profile')->slug}}/stocks-movement">
+                          @lang('back-office.StockMovement')
+                        </router-link>
+                      </a>
+                    </li>
                   </ul>
                 </li>
                 <li>
@@ -375,13 +382,13 @@
                         </router-link>
                       </a>
                     </li>
-                    {{-- <li>
+                    <li>
                       <a href="#">
                         <router-link to="/dashboard/{{ request()->route('profile')->slug}}/finances-accounts-movements">
                           @lang('back-office.Account Movements')
                         </router-link>
                       </a>
-                    </li> --}}
+                    </li>
 
                   </ul>
                 </li>
