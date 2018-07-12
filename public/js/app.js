@@ -91458,9 +91458,7 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("thead", [
       _c("tr", [
-        _c("th", { staticStyle: { width: "100px" } }, [_vm._v("ID")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("Name")]),
+        _c("th", { staticClass: "text-right" }, [_vm._v("Name")]),
         _vm._v(" "),
         _c("th", { staticClass: "text-right" }, [_vm._v("Debit")]),
         _vm._v(" "),

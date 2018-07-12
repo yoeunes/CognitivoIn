@@ -178,6 +178,7 @@ class OrderController extends Controller
             {
                 $movement = new ItemMovement();
                 $movement->item_id = $item->id;
+                $movement->order_id = $order->id;
                 $movement->location_id = $order->location_id;
                 $movement->date = Carbon::now();
                 $movement->credit = 0;

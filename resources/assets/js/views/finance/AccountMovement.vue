@@ -3,8 +3,8 @@
     <table class="table table-borderless table-striped">
       <thead>
         <tr>
-          <th style="width: 100px;">ID</th>
-          <th>Name</th>
+
+          <th class="text-right">Name</th>
           <th class="text-right">Debit</th>
           <th class="text-right">Credit</th>
           <th class="text-right">comment</th>

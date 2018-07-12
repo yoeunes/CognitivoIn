@@ -384,7 +384,7 @@
                     </li>
                     <li>
                       <a href="#">
-                        <router-link to="/dashboard/{{ request()->route('profile')->slug}}/finances-accounts-movements">
+                        <router-link to="/dashboard/{{ request()->route('profile')->slug}}/finances-account-movements">
                           @lang('back-office.Account Movements')
                         </router-link>
                       </a>
