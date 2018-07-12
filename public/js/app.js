@@ -81482,85 +81482,91 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  data: function data() {
-    return {
-      profile: '',
-      start_date: '',
-      end_date: '',
-      userid: '',
-      list: [],
-      meta: [{ total: 0 }]
+    data: function data() {
+        return {
+            profile: '',
+            start_date: '',
+            end_date: '',
+            userid: '',
+            list: [],
+            meta: [{ total: 0 }]
 
-    };
-  },
-
-
-  methods: {
-    onLoad: function onLoad(page) {
-      var _this = this;
-
-      this.profile = this.$route.params.profile;
-      this.userid = this.$route.params.userid;
-      axios.get('/api/' + this.profile + '/back-office/list/opportunities/1?page=' + page).then(function (response) {
-
-        _this.list = response.data.data;
-        _this.meta = response.data.meta;
-      }).catch(function (error) {});
+        };
     },
-    pageChange: function pageChange(page) {
-      var app = this;
-      app.onLoad(page);
+
+
+    methods: {
+        onLoad: function onLoad(page) {
+            var _this = this;
+
+            this.profile = this.$route.params.profile;
+            this.userid = this.$route.params.userid;
+            axios.get('/api/' + this.profile + '/back-office/list/opportunities/1?page=' + page).then(function (response) {
+
+                _this.list = response.data.data;
+                _this.meta = response.data.meta;
+            }).catch(function (error) {});
+        },
+        pageChange: function pageChange(page) {
+            var app = this;
+            app.onLoad(page);
+        },
+        onCreate: function onCreate() {
+            var app = this;
+            app.$router.push({ name: "opportunity.form", params: { id: 0, user_id: app.userid } });
+        },
+        onDelete: function onDelete($data) {
+            var _this2 = this;
+
+            var app = this;
+
+            this.$swal({
+                title: 'Delete Record',
+                text: "Sure? This action is non-reversable",
+                type: 'question',
+                showCancelButton: true,
+                confirmButtonText: 'Yes, delete it!'
+            }).then(function () {
+
+                axios.delete('/api/' + _this2.profile + '/back-office/opportunities/' + $data.id).then(function () {
+
+                    var index = _this2.list.findIndex(function (x) {
+                        return x.id === $data.id;
+                    });
+                    _this2.list.splice(index, 1);
+
+                    _this2.$toast.open({
+                        duration: 750,
+                        message: 'The record has been deleted',
+                        position: 'is-bottom-right',
+                        type: 'is-danger'
+                    });
+                }).catch(function (ex) {
+                    console.log(ex.response);
+                    _this2.$toast.open({
+                        duration: 5000,
+                        message: 'Error trying to delete record',
+                        type: 'is-danger'
+                    });
+                });
+            });
+        }
     },
-    onCreate: function onCreate() {
-      var app = this;
-      app.$router.push({ name: "opportunity.form", params: { id: 0, user_id: app.userid } });
-    },
-    onDelete: function onDelete($data) {
-      var _this2 = this;
-
-      var app = this;
-
-      this.$swal({
-        title: 'Delete Record',
-        text: "Sure? This action is non-reversable",
-        type: 'question',
-        showCancelButton: true,
-        confirmButtonText: 'Yes, delete it!'
-      }).then(function () {
-
-        axios.delete('/api/' + _this2.profile + '/back-office/opportunities/' + $data.id).then(function () {
-
-          var index = _this2.list.findIndex(function (x) {
-            return x.id === $data.id;
-          });
-          _this2.list.splice(index, 1);
-
-          _this2.$toast.open({
-            duration: 750,
-            message: 'The record has been deleted',
-            position: 'is-bottom-right',
-            type: 'is-danger'
-          });
-        }).catch(function (ex) {
-          console.log(ex.response);
-          _this2.$toast.open({
-            duration: 5000,
-            message: 'Error trying to delete record',
-            type: 'is-danger'
-          });
-        });
-      });
+    mounted: function mounted() {
+        var app = this;
+        app.start_date = moment().subtract(1, 'months').startOf('month').format("YYYY-MM-DD");
+        app.end_date = moment().subtract(1, 'months').endOf('month').format("YYYY-MM-DD");
+        app.onLoad(1);
     }
-  },
-  mounted: function mounted() {
-    var app = this;
-    app.start_date = moment().subtract(1, 'months').startOf('month').format("YYYY-MM-DD");
-    app.end_date = moment().subtract(1, 'months').endOf('month').format("YYYY-MM-DD");
-    app.onLoad(1);
-  }
 
 });
 
@@ -81588,8 +81594,10 @@ var render = function() {
             }
           },
           [_vm._m(0)]
-        ),
-        _vm._v(" "),
+        )
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-md-6 col-xl-3" }, [
         _c(
           "a",
           {
@@ -81605,8 +81613,10 @@ var render = function() {
             }
           },
           [_vm._m(1)]
-        ),
-        _vm._v(" "),
+        )
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-md-6 col-xl-3" }, [
         _c(
           "a",
           {
