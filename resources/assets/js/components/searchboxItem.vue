@@ -31,7 +31,7 @@
 
             <div class="input-group-append">
                 <span  id="basic-addon1">
-                  
+
                     <input type="hidden" name="item_id" v-model="id"/>
                     @{{ selectText }}
                 </span>
@@ -60,7 +60,7 @@ export default {
     props: ['current_company'],
     data () {
         return {
-            src: '/api/getItem/' + this.current_company['slug'] + '/',
+            src: '/api/' + this.current_company['slug'] + '/back-office/search/items/',
             limit: 5,
             minChars: 3,
             queryParamName: '',

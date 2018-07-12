@@ -86,7 +86,7 @@ Vue.component(
 );
 
 
-const UserSettings = {
+const MainView = {
   template: `
   <div class="us">
   <router-view/>
@@ -103,7 +103,7 @@ const router = new VueRouter({
     //{ path: '/*', component: UserSettings },
     {
       path: '/dashboard/:profile',
-      component: UserSettings,
+      component: MainView,
       default:Dashboard,
       children: [
         {

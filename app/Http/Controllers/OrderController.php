@@ -15,6 +15,7 @@ use App\OrderDetail;
 use App\Contract;
 use App\ContractDetail;
 use App\ItemMovement;
+use App\ItemPromotion;
 use App\Http\Resources\OrderResource;
 use Swap\Laravel\Facades\Swap;
 use Carbon\Carbon;
@@ -87,8 +88,32 @@ class OrderController extends Controller
 
                 $orderDetail->save();
 
-                return response()->json('success', 200);
+
             }
+            $details=OrderDetail::where('order_id',  $order->id)
+            ->select(DB::raw('item_id'),
+            DB::raw('round(sum(quantity),2) as quantity'))
+            ->groupBy('item_id')->get();
+            foreach ($details as $detail) {
+                $promotions=ItemPromotion::where('input_id',$detail['item_id'])->get();
+                foreach ($promotions as $promotion) {
+                    if ($promotions->type==1 && $promotions->input_value==$detail['quantity'])
+                    {
+                        $item=Item::where('id',$promotions->output_id)->first();
+                        $orderDetail = new OrderDetail();
+                        $orderDetail->order_id = $order->id;
+                        $orderDetail->item_id = $promotions->output_id;
+                        $orderDetail->item_sku = $item->sku;
+                        $orderDetail->item_name = $item->name;
+                        $orderDetail->quantity = $promotions->output_value;
+                        $orderDetail->unit_price = $item->unit_price;
+
+                        $orderDetail->save();
+                    }
+                }
+            }
+
+            return response()->json('success', 200);
         }
 
         return response()->json('fail', 500);

@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\ItemPromotion;
+use App\Profile;
+use App\Enums\ItemPromotionType;
+use App\Enums\LocationPromotionType;
 use Illuminate\Http\Request;
 use App\Http\Resources\ItemResource;
 
@@ -13,11 +16,34 @@ class ItemPromotionController extends Controller
     *
     * @return \Illuminate\Http\Response
     */
-    public function index()
+    public function index(Profile $profile, $filterBy)
     {
         return ItemResource::collection(ItemPromotion::paginate(2));
     }
-
+    public function getPromotionTypeByItem(Profile $profile)
+    {
+        $data = [];
+        foreach (ItemPromotionType::labels() as $value => $label)
+        {
+            $data[] = [
+                'id' => $value,
+                'name' => $label
+            ];
+        }
+        return response()->json($data);
+    }
+    public function getPromotionTypeByLocation(Profile $profile)
+    {
+        $data = [];
+        foreach (LocationPromotionType::labels() as $value => $label)
+        {
+            $data[] = [
+                'id' => $value,
+                'name' => $label
+            ];
+        }
+        return response()->json($data);
+    }
     /**
     * Show the form for creating a new resource.
     *
@@ -39,9 +65,12 @@ class ItemPromotionController extends Controller
         $promotion = $request->id == 0 ? new ItemPromotion() : ItemPromotion::where('id', $request->id)->first();
 
         $promotion->type = $request->type;
+        $promotion->input_id = $request->input_id;
+        $promotion->output_id = $request->output_id;
         $promotion->input_value = $request->input_value;
         $promotion->output_value = $request->output_value;
-
+        $promotion->start_date = $request->start_date;
+        $promotion->output_date = $request->output_date;
 
         $promotion->save();
 
@@ -91,10 +120,10 @@ class ItemPromotionController extends Controller
     public function destroy(ItemPromotion $itemPromotion)
     {
 
-        ItemPromotion->delete();
+        $itemPromotion->delete();
         return response()->json('Ok', 200);
 
 
-        
+
     }
 }

@@ -139,7 +139,7 @@ export default {
     {
 
       var app = this;
-      axios.post('/api/' + app.profile + '/back-office/items', $data)
+      axios.post('/api/' + app.profile + '/back-office/items' , $data)
       .then(() =>
       {
         this.$toast.open({

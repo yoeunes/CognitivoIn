@@ -31,7 +31,7 @@
                     <td>{{ $row->description }}</td>
                     <td>{{ $row->relationship->customer_alias ?? '' }}</td>
                     <td>{{ $row->carts->sum('quantity') }}</td>
-                    <td class="number">{{ $row->carts->sum('quantity' * 'unit_value') ?? $row->value }}</td>
+                    <td class="number">{{ ($row->carts->sum('quantity') * $row->carts->sum('unit_price')) ?? $row->value }}</td>
                     <td>{{ $row->currency }}</td>
                 </tr>
             @endforeach

@@ -22,7 +22,7 @@ class ReportController extends Controller
     if (isset($profile))
     {
       $data = $this->opportunityQuery($profile, $startDate, $endDate);
-
+      //return response()->json($data);
       return view('reports/opportunity')
       ->with('header', $profile)
       ->with('data', $data)

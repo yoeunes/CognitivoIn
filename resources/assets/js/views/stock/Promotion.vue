@@ -1,11 +1,6 @@
 <template>
   <div>
-    <button v-on:click="onBack()" class="btn btn-sm btn-alt-danger">
-      <i class="fa fa-arrow-left"></i>
-    </button>
-    <button v-on:click="onBack()" class="btn btn-sm btn-alt-danger">
-      <i class="fa fa-arrow-right"></i>
-    </button>
+
     <div class="col-md-6 col-xl-3">
       <a class="block block-rounded block-link-shadow" @click="onCreate()" href="#">
         <div class="block-content block-content-full block-sticky-options">
@@ -36,9 +31,11 @@
         <div class="">
           <tr v-for="item in list">
             <td>
+
               <a class="font-w600" href="#" @click="onEdit(item, false)">{{ item.id }}</a>
             </td>
             <td class="d-none d-sm-table-cell">
+              
               {{ item.type }}
             </td>
             <td class="d-none d-sm-table-cell">
@@ -104,7 +101,7 @@ export default {
     },
     onCreate () {
       var app = this;
-      app.$router.push({ name: "promotion.form", params: { id: 0 } });
+      app.$router.push({ name: "itempromotion.form", params: { profile:this.profile,id: 0 } });
     },
     onBack()
     {
