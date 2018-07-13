@@ -17,7 +17,7 @@ class Opportunity extends Model
 
     protected $fillable = [
         'relationship_id',
-        'pipeline_stage_id',
+        'pipeline_id',
         'deadline_date',
         'description',
         'status',
@@ -32,9 +32,9 @@ class Opportunity extends Model
         static::addGlobalScope(new ProfileScope);
     }
 
-    public function pipelineStage()
+    public function pipeline()
     {
-        return $this->belongsTo(PipelineStage::class);
+        return $this->belongsTo(Pipeline::class);
     }
 
     public function relationship()

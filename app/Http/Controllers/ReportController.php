@@ -53,6 +53,7 @@ class ReportController extends Controller
       $opportunity=Opportunity::with('tasks')
       ->with('relationship')
       ->with('carts')
+      ->with('pipeline')
       ->get();
       return $opportunity;
     }
@@ -62,7 +63,8 @@ class ReportController extends Controller
     public function opportunitytaskQuery(Profile $profile, $startDate, $endDate)
     {
       DB::connection()->disableQueryLog();
-      $opportunitytask=OpportunityTask::with('opportunity')
+      $opportunitytask=OpportunityTask::
+      with('opportunity')
       ->get();
 
         return $opportunitytask;
