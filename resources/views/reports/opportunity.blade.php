@@ -34,7 +34,7 @@
                 @foreach ($groupedRow as $row)
                     <tr>
                         <td>{{ $row->name }}</td>
-                        <td>{{ $row->relationship->customer_alias ?? '' }}</td>
+                        <td> {{ $row->relationship_id }} </td>
                         <td>{{ $row->date }}</td>
 
                         '1 = Active; 2 = On Hold; 3 = Won; 4 = Lost'
@@ -59,17 +59,33 @@
                     @foreach ($row->tasks->where('completed', 0)->take(5) as $task)
                         <tr>
                             <td></td>
-                            <td>{{ $task->title }}</td>
-                            <td>{{ $task->date_started }}</td>
                             <td>
-                                @if ($task->sentiment == 2)
+                                @if ($task->activity_type == 1)
+                                    <b-icon icon="format-list-checks"></b-icon>
+                                @elseif ($task->activity_type == 2)
+                                    <b-icon icon="phone"></b-icon>
+                                @elseif ($task->activity_type == 3)
+                                    <b-icon icon="video"></b-icon>
+                                @elseif ($task->activity_type == 4)
+                                    <b-icon icon="account-multiple"></b-icon>
+                                @elseif ($task->activity_type == 5)
+                                    <b-icon icon="map-marker-radius"></b-icon>
+                                @elseif ($task->activity_type == 6)
+                                    <b-icon icon="email"></b-icon>
+                                @endif
+                            </td>
+                            <td>{{ $task->date_started }}</td>
+                            <td>{{ $task->title }}</td>
+                            <td>
+                                {{-- @if ($task->sentiment == 2)
                                     <img src="/img/icons/emojiHappy.svg" width="16" alt="">
                                 @elseif ($task->sentiment == 0)
                                     <img src="/img/icons/emojiSad.svg" width="16" alt="">
-                                @else
+                                @elseif ($task->sentiment == 1) --}}
                                     <img src="/img/icons/emojiOk.svg" width="16" alt="">
-                                @endif
+                                {{-- @endif --}}
                             </td>
+
                         </tr>
                     @endforeach
                 @endforeach

@@ -253,7 +253,7 @@
                                             <div class="media">
                                                 <b-icon class="media-left" icon="account-multiple"></b-icon>
                                                 <div class="media-content">
-                                                    global.Meeting
+                                                    Meeting
                                                 </div>
                                             </div>
                                         </b-dropdown-item>
