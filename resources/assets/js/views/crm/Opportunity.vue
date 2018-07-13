@@ -187,8 +187,8 @@ export default {
     mounted: function mounted()
     {
         var app = this;
-        app.start_date=moment().subtract(1, 'months').startOf('month').format("YYYY-MM-DD");
-        app.end_date=moment().subtract(1, 'months').endOf('month').format("YYYY-MM-DD");
+        app.start_date=moment().subtract(1, 'months').format("YYYY-MM-DD");
+        app.end_date=moment().format("YYYY-MM-DD");
         app.onLoad(1);
     }
 

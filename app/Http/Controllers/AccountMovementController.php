@@ -277,7 +277,7 @@ class AccountMovementController extends Controller
       { $data = $request; }
 
       $profile = request()->route('profile');
-      $account = Account::first();
+      $account = $data['account_id'];
 
       if ($account != null)
       {
@@ -290,23 +290,10 @@ class AccountMovementController extends Controller
       }
 
       //Run code to check actual balance.
-      $scheduals = Schedual::where('relationship_id', $data->relationship_id)->get();
+      $scheduals = Schedual::where('order_id', $data->id)->get();
+      $order=Order::where('id', $data->id)->with('detail')->first();
 
-      $schedules = DB::select('
-      select
-      scheduals.currency as code,
-      (scheduals.debit - (select if(sum(credit) is null,0,sum(credit)) from account_movements where account_movements.status != 3 and scheduals.id = account_movements.schedual_id)) as value,
-      scheduals.id,
-      scheduals.date as InvoiceDate,
-      scheduals.date_exp as Deadline,
-      scheduals.reference as Reference from scheduals
-      where relationship_id = ' . $order->relationship_id . '
-      and scheduals.deleted_at is null
-      and (scheduals.debit - (select if(sum(credit) is null, 0, sum(credit)) from account_movements where account_movements.status != 3
-      and scheduals.id = account_movements.schedual_id)) > 0  order by scheduals.date_exp');
-
-      $schedules = collect($schedules);
-      $balance = $amount;
+      $balance = $order->detail->sum('quantity') * $order->detail->sum('unit_price');
 
       for ($i = 0; $i < count($schedules); $i++)
       {
@@ -315,7 +302,7 @@ class AccountMovementController extends Controller
           $accountMovement = new AccountMovement();
           $accountMovement->schedual_id = $schedules[$i]->id;
           $accountMovement->account_id = $account->id;
-          $accountMovement->type = $type;
+          $accountMovement->type = 1;
           $accountMovement->currency = $data->currency;
           $accountMovement->currency_rate = ($data->rate ?? Swap::latest($profile->currency . '/' . $data->currency)->getValue()) ?? 1;
           $accountMovement->date = Carbon::parse($data->date);
