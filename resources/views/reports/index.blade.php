@@ -8,16 +8,8 @@
                     <div class="m-portlet__head-title">
                         <h3 class="m-portlet__head-text">
                             @lang('global.DateRange')
-                            <el-date-picker v-model="dateRange"
-                            type="daterange"
-                            align="right"
-                            unlink-panels
-                            range-separator="|"
-                            start-placeholder="@lang('global.StartDate')"
-                            end-placeholder="@lang('global.EndDate')"
-                            format = "dd/MM/yyyy"
-                            value-format = "yyyy-MM-dd"
-                            :picker-options="pickerOptions2"></el-date-picker>
+                            <el-date-picker v-model="dateRange" type="daterange" align="right" unlink-panels range-separator="|" start-placeholder="@lang('global.StartDate')" end-placeholder="@lang('global.EndDate')"
+                            format = "dd/MM/yyyy" value-format = "yyyy-MM-dd" :picker-options="pickerOptions2"></el-date-picker>
                         </h3>
                     </div>
                 </div>
