@@ -48,6 +48,7 @@ import Customers from './views/sales/Customer';
 import CustomerForm from './views/sales/CustomerForm';
 import Orders from './views/sales/Order';
 import OrderForm from './views/sales/OrderForm';
+import Payment from './views/sales/Payment';
 
 import Purchase_Dashboard from './views/purchase/Dashboard';
 import Suppliers from './views/purchase/Supplier';
@@ -182,6 +183,7 @@ const router = new VueRouter({
           component: OrderForm,
           name: 'order.form'
         },
+
         {
           path: 'purchases-dashboard',
           component: Dashboard,
@@ -247,6 +249,7 @@ const router = new VueRouter({
           component: AccountPayables,
           name: 'account-payable.index'
         },
+
         {
           path: 'finances-account-recievables',
           component: AccountReceivables,
@@ -256,6 +259,10 @@ const router = new VueRouter({
           path: 'finances-account-movements',
           component: AccountMovements,
           name: 'account_movement.index'
+        },{
+          path: 'payment',
+          component: Payment,
+          name: 'payment.index'
         }
       ]
     },

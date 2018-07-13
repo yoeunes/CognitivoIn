@@ -55,6 +55,7 @@ class ReportController extends Controller
       ->with('carts')
       ->with('pipeline')
       ->get();
+      
       return $opportunity;
     }
 

@@ -33,9 +33,11 @@
               <td>{{ invoice.number }}</td>
               <td class="text-center">
                   <div class="btn-group">
-                      <button v-on:click="onShow(invoice)" type="button" class="btn btn-sm btn-secondary js-tooltip-enabled" data-toggle="tooltip" data-original-title="Show">
-                          <i class="fa fa-eye"></i>
-                      </button>
+                    <router-link :to="{ name: 'payment.index',params: { profile:profile,id:invoice.id} }">
+                        <button  type="button" class="btn btn-sm btn-secondary js-tooltip-enabled" data-toggle="tooltip" data-original-title="Edit">
+                            <i class="fa fa-eye"></i>
+                        </button>
+                    </router-link>
                       <router-link :to="{ name: 'order.form',params: { profile:profile,id:invoice.id} }">
                           <button  type="button" class="btn btn-sm btn-secondary js-tooltip-enabled" data-toggle="tooltip" data-original-title="Edit">
                               <i class="fa fa-pencil"></i>

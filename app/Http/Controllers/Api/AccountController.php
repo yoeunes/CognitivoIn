@@ -21,7 +21,10 @@ use Illuminate\Http\Request;
 
 class AccountController extends Controller
 {
-
+  public function index(Profile $profile)
+  {
+      return response()->json(Account::where('profile_id',$profile->id)->select('id','name')->get());
+  }
   public function list_account_receivables(Profile $profile, $customer_ID)
   {
     $customers = Scheduals::join('relationships','relationships.id','=','scheduals.relationship_id')

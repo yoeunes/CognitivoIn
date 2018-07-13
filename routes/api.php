@@ -108,7 +108,7 @@ Route::prefix('{profile}')->group(function ()
       'opportunities/{id}/members' => 'OpportunityMemberController',
       'opportunities/{id}/items' => 'CartController',
       'orders' => 'OrderController',
-      'accounts' => 'AccountController',
+      'accounts' => 'Api\AccountController',
       'account-payables' => 'AccountPayableController',
       'account-receivables' => 'AccountReceivableController',
       'account-movement' => 'AccountMovementController'
