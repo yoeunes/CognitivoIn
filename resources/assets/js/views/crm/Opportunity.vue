@@ -1,103 +1,136 @@
 <template>
     <div>
-        <div class="col-md-6 col-xl-3">
-            <a class="block block-rounded block-link-shadow" @click="onCreate()" href="#">
-                <div class="block-content block-content-full block-sticky-options">
-                    <div class="block-options">
-                        <div class="block-options-item">
-                            <i class="fa fa-archive fa-2x text-success-light"></i>
-                        </div>
+        <div class="row">
+
+            <div class="col-xs-6 col-sm-4 col-lg-2">
+                <a class="block block-link-hover3 text-center" href="#" @click="onCreate()">
+                    <div class="block-content block-content-full">
+                        <i class="si si-plus fa-4x text-success"></i>
+                        <div class="font-w600 push-15-t">New Opportunity</div>
                     </div>
-                    <div class="py-20 text-center">
-                        <div class="font-size-h2 font-w700 mb-0 text-success">
-                            <i class="fa fa-plus"></i>
-                        </div>
-                        <div class="font-size-sm font-w600 text-uppercase text-muted">New Opportunity</div>
+                </a>
+            </div>
+
+            <div class="col-xs-6 col-sm-4 col-lg-2">
+                <a class="block block-link-hover3 text-center" target="_blank" v-bind:href="'/reports/opportunities/' + profile +'/'+ start_date +'/' + end_date ">
+                    <div class="block-content block-content-full">
+                        <i class="si si-pie-chart fa-4x text-primary-darker"></i>
+                        <div class="font-w600 push-15-t">Opportunity</div>
                     </div>
-                </div>
-            </a>
+                </a>
+            </div>
+
+            <div class="col-xs-6 col-sm-4 col-lg-2">
+                <a class="block block-link-hover3 text-center" target="_blank" v-bind:href="'/reports/opportunitiesTask/' + profile +'/'+ start_date +'/' + end_date ">
+                    <div class="block-content block-content-full">
+                        <i class="si si-list fa-4x text-primary-darker"></i>
+                        <div class="font-w600 push-15-t">My Todo</div>
+                    </div>
+                </a>
+            </div>
+
         </div>
 
-        <div class="col-md-6 col-xl-3">
-            <a class="block block-rounded block-link-shadow"  v-bind:href="'/reports/opportunities/' + profile +'/'+ start_date +'/' + end_date ">
-                <div class="block-content block-content-full block-sticky-options">
-                    <div class="block-options">
-                        <div class="block-options-item">
-                            <i class="fa fa-archive fa-2x text-success-light"></i>
-                        </div>
-                    </div>
-                    <div class="py-20 text-center">
-                        <div class="font-size-h2 font-w700 mb-0 text-success">
-                            <i class="fa fa-plus"></i>
-                        </div>
-                        <div class="font-size-sm font-w600 text-uppercase text-muted">opportunity Report</div>
-                    </div>
+        <!--
+        <b-table :data="data" paginated per-page="5" :opened-detailed="defaultOpenedDetails" detailed detail-key="id" @details-open="(row, index) => $toast.open(`Expanded ${row.user.first_name}`)" >
+
+        <template slot-scope="props">
+            <b-table-column field="id" label="ID" width="40" numeric>
+                {{ props.row.id }}
+            </b-table-column>
+
+            <b-table-column field="user.first_name" label="First Name" sortable>
+                {{ props.row.user.first_name }}
+            </b-table-column>
+
+            <b-table-column field="user.last_name" label="Last Name" sortable>
+                {{ props.row.user.last_name }}
+            </b-table-column>
+
+            <b-table-column field="date" label="Date" sortable centered>
+                <span class="tag is-success">
+                    {{ new Date(props.row.date).toLocaleDateString() }}
+                </span>
+            </b-table-column>
+
+            <b-table-column label="Gender">
+                <b-icon pack="fa"
+                :icon="props.row.gender === 'Male' ? 'mars' : 'venus'">
+            </b-icon>
+            {{ props.row.gender }}
+        </b-table-column>
+    </template>
+
+    <template slot="detail" slot-scope="props">
+        <article class="media">
+            <figure class="media-left">
+                <p class="image is-64x64">
+                    <img src="static/img/placeholder-128x128.png">
+                </p>
+            </figure>
+            <div class="media-content">
+                <div class="content">
+                    <p>
+                        <strong>{{ props.row.user.first_name }} {{ props.row.user.last_name }}</strong>
+                        <small>@{{ props.row.user.first_name }}</small>
+                        <small>31m</small>
+                        <br>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        Proin ornare magna eros, eu pellentesque tortor vestibulum ut.
+                        Maecenas non massa sem. Etiam finibus odio quis feugiat facilisis.
+                    </p>
                 </div>
-            </a>
-        </div>
+            </div>
+        </article>
+    </template>
+</b-table> -->
 
-        <div class="col-md-6 col-xl-3">
-            <a class="block block-rounded block-link-shadow"  v-bind:href="'/reports/opportunitiesTask/' + profile +'/'+ start_date +'/' + end_date ">
-                <div class="block-content block-content-full block-sticky-options">
-                    <div class="block-options">
-                        <div class="block-options-item">
-                            <i class="fa fa-archive fa-2x text-success-light"></i>
-                        </div>
-                    </div>
-                    <div class="py-20 text-center">
-                        <div class="font-size-h2 font-w700 mb-0 text-success">
-                            <i class="fa fa-plus"></i>
-                        </div>
-                        <div class="font-size-sm font-w600 text-uppercase text-muted">Task Report</div>
-                    </div>
+
+<table>
+    <thead>
+        <tr>
+            <td>#</td>
+            <th>Opportunity Name</th>
+            <th>Customer</th>
+            <th>Value</th>
+            <th class="text-center">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr v-for="opportunity in list">
+            <td>{{ opportunity.id }}</td>
+            <td><a @click="onShow(opportunity)" href="#">{{ opportunity.name }}</a></td>
+            <td v-if="opportunity.relationship !== null">{{ opportunity.relationship.customer_alias }}</td>
+            <td v-else></td>
+            <td>{{ opportunity.value }}</td>
+            <td class="text-center">
+                <div class="btn-group">
+                    <router-link :to="{ name: 'opportunity.show',params: { profile:profile,id:opportunity.id,user_id:userid} }">
+                        <button  type="button" class="btn btn-sm btn-secondary js-tooltip-enabled" data-toggle="tooltip" data-original-title="Edit">
+                            <i class="fa fa-eye"></i>
+                        </button>
+                    </router-link>
+                    <router-link :to="{ name: 'opportunity.form',params: { profile:profile,id:opportunity.id,user_id:userid} }">
+                        <button  type="button" class="btn btn-sm btn-secondary js-tooltip-enabled" data-toggle="tooltip" data-original-title="Edit">
+                            <i class="fa fa-pencil"></i>
+                        </button>
+                    </router-link>
+
+                    <button v-on:click="onDelete(opportunity)" type="button" class="btn btn-sm btn-secondary js-tooltip-enabled" data-toggle="tooltip" data-original-title="Delete">
+                        <i class="fa fa-times"></i>
+                    </button>
                 </div>
-            </a>
-        </div>
-
-        <table>
-            <thead>
-                <tr>
-                    <td>#</td>
-                    <th>Opportunity Name</th>
-                    <th>Customer</th>
-                    <th>Value</th>
-                    <th class="text-center">Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr v-for="opportunity in list">
-                    <td>{{ opportunity.id }}</td>
-                    <td><a @click="onShow(opportunity)" href="#">{{ opportunity.name }}</a></td>
-                    <td v-if="opportunity.relationship !== null">{{ opportunity.relationship.customer_alias }}</td> <td v-else></td>
-                    <td>{{ opportunity.value }}</td>
-                    <td class="text-center">
-                        <div class="btn-group">
-                            <router-link :to="{ name: 'opportunity.show',params: { profile:profile,id:opportunity.id,user_id:userid} }">
-                                <button  type="button" class="btn btn-sm btn-secondary js-tooltip-enabled" data-toggle="tooltip" data-original-title="Edit">
-                                    <i class="fa fa-eye"></i>
-                                </button>
-                            </router-link>
-                            <router-link :to="{ name: 'opportunity.form',params: { profile:profile,id:opportunity.id,user_id:userid} }">
-                                <button  type="button" class="btn btn-sm btn-secondary js-tooltip-enabled" data-toggle="tooltip" data-original-title="Edit">
-                                    <i class="fa fa-pencil"></i>
-                                </button>
-                            </router-link>
-
-                            <button v-on:click="onDelete(opportunity)" type="button" class="btn btn-sm btn-secondary js-tooltip-enabled" data-toggle="tooltip" data-original-title="Delete">
-                                <i class="fa fa-times"></i>
-                            </button>
-                        </div>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <b-pagination
-        :total="meta.total"
-        :current.sync="meta.current_page"
-        :simple="false"
-        :per-page="meta.per_page"
-        @change="pageChange">
-    </b-pagination>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<b-pagination
+:total="meta.total"
+:current.sync="meta.current_page"
+:simple="false"
+:per-page="meta.per_page"
+@change="pageChange">
+</b-pagination>
 
 </div>
 </template>
