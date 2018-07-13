@@ -16,7 +16,7 @@ class ItemMovementController extends Controller
     public function index(Profile $profile, $filterBy)
     {
         return ItemMovementResource::collection(
-            ItemMovement::with('item')->orderBy('item_id')->paginate(100));
+            ItemMovement::with('item')->orderBy('created_at')->paginate(100));
         }
 
         /**
