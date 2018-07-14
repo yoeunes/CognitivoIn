@@ -15,8 +15,12 @@
         <tbody>
             @foreach ($data->groupBy('pipeline_id') as $groupedRow)
                 <tr>
-                    <td>
-                        <h5>{{ $groupedRow->first()->pipeline->name }}</h5>
+                    <td colspan="6">
+                        @if (isset($groupedRow->first()->pipeline))
+                            <h5>{{ $groupedRow->first()->pipeline->name }}</h5>
+                        @else
+                            <h5>Missing Pipeline</h5>
+                        @endif
                     </td>
                 </tr>
                 <tr>
@@ -36,9 +40,6 @@
                         <td>{{ $row->name }}</td>
                         <td> {{ $row->relationship_id }} </td>
                         <td>{{ $row->date }}</td>
-
-                        '1 = Active; 2 = On Hold; 3 = Won; 4 = Lost'
-
                         <td>
                             @if ($row->status == 2)
                                 @lang('back-office.OnHold')
@@ -60,6 +61,7 @@
                         <tr>
                             <td></td>
                             <td>
+                                <b-icon icon="account" size="is-small"></b-icon>
                                 @if ($task->activity_type == 1)
                                     <b-icon icon="format-list-checks"></b-icon>
                                 @elseif ($task->activity_type == 2)
@@ -78,20 +80,20 @@
                             <td>{{ $task->title }}</td>
                             <td>
                                 {{-- @if ($task->sentiment == 2)
-                                    <img src="/img/icons/emojiHappy.svg" width="16" alt="">
-                                @elseif ($task->sentiment == 0)
-                                    <img src="/img/icons/emojiSad.svg" width="16" alt="">
-                                @elseif ($task->sentiment == 1) --}}
-                                    <img src="/img/icons/emojiOk.svg" width="16" alt="">
-                                {{-- @endif --}}
-                            </td>
+                                <img src="/img/icons/emojiHappy.svg" width="16" alt="">
+                            @elseif ($task->sentiment == 0)
+                            <img src="/img/icons/emojiSad.svg" width="16" alt="">
+                        @elseif ($task->sentiment == 1) --}}
+                        <img src="/img/icons/emojiOk.svg" width="16" alt="">
+                        {{-- @endif --}}
+                    </td>
 
-                        </tr>
-                    @endforeach
-                @endforeach
+                </tr>
             @endforeach
-        </tbody>
-    </table>
+        @endforeach
+    @endforeach
+</tbody>
+</table>
 @endsection
 
 @section('script')
