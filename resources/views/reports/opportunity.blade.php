@@ -30,7 +30,8 @@
 
                     <th>@lang('back-office.Status')</th>
                     <th>@lang('back-office.Task')</th>
-
+                    <th>@lang('back-office.Sentiment')</th>
+                    
                     <th class="number">@lang('global.Quantity')</th>
                     <th class="number">@lang('global.Value')</th>
                 </tr>
@@ -53,6 +54,7 @@
                         </td>
 
                         <td>{{ $row->tasks->where('completed', 1)->count() }} / {{ $row->tasks->count() }}</td>
+                        <td>{{ number_format (($row->tasks->sum('sentiment') / $row->tasks->where('completed', 1)->count()) / 3, 2, ',', '.') }} %</td>
 
                         <td class="number">{{ $row->carts->sum('quantity') }}</td>
                         <td class="number">{{ ($row->carts->sum('quantity') * $row->carts->sum('unit_price')) ?? $row->value }} <b>{{ $row->currency }}</b></td>
@@ -84,7 +86,7 @@
                             @elseif ($task->sentiment == 0)
                             <img src="/img/icons/emojiSad.svg" width="16" alt="">
                         @elseif ($task->sentiment == 1) --}}
-                        <img src="/img/icons/emojiOk.svg" width="16" alt="">
+                        {{-- <img src="/img/icons/emojiOk.svg" width="16" alt=""> --}}
                         {{-- @endif --}}
                     </td>
 
