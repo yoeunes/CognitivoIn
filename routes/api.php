@@ -102,6 +102,7 @@ Route::prefix('{profile}')->group(function ()
       'suppliers' => 'SupplierController',
       'items' => 'ItemController',
       'itempromotions' => 'ItemPromotionController',
+        'stockmovment' => 'ItemMovementController',
       'pipelines' => 'PipelineController',
       'pipeline-stages' => 'PipelineStageController',
       'opportunities' => 'OpportunityController',

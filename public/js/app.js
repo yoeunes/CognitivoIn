@@ -31718,24 +31718,26 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_29__views_stock_Item___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_29__views_stock_Item__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_30__views_stock_StockMovement__ = __webpack_require__(264);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_30__views_stock_StockMovement___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_30__views_stock_StockMovement__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_31__views_stock_ItemForm__ = __webpack_require__(267);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_31__views_stock_ItemForm___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_31__views_stock_ItemForm__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_32__views_stock_Promotion__ = __webpack_require__(270);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_32__views_stock_Promotion___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_32__views_stock_Promotion__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_33__views_stock_PromotionForm__ = __webpack_require__(273);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_33__views_stock_PromotionForm___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_33__views_stock_PromotionForm__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_34__views_finance_Dashboard__ = __webpack_require__(276);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_34__views_finance_Dashboard___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_34__views_finance_Dashboard__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_35__views_finance_Account__ = __webpack_require__(277);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_35__views_finance_Account___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_35__views_finance_Account__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_36__views_finance_AccountForm__ = __webpack_require__(278);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_36__views_finance_AccountForm___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_36__views_finance_AccountForm__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_37__views_finance_AccountPayable__ = __webpack_require__(279);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_37__views_finance_AccountPayable___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_37__views_finance_AccountPayable__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_38__views_finance_AccountReceivable__ = __webpack_require__(282);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_38__views_finance_AccountReceivable___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_38__views_finance_AccountReceivable__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_39__views_finance_AccountMovement__ = __webpack_require__(285);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_39__views_finance_AccountMovement___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_39__views_finance_AccountMovement__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_31__views_stock_StockMovementForm__ = __webpack_require__(318);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_31__views_stock_StockMovementForm___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_31__views_stock_StockMovementForm__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_32__views_stock_ItemForm__ = __webpack_require__(267);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_32__views_stock_ItemForm___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_32__views_stock_ItemForm__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_33__views_stock_Promotion__ = __webpack_require__(270);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_33__views_stock_Promotion___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_33__views_stock_Promotion__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_34__views_stock_PromotionForm__ = __webpack_require__(273);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_34__views_stock_PromotionForm___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_34__views_stock_PromotionForm__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_35__views_finance_Dashboard__ = __webpack_require__(276);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_35__views_finance_Dashboard___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_35__views_finance_Dashboard__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_36__views_finance_Account__ = __webpack_require__(277);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_36__views_finance_Account___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_36__views_finance_Account__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_37__views_finance_AccountForm__ = __webpack_require__(278);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_37__views_finance_AccountForm___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_37__views_finance_AccountForm__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_38__views_finance_AccountPayable__ = __webpack_require__(279);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_38__views_finance_AccountPayable___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_38__views_finance_AccountPayable__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_39__views_finance_AccountReceivable__ = __webpack_require__(282);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_39__views_finance_AccountReceivable___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_39__views_finance_AccountReceivable__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_40__views_finance_AccountMovement__ = __webpack_require__(285);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_40__views_finance_AccountMovement___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_40__views_finance_AccountMovement__);
 
 /**
 * First we will load all of this project's JavaScript dependencies which
@@ -31765,6 +31767,7 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_4_buef
 /**
 Back-Office views to be used for Ajax Loaded sites.
 */
+
 
 
 
@@ -31914,16 +31917,20 @@ var MainView = {
       component: __WEBPACK_IMPORTED_MODULE_30__views_stock_StockMovement___default.a,
       name: 'stockmovement.index'
     }, {
+      path: 'stocks-movement-form',
+      component: __WEBPACK_IMPORTED_MODULE_31__views_stock_StockMovementForm___default.a,
+      name: 'stockmovement.form'
+    }, {
       path: 'stocks-item-:id',
-      component: __WEBPACK_IMPORTED_MODULE_31__views_stock_ItemForm___default.a,
+      component: __WEBPACK_IMPORTED_MODULE_32__views_stock_ItemForm___default.a,
       name: 'item.form'
     }, {
       path: 'stocks-itempromotions',
-      component: __WEBPACK_IMPORTED_MODULE_32__views_stock_Promotion___default.a,
+      component: __WEBPACK_IMPORTED_MODULE_33__views_stock_Promotion___default.a,
       name: 'itempromotion.index'
     }, {
       path: 'stocks-itempromotions-:id',
-      component: __WEBPACK_IMPORTED_MODULE_33__views_stock_PromotionForm___default.a,
+      component: __WEBPACK_IMPORTED_MODULE_34__views_stock_PromotionForm___default.a,
       name: 'itempromotion.form'
     }, {
       path: 'finances-dashboard',
@@ -31942,15 +31949,15 @@ var MainView = {
     // },
     {
       path: 'finances-account-payables',
-      component: __WEBPACK_IMPORTED_MODULE_37__views_finance_AccountPayable___default.a,
+      component: __WEBPACK_IMPORTED_MODULE_38__views_finance_AccountPayable___default.a,
       name: 'account-payable.index'
     }, {
       path: 'finances-account-recievables',
-      component: __WEBPACK_IMPORTED_MODULE_38__views_finance_AccountReceivable___default.a,
+      component: __WEBPACK_IMPORTED_MODULE_39__views_finance_AccountReceivable___default.a,
       name: 'account-recievable.index'
     }, {
       path: 'finances-account-movements',
-      component: __WEBPACK_IMPORTED_MODULE_39__views_finance_AccountMovement___default.a,
+      component: __WEBPACK_IMPORTED_MODULE_40__views_finance_AccountMovement___default.a,
       name: 'account_movement.index'
     }, {
       path: 'payment',
@@ -89078,6 +89085,23 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -89103,8 +89127,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         _this.meta = response.data.meta;
       }).catch(function (error) {});
     },
-    created: function created() {
-      console.log('a');
+    onCreate: function onCreate() {
+      var app = this;
+      app.$router.push({ name: "stockmovement.form", params: { profile: this.profile, id: 0 } });
     },
     pageChange: function pageChange(page) {
       var app = this;
@@ -89130,8 +89155,24 @@ var render = function() {
   return _c(
     "div",
     [
+      _c("div", { staticClass: "col-md-6 col-xl-3" }, [
+        _c(
+          "a",
+          {
+            staticClass: "block block-rounded block-link-shadow",
+            attrs: { href: "#" },
+            on: {
+              click: function($event) {
+                _vm.onCreate()
+              }
+            }
+          },
+          [_vm._m(0)]
+        )
+      ]),
+      _vm._v(" "),
       _c("table", { staticClass: "table table-borderless table-striped" }, [
-        _vm._m(0),
+        _vm._m(1),
         _vm._v(" "),
         _c("tbody", [
           _c(
@@ -89197,6 +89238,36 @@ var render = function() {
   )
 }
 var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      { staticClass: "block-content block-content-full block-sticky-options" },
+      [
+        _c("div", { staticClass: "block-options" }, [
+          _c("div", { staticClass: "block-options-item" }, [
+            _c("i", { staticClass: "fa fa-archive fa-2x text-success-light" })
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "py-20 text-center" }, [
+          _c(
+            "div",
+            { staticClass: "font-size-h2 font-w700 mb-0 text-success" },
+            [_c("i", { staticClass: "fa fa-plus" })]
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "font-size-sm font-w600 text-uppercase text-muted" },
+            [_vm._v("New Stock Movement")]
+          )
+        ])
+      ]
+    )
+  },
   function() {
     var _vm = this
     var _h = _vm.$createElement
@@ -93982,6 +94053,614 @@ if (false) {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 305 */,
+/* 306 */,
+/* 307 */,
+/* 308 */,
+/* 309 */,
+/* 310 */,
+/* 311 */,
+/* 312 */,
+/* 313 */,
+/* 314 */,
+/* 315 */,
+/* 316 */,
+/* 317 */,
+/* 318 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(1)
+/* script */
+var __vue_script__ = __webpack_require__(319)
+/* template */
+var __vue_template__ = __webpack_require__(320)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\views\\stock\\StockMovementForm.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-68a3cb06", Component.options)
+  } else {
+    hotAPI.reload("data-v-68a3cb06", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 319 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      profile: '',
+      type: '',
+      item_id: '',
+      item_name: '',
+      toLocationid: '',
+      fromLocationid: '',
+      quantity: '',
+      locations: [],
+      items: [],
+      category: ''
+
+    };
+  },
+
+
+  methods: {
+    onSave: function onSave($data) {
+      var _this = this;
+
+      var app = this;
+      axios.post('/api/' + app.profile + '/back-office/stockmovment', $data).then(function () {
+        _this.$toast.open({
+          message: 'Awsome! Your work has been saved',
+          type: 'is-success'
+        });
+
+        _this.$router.push({ name: "stockmovement.index" });
+      }).catch(function (ex) {
+        console.log(ex.response);
+        _this.$toast.open({
+          duration: 5000,
+          message: 'Error trying to save record',
+          type: 'is-danger'
+        });
+      });
+    },
+    onCancel: function onCancel() {
+      console.log(this);
+      this.$router.push({ name: "stockmovement.index" });
+    },
+
+
+    getItems: function getItems(query) {
+      var _this2 = this;
+
+      var app = this;
+      if (query != '') {
+        axios.get('/api/' + app.profile + '/back-office/search/items/' + query).then(function (_ref) {
+          var data = _ref.data;
+
+          if (data.length > 0) {
+            app.items = [];
+            for (var i = 0; i < data.length; i++) {
+              app.items.push(data[i]);
+            }
+          }
+        }).catch(function (ex) {
+          console.log(ex);
+          _this2.$toast.open({
+            duration: 5000,
+            message: 'Error trying to search items',
+            type: 'is-danger'
+          });
+        });
+      }
+    },
+    getLocations: function getLocations(query) {
+      var _this3 = this;
+
+      var app = this;
+      if (query != '') {
+        axios.get('/api/' + this.profile + '/back-office/list/locations/1').then(function (response) {
+
+          _this3.locations = response.data.data;
+        }).catch(function (error) {});
+      }
+    },
+    addItem: function addItem(item) {
+      var app = this;
+      if (item != null) {
+        console.log(item.id);
+        app.item_id = item.id;
+        console.log(app);
+      }
+    }
+
+  },
+
+  mounted: function mounted() {
+
+    var app = this;
+
+    app.profile = this.$route.params.profile;
+    app.getLocations();
+    app.id = this.$route.params.id;
+  }
+
+});
+
+/***/ }),
+/* 320 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c("div", [
+      _c("h2", { staticClass: "content-heading text-black" }, [
+        _vm._v("General")
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "row items-push" }, [
+        _vm._m(0),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-lg-7 offset-lg-1" }, [
+          _c("div", { staticClass: "form-group row" }, [
+            _c("div", { staticClass: "col-12" }, [
+              _c("label", [_vm._v("Category")]),
+              _vm._v(" "),
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.category,
+                    expression: "category"
+                  }
+                ],
+                attrs: { type: "radio", value: "1" },
+                domProps: { checked: _vm._q(_vm.category, "1") },
+                on: {
+                  change: function($event) {
+                    _vm.category = "1"
+                  }
+                }
+              }),
+              _vm._v("Movement"),
+              _vm._v(" "),
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.category,
+                    expression: "category"
+                  }
+                ],
+                attrs: { type: "radio", value: "2" },
+                domProps: { checked: _vm._q(_vm.category, "2") },
+                on: {
+                  change: function($event) {
+                    _vm.category = "2"
+                  }
+                }
+              }),
+              _vm._v("Debit"),
+              _vm._v(" "),
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.category,
+                    expression: "category"
+                  }
+                ],
+                attrs: { type: "radio", value: "3" },
+                domProps: { checked: _vm._q(_vm.category, "3") },
+                on: {
+                  change: function($event) {
+                    _vm.category = "3"
+                  }
+                }
+              }),
+              _vm._v("Credit")
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "form-group row" }, [
+            _c(
+              "div",
+              { staticClass: "col-12" },
+              [
+                _c("label", [_vm._v("Item")]),
+                _vm._v(" "),
+                _c(
+                  "b-field",
+                  [
+                    _c(
+                      "b-autocomplete",
+                      {
+                        attrs: {
+                          data: _vm.items,
+                          placeholder: "Search Item",
+                          field: "name"
+                        },
+                        on: {
+                          select: function(option) {
+                            return _vm.addItem(option)
+                          },
+                          input: _vm.getItems
+                        },
+                        scopedSlots: _vm._u([
+                          {
+                            key: "default",
+                            fn: function(props) {
+                              return [
+                                _c("strong", [
+                                  _vm._v("@" + _vm._s(props.option.name))
+                                ]),
+                                _vm._v(
+                                  " | @" +
+                                    _vm._s(props.option.code) +
+                                    "\n                "
+                                )
+                              ]
+                            }
+                          }
+                        ]),
+                        model: {
+                          value: _vm.item_name,
+                          callback: function($$v) {
+                            _vm.item_name = $$v
+                          },
+                          expression: "item_name"
+                        }
+                      },
+                      [
+                        _c("template", { slot: "empty" }, [
+                          _vm._v(
+                            "\n                  There are no items\n                "
+                          )
+                        ])
+                      ],
+                      2
+                    )
+                  ],
+                  1
+                )
+              ],
+              1
+            )
+          ]),
+          _vm._v(" "),
+          _vm.category == 1 || _vm.category == 2
+            ? _c("div", { staticClass: "form-group row" }, [
+                _c("div", { staticClass: "col-12" }, [
+                  _c("label", [_vm._v("From Location")]),
+                  _vm._v(" "),
+                  _c(
+                    "select",
+                    {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.fromLocationid,
+                          expression: "fromLocationid"
+                        }
+                      ],
+                      staticClass: "custom-select",
+                      attrs: { required: "" },
+                      on: {
+                        change: function($event) {
+                          var $$selectedVal = Array.prototype.filter
+                            .call($event.target.options, function(o) {
+                              return o.selected
+                            })
+                            .map(function(o) {
+                              var val = "_value" in o ? o._value : o.value
+                              return val
+                            })
+                          _vm.fromLocationid = $event.target.multiple
+                            ? $$selectedVal
+                            : $$selectedVal[0]
+                        }
+                      }
+                    },
+                    _vm._l(_vm.locations, function(location) {
+                      return _c(
+                        "option",
+                        { domProps: { value: location.id } },
+                        [_vm._v(_vm._s(location.name))]
+                      )
+                    })
+                  )
+                ])
+              ])
+            : _vm._e(),
+          _vm._v(" "),
+          _vm.category == 1 || _vm.category == 3
+            ? _c("div", { staticClass: "form-group row" }, [
+                _c("div", { staticClass: "col-12" }, [
+                  _c("label", [_vm._v("To Location")]),
+                  _vm._v(" "),
+                  _c(
+                    "select",
+                    {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.toLocationid,
+                          expression: "toLocationid"
+                        }
+                      ],
+                      staticClass: "custom-select",
+                      attrs: { required: "" },
+                      on: {
+                        change: function($event) {
+                          var $$selectedVal = Array.prototype.filter
+                            .call($event.target.options, function(o) {
+                              return o.selected
+                            })
+                            .map(function(o) {
+                              var val = "_value" in o ? o._value : o.value
+                              return val
+                            })
+                          _vm.toLocationid = $event.target.multiple
+                            ? $$selectedVal
+                            : $$selectedVal[0]
+                        }
+                      }
+                    },
+                    _vm._l(_vm.locations, function(location) {
+                      return _c(
+                        "option",
+                        { domProps: { value: location.id } },
+                        [_vm._v(_vm._s(location.name))]
+                      )
+                    })
+                  )
+                ])
+              ])
+            : _vm._e(),
+          _vm._v(" "),
+          _c("div", { staticClass: "form-group row" }, [
+            _c("div", { staticClass: "col-12" }, [
+              _c("label", [_vm._v("Quantity")]),
+              _vm._v(" "),
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.quantity,
+                    expression: "quantity"
+                  }
+                ],
+                attrs: { type: "text" },
+                domProps: { value: _vm.quantity },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.quantity = $event.target.value
+                  }
+                }
+              })
+            ])
+          ])
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "block-options" }, [
+        _c(
+          "button",
+          {
+            staticClass: "btn btn-sm btn-alt-primary",
+            on: {
+              click: function($event) {
+                _vm.onSave(_vm.$data, false)
+              }
+            }
+          },
+          [
+            _c("i", { staticClass: "fa fa-save" }),
+            _vm._v(" @lang('global.Save')\n      ")
+          ]
+        ),
+        _vm._v(" "),
+        _c(
+          "button",
+          {
+            staticClass: "btn btn-sm btn-alt-primary",
+            on: {
+              click: function($event) {
+                _vm.onSave(_vm.$data, true)
+              }
+            }
+          },
+          [
+            _c("i", { staticClass: "fa fa-plus" }),
+            _vm._v(" @lang('global.Save-and-New')\n      ")
+          ]
+        ),
+        _vm._v(" "),
+        _c(
+          "button",
+          {
+            staticClass: "btn btn-sm btn-alt-danger",
+            on: {
+              click: function($event) {
+                _vm.onCancel()
+              }
+            }
+          },
+          [
+            _c("i", { staticClass: "fa fa-close" }),
+            _vm._v(" @lang('global.Cancel')\n      ")
+          ]
+        )
+      ])
+    ])
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-lg-3" }, [
+      _c("p", { staticClass: "text-muted" }, [
+        _vm._v(
+          "\n          Your account’s vital info. Your nickname will be publicly visible.\n        "
+        )
+      ])
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-68a3cb06", module.exports)
+  }
+}
 
 /***/ })
 /******/ ]);

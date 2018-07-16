@@ -57,6 +57,7 @@ import SupplierForm from './views/purchase/SupplierForm';
 import Stock_Dashboard from './views/stock/Dashboard';
 import Items from './views/stock/Item';
 import StockMovement from './views/stock/StockMovement';
+import StockMovementForm from './views/stock/StockMovementForm';
 import ItemForm from './views/stock/ItemForm';
 import Promotion from './views/stock/Promotion';
 import PromotionForm from './views/stock/PromotionForm';
@@ -213,6 +214,11 @@ const router = new VueRouter({
           path: 'stocks-movement',
           component: StockMovement,
           name: 'stockmovement.index'
+        },
+        {
+          path: 'stocks-movement-form',
+          component: StockMovementForm,
+          name: 'stockmovement.form'
         },
         {
           path: 'stocks-item-:id',
