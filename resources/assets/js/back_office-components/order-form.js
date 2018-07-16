@@ -242,6 +242,7 @@ Vue.component('order-form',
                         quantity: 1,
                         item_id: data.id
                     });
+
                 }
 
             },

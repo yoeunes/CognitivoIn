@@ -70,7 +70,7 @@ class ItemPromotionController extends Controller
         $promotion->input_value = $request->input_value;
         $promotion->output_value = $request->output_value;
         $promotion->start_date = $request->start_date;
-        $promotion->output_date = $request->output_date;
+        $promotion->end_date = $request->end_date;
 
         $promotion->save();
 

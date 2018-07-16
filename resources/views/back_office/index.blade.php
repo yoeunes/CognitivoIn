@@ -183,12 +183,12 @@
                       </a>
                     </li>
                     <li>
-                      <a class="nav-submenu" href="#">
+                      <a href="#" >
                         <router-link to="/dashboard/{{ request()->route('profile')->slug}}/config-locations">
                           @lang('back-office.Shops and Locations')
                         </router-link>
                       </a>
-                    </li>-
+                    </li>
                     <li>
                       <a href="#">
                         <router-link to="/dashboard/{{ request()->route('profile')->slug}}/config-team-members">

@@ -39,7 +39,7 @@ class OrderController extends Controller
         'classification','tracking_code','code','code_expiry','number','date','date_deliver_by',
         'comment','note_for_customer','note_for_billing','note_for_shipping','geoloc',
         'is_impex','is_printed','is_archived','orders.created_at','orders.updated_at','orders.deleted_at')
-        ->paginate(2));
+        ->paginate(100));
 
 
         return response()->json($orders);
@@ -97,15 +97,15 @@ class OrderController extends Controller
             foreach ($details as $detail) {
                 $promotions=ItemPromotion::where('input_id',$detail['item_id'])->get();
                 foreach ($promotions as $promotion) {
-                    if ($promotions->type==1 && $promotions->input_value==$detail['quantity'])
+                    if ($promotion->type==1 && $promotion->input_value==$detail['quantity'])
                     {
-                        $item=Item::where('id',$promotions->output_id)->first();
+                        $item=Item::where('id',$promotion->output_id)->first();
                         $orderDetail = new OrderDetail();
                         $orderDetail->order_id = $order->id;
-                        $orderDetail->item_id = $promotions->output_id;
+                        $orderDetail->item_id = $promotion->output_id;
                         $orderDetail->item_sku = $item->sku;
                         $orderDetail->item_name = $item->name;
-                        $orderDetail->quantity = $promotions->output_value;
+                        $orderDetail->quantity = $promotion->output_value;
                         $orderDetail->unit_price = $item->unit_price;
 
                         $orderDetail->save();
