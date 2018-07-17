@@ -17,40 +17,34 @@
                 </div>
             </a>
         </div>
-        <table>
-            <thead>
-                <tr>
-                    <th>Date</th>
-                    <th>Customer</th>
-                    <th>Number</th>
-                    <th class="text-center">Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr v-for="invoice in list">
-                    <td>{{ invoice.date }}</td>
-                    <td>{{ invoice.relationship != null ? invoice.relationship.customer_alias : 'N/A' }}</td>
-                    <td>{{ invoice.number }}</td>
-                    <td class="text-center">
-                        <div class="btn-group">
-                            <router-link :to="{ name: 'payment.index',params: { profile:profile,id:invoice.id} }">
-                                <button  type="button" class="btn btn-sm btn-secondary js-tooltip-enabled" data-toggle="tooltip" data-original-title="Edit">
-                                    <i class="fa fa-eye"></i>
-                                </button>
-                            </router-link>
-                            <router-link :to="{ name: 'order.form',params: { profile:profile,id:invoice.id} }">
-                                <button  type="button" class="btn btn-sm btn-secondary js-tooltip-enabled" data-toggle="tooltip" data-original-title="Edit">
-                                    <i class="fa fa-pencil"></i>
-                                </button>
-                            </router-link>
-                            <button v-on:click="onDelete(invoice)" type="button" class="btn btn-sm btn-secondary js-tooltip-enabled" data-toggle="tooltip" data-original-title="Delete">
-                                <i class="fa fa-times"></i>
-                            </button>
-                        </div>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+
+        <b-table :data="list" hoverable>
+            <template slot-scope="props">
+                <b-table-column field="date" v-bind:label="lang('global.Date')">
+                    {{ props.row.date }}
+                </b-table-column>
+
+                <b-table-column field="relationship.customer_alias" v-bind:label="lang('back-office.Customer')">
+                    {{ props.row.relationship.customer_alias }}
+                </b-table-column>
+
+                <b-table-column field="number" v-bind:label="lang('back-office.Number')">
+                    {{ props.row.number }}
+                </b-table-column>
+
+                <b-table-column custom-key="actions">
+                    <button class="button is-small is-light">
+                        <router-link :to="{ name: 'customer.form',params: { profile:profile,id:props.row.id} }">
+                            <i class="fa fa-pencil"></i>
+                        </router-link>
+                    </button>
+                    <button v-on:click="onDelete(props.row)" type="button" class="btn btn-sm btn-secondary js-tooltip-enabled" data-toggle="tooltip" data-original-title="Delete">
+                        <i class="fa fa-times"></i>
+                    </button>
+                </b-table-column>
+            </template>
+        </b-table>
+
         <b-pagination
         :total="meta.total"
         :current.sync="meta.current_page"

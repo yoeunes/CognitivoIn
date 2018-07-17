@@ -1,6 +1,6 @@
 <template>
     <div>
-                <div class="col-md-6 col-xl-3">
+        <div class="col-md-6 col-xl-3">
             <a class="block block-rounded block-link-shadow" @click="onCreate()" href="#">
                 <div class="block-content block-content-full block-sticky-options">
                     <div class="block-options">
@@ -17,75 +17,48 @@
                 </div>
             </a>
         </div>
-        <table class="table table-borderless table-striped">
-            <thead>
-                <tr>
-                    <th style="width: 100px;">ID</th>
-                    <th class="d-none d-sm-table-cell">SKU</th>
-                    <th>trans('global.Name')</th>
-                    <th class="d-none d-md-table-cell">Price</th>
-                    <th class="text-right">Value</th>
-                </tr>
-            </thead>
-            <tbody>
-                <div class="">
-                    <tr v-for="item in list">
-                        <td>
-                            <a class="font-w600" href="#" @click="onEdit(item, false)">PID.424</a>
-                        </td>
-                        <td class="d-none d-sm-table-cell">
-                            {{ item.sku }}
-                        </td>
-                        <td class="d-none d-sm-table-cell">
-                            {{ item.name }}
-                        </td>
-                        <td>
-                            {{ item.unit_price }}
-                        </td>
-                        <td >
-                            <div class="btn-group">
 
+        <b-table :data="list" hoverable>
+            <template slot-scope="props">
+                <b-table-column field="sku" v-bind:label="lang('global.SKU')">
+                    {{ props.row.sku }}
+                </b-table-column>
 
-                                <router-link :to="{ name: 'item.form',params: { profile:profile,id:item.id} }">
-                                    <button  type="button" class="btn btn-sm btn-secondary js-tooltip-enabled" data-toggle="tooltip" data-original-title="Edit">
-                                        <i class="fa fa-pencil"></i>
-                                    </button>
-                                </router-link>
+                <b-table-column field="name" v-bind:label="lang('global.Name')">
+                    {{ props.row.name }}
+                </b-table-column>
 
-                                <button v-on:click="onDelete(item)" type="button" class="btn btn-sm btn-secondary js-tooltip-enabled" data-toggle="tooltip" data-original-title="Delete">
-                                    <i class="fa fa-times"></i>
-                                </button>
-                            </div>
-                        </td>
-                    </tr>
-                </div>
-            </tbody>
-        </table>
-        <b-pagination
-        :total="meta.total"
-        :current.sync="meta.current_page"
-        :simple="false"
-        :per-page="meta.per_page"
-        @change="pageChange">
-    </b-pagination>
+                <b-table-column field="unit_price" v-bind:label="lang('global.Price')">
+                    {{ props.row.unit_price }}
+                </b-table-column>
 
-</div>
+                <b-table-column custom-key="actions">
+                    <button class="button is-small is-light">
+                        <router-link :to="{ name: 'customer.form',params: { profile:profile,id:props.row.id} }">
+                            <i class="fa fa-pencil"></i>
+                        </router-link>
+                    </button>
+                    <button v-on:click="onDelete(props.row)" type="button" class="btn btn-sm btn-secondary js-tooltip-enabled" data-toggle="tooltip" data-original-title="Delete">
+                        <i class="fa fa-times"></i>
+                    </button>
+                </b-table-column>
+            </template>
+        </b-table>
+
+        <b-pagination :total="meta.total" :current.sync="meta.current_page" :simple="false" :per-page="meta.per_page" @change="pageChange"> </b-pagination>
+
+    </div>
 </template>
+
 <script>
-
-
 export default {
     data() {
         return {
             profile:'',
             list: [],
             meta: [{total:0}],
-
-
         };
     },
-
-
 
     methods: {
         onLoad(page) {
@@ -94,15 +67,11 @@ export default {
             axios
             .get('/api/' + this.profile + '/back-office/list/items/1?page=' + page  )
             .then(response => {
-
                 this.list = response.data.data;
                 this.meta = response.data.meta;
-
-
             }).catch(error => {
 
             });
-
         },
         created () {
             console.log('a');
@@ -152,7 +121,6 @@ export default {
                 });
             });
         },
-
     },
     mounted: function mounted()
     {
@@ -160,6 +128,5 @@ export default {
         var app = this;
         app.onLoad(1);
     }
-
 }
 </script>

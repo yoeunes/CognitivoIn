@@ -17,55 +17,45 @@
                 </div>
             </a>
         </div>
-        <table>
-            <thead>
-                <tr>
-                    <th>{{lang('global.TaxID')}}</th>
-                    <th>{{lang('back-office.Customer')}}</th>
-                    <th>{{lang('global.Email')}}</th>
-                    <th class="text-center">{{lang('global.Actions')}}</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr v-for="customer in list">
-                    <td>{{ customer.customer_taxid }}</td>
-                    <td>{{ customer.customer_alias }}</td>
-                    <td>{{ customer.customer_email }}</td>
-                    <td class="text-center">
-                        <div class="btn-group">
-                            <router-link :to="{ name: 'customer.form',params: { profile:profile,id:customer.id} }">
-                                <button  type="button" class="btn btn-sm btn-secondary js-tooltip-enabled" data-toggle="tooltip" data-original-title="Edit">
-                                    <i class="fa fa-pencil"></i>
-                                </button>
-                            </router-link>
 
-                            <button v-on:click="onDelete(customer)" type="button" class="btn btn-sm btn-secondary js-tooltip-enabled" data-toggle="tooltip" data-original-title="Delete">
-                                <i class="fa fa-times"></i>
-                            </button>
-                        </div>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <b-pagination
-        :total="meta.total"
-        :current.sync="meta.current_page"
-        :simple="false"
-        :per-page="meta.per_page"
-        @change="pageChange">
-    </b-pagination>
-</div>
+        <b-table :data="list" hoverable>
+            <template slot-scope="props">
+                <b-table-column field="customer_taxid" v-bind:label="lang('global.TaxID')">
+                    {{ props.row.customer_taxid }}
+                </b-table-column>
+
+                <b-table-column field="customer_alias" v-bind:label="lang('back-office.Customer')">
+                    {{ props.row.customer_alias }}
+                </b-table-column>
+
+                <b-table-column field="customer_email" v-bind:label="lang('global.Email')">
+                    {{ props.row.customer_email }}
+                </b-table-column>
+
+                <b-table-column custom-key="actions">
+                    <button class="button is-small is-light">
+                        <router-link :to="{ name: 'customer.form',params: { profile:profile,id:props.row.id} }">
+                            <i class="fa fa-pencil"></i>
+                        </router-link>
+                    </button>
+                    <button v-on:click="onDelete(props.row)" type="button" class="btn btn-sm btn-secondary js-tooltip-enabled" data-toggle="tooltip" data-original-title="Delete">
+                        <i class="fa fa-times"></i>
+                    </button>
+                </b-table-column>
+            </template>
+        </b-table>
+
+        <b-pagination :total="meta.total" :current.sync="meta.current_page" :simple="false" :per-page="meta.per_page" @change="pageChange"> </b-pagination>
+    </div>
 </template>
-<script>
 
+<script>
 export default {
     data() {
         return {
             profile:'',
             list: [],
             meta: [{total:0}],
-
-
         };
     },
 
@@ -127,8 +117,8 @@ export default {
         },
     },
     created () {
-      console.log(this);
-  //  this.$router.push({ name: 'item.index',params: { profile:this.profile} })
+        console.log(this);
+        //  this.$router.push({ name: 'item.index',params: { profile:this.profile} })
     },
     mounted: function mounted()
     {
