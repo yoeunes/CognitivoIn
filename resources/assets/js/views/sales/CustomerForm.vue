@@ -17,7 +17,7 @@
               <b-input v-model="customer_alias"></b-input>
             </b-field>
 
-            <b-field v-bind:label="lang('global.Save-and-New')">
+            <b-field v-bind:label="lang('global.taxid')">
               <b-input v-model="customer_taxid"></b-input>
             </b-field>
 

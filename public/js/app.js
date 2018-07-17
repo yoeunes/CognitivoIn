@@ -87430,7 +87430,7 @@ var render = function() {
                     _vm._v(" "),
                     _c(
                       "b-field",
-                      { attrs: { label: _vm.lang("global.Save-and-New") } },
+                      { attrs: { label: _vm.lang("global.taxid") } },
                       [
                         _c("b-input", {
                           model: {
