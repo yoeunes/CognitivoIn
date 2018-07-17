@@ -13,7 +13,7 @@
                             <div class="font-size-h2 font-w700 mb-0 text-success">
                                 <i class="fa fa-plus"></i>
                             </div>
-                            <div class="font-size-sm font-w600 text-uppercase text-muted">New Contract</div>
+                            <div class="font-size-sm font-w600 text-uppercase text-muted">{{lang('global.New')}} {{lang('back-office.Contract')}}</div>
                         </div>
                     </div>
                 </a>
@@ -21,8 +21,8 @@
             <table class="table table-borderless table-striped">
                 <thead>
                     <tr>
-                        <th style="width: 100px;">ID</th>
-                        <th class="d-none d-sm-table-cell">@lang('global.Name')</th>
+                        <th style="width: 100px;">{{lang('global.ID')}}</th>
+                        <th class="d-none d-sm-table-cell">{{lang('global.Name')}}</th>
 
                     </tr>
                 </thead>
@@ -72,7 +72,7 @@
                 <div class="col-lg-7 offset-lg-1">
                     <div class="form-group row">
                         <div class="col-12">
-                            <label>Contract Name</label>
+                            <label>{{lang('back-office.Contract Name')}}</label>
                             <input type="text" class="form-control form-control-lg" v-model="name">
                         </div>
                     </div>
@@ -88,7 +88,7 @@
                         Contract Details specify how many payment breakdowns an order will have. If the order should be paid in one single payment, then just add one row. But for each payment add a new row with the percent of the order that should be paid.
                     </p>
                     <button @click="addDetail()" class="btn btn-sm btn-alt-primary">
-                        <i class="fa fa-plus"></i> @lang('global.AddRow')
+                        <i class="fa fa-plus"></i> {{lang('global.AddRow')}}
                     </button>
                     <br>
 
@@ -103,7 +103,7 @@
                 <div class="col-lg-7 offset-lg-1">
                     <div class="form-group row">
                         <div class="col-4">
-                            <label for="crypto-settings-firstname">Percent</label>
+                            <label for="crypto-settings-firstname">{{lang('Percent')}}</label>
                         </div>
                         <div class="col-4">
                             <label for="crypto-settings-lastname">Offset in Days</label>
@@ -135,10 +135,10 @@
             </div>
 
             <button v-on:click="onSave($data, false)" class="btn btn-primary min-width-125 js-click-ripple-enabled" data-toggle="click-ripple">
-                <i class="fa fa-save"></i> @lang('global.Save')
+                <i class="fa fa-save"></i> {{lang('global.Save')}}
             </button>
             <button v-on:click="onCancel()" class="btn btn-outline-secondary min-width-125 js-click-ripple-enabled" data-toggle="click-ripple">
-                <i class="fa fa-close"></i> @lang('global.Cancel')
+                <i class="fa fa-close"></i> {{lang('global.Cancel')}}
             </button>
             <!-- END Details -->
         </div>

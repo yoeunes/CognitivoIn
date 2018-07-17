@@ -17,7 +17,7 @@ class ItemMovementController extends Controller
   public function index(Profile $profile, $filterBy)
   {
     return ItemMovementResource::collection(
-      ItemMovement::with('item')->orderBy('created_at')->paginate(100));
+      ItemMovement::with('item')->with('location')->orderBy('created_at')->paginate(100));
     }
 
     /**
@@ -43,7 +43,7 @@ class ItemMovementController extends Controller
       {
         $itemMovement= new ItemMovement();
             $itemMovement->item_id=$request->item_id;
-        $itemMovement->location_id=$request->fromLocationId;
+        $itemMovement->location_id=$request->fromLocationid;
         $itemMovement->debit=$request->quantity;
         $itemMovement->credit=0;
         $itemMovement->date=Carbon::now();
@@ -51,7 +51,7 @@ class ItemMovementController extends Controller
 
         $itemMovement= new ItemMovement();
               $itemMovement->item_id=$request->item_id;
-        $itemMovement->location_id=$request->toLocationId;
+        $itemMovement->location_id=$request->toLocationid;
         $itemMovement->debit=0;
         $itemMovement->credit=$request->quantity;
         $itemMovement->date=Carbon::now();
@@ -69,7 +69,7 @@ class ItemMovementController extends Controller
       else {
         $itemMovement= new ItemMovement();
               $itemMovement->item_id=$request->item_id;
-        $itemMovement->location_id=$request->toLocationId;
+        $itemMovement->location_id=$request->toLocationid;
         $itemMovement->debit=0;
         $itemMovement->credit=$request->quantity;
         $itemMovement->date=Carbon::now();

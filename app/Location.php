@@ -45,4 +45,9 @@ class Location extends Model
     {
         return $this->hasMany(LocationHour::class);
     }
+    
+    public function itemmovement()
+    {
+        return $this->hasMany(ItemMovement::class);
+    }
 }

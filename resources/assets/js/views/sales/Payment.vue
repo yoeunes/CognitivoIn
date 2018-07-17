@@ -3,17 +3,17 @@
         <div>
 
             <!-- User Profile -->
-            <h2 class="content-heading text-black">@lang('back-office.Commercial')</h2>
+            <h2 class="content-heading text-black">{{lang('back-office.Commercial')}}</h2>
             <div class="row items-push">
 
                 <div class="col-lg-7 offset-lg-1">
-                    <b-field label="@lang('back-office.Account')" >
+                    <b-field label="lang('back-office.Account')" >
                         <select v-model="account_id" required class="custom-select" >
                             <option v-for="account in accounts" :value="account.id">{{ account.name }}</option>
                         </select>
                     </b-field>
 
-                    <b-field label="@lang('back-office.Name')">
+                    <b-field label="lang('back-office.Name')">
                         <b-input v-model="amount"></b-input>
                     </b-field>
 
@@ -25,15 +25,15 @@
 
             <div class="row">
                 <button v-on:click="onSave($data, false)" class="btn btn-outline-primary min-width-125 js-click-ripple-enabled m" data-toggle="click-ripple">
-                    @lang('global.Save')
+                    {{lang('global.Save')}}
                 </button>
 
                 <button v-on:click="onSave($data, true)" class="btn btn-outline-primary min-width-125 js-click-ripple-enabled" data-toggle="click-ripple">
-                    @lang('global.Save-and-New')
+                    {{lang('global.Save-and-New')}}
                 </button>
 
                 <button v-on:click="onCancel()" class="btn btn-alt-secondary min-width-125 js-click-ripple-enabled" data-toggle="click-ripple">
-                    @lang('global.Cancel')
+                    {{lang('global.Cancel')}}
                 </button>
             </div>
         </div>

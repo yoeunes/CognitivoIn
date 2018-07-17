@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class="col-md-6 col-xl-3">
+                <div class="col-md-6 col-xl-3">
             <a class="block block-rounded block-link-shadow" @click="onCreate()" href="#">
                 <div class="block-content block-content-full block-sticky-options">
                     <div class="block-options">
@@ -22,7 +22,7 @@
                 <tr>
                     <th style="width: 100px;">ID</th>
                     <th class="d-none d-sm-table-cell">SKU</th>
-                    <th>Name</th>
+                    <th>trans('global.Name')</th>
                     <th class="d-none d-md-table-cell">Price</th>
                     <th class="text-right">Value</th>
                 </tr>

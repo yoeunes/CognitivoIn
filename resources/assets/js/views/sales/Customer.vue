@@ -20,10 +20,10 @@
         <table>
             <thead>
                 <tr>
-                    <th>@lang('global.TaxID')</th>
-                    <th>@lang('back-office.Customer')</th>
-                    <th>@lang('global.Email')</th>
-                    <th class="text-center">@lang('global.Actions')</th>
+                    <th>{{lang('global.TaxID')}}</th>
+                    <th>{{lang('back-office.Customer')}}</th>
+                    <th>{{lang('global.Email')}}</th>
+                    <th class="text-center">{{lang('global.Actions')}}</th>
                 </tr>
             </thead>
             <tbody>

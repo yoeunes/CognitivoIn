@@ -21,10 +21,10 @@
           </div>
           <div class="form-group row" >
             <div class="col-12">
-              <label>Item</label>
+              <label>Account</label>
               <b-field>
-                <b-autocomplete v-model="item_name" :data="items" placeholder="Search Item" field="name" @select="option => addItem(option)"
-                  @input="getItems" >
+                <b-autocomplete v-model="account_name" :data="accounts" placeholder="Search Account" field="name" @select="option => addAccount(option)"
+                >
                   <template slot-scope="props">
                     <strong>@{{props.option.name}}</strong> | @{{props.option.code}}
                   </template>
@@ -64,11 +64,21 @@
 
           <div class="form-group row">
             <div class="col-12">
-              <label>Quantity</label>
+              <label>Amount</label>
               <input type="text" v-model="quantity"/>
             </div>
 
           </div>
+            <div class="form-group row">
+          <b-field label="Currency">
+            <b-input placeholder="Currency" v-model="currency" type="text" maxlength="3" has-counter>
+            </b-input>
+          </b-field>
+          <b-field label="Currency Rate">
+            <b-input placeholder="Currency Rate" v-model="currency_rate" type="text">
+            </b-input>
+          </b-field>
+        </div>
 
 
         </div>
@@ -100,14 +110,16 @@ export default {
   data() {
     return {
       profile:'',
-      item_id:'',
-      item_name:'',
+      account_id:'',
+      account_name:'',
       toLocationid:'',
       fromLocationid:'',
       quantity:'',
       locations:[],
-      items:[],
-      category:''
+      accounts:[],
+      category:'',
+      currency:'',
+      currency_rate:''
 
     };
   },
@@ -120,7 +132,7 @@ export default {
     {
 
       var app = this;
-      axios.post('/api/' + app.profile + '/back-office/stockmovment', $data)
+      axios.post('/api/' + app.profile + '/back-office/AccountMovmentTransfer', $data)
       .then(() =>
       {
         this.$toast.open({
@@ -128,7 +140,7 @@ export default {
           type: 'is-success'
         })
 
-        this.$router.push({ name: "stockmovement.index" });
+        this.$router.push({ name: "account_movement.index" });
       })
       .catch(ex => {
         console.log(ex.response);
@@ -142,23 +154,23 @@ export default {
     onCancel()
     {
       console.log(this)
-      this.$router.push({ name: "stockmovement.index" });
+      this.$router.push({ name: "account_movement.index" });
     },
 
 
-    getItems: function(query)
+    getAccounts: function(query)
     {
       var app = this;
       if (query!='') {
-        axios.get('/api/' + app.profile + '/back-office/search/items/' + query)
+        axios.get('/api/' + app.profile + '/back-office/list/accounts/1')
         .then(({ data }) =>
         {
           if (data.length > 0)
           {
-            app.items = [];
+            app.accounts = [];
             for (let i = 0; i < data.length; i++)
             {
-              app.items.push(data[i]);
+              app.accounts.push(data[i]);
             }
           }
         })
@@ -180,7 +192,7 @@ export default {
         .get('/api/' + this.profile + '/back-office/list/locations/1'  )
         .then(response => {
 
-            this.locations = response.data.data;
+          this.locations = response.data.data;
 
 
         }).catch(error => {
@@ -188,13 +200,14 @@ export default {
         });
       }
     },
-    addItem: function(item)
+    addAccount: function(item)
     {
+      console.log(item);
       var app = this;
       if (item!=null) {
-        console.log(item.id);
-        app.item_id = item.id;
-        console.log(app);
+
+        app.account_id = item.id;
+
       }
 
     }
@@ -212,7 +225,7 @@ export default {
     app.profile=this.$route.params.profile;
     app.getLocations();
     app.id=this.$route.params.id;
-
+   app.getAccounts();
 
   }
 

@@ -25,6 +25,28 @@ class AccountController extends Controller
   {
       return response()->json(Account::where('profile_id',$profile->id)->select('id','name')->get());
   }
+
+  public function search(Profile $profile, $query)
+  {
+      $accounts = null;
+
+      if (strlen($query) >= 3)
+      {
+        $accounts = Account::where(function ($q) use ($query)
+          {
+              $q->where('name', 'LIKE', '%' . $query . '%')
+              ->orWhere('number', 'LIKE', '%' . $query . '%');
+          })
+        ->where('profile_id', $profile->id)
+        ->get();
+
+
+
+      }
+
+      return response()->json($accounts);
+  }
+
   public function list_account_receivables(Profile $profile, $customer_ID)
   {
     $customers = Scheduals::join('relationships','relationships.id','=','scheduals.relationship_id')

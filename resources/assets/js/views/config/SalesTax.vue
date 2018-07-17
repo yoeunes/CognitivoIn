@@ -22,7 +22,7 @@
                 <thead>
                     <tr>
                         <th style="width: 100px;">ID</th>
-                        <th class="d-none d-sm-table-cell">@lang('global.Name')</th>
+                        <th class="d-none d-sm-table-cell">{{lang('global.Name')}}</th>
 
                     </tr>
                 </thead>
@@ -88,7 +88,7 @@
                         Detail information
                     </p>
                     <button @click="addDetail()" class="btn btn-sm btn-alt-primary">
-                        <i class="fa fa-plus"></i> @lang('global.AddRow')
+                        <i class="fa fa-plus"></i> {{lang('global.AddRow')}}
                     </button>
                     <br>
 
@@ -129,10 +129,10 @@
             </div>
 
             <button v-on:click="onSave($data, false)" class="btn btn-primary min-width-125 js-click-ripple-enabled" data-toggle="click-ripple">
-                <i class="fa fa-save"></i> @lang('global.Save')
+                <i class="fa fa-save"></i> {{lang('global.Save')}}
             </button>
             <button v-on:click="onCancel()" class="btn btn-outline-secondary min-width-125 js-click-ripple-enabled" data-toggle="click-ripple">
-                <i class="fa fa-close"></i> @lang('global.Cancel')
+                <i class="fa fa-close"></i> {{lang('global.Cancel')}}
             </button>
             <!-- END Details -->
         </div>

@@ -1,5 +1,22 @@
 <template>
   <div>
+    <div class="col-md-6 col-xl-3">
+        <a class="block block-rounded block-link-shadow" @click="onCreate()" href="#">
+            <div class="block-content block-content-full block-sticky-options">
+                <div class="block-options">
+                    <div class="block-options-item">
+                        <i class="fa fa-archive fa-2x text-success-light"></i>
+                    </div>
+                </div>
+                <div class="py-20 text-center">
+                    <div class="font-size-h2 font-w700 mb-0 text-success">
+                        <i class="fa fa-plus"></i>
+                    </div>
+                    <div class="font-size-sm font-w600 text-uppercase text-muted">New Account Movement</div>
+                </div>
+            </div>
+        </a>
+    </div>
     <table class="table table-borderless table-striped">
       <thead>
         <tr>
@@ -72,8 +89,9 @@ export default {
       });
 
     },
-    created () {
-      console.log('a');
+    onCreate () {
+      var app = this;
+      app.$router.push({ name: "account_movement.form", params: { profile:this.profile,id: 0 } });
     },
     pageChange (page) {
       var app = this;

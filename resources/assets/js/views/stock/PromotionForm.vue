@@ -121,13 +121,13 @@
 
       <div class="block-options">
         <button v-on:click="onSave($data,false)" class="btn btn-sm btn-alt-primary">
-          <i class="fa fa-save"></i> @lang('global.Save')
+          <i class="fa fa-save"></i> {{lang('global.Save')}}
         </button>
         <button v-on:click="onSave($data,true)" class="btn btn-sm btn-alt-primary">
-          <i class="fa fa-plus"></i> @lang('global.Save-and-New')
+          <i class="fa fa-plus"></i> {{lang('global.Save-and-New')}}
         </button>
         <button v-on:click="onCancel()" class="btn btn-sm btn-alt-danger">
-          <i class="fa fa-close"></i> @lang('global.Cancel')
+          <i class="fa fa-close"></i> {{lang('global.Cancel')}}
         </button>
       </div>
     </div>

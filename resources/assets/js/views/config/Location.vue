@@ -25,16 +25,16 @@
                             #
                         </th>
                         <th class="d-none d-sm-table-cell">
-                            lang('global.Name')
+                            {{lang('global.Name')}}
                         </th>
                         <th>
-                            lang('global.City')
+                            {{lang('global.City')}}
                         </th>
                         <th class="d-none d-md-table-cell">
-                            lang('global.State')
+                            {{lang('global.State')}}
                         </th>
                         <th class="text-right">
-                            lang('global.Actions')
+                            {{lang('global.Actions')}}
                         </th>
                     </tr>
                 </thead>
@@ -137,10 +137,10 @@
             </div>
 
             <button v-on:click="onSave($data, false)" class="btn btn-primary min-width-125 js-click-ripple-enabled" data-toggle="click-ripple">
-                <i class="fa fa-save"></i> @lang('global.Save')
+                <i class="fa fa-save"></i> {{lang('global.Save')}}
             </button>
             <button v-on:click="onCancel()" class="btn btn-outline-secondary min-width-125 js-click-ripple-enabled" data-toggle="click-ripple">
-                <i class="fa fa-close"></i> @lang('global.Cancel')
+                <i class="fa fa-close"></i> {{lang('global.Cancel')}}
             </button>
             <!-- END Branch Profile -->
 
@@ -152,7 +152,7 @@
                         Mark your working hours to help customers know if your shop is open or not.
                     </p>
                     <button v-on:click="onSave($data, false)" class="btn btn-sm btn-alt-primary">
-                        <i class="fa fa-plus"></i> @lang('global.AddRow')
+                        <i class="fa fa-plus"></i> {{lang('global.AddRow')}}
                     </button>
                 </div>
                 <div class="col-lg-7 offset-lg-1">

@@ -71,6 +71,6 @@ return [
     'Create Company' => 'Create Company',
 
     'Save' => 'Save',
-    'Save-and-New' => 'Save-and-New',
     'Cancel' => 'Cancel',
+    'New' => 'New'
 ];

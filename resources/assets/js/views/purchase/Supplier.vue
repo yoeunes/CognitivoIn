@@ -20,10 +20,10 @@
         <table>
             <thead>
                 <tr>
-                    <th>@lang('global.TaxID')</th>
-                    <th>@lang('back-office.Supplier')</th>
-                    <th>@lang('global.Email')</th>
-                    <th class="text-center">@lang('global.Actions')</th>
+                    <th>{{lang('global.TaxID')}}</th>
+                    <th>{{lang('back-office.Supplier')}}</th>
+                    <th>{{lang('global.Email')}}</th>
+                    <th class="text-center">{{lang('global.Actions')}}</th>
                 </tr>
             </thead>
             <tbody>
@@ -69,7 +69,7 @@ export default {
             axios
             .get('/api/' + this.profile + '/back-office/list/suppliers/1?page=' + page  )
             .then(response => {
-                
+
                 this.list = response.data.data;
                 this.meta = response.data.meta;
             }).catch(error => {

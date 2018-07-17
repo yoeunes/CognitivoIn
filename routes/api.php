@@ -44,7 +44,7 @@ Route::prefix('{profile}')->group(function ()
       Route::get('pipelines/{filterBy}', 'PipelineController@index');
       Route::get('opportunities/{filterBy}', 'OpportunityController@index');
       Route::get('orders/{filterBy}', 'OrderController@index');
-      Route::get('accounts/{filterBy}', 'AccountController@index');
+      Route::get('accounts/{filterBy}', 'Api\AccountController@index');
       Route::get('account-payables/{filterBy}', 'AccountPayableController@index');
       Route::get('account-receivables/{filterBy}', 'AccountReceivableController@index');
       Route::get('account-movement/{filterBy}', 'AccountMovementController@index');
@@ -57,7 +57,7 @@ Route::prefix('{profile}')->group(function ()
       Route::get('customers/{query}', 'CustomerController@search');
       Route::get('suppliers/{query}', 'SupplierController@search');
       Route::get('items/{query}', 'ItemController@search');
-
+      Route::get('accounts/{query}', 'Api\AccountController@search');
       //TODO
       Route::get('opportunities/{query}', 'OpportunityController@search');
       Route::get('orders/{query}', 'OrderController@search');
@@ -102,7 +102,7 @@ Route::prefix('{profile}')->group(function ()
       'suppliers' => 'SupplierController',
       'items' => 'ItemController',
       'itempromotions' => 'ItemPromotionController',
-        'stockmovment' => 'ItemMovementController',
+      'stockmovment' => 'ItemMovementController',
       'pipelines' => 'PipelineController',
       'pipeline-stages' => 'PipelineStageController',
       'opportunities' => 'OpportunityController',
@@ -115,11 +115,13 @@ Route::prefix('{profile}')->group(function ()
       'account-receivables' => 'AccountReceivableController',
       'account-movement' => 'AccountMovementController'
     ]);
+    Route::post('AccountMovmentTransfer', 'AccountMovementController@Movement');
   });
 
   Route::get('PromotionTypeByItem', 'ItemPromotionController@getPromotionTypeByItem');
   Route::get('PromotionTypeByLocation', 'ItemPromotionController@getPromotionTypeByLocation');
   Route::post('AmountFromContract', 'Api\AccountController@AmountFromContract');
+
   Route::post('SentReceipt', 'EmailController@sentemail');
 });
 

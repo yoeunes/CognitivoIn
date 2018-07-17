@@ -88,7 +88,7 @@
                         A Pipeline should have multiple stages that help you understand how far you have reached in a particular opportunity.
                     </p>
                     <button v-on:click="onAddStage()" class="btn btn-default">
-                        @lang('global.Add Stage')
+                        {{lang('global.Add Stage')}}
                     </button>
                 </div>
                 <div class="col-lg-7 offset-lg-1">
@@ -141,15 +141,15 @@
 
             <div class="row">
                 <button v-on:click="onSave($data, false)" class="btn btn-outline-primary min-width-125 js-click-ripple-enabled m" data-toggle="click-ripple">
-                    @lang('global.Save')
+                    {{lang('global.Save')}}
                 </button>
 
                 <button v-on:click="onSave($data, true)" class="btn btn-outline-primary min-width-125 js-click-ripple-enabled" data-toggle="click-ripple">
-                    @lang('global.Save-and-New')
+                    {{lang('global.Save-and-New')}}
                 </button>
 
                 <button v-on:click="onCancel()" class="btn btn-alt-secondary min-width-125 js-click-ripple-enabled" data-toggle="click-ripple">
-                    @lang('global.Cancel')
+                    {{lang('global.Cancel')}}
                 </button>
             </div>
         </div>

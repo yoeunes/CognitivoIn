@@ -25,4 +25,8 @@ class ItemMovement extends Model
     {
       return $this->belongsTo(Item::class);
     }
+    public function location()
+    {
+      return $this->belongsTo(Location::class);
+    }
 }

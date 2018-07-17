@@ -7,6 +7,7 @@
 
 window.Vue = require('vue');
 
+
 import Vue from 'vue';
 import VueSweetalert2 from 'vue-sweetalert2';
 import VueRouter from 'vue-router';
@@ -19,10 +20,22 @@ require('./bootstrap');
 require('./components/bootstrap');
 
 window.Vue.use(VueResource);
+window._ = require('lodash');
 window.Vue.use(VueRouter);
 Vue.use(require('vue-shortkey'))
 Vue.use(VueSweetalert2);
 Vue.use(Buefy);
+
+
+
+
+
+
+Vue.prototype.lang = (key) => {
+
+
+  return _.get(window.trans, key, key);
+};
 
 /**
 Back-Office views to be used for Ajax Loaded sites.
@@ -68,6 +81,7 @@ import AccountForm from './views/finance/AccountForm';
 import AccountPayables from './views/finance/AccountPayable';
 import AccountReceivables from './views/finance/AccountReceivable';
 import AccountMovements from './views/finance/AccountMovement';
+import AccountMovementForm from './views/finance/AccountMovementForm';
 
 /**
 * Next, we will create a fresh Vue application instance and attach it to
@@ -177,7 +191,7 @@ const router = new VueRouter({
         {
           path: 'sales-orders',
           component: Orders,
-        name: 'order.index'
+          name: 'order.index'
         },
         {
           path: 'sales-order-:id',
@@ -262,10 +276,16 @@ const router = new VueRouter({
           name: 'account-recievable.index'
         },
         {
+          path: 'finances-account-movement-from',
+          component: AccountMovementForm,
+          name: 'account_movement.form'
+        },
+        {
           path: 'finances-account-movements',
           component: AccountMovements,
           name: 'account_movement.index'
-        },{
+        },
+        {
           path: 'payment',
           component: Payment,
           name: 'payment.index'

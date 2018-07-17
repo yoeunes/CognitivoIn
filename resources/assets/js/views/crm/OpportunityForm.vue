@@ -76,11 +76,11 @@
           </div>
           <div class="row">
               <button v-on:click="$parent.onSave($data)" class="btn btn-outline-primary min-width-125 js-click-ripple-enabled m" data-toggle="click-ripple">
-                  @lang('global.Save')
+                  {{lang('global.Save')}}
               </button>
 
               <button v-on:click="$parent.onCancel()" class="btn btn-alt-secondary min-width-125 js-click-ripple-enabled" data-toggle="click-ripple">
-                  @lang('global.Cancel')
+                  {{lang('global.Cancel')}}
               </button>
           </div>
       </div>

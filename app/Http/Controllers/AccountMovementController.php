@@ -326,4 +326,54 @@ class AccountMovementController extends Controller
         }
       }
     }
+
+    public function Movement(Profile $profile,Request $request)
+    {
+
+      if ($request->category==1)
+      {
+        $accountMovement= new AccountMovement();
+        $accountMovement->account_id=$request->account_id;
+        $accountMovement->location_id=$request->fromLocationid;
+        $accountMovement->debit=$request->quantity;
+        $accountMovement->credit=0;
+        $accountMovement->date=Carbon::now();
+        $accountMovement->currency = $request->currency;
+        $accountMovement->currency_rate = ($request->rate ?? Swap::latest($profile->currency . '/' . $request->currency)->getValue()) ?? 1;
+        $accountMovement->save();
+
+        $accountMovement= new AccountMovement();
+        $accountMovement->account_id=$request->account_id;
+        $accountMovement->location_id=$request->fromLocationid;
+        $accountMovement->debit=0;
+        $accountMovement->credit=$request->quantity;
+        $accountMovement->date=Carbon::now();
+        $accountMovement->currency = $request->currency;
+        $accountMovement->currency_rate = ($request->rate ?? Swap::latest($profile->currency . '/' . $request->currency)->getValue()) ?? 1;
+        $accountMovement->save();
+      }
+      else if($request->category==2){
+        $accountMovement= new AccountMovement();
+        $accountMovement->account_id=$request->account_id;
+        $accountMovement->location_id=$request->fromLocationid;
+        $accountMovement->debit=$request->quantity;
+        $accountMovement->credit=0;
+        $accountMovement->date=Carbon::now();
+        $accountMovement->currency = $request->currency;
+        $accountMovement->currency_rate = ($request->rate ?? Swap::latest($profile->currency . '/' . $request->currency)->getValue()) ?? 1;
+        $accountMovement->save();
+      }
+      else {
+        $accountMovement= new AccountMovement();
+        $accountMovement->account_id=$request->account_id;
+        $accountMovement->location_id=$request->fromLocationid;
+        $accountMovement->debit=0;
+        $accountMovement->credit=$request->quantity;
+        $accountMovement->date=Carbon::now();
+        $accountMovement->currency = $request->currency;
+        $accountMovement->currency_rate = ($request->rate ?? Swap::latest($profile->currency . '/' . $request->currency)->getValue()) ?? 1;
+        $accountMovement->save();
+      }
+      return response()->json(200,200);
+    }
   }

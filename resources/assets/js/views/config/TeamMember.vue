@@ -22,10 +22,10 @@
                 <thead>
                     <tr>
                         <th style="width: 100px;">ID</th>
-                        <th class="d-none d-sm-table-cell">@lang('global.Name')</th>
-                        <th>@lang('global.Address')</th>
-                        <th class="d-none d-md-table-cell">@lang('global.Role')</th>
-                        <th class="text-right">@lang('global.Actions')</th>
+                        <th class="d-none d-sm-table-cell">{{lang('global.Name')}}</th>
+                        <th>{{lang('global.Address')}}</th>
+                        <th class="d-none d-md-table-cell">{{lang('global.Role')}}</th>
+                        <th class="text-right">{{lang('global.Actions')}}</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -78,13 +78,13 @@
                     <h3 class="block-title">Basic Information</h3>
                     <div class="block-options">
                         <button v-on:click="onSave($data,false)" class="btn btn-sm btn-alt-primary">
-                            <i class="fa fa-save"></i> @lang('global.Save')
+                            <i class="fa fa-save"></i> {{lang('global.Save')}}
                         </button>
                         <button v-on:click="onSave($data,true)" class="btn btn-sm btn-alt-primary">
-                            <i class="fa fa-plus"></i> @lang('global.Save-and-New')
+                            <i class="fa fa-plus"></i> {{lang('global.Save-and-New')}}
                         </button>
                         <button v-on:click="cancel()" class="btn btn-sm btn-alt-danger">
-                            <i class="fa fa-close"></i> @lang('global.Cancel')
+                            <i class="fa fa-close"></i> {{lang('global.Cancel')}}
                         </button>
                     </div>
                 </div>

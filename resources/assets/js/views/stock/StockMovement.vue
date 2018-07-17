@@ -23,6 +23,7 @@
           <th style="width: 100px;">ID</th>
           <th class="d-none d-sm-table-cell">SKU</th>
           <th>Name</th>
+          <th class="text-right">Location</th>
           <th class="text-right">Debit</th>
           <th class="text-right">Credit</th>
           <th class="text-right">comment</th>
@@ -36,6 +37,9 @@
             </td>
             <td class="d-none d-sm-table-cell">
               {{ data.item.name }}
+            </td>
+            <td>
+              {{ data.location.name }}
             </td>
             <td>
               {{ data.debit }}
