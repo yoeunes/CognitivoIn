@@ -18,38 +18,28 @@
                     </div>
                 </a>
             </div>
-            <table class="table table-borderless table-striped">
-                <thead>
-                    <tr>
-                        <th style="width: 100px;">{{lang('global.ID')}}</th>
-                        <th class="d-none d-sm-table-cell">{{lang('global.Name')}}</th>
 
-                    </tr>
-                </thead>
-                <tbody>
-                    <div class="">
-                        <tr v-for="contract in list">
-                            <td>
-                                <a class="font-w600" href="be_pages_ecom_product_edit.html">{{ contract.id }}</a>
-                            </td>
-                            <td class="d-none d-sm-table-cell">
-                                {{ contract.name }}
-                            </td>
+            <b-table :data="list" hoverable>
+                <template slot-scope="props">
+                    <b-table-column field="id" v-bind:label="lang('global.ID')">
+                        {{ props.row.sku }}
+                    </b-table-column>
 
-                            <td class="text-right">
-                                <div class="btn-group">
-                                    <button v-on:click="onEdit(contract)" type="button" class="btn btn-sm btn-secondary js-tooltip-enabled" data-toggle="tooltip" data-original-title="Edit">
-                                        <i class="fa fa-pencil"></i>
-                                    </button>
-                                    <button v-on:click="onDelete(contract)" type="button" class="btn btn-sm btn-secondary js-tooltip-enabled" data-toggle="tooltip" data-original-title="Delete">
-                                        <i class="fa fa-times"></i>
-                                    </button>
-                                </div>
-                            </td>
-                        </tr>
-                    </div>
-                </tbody>
-            </table>
+                    <b-table-column field="name" v-bind:label="lang('global.Name')">
+                        {{ props.row.name }}
+                    </b-table-column>
+
+                    <b-table-column custom-key="actions">
+                        <button v-on:click="onEdit(props.row)" type="button" class="btn btn-sm btn-secondary js-tooltip-enabled" data-toggle="tooltip" data-original-title="Edit">
+                            <i class="fa fa-pencil"></i>
+                        </button>
+                        <button v-on:click="onDelete(props.row)" type="button" class="btn btn-sm btn-secondary js-tooltip-enabled" data-toggle="tooltip" data-original-title="Delete">
+                            <i class="fa fa-times"></i>
+                        </button>
+                    </b-table-column>
+                </template>
+            </b-table>
+            
             <b-pagination
             :total="meta.total"
             :current.sync="meta.current_page"

@@ -78932,16 +78932,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -79176,94 +79166,92 @@ var render = function() {
               )
             ]),
             _vm._v(" "),
-            _c(
-              "table",
-              { staticClass: "table table-borderless table-striped" },
-              [
-                _c("thead", [
-                  _c("tr", [
-                    _c("th", { staticStyle: { width: "100px" } }, [
-                      _vm._v(_vm._s(_vm.lang("global.ID")))
-                    ]),
-                    _vm._v(" "),
-                    _c("th", { staticClass: "d-none d-sm-table-cell" }, [
-                      _vm._v(_vm._s(_vm.lang("global.Name")))
-                    ])
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("tbody", [
-                  _c(
-                    "div",
-                    {},
-                    _vm._l(_vm.list, function(contract) {
-                      return _c("tr", [
-                        _c("td", [
-                          _c(
-                            "a",
-                            {
-                              staticClass: "font-w600",
-                              attrs: { href: "be_pages_ecom_product_edit.html" }
-                            },
-                            [_vm._v(_vm._s(contract.id))]
-                          )
-                        ]),
-                        _vm._v(" "),
-                        _c("td", { staticClass: "d-none d-sm-table-cell" }, [
+            _c("b-table", {
+              attrs: { data: _vm.list, hoverable: "" },
+              scopedSlots: _vm._u([
+                {
+                  key: "default",
+                  fn: function(props) {
+                    return [
+                      _c(
+                        "b-table-column",
+                        {
+                          attrs: { field: "id", label: _vm.lang("global.ID") }
+                        },
+                        [
                           _vm._v(
-                            "\n                                " +
-                              _vm._s(contract.name) +
-                              "\n                            "
+                            "\n                        " +
+                              _vm._s(props.row.sku) +
+                              "\n                    "
                           )
-                        ]),
-                        _vm._v(" "),
-                        _c("td", { staticClass: "text-right" }, [
-                          _c("div", { staticClass: "btn-group" }, [
-                            _c(
-                              "button",
-                              {
-                                staticClass:
-                                  "btn btn-sm btn-secondary js-tooltip-enabled",
-                                attrs: {
-                                  type: "button",
-                                  "data-toggle": "tooltip",
-                                  "data-original-title": "Edit"
-                                },
-                                on: {
-                                  click: function($event) {
-                                    _vm.onEdit(contract)
-                                  }
-                                }
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "b-table-column",
+                        {
+                          attrs: {
+                            field: "name",
+                            label: _vm.lang("global.Name")
+                          }
+                        },
+                        [
+                          _vm._v(
+                            "\n                        " +
+                              _vm._s(props.row.name) +
+                              "\n                    "
+                          )
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "b-table-column",
+                        { attrs: { "custom-key": "actions" } },
+                        [
+                          _c(
+                            "button",
+                            {
+                              staticClass:
+                                "btn btn-sm btn-secondary js-tooltip-enabled",
+                              attrs: {
+                                type: "button",
+                                "data-toggle": "tooltip",
+                                "data-original-title": "Edit"
                               },
-                              [_c("i", { staticClass: "fa fa-pencil" })]
-                            ),
-                            _vm._v(" "),
-                            _c(
-                              "button",
-                              {
-                                staticClass:
-                                  "btn btn-sm btn-secondary js-tooltip-enabled",
-                                attrs: {
-                                  type: "button",
-                                  "data-toggle": "tooltip",
-                                  "data-original-title": "Delete"
-                                },
-                                on: {
-                                  click: function($event) {
-                                    _vm.onDelete(contract)
-                                  }
+                              on: {
+                                click: function($event) {
+                                  _vm.onEdit(props.row)
                                 }
+                              }
+                            },
+                            [_c("i", { staticClass: "fa fa-pencil" })]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "button",
+                            {
+                              staticClass:
+                                "btn btn-sm btn-secondary js-tooltip-enabled",
+                              attrs: {
+                                type: "button",
+                                "data-toggle": "tooltip",
+                                "data-original-title": "Delete"
                               },
-                              [_c("i", { staticClass: "fa fa-times" })]
-                            )
-                          ])
-                        ])
-                      ])
-                    })
-                  )
-                ])
-              ]
-            ),
+                              on: {
+                                click: function($event) {
+                                  _vm.onDelete(props.row)
+                                }
+                              }
+                            },
+                            [_c("i", { staticClass: "fa fa-times" })]
+                          )
+                        ]
+                      )
+                    ]
+                  }
+                }
+              ])
+            }),
             _vm._v(" "),
             _c("b-pagination", {
               attrs: {
