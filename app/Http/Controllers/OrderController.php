@@ -160,32 +160,7 @@ class OrderController extends Controller
         $vatAmount = 0;
 
         //for stock entry
-        foreach ($order->details as  $detail)
-        {
-            $vatDetails = VatDetail::where('vat_id', $detail->vat_id)->get();
-
-            foreach ($vatDetails as $vat)
-            {
-                $vatAmount = $vatAmount + (($detail->unit_price * $vat->percent) *  $vat->coefficient);
-            }
-
-            $amount = $amount + (($detail->unit_price + $vatAmount) * $detail->quantity);
-
-            //TODO Get only required column. you are using one column only.
-            $item = Item::find($detail->item_id);
-
-            if ($item->is_stockable && $order->location_id != null)
-            {
-                $movement = new ItemMovement();
-                $movement->item_id = $item->id;
-                $movement->order_id = $order->id;
-                $movement->location_id = $order->location_id;
-                $movement->date = Carbon::now();
-                $movement->credit = 0;
-                $movement->debit = $detail->quantity;
-                $movement->save();
-            }
-        }
+        $this->stockentry($order);
 
         //for payment entry
         if ($order->contract_id > 0)
@@ -226,6 +201,36 @@ class OrderController extends Controller
             $schedule->due_date = Carbon::now();
             $schedule->value = $amount;
             $schedule->save();
+        }
+    }
+
+    public function stockentry($order)
+    {
+        foreach ($order->details as  $detail)
+        {
+            $vatDetails = VatDetail::where('vat_id', $detail->vat_id)->get();
+
+            foreach ($vatDetails as $vat)
+            {
+                $vatAmount = $vatAmount + (($detail->unit_price * $vat->percent) *  $vat->coefficient);
+            }
+
+            $amount = $amount + (($detail->unit_price + $vatAmount) * $detail->quantity);
+
+            //TODO Get only required column. you are using one column only.
+            $item = Item::find($detail->item_id);
+
+            if ($item->is_stockable && $order->location_id != null)
+            {
+                $movement = new ItemMovement();
+                $movement->item_id = $item->id;
+                $movement->order_id = $order->id;
+                $movement->location_id = $order->location_id;
+                $movement->date = Carbon::now();
+                $movement->credit = 0;
+                $movement->debit = $detail->quantity;
+                $movement->save();
+            }
         }
     }
 

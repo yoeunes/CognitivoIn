@@ -68,6 +68,7 @@ Route::prefix('{profile}')->group(function ()
       Route::post('account-receivables', 'AccountReceivableController@search');
     });
 
+
     //Annull movements on specific modules
     Route::prefix('transact')->group(function ()
     {
