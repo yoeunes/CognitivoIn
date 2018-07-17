@@ -87441,7 +87441,7 @@ var render = function() {
                     _vm._v(" "),
                     _c(
                       "b-field",
-                      { attrs: { label: "lang('back-office.Taxid')" } },
+                      { attrs: { label: _vm.lang("global.taxid") } },
                       [
                         _c("b-input", {
                           model: {

@@ -70,9 +70,11 @@ class TransactionController extends Controller
         }
 
         $orderController = new OrderController();
+        //insert movement and schedual.
         $orderController->approve($profile,$order->id);
         //
         $accountMovement = new AccountMovementController();
+        // payment of particular order
         $accountMovement->makePayment($request, $order->id);
 
         $vatDetail = VatDetail::leftjoin('order_details', 'order_details.vat_id', 'vat_details.vat_id')
@@ -119,12 +121,26 @@ class TransactionController extends Controller
             //fill up data regardless if exists or not. this will allow new data to prevail.
             $data->customer->cloud_id=$order->relationship_id;
             $this->loadData_Order($order, $data);
+            //insert payment schedual if paymnet not done
+            if ($data->is_payable==false) {
+                $orderController = new OrderController();
+                //insert movement and schedual
+                $orderController->approve($profile,$order->id);
+            }
+            else {
+                $orderController = new OrderController();
+                //insert movement and schedual
+                $orderController->stockentry($order);
+            }
+
         }
+
+
 
         return response()->json($collection);
     }
 
-    // This function will create or update an existing Order with the new data inserted.
+    //This function will create or update an existing Order with the new data inserted.
     public function loadData_Order ($order, $data)
     {
         $profile = request()->route('profile');
@@ -179,40 +195,40 @@ class TransactionController extends Controller
         }
     }
 
-    public function syncTransactionStatus(Request $request, Profile $profile)
-    {
-        $collection = collect();
-
-        if ($request->all() != [])
-        {
-            $transactions = $request->all();
-            $collection = collect($transactions);
-        }
-
-        $collection = json_decode($collection->toJson());
-        foreach ($collection as $key => $element)
-        {
-            $transaction=$this->checkOrder($element->id_ref);
-            if(isset($transaction))
-            {
-                $transaction->ref_id = $element->id_sales_invoice;
-                $transaction->save();
-                $orderstatus = $this->UpdateDetail($transaction,$element->details);
-                if (isset($orderstatus))
-                {
-                    $orderstatus->status = 3;
-                    $orderstatus->save();
-                }
-                else
-                {
-                    $orderstatus = new OrderStatus();
-                    $orderstatus->order_id = $order->id;
-                    $orderstatus->status = 3;
-                    $orderstatus->save();
-                }
-            }
-        }
-    }
+    // public function syncTransactionStatus(Request $request, Profile $profile)
+    // {
+    //     $collection = collect();
+    //
+    //     if ($request->all() != [])
+    //     {
+    //         $transactions = $request->all();
+    //         $collection = collect($transactions);
+    //     }
+    //
+    //     $collection = json_decode($collection->toJson());
+    //     foreach ($collection as $key => $element)
+    //     {
+    //         $transaction=$this->checkOrder($element->id_ref);
+    //         if(isset($transaction))
+    //         {
+    //             $transaction->ref_id = $element->id_sales_invoice;
+    //             $transaction->save();
+    //             $orderstatus = $this->UpdateDetail($transaction,$element->details);
+    //             if (isset($orderstatus))
+    //             {
+    //                 $orderstatus->status = 3;
+    //                 $orderstatus->save();
+    //             }
+    //             else
+    //             {
+    //                 $orderstatus = new OrderStatus();
+    //                 $orderstatus->order_id = $order->id;
+    //                 $orderstatus->status = 3;
+    //                 $orderstatus->save();
+    //             }
+    //         }
+    //     }
+    // }
 
     public function downloadOrder (Request $request, Profile $profile)
     {
