@@ -14,6 +14,7 @@ return [
     */
 
     'Dashboard' => 'Tablero',
+    'Model Dashboard' => 'Tablero de :model',
 
     'Company Profile' => 'Perfl de la Empresa',
     'Shops and Locations' => 'Tiendas y Ubicaciones',
@@ -61,8 +62,6 @@ return [
     'Account Movements' => 'Movimients de Cuentas',
 
     //CUSTOMERS
-
-    'Default Contract' => 'Contrato por Defecto',
-    'Credit Limit' => 'Limite de Crédito',  
+    'Credit Limit' => 'Limite de Crédito',
 
 ];

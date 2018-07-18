@@ -12,10 +12,12 @@ return [
     | you want to customize your views to better match your application.
     |
     */
+    
     'Log In' => 'Iniciar Sesión',
     'Log Out' => 'Cerrar Sesión',
     'Register' => 'Registrar',
     'Actions' => 'Acciones',
+    'Password' => 'Contraseña',
 
     'Basic Information' => 'Información Básica',
     'Save' => 'Guardar',
@@ -23,7 +25,7 @@ return [
     'Cancel' => 'Cancelar',
 
     'Default Model' => ':model por defecto',
-    'New Model' => 'Nuevo :model',
+    'New Model' => 'Crear :model',
     'All Model' => 'Todos los :model',
     'Top Model' => 'Top :model',
 
@@ -65,8 +67,7 @@ return [
     'Meeting' => 'Reunión',
     'Visit' => 'Visita',
 
-    'TaxID' => 'RUC',
+    'TaxID' => 'Identificación fiscal del gobierno',
     'Messages' => 'Mensaje',
     'Market' => 'Tienda',
-    'Create Company' => 'Crear Empresa',
 ];

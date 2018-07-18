@@ -16,6 +16,7 @@ return [
     'Log Out' => 'Log Out',
     'Register' => 'Register',
     'Actions' => 'Actions',
+    'Password' => 'Password',
 
     'Basic Information' => 'Basic Information',
     'Save' => 'Save',
@@ -23,7 +24,7 @@ return [
     'Cancel' => 'Cancel',
 
     'Default Model' => 'Default :model',
-    'New Model' => 'New :model',
+    'New Model' => 'Create :model',
     'All Model' => 'All :model',
     'Top Model' => 'Top :model',
 
@@ -68,9 +69,4 @@ return [
     'TaxID' => 'Government TaxID',
     'Messages' => 'Message',
     'Market' => 'Market',
-    'Create Company' => 'Create Company',
-
-    'Save' => 'Save',
-    'Cancel' => 'Cancel',
-    'New' => 'New'
 ];

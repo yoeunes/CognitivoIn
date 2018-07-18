@@ -14,6 +14,7 @@ return [
     */
 
     'Dashboard' => 'Dashboard',
+    'Model Dashboard' => ':model Dashboard',
 
     'Company Profile' => 'Company Profile',
     'Shops and Locations' => 'Shops & Locations',
@@ -61,9 +62,6 @@ return [
     'Account Movements' => 'Account Movements',
 
     //CUSTOMERS
-    'Name' => 'Name',
-    'Taxid' => 'Taxid',
-    'Default_Contract' => 'Default_Contract',
-    'Credit_Limit' => 'Credit_Limit',
-    
+    'Credit_Limit' => 'Credit Limit',
+
 ];
