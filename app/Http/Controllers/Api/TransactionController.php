@@ -94,149 +94,11 @@ class TransactionController extends Controller
         return response()->json($data2);
     }
 
-    public function sync_location(Request $request,Profile $profile)
-    {
-        $data = collect();
 
-        if ($request->all() != [])
-        {
-            $data = collect($request->all());
-        }
-
-        $collection = json_decode($data->toJson());
-
-        foreach ($collection as $key => $data)
-        {
-            $location = Location::where('id', $data->id)->first() ?? new Location();
-            // $location = new Location();
-            $location->profile_id = $profile->id;
-
-            $location->name = $data->name;
-            $location->telephone = $data->telephone ?? $profile->telephone;
-            $location->address = $data->address ?? $profile->address;
-            $location->city = $data->city;
-            $location->state = $data->state ?? $profile->state;
-            $location->country = $data->country ?? $profile->country;
-            $location->zip = $data->zip;
-
-            $location->save();
-        }
-    }
-
-    public function sync_contracts(Request $request,Profile $profile)
-    {
-        $data = collect();
-
-        if ($request->all() != [])
-        {
-            $data = collect($request->all());
-        }
-
-        $collection = json_decode($data->toJson());
-
-        foreach ($collection as $key => $data)
-        {
-            $contract = Contract::where('id',$data->id)->first() ?? new Contract();
-
-            $contract->name =$data->name;
-            $contract->profile_id = $profile->id;
-            $contract->country = $profile->country;
-            $contract->save();
-
-            $totalPercent = 0;
-            $details = collect($data>details);
-
-            foreach ($details as $row)
-            {
-                $detail = ContractDetail::where('id', $row['id'])->first()
-                ?? new ContractDetail();
-                $detail->contract_id = $contract->id;
-                $detail->percent =$row['percent'];
-                $detail->offset = $row['offset'];
-                $detail->save();
-
-                $totalPercent += $detail->percent;
-            }
-            //this code adds the remaining balance to the end.
-            $contract_detail=$contract->details()->orderBy('id', 'DESC')->first();
-            if ($totalPercent < 1 && isset($contract_detail))
-            {
-                $detail = $contract->details()->orderBy('id', 'DESC')->first();
-                $detail->percent = $detail->percent + (1 - $totalPercent);
-                $detail->save();
-            }
-        }
-    }
-
-    public function sync_saletax(Request $request,Profile $profile)
-    {
-        $data = collect();
-
-        if ($request->all() != [])
-        {
-            $data = collect($request->all());
-        }
-
-        $collection = json_decode($data->toJson());
-
-        foreach ($collection as $key => $data)
-        {
-            $vat =  $data->id == 0 ? new Vat() : Vat::where('id', $data->id)->first();
-            $vat->profile_id = $profile->id;
-
-
-            $vat->name = $data->name;
-            $vat->country ='PRY';
-            $vat->applied_on=1;
-
-
-            $vat->save();
-
-            $details = collect($data->details);
-
-            foreach ($details as $row)
-            {
-                $detail = VatDetail::where('id', $row['id'])->first()
-                ?? new VatDetail();
-                $detail->vat_id = $vat->id;
-                $detail->percent = $row['percent'];
-                $detail->coefficient = $row['coefficient'];
-                $detail->save();
-
-
-            }
-
-        }
-    }
 
     public function sync_items(Request $request,Profile $profile)
     {
-        $data = collect();
-
-        if ($request->all() != [])
-        {
-            $data = collect($request->all());
-        }
-
-        $collection = json_decode($data->toJson());
-
-        foreach ($collection as $key => $data)
-        {
-            $item = Item::where('id', $data->id)->first() ?? new Item();
-            $item->profile_id = $profile->id;
-            $item->sku = $data->sku;
-            $item->name = $data->name;
-            $item->short_description = $data->short_description;
-            $item->long_description = $data->long_description;
-            $item->unit_price = $data->unit_price;
-            $item->currency = $data->currency ?? $profile->currency;
-            $item->item_id = $data->item_id;
-            $item->vat_id = $data->vat_id;
-            $item->is_stockable = $data->is_stockable;
-            $item->is_active = $data->is_active == 'on' ? true : false;
-
-            $item->save();
-        }
+    
     }
 
     // TODO: Make chunks of data. learn from debehaber
@@ -278,6 +140,23 @@ class TransactionController extends Controller
 
 
         return response()->json($collection);
+    }
+
+    public function checkCreateRelationships($profile, $data)
+    {
+        $relationship = $request->id == 0 ? new Relationship() : Relationship::where('id', $request->id)->first();
+        $relationship->supplier_id = $profile->id;
+        $relationship->supplier_accepted = true;
+
+        $relationship->customer_taxid = $request->customer_taxid;
+        $relationship->customer_alias = $request->customer_alias;
+        $relationship->customer_address = $request->customer_address;
+        $relationship->customer_telephone = $request->customer_telephone;
+        $relationship->customer_email = $request->customer_email;
+        $relationship->credit_limit = $request->credit_limit ?? 0;
+        $relationship->contract_ref = $request->contract_ref ?? 0;
+
+        $relationship->save();
     }
 
     public sync_payment(Request $request,Profile $profile)
@@ -357,6 +236,7 @@ class TransactionController extends Controller
             $detail->save();
             $data_detail->ref_id=$detail->id;
         }
+
     }
 
     // public function syncTransactionStatus(Request $request, Profile $profile)
