@@ -39,7 +39,7 @@
                     </b-table-column>
                 </template>
             </b-table>
-            
+
             <b-pagination
             :total="meta.total"
             :current.sync="meta.current_page"
@@ -52,7 +52,7 @@
 
         <div>
             <!-- Contract Profile -->
-            <h2 class="content-heading text-black">Contract</h2>
+            <h2 class="content-heading text-black">{{lang('global.Contract')}}</h2>
             <div class="row items-push">
                 <div class="col-lg-3">
                     <p class="text-muted">
@@ -71,7 +71,7 @@
             <!-- END Contract Profile -->
 
             <!-- Details -->
-            <h2 class="content-heading text-black">Details</h2>
+            <h2 class="content-heading text-black">{{lang('global.Details')}}</h2>
             <div class="row items-push">
                 <div class="col-lg-3">
                     <p class="text-muted">
