@@ -54,7 +54,7 @@
                           </b-table-column>
                       </template>
                   </b-table>
-            
+
             <b-pagination :total="meta.total" :current.sync="meta.current_page" :simple="false" :per-page="meta.per_page" @change="pageChange"> </b-pagination>
         </div>
         <div v-if="showForm">
@@ -230,7 +230,7 @@ export default {
         onSave($data)
         {
             var app = this;
-            axios.post('/api/' + app.profile + '/back-office/followers/', $data)
+            axios.post('/api/' + app.profile + '/back-office/followers', $data)
             .then(() =>
             {
                 app.onCancel();
@@ -242,7 +242,7 @@ export default {
 
             })
             .catch(ex => {
-                console.log(ex.response);
+                console.log(ex);
                 this.$toast.open({
                     duration: 5000,
                     message: 'Error trying to save record',
