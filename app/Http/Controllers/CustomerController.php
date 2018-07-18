@@ -12,7 +12,7 @@ class CustomerController extends Controller
 
     public function index(Profile $profile)
     {
-        return CustomerResource::collection(Relationship::GetCustomers()->paginate(2));
+        return CustomerResource::collection(Relationship::GetCustomers()->paginate(25));
     }
 
     /**

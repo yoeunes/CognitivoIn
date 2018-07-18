@@ -1,25 +1,24 @@
 <template>
     <div>
 
-        <table>
-            <thead>
-                <tr>
-                    <th>Customer</th>
-                    <th>InvoiceDate</th>
-                    <th>Balance</th>
-                    <th>CurrencyCode</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr v-for="supplier in list">
-                    <td>{{ supplier.relationship.supplier_alias }}</td>
-                    <td>{{ supplier.date }}</td>
-                    <td>{{ supplier.balance }}</td>
-                    <td>{{ supplier.currency }}</td>
+      <b-table :data="list" hoverable>
+                <template slot-scope="props">
+                    <b-table-column field="customer_alias" v-bind:label="lang('back-office.Customer')">
+                        {{ props.row.relationship.customer_alias }}
+                    </b-table-column>
+                    <b-table-column field="date" v-bind:label="lang('global.Date')">
+                        {{ props.row.date }}
+                    </b-table-column>
+                    <b-table-column field="balance" v-bind:label="lang('global.Balance')">
+                        {{ props.row.balance }}
+                    </b-table-column>
+                    <b-table-column field="currency" v-bind:label="lang('global.Currency')">
+                        {{ props.row.currency }}
+                    </b-table-column>
 
-                </tr>
-            </tbody>
-        </table>
+                    
+                </template>
+            </b-table>
 
 </div>
 </template>

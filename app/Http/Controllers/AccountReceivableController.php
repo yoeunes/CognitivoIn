@@ -25,7 +25,7 @@ class AccountReceivableController extends Controller
 
         $schedule = Schedule::with('relationship')->
         skip($skip)
-        ->take(100)
+        ->take(25)
         ->get();
         $schedule=collect($schedule);
         return ScheduleResource::collection($schedule

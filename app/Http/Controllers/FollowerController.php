@@ -21,7 +21,7 @@ class FollowerController extends Controller
     {
 
   return FollowableResource::collection(Followable::with('profile')
-  ->where('followable_id',$profile->id)->paginate(2));
+  ->where('followable_id',$profile->id)->paginate(25));
         // $members = Followable::with('profile')
         // ->where('followable_id',$profile->id)
         // ->skip($skip)

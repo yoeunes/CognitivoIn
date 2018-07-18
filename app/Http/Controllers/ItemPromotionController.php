@@ -18,7 +18,7 @@ class ItemPromotionController extends Controller
     */
     public function index(Profile $profile, $filterBy)
     {
-        return ItemResource::collection(ItemPromotion::paginate(2));
+        return ItemResource::collection(ItemPromotion::paginate(25));
     }
     public function getPromotionTypeByItem(Profile $profile)
     {

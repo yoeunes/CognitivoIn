@@ -26,7 +26,7 @@ class ItemController extends Controller
 
         $query->with("details");}
 
-])->paginate(100));
+])->paginate(25));
     }
 
     /**

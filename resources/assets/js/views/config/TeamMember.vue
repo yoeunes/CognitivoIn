@@ -18,58 +18,43 @@
                     </div>
                 </a>
             </div>
-            <table class="table table-borderless table-striped">
-                <thead>
-                    <tr>
-                        <th style="width: 100px;">ID</th>
-                        <th class="d-none d-sm-table-cell">{{lang('global.Name')}}</th>
-                        <th>{{lang('global.Address')}}</th>
-                        <th class="d-none d-md-table-cell">{{lang('global.Role')}}</th>
-                        <th class="text-right">{{lang('global.Actions')}}</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <div class="">
-                        <tr v-for="followers in list">
-                            <td>
-                                <a class="font-w600" href="be_pages_ecom_product_edit.html">{{ followers.id }}</a>
-                            </td>
-                            <td class="d-none d-sm-table-cell">
-                                {{ followers.profile.name }}
-                            </td>
-                            <td class="d-none d-sm-table-cell">
-                                {{ followers.profile.address }}
-                            </td>
-                            <td v-if="followers.role===1">
-                                Admin
-                            </td>
-                            <td v-if="followers.role===2">
-                                Manager
-                            </td>
-                            <td v-if="followers.role===3">
-                                Employee
-                            </td>
-                            <td v-if="followers.role===4">
-                                Member
-                            </td>
-                            <td v-if="followers.role===5">
-                                Follower
-                            </td>
-                            <td class="text-right">
-                                <div class="btn-group">
-                                    <button v-on:click="onEdit(followers)" type="button" class="btn btn-sm btn-secondary js-tooltip-enabled" data-toggle="tooltip" data-original-title="Edit">
-                                        <i class="fa fa-pencil"></i>
-                                    </button>
-                                    <button v-on:click="onDelete(followers)" type="button" class="btn btn-sm btn-secondary js-tooltip-enabled" data-toggle="tooltip" data-original-title="Delete">
-                                        <i class="fa fa-times"></i>
-                                    </button>
-                                </div>
-                            </td>
+            <b-table :data="list" hoverable>
+                      <template slot-scope="props">
+                          <b-table-column field="name" v-bind:label="lang('global.Name')">
+                              {{ props.row.profile.name }}
+                          </b-table-column>
 
-                        </tr>
-                    </div>
-                </tbody>
-            </table>
+                          <b-table-column field="address" v-bind:label="lang('global.Address')">
+                              {{ props.row.profile.address }}
+                          </b-table-column>
+
+                          <b-table-column field="role" v-bind:label="lang('global.Role')" v-if="props.row.role===1">
+                             Admin
+                          </b-table-column>
+                          <b-table-column field="role" v-bind:label="lang('global.Role')" v-if="props.row.role===2">
+                             Manager
+                          </b-table-column>
+                          <b-table-column field="role" v-bind:label="lang('global.Role')" v-if="props.row.role===3">
+                             Employee
+                          </b-table-column>
+                          <b-table-column field="role" v-bind:label="lang('global.Role')" v-if="props.row.role===4">
+                             Member
+                          </b-table-column>
+                          <b-table-column field="role" v-bind:label="lang('global.Role')" v-if="props.row.role===5">
+                             Follower
+                          </b-table-column>
+
+                          <b-table-column custom-key="actions">
+                              <button class="button is-small is-light" v-on:click="onEdit(props.row)">
+                                  <i class="fa fa-pencil"></i>
+                              </button>
+                              <button v-on:click="onDelete(props.row)" type="button" class="btn btn-sm btn-secondary js-tooltip-enabled" data-toggle="tooltip" data-original-title="Delete">
+                                  <i class="fa fa-times"></i>
+                              </button>
+                          </b-table-column>
+                      </template>
+                  </b-table>
+            
             <b-pagination :total="meta.total" :current.sync="meta.current_page" :simple="false" :per-page="meta.per_page" @change="pageChange"> </b-pagination>
         </div>
         <div v-if="showForm">

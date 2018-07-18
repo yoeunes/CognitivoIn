@@ -19,7 +19,7 @@ class ProfileController extends Controller
     */
     public function index()
     {
-        return ProfileResource::collection(Profile::where('type', 1)->paginate(2));
+        return ProfileResource::collection(Profile::where('type', 1)->paginate(25));
         //return response()->json(Profile::where('type', 1)->get(), 200);
     }
 

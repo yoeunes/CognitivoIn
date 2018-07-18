@@ -18,7 +18,7 @@ class PipelineController extends Controller
     public function index(Profile $profile)
     {
         return PipelineResource::collection(Pipeline::My($profile)
-        ->with('stages')->paginate(2));
+        ->with('stages')->paginate(25));
         // $pipelines = Pipeline::My($profile)
         // ->with('stages')
         // ->skip($skip)

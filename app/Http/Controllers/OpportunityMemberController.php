@@ -17,7 +17,7 @@ class OpportunityMemberController extends Controller
   {
     $opportunityMembers = OpportunityMember::My()
     ->skip($skip)
-    ->take(100)
+    ->take(25)
     ->get();
 
     return response()->json($opportunityMembers);

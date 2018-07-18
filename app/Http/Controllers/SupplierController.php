@@ -12,7 +12,7 @@ class SupplierController extends Controller
 
     public function index(Profile $profile, $skip)
     {
-        return CustomerResource::collection(Relationship::GetSuppliers()->paginate(2));
+        return CustomerResource::collection(Relationship::GetSuppliers()->paginate(25));
 
     }
 

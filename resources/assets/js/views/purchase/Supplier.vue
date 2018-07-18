@@ -17,36 +17,32 @@
                 </div>
             </a>
         </div>
-        <table>
-            <thead>
-                <tr>
-                    <th>{{lang('global.TaxID')}}</th>
-                    <th>{{lang('back-office.Supplier')}}</th>
-                    <th>{{lang('global.Email')}}</th>
-                    <th class="text-center">{{lang('global.Actions')}}</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr v-for="supplier in list">
-                    <td>{{ supplier.supplier_taxid }}</td>
-                    <td>{{ supplier.supplier_alias }}</td>
-                    <td>{{ supplier.supplier_email }}</td>
-                    <td class="text-center">
-                        <div class="btn-group">
-                            <router-link :to="{ name: 'supplier.form',params: { profile:profile,id:supplier.id} }">
-                                <button  type="button" class="btn btn-sm btn-secondary js-tooltip-enabled" data-toggle="tooltip" data-original-title="Edit">
-                                    <i class="fa fa-pencil"></i>
-                                </button>
-                            </router-link>
+        <b-table :data="list" hoverable>
+                  <template slot-scope="props">
+                      <b-table-column field="supplier_taxid" v-bind:label="lang('global.TaxID')">
+                          {{ props.row.supplier_taxid }}
+                      </b-table-column>
+                      <b-table-column field="supplier_alias" v-bind:label="lang('back-office.Supplier')">
+                          {{ props.row.supplier_alias }}
+                      </b-table-column>
+                      <b-table-column field="supplier_email" v-bind:label="lang('global.Email')">
+                          {{ props.row.supplier_email }}
+                      </b-table-column>
 
-                            <button v-on:click="onDelete(supplier)" type="button" class="btn btn-sm btn-secondary js-tooltip-enabled" data-toggle="tooltip" data-original-title="Delete">
-                                <i class="fa fa-times"></i>
+
+                      <b-table-column custom-key="actions">
+                        <router-link :to="{ name: 'supplier.form',params: { profile:profile,id:supplier.id} }">
+                            <button  type="button" class="btn btn-sm btn-secondary js-tooltip-enabled" data-toggle="tooltip" data-original-title="Edit">
+                                <i class="fa fa-pencil"></i>
                             </button>
-                        </div>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+                        </router-link>
+                          <button v-on:click="onDelete(props.row)" type="button" class="btn btn-sm btn-secondary js-tooltip-enabled" data-toggle="tooltip" data-original-title="Delete">
+                              <i class="fa fa-times"></i>
+                          </button>
+                      </b-table-column>
+                  </template>
+              </b-table>
+    
 
 </div>
 </template>

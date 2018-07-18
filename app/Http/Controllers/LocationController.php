@@ -16,7 +16,7 @@ class LocationController extends Controller
     */
     public function index(Profile $profile)
     {
-          return LocationResource::collection(Location::where('profile_id', $profile->id)->paginate(2));
+          return LocationResource::collection(Location::where('profile_id', $profile->id)->paginate(25));
         // $location = Location::where('profile_id', $profile->id)->skip($skip)
         // ->take(100)
         // ->get();

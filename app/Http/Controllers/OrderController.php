@@ -39,7 +39,7 @@ class OrderController extends Controller
         'classification','tracking_code','code','code_expiry','number','date','date_deliver_by',
         'comment','note_for_customer','note_for_billing','note_for_shipping','geoloc',
         'is_impex','is_printed','is_archived','orders.created_at','orders.updated_at','orders.deleted_at')
-        ->paginate(100));
+        ->paginate(25));
 
 
         return response()->json($orders);
@@ -288,7 +288,7 @@ class OrderController extends Controller
         else
         {
             $schedule = new Schedule();
-            $schedule->relationship_id = $relationship_id;
+            $schedule->relationship_id = $order->relationship_id;
             $schedule->currency = $order->currency;
             $schedule->currency_rate = $order->currency_rate;
             $schedule->date = Carbon::now();

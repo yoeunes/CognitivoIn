@@ -17,43 +17,32 @@
             </div>
         </a>
     </div>
-    <table class="table table-borderless table-striped">
-      <thead>
-        <tr>
-          <th style="width: 100px;">ID</th>
-          <th class="d-none d-sm-table-cell">SKU</th>
-          <th>Name</th>
-          <th class="text-right">Location</th>
-          <th class="text-right">Debit</th>
-          <th class="text-right">Credit</th>
-          <th class="text-right">comment</th>
-        </tr>
-      </thead>
-      <tbody>
-        <div class="">
-          <tr v-for="data in list">
-            <td class="d-none d-sm-table-cell">
-              {{ data.item.sku }}
-            </td>
-            <td class="d-none d-sm-table-cell">
-              {{ data.item.name }}
-            </td>
-            <td>
-              {{ data.location.name }}
-            </td>
-            <td>
-              {{ data.debit }}
-            </td>
-            <td>
-              {{ data.credit }}
-            </td>
-            <td>
-              {{ data.comment }}
-            </td>
-          </tr>
-        </div>
-      </tbody>
-    </table>
+    <b-table :data="list" hoverable>
+                <template slot-scope="props">
+                  <b-table-column field="name" v-bind:label="lang('global.sku')">
+                      {{ props.row.item.sku }}
+                  </b-table-column>
+                    <b-table-column field="name" v-bind:label="lang('global.Name')">
+                        {{ props.row.item.name }}
+                    </b-table-column>
+                    <b-table-column field="supplier_alias" v-bind:label="lang('global.Location')">
+                        {{ props.row.location.name }}
+                    </b-table-column>
+                    <b-table-column field="debit" v-bind:label="lang('global.Debit')">
+                        {{ props.row.debit }}
+                    </b-table-column>
+                    <b-table-column field="credit" v-bind:label="lang('global.Credit')">
+                        {{ props.row.credit }}
+                    </b-table-column>
+                    <b-table-column field="comment" v-bind:label="lang('global.Comment')">
+                        {{ props.row.comment }}
+                    </b-table-column>
+
+
+
+                </template>
+            </b-table>
+  
     <b-pagination
     :total="meta.total"
     :current.sync="meta.current_page"

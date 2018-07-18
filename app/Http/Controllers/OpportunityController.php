@@ -27,7 +27,7 @@ class OpportunityController extends Controller
     {
         return OpportunityResource::collection(Opportunity::with('tasks')
         ->with('relationship')
-        ->with('members')->paginate(2));
+        ->with('members')->paginate(25));
 
         // $opportunities = Opportunity::with('tasks')
         // ->with('relationship')

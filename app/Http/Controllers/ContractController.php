@@ -24,7 +24,7 @@ class ContractController extends Controller
         }
         else if($filterBy == 2)
         {
-            return ContractResource::collection(Contract::onlyTrashed()->paginate(2));
+            return ContractResource::collection(Contract::onlyTrashed()->paginate(100));
 
         }
         else if($filterBy == 3)
@@ -36,7 +36,7 @@ class ContractController extends Controller
             ->groupBy('contracts.id')
             ->select(DB::raw('max(contracts.id) as id'),
             DB::raw('max(contracts.name) as name'))
-            ->paginate(2));
+            ->paginate(25));
         }
 
         return response()->json($contract);

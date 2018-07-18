@@ -18,31 +18,22 @@
                     </div>
                 </a>
             </div>
-            <table>
-                <thead>
-                    <tr>
-                        <th>#</th>
-                        <th>Pipeline Name</th>
-                        <th class="text-center">Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr v-for="pipeline in list">
-                        <td>{{ pipeline.id }}</td>
-                        <td>{{ pipeline.name }}</td>
-                        <td class="text-center">
-                            <div class="btn-group">
-                                <button v-on:click="onEdit(pipeline)" type="button" class="btn btn-sm btn-secondary js-tooltip-enabled" data-toggle="tooltip" data-original-title="Edit">
-                                    <i class="fa fa-pencil"></i>
-                                </button>
-                                <button v-on:click="onDelete(pipeline)" type="button" class="btn btn-sm btn-secondary js-tooltip-enabled" data-toggle="tooltip" data-original-title="Delete">
-                                    <i class="fa fa-times"></i>
-                                </button>
-                            </div>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+            <b-table :data="list" hoverable>
+                    <template slot-scope="props">
+                        <b-table-column field="name" v-bind:label="lang('global.Name')">
+                            {{ props.row.name }}
+                        </b-table-column>
+
+                        <b-table-column custom-key="actions">
+                            <button class="button is-small is-light" v-on:click="onEdit(props.row)">
+                                <i class="fa fa-pencil"></i>
+                            </button>
+                            <button v-on:click="onDelete(props.row)" type="button" class="btn btn-sm btn-secondary js-tooltip-enabled" data-toggle="tooltip" data-original-title="Delete">
+                                <i class="fa fa-times"></i>
+                            </button>
+                        </b-table-column>
+                    </template>
+                </b-table>
             <b-pagination
             :total="meta.total"
             :current.sync="meta.current_page"

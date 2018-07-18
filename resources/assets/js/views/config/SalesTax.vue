@@ -18,38 +18,23 @@
                     </div>
                 </a>
             </div>
-            <table class="table table-borderless table-striped">
-                <thead>
-                    <tr>
-                        <th style="width: 100px;">ID</th>
-                        <th class="d-none d-sm-table-cell">{{lang('global.Name')}}</th>
+            <b-table :data="list" hoverable>
+                <template slot-scope="props">
+                    <b-table-column field="name" v-bind:label="lang('global.Name')">
+                        {{ props.row.name }}
+                    </b-table-column>
+                    
+                    <b-table-column custom-key="actions">
+                        <button class="button is-small is-light" v-on:click="onEdit(props.row)">
+                            <i class="fa fa-pencil"></i>
+                        </button>
+                        <button v-on:click="onDelete(props.row)" type="button" class="btn btn-sm btn-secondary js-tooltip-enabled" data-toggle="tooltip" data-original-title="Delete">
+                            <i class="fa fa-times"></i>
+                        </button>
+                    </b-table-column>
+                </template>
+            </b-table>
 
-                    </tr>
-                </thead>
-                <tbody>
-                    <div class="">
-                        <tr v-for="vat in list">
-                            <td>
-                                <a class="font-w600" href="be_pages_ecom_product_edit.html">{{ vat.id }}</a>
-                            </td>
-                            <td class="d-none d-sm-table-cell">
-                                {{ vat.name }}
-                            </td>
-
-                            <td class="text-right">
-                                <div class="btn-group">
-                                    <button v-on:click="onEdit(vat)" type="button" class="btn btn-sm btn-secondary js-tooltip-enabled" data-toggle="tooltip" data-original-title="Edit">
-                                        <i class="fa fa-pencil"></i>
-                                    </button>
-                                    <button v-on:click="onDelete(vat)" type="button" class="btn btn-sm btn-secondary js-tooltip-enabled" data-toggle="tooltip" data-original-title="Delete">
-                                        <i class="fa fa-times"></i>
-                                    </button>
-                                </div>
-                            </td>
-                        </tr>
-                    </div>
-                </tbody>
-            </table>
             <b-pagination
             :total="meta.total"
             :current.sync="meta.current_page"
@@ -188,41 +173,41 @@ export default {
 
         },
         onDelete($data)
-          {
+        {
             var app = this;
 
             this.$swal({
-              title: 'Delete Record',
-              text: "Sure? This action is non-reversable",
-              type: 'question',
-              showCancelButton: true,
-              confirmButtonText: 'Yes, delete it!'
+                title: 'Delete Record',
+                text: "Sure? This action is non-reversable",
+                type: 'question',
+                showCancelButton: true,
+                confirmButtonText: 'Yes, delete it!'
             })
             .then(() => {
 
-              axios.delete('/api/' + this.profile + '/back-office/vats/' + $data.id)
-              .then(() => {
+                axios.delete('/api/' + this.profile + '/back-office/vats/' + $data.id)
+                .then(() => {
 
-                let index = this.list.findIndex(x => x.id === $data.id);
-                this.list.splice(index, 1);
+                    let index = this.list.findIndex(x => x.id === $data.id);
+                    this.list.splice(index, 1);
 
-                this.$toast.open({
-                  duration: 750,
-                  message: 'The record has been deleted',
-                  position: 'is-bottom-right',
-                  type: 'is-danger'
+                    this.$toast.open({
+                        duration: 750,
+                        message: 'The record has been deleted',
+                        position: 'is-bottom-right',
+                        type: 'is-danger'
+                    })
                 })
-              })
-              .catch(ex => {
-                console.log(ex.response);
-                this.$toast.open({
-                  duration: 5000,
-                  message: 'Error trying to delete record',
-                  type: 'is-danger'
-                })
-              });
+                .catch(ex => {
+                    console.log(ex.response);
+                    this.$toast.open({
+                        duration: 5000,
+                        message: 'Error trying to delete record',
+                        type: 'is-danger'
+                    })
+                });
             });
-          },
+        },
         pageChange (page) {
             var app = this;
             app.onLoad(page);
@@ -312,7 +297,7 @@ export default {
                     type: 'is-danger'
                 })
             });
-              app.onLoad(1);
+            app.onLoad(1);
         }
 
     },

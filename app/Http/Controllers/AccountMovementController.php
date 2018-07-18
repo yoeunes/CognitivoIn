@@ -26,7 +26,7 @@ class AccountMovementController extends Controller
   public function index(Profile $profile, $filterBy)
   {
     return AccountMovementResource::collection(
-      AccountMovement::with('account')->orderBy('created_at')->paginate(100));
+      AccountMovement::with('account')->orderBy('created_at')->paginate(25));
 
     }
 

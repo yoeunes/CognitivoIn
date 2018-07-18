@@ -1,51 +1,42 @@
 <template>
   <div>
     <div class="col-md-6 col-xl-3">
-        <a class="block block-rounded block-link-shadow" @click="onCreate()" href="#">
-            <div class="block-content block-content-full block-sticky-options">
-                <div class="block-options">
-                    <div class="block-options-item">
-                        <i class="fa fa-archive fa-2x text-success-light"></i>
-                    </div>
-                </div>
-                <div class="py-20 text-center">
-                    <div class="font-size-h2 font-w700 mb-0 text-success">
-                        <i class="fa fa-plus"></i>
-                    </div>
-                    <div class="font-size-sm font-w600 text-uppercase text-muted">New Account Movement</div>
-                </div>
+      <a class="block block-rounded block-link-shadow" @click="onCreate()" href="#">
+        <div class="block-content block-content-full block-sticky-options">
+          <div class="block-options">
+            <div class="block-options-item">
+              <i class="fa fa-archive fa-2x text-success-light"></i>
             </div>
-        </a>
-    </div>
-    <table class="table table-borderless table-striped">
-      <thead>
-        <tr>
-
-          <th class="text-right">Name</th>
-          <th class="text-right">Debit</th>
-          <th class="text-right">Credit</th>
-          <th class="text-right">comment</th>
-        </tr>
-      </thead>
-      <tbody>
-        <div class="">
-          <tr v-for="data in list">
-            <td class="d-none d-sm-table-cell">
-              {{ data.account.name }}
-            </td>
-            <td>
-              {{ data.debit }}
-            </td>
-            <td>
-              {{ data.credit }}
-            </td>
-            <td>
-              {{ data.comment }}
-            </td>
-          </tr>
+          </div>
+          <div class="py-20 text-center">
+            <div class="font-size-h2 font-w700 mb-0 text-success">
+              <i class="fa fa-plus"></i>
+            </div>
+            <div class="font-size-sm font-w600 text-uppercase text-muted">New Account Movement</div>
+          </div>
         </div>
-      </tbody>
-    </table>
+      </a>
+    </div>
+    <b-table :data="list" hoverable>
+      <template slot-scope="props">
+        <b-table-column field="name" v-bind:label="lang('global.Name')">
+          {{ props.row.item.name }}
+        </b-table-column>
+        <b-table-column field="debit" v-bind:label="lang('global.Debit')">
+          {{ props.row.debit }}
+        </b-table-column>
+        <b-table-column field="credit" v-bind:label="lang('global.Credit')">
+          {{ props.row.credit }}
+        </b-table-column>
+        <b-table-column field="comment" v-bind:label="lang('global.Comment')">
+          {{ props.row.comment }}
+        </b-table-column>
+
+
+
+      </template>
+    </b-table>
+  
     <b-pagination
     :total="meta.total"
     :current.sync="meta.current_page"

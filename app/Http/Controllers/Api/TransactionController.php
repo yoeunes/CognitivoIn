@@ -94,6 +94,151 @@ class TransactionController extends Controller
         return response()->json($data2);
     }
 
+    public function sync_location(Request $request,Profile $profile)
+    {
+        $data = collect();
+
+        if ($request->all() != [])
+        {
+            $data = collect($request->all());
+        }
+
+        $collection = json_decode($data->toJson());
+
+        foreach ($collection as $key => $data)
+        {
+            $location = Location::where('id', $data->id)->first() ?? new Location();
+            // $location = new Location();
+            $location->profile_id = $profile->id;
+
+            $location->name = $data->name;
+            $location->telephone = $data->telephone ?? $profile->telephone;
+            $location->address = $data->address ?? $profile->address;
+            $location->city = $data->city;
+            $location->state = $data->state ?? $profile->state;
+            $location->country = $data->country ?? $profile->country;
+            $location->zip = $data->zip;
+
+            $location->save();
+        }
+    }
+
+    public function sync_contracts(Request $request,Profile $profile)
+    {
+        $data = collect();
+
+        if ($request->all() != [])
+        {
+            $data = collect($request->all());
+        }
+
+        $collection = json_decode($data->toJson());
+
+        foreach ($collection as $key => $data)
+        {
+            $contract = Contract::where('id',$data->id)->first() ?? new Contract();
+
+            $contract->name =$data->name;
+            $contract->profile_id = $profile->id;
+            $contract->country = $profile->country;
+            $contract->save();
+
+            $totalPercent = 0;
+            $details = collect($data>details);
+
+            foreach ($details as $row)
+            {
+                $detail = ContractDetail::where('id', $row['id'])->first()
+                ?? new ContractDetail();
+                $detail->contract_id = $contract->id;
+                $detail->percent =$row['percent'];
+                $detail->offset = $row['offset'];
+                $detail->save();
+
+                $totalPercent += $detail->percent;
+            }
+            //this code adds the remaining balance to the end.
+            $contract_detail=$contract->details()->orderBy('id', 'DESC')->first();
+            if ($totalPercent < 1 && isset($contract_detail))
+            {
+                $detail = $contract->details()->orderBy('id', 'DESC')->first();
+                $detail->percent = $detail->percent + (1 - $totalPercent);
+                $detail->save();
+            }
+        }
+    }
+
+    public function sync_saletax(Request $request,Profile $profile)
+    {
+        $data = collect();
+
+        if ($request->all() != [])
+        {
+            $data = collect($request->all());
+        }
+
+        $collection = json_decode($data->toJson());
+
+        foreach ($collection as $key => $data)
+        {
+            $vat =  $data->id == 0 ? new Vat() : Vat::where('id', $data->id)->first();
+            $vat->profile_id = $profile->id;
+
+
+            $vat->name = $data->name;
+            $vat->country ='PRY';
+            $vat->applied_on=1;
+
+
+            $vat->save();
+
+            $details = collect($data->details);
+
+            foreach ($details as $row)
+            {
+                $detail = VatDetail::where('id', $row['id'])->first()
+                ?? new VatDetail();
+                $detail->vat_id = $vat->id;
+                $detail->percent = $row['percent'];
+                $detail->coefficient = $row['coefficient'];
+                $detail->save();
+
+
+            }
+
+        }
+    }
+
+    public function sync_items(Request $request,Profile $profile)
+    {
+        $data = collect();
+
+        if ($request->all() != [])
+        {
+            $data = collect($request->all());
+        }
+
+        $collection = json_decode($data->toJson());
+
+        foreach ($collection as $key => $data)
+        {
+            $item = Item::where('id', $data->id)->first() ?? new Item();
+            $item->profile_id = $profile->id;
+            $item->sku = $data->sku;
+            $item->name = $data->name;
+            $item->short_description = $data->short_description;
+            $item->long_description = $data->long_description;
+            $item->unit_price = $data->unit_price;
+            $item->currency = $data->currency ?? $profile->currency;
+            $item->item_id = $data->item_id;
+            $item->vat_id = $data->vat_id;
+            $item->is_stockable = $data->is_stockable;
+            $item->is_active = $data->is_active == 'on' ? true : false;
+
+            $item->save();
+        }
+    }
+
     // TODO: Make chunks of data. learn from debehaber
     public function uploadOrder (Request $request, Profile $profile)
     {
@@ -122,16 +267,11 @@ class TransactionController extends Controller
             $data->customer->cloud_id=$order->relationship_id;
             $this->loadData_Order($order, $data);
             //insert payment schedual if paymnet not done
-            if ($data->is_payable==false) {
-                $orderController = new OrderController();
-                //insert movement and schedual
-                $orderController->approve($profile,$order->id);
-            }
-            else {
-                $orderController = new OrderController();
-                //insert movement and schedual
-                $orderController->stockentry($order);
-            }
+
+            $orderController = new OrderController();
+            //insert movement and schedual
+            $orderController->stockentry($order);
+
 
         }
 
@@ -140,6 +280,30 @@ class TransactionController extends Controller
         return response()->json($collection);
     }
 
+    public sync_payment(Request $request,Profile $profile)
+    {
+        $data = collect();
+
+        if ($request->all() != [])
+        {
+            $data = collect($request->all());
+        }
+
+        $collection = json_decode($data->toJson());
+        foreach ($collection as $key => $data)
+        {
+            $order=Order::where('id',$data->id)->first();
+            $schedule = new Schedule();
+            $schedule->relationship_id = $order->relationship_id;
+            $schedule->currency = $order->currency;
+            $schedule->currency_rate = $order->currency_rate;
+            $schedule->date = Carbon::now();
+            $schedule->date_exp = Carbon::now();
+            $schedule->credit = $data->amount;
+            $schedule->debit = 0;
+            $schedule->save();
+        }
+    }
     //This function will create or update an existing Order with the new data inserted.
     public function loadData_Order ($order, $data)
     {
@@ -183,7 +347,7 @@ class TransactionController extends Controller
                 $detail->order_id = $order->id;
             }
 
-            $item = $this->createOrUpdate_Item($data_detail->item);
+            $item =Item::where('profile_id', $profile->id)->where('name', $data_detail->item)->first();
 
             $detail->item_id = $item->id;
             $detail->ref_id = $data_detail->my_id;
