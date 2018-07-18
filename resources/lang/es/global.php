@@ -12,7 +12,7 @@ return [
     | you want to customize your views to better match your application.
     |
     */
-    
+
     'Log In' => 'Iniciar Sesión',
     'Log Out' => 'Cerrar Sesión',
     'Register' => 'Registrar',
@@ -47,7 +47,7 @@ return [
     'Description' => 'Descripción',
     'Short Description' => 'Descripción Corta',
     'Long Description' => 'Description Larga',
-    'Email' => 'Correo',
+    'Email' => 'Correo Electronico',
     'Telephone' => 'Teléfono',
     'Address' => 'Dirección',
     'Zip' => 'Zip',

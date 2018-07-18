@@ -12,6 +12,7 @@ return [
     | you want to customize your views to better match your application.
     |
     */
+
     'Log In' => 'Log In',
     'Log Out' => 'Log Out',
     'Register' => 'Register',

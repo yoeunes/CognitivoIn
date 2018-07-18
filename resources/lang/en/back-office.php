@@ -29,13 +29,12 @@ return [
     'Modules' => 'Modules',
 
     'Sales' => 'Sales',
-    'Customer' => 'Customer',
     'Credit Limit' => 'Credit Limit',
     'Commercial' => 'Commercial',
-    'Customers' => 'Customers',
-    'Promotions' => 'Promotions',
-    'Opportunities' => 'Opportunities',
-    'Pipelines' => 'Pipelines',
+    'Customer' => 'Customer|Customers',
+    'Promotion' => 'Promotion|Promotions',
+    'Opportunity' => 'Opportunity|Opportunities',
+    'Pipeline' => 'Pipeline|Pipelines',
     'Pipeline Stage' => 'Pipeline Stage',
     'Task' => 'Task',
     'On Hold' => 'On Hold',
@@ -45,20 +44,20 @@ return [
     'Price' => 'Price',
     'Price with Taxes' => 'Price with Taxes',
 
-    'Orders' => 'Orders',
+    'Order' => 'Order|Orders',
     'Account Receivables' => 'Account Receivables',
 
-    'Purchases' => 'Purchases',
-    'Suppliers' => 'Suppliers',
+    'Purchase' => 'Purchase|Purchases',
+    'Supplier' => 'Supplier|Suppliers',
     'Account Payables' => 'Account Payables',
 
     'Stock' => 'Stock',
     'Stock Levels' => 'Stock Levels',
-    'Movements' => 'Movements',
-    'Inventories' => 'Inventories',
+    'Movement' => 'Movement|Movements',
+    'Inventory' => 'Inventory|Inventories',
 
-    'Finances' => 'Finances',
-    'Accounts' => 'Accounts',
+    'Finance' => 'Finance|Finances',
+    'Account' => 'Account|Accounts',
     'Account Movements' => 'Account Movements',
 
     //CUSTOMERS
