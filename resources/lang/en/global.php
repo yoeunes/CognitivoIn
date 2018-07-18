@@ -38,6 +38,7 @@ return [
 
     'Price' => 'Price',
     'Total' => 'Total',
+    'Total :model' => 'Total :model',
     'Sub Total' => 'Sub Total',
     'Quantity' => 'Quantity',
     'Sales Tax' => 'Sales Tax',
@@ -55,7 +56,7 @@ return [
     'State' => 'State',
     'Country' => 'Country',
 
-    'Currency' => 'Currency',
+    'Currency' => 'Currency|Currencies',
     'Percent' => 'Percent',
 
     'Working Hours' => 'Working Hours',
@@ -66,8 +67,21 @@ return [
     'Video Conference' => 'Video Conference',
     'Meeting' => 'Meeting',
     'Visit' => 'Visit',
+    'Search' => 'Search',
+    'Search :model' => 'Search :model',
 
     'TaxID' => 'Government TaxID',
-    'Messages' => 'Message',
+    'Message' => 'Message|Messages',
     'Market' => 'Market',
+    'Promotion' => 'Promotion|Promotions',
+    'Number' => 'Number',
+    'SKU' => 'SKU',
+    'Code' => 'Code',
+    'Tag' => 'Tag|Tags',
+    'Rate' => 'Rate',
+
+    //Promotions Lingo
+    'BuyThis_GetThat' => 'Buy :qty, and get a :output for free!',
+    'BuyThis_WithDiscount' => 'Buy :qty, at :output discount!',
+    'BuyN_AtPrice' => 'Buy :qty, at :output!',
 ];

@@ -35,7 +35,7 @@ return [
     'Promotion' => 'Promoción|Promociones',
     'Opportunity' => 'Oportunidad|Oportunidades',
     'Pipeline' => 'Tubería|Tuberías',
-    'Pipeline Stage' => 'Escenaríos',
+    'Pipeline Stage' => 'Etapa de la Tubería',
     'Task' => 'Tarea',
     'On Hold' => 'En espera',
     'Won' => 'Ganado',
@@ -62,5 +62,17 @@ return [
 
     //CUSTOMERS
     'Credit Limit' => 'Limite de Crédito',
+    'Value' => 'Valor',
+    'Model Name' => 'Nombre de :model',
+    'Applied on :model' => 'Applied on :model',
+    'Input' => 'Ingreso',
+    'Output' => 'Egreso',
+    'Input :model' => 'Ingreso :model',
+    'Output :model' => 'Egreso :model',
+    'Completed' => 'Terminado',
 
+    //Promotion Code Names
+    'BuyThis_GetThat' => 'Compra esto, te regalamos aquello',
+    'BuyThis_WithDiscount' => 'Compra esto, con x descuento',
+    'BuyN_AtPrice' => 'Compra <i>n</i> cantidades de esto, a x precio',
 ];

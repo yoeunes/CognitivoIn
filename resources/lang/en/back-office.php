@@ -62,5 +62,17 @@ return [
 
     //CUSTOMERS
     'Credit_Limit' => 'Credit Limit',
+    'Value' => 'Value',
+    'Model Name' => ':model Name',
+    'Applied on :model' => 'Applied on :model',
+    'Input' => 'Input',
+    'Output' => 'Output',
+    'Input :model' => 'Input :model',
+    'Output :model' => 'Output :model',
+    'Completed' => 'Completed',
 
+    //Promotion Code Names
+    'BuyThis_GetThat' => 'Buy this, get that for free',
+    'BuyThis_WithDiscount' => 'Buy this, at x discount',
+    'BuyN_AtPrice' => 'Buy <i>n</i> quantities of this, at x price',
 ];

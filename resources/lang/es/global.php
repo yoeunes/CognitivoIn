@@ -55,7 +55,7 @@ return [
     'State' => 'Estado',
     'Country' => 'País',
 
-    'Currency' => 'Moneda',
+    'Currency' => 'Moneda|Monedas',
     'Percent' => 'Porcentaje',
 
     'Working Hours' => 'Horas de Trabajo',
@@ -66,8 +66,21 @@ return [
     'Video Conference' => 'Video Conferencia',
     'Meeting' => 'Reunión',
     'Visit' => 'Visita',
+    'Search' => 'Buscar',
+    'Search :model' => 'Buscar :model',
 
     'TaxID' => 'Identificación fiscal del gobierno',
-    'Messages' => 'Mensaje',
+    'Message' => 'Mensaje|Mensajes',
     'Market' => 'Tienda',
+    'Promotion' => 'Promoción|Promotions',
+    'Number' => 'Número',
+    'SKU' => 'SKU',
+    'Code' => 'Código',
+    'Tag' => 'Etiqueta|Etiquetas',
+    'Rate' => 'Cotización,
+
+    //Promotions Lingo
+    'BuyThis_GetThat' => 'Compra :qty, y le regalamos un :output gratis!',
+    'BuyThis_WithDiscount' => 'Compra :qty, a :output descuento!',
+    'BuyN_AtPrice' => 'Compra :qty, a :output!',
 ];
