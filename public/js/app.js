@@ -80505,12 +80505,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -80757,9 +80751,9 @@ var render = function() {
                         },
                         [
                           _vm._v(
-                            "\n                            " +
+                            "\n                    " +
                               _vm._s(props.row.name) +
-                              "\n                        "
+                              "\n                "
                           )
                         ]
                       ),
@@ -81421,74 +81415,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -81500,7 +81426,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             userid: '',
             list: [],
             meta: [{ total: 0 }]
-
         };
     },
 
@@ -81512,7 +81437,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             this.profile = this.$route.params.profile;
             this.userid = this.$route.params.userid;
             axios.get('/api/' + this.profile + '/back-office/list/opportunities/1?page=' + page).then(function (response) {
-
                 _this.list = response.data.data;
                 _this.meta = response.data.meta;
             }).catch(function (error) {});
@@ -81640,42 +81564,62 @@ var render = function() {
         ])
       ]),
       _vm._v(" "),
-      _c("table", [
-        _vm._m(3),
-        _vm._v(" "),
-        _c(
-          "tbody",
-          _vm._l(_vm.list, function(opportunity) {
-            return _c("tr", [
-              _c("td", [_vm._v(_vm._s(opportunity.id))]),
-              _vm._v(" "),
-              _c("td", [
+      _c("b-table", {
+        attrs: { data: _vm.list, hoverable: "" },
+        scopedSlots: _vm._u([
+          {
+            key: "default",
+            fn: function(props) {
+              return [
                 _c(
-                  "a",
+                  "b-table-column",
+                  { attrs: { field: "name", label: _vm.lang("global.Name") } },
+                  [
+                    _vm._v(
+                      "\n                " +
+                        _vm._s(props.row.name) +
+                        "\n            "
+                    )
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "b-table-column",
                   {
-                    attrs: { href: "#" },
-                    on: {
-                      click: function($event) {
-                        _vm.onShow(opportunity)
-                      }
+                    attrs: {
+                      field: "relationship.customer_alias",
+                      label: _vm.lang("back-office.Customer")
                     }
                   },
-                  [_vm._v(_vm._s(opportunity.name))]
-                )
-              ]),
-              _vm._v(" "),
-              opportunity.relationship !== null
-                ? _c("td", [
-                    _vm._v(_vm._s(opportunity.relationship.customer_alias))
-                  ])
-                : _c("td"),
-              _vm._v(" "),
-              _c("td", [_vm._v(_vm._s(opportunity.value))]),
-              _vm._v(" "),
-              _c("td", { staticClass: "text-center" }, [
+                  [
+                    _vm._v(
+                      "\n                " +
+                        _vm._s(props.row.relationship.customer_alias) +
+                        "\n            "
+                    )
+                  ]
+                ),
+                _vm._v(" "),
                 _c(
-                  "div",
-                  { staticClass: "btn-group" },
+                  "b-table-column",
+                  {
+                    attrs: {
+                      field: "value",
+                      label: _vm.lang("back-office.Value")
+                    }
+                  },
+                  [
+                    _vm._v(
+                      "\n                " +
+                        _vm._s(props.row.value) +
+                        "\n            "
+                    )
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "b-table-column",
+                  { attrs: { "custom-key": "actions" } },
                   [
                     _c(
                       "router-link",
@@ -81685,7 +81629,7 @@ var render = function() {
                             name: "opportunity.show",
                             params: {
                               profile: _vm.profile,
-                              id: opportunity.id,
+                              id: props.row.id,
                               user_id: _vm.userid
                             }
                           }
@@ -81716,7 +81660,7 @@ var render = function() {
                             name: "opportunity.form",
                             params: {
                               profile: _vm.profile,
-                              id: opportunity.id,
+                              id: props.row.id,
                               user_id: _vm.userid
                             }
                           }
@@ -81751,7 +81695,7 @@ var render = function() {
                         },
                         on: {
                           click: function($event) {
-                            _vm.onDelete(opportunity)
+                            _vm.onDelete(props.row)
                           }
                         }
                       },
@@ -81760,11 +81704,11 @@ var render = function() {
                   ],
                   1
                 )
-              ])
-            ])
-          })
-        )
-      ]),
+              ]
+            }
+          }
+        ])
+      }),
       _vm._v(" "),
       _c("b-pagination", {
         attrs: {
@@ -81815,24 +81759,6 @@ var staticRenderFns = [
       _c("i", { staticClass: "si si-list fa-4x text-primary-darker" }),
       _vm._v(" "),
       _c("div", { staticClass: "font-w600 push-15-t" }, [_vm._v("My Todo")])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("thead", [
-      _c("tr", [
-        _c("td", [_vm._v("#")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("Opportunity Name")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("Customer")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("Value")]),
-        _vm._v(" "),
-        _c("th", { staticClass: "text-center" }, [_vm._v("Actions")])
-      ])
     ])
   }
 ]

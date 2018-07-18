@@ -199,7 +199,7 @@
                                         <li>
                                             <a href="#">
                                                 <router-link to="/dashboard/{{ request()->route('profile')->slug}}/config-contracts">
-                                                    @lang('back-office.Contracts')
+                                                    @lang('back-office.Contract')
                                                 </router-link>
                                             </a>
                                         </li>
@@ -228,7 +228,9 @@
                                 <li>
                                     <a class="nav-submenu" data-toggle="nav-submenu" href="#">
                                         <i class="si si-paper-plane"></i>
-                                        <span class="sidebar-mini-hide">@lang('back-office.Opportunities')</span>
+                                        <span class="sidebar-mini-hide">
+                                            {{ trans_choice('back-office.Opportunity', 1) }}
+                                        </span>
                                     </a>
                                     <ul>
                                         <li>
@@ -241,14 +243,14 @@
                                         <li>
                                             <a href="#">
                                                 <router-link to="/dashboard/{{ request()->route('profile')->slug}}/config-crm-pipelines">
-                                                    @lang('back-office.Pipelines')
+                                                    {{ trans_choice('back-office.Pipeline', 2) }}
                                                 </router-link>
                                             </a>
                                         </li>
                                         <li>
                                             <a href="#">
                                                 <router-link to="/dashboard/{{ request()->route('profile')->slug}}/config-crm-opportunities-{{  Auth::user()->profile_id }}">
-                                                    @lang('back-office.Opportunities')
+                                                    {{ trans_choice('back-office.Opportunity', 2) }}
                                                 </router-link>
                                             </a>
                                         </li>
@@ -271,7 +273,7 @@
                                         <li>
                                             <a href="#">
                                                 <router-link to="/dashboard/{{ request()->route('profile')->slug}}/sales-customers">
-                                                    @lang('back-office.Customers')
+                                                    {{ trans_choice('back-office.Customer', 2) }}
                                                 </router-link>
 
                                             </a>
@@ -279,14 +281,21 @@
                                         <li>
                                             <a href="#">
                                                 <router-link to="/dashboard/{{ request()->route('profile')->slug}}/stocks-itempromotions">
-                                                    @lang('back-office.Promotions')
+                                                    {{ trans_choice('global.Promotion', 2) }}
+                                                </router-link>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <router-link to="/dashboard/{{ request()->route('profile')->slug}}/sales-carts">
+                                                    {{ trans_choice('back-office.Cart', 2) }}
                                                 </router-link>
                                             </a>
                                         </li>
                                         <li>
                                             <a href="#">
                                                 <router-link to="/dashboard/{{ request()->route('profile')->slug}}/sales-orders">
-                                                    @lang('back-office.Orders')
+                                                    {{ trans_choice('back-office.Order', 2) }}
                                                 </router-link>
                                             </a>
                                         </li>
@@ -303,7 +312,7 @@
                                     <a class="nav-submenu" data-toggle="nav-submenu" href="#">
                                         <i class="si si-basket"></i>
                                         <span class="sidebar-mini-hide">
-                                            @lang('back-office.Purchases')
+                                            {{ trans_choice('back-office.Purchase', 1) }}
                                         </span>
                                     </a>
                                     <ul>
@@ -317,7 +326,7 @@
                                         <li>
                                             <a href="#">
                                                 <router-link to="/dashboard/{{ request()->route('profile')->slug}}/purchases-suppliers">
-                                                    @lang('back-office.Suppliers')
+                                                    {{ trans_choice('back-office.Supplier', 2) }}
                                                 </router-link>
                                             </a>
                                         </li>
@@ -353,7 +362,7 @@
                                         <li>
                                             <a href="#">
                                                 <router-link to="/dashboard/{{ request()->route('profile')->slug}}/stocks-movement">
-                                                    @lang('back-office.StockMovement')
+                                                    @lang('back-office.Movement')
                                                 </router-link>
                                             </a>
                                         </li>
@@ -362,211 +371,204 @@
                                 <li>
                                     <a class="nav-submenu" data-toggle="nav-submenu" href="#">
                                         <i class="si si-wallet"></i>
-                                        <span class="sidebar-mini-hide">@lang('back-office.Finances')</span>
+                                        <span class="sidebar-mini-hide">{{ trans_choice('back-office.Finance', 1) }}</span>
                                     </a>
                                     <ul>
                                         <li>
                                             <a href="#">
-                                                <router-link to="/dashboard/{{ request()->route('profile')->slug}}/finances-dashboard">
+                                                <router-link to="/dashboard/{{ request()->route('profile')->slug }}/finances-dashboard">
                                                     @lang('back-office.Dashboard')
                                                 </router-link>
                                             </a>
                                         </li>
-                                        {{-- <li>
-                                        <a href="#">
-                                        <router-link to="/dashboard/{{ request()->route('profile')->slug}}/finances-accounts">
-                                        @lang('back-office.Accounts')
-                                    </router-link>
-                                </a>
-                            </li> --}}
-                            <li>
-                                <a href="#">
-                                    <router-link to="/dashboard/{{ request()->route('profile')->slug}}/finances-account-payables">
-                                        @lang('back-office.Account Payables')
-                                    </router-link>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <router-link to="/dashboard/{{ request()->route('profile')->slug}}/finances-account-recievables">
-                                        @lang('back-office.Account Recievables')
-                                    </router-link>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <router-link to="/dashboard/{{ request()->route('profile')->slug}}/finances-account-movements">
-                                        @lang('back-office.Account Movements')
-                                    </router-link>
-                                </a>
-                            </li>
+                                        <li>
+                                            <a href="#">
+                                                <router-link to="/dashboard/{{ request()->route('profile')->slug }}/finances-account-payables">
+                                                    @lang('back-office.Account Payables')
+                                                </router-link>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <router-link to="/dashboard/{{ request()->route('profile')->slug }}/finances-account-recievables">
+                                                    @lang('back-office.Account Recievables')
+                                                </router-link>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <router-link to="/dashboard/{{ request()->route('profile')->slug }}/finances-account-movements">
+                                                    @lang('back-office.Account Movements')
+                                                </router-link>
+                                            </a>
+                                        </li>
 
-                        </ul>
-                    </li>
+                                    </ul>
+                                </li>
 
 
-                </ul>
-            </div>
-            <!-- END Side Navigation -->
-        </div>
-        <!-- Sidebar Content -->
-    </div>
-</div>
-
-<!-- END Sidebar Scroll Container -->
-</nav>
-<!-- END Sidebar -->
-
-<!-- Header -->
-<header id="page-header">
-    <!-- Header Content -->
-    <div class="content-header">
-        <!-- Left Section -->
-        <div class="content-header-section">
-            <!-- Toggle Sidebar -->
-            <!-- Layout API, functionality initialized in Codebase() -> uiApiLayout() -->
-            <button type="button" class="btn btn-circle btn-dual-secondary" data-toggle="layout" data-action="sidebar_toggle">
-                <i class="fa fa-navicon"></i>
-            </button>
-            <!-- END Toggle Sidebar -->
-
-            <!-- Open Search Section -->
-            <!-- Layout API, functionality initialized in Codebase() -> uiApiLayout() -->
-            <button type="button" class="btn btn-circle btn-dual-secondary" data-toggle="layout" data-action="header_search_on">
-                <i class="fa fa-search"></i>
-            </button>
-            <!-- END Open Search Section -->
-
-        </div>
-        <!-- END Left Section -->
-
-        <!-- Right Section -->
-        <div class="content-header-section">
-            <!-- User Dropdown -->
-            <div class="btn-group" role="group">
-
-                <button type="button" class="btn btn-rounded btn-dual-secondary" id="page-header-user-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                    {{ Auth::user()->profile->name }} <i class="fa fa-angle-down ml-5"></i>
-                </button>
-
-                <div class="dropdown-menu dropdown-menu-right min-width-150" aria-labelledby="page-header-user-dropdown" x-placement="bottom-end">
-                    <a class="dropdown-item" href="#">
-                        <i class="si si-user mr-5"></i> @lang('global.Profile')
-                    </a>
-                    <a class="dropdown-item d-flex align-items-center justify-content-between" href="#">
-                        <span><i class="si si-envelope-open mr-5"></i> Messages </span>
-                        <span class="badge badge-primary pull-right">3</span>
-                    </a>
-                    <a class="dropdown-item d-flex align-items-center justify-content-between" href="#">
-                        <span><i class="si si-globe mr-5"></i> @lang('global.Market')</span>
-                    </a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="{{ route('profile.create') }}">
-                        <span class="text-primary">
-                            <i class="si si-plus"></i> @lang('global.Create Company')
-                        </span>
-                    </a>
-
-                    @php
-                    $listOfCompanies = Auth::user()->profile->followings(App\Profile::class)
-                    ->where('role', '<', 4)
-                    ->get();
-                    @endphp
-
-                    @isset($listOfCompanies)
-                        @if ($listOfCompanies->count() > 0)
-                            @foreach ($listOfCompanies->sortBy('alias') as $company)
-                                <a class="dropdown-item" href="{{ route('home', $company)}}">
-                                    @if (request()->route('profile')->id == $company->id)
-                                        <i class="si si-check"></i> <b> {{ mb_strimwidth($company->alias, 0, 15, "...") }} </b>
-                                    @else
-                                        <i class="si si-briefcase"></i> {{ mb_strimwidth($company->alias, 0, 15, "...") }}
-                                    @endif
-                                </a>
-                            @endforeach
-                        @endif
-                    @endisset
-
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="{{ route('logout') }}">
-                        <i class="si si-logout mr-5"></i> @lang('global.Log Out')Sign Out
-                    </a>
-                </div>
-
-            </div>
-            <!-- END User Dropdown -->
-
-            <!-- Toggle Side Overlay -->
-            <!-- Layout API, functionality initialized in Codebase() -> uiApiLayout() -->
-            <div class="btn-group" role="group">
-                <button type="button" class="btn btn-rounded btn-dual-secondary" data-toggle="layout" data-action="side_overlay_toggle">
-                    {{ Auth::user()->profile->name }}
-                    <i class="fa fa-angle-right ml-5"></i>
-                </button>
-            </div>
-            <!-- END Toggle Side Overlay -->
-        </div>
-        <!-- END Right Section -->
-    </div>
-    <!-- END Header Content -->
-
-    <!-- Header Search -->
-    <div id="page-header-search" class="overlay-header">
-        <div class="content-header content-header-fullrow">
-            <form>
-                <div class="input-group">
-                    <div class="input-group-prepend">
-                        <!-- Close Search Section -->
-                        <!-- Layout API, functionality initialized in Codebase() -> uiApiLayout() -->
-                        <button type="button" class="btn btn-secondary px-15" data-toggle="layout" data-action="header_search_off">
-                            <i class="fa fa-times"></i>
-                        </button>
-                        <!-- END Close Search Section -->
+                            </ul>
+                        </div>
+                        <!-- END Side Navigation -->
                     </div>
-                    <input type="text" class="form-control" placeholder="Search or hit ESC.." id="page-header-search-input" name="page-header-search-input">
-                    <div class="input-group-append">
-                        <button type="submit" class="btn btn-secondary px-15">
-                            <i class="fa fa-search"></i>
+                    <!-- Sidebar Content -->
+                </div>
+            </div>
+
+            <!-- END Sidebar Scroll Container -->
+        </nav>
+        <!-- END Sidebar -->
+
+        <!-- Header -->
+        <header id="page-header">
+            <!-- Header Content -->
+            <div class="content-header">
+                <!-- Left Section -->
+                <div class="content-header-section">
+                    <!-- Toggle Sidebar -->
+                    <!-- Layout API, functionality initialized in Codebase() -> uiApiLayout() -->
+                    <button type="button" class="btn btn-circle btn-dual-secondary" data-toggle="layout" data-action="sidebar_toggle">
+                        <i class="fa fa-navicon"></i>
+                    </button>
+                    <!-- END Toggle Sidebar -->
+
+                    <!-- Open Search Section -->
+                    <!-- Layout API, functionality initialized in Codebase() -> uiApiLayout() -->
+                    <button type="button" class="btn btn-circle btn-dual-secondary" data-toggle="layout" data-action="header_search_on">
+                        <i class="fa fa-search"></i>
+                    </button>
+                    <!-- END Open Search Section -->
+
+                </div>
+                <!-- END Left Section -->
+
+                <!-- Right Section -->
+                <div class="content-header-section">
+                    <!-- User Dropdown -->
+                    <div class="btn-group" role="group">
+
+                        <button type="button" class="btn btn-rounded btn-dual-secondary" id="page-header-user-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                            {{ Auth::user()->profile->name }} <i class="fa fa-angle-down ml-5"></i>
+                        </button>
+
+                        <div class="dropdown-menu dropdown-menu-right min-width-150" aria-labelledby="page-header-user-dropdown" x-placement="bottom-end">
+                            <a class="dropdown-item" href="#">
+                                <i class="si si-user mr-5"></i> @lang('global.Profile')
+                            </a>
+                            <a class="dropdown-item d-flex align-items-center justify-content-between" href="#">
+                                <span><i class="si si-envelope-open mr-5"></i> Messages </span>
+                                <span class="badge badge-primary pull-right">3</span>
+                            </a>
+                            <a class="dropdown-item d-flex align-items-center justify-content-between" href="#">
+                                <span><i class="si si-globe mr-5"></i> @lang('global.Market')</span>
+                            </a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="{{ route('profile.create') }}">
+                                <span class="text-primary">
+                                    <i class="si si-plus"></i> @lang('global.Create Company')
+                                </span>
+                            </a>
+
+                            @php
+                            $listOfCompanies = Auth::user()->profile->followings(App\Profile::class)
+                            ->where('role', '<', 4)
+                            ->get();
+                            @endphp
+
+                            @isset($listOfCompanies)
+                                @if ($listOfCompanies->count() > 0)
+                                    @foreach ($listOfCompanies->sortBy('alias') as $company)
+                                        <a class="dropdown-item" href="{{ route('home', $company)}}">
+                                            @if (request()->route('profile')->id == $company->id)
+                                                <i class="si si-check"></i> <b> {{ mb_strimwidth($company->alias, 0, 15, "...") }} </b>
+                                            @else
+                                                <i class="si si-briefcase"></i> {{ mb_strimwidth($company->alias, 0, 15, "...") }}
+                                            @endif
+                                        </a>
+                                    @endforeach
+                                @endif
+                            @endisset
+
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="{{ route('logout') }}">
+                                <i class="si si-logout mr-5"></i> @lang('global.Log Out')Sign Out
+                            </a>
+                        </div>
+
+                    </div>
+                    <!-- END User Dropdown -->
+
+                    <!-- Toggle Side Overlay -->
+                    <!-- Layout API, functionality initialized in Codebase() -> uiApiLayout() -->
+                    <div class="btn-group" role="group">
+                        <button type="button" class="btn btn-rounded btn-dual-secondary" data-toggle="layout" data-action="side_overlay_toggle">
+                            {{ Auth::user()->profile->name }}
+                            <i class="fa fa-angle-right ml-5"></i>
                         </button>
                     </div>
+                    <!-- END Toggle Side Overlay -->
                 </div>
-            </form>
-        </div>
-    </div>
-    <!-- END Header Search -->
-
-    <!-- Header Loader -->
-    <div id="page-header-loader" class="overlay-header bg-primary">
-        <div class="content-header content-header-fullrow text-center">
-            <div class="content-header-item">
-                <i class="fa fa-sun-o fa-spin text-white"></i>
+                <!-- END Right Section -->
             </div>
-        </div>
-    </div>
-    <!-- END Header Loader -->
-</header>
-<!-- END Header -->
+            <!-- END Header Content -->
 
-<!-- Main Container -->
-<div class="container">
-    <transition>
-        <keep-alive>
-            <router-view></router-view>
-        </keep-alive>
-    </transition>
-</div>
-<!-- END Main Container -->
+            <!-- Header Search -->
+            <div id="page-header-search" class="overlay-header">
+                <div class="content-header content-header-fullrow">
+                    <form>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <!-- Close Search Section -->
+                                <!-- Layout API, functionality initialized in Codebase() -> uiApiLayout() -->
+                                <button type="button" class="btn btn-secondary px-15" data-toggle="layout" data-action="header_search_off">
+                                    <i class="fa fa-times"></i>
+                                </button>
+                                <!-- END Close Search Section -->
+                            </div>
+                            <input type="text" class="form-control" placeholder="Search or hit ESC.." id="page-header-search-input" name="page-header-search-input">
+                            <div class="input-group-append">
+                                <button type="submit" class="btn btn-secondary px-15">
+                                    <i class="fa fa-search"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <!-- END Header Search -->
 
-<!-- Footer -->
-<footer id="page-footer" class="opacity-0">
-    <div class="content py-20 font-size-xs clearfix">
-        <div class="float-right">
-            <a class="font-w600" href="mailto:hola@cognitivo.in" target="_blank">Cognitivo</a> &copy; <span class="js-year-copy"></span>
+            <!-- Header Loader -->
+            <div id="page-header-loader" class="overlay-header bg-primary">
+                <div class="content-header content-header-fullrow text-center">
+                    <div class="content-header-item">
+                        <i class="fa fa-sun-o fa-spin text-white"></i>
+                    </div>
+                </div>
+            </div>
+            <!-- END Header Loader -->
+        </header>
+        <!-- END Header -->
+
+        <!-- Main Container -->
+        <div class="container">
+            <transition>
+                <keep-alive>
+                    <router-view></router-view>
+                </keep-alive>
+            </transition>
         </div>
-        <div class="float-left"> </div>
+        <!-- END Main Container -->
+
+        <!-- Footer -->
+        <footer id="page-footer" class="opacity-0">
+            <div class="content py-20 font-size-xs clearfix">
+                <div class="float-right">
+                    <a class="font-w600" href="mailto:hola@cognitivo.in" target="_blank">Cognitivo</a> &copy; <span class="js-year-copy"></span>
+                </div>
+                <div class="float-left"> </div>
+            </div>
+        </footer>
+        <!-- END Footer -->
     </div>
-</footer>
-<!-- END Footer -->
-</div>
-{{-- </model> --}}
+    {{-- </model> --}}
 @endsection

@@ -77,7 +77,7 @@ return [
     'SKU' => 'SKU',
     'Code' => 'Código',
     'Tag' => 'Etiqueta|Etiquetas',
-    'Rate' => 'Cotización,
+    'Rate' => 'Cotización',
 
     //Promotions Lingo
     'BuyThis_GetThat' => 'Compra :qty, y le regalamos un :output gratis!',

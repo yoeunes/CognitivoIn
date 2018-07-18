@@ -28,111 +28,43 @@
                     </div>
                 </a>
             </div>
-
         </div>
 
-        <!--
-        <b-table :data="data" paginated per-page="5" :opened-detailed="defaultOpenedDetails" detailed detail-key="id" @details-open="(row, index) => $toast.open(`Expanded ${row.user.first_name}`)" >
+        <b-table :data="list" hoverable>
+            <template slot-scope="props">
+                <b-table-column field="name" v-bind:label="lang('global.Name')">
+                    {{ props.row.name }}
+                </b-table-column>
 
-        <template slot-scope="props">
-            <b-table-column field="id" label="ID" width="40" numeric>
-                {{ props.row.id }}
-            </b-table-column>
+                <b-table-column field="relationship.customer_alias" v-bind:label="lang('back-office.Customer')">
+                    {{ props.row.relationship.customer_alias }}
+                </b-table-column>
 
-            <b-table-column field="user.first_name" label="First Name" sortable>
-                {{ props.row.user.first_name }}
-            </b-table-column>
+                <b-table-column field="value" v-bind:label="lang('back-office.Value')">
+                    {{ props.row.value }}
+                </b-table-column>
 
-            <b-table-column field="user.last_name" label="Last Name" sortable>
-                {{ props.row.user.last_name }}
-            </b-table-column>
-
-            <b-table-column field="date" label="Date" sortable centered>
-                <span class="tag is-success">
-                    {{ new Date(props.row.date).toLocaleDateString() }}
-                </span>
-            </b-table-column>
-
-            <b-table-column label="Gender">
-                <b-icon pack="fa"
-                :icon="props.row.gender === 'Male' ? 'mars' : 'venus'">
-            </b-icon>
-            {{ props.row.gender }}
-        </b-table-column>
-    </template>
-
-    <template slot="detail" slot-scope="props">
-        <article class="media">
-            <figure class="media-left">
-                <p class="image is-64x64">
-                    <img src="static/img/placeholder-128x128.png">
-                </p>
-            </figure>
-            <div class="media-content">
-                <div class="content">
-                    <p>
-                        <strong>{{ props.row.user.first_name }} {{ props.row.user.last_name }}</strong>
-                        <small>@{{ props.row.user.first_name }}</small>
-                        <small>31m</small>
-                        <br>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                        Proin ornare magna eros, eu pellentesque tortor vestibulum ut.
-                        Maecenas non massa sem. Etiam finibus odio quis feugiat facilisis.
-                    </p>
-                </div>
-            </div>
-        </article>
-    </template>
-</b-table> -->
-
-
-<table>
-    <thead>
-        <tr>
-            <td>#</td>
-            <th>Opportunity Name</th>
-            <th>Customer</th>
-            <th>Value</th>
-            <th class="text-center">Actions</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr v-for="opportunity in list">
-            <td>{{ opportunity.id }}</td>
-            <td><a @click="onShow(opportunity)" href="#">{{ opportunity.name }}</a></td>
-            <td v-if="opportunity.relationship !== null">{{ opportunity.relationship.customer_alias }}</td>
-            <td v-else></td>
-            <td>{{ opportunity.value }}</td>
-            <td class="text-center">
-                <div class="btn-group">
-                    <router-link :to="{ name: 'opportunity.show',params: { profile:profile,id:opportunity.id,user_id:userid} }">
+                <b-table-column custom-key="actions">
+                    <router-link :to="{ name: 'opportunity.show',params: { profile:profile,id:props.row.id,user_id:userid} }">
                         <button  type="button" class="btn btn-sm btn-secondary js-tooltip-enabled" data-toggle="tooltip" data-original-title="Edit">
                             <i class="fa fa-eye"></i>
                         </button>
                     </router-link>
-                    <router-link :to="{ name: 'opportunity.form',params: { profile:profile,id:opportunity.id,user_id:userid} }">
+                    <router-link :to="{ name: 'opportunity.form',params: { profile:profile,id:props.row.id,user_id:userid} }">
                         <button  type="button" class="btn btn-sm btn-secondary js-tooltip-enabled" data-toggle="tooltip" data-original-title="Edit">
                             <i class="fa fa-pencil"></i>
                         </button>
                     </router-link>
 
-                    <button v-on:click="onDelete(opportunity)" type="button" class="btn btn-sm btn-secondary js-tooltip-enabled" data-toggle="tooltip" data-original-title="Delete">
+                    <button v-on:click="onDelete(props.row)" type="button" class="btn btn-sm btn-secondary js-tooltip-enabled" data-toggle="tooltip" data-original-title="Delete">
                         <i class="fa fa-times"></i>
                     </button>
-                </div>
-            </td>
-        </tr>
-    </tbody>
-</table>
-<b-pagination
-:total="meta.total"
-:current.sync="meta.current_page"
-:simple="false"
-:per-page="meta.per_page"
-@change="pageChange">
-</b-pagination>
+                </b-table-column>
+            </template>
+        </b-table>
+        <b-pagination :total="meta.total" :current.sync="meta.current_page" :simple="false" :per-page="meta.per_page" @change="pageChange"></b-pagination>
 
-</div>
+    </div>
 </template>
 <script>
 
@@ -146,12 +78,8 @@ export default {
             userid:'',
             list: [],
             meta: [{total:0}],
-
-
         };
     },
-
-
 
     methods: {
         onLoad(page) {
@@ -160,15 +88,11 @@ export default {
             axios
             .get('/api/' + this.profile + '/back-office/list/opportunities/1?page=' + page  )
             .then(response => {
-
                 this.list = response.data.data;
                 this.meta = response.data.meta;
-
-
             }).catch(error => {
 
             });
-
         },
         pageChange (page) {
             var app = this;
