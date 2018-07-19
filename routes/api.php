@@ -29,6 +29,8 @@ Route::group(['middleware' => 'auth:api'], function ()
   });
 });
 
+
+
 Route::resource('profile', 'ProfileController');
 Route::get('companys/{id}', 'ProfileController@get_companies');
 
