@@ -153,12 +153,18 @@ class OrderController extends Controller
         //
     }
 
-    public function approve($profile,$orderID)
+    public function approve($profile, $orderID)
     {
-
         $order = Order::where('id', $orderID)->with('details')->first();
+
         $amount = 0;
         $vatAmount = 0;
+
+        if ($order->status == 2)
+        {
+            //If status 2, then you cannot approve as it is already approved.
+            return response()->json('Forbidden', 403);
+        }
 
         //for stock entry
         $this->stockEntry($order);
@@ -239,6 +245,13 @@ class OrderController extends Controller
     public function annul($orderID)
     {
         $order = Order::where('id', $orderID)->with('detail')->first();
+
+        if ($order->status == 3)
+        {
+            //If status 2, then you cannot annull as it is already annulled.
+            return response()->json('Forbidden', 403);
+        }
+
         $amount = 0;
         $vatAmount = 0;
 
@@ -248,17 +261,10 @@ class OrderController extends Controller
             //TODO Get only required column. you are using one column only.
             $item = Item::find($detail->item_id);
 
-
             if ($item->is_stockable && $order->location_id != null)
             {
-                $movement = new ItemMovement();
-                $movement->item_id = $item->id;
-                $movement->location_id = $order->location_id;
-                $movement->order_id = $order->id;
-                $movement->date = Carbon::now();
-                $movement->credit = 0;
-                $movement->debit = $detail->quantity;
-                $movement->save();
+                $movement = ItemMovement::where('order_id', $order->id)->first();
+                $movement->delete();
             }
         }
 

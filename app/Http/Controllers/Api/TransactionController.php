@@ -117,34 +117,40 @@ class TransactionController extends Controller
 
         foreach ($collection as $key => $data)
         {
-
-            $order = Order::mySales()->where('id', $data->cloud_id)->with('details')->first();
-
+            $orderController = new OrderController();
+            //The store function will automatically check if order exists or not.
             //A) Check if Order Exists through CloudID
             //A.1.1) CloudID == null ? Save Order into table
-                //A.1.2) Save Detail into table
+            //A.1.2) Save Detail into table
             //A.2.1) CloudID != null ? Update Order
-                //A.2.2) Update Detail
+            //A.2.2) Update Detail
+            $orderController->store($request, $profile);
+
+
             //A.3.1) Approve or Annull? Update Status (For not do not run aditional code)
-                //A.3.2) Run promotion if approved
-
-
-            //Check to see if cloud id exists in system
-            $order = Order::mySales()->where('id', $data->cloud_id)->with('details')->first();
+            if ($data->cloud_id > 0 && $data->status == 2)
+            {
+                $orderController->approve($data->cloud_id);
+            }
+            else if($data->cloud_id && $data->status == 3)
+            {
+                $orderController->annull($data->cloud_id);
+            }
+            //A.3.2) Run promotion if approved
 
             //If Exists == false, create Order, link Relationship and use.
-            if(isset($order) == false)
-            {
-                $order = new Order();
-                $order->relationship_id = $this->checkCreateRelationships($profile, $data)->id;
-            }
+            // if(isset($order) == false)
+            // {
+            //     $order = new Order();
+            //     $order->relationship_id = $this->checkCreateRelationships($profile, $data)->id;
+            // }
 
             //fill up data regardless if exists or not. this will allow new data to prevail.
-            $data->customer->cloud_id = $order->relationship_id;
-            $this->loadData_Order($order, $data);
+            // $data->customer->cloud_id = $order->relationship_id;
+            // $this->loadData_Order($order, $data);
             //insert payment schedual if paymnet not done
 
-            $orderController = new OrderController();
+            // $orderController = new OrderController();
             //insert movement and schedual
             //$orderController->stockEntry($order);
 
@@ -211,62 +217,29 @@ class TransactionController extends Controller
 
     }
 
-    public function checkCreateRelationships($profile, $data)
-    {
-        //TODO this is risky. Because Abhi can be confused for Abhijeet and will bring wrong customer.
-        $relationship = Relationship::where(function ($q) use ($data->name)
-        {
-            $q->where('customer_alias', 'LIKE', '%' . $query . '%')
-            ->orWhere('customer_taxid', 'LIKE', '%' . $query . '%');
-        })
-        ->where('supplier_id', $profile->id)
-        ->first();
-
-        $relationship->supplier_id = $profile->id;
-        $relationship->supplier_accepted = true;
-
-        $relationship->customer_taxid = $request->customer_taxid;
-        $relationship->customer_alias = $request->customer_alias;
-        $relationship->customer_address = $request->customer_address;
-        $relationship->customer_telephone = $request->customer_telephone;
-        $relationship->customer_email = $request->customer_email;
-        $relationship->credit_limit = $request->credit_limit ?? 0;
-        $relationship->contract_ref = $request->contract_ref ?? 0;
-
-        $relationship->save();
-        return $relationship;
-    }
-
-    public function checkCreateItems($profile, $data)
-    {
-        $item = Item::where('items.profile_id', $profile->id)
-        ->where('items.name', 'LIKE', "%" . $query . "%")
-        ->orWhere('items.sku', 'LIKE', "%" . $query . "%")
-        ->first();
-
-        $item->profile_id = $profile->id;
-        $item->sku = $data->code;
-        $item->name = $data->name;
-        $item->short_description = $data->comment;
-        $item->unit_price = $data->unit_price;
-        $item->currency = $data->currency_code ?? $profile->currency;
-
-        $item->save();
-        return $item;
-    }
-
-    public function download (Request $request, Profile $profile)
+    public function download(Request $request, Profile $profile)
     {
         $orders = Order::FromCustomers()
         ->leftJoin('order_status','orders.id','=','order_status.order_id')
         ->with('details')
-        ->whereNull('ref_id')
-        ->where('order_status.status','=',2)
-        ->select('orders.id','orders.ref_id','orders.location_id',
-        'orders.classification_id','orders.recurring_order_id','orders.buyer_profile_id',
-        'orders.salesrep_profile_id','orders.relationship_id','customer_alias'
-        ,'customer_taxid','customer_address','customer_telephone','customer_email')
+        ->whereNull('sync_date')
         ->get();
         return response()->json($orders);
+    }
+
+    public function approve(Request $request, Profile $profile)
+    {
+        //Check if user has premium plan to use approval
+
+        $orderController = new OrderController();
+        $orderController->approve($data->cloud_id);
+    }
+
+    public function annull(Request $request, Profile $profile)
+    {
+        //check if user has premium plan to annull
+
+        $orderController = new OrderController();
+        $orderController->annull($data->cloud_id);
     }
 }
