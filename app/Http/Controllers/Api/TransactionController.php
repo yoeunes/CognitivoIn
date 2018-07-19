@@ -19,6 +19,12 @@ use Swap\Laravel\Facades\Swap;
 
 class TransactionController extends Controller
 {
+    //TODO: This file requires the most amount of work.
+    //This code is too complicated. Make it simple:
+    //1) Upload (collection or individually). Return invoice cloud id (collection or individually)
+    //2) Download. Return state of x id's or non-synced invoices.
+    //3) Approve (collection or individually). Return Invoice (collection or individually)
+    //4) Sync (Upload and Download code together)
 
     public function SalesInvoice_createApprove(Request $request,Profile $profile)
     {
@@ -43,7 +49,7 @@ class TransactionController extends Controller
             $order->contract_id = $data['contract_id'];
         }
 
-        $order->code_expiry =$data['code_expiry'] ? Carbon::parse($data['code_expiry']):null;
+        $order->code_expiry =$data['code_expiry'] ? Carbon::parse($data['code_expiry']) : null;
 
         //TODO. wrong. let front end decide if it is printed or not.
         $order->is_printed = $data['isPrinted'] ?? false;
@@ -72,15 +78,15 @@ class TransactionController extends Controller
         $orderController = new OrderController();
         //insert movement and schedual.
         $orderController->approve($profile,$order->id);
-        //
+
         $accountMovement = new AccountMovementController();
         // payment of particular order
         $accountMovement->makePayment($request, $order->id);
 
         $vatDetail = VatDetail::leftjoin('order_details', 'order_details.vat_id', 'vat_details.vat_id')
         ->where('order_id', $order->id)
-        ->select(DB::raw('CONCAT(round(max(coefficient),2) * 100, "%" )as coefficient'),
-        DB::raw('round(sum(percent * coefficient * unit_price * quantity),2) as value')
+        ->select(DB::raw('CONCAT(round(max(coefficient),2) * 100, "%") as coefficient'),
+        DB::raw('round(sum(percent * coefficient * unit_price * quantity), 2) as value')
         )
         ->groupBy('coefficient')
         ->get();
@@ -92,13 +98,6 @@ class TransactionController extends Controller
         ];
 
         return response()->json($data2);
-    }
-
-
-
-    public function sync_items(Request $request,Profile $profile)
-    {
-    
     }
 
     // TODO: Make chunks of data. learn from debehaber
@@ -133,11 +132,7 @@ class TransactionController extends Controller
             $orderController = new OrderController();
             //insert movement and schedual
             $orderController->stockentry($order);
-
-
         }
-
-
 
         return response()->json($collection);
     }
@@ -159,7 +154,7 @@ class TransactionController extends Controller
         $relationship->save();
     }
 
-    public sync_payment(Request $request,Profile $profile)
+    public function sync_payment(Request $request, Profile $profile)
     {
         $data = collect();
 
@@ -183,8 +178,9 @@ class TransactionController extends Controller
             $schedule->save();
         }
     }
+
     //This function will create or update an existing Order with the new data inserted.
-    public function loadData_Order ($order, $data)
+    public function loadData_Order($order, $data)
     {
         $profile = request()->route('profile');
         $order->ref_id = $data->my_id;
@@ -216,7 +212,7 @@ class TransactionController extends Controller
         //Is it possible to use $order instead of getting fresh data from db?
         //$order = Order::where('id', $order->id)->with('details')->first();
 
-        foreach ($data->details as $data_detail)
+        foreach ($data->details as $detail)
         {
             $detail = $order->details->where('ref_id', $data->my_id)->first(); //OrderDetail::where('ref_id', $id_ref)->first();
 
@@ -226,15 +222,16 @@ class TransactionController extends Controller
                 $detail->order_id = $order->id;
             }
 
-            $item =Item::where('profile_id', $profile->id)->where('name', $data_detail->item)->first();
+            $item =Item::where('profile_id', $profile->id)->where('name', $detail->item)->first();
 
             $detail->item_id = $item->id;
-            $detail->ref_id = $data_detail->my_id;
-            $detail->quantity = $data_detail->quantity;
-            $detail->unit_price = $data_detail->price;
+            $detail->ref_id = $detail->my_id;
+            $detail->quantity = $detail->quantity;
+            $detail->unit_price = $detail->price;
             //$detail->discount = $data->discount;
             $detail->save();
-            $data_detail->ref_id=$detail->id;
+
+            $detail->ref_id = $detail->id;
         }
 
     }

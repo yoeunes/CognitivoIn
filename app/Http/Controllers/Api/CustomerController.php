@@ -2,16 +2,13 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Item;
+use App\Relationship;
 use Carbon\Carbon;
 use App\Http\Controllers\Controller;
-use App\Http\Controllers\OrderController;
-use App\Http\Controllers\AccountMovementController;
 use Illuminate\Http\Request;
-use DB;
 use Swap\Laravel\Facades\Swap;
 
-class ItemController extends Controller
+class CustomerController extends Controller
 {
 
     public function search(Profile $profile, $query)
@@ -42,7 +39,7 @@ class ItemController extends Controller
 
         foreach ($collection as $key => $data)
         {
-            $item = Item::where('id', $data->cloud_id)->first() ?? new Item();
+            $item = Relationship::where('id', $data->cloud_id)->first() ?? new Relationship();
             $item->profile_id = $profile->id;
             $item->sku = $data->sku;
             $item->name = $data->name;

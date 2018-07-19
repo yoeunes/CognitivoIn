@@ -24,16 +24,16 @@
                     </td>
                 </tr>
                 <tr>
-                    <th>@lang('back-office.Opportunities')</th>
-                    <th>@lang('back-office.Customer')</th>
+                    <th>{{ trans_choice('back-office.Opportunity', 1) }}</th>
+                    <th>{{ trans_choice('back-office.Customer', 1) }}</th>
                     <th>@lang('global.Date')</th>
 
                     <th>@lang('back-office.Status')</th>
                     <th>@lang('back-office.Task')</th>
                     <th>@lang('back-office.Sentiment')</th>
-                    
+
                     <th class="number">@lang('global.Quantity')</th>
-                    <th class="number">@lang('global.Value')</th>
+                    <th class="number">@lang('back-office.Value')</th>
                 </tr>
 
                 @foreach ($groupedRow as $row)

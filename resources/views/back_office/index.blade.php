@@ -362,7 +362,7 @@
                                         <li>
                                             <a href="#">
                                                 <router-link to="/dashboard/{{ request()->route('profile')->slug}}/stocks-movement">
-                                                    @lang('back-office.Movement')
+                                                    {{ trans_choice('back-office.Movement', 2) }}
                                                 </router-link>
                                             </a>
                                         </li>

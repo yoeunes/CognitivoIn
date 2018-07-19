@@ -2,16 +2,13 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Item;
+use App\Relationship;
 use Carbon\Carbon;
 use App\Http\Controllers\Controller;
-use App\Http\Controllers\OrderController;
-use App\Http\Controllers\AccountMovementController;
 use Illuminate\Http\Request;
-use DB;
 use Swap\Laravel\Facades\Swap;
 
-class ItemController extends Controller
+class SupplierController extends Controller
 {
 
     public function search(Profile $profile, $query)

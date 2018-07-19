@@ -81588,7 +81588,7 @@ var render = function() {
                   {
                     attrs: {
                       field: "relationship.customer_alias",
-                      label: _vm.lang("back-office.Customer")
+                      label: _vm.lang("back-office.Customer", 1)
                     }
                   },
                   [
