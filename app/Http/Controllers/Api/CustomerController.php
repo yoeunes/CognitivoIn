@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Profile;
 use App\Relationship;
 use Carbon\Carbon;
 use App\Http\Controllers\Controller;
@@ -39,28 +40,27 @@ class CustomerController extends Controller
 
         foreach ($collection as $key => $data)
         {
-            $item = Relationship::where('id', $data->cloud_id)->first() ?? new Relationship();
-            $item->profile_id = $profile->id;
-            $item->sku = $data->sku;
-            $item->name = $data->name;
-            $item->short_description = $data->short_description;
-            $item->long_description = $data->long_description;
-            $item->unit_price = $data->unit_price;
-            $item->currency = $data->currency ?? $profile->currency;
+            $relationship = Relationship::where('id', $data->cloud_id)->first() ?? new Relationship();
+            $relationship->supplier_id = $profile->id;
+            $relationship->supplier_accepted = true;
 
-            //unless your vat_id is cloudID, you cannot use the same id as ERP.
-            $item->vat_id = $data->vat_id;
-            $item->is_stockable = $data->is_stockable;
-            $item->is_active = $data->is_active == 'on' ? true : false;
+            $relationship->customer_taxid = $request->customer_taxid;
+            $relationship->customer_alias = $request->customer_alias;
+            $relationship->customer_address = $request->customer_address;
+            $relationship->customer_telephone = $request->customer_telephone;
+            $relationship->customer_email = $request->customer_email;
+            $relationship->credit_limit = $request->credit_limit ?? 0;
+            $relationship->contract_ref = $request->contract_ref ?? 0;
 
-            $item->save();
+            $relationship->save();
         }
+        return response()->json('Sucess');
     }
 
     public function download(Request $request,Profile $profile)
     {
         //Return a HTTP Resource from Laravel.
-        $items = Item::where('profile_id',$profile->id)
+        $items = Relationship::where('profile_id',$profile->id)
         ->get();
 
         return response()->json($items);

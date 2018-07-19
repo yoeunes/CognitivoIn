@@ -17,11 +17,23 @@
 
 Route::group(['middleware' => 'auth:api'], function ()
 {
-  //TODO implement passport
+  Route::prefix('sync')->group(function ()
+  {
+    Route::post('transaction', 'Api\TransactionController@uploadOrder');
+    Route::post('item', 'Api\ItemController@upload');
+    Route::post('contract', 'Api\ContractController@upload');
+    Route::post('customer', 'Api\CustomerController@upload');
+    Route::post('location', 'Api\LocationController@upload');
+    Route::post('saletax', 'Api\SaleTaxController@upload');
+    Route::post('supplier', 'Api\SupplierController@upload');
+  });
 });
 
 Route::resource('profile', 'ProfileController');
 Route::get('companys/{id}', 'ProfileController@get_companies');
+
+
+
 Route::prefix('{profile}')->group(function ()
 {
   Route::prefix('back-office')->group(function ()
@@ -80,6 +92,8 @@ Route::prefix('{profile}')->group(function ()
       Route::post('payment-made', 'AccountPayableController@store');
       Route::post('payment-received', 'AccountReceivableController@store');
     });
+
+
 
     //Annull movements on specific modules
     Route::prefix('revert')->group(function ()

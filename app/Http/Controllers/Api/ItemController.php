@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Profile;
 use App\Item;
 use Carbon\Carbon;
 use App\Http\Controllers\Controller;
@@ -31,6 +32,7 @@ class ItemController extends Controller
 
     public function upload(Request $request, Profile $profile)
     {
+
         $data = collect();
 
         if ($request->all() != [])
@@ -44,20 +46,17 @@ class ItemController extends Controller
         {
             $item = Item::where('id', $data->cloud_id)->first() ?? new Item();
             $item->profile_id = $profile->id;
-            $item->sku = $data->sku;
+            $item->sku = $data->code;
             $item->name = $data->name;
-            $item->short_description = $data->short_description;
-            $item->long_description = $data->long_description;
+            $item->short_description = $data->comment;
             $item->unit_price = $data->unit_price;
-            $item->currency = $data->currency ?? $profile->currency;
+            $item->currency = $data->currency_code ?? $profile->currency;
 
-            //unless your vat_id is cloudID, you cannot use the same id as ERP.
-            $item->vat_id = $data->vat_id;
-            $item->is_stockable = $data->is_stockable;
-            $item->is_active = $data->is_active == 'on' ? true : false;
 
             $item->save();
         }
+        return response()->json('Sucess');
+
     }
 
     public function download(Request $request,Profile $profile)

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Profile;
 use App\Location;
 use Carbon\Carbon;
 use App\Http\Controllers\Controller;
@@ -18,7 +19,7 @@ class LocationController extends Controller
         $this->upload($request, $profile);
         $this->download($request, $profile);
     }
-    
+
     public function upload(Request $request,Profile $profile)
     {
         $data = collect();

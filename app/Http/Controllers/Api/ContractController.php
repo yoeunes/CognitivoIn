@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Profile;
 use App\Contract;
 use Carbon\Carbon;
 use App\Http\Controllers\Controller;
@@ -14,6 +15,12 @@ use Swap\Laravel\Facades\Swap;
 class ContractController extends Controller
 {
 
+  public function sync(Request $request, Profile $profile)
+    {
+        $this->upload($request, $profile);
+        $this->download($request, $profile);
+    }
+    
   public function Upload(Request $request,Profile $profile)
   {
     $data = collect();

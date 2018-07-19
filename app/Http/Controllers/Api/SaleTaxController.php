@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Profile;
 use App\Vat;
 use Carbon\Carbon;
 use App\Http\Controllers\Controller;

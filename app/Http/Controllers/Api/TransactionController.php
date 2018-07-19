@@ -19,13 +19,7 @@ use Swap\Laravel\Facades\Swap;
 
 class TransactionController extends Controller
 {
-    //TODO: This file requires the most amount of work.
-    //This code is too complicated. Make it simple:
-    //1) Upload (collection or individually). Return invoice cloud id (collection or individually)
-    //2) Download. Return state of x id's or non-synced invoices.
-    //3) Approve (collection or individually). Return Invoice (collection or individually)
-    //4) Sync (Upload and Download code together)
-
+    // this is useful for app
     public function SalesInvoice_createApprove(Request $request,Profile $profile)
     {
         $data = $request[0];
@@ -100,8 +94,17 @@ class TransactionController extends Controller
         return response()->json($data2);
     }
 
+    //TODO: This file requires the most amount of work.
+    //This code is too complicated. Make it simple:
+    //1) Upload (collection or individually). Return invoice cloud id (collection or individually)
+    //2) Download. Return state of x id's or non-synced invoices.
+    //3) Approve (collection or individually). Return Invoice (collection or individually)
+    //4) Sync (Upload and Download code together)
+
+
+
     // TODO: Make chunks of data. learn from debehaber
-    public function uploadOrder (Request $request, Profile $profile)
+    public function upload (Request $request, Profile $profile)
     {
         $data = collect();
 
@@ -137,53 +140,11 @@ class TransactionController extends Controller
         return response()->json($collection);
     }
 
-    public function checkCreateRelationships($profile, $data)
-    {
-        $relationship = $request->id == 0 ? new Relationship() : Relationship::where('id', $request->id)->first();
-        $relationship->supplier_id = $profile->id;
-        $relationship->supplier_accepted = true;
-
-        $relationship->customer_taxid = $request->customer_taxid;
-        $relationship->customer_alias = $request->customer_alias;
-        $relationship->customer_address = $request->customer_address;
-        $relationship->customer_telephone = $request->customer_telephone;
-        $relationship->customer_email = $request->customer_email;
-        $relationship->credit_limit = $request->credit_limit ?? 0;
-        $relationship->contract_ref = $request->contract_ref ?? 0;
-
-        $relationship->save();
-    }
-
-    public function sync_payment(Request $request, Profile $profile)
-    {
-        $data = collect();
-
-        if ($request->all() != [])
-        {
-            $data = collect($request->all());
-        }
-
-        $collection = json_decode($data->toJson());
-        foreach ($collection as $key => $data)
-        {
-            $order=Order::where('id',$data->id)->first();
-            $schedule = new Schedule();
-            $schedule->relationship_id = $order->relationship_id;
-            $schedule->currency = $order->currency;
-            $schedule->currency_rate = $order->currency_rate;
-            $schedule->date = Carbon::now();
-            $schedule->date_exp = Carbon::now();
-            $schedule->credit = $data->amount;
-            $schedule->debit = 0;
-            $schedule->save();
-        }
-    }
-
     //This function will create or update an existing Order with the new data inserted.
     public function loadData_Order($order, $data)
     {
         $profile = request()->route('profile');
-        $order->ref_id = $data->my_id;
+        $order->ref_id = $data->local_id;
         $order->number = $data->number;
         $order->is_printed = $data->number != "" ? true : false;
         $order->trans_date =$this->convert_date($data->trans_date);
@@ -222,10 +183,9 @@ class TransactionController extends Controller
                 $detail->order_id = $order->id;
             }
 
-            $item =Item::where('profile_id', $profile->id)->where('name', $detail->item)->first();
 
-            $detail->item_id = $item->id;
-            $detail->ref_id = $detail->my_id;
+            $detail->item_id = $this->checkCreateItems($profile, $data)->id;
+            $detail->ref_id = $detail->local_id;
             $detail->quantity = $detail->quantity;
             $detail->unit_price = $detail->price;
             //$detail->discount = $data->discount;
@@ -236,42 +196,51 @@ class TransactionController extends Controller
 
     }
 
-    // public function syncTransactionStatus(Request $request, Profile $profile)
-    // {
-    //     $collection = collect();
-    //
-    //     if ($request->all() != [])
-    //     {
-    //         $transactions = $request->all();
-    //         $collection = collect($transactions);
-    //     }
-    //
-    //     $collection = json_decode($collection->toJson());
-    //     foreach ($collection as $key => $element)
-    //     {
-    //         $transaction=$this->checkOrder($element->id_ref);
-    //         if(isset($transaction))
-    //         {
-    //             $transaction->ref_id = $element->id_sales_invoice;
-    //             $transaction->save();
-    //             $orderstatus = $this->UpdateDetail($transaction,$element->details);
-    //             if (isset($orderstatus))
-    //             {
-    //                 $orderstatus->status = 3;
-    //                 $orderstatus->save();
-    //             }
-    //             else
-    //             {
-    //                 $orderstatus = new OrderStatus();
-    //                 $orderstatus->order_id = $order->id;
-    //                 $orderstatus->status = 3;
-    //                 $orderstatus->save();
-    //             }
-    //         }
-    //     }
-    // }
+    public function checkCreateRelationships($profile, $data)
+    {
+        $relationship = Relationship::where(function ($q) use ($data->name)
+        {
+            $q->where('customer_alias', 'LIKE', '%' . $query . '%')
+            ->orWhere('customer_taxid', 'LIKE', '%' . $query . '%');
+        })
+        ->where('supplier_id', $profile->id)
+        ->first();
 
-    public function downloadOrder (Request $request, Profile $profile)
+        $relationship->supplier_id = $profile->id;
+        $relationship->supplier_accepted = true;
+
+        $relationship->customer_taxid = $request->customer_taxid;
+        $relationship->customer_alias = $request->customer_alias;
+        $relationship->customer_address = $request->customer_address;
+        $relationship->customer_telephone = $request->customer_telephone;
+        $relationship->customer_email = $request->customer_email;
+        $relationship->credit_limit = $request->credit_limit ?? 0;
+        $relationship->contract_ref = $request->contract_ref ?? 0;
+
+        $relationship->save();
+        return $relationship;
+    }
+
+    public function checkCreateItems($profile, $data)
+    {
+        $item = Item::where('items.profile_id', $profile->id)
+        ->where('items.name', 'LIKE', "%" . $query . "%")
+        ->orWhere('items.sku', 'LIKE', "%" . $query . "%")
+        ->first();
+
+        $item->profile_id = $profile->id;
+        $item->sku = $data->code;
+        $item->name = $data->name;
+        $item->short_description = $data->comment;
+        $item->unit_price = $data->unit_price;
+        $item->currency = $data->currency_code ?? $profile->currency;
+
+
+        $item->save();
+        return $item;
+    }
+
+    public function download (Request $request, Profile $profile)
     {
         $orders = Order::FromCustomers()
         ->leftJoin('order_status','orders.id','=','order_status.order_id')
