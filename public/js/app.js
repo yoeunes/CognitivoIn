@@ -96398,6 +96398,8 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   /*
@@ -96406,7 +96408,8 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
   data: function data() {
     return {
       accessToken: null,
-      isActive: false,
+      isCreateToken: false,
+      isAcessToken: false,
       tokens: [],
       scopes: [],
 
@@ -96477,7 +96480,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
     * Show the form for creating new tokens.
     */
     showCreateTokenForm: function showCreateTokenForm() {
-      this.isActive = !this.isActive;
+      this.isCreateToken = !this.isCreateToken;
       //$('#modal-create-token').modal('show');
     },
 
@@ -96536,11 +96539,12 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
     * Show the given access token to the user.
     */
     showAccessToken: function showAccessToken(accessToken) {
-      $('#modal-create-token').modal('hide');
+      this.isCreateToken = !this.isCreateToken;
+      //  $('#modal-create-token').modal('hide');
 
       this.accessToken = accessToken;
-
-      $('#modal-access-token').modal('show');
+      this.isAcessToken = !this.isAcessToken;
+      //$('#modal-access-token').modal('show');
     },
 
 
@@ -96661,10 +96665,10 @@ var render = function() {
       _c(
         "b-modal",
         {
-          attrs: { active: _vm.isActive, width: 800, scroll: "keep" },
+          attrs: { active: _vm.isCreateToken, width: 800, scroll: "keep" },
           on: {
             "update:active": function($event) {
-              _vm.isActive = $event
+              _vm.isCreateToken = $event
             }
           }
         },
@@ -96834,33 +96838,78 @@ var render = function() {
       ),
       _vm._v(" "),
       _c(
-        "div",
+        "b-modal",
         {
-          staticClass: "modal fade",
-          attrs: { id: "modal-access-token", tabindex: "-1", role: "dialog" }
+          attrs: { active: _vm.isAcessToken, width: 800, scroll: "keep" },
+          on: {
+            "update:active": function($event) {
+              _vm.isAcessToken = $event
+            }
+          }
         },
         [
-          _c("div", { staticClass: "modal-dialog" }, [
-            _c("div", { staticClass: "modal-content" }, [
-              _vm._m(1),
-              _vm._v(" "),
-              _c("div", { staticClass: "modal-body" }, [
-                _c("p", [
-                  _vm._v(
-                    "\n            Here is your new personal access token. This is the only time it will be shown so don't lose it!\n            You may now use this token to make API requests.\n          "
-                  )
-                ]),
-                _vm._v(" "),
-                _c(
-                  "textarea",
-                  { staticClass: "form-control", attrs: { rows: "10" } },
-                  [_vm._v(_vm._s(_vm.accessToken))]
-                )
-              ]),
-              _vm._v(" "),
-              _vm._m(2)
-            ])
-          ])
+          _c(
+            "div",
+            {
+              staticClass: "modal fade",
+              attrs: {
+                id: "modal-access-token",
+                tabindex: "-1",
+                role: "dialog"
+              }
+            },
+            [
+              _c("div", { staticClass: "modal-dialog" }, [
+                _c("div", { staticClass: "modal-content" }, [
+                  _c("div", { staticClass: "modal-header" }, [
+                    _c("h4", { staticClass: "modal-title" }, [
+                      _vm._v(
+                        "\n              Personal Access Token\n            "
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c(
+                      "button",
+                      {
+                        staticClass: "close",
+                        attrs: {
+                          type: "button",
+                          "data-dismiss": "modal",
+                          "aria-hidden": "true"
+                        }
+                      },
+                      [_vm._v("×")]
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "modal-body" }, [
+                    _c("p", [
+                      _vm._v(
+                        "\n              Here is your new personal access token. This is the only time it will be shown so don't lose it!\n              You may now use this token to make API requests.\n            "
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c(
+                      "textarea",
+                      { staticClass: "form-control", attrs: { rows: "10" } },
+                      [_vm._v(_vm._s(_vm.accessToken))]
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "modal-footer" }, [
+                    _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-secondary",
+                        attrs: { type: "button", "data-dismiss": "modal" }
+                      },
+                      [_vm._v("Close")]
+                    )
+                  ])
+                ])
+              ])
+            ]
+          )
         ]
       )
     ],
@@ -96874,44 +96923,6 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("thead", [
       _c("tr", [_c("th", [_vm._v("Name")]), _vm._v(" "), _c("th")])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "modal-header" }, [
-      _c("h4", { staticClass: "modal-title" }, [
-        _vm._v("\n            Personal Access Token\n          ")
-      ]),
-      _vm._v(" "),
-      _c(
-        "button",
-        {
-          staticClass: "close",
-          attrs: {
-            type: "button",
-            "data-dismiss": "modal",
-            "aria-hidden": "true"
-          }
-        },
-        [_vm._v("×")]
-      )
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "modal-footer" }, [
-      _c(
-        "button",
-        {
-          staticClass: "btn btn-secondary",
-          attrs: { type: "button", "data-dismiss": "modal" }
-        },
-        [_vm._v("Close")]
-      )
     ])
   }
 ]

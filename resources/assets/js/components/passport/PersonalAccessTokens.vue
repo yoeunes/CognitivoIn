@@ -55,7 +55,7 @@
       </div>
     </div>
 
-    <b-modal :active.sync="isActive" :width="800" scroll="keep">
+    <b-modal :active.sync="isCreateToken" :width="800" scroll="keep">
       <!-- Create Token Modal -->
       <div  id="modal-create-token" >
         <div class="modal-dialog">
@@ -125,33 +125,35 @@
       </div>
     </b-modal>
     <!-- Access Token Modal -->
-    <div class="modal fade" id="modal-access-token" tabindex="-1" role="dialog">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h4 class="modal-title">
-              Personal Access Token
-            </h4>
+    <b-modal :active.sync="isAcessToken" :width="800" scroll="keep">
+      <div class="modal fade" id="modal-access-token" tabindex="-1" role="dialog">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title">
+                Personal Access Token
+              </h4>
 
-            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-          </div>
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            </div>
 
-          <div class="modal-body">
-            <p>
-              Here is your new personal access token. This is the only time it will be shown so don't lose it!
-              You may now use this token to make API requests.
-            </p>
+            <div class="modal-body">
+              <p>
+                Here is your new personal access token. This is the only time it will be shown so don't lose it!
+                You may now use this token to make API requests.
+              </p>
 
-            <textarea class="form-control" rows="10">{{ accessToken }}</textarea>
-          </div>
+              <textarea class="form-control" rows="10">{{ accessToken }}</textarea>
+            </div>
 
-          <!-- Modal Actions -->
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <!-- Modal Actions -->
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </b-modal>
   </div>
 </template>
 
@@ -163,7 +165,8 @@ export default {
   data() {
     return {
       accessToken: null,
-      isActive:false,
+      isCreateToken:false,
+      isAcessToken:false,
       tokens: [],
       scopes: [],
 
@@ -226,7 +229,7 @@ export default {
     * Show the form for creating new tokens.
     */
     showCreateTokenForm() {
-      this.isActive=!this.isActive;
+      this.isCreateToken= !this.isCreateToken;
       //$('#modal-create-token').modal('show');
     },
 
@@ -279,11 +282,12 @@ export default {
     * Show the given access token to the user.
     */
     showAccessToken(accessToken) {
-      $('#modal-create-token').modal('hide');
+      this.isCreateToken= !this.isCreateToken;
+      //  $('#modal-create-token').modal('hide');
 
       this.accessToken = accessToken;
-
-      $('#modal-access-token').modal('show');
+      this.isAcessToken=!this.isAcessToken;
+      //$('#modal-access-token').modal('show');
     },
 
     /**
