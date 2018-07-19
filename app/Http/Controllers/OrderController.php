@@ -214,6 +214,7 @@ class OrderController extends Controller
         }
         else
         {
+            //TODO> maybe not include cash transactions in schedual. it will unecesarily fill up space in the database.
             $schedule = new Schedule();
             $schedule->order_id = $order->id;
             $schedule->relationship_id = $order->relationship_id;
