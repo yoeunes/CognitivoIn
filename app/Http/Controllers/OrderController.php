@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-
 use App\Item;
 use App\VatDetail;
 use App\Relationship;
@@ -20,7 +19,6 @@ use App\Http\Resources\OrderResource;
 use Swap\Laravel\Facades\Swap;
 use Carbon\Carbon;
 use DB;
-
 use Illuminate\Http\Request;
 
 class OrderController extends Controller
@@ -30,17 +28,13 @@ class OrderController extends Controller
     *
     * @return \Illuminate\Http\Response
     */
-    public function index(Profile $profile,$filterBy)
+    public function index(Profile $profile, $filterBy)
     {
-        return OrderResource::collection( Order::mySales()->with('relationship')
-        ->with('details')->
-        select('orders.id','ref_id','relationship_id','recurring_order_id','location_id',
-        'buyer_profile_id','agent_profile_id','contract_id','currency','currency_rate',
-        'classification','tracking_code','code','code_expiry','number','date','date_deliver_by',
-        'comment','note_for_customer','note_for_billing','note_for_shipping','geoloc',
-        'is_impex','is_printed','is_archived','orders.created_at','orders.updated_at','orders.deleted_at')
-        ->paginate(25));
-
+        return OrderResource::collection(
+            Order::mySales()->with('relationship')
+            ->with('details')
+            ->paginate(25)
+        );
 
         return response()->json($orders);
     }
@@ -65,7 +59,7 @@ class OrderController extends Controller
     {
         if (count($request->details) > 0)
         {
-            $order = Order::where('id', $request->id)->first() ?? new Order();
+            $order = Order::where('id', $request->cloud_id)->with('details')->first() ?? new Order();
 
             $order->relationship_id = $request->relationship_id;
             $order->currency = $request->currency ?? $profile->currency;
@@ -78,7 +72,7 @@ class OrderController extends Controller
 
             foreach ($request->details as $detail)
             {
-                $orderDetail = OrderDetail::where('id', $detail['id'])->first() ?? new OrderDetail();
+                $orderDetail = $order->details->where('id', $detail['cloud_id'])->first() ?? new OrderDetail();
                 $orderDetail->order_id = $order->id;
                 $orderDetail->item_id = $detail['item_id'];
                 $orderDetail->item_sku = $detail['sku'];
@@ -87,31 +81,34 @@ class OrderController extends Controller
                 $orderDetail->unit_price = $detail['price'];
 
                 $orderDetail->save();
-
-
             }
-            $details=OrderDetail::where('order_id',  $order->id)
-            ->select(DB::raw('item_id'),
-            DB::raw('round(sum(quantity),2) as quantity'))
-            ->groupBy('item_id')->get();
-            foreach ($details as $detail) {
-                $promotions=ItemPromotion::where('input_id',$detail['item_id'])->get();
-                foreach ($promotions as $promotion) {
-                    if ($promotion->type==1 && $promotion->input_value==$detail['quantity'])
-                    {
-                        $item=Item::where('id',$promotion->output_id)->first();
-                        $orderDetail = new OrderDetail();
-                        $orderDetail->order_id = $order->id;
-                        $orderDetail->item_id = $promotion->output_id;
-                        $orderDetail->item_sku = $item->sku;
-                        $orderDetail->item_name = $item->name;
-                        $orderDetail->quantity = $promotion->output_value;
-                        $orderDetail->unit_price = $item->unit_price;
+            //TODO run this code on approve or individual check if user wish.
 
-                        $orderDetail->save();
-                    }
-                }
-            }
+            // $details = OrderDetail::where('order_id',  $order->id)
+            // ->select(DB::raw('item_id'),
+            // DB::raw('round(sum(quantity),2) as quantity'))
+            // ->groupBy('item_id')->get();
+            //
+            // foreach ($details as $detail)
+            // {
+            //     $promotions = ItemPromotion::where('input_id',$detail['item_id'])->get();
+            //     foreach ($promotions as $promotion)
+            //     {
+            //         if ($promotion->type==1 && $promotion->input_value==$detail['quantity'])
+            //         {
+            //             $item=Item::where('id',$promotion->output_id)->first();
+            //             $orderDetail = new OrderDetail();
+            //             $orderDetail->order_id = $order->id;
+            //             $orderDetail->item_id = $promotion->output_id;
+            //             $orderDetail->item_sku = $item->sku;
+            //             $orderDetail->item_name = $item->name;
+            //             $orderDetail->quantity = $promotion->output_value;
+            //             $orderDetail->unit_price = $item->unit_price;
+            //
+            //             $orderDetail->save();
+            //         }
+            //     }
+            // }
 
             return response()->json('success', 200);
         }
@@ -141,9 +138,13 @@ class OrderController extends Controller
     * @param  \App\Order  $order
     * @return \Illuminate\Http\Response
     */
-    public function edit(Profile $profile,Order $order)
+    public function edit(Profile $profile, Order $order)
     {
-        $order = Order::where('orders.id', $order->id)->with('details')->with('relationship') ->first();
+        $order = Order::where('orders.id', $order->id)
+        ->with('details')
+        ->with('relationship')
+        ->first();
+
         return response()->json($order);
     }
 
@@ -160,7 +161,7 @@ class OrderController extends Controller
         $vatAmount = 0;
 
         //for stock entry
-        $this->stockentry($order);
+        $this->stockEntry($order);
 
         //for payment entry
         if ($order->contract_id > 0)
@@ -204,7 +205,7 @@ class OrderController extends Controller
         }
     }
 
-    public function stockentry($order)
+    public function stockEntry($order)
     {
         foreach ($order->details as  $detail)
         {
@@ -247,11 +248,13 @@ class OrderController extends Controller
             //TODO Get only required column. you are using one column only.
             $item = Item::find($detail->item_id);
 
+
             if ($item->is_stockable && $order->location_id != null)
             {
                 $movement = new ItemMovement();
                 $movement->item_id = $item->id;
                 $movement->location_id = $order->location_id;
+                $movement->order_id = $order->id;
                 $movement->date = Carbon::now();
                 $movement->credit = 0;
                 $movement->debit = $detail->quantity;
@@ -297,5 +300,11 @@ class OrderController extends Controller
             $schedule->debit = 0;
             $schedule->save();
         }
+    }
+
+    //
+    public function checkPromotion()
+    {
+
     }
 }

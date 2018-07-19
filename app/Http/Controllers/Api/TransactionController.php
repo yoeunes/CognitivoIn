@@ -102,7 +102,7 @@ class TransactionController extends Controller
     //4) Sync (Upload and Download code together)
 
 
-
+    //upload indivdual and bulk invoice
     // TODO: Make chunks of data. learn from debehaber
     public function upload (Request $request, Profile $profile)
     {
@@ -117,6 +117,18 @@ class TransactionController extends Controller
 
         foreach ($collection as $key => $data)
         {
+
+            $order = Order::mySales()->where('id', $data->cloud_id)->with('details')->first();
+
+            //A) Check if Order Exists through CloudID
+            //A.1.1) CloudID == null ? Save Order into table
+                //A.1.2) Save Detail into table
+            //A.2.1) CloudID != null ? Update Order
+                //A.2.2) Update Detail
+            //A.3.1) Approve or Annull? Update Status (For not do not run aditional code)
+                //A.3.2) Run promotion if approved
+
+
             //Check to see if cloud id exists in system
             $order = Order::mySales()->where('id', $data->cloud_id)->with('details')->first();
 
@@ -128,16 +140,19 @@ class TransactionController extends Controller
             }
 
             //fill up data regardless if exists or not. this will allow new data to prevail.
-            $data->customer->cloud_id=$order->relationship_id;
+            $data->customer->cloud_id = $order->relationship_id;
             $this->loadData_Order($order, $data);
             //insert payment schedual if paymnet not done
 
             $orderController = new OrderController();
             //insert movement and schedual
-            $orderController->stockentry($order);
+            //$orderController->stockEntry($order);
+
+            //TODO> make new object with local_id + cloud_id and send back to user.
         }
 
-        return response()->json($collection);
+        //Wrong, do not send same collection again. no help to developer
+        //return response()->json($collection);
     }
 
     //This function will create or update an existing Order with the new data inserted.
@@ -198,6 +213,7 @@ class TransactionController extends Controller
 
     public function checkCreateRelationships($profile, $data)
     {
+        //TODO this is risky. Because Abhi can be confused for Abhijeet and will bring wrong customer.
         $relationship = Relationship::where(function ($q) use ($data->name)
         {
             $q->where('customer_alias', 'LIKE', '%' . $query . '%')
@@ -234,7 +250,6 @@ class TransactionController extends Controller
         $item->short_description = $data->comment;
         $item->unit_price = $data->unit_price;
         $item->currency = $data->currency_code ?? $profile->currency;
-
 
         $item->save();
         return $item;

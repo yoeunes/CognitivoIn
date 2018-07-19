@@ -12,14 +12,18 @@ class Order extends Model
 
     public function scopemySales($query)
     {
-        return $query->join('relationships', 'relationships.id', 'orders.relationship_id')
-        ->where('relationships.supplier_id', request()->route('profile')->id);
+        return $query
+        ->with('relationship')
+        ->whereHas('relationship', function($q)
+        { $q->where('supplier_id', request()->route('profile')->id); });
     }
 
     public function scopemyPurchases($query)
     {
-        return $query->join('relationships', 'relationships.id', 'orders.relationship_id')
-        ->where('relationships.customer_id', request()->route('profile')->id);
+        return $query
+        ->with('relationship')
+        ->whereHas('relationship', function($q)
+        { $q->where('customer_id', request()->route('profile')->id); });
     }
 
     public function details()
