@@ -1,12 +1,16 @@
 <template>
     <div>
         <div class="row">
-
             <div class="col-xs-6 col-sm-4 col-lg-2">
-                <a class="block block-link-hover3 text-center" href="#" @click="onCreate()">
-                    <div class="block-content block-content-full">
-                        <i class="si si-plus fa-4x text-success"></i>
-                        <div class="font-w600 push-15-t">New Opportunity</div>
+                <a class="block block-link-hover2 text-center" href="#" @click="onCreate()">
+                    <div class="block-content block-content-full bg-success">
+                        <!-- <i class="si si-plus fa-4x text-white"></i> -->
+                        <b-icon
+                            icon="plus-circle"
+                            size="is-large">
+                        </b-icon>
+
+                        <div class="font-w600 text-white-op push-15-t">{{ lang('global.Create') }}</div>
                     </div>
                 </a>
             </div>

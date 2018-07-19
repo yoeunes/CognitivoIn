@@ -81415,6 +81415,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -81511,7 +81515,7 @@ var render = function() {
           _c(
             "a",
             {
-              staticClass: "block block-link-hover3 text-center",
+              staticClass: "block block-link-hover2 text-center",
               attrs: { href: "#" },
               on: {
                 click: function($event) {
@@ -81519,7 +81523,24 @@ var render = function() {
                 }
               }
             },
-            [_vm._m(0)]
+            [
+              _c(
+                "div",
+                { staticClass: "block-content block-content-full bg-success" },
+                [
+                  _c("b-icon", {
+                    attrs: { icon: "plus-circle", size: "is-large" }
+                  }),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    { staticClass: "font-w600 text-white-op push-15-t" },
+                    [_vm._v(_vm._s(_vm.lang("global.Create")))]
+                  )
+                ],
+                1
+              )
+            ]
           )
         ]),
         _vm._v(" "),
@@ -81539,7 +81560,7 @@ var render = function() {
                   _vm.end_date
               }
             },
-            [_vm._m(1)]
+            [_vm._m(0)]
           )
         ]),
         _vm._v(" "),
@@ -81559,7 +81580,7 @@ var render = function() {
                   _vm.end_date
               }
             },
-            [_vm._m(2)]
+            [_vm._m(1)]
           )
         ])
       ]),
@@ -81729,18 +81750,6 @@ var render = function() {
   )
 }
 var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "block-content block-content-full" }, [
-      _c("i", { staticClass: "si si-plus fa-4x text-success" }),
-      _vm._v(" "),
-      _c("div", { staticClass: "font-w600 push-15-t" }, [
-        _vm._v("New Opportunity")
-      ])
-    ])
-  },
   function() {
     var _vm = this
     var _h = _vm.$createElement

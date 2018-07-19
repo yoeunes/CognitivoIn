@@ -26,6 +26,7 @@ return [
 
     'Default Model' => ':model por defecto',
     'New Model' => 'Crear :model',
+    'Create' => 'Crear',
     'All Model' => 'Todos los :model',
     'Top Model' => 'Top :model',
 
