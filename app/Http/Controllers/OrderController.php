@@ -18,7 +18,6 @@ use App\ItemPromotion;
 use App\Http\Resources\OrderResource;
 use Swap\Laravel\Facades\Swap;
 use Carbon\Carbon;
-use DB;
 use Illuminate\Http\Request;
 
 class OrderController extends Controller
@@ -87,33 +86,6 @@ class OrderController extends Controller
 
                 $orderDetail->save();
             }
-            //TODO run this code on approve or individual check if user wish.
-
-            // $details = OrderDetail::where('order_id',  $order->id)
-            // ->select(DB::raw('item_id'),
-            // DB::raw('round(sum(quantity),2) as quantity'))
-            // ->groupBy('item_id')->get();
-            //
-            // foreach ($details as $detail)
-            // {
-            //     $promotions = ItemPromotion::where('input_id',$detail['item_id'])->get();
-            //     foreach ($promotions as $promotion)
-            //     {
-            //         if ($promotion->type==1 && $promotion->input_value==$detail['quantity'])
-            //         {
-            //             $item=Item::where('id',$promotion->output_id)->first();
-            //             $orderDetail = new OrderDetail();
-            //             $orderDetail->order_id = $order->id;
-            //             $orderDetail->item_id = $promotion->output_id;
-            //             $orderDetail->item_sku = $item->sku;
-            //             $orderDetail->item_name = $item->name;
-            //             $orderDetail->quantity = $promotion->output_value;
-            //             $orderDetail->unit_price = $item->unit_price;
-            //
-            //             $orderDetail->save();
-            //         }
-            //     }
-            // }
 
             return response()->json('Ok', 200);
         }
@@ -186,6 +158,33 @@ class OrderController extends Controller
         $amount = 0;
         $vatAmount = 0;
 
+        foreach ($order->details as $detail)
+        {
+            $vatDetails = VatDetail::where('vat_id', $detail->vat_id)->get();
+
+            foreach ($vatDetails as $vat)
+            {
+                $vatAmount = $vatAmount + (($detail->unit_price * $vat->percent) *  $vat->coefficient);
+            }
+
+            $amount = $amount + (($detail->unit_price + $vatAmount) * $detail->quantity);
+
+            //TODO Get only required column. you are using one column only.
+            // $item = Item::find($detail->item_id);
+            //
+            // if ($item->is_stockable && $order->location_id != null)
+            // {
+            //     $movement = new ItemMovement();
+            //     $movement->item_id = $item->id;
+            //     $movement->order_id = $order->id;
+            //     $movement->location_id = $order->location_id;
+            //     $movement->date = Carbon::now();
+            //     $movement->credit = 0;
+            //     $movement->debit = $detail->quantity;
+            //     $movement->save();
+            // }
+        }
+
         //for payment entry
         if ($order->contract_id > 0)
         {
@@ -227,38 +226,7 @@ class OrderController extends Controller
             $schedule->save();
         }
     }
-    //
-    // public function stockEntry($order)
-    // {
-    //     foreach ($order->details as  $detail)
-    //     {
-    //         $vatDetails = VatDetail::where('vat_id', $detail->vat_id)->get();
-    //
-    //         foreach ($vatDetails as $vat)
-    //         {
-    //             $vatAmount = $vatAmount + (($detail->unit_price * $vat->percent) *  $vat->coefficient);
-    //         }
-    //
-    //         $amount = $amount + (($detail->unit_price + $vatAmount) * $detail->quantity);
-    //
-    //         //TODO Get only required column. you are using one column only.
-    //         $item = Item::find($detail->item_id);
-    //
-    //         if ($item->is_stockable && $order->location_id != null)
-    //         {
-    //             $movement = new ItemMovement();
-    //             $movement->item_id = $item->id;
-    //             $movement->order_id = $order->id;
-    //             $movement->location_id = $order->location_id;
-    //             $movement->date = Carbon::now();
-    //             $movement->credit = 0;
-    //             $movement->debit = $detail->quantity;
-    //             $movement->save();
-    //         }
-    //     }
-    // }
 
-    //TODO make annull code for order.
     public function annul(Profile $profile, $orderID)
     {
         $order = Order::mySales()
@@ -266,23 +234,19 @@ class OrderController extends Controller
         ->with('detail')
         ->first();
 
+        //Validation Code
         if (isset($order))
         {
             return response()->json('Resource not found', 404);
         }
-
-        if ($order->status == 3)
+        else if ($order->status == 3)
         {
             //If status 3, then you cannot annull as it is already annulled.
             return response()->json('Forbidden. Order is already annulled', 403);
         }
 
-        $amount = 0;
-        $vatAmount = 0;
-
         //Get list of stock movements generated from
         $movements = ItemMovement::whereIn('id', [$order->details->movement_id])->get();
-
         foreach ($movements as $movement)
         {
             $details = $order->details->where('movement_id', $movement->id)->get();
@@ -302,38 +266,38 @@ class OrderController extends Controller
         }
 
         //for payment entry
-        $schedule = new Schedule();
-
-        if ($order->contract_id > 0)
-        {
-            $contractDetails = ContractDetail::where('contract_id', $order->contract_id)->get();
-            $schedualAmount = 0;
-
-            foreach ($contractDetails as $detail)
-            {
-                $schedule = new Schedule();
-                $schedule->relationship_id = $order->relationship_id;
-                $schedule->currency = $order->currency;
-                $schedule->currency_rate = $order->currency_rate;
-                $schedule->date = Carbon::now();
-                $schedule->date_exp = Carbon::now()->addDays($detail->offset);
-                $schedule->credit = $amount * $detail->percent;
-                $schedule->debit = 0;
-                $schedule->save();
-
-                $schedualAmount += $schedule->credit;
-            }
-
-            if ($schedule->credit != $amount)
-            {
-                // add difference to last schedual on list.
-            }
-        }
+        $schedule = Schedule::where('order_id', $order->id)->first();
+        $schedule->delete();
     }
 
-    //
     public function checkPromotion()
     {
+        //TODO run this code on approve or individual check if user wish.
 
+        $details = OrderDetail::where('order_id',  $order->id)
+        ->select(DB::raw('item_id'),
+        DB::raw('round(sum(quantity),2) as quantity'))
+        ->groupBy('item_id')->get();
+
+        foreach ($details as $detail)
+        {
+            $promotions = ItemPromotion::where('input_id',$detail['item_id'])->get();
+            foreach ($promotions as $promotion)
+            {
+                if ($promotion->type == 1 && $promotion->input_value == $detail['quantity'])
+                {
+                    $item=Item::where('id',$promotion->output_id)->first();
+                    $orderDetail = new OrderDetail();
+                    $orderDetail->order_id = $order->id;
+                    $orderDetail->item_id = $promotion->output_id;
+                    $orderDetail->item_sku = $item->sku;
+                    $orderDetail->item_name = $item->name;
+                    $orderDetail->quantity = $promotion->output_value;
+                    $orderDetail->unit_price = $item->unit_price;
+
+                    $orderDetail->save();
+                }
+            }
+        }
     }
 }
