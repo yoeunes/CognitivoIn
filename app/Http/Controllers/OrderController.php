@@ -81,11 +81,13 @@ class OrderController extends Controller
             {
                 $order->relationship_id = $data->relationship_cloud_id;
             }
-            else {
-                $CustomerController= new Api\CustomerController();
-                $order->relationship_id = $CustomerController->CreateCustomer($data->customer,$profile)->id;
+            else
+            {
+                $CustomerController = new Api\CustomerController();
+                $order->relationship_id = $CustomerController->CreateCustomer($data->customer, $profile)->id;
             }
-            $order->relationship_id = $data->relationship_cloud_id;
+
+            //$order->relationship_id = $data->relationship_cloud_id;
             $order->currency = $data->currency ?? $profile->currency;
             $order->currency_rate = ($data->rate ?? Swap::latest($profile->currency . '/' . $data->currency)->getValue()) ?? 1;
             $order->is_impex = $data->is_impex ?? 0;
@@ -99,22 +101,24 @@ class OrderController extends Controller
 
                 $orderDetail = $order->details->where('id', $detail->detail_cloud_id)->first() ?? new OrderDetail();
                 $orderDetail->order_id = $order->id;
-                if ($detail->item_cloud_id>0)
+
+                if ($detail->item_cloud_id > 0)
                 {
                     $orderDetail->item_id = $detail->item_cloud_id;
                     $orderDetail->item_sku = $detail->sku;
                     $orderDetail->item_name = $detail->name;
                 }
-                else {
-                    $ItemController= new Api\ItemController();
-                    $item=$ItemController->CreateItem($detail->item,$profile);
+                else
+                {
+                    $ItemController = new Api\ItemController();
+                    $item = $ItemController->CreateItem($detail->item, $profile);
                     $orderDetail->item_id = $item->id;
-                    $orderDetail->item_sku = $item->code;
-                    $orderDetail->item_name = $item->name;
+                    // $orderDetail->item_sku = $item->code;
+                    // $orderDetail->item_name = $item->name;
                 }
 
 
-                $orderDetail->quantity =$detail->quantity;
+                $orderDetail->quantity = $detail->quantity;
                 $orderDetail->unit_price = $detail->price;
 
                 $orderDetail->save();
@@ -248,16 +252,16 @@ class OrderController extends Controller
         else
         {
             //TODO> maybe not include cash transactions in schedual. it will unecesarily fill up space in the database.
-            $schedule = new Schedule();
-            $schedule->order_id = $order->id;
-            $schedule->relationship_id = $order->relationship_id;
-            $schedule->reference = $order->number;
-            $schedule->currency = $order->currency;
-            $schedule->currency_rate = $order->currency_rate;
-            $schedule->date = Carbon::now();
-            $schedule->due_date = Carbon::now();
-            $schedule->value = $amount;
-            $schedule->save();
+            // $schedule = new Schedule();
+            // $schedule->order_id = $order->id;
+            // $schedule->relationship_id = $order->relationship_id;
+            // $schedule->reference = $order->number;
+            // $schedule->currency = $order->currency;
+            // $schedule->currency_rate = $order->currency_rate;
+            // $schedule->date = Carbon::now();
+            // $schedule->due_date = Carbon::now();
+            // $schedule->value = $amount;
+            // $schedule->save();
         }
     }
 
