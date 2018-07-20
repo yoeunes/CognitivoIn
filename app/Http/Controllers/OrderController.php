@@ -62,7 +62,7 @@ class OrderController extends Controller
             $data=$request[0];
         }
         else {
-        $data=$request;
+            $data=$request;
         }
 
 
@@ -79,11 +79,11 @@ class OrderController extends Controller
 
             if ($data->relationship_cloud_id>0)
             {
-            $order->relationship_id = $data->relationship_cloud_id;
+                $order->relationship_id = $data->relationship_cloud_id;
             }
             else {
                 //$CustomerController= new Api\CustomerController();
-                //$order->relationship_id = $CustomerController->CreateCustomer($data->customer,$profile);
+                $order->relationship_id = $CustomerController->CreateCustomer($data->customer,$profile)->id;
             }
             $order->relationship_id = $data->relationship_cloud_id;
             $order->currency = $data->currency ?? $profile->currency;
@@ -101,15 +101,19 @@ class OrderController extends Controller
                 $orderDetail->order_id = $order->id;
                 if ($detail->item_cloud_id>0)
                 {
-                $orderDetail->item_id = $detail->item_cloud_id;
+                    $orderDetail->item_id = $detail->item_cloud_id;
+                    $orderDetail->item_sku = $detail->sku;
+                    $orderDetail->item_name = $detail->name;
                 }
                 else {
                     $ItemController= new Api\ItemController();
-                    $orderDetail->item_id = $ItemController->CreateItem($detail->item,$profile);
+                    $item=$ItemController->CreateItem($detail->item,$profile);
+                    $orderDetail->item_id = $item->id;
+                    $orderDetail->item_sku = $item->code;
+                    $orderDetail->item_name = $item->name;
                 }
 
-                $orderDetail->item_sku = $detail->sku;
-                $orderDetail->item_name = $detail->name;
+
                 $orderDetail->quantity =$detail->quantity;
                 $orderDetail->unit_price = $detail->price;
 

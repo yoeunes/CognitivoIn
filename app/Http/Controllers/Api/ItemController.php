@@ -35,6 +35,7 @@ class ItemController extends Controller
         $item->currency = $data->currency_code ?? $profile->currency;
 
         $item->save();
+        return $item;
 
     }
 

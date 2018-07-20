@@ -36,7 +36,7 @@ class CustomerController extends Controller
         $relationship->contract_ref = $data->contract_ref ?? 0;
 
         $relationship->save();
-
+        return $relationship;
     }
 
     public function sync(Request $request, Profile $profile)
