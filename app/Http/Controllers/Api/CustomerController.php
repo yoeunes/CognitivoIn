@@ -23,8 +23,10 @@ class CustomerController extends Controller
 
     public function sync(Request $request, Profile $profile)
     {
-        $this->upload($request, $profile);
+        $rsp = $this->upload($request, $profile);
         $this->download($request, $profile);
+
+        return $rsp;
     }
 
     public function upload(Request $request, Profile $profile)
@@ -54,7 +56,8 @@ class CustomerController extends Controller
 
             $relationship->save();
         }
-        return response()->json('Sucess');
+
+        return response()->json('Done!', 200);
     }
 
     public function download(Request $request,Profile $profile)
