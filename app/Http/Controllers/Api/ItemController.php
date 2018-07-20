@@ -24,6 +24,20 @@ class ItemController extends Controller
         }
     }
 
+    public function CreateItem($data,Profile $profile)
+    {
+        $item = new Item();
+        $item->profile_id = $profile->id;
+        $item->sku = $data->code;
+        $item->name = $data->name;
+        $item->short_description = $data->comment;
+        $item->unit_price = $data->unit_price;
+        $item->currency = $data->currency_code ?? $profile->currency;
+
+        $item->save();
+
+    }
+
     public function sync(Request $request, Profile $profile)
     {
         $this->upload($request, $profile);

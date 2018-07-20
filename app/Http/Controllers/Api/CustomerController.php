@@ -21,6 +21,24 @@ class CustomerController extends Controller
         }
     }
 
+    public function CreateCustomer($data,Profile $profile)
+    {
+        $relationship = new Relationship();
+        $relationship->supplier_id = $profile->id;
+        $relationship->supplier_accepted = true;
+
+        $relationship->customer_taxid = $data->govcode;
+        $relationship->customer_alias = $data->alias;
+        $relationship->customer_address = $data->address;
+        $relationship->customer_telephone = $data->telephone;
+        $relationship->customer_email = $data->email;
+        $relationship->credit_limit = $data->credit_limit ?? 0;
+        $relationship->contract_ref = $data->contract_ref ?? 0;
+
+        $relationship->save();
+
+    }
+
     public function sync(Request $request, Profile $profile)
     {
         $rsp = $this->upload($request, $profile);

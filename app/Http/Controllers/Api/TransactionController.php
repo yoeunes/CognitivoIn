@@ -24,6 +24,8 @@ class TransactionController extends Controller
     // TODO: Make chunks of data. learn from debehaber
     public function upload(Request $request, Profile $profile)
     {
+        $returnData = [];
+        $pos=0;
         $data = collect();
 
         if ($request->all() != [])
@@ -43,8 +45,10 @@ class TransactionController extends Controller
             //A.1.2) Save Detail into table
             //A.2.1) CloudID != null ? Update Order
             //A.2.2) Update Detail
-            $orderController->store($request, $profile);
 
+
+            $order=$orderController->store($request->replace([$data]), $profile);
+            $data->cloud_id=$order->id;
             //A.3.1) Approve or Annull? Update Status (For not do not run aditional code)
             if ($data->cloud_id > 0 && $data->status == 2)
             {
@@ -54,13 +58,15 @@ class TransactionController extends Controller
             {
                 $orderController->annull($data->cloud_id);
             }
+            $returnData[$pos]=$order;
+            $pos=$pos+1;
             //A.3.2) Run promotion if approved
         }
 
         //TODO return values with created cloud_id back to client.
 
         //Wrong, do not send same collection again. no help to developer
-        //return response()->json($collection);
+        return response()->json($returnData);
     }
 
     public function download(Request $request, Profile $profile)

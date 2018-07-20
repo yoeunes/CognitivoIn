@@ -56,38 +56,67 @@ class OrderController extends Controller
     */
     public function store(Request $request, Profile $profile)
     {
-        if (count($request->details) > 0)
+
+        if ($request[0]!=null) {
+
+            $data=$request[0];
+        }
+        else {
+        $data=$request;
+        }
+
+
+
+        if (count($data->details) > 0)
         {
+
             $order = Order::mySales()
-            ->where('id', $request->cloud_id)
+            ->where('id', $data->cloud_id)
             ->with('details')
             ->first()
             ??
             new Order();
 
-            $order->relationship_id = $request->relationship_cloud_id;
-            $order->currency = $request->currency ?? $profile->currency;
-            $order->currency_rate = ($request->rate ?? Swap::latest($profile->currency . '/' . $request->currency)->getValue()) ?? 1;
-            $order->is_impex = $request->is_impex ?? 0;
-            $order->is_printed = $request->is_printed ?? 0;
-            $order->is_archived = $request->is_archived ?? 0;
+            if ($data->relationship_cloud_id>0)
+            {
+            $order->relationship_id = $data->relationship_cloud_id;
+            }
+            else {
+                //$CustomerController= new Api\CustomerController();
+                //$order->relationship_id = $CustomerController->CreateCustomer($data->customer,$profile);
+            }
+            $order->relationship_id = $data->relationship_cloud_id;
+            $order->currency = $data->currency ?? $profile->currency;
+            $order->currency_rate = ($data->rate ?? Swap::latest($profile->currency . '/' . $data->currency)->getValue()) ?? 1;
+            $order->is_impex = $data->is_impex ?? 0;
+            $order->is_printed = $data->is_printed ?? 0;
+            $order->is_archived = $data->is_archived ?? 0;
 
             $order->save();
 
-            foreach ($request->details as $detail)
+            foreach ($data->details as $detail)
             {
-                $orderDetail = $order->details->where('id', $detail['detail_cloud_id'])->first() ?? new OrderDetail();
+
+                $orderDetail = $order->details->where('id', $detail->detail_cloud_id)->first() ?? new OrderDetail();
                 $orderDetail->order_id = $order->id;
-                $orderDetail->item_id = $detail['item_id'];
-                $orderDetail->item_sku = $detail['sku'];
-                $orderDetail->item_name = $detail['name'];
-                $orderDetail->quantity = $detail['quantity'];
-                $orderDetail->unit_price = $detail['price'];
+                if ($detail->item_cloud_id>0)
+                {
+                $orderDetail->item_id = $detail->item_cloud_id;
+                }
+                else {
+                    $ItemController= new Api\ItemController();
+                    $orderDetail->item_id = $ItemController->CreateItem($detail->item,$profile);
+                }
+
+                $orderDetail->item_sku = $detail->sku;
+                $orderDetail->item_name = $detail->name;
+                $orderDetail->quantity =$detail->quantity;
+                $orderDetail->unit_price = $detail->price;
 
                 $orderDetail->save();
             }
 
-            return response()->json('Ok', 200);
+            return response()->json($order, 200);
         }
 
         return response()->json('Resource not found', 403);

@@ -8,7 +8,7 @@ Vue.component('order-form',
 
     data: function () {
         return {
-            id: 0,
+            cloud_id: 0,
             item_name:'',
             relationship_id:'',
             customer_name:'',
@@ -28,7 +28,7 @@ Vue.component('order-form',
         {
             var app = this;
 
-            app.id = data.id;
+            app.cloud_id = data.id;
             app.relationship_id = data.relationship_id,
             app.customer_name = data.relationship.customer_alias,
             app.customer_address = data.relationship.customer_address,
@@ -38,14 +38,14 @@ Vue.component('order-form',
             for (var i = 0; i < data.details.length; i++)
             {
                 app.details.push({
-                    id:data.details[i].id,
+                    detail_cloud_id:data.details[i].id,
                     price: data.details[i].unit_price,
                     cost: data.details[i].unit_cost,
                     sku: data.details[i].item_sku,
                     sub_total: data.details[i].unit_price * data.details[i].quantity,
                     name:  data.details[i].item_name,
                     quantity: data.details[i].quantity,
-                    item_id: data.details[i].item_id
+                    item_cloud_id: data.details[i].item_id
 
                 });
             }
@@ -78,7 +78,7 @@ Vue.component('order-form',
         {
             var app = this;
 
-            app.id = data.id;
+            app.cloud_id = data.id;
             app.relationship_id = data.relationship_id,
             app.customer_name = data.customer_alias,
             app.customer_address = data.customer_address,
@@ -88,14 +88,14 @@ Vue.component('order-form',
             for (var i = 0; i < data.details.length; i++)
             {
                 app.details.push({
-                    id:data.details[i].id,
+                    detail_cloud_id:data.details[i].id,
                     price: data.details[i].unit_price,
                     cost: data.details[i].unit_cost,
                     sku: data.details[i].item_sku,
                     sub_total: data.details[i].unit_price * data.details[i].quantity,
                     name:  data.details[i].item_name,
                     quantity: data.details[i].quantity,
-                    item_id: data.details[i].item_id
+                    item_cloud_id: data.details[i].item_id
                 });
             }
         },
@@ -123,7 +123,7 @@ Vue.component('order-form',
             {
                 app.details.push(
                     {
-                        id:0,
+                        cloud_id:0,
 
                         price: detail.price,
                         cost: detail.cost,
@@ -131,7 +131,7 @@ Vue.component('order-form',
                         sub_total: detail.price * detail.quantity,
                         name:  detail.name,
                         quantity: detail.quantity,
-                        item_id: detail.item_id
+                        item_cloud_id: detail.item_id
 
                     });
                 }
@@ -233,14 +233,14 @@ Vue.component('order-form',
                 var app = this;
                 if (data!=null) {
                     app.details.push({
-                        id:0,
+                        detail_cloud_id:0,
                         price: data.unit_price,
                         sku: data.sku,
                         unit_price: data.unit_price,
                         sub_total: data.unit_price,
                         name:  data.name,
                         quantity: 1,
-                        item_id: data.id
+                        item_cloud_id: data.id
                     });
 
                 }
