@@ -82,7 +82,7 @@ class OrderController extends Controller
                 $order->relationship_id = $data->relationship_cloud_id;
             }
             else {
-                //$CustomerController= new Api\CustomerController();
+                $CustomerController= new Api\CustomerController();
                 $order->relationship_id = $CustomerController->CreateCustomer($data->customer,$profile)->id;
             }
             $order->relationship_id = $data->relationship_cloud_id;
