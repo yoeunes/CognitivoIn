@@ -124,7 +124,7 @@ class OrderController extends Controller
                 $orderDetail->save();
             }
 
-            return response()->json($order, 200);
+            return $order;
         }
 
         return response()->json('Resource not found', 403);
