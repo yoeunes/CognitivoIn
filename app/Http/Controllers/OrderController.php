@@ -35,7 +35,7 @@ class OrderController extends Controller
             ->paginate(25)
         );
 
-        return response()->json($orders);
+    //    return response()->json($orders);
     }
 
     /**
@@ -113,8 +113,8 @@ class OrderController extends Controller
                     $ItemController = new Api\ItemController();
                     $item = $ItemController->CreateItem($detail->item, $profile);
                     $orderDetail->item_id = $item->id;
-                    // $orderDetail->item_sku = $item->code;
-                    // $orderDetail->item_name = $item->name;
+                     $orderDetail->item_sku = $item->code;
+                     $orderDetail->item_name = $item->name;
                 }
 
 

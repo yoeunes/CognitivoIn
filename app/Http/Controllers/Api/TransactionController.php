@@ -48,7 +48,7 @@ class TransactionController extends Controller
 
 
             $order=$orderController->store($request->replace([$data]), $profile);
-            dd($order);
+
             $data->cloud_id=$order->id;
             //A.3.1) Approve or Annull? Update Status (For not do not run aditional code)
             if ($data->cloud_id > 0 && $data->status == 2)
