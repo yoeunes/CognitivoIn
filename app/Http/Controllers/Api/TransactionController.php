@@ -53,11 +53,11 @@ class TransactionController extends Controller
             //A.3.1) Approve or Annull? Update Status (For not do not run aditional code)
             if ($data->cloud_id > 0 && $data->status == 2)
             {
-                $orderController->approve($data->cloud_id);
+                $orderController->approve($profile,$data->cloud_id);
             }
             else if($data->cloud_id > 0 && $data->status == 3)
             {
-                $orderController->annul($data->cloud_id);
+                $orderController->annul($profile,$data->cloud_id);
             }
             $returnData[$pos]=$order;
             $pos=$pos+1;
