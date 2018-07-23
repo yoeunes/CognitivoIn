@@ -57,7 +57,7 @@ class TransactionController extends Controller
             }
             else if($data->cloud_id > 0 && $data->status == 3)
             {
-                $orderController->annull($data->cloud_id);
+                $orderController->annul($data->cloud_id);
             }
             $returnData[$pos]=$order;
             $pos=$pos+1;
