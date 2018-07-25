@@ -13,9 +13,9 @@ class OpportunityMemberController extends Controller
   *
   * @return \Illuminate\Http\Response
   */
-  public function index(Request $request,Profile $profile, $skip)
+  public function index(Profile $profile, $skip, $filterBy)
   {
-    $opportunityMembers = OpportunityMember::where('profile_id',$request->profile_id)
+    $opportunityMembers = OpportunityMember::My()
     ->skip($skip)
     ->take(25)
     ->get();
