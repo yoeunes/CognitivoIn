@@ -24,6 +24,7 @@ class TransactionController extends Controller
     // TODO: Make chunks of data. learn from debehaber
     public function upload(Request $request, Profile $profile)
     {
+        return response()->json($request->all());
         $returnData = [];
         $pos=0;
         $data = collect();
