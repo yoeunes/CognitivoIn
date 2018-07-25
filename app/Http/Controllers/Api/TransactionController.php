@@ -38,7 +38,7 @@ class TransactionController extends Controller
 
         foreach ($collection as $key => $data)
         {
-            return response()->json($data['details'], 500);
+            return response()->json($data, 500);
 
             $orderController = new OrderController();
 
