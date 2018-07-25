@@ -48,12 +48,12 @@ class TransactionController extends Controller
             //A.2.1) CloudID != null ? Update Order
             //A.2.2) Update Detail
 
-             return response()->json($data, 200);
+
             //$order=$orderController->store($request->replace([$data]), $profile);
             if (count($data->details) > 0)
             {
 
-
+                return response()->json($data->details, 500);
                 $order = Order::mySales()
                 ->where('id', $data->cloud_id)
                 ->with('details')
