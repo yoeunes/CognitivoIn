@@ -35,7 +35,7 @@ class PaymentController extends Controller
             'date' => $order->date,
             'Detail'=> $vatDetail
         ];
-
+return response()->json($data2);
 
     }
 
