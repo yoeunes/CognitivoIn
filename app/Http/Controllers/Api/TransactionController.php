@@ -48,7 +48,7 @@ class TransactionController extends Controller
             //A.2.1) CloudID != null ? Update Order
             //A.2.2) Update Detail
 
-// return response()->json($data, 500);
+            // return response()->json($data, 500);
             //$order=$orderController->store($request->replace([$data]), $profile);
             if (count($detail) > 0)
             {
@@ -108,9 +108,11 @@ class TransactionController extends Controller
                     $orderDetail->save();
                 }
 
-                return $order;
+
+
+                $data->cloud_id=$order->id;
+                    return response()->json($data,500);
             }
-            $data->cloud_id=$order->id;
             //A.3.1) Approve or Annull? Update Status (For not do not run aditional code)
             if ($data->cloud_id > 0 && $data->status == 2)
             {
