@@ -20,6 +20,7 @@ class PaymentController extends Controller
 
         $accountMovement = new AccountMovementController();
         $accountMovement->makePayment($request);
+        $order=Order::find($request->id);
         $vatDetail = VatDetail::leftjoin('order_details', 'order_details.vat_id', 'vat_details.vat_id')
         ->where('order_id', $request->id)
         ->select(DB::raw('CONCAT(round(max(coefficient),2) * 100, "%" )as coefficient'),
