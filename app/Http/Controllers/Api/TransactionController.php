@@ -35,10 +35,10 @@ class TransactionController extends Controller
         }
 
         $collection = json_decode($data->toJson());
-
+    return response()->json($collection, 500);
         foreach ($collection as $key => $data)
         {
-            return response()->json($data, 500);
+
 
             $orderController = new OrderController();
 
