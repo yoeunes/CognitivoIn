@@ -23,7 +23,7 @@ Route::group(['middleware' => 'auth:api'], function ()
     Route::prefix('sync')->group(function ()
     {
       Route::post('transaction', 'Api\TransactionController@upload');
-      Route::post('payment', 'Api\TransactionController@upload');
+      Route::post('payment', 'Api\PaymentController@upload');
       Route::post('item', 'Api\ItemController@upload');
       Route::post('contract', 'Api\ContractController@upload');
       Route::post('customer', 'Api\CustomerController@upload');
