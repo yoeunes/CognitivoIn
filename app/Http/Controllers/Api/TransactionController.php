@@ -47,7 +47,7 @@ class TransactionController extends Controller
             //A.2.1) CloudID != null ? Update Order
             //A.2.2) Update Detail
 
-return response()->json($data, 500);
+// return response()->json($data, 500);
             $order=$orderController->store($request->replace([$data]), $profile);
 
             $data->cloud_id=$order->id;
