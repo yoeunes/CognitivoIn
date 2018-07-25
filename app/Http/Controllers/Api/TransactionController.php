@@ -49,8 +49,67 @@ class TransactionController extends Controller
             //A.2.2) Update Detail
 
 // return response()->json($data, 500);
-            $order=$orderController->store($request->replace([$data]), $profile);
-return response()->json($order,500);
+            //$order=$orderController->store($request->replace([$data]), $profile);
+            if (count($detail) > 0)
+            {
+
+
+                $order = Order::mySales()
+                ->where('id', $data->cloud_id)
+                ->with('details')
+                ->first()
+                ??
+                new Order();
+
+                if ($data->relationship_cloud_id>0)
+                {
+                    $order->relationship_id = $data->relationship_cloud_id;
+                }
+                else
+                {
+                    $CustomerController = new Api\CustomerController();
+                    $order->relationship_id = $CustomerController->CreateCustomer($data->customer, $profile)->id;
+                }
+
+                //$order->relationship_id = $data->relationship_cloud_id;
+                $order->currency = $data->currency ?? $profile->currency;
+                $order->currency_rate = ($data->rate ?? Swap::latest($profile->currency . '/' . $data->currency)->getValue()) ?? 1;
+                $order->is_impex = $data->is_impex ?? 0;
+                $order->is_printed = $data->is_printed ?? 0;
+                $order->is_archived = $data->is_archived ?? 0;
+
+                $order->save();
+
+                foreach ($detail as $detail)
+                {
+
+                    $orderDetail = $order->details->where('id', $detail->detail_cloud_id)->first() ?? new OrderDetail();
+                    $orderDetail->order_id = $order->id;
+
+                    if ($detail->item_cloud_id > 0)
+                    {
+                        $orderDetail->item_id = $detail->item_cloud_id;
+                        $orderDetail->item_sku = $detail->sku;
+                        $orderDetail->item_name = $detail->name;
+                    }
+                    else
+                    {
+                        $ItemController = new Api\ItemController();
+                        $item = $ItemController->CreateItem($detail->item, $profile);
+                        $orderDetail->item_id = $item->id;
+                        $orderDetail->item_sku = $item->code;
+                        $orderDetail->item_name = $item->name;
+                    }
+
+
+                    $orderDetail->quantity = $detail->quantity;
+                    $orderDetail->unit_price = $detail->price;
+
+                    $orderDetail->save();
+                }
+
+                return $order;
+            }
             $data->cloud_id=$order->id;
             //A.3.1) Approve or Annull? Update Status (For not do not run aditional code)
             if ($data->cloud_id > 0 && $data->status == 2)

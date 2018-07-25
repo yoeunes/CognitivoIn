@@ -71,7 +71,7 @@ class OrderController extends Controller
 
         if (count($detail) > 0)
         {
-            return response()->json(count($detail), 500);
+            
 
             $order = Order::mySales()
             ->where('id', $data->cloud_id)
