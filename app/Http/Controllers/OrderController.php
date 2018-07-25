@@ -67,7 +67,7 @@ class OrderController extends Controller
 
 
         $detail = collect($data->details);
-        if (count($data->details) > 0)
+        if (count($detail) > 0)
         {
 
             $order = Order::mySales()
