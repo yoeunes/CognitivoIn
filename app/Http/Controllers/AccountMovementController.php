@@ -245,9 +245,9 @@ class AccountMovementController extends Controller
           $accountMovement->schedule_id = $scheduals[$i]->id;
           $accountMovement->account_id = $account->id;
           $accountMovement->type = 1;
-          $accountMovement->currency = $data->currency;
-          $accountMovement->currency_rate = ($data->rate ?? Swap::latest($profile->currency . '/' . $data->currency)->getValue()) ?? 1;
-          $accountMovement->date =$data->date? Carbon::parse($data->date):Carbon::now();
+          $accountMovement->currency = $order->currency;
+          $accountMovement->currency_rate = ($order->currency_rate ?? Swap::latest($profile->currency . '/' . $order->currency)->getValue()) ?? 1;
+          $accountMovement->date =$order->date? Carbon::parse($order->date):Carbon::now();
 
           //Schedual Value is greater than balance, then make balance 0.
           if ($scheduals[$i]->balance > $balance)
