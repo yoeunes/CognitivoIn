@@ -13,7 +13,7 @@ class OpportunityMemberController extends Controller
   *
   * @return \Illuminate\Http\Response
   */
-  public function index(Profile $profile, $skip)
+  public function index(Request $request,Profile $profile, $skip)
   {
     $opportunityMembers = OpportunityMember::where('profile_id',$request->profile_id)
     ->where('opportunity_id',$opportunity->id)
