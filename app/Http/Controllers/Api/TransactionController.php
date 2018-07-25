@@ -37,6 +37,7 @@ class TransactionController extends Controller
 
         foreach ($collection as $key => $data)
         {
+            
             $orderController = new OrderController();
 
             //The store function will automatically check if order exists or not.
