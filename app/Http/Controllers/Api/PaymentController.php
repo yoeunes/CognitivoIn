@@ -14,7 +14,7 @@ class PaymentController extends Controller
 {
 
 
-    public function upload(Request $request, Profile $profile,$orderID)
+    public function upload(Request $request, Profile $profile)
     {
 
         $accountMovement = new AccountMovementController();
