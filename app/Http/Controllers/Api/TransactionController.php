@@ -37,7 +37,7 @@ class TransactionController extends Controller
 
         foreach ($collection as $key => $data)
         {
-            
+
             $orderController = new OrderController();
 
             //The store function will automatically check if order exists or not.
@@ -47,7 +47,7 @@ class TransactionController extends Controller
             //A.2.1) CloudID != null ? Update Order
             //A.2.2) Update Detail
 
-
+return response()->json($request->replace([$data]), 500);
             $order=$orderController->store($request->replace([$data]), $profile);
 
             $data->cloud_id=$order->id;

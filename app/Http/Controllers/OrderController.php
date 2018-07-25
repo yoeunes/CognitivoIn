@@ -64,7 +64,7 @@ class OrderController extends Controller
         else {
             $data=$request;
         }
-  return response()->json($data, 500);
+  
 
 
         if (count($data->details) > 0)
