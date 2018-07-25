@@ -36,7 +36,7 @@ class Schedule extends Model
     {
         $payments=$this->payments->where('status','!=',3);
         return $this->value - ($payments->sum(function ($payment) {
-            return $payment->credit / $payment->currency_rate;
+            return $payment->credit / $payment->currency_rate==0?1:$payment->currency_rate;
         }));
     }
 
