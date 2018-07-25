@@ -712,6 +712,37 @@ export default {
 
 
   methods: {
+    onApprove($data)
+    {
+        var app = this;
+
+        this.$swal({
+            title: 'Approve Record',
+            text: "This will process your record, and is non-reversable.",
+            type: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Yes, approve it!'
+        }).then(() => {
+            axios.post('/api/' + this.profile + '/back-office/transact/opportunities'  , $data)
+            .then(() =>
+            {
+                this.$toast.open({
+                    message: 'Awsome! Your record has been approved',
+                    type: 'is-success'
+                })
+
+                app.showList = true;
+            })
+            .catch(ex => {
+                console.log(ex.response);
+                this.$toast.open({
+                    message: 'Error trying to approve record.',
+                    type: 'is-danger',
+                })
+            });
+            //Code to approve
+        });
+    },
 
     onSave($data)
     {

@@ -81615,7 +81615,11 @@ var render = function() {
                   [
                     _vm._v(
                       "\n                " +
-                        _vm._s(props.row.relationship.customer_alias) +
+                        _vm._s(
+                          props.row.relationship != null
+                            ? props.row.relationship.customer_alias
+                            : ""
+                        ) +
                         "\n            "
                     )
                   ]
@@ -83128,105 +83132,134 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  data: function data() {
-    return {
-      profile: '',
-      user_id: ''
+    data: function data() {
+        return {
+            profile: '',
+            user_id: ''
 
-    };
-  },
-
-
-  methods: {
-    onSave: function onSave($data) {
-      var _this = this;
-
-      var app = this;
-      axios.post('/api/' + app.profile + '/back-office/opportunities', $data).then(function () {
-        _this.$toast.open({
-          message: 'Awsome! Your work has been saved',
-          type: 'is-success'
-        });
-
-        _this.$router.push({ name: "opportunity.index", params: { userid: app.user_id } });
-      }).catch(function (ex) {
-        console.log(ex.response);
-        _this.$toast.open({
-          duration: 5000,
-          message: 'Error trying to save record',
-          type: 'is-danger'
-        });
-      });
-    },
-    onCancel: function onCancel() {
-      console.log(this);
-      this.$router.push({ name: "opportunity.index", params: { userid: app.user_id } });
+        };
     },
 
-    postSpecial: function () {
-      var _ref = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee(specialURL, $data) {
-        var _this2 = this;
 
-        var app, resp;
-        return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee$(_context) {
-          while (1) {
-            switch (_context.prev = _context.next) {
-              case 0:
-                app = this;
-                _context.next = 3;
-                return axios.post(specialURL, $data).then(function (response) {
-                  _this2.$snackbar.open('Done!');
-                  resp = response.data;
+    methods: {
+        onApprove: function onApprove($data) {
+            var _this = this;
+
+            var app = this;
+
+            this.$swal({
+                title: 'Approve Record',
+                text: "This will process your record, and is non-reversable.",
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Yes, approve it!'
+            }).then(function () {
+                axios.post('/api/' + _this.profile + '/back-office/transact/opportunities', $data).then(function () {
+                    _this.$toast.open({
+                        message: 'Awsome! Your record has been approved',
+                        type: 'is-success'
+                    });
+
+                    app.showList = true;
                 }).catch(function (ex) {
-                  console.log(ex.response);
-                  _this2.$toast.open({
-                    duration: 5000,
-                    message: 'Error trying to perform action',
-                    type: 'is-danger'
-                  });
+                    console.log(ex.response);
+                    _this.$toast.open({
+                        message: 'Error trying to approve record.',
+                        type: 'is-danger'
+                    });
+                });
+                //Code to approve
+            });
+        },
+        onSave: function onSave($data) {
+            var _this2 = this;
+
+            var app = this;
+            axios.post('/api/' + app.profile + '/back-office/opportunities', $data).then(function () {
+                _this2.$toast.open({
+                    message: 'Awsome! Your work has been saved',
+                    type: 'is-success'
                 });
 
-              case 3:
-                return _context.abrupt('return', resp);
+                _this2.$router.push({ name: "opportunity.index", params: { userid: app.user_id } });
+            }).catch(function (ex) {
+                console.log(ex.response);
+                _this2.$toast.open({
+                    duration: 5000,
+                    message: 'Error trying to save record',
+                    type: 'is-danger'
+                });
+            });
+        },
+        onCancel: function onCancel() {
+            console.log(this);
+            this.$router.push({ name: "opportunity.index", params: { userid: app.user_id } });
+        },
 
-              case 4:
-              case 'end':
-                return _context.stop();
+        postSpecial: function () {
+            var _ref = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee(specialURL, $data) {
+                var _this3 = this;
+
+                var app, resp;
+                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee$(_context) {
+                    while (1) {
+                        switch (_context.prev = _context.next) {
+                            case 0:
+                                app = this;
+                                _context.next = 3;
+                                return axios.post(specialURL, $data).then(function (response) {
+                                    _this3.$snackbar.open('Done!');
+                                    resp = response.data;
+                                }).catch(function (ex) {
+                                    console.log(ex.response);
+                                    _this3.$toast.open({
+                                        duration: 5000,
+                                        message: 'Error trying to perform action',
+                                        type: 'is-danger'
+                                    });
+                                });
+
+                            case 3:
+                                return _context.abrupt('return', resp);
+
+                            case 4:
+                            case 'end':
+                                return _context.stop();
+                        }
+                    }
+                }, _callee, this);
+            }));
+
+            function postSpecial(_x, _x2) {
+                return _ref.apply(this, arguments);
             }
-          }
-        }, _callee, this);
-      }));
 
-      function postSpecial(_x, _x2) {
-        return _ref.apply(this, arguments);
-      }
+            return postSpecial;
+        }()
 
-      return postSpecial;
-    }()
+    },
+    mounted: function mounted() {
 
-  },
-  mounted: function mounted() {
+        var app = this;
+        app.profile = this.$route.params.profile;
+        app.user_id = this.$route.params.user_id;
+        app.id = this.$route.params.id;
+        if (app.id > 0) {
 
-    var app = this;
-    app.profile = this.$route.params.profile;
-    app.user_id = this.$route.params.user_id;
-    app.id = this.$route.params.id;
-    if (app.id > 0) {
+            axios.get('/api/' + app.profile + '/back-office/opportunities/' + app.id).then(function (response) {
+                console.log(app);
+                app.$children[0].onShow(response.data);
+            }).catch(function (ex) {
+                console.log(ex);
 
-      axios.get('/api/' + app.profile + '/back-office/opportunities/' + app.id).then(function (response) {
-        console.log(app);
-        app.$children[0].onShow(response.data);
-      }).catch(function (ex) {
-        console.log(ex);
-
-        app.$toast.open({
-          duration: 5000,
-          message: 'Error trying to edit this record',
-          type: 'is-danger'
-        });
-      });
+                app.$toast.open({
+                    duration: 5000,
+                    message: 'Error trying to edit this record',
+                    type: 'is-danger'
+                });
+            });
+        }
     }
-  }
 
 });
 

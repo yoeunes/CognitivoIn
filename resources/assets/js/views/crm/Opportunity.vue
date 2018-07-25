@@ -41,7 +41,7 @@
                 </b-table-column>
 
                 <b-table-column field="relationship.customer_alias" v-bind:label="lang('back-office.Customer', 1)">
-                    {{ props.row.relationship.customer_alias }}
+                    {{ props.row.relationship!=null?props.row.relationship.customer_alias:'' }}
                 </b-table-column>
 
                 <b-table-column field="value" v-bind:label="lang('back-office.Value')">
