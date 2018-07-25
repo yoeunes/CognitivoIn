@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Profile;
 use Carbon\Carbon;
+use App\Http\Controllers\Controller;
 use App\Http\Controllers\AccountMovementController;
 use Illuminate\Http\Request;
 use DB;
