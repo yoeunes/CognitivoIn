@@ -71,7 +71,7 @@ class OrderController extends Controller
         {
 
             $order = Order::mySales()
-            ->where('id', $data->cloud_id)
+            ->where('id', $data->detail_cloud_id)
             ->with('details')
             ->first()
             ??
