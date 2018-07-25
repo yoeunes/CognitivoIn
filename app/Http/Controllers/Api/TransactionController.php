@@ -50,7 +50,7 @@ class TransactionController extends Controller
 
 // return response()->json($data, 500);
             $order=$orderController->store($request->replace([$data]), $profile);
-return response()->json($order);
+return response()->json($order,500);
             $data->cloud_id=$order->id;
             //A.3.1) Approve or Annull? Update Status (For not do not run aditional code)
             if ($data->cloud_id > 0 && $data->status == 2)
