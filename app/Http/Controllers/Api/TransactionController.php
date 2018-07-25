@@ -50,7 +50,7 @@ class TransactionController extends Controller
 
             // return response()->json($data, 500);
             //$order=$orderController->store($request->replace([$data]), $profile);
-            if (count($detail) > 0)
+            if (count($data->details) > 0)
             {
 
 
