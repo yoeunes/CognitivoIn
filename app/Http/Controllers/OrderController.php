@@ -67,11 +67,14 @@ class OrderController extends Controller
 
 
         $detail = collect($data->details);
+
+
         if (count($detail) > 0)
         {
+            return response()->json(count($detail), 403);
 
             $order = Order::mySales()
-            ->where('id', $data->detail_cloud_id)
+            ->where('id', $data->cloud_id)
             ->with('details')
             ->first()
             ??
@@ -96,7 +99,7 @@ class OrderController extends Controller
 
             $order->save();
 
-            foreach ($data->details as $detail)
+            foreach ($detail as $detail)
             {
 
                 $orderDetail = $order->details->where('id', $detail->detail_cloud_id)->first() ?? new OrderDetail();

@@ -24,7 +24,7 @@ class TransactionController extends Controller
     // TODO: Make chunks of data. learn from debehaber
     public function upload(Request $request, Profile $profile)
     {
-    
+
         $returnData = [];
         $pos=0;
         $data = collect();
@@ -50,7 +50,7 @@ class TransactionController extends Controller
 
 // return response()->json($data, 500);
             $order=$orderController->store($request->replace([$data]), $profile);
-
+return response()->json($order);
             $data->cloud_id=$order->id;
             //A.3.1) Approve or Annull? Update Status (For not do not run aditional code)
             if ($data->cloud_id > 0 && $data->status == 2)
