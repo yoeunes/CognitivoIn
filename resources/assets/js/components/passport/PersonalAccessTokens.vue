@@ -126,7 +126,7 @@
     </b-modal>
     <!-- Access Token Modal -->
     <b-modal :active.sync="isAcessToken" :width="800" scroll="keep">
-      <div class="modal fade" id="modal-access-token" tabindex="-1" role="dialog">
+      <div  id="modal-access-token" tabindex="-1" >
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
@@ -148,7 +148,7 @@
 
             <!-- Modal Actions -->
             <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-secondary" @click="showAcessTokenForm">Close</button>
             </div>
           </div>
         </div>
@@ -230,6 +230,10 @@ export default {
     */
     showCreateTokenForm() {
       this.isCreateToken= !this.isCreateToken;
+      //$('#modal-create-token').modal('show');
+    },
+    showAcessTokenForm() {
+      this.isAcessToken=!this.isAcessToken;
       //$('#modal-create-token').modal('show');
     },
 

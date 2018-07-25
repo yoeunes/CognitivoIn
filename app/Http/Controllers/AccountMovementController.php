@@ -184,14 +184,14 @@ class AccountMovementController extends Controller
       return response()->json('Unkown Resource', 401);
     }
 
-    public function makePayment(Request $request,$orderID)
+    public function makePayment(Request $request)
     {
       $data = $request[0];
 
       if (isset($data) == false)
       { $data = $request; }
 
-      $order = Order::where('id', $orderID)->with('details')->first();
+      $order = Order::where('id', $data->id)->with('details')->first();
       $amount=0;
       $vatAmount=0;
       foreach ($order->details as  $detail)
@@ -220,7 +220,7 @@ class AccountMovementController extends Controller
       }
 
       //Run code to check actual balance.
-      $scheduals = Schedule::where('relationship_id', $data->relationship_id)->get();
+      $scheduals = Schedule::where('relationship_id', $order->relationship_id)->get();
       // $schedules = DB::select('
       // select
       // schedule.currency as code,

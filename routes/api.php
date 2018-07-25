@@ -23,6 +23,7 @@ Route::group(['middleware' => 'auth:api'], function ()
     Route::prefix('sync')->group(function ()
     {
       Route::post('transaction', 'Api\TransactionController@upload');
+      Route::post('payment', 'Api\TransactionController@upload');
       Route::post('item', 'Api\ItemController@upload');
       Route::post('contract', 'Api\ContractController@upload');
       Route::post('customer', 'Api\CustomerController@upload');
@@ -90,7 +91,7 @@ Route::prefix('{profile}')->group(function ()
     //Annull movements on specific modules
     Route::prefix('transact')->group(function ()
     {
-      Route::post('sales', 'Api\TransactionController@SalesInvoice_createApprove');
+
       Route::get('salesApprove/{orderID}', 'OrderController@approve');
       Route::post('opportunities', 'OpportunityController@approve');
 
