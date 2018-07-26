@@ -18,7 +18,7 @@
 
 Route::group(['middleware' => 'auth:api'], function ()
 {
-
+});
   Route::prefix('{profile}')->group(function ()
   {
     Route::prefix('sync')->group(function ()
@@ -33,7 +33,7 @@ Route::group(['middleware' => 'auth:api'], function ()
       Route::post('supplier', 'Api\SupplierController@upload');
     });
   });
-});
+
 
 
 
