@@ -10,7 +10,7 @@ Vue.component('order-form',
         return {
             cloud_id: 0,
             item_name:'',
-            relationship_id:'',
+            relationship_cloud_id:'',
             customer_name:'',
             customer_address:'',
             customer_telephone:'',
@@ -29,7 +29,7 @@ Vue.component('order-form',
             var app = this;
 
             app.cloud_id = data.id;
-            app.relationship_id = data.relationship_id,
+            app.relationship_cloud_id = data.relationship_id,
             app.customer_name = data.relationship.customer_alias,
             app.customer_address = data.relationship.customer_address,
             app.customer_telephone = data.relationship.customer_telephone,
@@ -44,6 +44,7 @@ Vue.component('order-form',
                     sku: data.details[i].item_sku,
                     sub_total: data.details[i].unit_price * data.details[i].quantity,
                     name:  data.details[i].item_name,
+                    code:data.details[i].item_code,
                     quantity: data.details[i].quantity,
                     item_cloud_id: data.details[i].item_id
 
@@ -79,7 +80,7 @@ Vue.component('order-form',
             var app = this;
 
             app.cloud_id = data.id;
-            app.relationship_id = data.relationship_id,
+            app.relationship_cloud_id = data.relationship_id,
             app.customer_name = data.customer_alias,
             app.customer_address = data.customer_address,
             app.customer_telephone = data.customer_telephone,
@@ -94,6 +95,7 @@ Vue.component('order-form',
                     sku: data.details[i].item_sku,
                     sub_total: data.details[i].unit_price * data.details[i].quantity,
                     name:  data.details[i].item_name,
+                    code:data.details[i].item_code,
                     quantity: data.details[i].quantity,
                     item_cloud_id: data.details[i].item_id
                 });
@@ -192,7 +194,7 @@ Vue.component('order-form',
             {
                 var app = this;
                 if (member!=null) {
-                    app.relationship_id = member.id;
+                    app.relationship_cloud_id = member.id;
                     app.customer_name= member.customer_alias;
                     app.customer_address= member.customer_address;
                     app.customer_telephone= member.customer_telephone;
@@ -239,6 +241,7 @@ Vue.component('order-form',
                         unit_price: data.unit_price,
                         sub_total: data.unit_price,
                         name:  data.name,
+                        code :data.code,
                         quantity: 1,
                         item_cloud_id: data.id
                     });
