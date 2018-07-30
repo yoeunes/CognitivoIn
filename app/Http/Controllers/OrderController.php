@@ -188,12 +188,12 @@ class OrderController extends Controller
         {
             return response()->json('Resource not found', 404);
         }
-
-        if ($order->status == 2)
-        {
-            //If status 3, then you cannot annull as it is already annulled.
-            return response()->json('Forbidden. Order is already approved', 403);
-        }
+        //
+        // if ($order->status == 2)
+        // {
+        //     //If status 3, then you cannot annull as it is already annulled.
+        //     return response()->json('Forbidden. Order is already approved', 403);
+        // }
 
         $amount = 0;
         $vatAmount = 0;
