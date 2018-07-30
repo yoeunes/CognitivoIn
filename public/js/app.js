@@ -88192,6 +88192,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     onSave: function onSave($data) {
       var _this = this;
 
+      console.log($data);
       var app = this;
       axios.post('/api/' + app.profile + '/back-office/orders', $data).then(function () {
         _this.$toast.open({

@@ -226,6 +226,7 @@ export default {
 
     onSave($data)
     {
+      console.log($data);
       var app = this;
       axios.post('/api/' + app.profile + '/back-office/orders', $data)
       .then(() =>
