@@ -71,7 +71,7 @@ class OrderController extends Controller
 
         if (count($detail) > 0)
         {
-            
+
 
             $order = Order::mySales()
             ->where('id', $data->cloud_id)
@@ -99,7 +99,7 @@ class OrderController extends Controller
 
             $order->save();
 
-            foreach ($detail as $detail)
+            foreach ($details as $detail)
             {
 
                 $orderDetail = $order->details->where('id', $detail->detail_cloud_id)->first() ?? new OrderDetail();
