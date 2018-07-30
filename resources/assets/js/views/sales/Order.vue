@@ -34,7 +34,7 @@
 
                 <b-table-column custom-key="actions">
                     <button class="button is-small is-light">
-                        <router-link :to="{ name: 'customer.form',params: { profile:profile,id:props.row.id} }">
+                        <router-link :to="{ name: 'order.form',params: { profile:profile,id:props.row.id} }">
                             <i class="fa fa-pencil"></i>
                         </router-link>
                     </button>
