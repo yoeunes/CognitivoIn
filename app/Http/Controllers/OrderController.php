@@ -184,7 +184,7 @@ class OrderController extends Controller
         ->with('details')
         ->first();
 
-        if (isset($order))
+        if (!isset($order))
         {
             return response()->json('Resource not found', 404);
         }
