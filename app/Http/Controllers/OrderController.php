@@ -102,7 +102,7 @@ class OrderController extends Controller
             foreach ($detail as $detai)
             {
                 return response()->json($detai, 500);
-                $orderDetail = $order->details->where('id', $detai->detail_cloud_id)->first() ?? new OrderDetail();
+                $orderDetail = $order->details->where('id', $detai['detail_cloud_id'])->first() ?? new OrderDetail();
                 $orderDetail->order_id = $order->id;
 
                 if ($detail->item_cloud_id > 0)
