@@ -107,22 +107,22 @@ class OrderController extends Controller
 
                 if ($detail->item_cloud_id > 0)
                 {
-                    $orderDetail->item_id = $detai->item_cloud_id;
-                    $orderDetail->item_sku = $detai->sku;
-                    $orderDetail->item_name = $detai->name;
+                    $orderDetail->item_id = $detai['item_cloud_id'];
+                    $orderDetail->item_sku = $detai['sku'];
+                    $orderDetail->item_name = $detai['name'];
                 }
                 else
                 {
                     $ItemController = new Api\ItemController();
-                    $item = $ItemController->CreateItem($detai->item, $profile);
+                    $item = $ItemController->CreateItem($detai, $profile);
                     $orderDetail->item_id = $item->id;
                     $orderDetail->item_sku = $item->code;
                     $orderDetail->item_name = $item->name;
                 }
 
 
-                $orderDetail->quantity = $detai->quantity;
-                $orderDetail->unit_price = $detai->price;
+                $orderDetail->quantity = $detai['quantity'];
+                $orderDetail->unit_price = $detai['price'];
 
                 $orderDetail->save();
             }
