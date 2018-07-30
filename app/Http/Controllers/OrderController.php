@@ -102,27 +102,27 @@ class OrderController extends Controller
             foreach ($detail as $detai)
             {
 
-                $orderDetail = $order->details->where('id', $detail->detail_cloud_id)->first() ?? new OrderDetail();
+                $orderDetail = $order->details->where('id', $detai->detail_cloud_id)->first() ?? new OrderDetail();
                 $orderDetail->order_id = $order->id;
 
                 if ($detail->item_cloud_id > 0)
                 {
-                    $orderDetail->item_id = $detail->item_cloud_id;
-                    $orderDetail->item_sku = $detail->sku;
-                    $orderDetail->item_name = $detail->name;
+                    $orderDetail->item_id = $detai->item_cloud_id;
+                    $orderDetail->item_sku = $detai->sku;
+                    $orderDetail->item_name = $detai->name;
                 }
                 else
                 {
                     $ItemController = new Api\ItemController();
-                    $item = $ItemController->CreateItem($detail->item, $profile);
+                    $item = $ItemController->CreateItem($detai->item, $profile);
                     $orderDetail->item_id = $item->id;
                     $orderDetail->item_sku = $item->code;
                     $orderDetail->item_name = $item->name;
                 }
 
 
-                $orderDetail->quantity = $detail->quantity;
-                $orderDetail->unit_price = $detail->price;
+                $orderDetail->quantity = $detai->quantity;
+                $orderDetail->unit_price = $detai->price;
 
                 $orderDetail->save();
             }
