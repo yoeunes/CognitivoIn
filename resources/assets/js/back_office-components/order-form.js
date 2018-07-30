@@ -55,7 +55,7 @@ Vue.component('order-form',
         {
 
           var app = this;
-          axios.get('/api/' + app.$route.params.profile + '/back-office/transact/salesApprove/' + $data.id)
+          axios.get('/api/' + app.$route.params.profile + '/back-office/transact/salesApprove/' + $data.cloud_id)
           .then(() =>
           {
             this.$toast.open({
