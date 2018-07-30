@@ -99,7 +99,7 @@ class OrderController extends Controller
 
             $order->save();
 
-            foreach ($details as $detail)
+            foreach ($detail as $detai)
             {
 
                 $orderDetail = $order->details->where('id', $detail->detail_cloud_id)->first() ?? new OrderDetail();
