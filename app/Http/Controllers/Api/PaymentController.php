@@ -32,6 +32,8 @@ class PaymentController extends Controller
 
         $data2 = [];
         $data2[] = [
+           'currency'=>$order->currency,
+           'rate'=>$order->currency_rate,
             'date' => $order->date,
             'Detail'=> $vatDetail
         ];

@@ -96,7 +96,7 @@ class OrderController extends Controller
             $order->is_impex = $data->is_impex ?? 0;
             $order->is_printed = $data->is_printed ?? 0;
             $order->is_archived = $data->is_archived ?? 0;
-
+            $order->date=$data->date ?? Carbon::now();
             $order->save();
 
             foreach ($detail as $detai)
