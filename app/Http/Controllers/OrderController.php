@@ -106,7 +106,7 @@ class OrderController extends Controller
                 $orderDetail = $order->details->where('id', $detai['detail_cloud_id'])->first() ?? new OrderDetail();
                 $orderDetail->order_id = $order->id;
 
-                if ($detai->item_cloud_id > 0)
+                if ($detai['item_cloud_id'] > 0)
                 {
                     $orderDetail->item_id = $detai['item_cloud_id'];
                     $orderDetail->item_sku = $detai['sku'];
