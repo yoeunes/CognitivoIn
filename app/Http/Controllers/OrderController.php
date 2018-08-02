@@ -99,17 +99,18 @@ class OrderController extends Controller
             $order->date=$data->date ?? Carbon::now();
             $order->save();
 
-            foreach ($detail as $detai)
+            foreach ($data->details as $detai)
             {
+                $detai=collect($detai);
 
-                $orderDetail = $order->details->where('id', $detai->detail_cloud_id)->first() ?? new OrderDetail();
+                $orderDetail = $order->details->where('id', $detai['detail_cloud_id'])->first() ?? new OrderDetail();
                 $orderDetail->order_id = $order->id;
 
                 if ($detai->item_cloud_id > 0)
                 {
-                    $orderDetail->item_id = $detai->item_cloud_id;
-                    $orderDetail->item_sku = $detai->sku;
-                    $orderDetail->item_name = $detai->name;
+                    $orderDetail->item_id = $detai['item_cloud_id'];
+                    $orderDetail->item_sku = $detai['sku'];
+                    $orderDetail->item_name = $detai['name'];
                 }
                 else
                 {
@@ -121,8 +122,8 @@ class OrderController extends Controller
                 }
 
 
-                $orderDetail->quantity = $detai->quantity;
-                $orderDetail->unit_price = $detai->price;
+                $orderDetail->quantity = $detai['quantity'];
+                $orderDetail->unit_price = $detai['price'];
 
                 $orderDetail->save();
             }
