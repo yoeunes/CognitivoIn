@@ -19,20 +19,20 @@
 Route::group(['middleware' => 'auth:api'], function ()
 {
 });
-  Route::prefix('{profile}')->group(function ()
+Route::prefix('{profile}')->group(function ()
+{
+  Route::prefix('sync')->group(function ()
   {
-    Route::prefix('sync')->group(function ()
-    {
-      Route::post('transaction', 'Api\TransactionController@upload');
-      Route::post('payment', 'Api\PaymentController@upload');
-      Route::post('item', 'Api\ItemController@upload');
-      Route::post('contract', 'Api\ContractController@upload');
-      Route::post('customer', 'Api\CustomerController@upload');
-      Route::post('location', 'Api\LocationController@upload');
-      Route::post('saletax', 'Api\SaleTaxController@upload');
-      Route::post('supplier', 'Api\SupplierController@upload');
-    });
+    Route::post('transaction', 'Api\TransactionController@upload');
+    Route::post('payment', 'Api\PaymentController@upload');
+    Route::post('item', 'Api\ItemController@upload');
+    Route::post('contract', 'Api\ContractController@upload');
+    Route::post('customer', 'Api\CustomerController@upload');
+    Route::post('location', 'Api\LocationController@upload');
+    Route::post('saletax', 'Api\SaleTaxController@upload');
+    Route::post('supplier', 'Api\SupplierController@upload');
   });
+});
 
 
 
@@ -54,6 +54,7 @@ Route::prefix('{profile}')->group(function ()
     {
       Route::get('locations/{filterBy}', 'LocationController@index');
       Route::get('vats/{filterBy}', 'VatController@index');
+      Route::get('carts/{filterBy}', 'CartController@index');
       Route::get('contracts/{filterBy}', 'ContractController@index');
       Route::get('customers/{filterBy}', 'CustomerController@index');
       Route::get('suppliers/{filterBy}', 'SupplierController@index');

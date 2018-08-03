@@ -2,6 +2,7 @@
 require('./contract-form');
 require('./relationship-form');
 require('./item-form');
+require('./cart');
 require('./location-form');
 require('./opportunity-form');
 require('./opportunity-task-form');

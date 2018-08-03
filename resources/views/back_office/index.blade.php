@@ -53,25 +53,38 @@
                     <div class="block pull-r-l">
                         <div class="block-content block-content-full block-content-sm bg-body-light">
                             <div class="row">
-                                <div class="col-4">
-                                    <div class="font-size-sm font-w600 text-uppercase text-muted">Stat</div>
-                                    <div class="font-size-h4">100</div>
-                                </div>
-                                <div class="col-4">
-                                    <div class="font-size-sm font-w600 text-uppercase text-muted">Stat</div>
-                                    <div class="font-size-h4">200</div>
-                                </div>
-                                <div class="col-4">
-                                    <div class="font-size-sm font-w600 text-uppercase text-muted">Stat</div>
-                                    <div class="font-size-h4">300</div>
-                                </div>
-                            </div>
+                                <cart profile="{{ request()->route('profile')->slug}}" inline-template>
+                                    <div class="col-4">
+                                        <table>
+                                            <thead>
+                                                <tr>
+                                                    <th>@lang('global.Sku')</th>
+                                                    <th>@lang('global.Name')</th>
+                                                    <th>@lang('global.Quantity')</th>
+                                                    <th>@lang('global.Price')</th>
+
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr v-for="cart in carts">
+                                                    <td>@{{ cart.item.sku }}</td>
+                                                    <td>@{{ cart.item.name }}</td>
+                                                    <td>@{{ cart.quantity }}</td>
+                                                    <td>@{{ cart.unit_price }}</td>
+
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </cart>
+
+
                         </div>
                     </div>
                     <!-- END Mini Stats -->
 
                     <!-- Block -->
-                    <div class="block pull-r-l">
+                    {{-- <div class="block pull-r-l">
                         <div class="block-header bg-body-light">
                             <h3 class="block-title">Title</h3>
                             <div class="block-options">
@@ -84,7 +97,7 @@
                         <div class="block-content">
                             <p>Content...</p>
                         </div>
-                    </div>
+                    </div> --}}
                     <!-- END Block -->
                 </div>
                 <!-- END Side Content -->
