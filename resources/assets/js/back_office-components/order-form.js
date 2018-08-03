@@ -9,6 +9,7 @@ Vue.component('order-form',
     data: function () {
         return {
             cloud_id: 0,
+            status:1,
             item_name:'',
             relationship_cloud_id:'',
             customer_name:'',
@@ -54,25 +55,35 @@ Vue.component('order-form',
         onApprove($data)
         {
 
-          var app = this;
-          axios.get('/api/' + app.$route.params.profile + '/back-office/transact/salesApprove/' + $data.cloud_id)
-          .then(() =>
-          {
-            this.$toast.open({
-              message: 'Awsome! Your work has been saved',
-              type: 'is-success'
+            var app = this;
+            axios.get('/api/' + app.$route.params.profile + '/back-office/transact/salesApprove/' + $data.cloud_id)
+            .then(() =>
+            {
+                this.$toast.open({
+                    message: 'Awsome! Your work has been saved',
+                    type: 'is-success'
+                })
+                this.onStatusChanged();
+                //this.$router.push({ name: "order.index" });
             })
+            .catch(ex => {
+                console.log(ex.response);
+                this.$toast.open({
+                    duration: 5000,
+                    message: 'Error trying to save record',
+                    type: 'is-danger'
+                })
+            });
+        },
 
-            this.$router.push({ name: "order.index" });
-          })
-          .catch(ex => {
-            console.log(ex.response);
-            this.$toast.open({
-              duration: 5000,
-              message: 'Error trying to save record',
-              type: 'is-danger'
-            })
-          });
+        onStatusChanged(isapproved)
+        {
+            var app = this;
+            if (!isapproved) {
+                app.$parent.onSave(app.data);
+            }
+
+            this.status=parseInt(this.status)+1;
         },
 
         onShow: function(data)

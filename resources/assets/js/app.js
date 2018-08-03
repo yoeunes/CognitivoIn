@@ -61,6 +61,7 @@ import Customers from './views/sales/Customer';
 import CustomerForm from './views/sales/CustomerForm';
 import Orders from './views/sales/Order';
 import OrderForm from './views/sales/OrderForm';
+import OrderShow from './views/sales/OrderShow';
 import Payment from './views/sales/Payment';
 
 import Purchase_Dashboard from './views/purchase/Dashboard';
@@ -197,6 +198,11 @@ const router = new VueRouter({
           path: 'sales-order-:id',
           component: OrderForm,
           name: 'order.form'
+        },
+        {
+          path: 'sales-order-show:id',
+          component: OrderShow,
+          name: 'order.show'
         },
 
         {

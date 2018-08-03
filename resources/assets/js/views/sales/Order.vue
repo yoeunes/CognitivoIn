@@ -33,6 +33,11 @@
                 </b-table-column>
 
                 <b-table-column custom-key="actions">
+                  <button class="button is-small is-light">
+                      <router-link :to="{ name: 'order.show',params: { profile:profile,id:props.row.id} }">
+                          <i class="fa fa-eye"></i>
+                      </router-link>
+                  </button>
                     <button class="button is-small is-light">
                         <router-link :to="{ name: 'order.form',params: { profile:profile,id:props.row.id} }">
                             <i class="fa fa-pencil"></i>
