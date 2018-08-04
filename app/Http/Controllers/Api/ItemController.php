@@ -60,15 +60,23 @@ class ItemController extends Controller
         foreach ($collection as $key => $data)
         {
             $item = Item::where('id', $data->cloud_id)->first() ?? new Item();
-            $item->profile_id = $profile->id;
-            $item->sku = $data->code;
-            $item->name = $data->name;
-            $item->short_description = $data->comment;
-            $item->unit_price = $data->unit_price;
-            $item->currency = $data->currency_code ?? $profile->currency;
+            if ($item->updated_at < $data->updated_at)
+            {
+                $item->profile_id = $profile->id;
+                $item->sku = $data->code;
+                $item->name = $data->name;
+                $item->short_description = $data->comment;
+                $item->unit_price = $data->unit_price;
+                $item->currency = $data->currency_code ?? $profile->currency;
+                $item->save();
 
+                $arrUpdatedItems->push($item);
+            }
+            else if ($item->updated_at > $data->updated_at)
+            {
+                $arrUpdatedItems->push($item);
+            }
 
-            $item->save();
         }
         return response()->json('Sucess');
 

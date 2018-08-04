@@ -88190,8 +88190,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -88202,6 +88200,20 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     };
   },
 
+  computed: {
+    total: function total() {
+
+      var app = this;
+      var totalvalue = 0;
+
+      for (var i = 0; i < app.$children[0].details.length; i++) {
+        totalvalue = totalvalue + app.$children[0].details[i].sub_total;
+      }
+
+      return totalvalue.toFixed(2);
+    }
+
+  },
 
   methods: {
     onSave: function onSave($data) {
@@ -88228,7 +88240,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     onCancel: function onCancel() {
       console.log(this);
       this.$router.push({ name: "order.index" });
+    },
+
+    ChangeQuantity: function ChangeQuantity(data) {
+
+      var app = this;
+      data.sub_total = data.price * data.quantity;
     }
+
   },
   mounted: function mounted() {
 
@@ -88512,12 +88531,36 @@ var render = function() {
                                       )
                                     ]),
                                     _vm._v(" "),
-                                    _c("td", { staticClass: "text-center" }, [
-                                      _vm._v(_vm._s(detail.quantity))
-                                    ]),
+                                    _c(
+                                      "td",
+                                      { staticClass: "text-center" },
+                                      [
+                                        _c("b-input", {
+                                          directives: [
+                                            {
+                                              name: "change",
+                                              rawName: "v-change",
+                                              value: _vm.$parent.ChangeQuantity(
+                                                detail
+                                              ),
+                                              expression:
+                                                "$parent.ChangeQuantity(detail)"
+                                            }
+                                          ],
+                                          model: {
+                                            value: detail.quantity,
+                                            callback: function($$v) {
+                                              _vm.$set(detail, "quantity", $$v)
+                                            },
+                                            expression: "detail.quantity"
+                                          }
+                                        })
+                                      ],
+                                      1
+                                    ),
                                     _vm._v(" "),
                                     _c("td", { staticClass: "text-right" }, [
-                                      _vm._v(_vm._s(detail.unit_price))
+                                      _vm._v(_vm._s(detail.price))
                                     ]),
                                     _vm._v(" "),
                                     _c("td", { staticClass: "text-right" }, [
@@ -88526,11 +88569,38 @@ var render = function() {
                                   ])
                                 }),
                                 _vm._v(" "),
-                                _vm._m(3),
+                                _c("tr", [
+                                  _c(
+                                    "td",
+                                    {
+                                      staticClass: "text-right font-w600",
+                                      attrs: { colspan: "3" }
+                                    },
+                                    [_vm._v("Total Price:")]
+                                  ),
+                                  _vm._v(" "),
+                                  _c("td", { staticClass: "text-right" }, [
+                                    _vm._v(_vm._s(_vm.$parent.total))
+                                  ])
+                                ]),
                                 _vm._v(" "),
-                                _vm._m(4),
-                                _vm._v(" "),
-                                _vm._m(5)
+                                _c("tr", { staticClass: "table-success" }, [
+                                  _c(
+                                    "td",
+                                    {
+                                      staticClass:
+                                        "text-right font-w600 text-uppercase",
+                                      attrs: { colspan: "3" }
+                                    },
+                                    [_vm._v("Total Due:")]
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "td",
+                                    { staticClass: "text-right font-w600" },
+                                    [_vm._v(_vm._s(_vm.$parent.total))]
+                                  )
+                                ])
                               ],
                               2
                             )
@@ -88589,7 +88659,7 @@ var render = function() {
                       staticClass: "text-right",
                       staticStyle: { width: "10%" }
                     },
-                    [_vm._v("UNIT")]
+                    [_vm._v("PRICE")]
                   ),
                   _vm._v(" "),
                   _c(
@@ -88598,61 +88668,8 @@ var render = function() {
                       staticClass: "text-right",
                       staticStyle: { width: "10%" }
                     },
-                    [_vm._v("PRICE")]
+                    [_vm._v("TOTAL")]
                   )
-                ])
-              ])
-            },
-            function() {
-              var _vm = this
-              var _h = _vm.$createElement
-              var _c = _vm._self._c || _h
-              return _c("tr", [
-                _c(
-                  "td",
-                  {
-                    staticClass: "text-right font-w600",
-                    attrs: { colspan: "3" }
-                  },
-                  [_vm._v("Total Price:")]
-                ),
-                _vm._v(" "),
-                _c("td", { staticClass: "text-right" }, [_vm._v("$245,00")])
-              ])
-            },
-            function() {
-              var _vm = this
-              var _h = _vm.$createElement
-              var _c = _vm._self._c || _h
-              return _c("tr", [
-                _c(
-                  "td",
-                  {
-                    staticClass: "text-right font-w600",
-                    attrs: { colspan: "3" }
-                  },
-                  [_vm._v("Total Paid:")]
-                ),
-                _vm._v(" "),
-                _c("td", { staticClass: "text-right" }, [_vm._v("$245,00")])
-              ])
-            },
-            function() {
-              var _vm = this
-              var _h = _vm.$createElement
-              var _c = _vm._self._c || _h
-              return _c("tr", { staticClass: "table-success" }, [
-                _c(
-                  "td",
-                  {
-                    staticClass: "text-right font-w600 text-uppercase",
-                    attrs: { colspan: "3" }
-                  },
-                  [_vm._v("Total Due:")]
-                ),
-                _vm._v(" "),
-                _c("td", { staticClass: "text-right font-w600" }, [
-                  _vm._v("$0,00")
                 ])
               ])
             }

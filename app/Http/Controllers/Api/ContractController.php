@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Profile;
 use App\Contract;
+use App\ContractDetail;
 use Carbon\Carbon;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\OrderController;
@@ -16,11 +17,11 @@ class ContractController extends Controller
 {
 
   public function sync(Request $request, Profile $profile)
-    {
-        $this->upload($request, $profile);
-        $this->download($request, $profile);
-    }
-    
+  {
+    $this->upload($request, $profile);
+    $this->download($request, $profile);
+  }
+
   public function Upload(Request $request,Profile $profile)
   {
     $data = collect();
@@ -34,7 +35,7 @@ class ContractController extends Controller
 
     foreach ($collection as $key => $data)
     {
-      $contract = Contract::where('id',$data->id)->first() ?? new Contract();
+      $contract = Contract::where('id',$data->cloud_id)->first() ?? new Contract();
 
       $contract->name =$data->name;
       $contract->profile_id = $profile->id;
@@ -42,15 +43,15 @@ class ContractController extends Controller
       $contract->save();
 
       $totalPercent = 0;
-      $details = collect($data>details);
+      $details = collect($data->details);
 
       foreach ($details as $row)
       {
-        $detail = ContractDetail::where('id', $row['id'])->first()
+        $detail = ContractDetail::where('id', $row->id)->first()
         ?? new ContractDetail();
         $detail->contract_id = $contract->id;
-        $detail->percent =$row['percent'];
-        $detail->offset = $row['offset'];
+        $detail->percent =$row->percent;
+        $detail->offset = $row->offset;
         $detail->save();
 
         $totalPercent += $detail->percent;
@@ -64,6 +65,7 @@ class ContractController extends Controller
         $detail->save();
       }
     }
+    return response()->json('Sucess',200);
   }
 
   public function Download(Request $request,Profile $profile)

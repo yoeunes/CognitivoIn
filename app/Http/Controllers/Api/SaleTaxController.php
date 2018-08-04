@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Profile;
 use App\Vat;
+use App\VatDetail;
 use Carbon\Carbon;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\OrderController;
@@ -46,13 +47,14 @@ class SaleTaxController extends Controller
             foreach ($details as $row)
             {
                 //Do not do like this. Just use coefficients to get the difference.
-                $detail = VatDetail::where('id', $row['id'])->first() ?? new VatDetail();
+                $detail = VatDetail::where('id', $row->id)->first() ?? new VatDetail();
                 $detail->vat_id = $vat->id;
-                $detail->percent = $row['percent'];
-                $detail->coefficient = $row['coefficient'];
+                $detail->percent = $row->percent;
+                $detail->coefficient = $row->coefficient;
                 $detail->save();
             }
         }
+        return response()->json('Sucess',200);
     }
 
     public function download(Request $request,Profile $profile)

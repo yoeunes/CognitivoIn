@@ -91,8 +91,8 @@
 
                   <th>Product</th>
                   <th class="text-center">QTY</th>
-                  <th class="text-right" style="width: 10%;">UNIT</th>
                   <th class="text-right" style="width: 10%;">PRICE</th>
+                  <th class="text-right" style="width: 10%;">TOTAL</th>
                 </tr>
               </thead>
               <tbody>
@@ -101,22 +101,20 @@
                   <td>
                     <a href="be_pages_ecom_product_edit.html">{{detail.name}}</a>
                   </td>
-                  <td class="text-center">{{detail.quantity}}</td>
-                  <td class="text-right">{{detail.unit_price}}</td>
+                  <td class="text-center">
+                    <b-input v-model="detail.quantity" v-change="$parent.ChangeQuantity(detail)"></b-input>
+                  </td>
+                  <td class="text-right">{{detail.price}}</td>
                   <td class="text-right">{{detail.sub_total}}</td>
                 </tr>
 
                 <tr>
                   <td colspan="3" class="text-right font-w600">Total Price:</td>
-                  <td class="text-right">$245,00</td>
-                </tr>
-                <tr>
-                  <td colspan="3" class="text-right font-w600">Total Paid:</td>
-                  <td class="text-right">$245,00</td>
+                  <td class="text-right">{{$parent.total}}</td>
                 </tr>
                 <tr class="table-success">
                   <td colspan="3" class="text-right font-w600 text-uppercase">Total Due:</td>
-                  <td class="text-right font-w600">$0,00</td>
+                  <td class="text-right font-w600">{{$parent.total}}</td>
                 </tr>
               </tbody>
             </table>
@@ -144,7 +142,22 @@ export default {
 
     };
   },
+  computed:
+  {
+    total: function ()
+    {
 
+
+      var app = this;
+      var totalvalue = 0;
+
+      for (var i = 0; i < app.$children[0].details.length; i++)
+      { totalvalue = totalvalue + app.$children[0].details[i].sub_total; }
+
+      return totalvalue.toFixed(2);
+    }
+
+  },
 
 
   methods: {
@@ -176,6 +189,15 @@ export default {
     {
       console.log(this)
       this.$router.push({ name: "order.index" });
+    },
+    ChangeQuantity: function (data)
+    {
+
+
+      var app = this;
+      data.sub_total = data.price * data.quantity;
+
+
     }
 
   },
