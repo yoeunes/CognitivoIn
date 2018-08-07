@@ -77,11 +77,11 @@ class CustomerController extends Controller
         $relationship->contract_ref = $request->contract_ref ?? 0;
 
         $relationship->save();
-        $returnData[i]=$relationship;
+        $returnData[$i]=$relationship;
       }
       else if ($relationship->updated_at > $data->updated_at)
       {
-        $returnData[i]=$relationship;
+        $returnData[$i]=$relationship;
         $returnData[$i]->ref_id=$data->local_id;
       }
       $i=$i+1;
