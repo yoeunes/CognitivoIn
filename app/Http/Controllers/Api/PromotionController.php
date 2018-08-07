@@ -35,17 +35,25 @@ class PromotionController extends Controller
         foreach ($collection as $key => $data)
         {
             $itempromotion = ItemPromotion::where('id', $data->cloud_id)->first() ?? new ItemPromotion();
-            $itempromotion->ref_id=$data->local_id;
-            $promotion->type = $data->type;
-            $promotion->input_id = $data->input_id;
-            $promotion->output_id = $data->output_id;
-            $promotion->input_value = $data->input_value;
-            $promotion->output_value = $data->output_value;
-            $promotion->start_date = $data->start_date;
-            $promotion->end_date = $data->end_date;
+            if ($itempromotion->updated_at < $data->updated_at)
+            {
+                $itempromotion->ref_id=$data->local_id;
+                $promotion->type = $data->type;
+                $promotion->input_id = $data->input_id;
+                $promotion->output_id = $data->output_id;
+                $promotion->input_value = $data->input_value;
+                $promotion->output_value = $data->output_value;
+                $promotion->start_date = $data->start_date;
+                $promotion->end_date = $data->end_date;
 
-            $promotion->save();
-            $returnData[$i]=$promotion;
+                $promotion->save();
+                $returnData[$i]=$promotion;
+            }
+            else if ($item->updated_at > $data->updated_at)
+            {
+                $returnData[$i]=$promotion;
+            }
+
             $i=$i+1;
         }
         return response()->json($returnData,200);

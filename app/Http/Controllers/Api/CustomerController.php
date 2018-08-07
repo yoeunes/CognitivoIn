@@ -62,20 +62,28 @@ class CustomerController extends Controller
     foreach ($collection as $key => $data)
     {
       $relationship = Relationship::where('id', $data->cloud_id)->first() ?? new Relationship();
-      $relationship->ref_id = $data->id;
-      $relationship->supplier_id = $profile->id;
-      $relationship->supplier_accepted = true;
+      if ($relationship->updated_at < $data->updated_at)
+      {
+        $relationship->ref_id = $data->id;
+        $relationship->supplier_id = $profile->id;
+        $relationship->supplier_accepted = true;
 
-      $relationship->customer_taxid = $request->customer_taxid;
-      $relationship->customer_alias = $request->customer_alias;
-      $relationship->customer_address = $request->customer_address;
-      $relationship->customer_telephone = $request->customer_telephone;
-      $relationship->customer_email = $request->customer_email;
-      $relationship->credit_limit = $request->credit_limit ?? 0;
-      $relationship->contract_ref = $request->contract_ref ?? 0;
+        $relationship->customer_taxid = $request->customer_taxid;
+        $relationship->customer_alias = $request->customer_alias;
+        $relationship->customer_address = $request->customer_address;
+        $relationship->customer_telephone = $request->customer_telephone;
+        $relationship->customer_email = $request->customer_email;
+        $relationship->credit_limit = $request->credit_limit ?? 0;
+        $relationship->contract_ref = $request->contract_ref ?? 0;
 
-      $relationship->save();
-      $returnData[i]=$relationship;
+        $relationship->save();
+        $returnData[i]=$relationship;
+      }
+      else if ($item->updated_at > $data->updated_at)
+      {
+        $returnData[i]=$relationship;
+      }
+      $i=$i+1;
     }
 
     return response()->json($returnData,200);

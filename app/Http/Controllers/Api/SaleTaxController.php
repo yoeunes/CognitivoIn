@@ -36,25 +36,33 @@ class SaleTaxController extends Controller
     foreach ($collection as $key => $data)
     {
       $vat = Vat::where('id', $data->cloud_id)->first() ?? new Vat();
-      $vat->ref_id=$data->local_id;
-      $vat->profile_id = $profile->id;
-      $vat->name = $data->name;
-      $vat->country = $data->country ?? $profile->country;
-      $vat->applied_on = 1;
-      $vat->save();
-
-      $details = collect($data->details);
-
-      foreach ($details as $row)
+      if ($vat->updated_at < $data->updated_at)
       {
-        //Do not do like this. Just use coefficients to get the difference.
-        $detail = VatDetail::where('id', $row->id)->first() ?? new VatDetail();
-        $detail->vat_id = $vat->id;
-        $detail->percent = $row->percent;
-        $detail->coefficient = $row->coefficient;
-        $detail->save();
+        $vat->ref_id=$data->local_id;
+        $vat->profile_id = $profile->id;
+        $vat->name = $data->name;
+        $vat->country = $data->country ?? $profile->country;
+        $vat->applied_on = 1;
+        $vat->save();
+
+        $details = collect($data->details);
+
+        foreach ($details as $row)
+        {
+          //Do not do like this. Just use coefficients to get the difference.
+          $detail = VatDetail::where('id', $row->id)->first() ?? new VatDetail();
+          $detail->vat_id = $vat->id;
+          $detail->percent = $row->percent;
+          $detail->coefficient = $row->coefficient;
+          $detail->save();
+          $returnData[$i]=$vat;
+        }
       }
-      $returnData[$i]=$vat;
+      else if ($item->updated_at > $data->updated_at)
+      {
+        $returnData[$i]=$vat;
+      }
+
       $i=$i+1;
 
     }
