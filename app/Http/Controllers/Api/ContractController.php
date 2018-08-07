@@ -67,11 +67,12 @@ class ContractController extends Controller
           $detail->percent = $detail->percent + (1 - $totalPercent);
           $detail->save();
         }
-        $returnData[$i]=$vat;
+        $returnData[$i]=$contract;
       }
-      else if ($item->updated_at > $data->updated_at)
+      else if ($contract->updated_at > $data->updated_at)
       {
-          $returnData[$i]=$vat;
+        $returnData[$i]=$contract;
+        $returnData[$i]->ref_id=$data->local_id;
       }
 
       $i=$i+1;

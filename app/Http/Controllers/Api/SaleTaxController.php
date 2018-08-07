@@ -58,9 +58,10 @@ class SaleTaxController extends Controller
           $returnData[$i]=$vat;
         }
       }
-      else if ($item->updated_at > $data->updated_at)
+      else if ($vat->updated_at > $data->updated_at)
       {
         $returnData[$i]=$vat;
+        $returnData[$i]->ref_id=$data->local_id;
       }
 
       $i=$i+1;

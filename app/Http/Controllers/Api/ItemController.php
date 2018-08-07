@@ -60,11 +60,13 @@ class ItemController extends Controller
 
     foreach ($collection as $key => $data)
     {
+
       $item = Item::where('id', $data->cloud_id)->first() ?? new Item();
       if ($item->updated_at < $data->updated_at)
       {
+
         $item->profile_id = $profile->id;
-        $item->ref_id=$data->id;
+        $item->ref_id=$data->local_id;
         $item->sku = $data->code;
         $item->name = $data->name;
         $item->short_description = $data->comment;
@@ -76,12 +78,14 @@ class ItemController extends Controller
       }
       else if ($item->updated_at > $data->updated_at)
       {
+      
         $arrUpdatedItems[i]=$item;
+          $arrUpdatedItems[$i]->ref_id=$data->local_id;
       }
       $i=$i+1;
 
     }
-    return response()->json('Sucess');
+    return response()->json($arrUpdatedItems,200);
 
   }
 

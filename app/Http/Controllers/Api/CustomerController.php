@@ -64,7 +64,7 @@ class CustomerController extends Controller
       $relationship = Relationship::where('id', $data->cloud_id)->first() ?? new Relationship();
       if ($relationship->updated_at < $data->updated_at)
       {
-        $relationship->ref_id = $data->id;
+        $relationship->ref_id = $data->local_id;
         $relationship->supplier_id = $profile->id;
         $relationship->supplier_accepted = true;
 
@@ -79,9 +79,10 @@ class CustomerController extends Controller
         $relationship->save();
         $returnData[i]=$relationship;
       }
-      else if ($item->updated_at > $data->updated_at)
+      else if ($relationship->updated_at > $data->updated_at)
       {
         $returnData[i]=$relationship;
+        $returnData[$i]->ref_id=$data->local_id;
       }
       $i=$i+1;
     }
