@@ -23,7 +23,8 @@ class PromotionController extends Controller
     public function upload(Request $request,Profile $profile)
     {
         $data = collect();
-
+        $i=0;
+        $returnData = [];
         if ($request->all() != [])
         {
             $data = collect($request->all());
@@ -34,6 +35,7 @@ class PromotionController extends Controller
         foreach ($collection as $key => $data)
         {
             $itempromotion = ItemPromotion::where('id', $data->cloud_id)->first() ?? new ItemPromotion();
+            $itempromotion->ref_id=$data->local_id;
             $promotion->type = $data->type;
             $promotion->input_id = $data->input_id;
             $promotion->output_id = $data->output_id;
@@ -43,7 +45,10 @@ class PromotionController extends Controller
             $promotion->end_date = $data->end_date;
 
             $promotion->save();
+            $returnData[$i]=$promotion;
+            $i=$i+1;
         }
+        return response()->json($returnData,200);
     }
 
     public function download(Request $request,Profile $profile)

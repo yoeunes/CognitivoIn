@@ -15,79 +15,82 @@ use Swap\Laravel\Facades\Swap;
 class ItemController extends Controller
 {
 
-    public function search(Profile $profile, $query)
+  public function search(Profile $profile, $query)
+  {
+    //TODO add a search result for items
+    if (strlen($query) > 3)
     {
-        //TODO add a search result for items
-        if (strlen($query) > 3)
-        {
-            // code...
-        }
+      // code...
+    }
+  }
+
+  public function CreateItem($data,Profile $profile)
+  {
+    $item = new Item();
+    $item->profile_id = $profile->id;
+    $item->sku = $data->code;
+    $item->name = $data->name;
+    $item->short_description = $data->comment;
+    $item->unit_price = $data->unit_price;
+    $item->currency = $data->currency_code ?? $profile->currency;
+
+    $item->save();
+    return $item;
+
+  }
+
+  public function sync(Request $request, Profile $profile)
+  {
+    $this->upload($request, $profile);
+    $this->download($request, $profile);
+  }
+
+  public function upload(Request $request, Profile $profile)
+  {
+
+    $data = collect();
+    $i=0;
+    $arrUpdatedItems = [];
+    if ($request->all() != [])
+    {
+      $data = collect($request->all());
     }
 
-    public function CreateItem($data,Profile $profile)
+    $collection = json_decode($data->toJson());
+
+    foreach ($collection as $key => $data)
     {
-        $item = new Item();
+      $item = Item::where('id', $data->cloud_id)->first() ?? new Item();
+      if ($item->updated_at < $data->updated_at)
+      {
         $item->profile_id = $profile->id;
+        $item->ref_id=$data->id;
         $item->sku = $data->code;
         $item->name = $data->name;
         $item->short_description = $data->comment;
         $item->unit_price = $data->unit_price;
         $item->currency = $data->currency_code ?? $profile->currency;
-
         $item->save();
-        return $item;
+
+        $arrUpdatedItems[i]=$item;
+      }
+      else if ($item->updated_at > $data->updated_at)
+      {
+        $arrUpdatedItems[i]=$item;
+      }
+      $i=$i+1;
 
     }
+    return response()->json('Sucess');
 
-    public function sync(Request $request, Profile $profile)
-    {
-        $this->upload($request, $profile);
-        $this->download($request, $profile);
-    }
+  }
 
-    public function upload(Request $request, Profile $profile)
-    {
+  public function download(Request $request,Profile $profile)
+  {
+    //Return a HTTP Resource from Laravel.
+    $items = Item::where('profile_id',$profile->id)
+    ->get();
 
-        $data = collect();
-
-        if ($request->all() != [])
-        {
-            $data = collect($request->all());
-        }
-
-        $collection = json_decode($data->toJson());
-
-        foreach ($collection as $key => $data)
-        {
-            $item = Item::where('id', $data->cloud_id)->first() ?? new Item();
-            if ($item->updated_at < $data->updated_at)
-            {
-                $item->profile_id = $profile->id;
-                $item->sku = $data->code;
-                $item->name = $data->name;
-                $item->short_description = $data->comment;
-                $item->unit_price = $data->unit_price;
-                $item->currency = $data->currency_code ?? $profile->currency;
-                $item->save();
-
-                $arrUpdatedItems->push($item);
-            }
-            else if ($item->updated_at > $data->updated_at)
-            {
-                $arrUpdatedItems->push($item);
-            }
-
-        }
-        return response()->json('Sucess');
-
-    }
-
-    public function download(Request $request,Profile $profile)
-    {
-        //Return a HTTP Resource from Laravel.
-        $items = Item::where('profile_id',$profile->id)
-        ->get();
-
-        return response()->json($items);
-    }
+    return response()->json($items);
+  }
 }

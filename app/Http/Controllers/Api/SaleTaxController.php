@@ -15,54 +15,58 @@ use Swap\Laravel\Facades\Swap;
 class SaleTaxController extends Controller
 {
 
-    public function sync(Request $request, Profile $profile)
+  public function sync(Request $request, Profile $profile)
+  {
+    $this->upload($request, $profile);
+    $this->download($request, $profile);
+  }
+
+  public function upload(Request $request,Profile $profile)
+  {
+    $data = collect();
+    $i=0;
+    $returnData = [];
+    if ($request->all() != [])
     {
-        $this->upload($request, $profile);
-        $this->download($request, $profile);
+      $data = collect($request->all());
     }
 
-    public function upload(Request $request,Profile $profile)
+    $collection = json_decode($data->toJson());
+
+    foreach ($collection as $key => $data)
     {
-        $data = collect();
+      $vat = Vat::where('id', $data->cloud_id)->first() ?? new Vat();
+      $vat->ref_id=$data->local_id;
+      $vat->profile_id = $profile->id;
+      $vat->name = $data->name;
+      $vat->country = $data->country ?? $profile->country;
+      $vat->applied_on = 1;
+      $vat->save();
 
-        if ($request->all() != [])
-        {
-            $data = collect($request->all());
-        }
+      $details = collect($data->details);
 
-        $collection = json_decode($data->toJson());
+      foreach ($details as $row)
+      {
+        //Do not do like this. Just use coefficients to get the difference.
+        $detail = VatDetail::where('id', $row->id)->first() ?? new VatDetail();
+        $detail->vat_id = $vat->id;
+        $detail->percent = $row->percent;
+        $detail->coefficient = $row->coefficient;
+        $detail->save();
+      }
+      $returnData[$i]=$vat;
+      $i=$i+1;
 
-        foreach ($collection as $key => $data)
-        {
-            $vat = Vat::where('id', $data->cloud_id)->first() ?? new Vat();
-            $vat->profile_id = $profile->id;
-
-            $vat->name = $data->name;
-            $vat->country = $data->country ?? $profile->country;
-            $vat->applied_on = 1;
-            $vat->save();
-
-            $details = collect($data->details);
-
-            foreach ($details as $row)
-            {
-                //Do not do like this. Just use coefficients to get the difference.
-                $detail = VatDetail::where('id', $row->id)->first() ?? new VatDetail();
-                $detail->vat_id = $vat->id;
-                $detail->percent = $row->percent;
-                $detail->coefficient = $row->coefficient;
-                $detail->save();
-            }
-        }
-        return response()->json('Sucess',200);
     }
+    return response()->json($returnData,200);
+  }
 
-    public function download(Request $request,Profile $profile)
-    {
-        $vats = Vat::where('profile_id',$profile->id)
-        ->with('detail')
-        ->get();
+  public function download(Request $request,Profile $profile)
+  {
+    $vats = Vat::where('profile_id',$profile->id)
+    ->with('detail')
+    ->get();
 
-        return response()->json($vats);
-    }
+    return response()->json($vats);
+  }
 }

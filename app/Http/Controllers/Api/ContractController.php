@@ -25,7 +25,8 @@ class ContractController extends Controller
   public function Upload(Request $request,Profile $profile)
   {
     $data = collect();
-
+    $i=0;
+    $returnData = [];
     if ($request->all() != [])
     {
       $data = collect($request->all());
@@ -36,7 +37,7 @@ class ContractController extends Controller
     foreach ($collection as $key => $data)
     {
       $contract = Contract::where('id',$data->cloud_id)->first() ?? new Contract();
-
+      $contract->ref_id=$data->local_id;
       $contract->name =$data->name;
       $contract->profile_id = $profile->id;
       $contract->country = $profile->country;
@@ -64,8 +65,12 @@ class ContractController extends Controller
         $detail->percent = $detail->percent + (1 - $totalPercent);
         $detail->save();
       }
+
+      $returnData[$i]=$vat;
+      $i=$i+1;
+
     }
-    return response()->json('Sucess',200);
+    return response()->json($returnData,200);
   }
 
   public function Download(Request $request,Profile $profile)
