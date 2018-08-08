@@ -15,7 +15,10 @@ use Swap\Laravel\Facades\Swap;
 
 class ContractController extends Controller
 {
-
+  public function convert_date($date)
+  {
+      return Carbon::createFromFormat('Y-m-d H:i:s', $date);
+  }
   public function sync(Request $request, Profile $profile)
   {
     $this->upload($request, $profile);
@@ -37,7 +40,7 @@ class ContractController extends Controller
     foreach ($collection as $key => $data)
     {
       $contract = Contract::where('id',$data->cloud_id)->first() ?? new Contract();
-      if ($contract->updated_at < $data->updated_at)
+      if ($contract->updated_at < $this->convert_date($data->updated_at))
       {
         $contract->ref_id=$data->local_id;
         $contract->name =$data->name;
@@ -69,7 +72,7 @@ class ContractController extends Controller
         }
         $returnData[$i]=$contract;
       }
-      else if ($contract->updated_at > $data->updated_at)
+      else if ($contract->updated_at > $this->convert_date($data->updated_at))
       {
         $returnData[$i]=$contract;
         $returnData[$i]->ref_id=$data->local_id;
@@ -84,7 +87,7 @@ class ContractController extends Controller
   public function Download(Request $request,Profile $profile)
   {
     $contracts =Contract::where('profile_id',$profile->id)->
-    with('detail')
+    with('details')
     ->get();
     return response()->json($contracts);
   }

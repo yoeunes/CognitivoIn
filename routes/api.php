@@ -33,6 +33,18 @@ Route::group(['middleware' => 'auth:api'], function ()
       Route::post('saletax', 'Api\SaleTaxController@upload');
       Route::post('supplier', 'Api\SupplierController@upload');
     });
+    Route::prefix('download')->group(function ()
+    {
+      Route::get('transaction', 'Api\TransactionController@download');
+      Route::get('payment', 'Api\PaymentController@download');
+      Route::get('item', 'Api\ItemController@download');
+      Route::get('Promotion', 'Api\PromotionController@download');
+      Route::get('contract', 'Api\ContractController@download');
+      Route::get('customer', 'Api\CustomerController@download');
+      Route::get('location', 'Api\LocationController@download');
+      Route::get('saletax', 'Api\SaleTaxController@download');
+      Route::get('supplier', 'Api\SupplierController@download');
+    });
   });
 });
 

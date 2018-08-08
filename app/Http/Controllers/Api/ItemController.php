@@ -14,7 +14,10 @@ use Swap\Laravel\Facades\Swap;
 
 class ItemController extends Controller
 {
-
+  public function convert_date($date)
+  {
+      return Carbon::createFromFormat('Y-m-d H:i:s', $date);
+  }
   public function search(Profile $profile, $query)
   {
     //TODO add a search result for items
@@ -62,7 +65,7 @@ class ItemController extends Controller
     {
 
       $item = Item::where('id', $data->cloud_id)->first() ?? new Item();
-      if ($item->updated_at < $data->updated_at)
+      if ($item->updated_at < $this->convert_date($data->updated_at))
       {
 
         $item->profile_id = $profile->id;
@@ -76,9 +79,9 @@ class ItemController extends Controller
 
         $arrUpdatedItems[i]=$item;
       }
-      else if ($item->updated_at > $data->updated_at)
+      else if ($item->updated_at >$this->convert_date($data->updated_at))
       {
-      
+
         $arrUpdatedItems[i]=$item;
           $arrUpdatedItems[$i]->ref_id=$data->local_id;
       }

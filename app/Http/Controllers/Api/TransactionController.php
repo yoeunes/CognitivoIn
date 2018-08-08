@@ -19,7 +19,7 @@ use Swap\Laravel\Facades\Swap;
 
 class TransactionController extends Controller
 {
-
+  
     //upload indivdual and bulk invoice
     // TODO: Make chunks of data. learn from debehaber
     public function upload(Request $request, Profile $profile)
@@ -51,6 +51,7 @@ class TransactionController extends Controller
 
 
             $order=$orderController->store($request->replace([$data]), $profile);
+
             // if (count($data->details) > 0)
             // {
             //

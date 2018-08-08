@@ -13,6 +13,10 @@ use Swap\Laravel\Facades\Swap;
 
 class PromotionController extends Controller
 {
+    public function convert_date($date)
+    {
+        return Carbon::createFromFormat('Y-m-d H:i:s', $date);
+    }
 
     public function sync(Request $request, Profile $profile)
     {
@@ -35,7 +39,7 @@ class PromotionController extends Controller
         foreach ($collection as $key => $data)
         {
             $itempromotion = ItemPromotion::where('id', $data->cloud_id)->first() ?? new ItemPromotion();
-            if ($itempromotion->updated_at < $data->updated_at)
+            if ($itempromotion->updated_at < $this->convert_date($data->updated_at))
             {
                 $itempromotion->ref_id=$data->local_id;
                 $promotion->type = $data->type;
@@ -49,7 +53,7 @@ class PromotionController extends Controller
                 $promotion->save();
                 $returnData[$i]=$promotion;
             }
-            else if ($itempromotion->updated_at > $data->updated_at)
+            else if ($itempromotion->updated_at > $this->convert_date($data->updated_at))
             {
                 $returnData[$i]=$promotion;
                 $returnData[$i]->ref_id=$data->local_id;

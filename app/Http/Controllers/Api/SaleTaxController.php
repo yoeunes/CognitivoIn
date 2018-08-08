@@ -6,6 +6,7 @@ use App\Profile;
 use App\Vat;
 use App\VatDetail;
 use Carbon\Carbon;
+use DateTime;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\AccountMovementController;
@@ -36,8 +37,10 @@ class SaleTaxController extends Controller
     foreach ($collection as $key => $data)
     {
       $vat = Vat::where('id', $data->cloud_id)->first() ?? new Vat();
-      if ($vat->updated_at < $data->updated_at)
+      if ($vat->updated_at < $this->convert_date($data->updated_at))
       {
+
+
         $vat->ref_id=$data->local_id;
         $vat->profile_id = $profile->id;
         $vat->name = $data->name;
@@ -58,8 +61,9 @@ class SaleTaxController extends Controller
           $returnData[$i]=$vat;
         }
       }
-      else if ($vat->updated_at > $data->updated_at)
+      else if ($vat->updated_at > $this->convert_date($data->updated_at))
       {
+        //return response()->json($data->updated_at,500);
         $returnData[$i]=$vat;
         $returnData[$i]->ref_id=$data->local_id;
       }
@@ -69,11 +73,15 @@ class SaleTaxController extends Controller
     }
     return response()->json($returnData,200);
   }
+  public function convert_date($date)
+  {
+      return Carbon::createFromFormat('Y-m-d H:i:s', $date);
+  }
 
   public function download(Request $request,Profile $profile)
   {
     $vats = Vat::where('profile_id',$profile->id)
-    ->with('detail')
+    ->with('details')
     ->get();
 
     return response()->json($vats);

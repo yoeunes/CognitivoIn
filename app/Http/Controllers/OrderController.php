@@ -104,6 +104,7 @@ class OrderController extends Controller
       $order->is_printed = $data->is_printed ?? 0;
       $order->is_archived = $data->is_archived ?? 0;
       $order->date=$data->date ?? Carbon::now();
+      $order->ref_id=$data->local_id ?? 0;
       $order->save();
 
       foreach ($data->details as $detai)

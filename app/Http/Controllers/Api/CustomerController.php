@@ -11,7 +11,11 @@ use Swap\Laravel\Facades\Swap;
 
 class CustomerController extends Controller
 {
-
+  public function convert_date($date)
+  {
+      return Carbon::createFromFormat('Y-m-d H:i:s', $date);
+  }
+  
   public function search(Profile $profile, $query)
   {
     //TODO add a search result for items
@@ -62,7 +66,7 @@ class CustomerController extends Controller
     foreach ($collection as $key => $data)
     {
       $relationship = Relationship::where('id', $data->cloud_id)->first() ?? new Relationship();
-      if ($relationship->updated_at < $data->updated_at)
+      if ($relationship->updated_at < $this->convert_date($data->updated_at))
       {
         $relationship->ref_id = $data->local_id;
         $relationship->supplier_id = $profile->id;
@@ -79,7 +83,7 @@ class CustomerController extends Controller
         $relationship->save();
         $returnData[$i]=$relationship;
       }
-      else if ($relationship->updated_at > $data->updated_at)
+      else if ($relationship->updated_at > $this->convert_date($data->updated_at))
       {
         $returnData[$i]=$relationship;
         $returnData[$i]->ref_id=$data->local_id;
@@ -93,7 +97,7 @@ class CustomerController extends Controller
   public function download(Request $request,Profile $profile)
   {
     //Return a HTTP Resource from Laravel.
-    $items = Relationship::where('profile_id',$profile->id)
+    $items = Relationship::GetCustomers()
     ->get();
 
     return response()->json($items);
