@@ -20,7 +20,7 @@ class UpdateRefID extends Migration
       Schema::table('contracts', function (Blueprint $table) {
       $table->integer('ref_id')->unsigned();
       });
-      
+
       Schema::table('item_promotions', function (Blueprint $table) {
       $table->integer('ref_id')->unsigned();
       });

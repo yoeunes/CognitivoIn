@@ -53,7 +53,8 @@ class SaleTaxController extends Controller
         foreach ($details as $row)
         {
           //Do not do like this. Just use coefficients to get the difference.
-          $detail = VatDetail::where('id', $row->id)->first() ?? new VatDetail();
+          $detail = VatDetail::where('coefficient', $row->coefficient)->first() ?? new VatDetail();
+
           $detail->vat_id = $vat->id;
           $detail->percent = $row->percent;
           $detail->coefficient = $row->coefficient;
@@ -75,7 +76,7 @@ class SaleTaxController extends Controller
   }
   public function convert_date($date)
   {
-      return Carbon::createFromFormat('Y-m-d H:i:s', $date);
+    return Carbon::createFromFormat('Y-m-d H:i:s', $date);
   }
 
   public function download(Request $request,Profile $profile)

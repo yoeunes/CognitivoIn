@@ -53,7 +53,7 @@ class ContractController extends Controller
 
         foreach ($details as $row)
         {
-          $detail = ContractDetail::where('id', $row->id)->first()
+          $detail = ContractDetail::where('percent', $row->percent)->first()
           ?? new ContractDetail();
           $detail->contract_id = $contract->id;
           $detail->percent =$row->percent;
