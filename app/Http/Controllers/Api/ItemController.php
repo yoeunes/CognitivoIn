@@ -16,7 +16,7 @@ class ItemController extends Controller
 {
   public function convert_date($date)
   {
-      return Carbon::createFromFormat('Y-m-d H:i:s', $date);
+    return Carbon::createFromFormat('Y-m-d H:i:s', $date);
   }
   public function search(Profile $profile, $query)
   {
@@ -77,13 +77,13 @@ class ItemController extends Controller
         $item->currency = $data->currency_code ?? $profile->currency;
         $item->save();
 
-        $arrUpdatedItems[i]=$item;
+        $arrUpdatedItems[$i]=$item;
       }
       else if ($item->updated_at >$this->convert_date($data->updated_at))
       {
 
-        $arrUpdatedItems[i]=$item;
-          $arrUpdatedItems[$i]->ref_id=$data->local_id;
+        $arrUpdatedItems[$i]=$item;
+        $arrUpdatedItems[$i]->ref_id=$data->local_id;
       }
       $i=$i+1;
 
