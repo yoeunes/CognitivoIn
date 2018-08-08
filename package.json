@@ -12,7 +12,7 @@
     "devDependencies": {
         "axios": "^0.18",
         "bootstrap": "^4.1.1",
-        "browser-sync": "^2.24.5",
+        "browser-sync": "^2.24.6",
         "browser-sync-webpack-plugin": "2.0.1",
         "cross-env": "^5.2.0",
         "jquery": "^3.2",
@@ -26,7 +26,7 @@
         "ajv": "^6.5.2",
         "buefy": "^0.6.6",
         "moment": "^2.22.2",
-        "pngquant-bin": "^4.0.0",
+        "pngquant-bin": "^5.0.0",
         "vue-infinite-loading": "^2.3.1",
         "vue-moment": "^4.0.0",
         "vue-router": "^3.0.1",
