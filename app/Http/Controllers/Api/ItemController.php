@@ -35,7 +35,7 @@ class ItemController extends Controller
     $item->name = $data['name'];
     $item->short_description = $data['comment'];
     $item->unit_price = $data['unit_price'];
-    $item->currency = $data['currency_code'] ?? $profile->currency';
+    $item->currency = $data['currency_code'] ?? $profile->currency;
 
     $item->save();
     return $item;
