@@ -117,7 +117,7 @@ class OrderController extends Controller
         if ($detai['item_cloud_id'] > 0)
         {
           $orderDetail->item_id = $detai['item_cloud_id'];
-          $orderDetail->item_sku = $detai['sku'];
+          $orderDetail->item_sku = $detai['code'];
           $orderDetail->item_name = $detai['name'];
         }
         else
