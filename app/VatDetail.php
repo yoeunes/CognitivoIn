@@ -16,6 +16,7 @@ class VatDetail extends Model
   * @var array
   */
   protected $fillable = [
+    'id',
       'vat_id',
       'coefficient',
       'percent'
@@ -25,6 +26,6 @@ class VatDetail extends Model
 
   public function vat()
   {
-      return $this->belongsTo('App\Vat');
+      return $this->belongsTo('App\Vat','id','vat_id');
   }
 }

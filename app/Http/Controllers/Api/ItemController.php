@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Profile;
 use App\Item;
 use Carbon\Carbon;
+use App\Http\Resources\APIItemResource;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\AccountMovementController;
@@ -45,15 +46,14 @@ class ItemController extends Controller
   public function sync(Request $request, Profile $profile)
   {
     $this->upload($request, $profile);
-    $this->download($request, $profile);
+    $data=$this->download($request, $profile);
+    return response()->json($data,200);
   }
 
   public function upload(Request $request, Profile $profile)
   {
 
     $data = collect();
-    $i=0;
-    $arrUpdatedItems = [];
     if ($request->all() != [])
     {
       $data = collect($request->all());
@@ -61,7 +61,10 @@ class ItemController extends Controller
 
     $collection = json_decode($data->toJson());
 
-    foreach ($collection as $key => $data)
+
+
+
+    foreach ($collection as $data)
     {
 
       $item = Item::where('id', $data->cloud_id)->first() ?? new Item();
@@ -77,27 +80,21 @@ class ItemController extends Controller
         $item->currency = $data->currency_code ?? $profile->currency;
         $item->save();
 
-        $arrUpdatedItems[$i]=$item;
-      }
-      else if ($item->updated_at >$this->convert_date($data->updated_at))
-      {
 
-        $arrUpdatedItems[$i]=$item;
-        $arrUpdatedItems[$i]->ref_id=$data->local_id;
       }
-      $i=$i+1;
 
     }
-    return response()->json($arrUpdatedItems,200);
+
+    return response()->json('sucess',200);
 
   }
 
   public function download(Request $request,Profile $profile)
   {
     //Return a HTTP Resource from Laravel.
-    $items = Item::where('profile_id',$profile->id)
-    ->get();
+    return  APIItemResource::collection(Item::where('profile_id',$profile->id)
+    ->get());
 
-    return response()->json($items);
+
   }
 }

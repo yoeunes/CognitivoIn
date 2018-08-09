@@ -19,7 +19,12 @@ use Swap\Laravel\Facades\Swap;
 
 class TransactionController extends Controller
 {
-  
+  public function sync(Request $request, Profile $profile)
+  {
+    $this->upload($request, $profile);
+    $data=$this->download($request, $profile);
+    return response()->json($data,200);
+  }
     //upload indivdual and bulk invoice
     // TODO: Make chunks of data. learn from debehaber
     public function upload(Request $request, Profile $profile)
@@ -137,7 +142,7 @@ class TransactionController extends Controller
 
     public function download(Request $request, Profile $profile)
     {
-        $orders = Order::FromCustomers()
+        $orders = Order::mySales()
         ->leftJoin('order_status','orders.id','=','order_status.order_id')
         ->with('details')
         ->whereNull('sync_date')

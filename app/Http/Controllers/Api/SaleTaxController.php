@@ -7,11 +7,13 @@ use App\Vat;
 use App\VatDetail;
 use Carbon\Carbon;
 use DateTime;
+use App\Http\Resources\APIVatResource;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\AccountMovementController;
 use Illuminate\Http\Request;
 use Swap\Laravel\Facades\Swap;
+use DB;
 
 class SaleTaxController extends Controller
 {
@@ -19,14 +21,14 @@ class SaleTaxController extends Controller
   public function sync(Request $request, Profile $profile)
   {
     $this->upload($request, $profile);
-    $this->download($request, $profile);
+    $data=$this->download($request, $profile);
+    return response()->json($data,200);
   }
 
   public function upload(Request $request,Profile $profile)
   {
     $data = collect();
-    $i=0;
-    $returnData = [];
+
     if ($request->all() != [])
     {
       $data = collect($request->all());
@@ -40,7 +42,6 @@ class SaleTaxController extends Controller
       if ($vat->updated_at < $this->convert_date($data->updated_at))
       {
 
-
         $vat->ref_id=$data->local_id;
         $vat->profile_id = $profile->id;
         $vat->name = $data->name;
@@ -53,26 +54,20 @@ class SaleTaxController extends Controller
         foreach ($details as $row)
         {
           //Do not do like this. Just use coefficients to get the difference.
-          $detail = VatDetail::where('coefficient', $row->coefficient)->first() ?? new VatDetail();
+          $detail = VatDetail::where('coefficient', $row->coefficient)
+          ->where('vat_id', $vat->id)
+          ->first() ?? new VatDetail();
 
           $detail->vat_id = $vat->id;
           $detail->percent = $row->percent;
           $detail->coefficient = $row->coefficient;
           $detail->save();
-          $returnData[$i]=$vat;
+
         }
       }
-      else if ($vat->updated_at > $this->convert_date($data->updated_at))
-      {
-        //return response()->json($data->updated_at,500);
-        $returnData[$i]=$vat;
-        $returnData[$i]->ref_id=$data->local_id;
-      }
-
-      $i=$i+1;
 
     }
-    return response()->json($returnData,200);
+    return response()->json('Sucess',200);
   }
   public function convert_date($date)
   {
@@ -81,10 +76,9 @@ class SaleTaxController extends Controller
 
   public function download(Request $request,Profile $profile)
   {
-    $vats = Vat::where('profile_id',$profile->id)
-    ->with('details')
-    ->get();
+    return APIVatResource::collection(
+      Vat::with('details')->get());
 
-    return response()->json($vats);
+    //return response()->json($vats);
   }
 }

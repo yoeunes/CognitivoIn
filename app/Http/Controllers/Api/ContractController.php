@@ -6,6 +6,7 @@ use App\Profile;
 use App\Contract;
 use App\ContractDetail;
 use Carbon\Carbon;
+use App\Http\Resources\APIContractResource;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\AccountMovementController;
@@ -17,19 +18,19 @@ class ContractController extends Controller
 {
   public function convert_date($date)
   {
-      return Carbon::createFromFormat('Y-m-d H:i:s', $date);
+    return Carbon::createFromFormat('Y-m-d H:i:s', $date);
   }
   public function sync(Request $request, Profile $profile)
   {
     $this->upload($request, $profile);
-    $this->download($request, $profile);
+    $data=$this->download($request, $profile);
+    return response()->json($data,200);
   }
 
   public function Upload(Request $request,Profile $profile)
   {
     $data = collect();
-    $i=0;
-    $returnData = [];
+
     if ($request->all() != [])
     {
       $data = collect($request->all());
@@ -53,7 +54,9 @@ class ContractController extends Controller
 
         foreach ($details as $row)
         {
-          $detail = ContractDetail::where('percent', $row->percent)->first()
+          $detail = ContractDetail::where('percent', $row->percent)
+          ->where('contract_id', $contract->id)
+          ->first()
           ?? new ContractDetail();
           $detail->contract_id = $contract->id;
           $detail->percent =$row->percent;
@@ -70,26 +73,19 @@ class ContractController extends Controller
           $detail->percent = $detail->percent + (1 - $totalPercent);
           $detail->save();
         }
-        $returnData[$i]=$contract;
-      }
-      else if ($contract->updated_at > $this->convert_date($data->updated_at))
-      {
-        $returnData[$i]=$contract;
-        $returnData[$i]->ref_id=$data->local_id;
-      }
 
-      $i=$i+1;
+      }
 
     }
-    return response()->json($returnData,200);
+    return response()->json('sucess',200);
   }
 
   public function Download(Request $request,Profile $profile)
   {
-    $contracts =Contract::where('profile_id',$profile->id)->
+    return APIContractResource::collection(Contract::where('profile_id',$profile->id)->
     with('details')
-    ->get();
-    return response()->json($contracts);
+    ->get());
+
   }
 
 

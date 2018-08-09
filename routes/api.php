@@ -25,12 +25,12 @@ Route::group(['middleware' => 'auth:api'], function ()
     {
       Route::post('transaction', 'Api\TransactionController@upload');
       Route::post('payment', 'Api\PaymentController@upload');
-      Route::post('item', 'Api\ItemController@upload');
+      Route::post('item', 'Api\ItemController@sync');
       Route::post('Promotion', 'Api\PromotionController@upload');
-      Route::post('contract', 'Api\ContractController@upload');
-      Route::post('customer', 'Api\CustomerController@upload');
+      Route::post('contract', 'Api\ContractController@sync');
+      Route::post('customer', 'Api\CustomerController@sync');
       Route::post('location', 'Api\LocationController@upload');
-      Route::post('saletax', 'Api\SaleTaxController@upload');
+      Route::post('saletax', 'Api\SaleTaxController@sync');
       Route::post('supplier', 'Api\SupplierController@upload');
     });
     Route::prefix('download')->group(function ()

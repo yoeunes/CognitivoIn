@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Profile;
 use App\Relationship;
 use Carbon\Carbon;
+use App\Http\Resources\APICustomerResource;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Swap\Laravel\Facades\Swap;
@@ -13,9 +14,9 @@ class CustomerController extends Controller
 {
   public function convert_date($date)
   {
-      return Carbon::createFromFormat('Y-m-d H:i:s', $date);
+    return Carbon::createFromFormat('Y-m-d H:i:s', $date);
   }
-  
+
   public function search(Profile $profile, $query)
   {
     //TODO add a search result for items
@@ -45,17 +46,16 @@ class CustomerController extends Controller
 
   public function sync(Request $request, Profile $profile)
   {
-    $rsp = $this->upload($request, $profile);
-    $this->download($request, $profile);
+    $this->upload($request, $profile);
+    $data=$this->download($request, $profile);
 
-    return $rsp;
+    return response()->json($data,200);
   }
 
   public function upload(Request $request, Profile $profile)
   {
     $data = collect();
-    $i=0;
-    $returnData = [];
+
     if ($request->all() != [])
     {
       $data = collect($request->all());
@@ -81,25 +81,19 @@ class CustomerController extends Controller
         $relationship->contract_ref = $request->contract_ref ?? 0;
 
         $relationship->save();
-        $returnData[$i]=$relationship;
+
       }
-      else if ($relationship->updated_at > $this->convert_date($data->updated_at))
-      {
-        $returnData[$i]=$relationship;
-        $returnData[$i]->ref_id=$data->local_id;
-      }
-      $i=$i+1;
     }
 
-    return response()->json($returnData,200);
+    return response()->json('sucess',200);
   }
 
   public function download(Request $request,Profile $profile)
   {
     //Return a HTTP Resource from Laravel.
-    $items = Relationship::GetCustomers()
-    ->get();
+    return  APICustomerResource::collection(Relationship::GetCustomers()
+    ->get());
 
-    return response()->json($items);
+
   }
 }
