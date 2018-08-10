@@ -2,12 +2,14 @@
 
 namespace App;
 
+use Spatie\ModelStatus\HasStatuses;
 use Illuminate\Database\Eloquent\Model;
 
 class OrderDetail extends Model
 {
-    protected $table = 'order_details';
-    protected $fillable = [
+  use HasStatuses;
+  protected $table = 'order_details';
+  protected $fillable = [
     'order_id',
     'quantity',
     'unit_price',

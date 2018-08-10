@@ -10,6 +10,7 @@ use App\Vat;
 use App\VatDetail;
 use App\OrderDetail;
 use Carbon\Carbon;
+use App\Http\Resources\APITransactionResource;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\AccountMovementController;
@@ -21,17 +22,16 @@ class TransactionController extends Controller
 {
   public function sync(Request $request, Profile $profile)
   {
-    $this->upload($request, $profile);
+    $a=$this->upload($request, $profile);
     $data=$this->download($request, $profile);
-    return response()->json($data,200);
+    return response()->json($a,200);
   }
     //upload indivdual and bulk invoice
     // TODO: Make chunks of data. learn from debehaber
     public function upload(Request $request, Profile $profile)
     {
 
-        $returnData = [];
-        $pos=0;
+
         $data = collect();
 
         if ($request->all() != [])
@@ -129,26 +129,23 @@ class TransactionController extends Controller
             {
                 $orderController->annul($profile,$data->cloud_id);
             }
-            $returnData[$pos]=$order;
-            $pos=$pos+1;
+
             //A.3.2) Run promotion if approved
         }
 
         //TODO return values with created cloud_id back to client.
 
         //Wrong, do not send same collection again. no help to developer
-        return response()->json($returnData,200);
+        return response()->json('sucess',200);
     }
 
     public function download(Request $request, Profile $profile)
     {
-        $orders = Order::mySales()
-        ->leftJoin('order_status','orders.id','=','order_status.order_id')
+      return APITransactionResource::collection(
+        Order::mySales()
         ->with('details')
-        ->whereNull('sync_date')
-        ->get();
+        ->get());
 
-        return response()->json($orders);
     }
 
     public function approve(Request $request, Profile $profile)

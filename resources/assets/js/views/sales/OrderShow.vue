@@ -180,37 +180,31 @@
                 <table class="table table-borderless table-striped">
                   <thead>
                     <tr>
-                      <th style="width: 100px;">ID</th>
+            
                       <th>Product</th>
                       <th class="text-center">QTY</th>
-                      <th class="text-right" style="width: 10%;">UNIT</th>
                       <th class="text-right" style="width: 10%;">PRICE</th>
+                      <th class="text-right" style="width: 10%;">SUBTOTAL</th>
                     </tr>
                   </thead>
                   <tbody>
                     <tr v-for="detail in details">
-                      <td>
-                        <a class="font-w600" href="be_pages_ecom_product_edit.html">{{detail.id}}</a>
-                      </td>
+
                       <td>
                         <a href="be_pages_ecom_product_edit.html">{{detail.name}}</a>
                       </td>
                       <td class="text-center">{{detail.quantity}}</td>
-                      <td class="text-right">{{detail.unit_price}}</td>
+                      <td class="text-right">{{detail.price}}</td>
                       <td class="text-right">{{detail.sub_total}}</td>
                     </tr>
 
                     <tr>
-                      <td colspan="5" class="text-right font-w600">Total Price:</td>
-                      <td class="text-right">{{total}}</td>
-                    </tr>
-                    <tr>
-                      <td colspan="5" class="text-right font-w600">Total Paid:</td>
-                      <td class="text-right"></td>
+                      <td colspan="3" class="text-right font-w600">Total Price:</td>
+                      <td class="text-right">{{$parent.total}}</td>
                     </tr>
                     <tr class="table-success">
-                      <td colspan="5" class="text-right font-w600 text-uppercase">Total Due:</td>
-                      <td class="text-right font-w600">{{total}}</td>
+                      <td colspan="3" class="text-right font-w600 text-uppercase">Total Due:</td>
+                      <td class="text-right font-w600">{{$parent.total}}</td>
                     </tr>
                   </tbody>
                 </table>

@@ -1,13 +1,14 @@
 <?php
 
 namespace App;
-
+use Spatie\ModelStatus\HasStatuses;
 use Illuminate\Database\Eloquent\Model;
 use App\OrderDetail;
 use App\Relationship;
 
 class Order extends Model
 {
+  use HasStatuses;
     protected $table = 'orders';
 
     public function scopemySales($query)

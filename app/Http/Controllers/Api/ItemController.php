@@ -34,10 +34,10 @@ class ItemController extends Controller
     $item->profile_id = $profile->id;
     $item->sku = $data['code'];
     $item->name = $data['name'];
-    $item->short_description = $data['comment'];
-    $item->unit_price = $data['unit_price'];
+    $item->short_description = $data['comment']??'';
+    $item->unit_price = $data['unit_price']??0;
     $item->currency = $data['currency_code'] ?? $profile->currency;
-
+    $item->ref_id=$data['local_id'];
     $item->save();
     return $item;
 

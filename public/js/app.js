@@ -88965,12 +88965,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -89251,20 +89245,6 @@ var render = function() {
                                     _c(
                                       "a",
                                       {
-                                        staticClass: "font-w600",
-                                        attrs: {
-                                          href:
-                                            "be_pages_ecom_product_edit.html"
-                                        }
-                                      },
-                                      [_vm._v(_vm._s(detail.id))]
-                                    )
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("td", [
-                                    _c(
-                                      "a",
-                                      {
                                         attrs: {
                                           href:
                                             "be_pages_ecom_product_edit.html"
@@ -89279,7 +89259,7 @@ var render = function() {
                                   ]),
                                   _vm._v(" "),
                                   _c("td", { staticClass: "text-right" }, [
-                                    _vm._v(_vm._s(detail.unit_price))
+                                    _vm._v(_vm._s(detail.price))
                                   ]),
                                   _vm._v(" "),
                                   _c("td", { staticClass: "text-right" }, [
@@ -89293,17 +89273,15 @@ var render = function() {
                                   "td",
                                   {
                                     staticClass: "text-right font-w600",
-                                    attrs: { colspan: "5" }
+                                    attrs: { colspan: "3" }
                                   },
                                   [_vm._v("Total Price:")]
                                 ),
                                 _vm._v(" "),
                                 _c("td", { staticClass: "text-right" }, [
-                                  _vm._v(_vm._s(_vm.total))
+                                  _vm._v(_vm._s(_vm.$parent.total))
                                 ])
                               ]),
-                              _vm._v(" "),
-                              _vm._m(12),
                               _vm._v(" "),
                               _c("tr", { staticClass: "table-success" }, [
                                 _c(
@@ -89311,7 +89289,7 @@ var render = function() {
                                   {
                                     staticClass:
                                       "text-right font-w600 text-uppercase",
-                                    attrs: { colspan: "5" }
+                                    attrs: { colspan: "3" }
                                   },
                                   [_vm._v("Total Due:")]
                                 ),
@@ -89319,7 +89297,7 @@ var render = function() {
                                 _c(
                                   "td",
                                   { staticClass: "text-right font-w600" },
-                                  [_vm._v(_vm._s(_vm.total))]
+                                  [_vm._v(_vm._s(_vm.$parent.total))]
                                 )
                               ])
                             ],
@@ -89559,8 +89537,6 @@ var render = function() {
               var _c = _vm._self._c || _h
               return _c("thead", [
                 _c("tr", [
-                  _c("th", { staticStyle: { width: "100px" } }, [_vm._v("ID")]),
-                  _vm._v(" "),
                   _c("th", [_vm._v("Product")]),
                   _vm._v(" "),
                   _c("th", { staticClass: "text-center" }, [_vm._v("QTY")]),
@@ -89571,7 +89547,7 @@ var render = function() {
                       staticClass: "text-right",
                       staticStyle: { width: "10%" }
                     },
-                    [_vm._v("UNIT")]
+                    [_vm._v("PRICE")]
                   ),
                   _vm._v(" "),
                   _c(
@@ -89580,26 +89556,9 @@ var render = function() {
                       staticClass: "text-right",
                       staticStyle: { width: "10%" }
                     },
-                    [_vm._v("PRICE")]
+                    [_vm._v("SUBTOTAL")]
                   )
                 ])
-              ])
-            },
-            function() {
-              var _vm = this
-              var _h = _vm.$createElement
-              var _c = _vm._self._c || _h
-              return _c("tr", [
-                _c(
-                  "td",
-                  {
-                    staticClass: "text-right font-w600",
-                    attrs: { colspan: "5" }
-                  },
-                  [_vm._v("Total Paid:")]
-                ),
-                _vm._v(" "),
-                _c("td", { staticClass: "text-right" })
               ])
             }
           ]

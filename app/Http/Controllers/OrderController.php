@@ -80,17 +80,19 @@ class OrderController extends Controller
       ??
       new Order();
 
-      if ($data->relationship_cloud_id>0)
+      if ($data->relationship_cloud_id > 0)
       {
         $order->relationship_id = $data->relationship_cloud_id;
       }
       else
       {
-        $relationship_id=Relationship::where('is_default',1)->select('id')->first();
-        if (isset($relationship)) {
-          $order->relationship_id =$relationship_id;
+        $relationship_id = Relationship::where('is_default', 1)->select('id')->first();
+        if (isset($relationship))
+        {
+          $order->relationship_id = $relationship_id;
         }
-        else {
+        else
+        {
           $CustomerController = new Api\CustomerController();
           $order->relationship_id = $CustomerController->CreateCustomer($data->customer, $profile)->id;
         }
@@ -103,9 +105,21 @@ class OrderController extends Controller
       $order->is_impex = $data->is_impex ?? 0;
       $order->is_printed = $data->is_printed ?? 0;
       $order->is_archived = $data->is_archived ?? 0;
-      $order->date=$data->date ?? Carbon::now();
-      $order->ref_id=$data->local_id ?? 0;
+      $order->date = $data->date ?? Carbon::now();
+      $order->ref_id = $data->local_id ?? 0;
+
       $order->save();
+
+      //if $data->status == 1, then write
+      if ($data->status == 2)
+      {
+        $order->setStatus('Approved');
+      }
+      else
+      {
+        $order->setStatus('Pending');
+      }
+      //$model->setStatus('my first status', 'Comment from ERP or API');
 
       foreach ($data->details as $detai)
       {
@@ -128,10 +142,12 @@ class OrderController extends Controller
           $orderDetail->item_sku = $item->code;
           $orderDetail->item_name = $item->name;
         }
-
-
         $orderDetail->quantity = $detai['quantity'];
         $orderDetail->unit_price = $detai['price'];
+        if ($detai['is_shipped'])
+        {
+          $orderDetail->setStatus('Shipped');
+        }
 
         $orderDetail->save();
       }
