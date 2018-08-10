@@ -173,49 +173,116 @@
 
           <!-- Products -->
 
-          <div class="block block-rounded">
-            <div class="block-content">
-              <div class="table-responsive">
 
-                <table class="table table-borderless table-striped">
-                  <thead>
-                    <tr>
-            
-                      <th>Product</th>
-                      <th class="text-center">QTY</th>
-                      <th class="text-right" style="width: 10%;">PRICE</th>
-                      <th class="text-right" style="width: 10%;">SUBTOTAL</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr v-for="detail in details">
-
-                      <td>
-                        <a href="be_pages_ecom_product_edit.html">{{detail.name}}</a>
-                      </td>
-                      <td class="text-center">{{detail.quantity}}</td>
-                      <td class="text-right">{{detail.price}}</td>
-                      <td class="text-right">{{detail.sub_total}}</td>
-                    </tr>
-
-                    <tr>
-                      <td colspan="3" class="text-right font-w600">Total Price:</td>
-                      <td class="text-right">{{$parent.total}}</td>
-                    </tr>
-                    <tr class="table-success">
-                      <td colspan="3" class="text-right font-w600 text-uppercase">Total Due:</td>
-                      <td class="text-right font-w600">{{$parent.total}}</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          </div>
           <!-- END Products -->
 
 
         </div>
+        <div >
+          <h2 class="content-heading text-black">Commercial</h2>
+          <div class="row items-push">
+            <div class="col-lg-3">
+              <p class="text-muted">
+                This is how your item will be commercialized.
+              </p>
+            </div>
+
+            <div class="col-lg-7 offset-lg-1">
+              <div class="form-group row">
+                <div class="col-6">
+                  <label>Date</label>
+                  {{date}}
+
+                </div>
+              </div>
+              <div class="form-group row">
+                <div class="col-6">
+                  <label>Currency</label>
+                  {{currency}}
+                </div>
+
+                <div class="col-6">
+                  <label>Rate</label>
+                  {{rate}}
+                </div>
+              </div>
+
+              <div class="form-group row">
+
+                <div class="col-6">
+                  <label>Contract</label>
+                  <select disabled ="true"  v-model="contract_id" required class="custom-select" >
+                    <option v-for="contract in contracts" :value="contract.id">{{ contract.name }}</option>
+                  </select>
+                </div>
+                <div class="col-6">
+                  <label>Number</label>
+                  {{number}}
+                </div>
+                <div class="col-6">
+                  <label>code</label>
+                  {{code}}
+                </div>
+                <div class="col-6">
+                  <label>Expiry Date</label>
+                  {{code_expiry}}
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="block block-rounded">
+          <div class="block-content">
+            <div class="table-responsive">
+
+              <table class="table table-borderless table-striped">
+                <thead>
+                  <tr>
+                    <th>Product</th>
+                    <th class="text-center">VAT</th>
+                    <th class="text-center">QTY</th>
+                    <th class="text-right" style="width: 10%;">PRICE</th>
+                    <th class="text-right" style="width: 10%;">PriceVAt</th>
+                    <th class="text-right" style="width: 10%;">TOTAL</th>
+                    <th class="text-right" style="width: 10%;">TOTALVAt</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr v-for="detail in details">
+
+                    <td>
+                      <a href="be_pages_ecom_product_edit.html">{{detail.name}}</a>
+                    </td>
+                    <td class="text-center">
+                      <select disable="true" v-model="detail.vat_id" v-change="onPriceChange(detail)" required class="custom-select" >
+                        <option v-for="vat in vats" :value="vat.id">{{ vat.name }}</option>
+                      </select>
+                    </td>
+                    <td class="text-right">{{detail.quantity}}</td>
+                    <td class="text-right">{{detail.unit_price}}</td>
+                    <td class="text-right">{{detail.unit_price_vat}}</td>
+                    <td class="text-right">{{detail.sub_total}}</td>
+                    <td class="text-right">{{detail.sub_total_vat}}</td>
+                  </tr>
+
+                  <tr>
+                    <td colspan="5" class="text-right font-w600">Total Price:</td>
+                    <td class="text-right font-w600">{{$parent.total}}</td>
+                    <td class="text-right">{{$parent.totalVAT}}</td>
+                  </tr>
+                  <tr class="table-success">
+                    <td colspan="5" class="text-right font-w600 text-uppercase">Total Due:</td>
+                    <td class="text-right font-w600">{{$parent.total}}</td>
+                    <td class="text-right font-w600">{{$parent.totalVAT}}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
       </div>
+
     </order-form>
   </div>
 </template>
@@ -244,7 +311,19 @@ export default {
       { totalvalue = totalvalue + app.$children[0].details[i].sub_total; }
 
       return totalvalue.toFixed(2);
-    }
+    },
+    totalVAT: function ()
+  {
+
+
+    var app = this;
+    var totalvalue = 0;
+
+    for (var i = 0; i < app.$children[0].details.length; i++)
+    { totalvalue = totalvalue + app.$children[0].details[i].sub_total_vat; }
+
+    return totalvalue.toFixed(2);
+  }
   },
 
   methods: {

@@ -14,6 +14,7 @@ import VueRouter from 'vue-router';
 import VueResource from 'vue-resource';
 import Buefy from 'buefy';
 import Reports from './components/reports.vue';
+
 import 'buefy/lib/buefy.css';
 
 require('./bootstrap');
@@ -56,7 +57,7 @@ import Opportunities from './views/crm/Opportunity';
 import OpportunityForm from './views/crm/OpportunityForm';
 import OpportunityShow from './views/crm/OpportunityShow';
 
-import Sales_Dashboard from './views/sales/Dashboard';
+import Sales_Dashboard from './components/dash';
 import Customers from './views/sales/Customer';
 import CustomerForm from './views/sales/CustomerForm';
 import Orders from './views/sales/Order';
@@ -176,7 +177,7 @@ const router = new VueRouter({
         },
         {
           path: 'sales-dashboard',
-          component: Dashboard,
+          component: Sales_Dashboard,
           name: 'sales.dashboard'
         },
         {
@@ -200,7 +201,7 @@ const router = new VueRouter({
           name: 'order.form'
         },
         {
-          path: 'sales-order-show:id',
+          path: 'sales-order-show-:id',
           component: OrderShow,
           name: 'order.show'
         },
@@ -340,7 +341,8 @@ const router = new VueRouter({
 
   ],
   components: {
-    Reports : Reports
+    Reports : Reports,
+
 
   }
 });

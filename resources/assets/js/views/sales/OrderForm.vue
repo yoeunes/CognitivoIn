@@ -29,7 +29,7 @@
         <div class="row row-deck gutters-tiny">
 
           <!-- Billing Address -->
-          <div class="col-md-6">
+          <div class="col-md-5">
             <div class="block block-rounded">
               <div class="block-header block-header-default">
                 <h3 class="block-title">Billing Address</h3>
@@ -71,61 +71,131 @@
 
         <!-- Products -->
 
-        <div class="block block-rounded">
-          <div class="block-content">
-            <div class="table-responsive">
-              <b-field>
-                <b-autocomplete v-model="item_name" :data="items" placeholder="Search Item" field="name"
-                :loading="isFetching" @input="getItems" @select="option => addItem(option)">
-                <template slot-scope="props">
-                  <strong>@{{props.option.name}}</strong> | @{{props.option.code}}
-                </template>
-                <template slot="empty">
-                  There are no items
-                </template>
-              </b-autocomplete>
-            </b-field>
-            <table class="table table-borderless table-striped">
-              <thead>
-                <tr>
 
-                  <th>Product</th>
-                  <th class="text-center">QTY</th>
-                  <th class="text-right" style="width: 10%;">PRICE</th>
-                  <th class="text-right" style="width: 10%;">TOTAL</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr v-for="detail in details">
+      </div>
+      <div >
+        <h2 class="content-heading text-black">Commercial</h2>
+        <div class="row items-push">
+          <div class="col-lg-3">
+            <p class="text-muted">
+              This is how your item will be commercialized.
+            </p>
+          </div>
 
-                  <td>
-                    <a href="be_pages_ecom_product_edit.html">{{detail.name}}</a>
-                  </td>
-                  <td class="text-center">
-                    <b-input v-model="detail.quantity" v-change="$parent.ChangeQuantity(detail)"></b-input>
-                  </td>
-                  <td class="text-right">{{detail.price}}</td>
-                  <td class="text-right">{{detail.sub_total}}</td>
-                </tr>
+          <div class="col-lg-7 offset-lg-1">
+            <div class="form-group row">
+              <div class="col-6">
+                <label>Date</label>
+                <input type="date" class="form-control form-control-lg" v-model="date"/>
 
-                <tr>
-                  <td colspan="3" class="text-right font-w600">Total Price:</td>
-                  <td class="text-right">{{$parent.total}}</td>
-                </tr>
-                <tr class="table-success">
-                  <td colspan="3" class="text-right font-w600 text-uppercase">Total Due:</td>
-                  <td class="text-right font-w600">{{$parent.total}}</td>
-                </tr>
-              </tbody>
-            </table>
+              </div>
+            </div>
+            <div class="form-group row">
+              <div class="col-6">
+
+                <b-field label="Currency">
+                  <b-input placeholder="Currency" v-model="currency" type="text" maxlength="3" has-counter>
+                  </b-input>
+                </b-field>
+              </div>
+
+              <div class="col-6">
+                <label>Rate</label>
+                <input type="text" class="form-control form-control-lg" v-model="rate">
+              </div>
+            </div>
+
+            <div class="form-group row">
+
+              <div class="col-6">
+                <label>Contract</label>
+                <select v-model="contract_id" required class="custom-select" >
+                  <option v-for="contract in contracts" :value="contract.id">{{ contract.name }}</option>
+                </select>
+              </div>
+              <div class="col-6">
+                <label>Number</label>
+                <input type="text" class="form-control form-control-lg" v-model="number">
+              </div>
+              <div class="col-6">
+                <label>code</label>
+                <input type="text" class="form-control form-control-lg" v-model="code">
+              </div>
+              <div class="col-6">
+                <label>Expiry Date</label>
+                <input type="date" class="form-control form-control-lg" v-model="code_expiry"/>
+
+            </div>
           </div>
         </div>
       </div>
-      <!-- END Products -->
-
-
     </div>
+    <div class="block block-rounded">
+      <div class="block-content">
+        <div class="table-responsive">
+          <b-field>
+            <b-autocomplete v-model="item_name" :data="items" placeholder="Search Item" field="name"
+            :loading="isFetching" @input="getItems" @select="option => addItem(option)">
+            <template slot-scope="props">
+              <strong>@{{props.option.name}}</strong> | @{{props.option.code}}
+            </template>
+            <template slot="empty">
+              There are no items
+            </template>
+          </b-autocomplete>
+        </b-field>
+        <table class="table table-borderless table-striped">
+          <thead>
+            <tr>
+
+              <th>Product</th>
+              <th class="text-center">VAT</th>
+              <th class="text-center">QTY</th>
+              <th class="text-right" style="width: 10%;">PRICE</th>
+              <th class="text-right" style="width: 10%;">PriceVAt</th>
+              <th class="text-right" style="width: 10%;">TOTAL</th>
+              <th class="text-right" style="width: 10%;">TOTALVAt</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="detail in details">
+
+              <td>
+                <a href="be_pages_ecom_product_edit.html">{{detail.name}}</a>
+              </td>
+              <td class="text-center">
+                <select v-model="detail.vat_id" v-change="onPriceChange(detail)" required class="custom-select" >
+                  <option v-for="vat in vats" :value="vat.id">{{ vat.name }}</option>
+                </select>
+              </td>
+              <td class="text-center">
+                <b-input v-model="detail.quantity" v-change="$parent.ChangeQuantity(detail)"></b-input>
+              </td>
+              <td class="text-right">{{detail.unit_price}}</td>
+              <td class="text-right">{{detail.unit_price_vat}}</td>
+              <td class="text-right">{{detail.sub_total}}</td>
+              <td class="text-right">{{detail.sub_total_vat}}</td>
+            </tr>
+
+            <tr>
+              <td colspan="5" class="text-right font-w600">Total Price:</td>
+              <td class="text-right font-w600">{{$parent.total}}</td>
+              <td class="text-right">{{$parent.totalVAT}}</td>
+            </tr>
+            <tr class="table-success">
+              <td colspan="5" class="text-right font-w600 text-uppercase">Total Due:</td>
+              <td class="text-right font-w600">{{$parent.total}}</td>
+              <td class="text-right font-w600">{{$parent.totalVAT}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <!-- END Products -->
+
+
   </div>
+</div>
 </order-form>
 </div>
 </template>
@@ -153,6 +223,18 @@ export default {
 
       for (var i = 0; i < app.$children[0].details.length; i++)
       { totalvalue = totalvalue + app.$children[0].details[i].sub_total; }
+
+      return totalvalue.toFixed(2);
+    },
+    totalVAT: function ()
+    {
+
+
+      var app = this;
+      var totalvalue = 0;
+
+      for (var i = 0; i < app.$children[0].details.length; i++)
+      { totalvalue = totalvalue + app.$children[0].details[i].sub_total_vat; }
 
       return totalvalue.toFixed(2);
     }
@@ -195,10 +277,11 @@ export default {
 
 
       var app = this;
-      data.sub_total = data.price * data.quantity;
+      data.sub_total = data.unit_price * data.quantity;
+      data.sub_total_vat = data.unit_price_vat * data.quantity;
 
+    },
 
-    }
 
   },
   mounted: function mounted()

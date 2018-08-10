@@ -10,14 +10,22 @@ Vue.component('order-form',
         return {
             cloud_id: 0,
             status:1,
+            date:'',
+            code:'',
+            code_expiry:'',
+            number:'',
             item_name:'',
+            contract_id:'',
             relationship_cloud_id:'',
             customer_name:'',
             customer_address:'',
             customer_telephone:'',
             customer_email:'',
-            currency:'PYG',
+            currency:'',
+            rate:'',
             customers:[],
+            contracts:[],
+            vats:[],
             items:[],
             //itemscomponent:[],
             details:[]
@@ -30,6 +38,12 @@ Vue.component('order-form',
             var app = this;
 
             app.cloud_id = data.id;
+            app.contract_id = data.contract_id;
+            app.currency = data.currency;
+            app.rate = data.currency_rate;
+            app.code = data.code;
+            app.number = data.number;
+            app.code_expiry = data.code_expiry;
             app.relationship_cloud_id = data.relationship_id,
             app.customer_name = data.relationship.customer_alias,
             app.customer_address = data.relationship.customer_address,
@@ -41,14 +55,18 @@ Vue.component('order-form',
                 app.details.push({
                     detail_cloud_id:data.details[i].id,
                     price: data.details[i].unit_price,
+                    unit_price: data.details[i].unit_price,
+                    vat_id:data.details[i].vat_id,
+                    unit_price_vat: data.details[i].unit_price,
                     cost: data.details[i].unit_cost,
-                    sku: data.details[i].item_sku,
+                    code: data.details[i].item_sku,
                     sub_total: data.details[i].unit_price * data.details[i].quantity,
+                    sub_total_vat: data.details[i].unit_price_vat * data.details[i].quantity,
                     name:  data.details[i].item_name,
                     code:data.details[i].item_code,
                     quantity: data.details[i].quantity,
-                    item_cloud_id: data.details[i].item_id
-
+                    item_cloud_id: data.details[i].item_id,
+                    is_shipped:0
                 });
             }
         },
@@ -75,6 +93,32 @@ Vue.component('order-form',
                 })
             });
         },
+        onPriceChange: function(detail)
+        {
+
+            var app = this;
+
+            for (let i = 0; i < app.vats.length; i++)
+            {
+                if (detail.vat_id == app.vats[i].id)
+                {
+                    if (app.vats[i].details.length>0) {
+                        for (var j = 0; j < app.vats[i].details.length; j++)
+                        {
+
+
+                            detail.unit_price_vat = parseFloat(new Number(detail.unit_price) * (1 + new Number(app.vats[i].details[j].coefficient))).toFixed(2);
+                            detail.sub_total_vat=detail.unit_price_vat *detail.quantity;
+                        }
+                    }
+
+
+
+
+                }
+            }
+        },
+
 
         onStatusChanged(isapproved)
         {
@@ -102,9 +146,13 @@ Vue.component('order-form',
                 app.details.push({
                     detail_cloud_id:data.details[i].id,
                     price: data.details[i].unit_price,
+                    vat_id:data.details[i].vat_id,
+                    unit_price: new Number(data.details[i].unit_price),
+                    unit_price_vat: new Number(data.details[i].unit_price),
                     cost: data.details[i].unit_cost,
-                    sku: data.details[i].item_sku,
+                    code: data.details[i].item_sku,
                     sub_total: data.details[i].unit_price * data.details[i].quantity,
+                    sub_total: data.details[i].unit_price_vat * data.details[i].quantity,
                     name:  data.details[i].item_name,
                     code:data.details[i].item_code,
                     quantity: data.details[i].quantity,
@@ -123,7 +171,7 @@ Vue.component('order-form',
                 for(let i = 0; i < app.details.length; i++)
                 {
 
-                    if (app.details[i].sku == detail.sku)
+                    if (app.details[i].sku == detail.code)
                     {
                         orderdata = app.details[i];
 
@@ -140,7 +188,7 @@ Vue.component('order-form',
 
                         price: detail.price,
                         cost: detail.cost,
-                        sku: detail.sku,
+                        code: detail.sku,
                         sub_total: detail.price * detail.quantity,
                         name:  detail.name,
                         quantity: detail.quantity,
@@ -153,6 +201,7 @@ Vue.component('order-form',
 
                     orderdata.quantity =   orderdata.quantity + detail.quantity;
                     orderdata.sub_total = detail.quantity * detail.price;
+                    orderdata.sub_total_vat = detail.quantity * detail.unit_price_vat;
                     console.log(orderdata );
                 }
             },
@@ -165,7 +214,7 @@ Vue.component('order-form',
                 if (app.details != null) {
                     for(let i = 0; i < app.details.length; i++)
                     {
-                        if (app.details[i].sku == detail.sku)
+                        if (app.details[i].sku == detail.code)
                         {
                             orderdata = app.details[i];
                             index = i;
@@ -194,6 +243,7 @@ Vue.component('order-form',
                         {
                             orderdata.quantity = detail.quantity;
                             orderdata.sub_total = detail.quantity * detail.price;
+                            orderdata.sub_total_vat=detail.unit_price_vat *detail.qunatity;
                         }
                     }
 
@@ -248,13 +298,17 @@ Vue.component('order-form',
                     app.details.push({
                         detail_cloud_id:0,
                         price: data.unit_price,
-                        sku: data.sku,
+                        code: data.sku,
+                        vat_id: data.vat_id,
                         unit_price: data.unit_price,
+                        unit_price_vat: data.unit_price,
                         sub_total: data.unit_price,
+                        sub_total_vat: data.unit_price,
                         name:  data.name,
                         code :data.code,
                         quantity: 1,
-                        item_cloud_id: data.id
+                        item_cloud_id: data.id,
+                        is_shipped:0,
                     });
 
                 }
@@ -288,10 +342,57 @@ Vue.component('order-form',
                 }
 
             },
+            getContracts: function()
+            {
+                var app = this;
+
+                axios.get('/api/' + app.$route.params.profile + '/back-office/list/contracts/3')
+                .then(({ data }) =>
+                {
+                    if (data.data.length > 0)
+                    {
+                        app.contracts = [];
+                        for (let i = 0; i < data.data.length; i++)
+                        {
+                            app.contracts.push(data.data[i]);
+                        }
+                    }
+                })
+                .catch(ex => {
+                    console.log(ex);
+                    this.$swal('Error trying to load records.');
+                });
+
+
+            },
+            getVats: function()
+            {
+                var app = this;
+
+                axios.get('/api/' + app.$route.params.profile + '/back-office/list/vats/1')
+                .then(({ data }) =>
+                {
+                    if (data.data.length > 0)
+                    {
+                        app.vats = [];
+                        for (let i = 0; i < data.data.length; i++)
+                        {
+                            app.vats.push(data.data[i]);
+                        }
+                    }
+                })
+                .catch(ex => {
+                    console.log(ex);
+                    this.$swal('Error trying to load records.');
+                });
+
+
+            },
         },
 
         computed:
         {
+            
             // a computed getter
             grandTotal: function ()
             {
@@ -314,8 +415,8 @@ Vue.component('order-form',
 
         mounted()
         {
-            //this.itemscomponent = this.$children;
-
+            this.getContracts();
+            this.getVats();
 
 
 

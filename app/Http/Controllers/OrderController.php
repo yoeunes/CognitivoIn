@@ -107,7 +107,10 @@ class OrderController extends Controller
       $order->is_archived = $data->is_archived ?? 0;
       $order->date = $data->date ?? Carbon::now();
       $order->ref_id = $data->local_id ?? 0;
-
+      $order->contract_id = $data->contract_id ?? null;
+      $order->number = $data->number ?? null;
+      $order->code = $data->code ?? null;
+      $order->code_expiry = $data->code_expiry ?? null;
       $order->save();
 
       //if $data->status == 1, then write
@@ -131,7 +134,7 @@ class OrderController extends Controller
         if ($detai['item_cloud_id'] > 0)
         {
           $orderDetail->item_id = $detai['item_cloud_id'];
-          $orderDetail->item_sku = $detai['code'];
+          //$orderDetail->item_sku = $detai['code'];
           $orderDetail->item_name = $detai['name'];
         }
         else
@@ -142,6 +145,7 @@ class OrderController extends Controller
           $orderDetail->item_sku = $item->code;
           $orderDetail->item_name = $item->name;
         }
+        $orderDetail->vat_id=$detai['vat_id'];
         $orderDetail->quantity = $detai['quantity'];
         $orderDetail->unit_price = $detai['price'];
         if ($detai['is_shipped'])
