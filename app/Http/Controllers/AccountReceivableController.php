@@ -75,9 +75,8 @@ class AccountReceivableController extends Controller
 
         if (isset($schedual))
         {
-            if ($schedual->balance>0) {
-
-
+            if ($schedual->balance > 0)
+            {
                 $accountMovement = new AccountMovement();
                 $accountMovement->schedule_id = $request->ReferenceID;
                 $accountMovement->account_id = $account->id;
@@ -217,7 +216,7 @@ class AccountReceivableController extends Controller
         {
             //Bring only scheduals with positive balance. Also take only 5. To make it less heavy.
             $schedules = Schedule::where('relationship_id', $relationship->id)
-            ->take(50)
+            ->take(6)
             ->get();
 
             $schedules = collect($schedules);
@@ -250,7 +249,7 @@ class AccountReceivableController extends Controller
             return response()->json($return, 200);
         }
 
-        return response()->json('Customer not found.', 404);
+        return response()->json('Customer not found', 404);
     }
 
     public function annull(Request $request, Profile $profile, $id)
