@@ -34,7 +34,7 @@ class Schedule extends Model
 
     public function getBalanceAttribute()
     {
-        $payments = $this->payments->where('status', '!=', 3)->get();
+        $payments = $this->payments->where('status', '!=', 3);
 
         return $this->value - ($payments->sum(function ($payment)
         {
