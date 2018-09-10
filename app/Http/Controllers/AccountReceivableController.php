@@ -252,9 +252,9 @@ class AccountReceivableController extends Controller
         return response()->json('Customer not found', 404);
     }
 
-    public function annull(Request $request, Profile $profile, $id)
+    public function annull(Request $request, Profile $profile)
     {
-        $accountMovement = AccountMovement::where('id', $id)
+        $accountMovement = AccountMovement::where('id', $request['PaymentReference'])
         ->with('account')
         ->first();
 
