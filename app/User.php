@@ -9,6 +9,7 @@ use Illuminate\Notifications\Notifiable;
 use Lab404\Impersonate\Models\Impersonate;
 use Overtrue\LaravelFollow\Traits\CanFollow;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Lab404\Impersonate\Models\Impersonate;
 
 class User extends Authenticatable
 {
@@ -42,6 +43,11 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+    public function canImpersonate()
+    {
+        return $this->email == 'abhi@cognitivo.in';
+    }
+
     public function scopeSocial(){
         return Socialite::drive($driver)
         ->scopes(['public_profile', 'user_friends'])
@@ -63,8 +69,6 @@ class User extends Authenticatable
     {
         return $this->hasMany(ProfilePost::class);
     }
-
-
 
 // Send a Friend Request
 //
