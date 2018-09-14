@@ -91,6 +91,7 @@ class ItemController extends Controller
 
   public function download(Request $request,Profile $profile)
   {
+  
     //Return a HTTP Resource from Laravel.
     return  APIItemResource::collection(Item::where('profile_id',$profile->id)
     ->get());

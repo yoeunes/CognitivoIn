@@ -9,7 +9,7 @@ use Illuminate\Notifications\Notifiable;
 use Lab404\Impersonate\Models\Impersonate;
 use Overtrue\LaravelFollow\Traits\CanFollow;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Lab404\Impersonate\Models\Impersonate;
+
 
 class User extends Authenticatable
 {
