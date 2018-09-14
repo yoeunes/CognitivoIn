@@ -46,7 +46,8 @@ class ItemController extends Controller
   public function sync(Request $request, Profile $profile)
   {
     $data=$this->upload($request, $profile);
-    return response()->json(APIItemResource::collection($data),200);
+    $data = APIItemResource::collection(Item::whereIn('id',$data->select('id'))->get());
+    return response()->json($data,200);
   }
 
   public function upload(Request $request, Profile $profile)
