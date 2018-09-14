@@ -87,7 +87,7 @@ class ItemController extends Controller
       $i=$i+1;
 
     }
-    $itemData=Item::whereIn('id',$itemData)->get();
+    $itemData=APIItemResource::collection(Item::whereIn('id',$itemData)->get());
     return response()->json($itemData,200);
 
   }
