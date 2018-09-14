@@ -18,7 +18,7 @@ class APIItemResource extends JsonResource
             'cloud_id' => $this->id,
             'name' => $this->name,
             'code' => $this->sku,
-            'description' => $this->short_description,
+            'description' => $this->short_description??"",
             'price' => $this->uni_price,
             'local_id' => $this->ref_id,
             'vat_cloud_id' => $this->vat_id
