@@ -60,20 +60,20 @@
         echo json_encode($trans);
         ?>;
         </script>
+
         <main id="main-container">
             <div>
                 @yield('main')
             </div>
         </main>
+
     </div>
 
     <!-- Codebase Core JS -->
     <script src="/js/jquery.min.js"></script>
-    {{-- <script src="/js/lang-{{ \App::getLocale() }}.js"></script> --}}
     <script src="/js/codebase.min.js"></script>
     <script src="{{ mix('/js/app.js') }}"></script>
     @yield('scripts')
-    {{-- <script type="text/javascript" src="libs/jquery.slimscroll.min.js"></script> --}}
 </body>
 
 </html>
