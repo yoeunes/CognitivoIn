@@ -126,10 +126,16 @@ const router = new VueRouter({
       default:Dashboard,
       children: [
         {
+          path: 'setting',
+          component: passport-clients,
+          name: 'setting.token'
+        },
+        {
           path: 'config-profile',
           component: ProfileForm,
           name: 'profile.form'
         },
+
         {
           path: 'config-locations',
           component: Location,
