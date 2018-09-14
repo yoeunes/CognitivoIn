@@ -22,7 +22,7 @@ class APICustomerResource extends JsonResource
             'telephone' => $this->customer_telephone,
             'local_id' => $this->ref_id,
             'email' => $this->customer_email
-            }),
+
         ];
     }
 }
