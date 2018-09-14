@@ -45,15 +45,15 @@ class ItemController extends Controller
 
   public function sync(Request $request, Profile $profile)
   {
-    $this->upload($request, $profile);
-    $data=$this->download($request, $profile);
-    return response()->json($data,200);
+    $data=$this->upload($request, $profile);
+    return response()->json(APIItemResource::collection($data),200);
   }
 
   public function upload(Request $request, Profile $profile)
   {
 
     $data = collect();
+    $itemData = array();
     if ($request->all() != [])
     {
       $data = collect($request->all());
@@ -63,7 +63,7 @@ class ItemController extends Controller
 
 
 
-
+    $i=0;
     foreach ($collection as $data)
     {
 
@@ -82,16 +82,18 @@ class ItemController extends Controller
 
 
       }
+      $itemData[$i] = $item;
+      $i=$i+1;
 
     }
 
-    return response()->json('sucess',200);
+    return response()->json($itemData,200);
 
   }
 
   public function download(Request $request,Profile $profile)
   {
-  
+
     //Return a HTTP Resource from Laravel.
     return  APIItemResource::collection(Item::where('profile_id',$profile->id)
     ->get());
