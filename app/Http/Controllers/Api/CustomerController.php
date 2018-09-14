@@ -46,14 +46,16 @@ class CustomerController extends Controller
 
   public function sync(Request $request, Profile $profile)
   {
-    $this->upload($request, $profile);
-    $data=$this->download($request, $profile);
+    $data=$this->upload($request, $profile);
+    ///$data=$this->download($request, $profile);
 
     return response()->json($data,200);
   }
 
   public function upload(Request $request, Profile $profile)
   {
+
+    $customerData = array();
     $data = collect();
 
     if ($request->all() != [])
@@ -62,7 +64,7 @@ class CustomerController extends Controller
     }
 
     $collection = json_decode($data->toJson());
-
+    $i=0;
     foreach ($collection as $key => $data)
     {
       $relationship = Relationship::where('id', $data->cloud_id)->first() ?? new Relationship();
@@ -83,9 +85,11 @@ class CustomerController extends Controller
         $relationship->save();
 
       }
+      $customerData[$i] = $relationship->id;
+      $i=$i+1;
     }
-
-    return response()->json('sucess',200);
+    $customerData=APICustomerResource::collection(Relationship::whereIn('id',$customerData)->get());
+    return response()->json($customerData,200);
   }
 
   public function download(Request $request,Profile $profile)
