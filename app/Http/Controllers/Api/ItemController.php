@@ -84,12 +84,12 @@ class ItemController extends Controller
 
 
       }
-      $request[$i]->cloud_id = $item->id;
+      $itemData[$i] = $item->id;
       $i=$i+1;
 
     }
-    //$itemData=APIItemResource::collection(Item::whereIn('id',$itemData)->get());
-    return response()->json($request,200);
+    $itemData=APIItemResource::collection(Item::whereIn('id',$itemData)->get());
+    return response()->json($itemData,200);
 
   }
 
