@@ -175,12 +175,7 @@
         <!-- Side Navigation -->
         <div class="content-side content-side-full">
           <ul class="nav-main">
-             <li>
-              <router-link to="/dashboard/{{ request()->route('profile')->slug}}/setting">
-                <i class="si si-chart"></i>
-                @lang('back-office.Setting')
-              </router-link>
-            </li>
+
             <li>
               <router-link to="/dashboard/{{ request()->route('profile')->slug}}/config-crm-dashboard">
                 <i class="si si-chart"></i>
@@ -465,11 +460,11 @@
     <div class="content-header-section">
       <!-- User Dropdown -->
       <div class="btn-group" role="group">
-        <a href="/settings">
-          <button type="button" class="btn btn-rounded btn-dual-secondary" id="page-header-user-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+
+          <button href="{{ route('settings') }}" type="button" class="btn btn-rounded btn-dual-secondary" id="page-header-user-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
             {{ Auth::user()->profile->name }} <i class="fa fa-angle-down ml-5"></i>
           </button>
-        </a>
+
         <div class="dropdown-menu dropdown-menu-right min-width-150" aria-labelledby="page-header-user-dropdown" x-placement="bottom-end">
           <a class="dropdown-item" href="#">
             <i class="si si-user mr-5"></i> @lang('global.Profile')

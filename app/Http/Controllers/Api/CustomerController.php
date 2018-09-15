@@ -49,7 +49,7 @@ class CustomerController extends Controller
     $data=$this->upload($request, $profile);
     ///$data=$this->download($request, $profile);
 
-    return response()->json($data,200);
+    return response()->json($data->original,200);
   }
 
   public function upload(Request $request, Profile $profile)
