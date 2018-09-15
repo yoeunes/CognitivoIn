@@ -113,11 +113,7 @@ const router = new VueRouter({
             component: MainView,
             default:Dashboard,
             children: [
-                {
-                    path: 'setting',
-                    component: passport-clients,
-                    name: 'setting.token'
-                },
+
                 {
                     path: 'config-profile',
                     component: ProfileForm,
@@ -169,11 +165,11 @@ const router = new VueRouter({
                     component: OpportunityShow,
                     name: 'opportunity.show'
                 },
-                {
-                    path: 'sales-dashboard',
-                    component: Sales_Dashboard,
-                    name: 'sales.dashboard'
-                },
+                // {
+                //     path: 'sales-dashboard',
+                //     component: Sales_Dashboard,
+                //     name: 'sales.dashboard'
+                // },
                 {
                     path:'sales-customers',
                     component: Customers,
@@ -283,10 +279,11 @@ const router = new VueRouter({
                 }
             ]
         },
-    ],
-    components: {
-        Reports : Reports,
-    }
+    ]
+    // ,
+    // components: {
+    //     Reports : Reports,
+    // }
 });
 
 const app = new Vue({

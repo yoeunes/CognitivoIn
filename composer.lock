@@ -4637,12 +4637,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/antonioribeiro/countries.git",
-                "reference": "df4a00d7567b412e9426e341c6aa5fa71b6fa15e"
+                "reference": "028b295dbd8b09384956e1c9fdb3e5eccdbae1da"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/antonioribeiro/countries/zipball/df4a00d7567b412e9426e341c6aa5fa71b6fa15e",
-                "reference": "df4a00d7567b412e9426e341c6aa5fa71b6fa15e",
+                "url": "https://api.github.com/repos/antonioribeiro/countries/zipball/028b295dbd8b09384956e1c9fdb3e5eccdbae1da",
+                "reference": "028b295dbd8b09384956e1c9fdb3e5eccdbae1da",
                 "shasum": ""
             },
             "require": {
