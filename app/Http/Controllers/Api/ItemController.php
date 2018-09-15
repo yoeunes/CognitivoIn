@@ -72,7 +72,7 @@ class ItemController extends Controller
       $item = Item::where('id', $data->cloud_id)->first() ?? new Item();
       if ($item->updated_at < $this->convert_date($data->updated_at))
       {
-      
+
         $item->profile_id = $profile->id;
         $item->ref_id=$data->local_id;
         $item->sku = $data->code;
@@ -84,12 +84,12 @@ class ItemController extends Controller
 
 
       }
-      $itemData[$i] = $item->id;
+      $request[$i]->cloud_id = $item->id;
       $i=$i+1;
 
     }
-    $itemData=APIItemResource::collection(Item::whereIn('id',$itemData)->get());
-    return response()->json($itemData,200);
+    //$itemData=APIItemResource::collection(Item::whereIn('id',$itemData)->get());
+    return response()->json($request,200);
 
   }
 

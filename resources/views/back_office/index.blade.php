@@ -461,9 +461,8 @@
       <!-- User Dropdown -->
       <div class="btn-group" role="group">
 
-          <button href="{{ route('settings') }}" type="button" class="btn btn-rounded btn-dual-secondary" id="page-header-user-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-            {{ Auth::user()->profile->name }} <i class="fa fa-angle-down ml-5"></i>
-          </button>
+        <a href="{{ route('settings') }}" class="btn btn-rounded ">{{ Auth::user()->profile->name }}</a>
+          
 
         <div class="dropdown-menu dropdown-menu-right min-width-150" aria-labelledby="page-header-user-dropdown" x-placement="bottom-end">
           <a class="dropdown-item" href="#">

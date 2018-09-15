@@ -22,13 +22,21 @@
         @endif
     @endisset
 
-<div class="">
-    <passport-clients></passport-clients>
-    <passport-authorized-clients></passport-authorized-clients>
-    <passport-personal-access-tokens></passport-personal-access-tokens>
-</div>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="">
+                        <passport-clients></passport-clients>
+                        <passport-authorized-clients></passport-authorized-clients>
+                        <passport-personal-access-tokens></passport-personal-access-tokens>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
 
-    @include('profile.setting')
+    {{-- @include('profile.setting') --}}
 
 @endsection

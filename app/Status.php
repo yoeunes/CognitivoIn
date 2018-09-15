@@ -5,7 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 
 
-class Account extends Model
+class Status extends Model
 {
 
     protected $table = 'statuses';
