@@ -72,11 +72,11 @@ class ItemController extends Controller
       $item = Item::where('id', $data->cloud_id)->first() ?? new Item();
       if ($item->updated_at < $this->convert_date($data->updated_at))
       {
-
+        $str=$data->name;
         $item->profile_id = $profile->id;
         $item->ref_id=$data->local_id;
         $item->sku = $data->code;
-        $item->name = $data->name;
+        $item->name = $str.substring(0, 100) + '...';
         $item->short_description = $data->comment;
         $item->unit_price = $data->unit_price;
         $item->currency = $data->currency_code ?? $profile->currency;
