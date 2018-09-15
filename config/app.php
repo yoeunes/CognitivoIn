@@ -156,7 +156,6 @@ return [
         Swap\Laravel\SwapServiceProvider::class,
         Mpociot\ApiDoc\ApiDocGeneratorServiceProvider::class,
         Bugsnag\BugsnagLaravel\BugsnagServiceProvider::class,
-        Lab404\Impersonate\ImpersonateServiceProvider::class,
 
         /*
         * Application Service Providers...
