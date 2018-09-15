@@ -30,10 +30,11 @@ class ItemController extends Controller
 
   public function CreateItem($data,Profile $profile)
   {
+    $str=$data['name'];
     $item = new Item();
     $item->profile_id = $profile->id;
     $item->sku = $data['code'];
-    $item->name = $data['name'];
+    $item->name = $str.substring(0, 100) + '...';
     $item->short_description = $data['comment']??'';
     $item->unit_price = $data['unit_price']??0;
     $item->currency = $data['currency_code'] ?? $profile->currency;
