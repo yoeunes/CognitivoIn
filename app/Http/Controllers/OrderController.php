@@ -148,12 +148,13 @@ class OrderController extends Controller
         $orderDetail->vat_id=$detai['vat_id'];
         $orderDetail->quantity = $detai['quantity'];
         $orderDetail->unit_price = $detai['price'];
+        $orderDetail->save();
         if ($detai['is_shipped'])
         {
           $orderDetail->setStatus('Shipped');
         }
 
-        $orderDetail->save();
+
       }
 
       return $order;
