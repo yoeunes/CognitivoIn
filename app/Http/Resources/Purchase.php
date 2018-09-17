@@ -3,6 +3,7 @@
 namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
+use App\Http\Resources\PurchaseDetail as PurchaseDetailResource;
 
 class Purchase extends JsonResource
 {
@@ -14,6 +15,27 @@ class Purchase extends JsonResource
      */
     public function toArray($request)
     {
-        return parent::toArray($request);
+        return [
+            'localId' => $this->localId,
+            'cloudId' => $this->id,
+
+            'locationCloudId' => $this->location_id,
+            'paymentContractCloudId' => $this->payment_contract_id,
+            'supplierCloudId' => $this->relationship_id,
+
+            'date' => $this->date,
+            'status' => $this->status,
+
+            'InvoiceNumber' => $this->number,
+            'InvoiceCode' => $this->code,
+
+            'currencyCode' => $this->currency,
+            'currencyRate' => $this->rate,
+
+            'details' => PurchaseDetailResource::collection($this->whenLoaded('details')),
+
+            'isArchived' => $this->is_archived,
+            'updatedAt' => $this->updated_at,
+        ];
     }
 }

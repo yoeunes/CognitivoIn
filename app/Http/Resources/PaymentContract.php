@@ -3,6 +3,7 @@
 namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
+use App\Http\Resources\PaymentContractDetail as PaymentContractDetailResource;
 
 class PaymentContract extends JsonResource
 {
@@ -14,6 +15,14 @@ class PaymentContract extends JsonResource
      */
     public function toArray($request)
     {
-        return parent::toArray($request);
+        return [
+            'localId' => $this->localId,
+            'cloudId' => $this->id,
+
+            'name' => $this->name,
+            'details' => PaymentContractDetailResource::collection($this->whenLoaded('details')),
+
+            'updatedAt' => $this->updated_at,
+        ];
     }
 }

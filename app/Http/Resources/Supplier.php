@@ -23,6 +23,7 @@ class Supplier extends JsonResource
             'address' => $this->supplier_address,
             'telephone' => $this->supplier_telephone,
             'email' => $this->supplier_email,
+            
             'leadTime' => $this->lead_time,
             'creditLimit' => $this->credit_limit,
 

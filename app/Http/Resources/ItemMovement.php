@@ -14,6 +14,17 @@ class ItemMovement extends JsonResource
      */
     public function toArray($request)
     {
-        return parent::toArray($request);
+        return [
+            'localId' => $this->localId,
+            'cloudId' => $this->id,
+
+            'locationCloudId' => $this->location_id,
+            'date' => $this->date,
+            'debit' => $this->debit,
+            'credit' => $this->credit,
+            'comment' => $this->comment,
+
+            'updatedAt' => $this->updated_at,
+        ];
     }
 }

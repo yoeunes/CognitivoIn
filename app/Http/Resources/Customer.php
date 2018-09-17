@@ -23,6 +23,7 @@ class Customer extends JsonResource
             'address' => $this->customer_address,
             'telephone' => $this->customer_telephone,
             'email' => $this->customer_email,
+
             'leadTime' => $this->lead_time,
 
             'updatedAt' => $this->updated_at,
