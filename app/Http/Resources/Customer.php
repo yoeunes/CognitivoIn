@@ -18,12 +18,14 @@ class Customer extends JsonResource
             'localId' => $this->localId,
             'cloudId' => $this->id,
 
-            'name' => $this->customer_alias,
+            'name' => $this->customer_name,
+            'alias' => $this->customer_alias,
             'taxId' => $this->customer_taxid,
             'address' => $this->customer_address,
             'telephone' => $this->customer_telephone,
             'email' => $this->customer_email,
 
+            'creditLimit' => $this->credit_limit,
             'leadTime' => $this->lead_time,
 
             'updatedAt' => $this->updated_at,

@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Profile;
 use App\Relationship;
 use Carbon\Carbon;
-use App\Http\Resources\APICustomerResource;
+use App\Http\Resources\Customer;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Swap\Laravel\Facades\Swap;
@@ -32,13 +32,15 @@ class CustomerController extends Controller
         $relationship->supplier_id = $profile->id;
         $relationship->supplier_accepted = true;
 
-        $relationship->customer_taxid = $data->govcode;
+        $relationship->customer_taxid = $data->taxID;
         $relationship->customer_alias = $data->alias;
         $relationship->customer_address = $data->address;
         $relationship->customer_telephone = $data->telephone;
         $relationship->customer_email = $data->email;
-        $relationship->credit_limit = $data->credit_limit ?? 0;
+        $relationship->credit_limit = $data->creditLimit ?? 0;
         $relationship->contract_ref = $data->contract_ref ?? 0;
+
+        //$relationship->lead_time=$data->leadTime ;
 
         $relationship->save();
         return $relationship;
@@ -73,11 +75,11 @@ class CustomerController extends Controller
                 $relationship->supplier_id = $profile->id;
                 $relationship->supplier_accepted = true;
 
-                $relationship->customer_taxid = $request->customer_taxid;
-                $relationship->customer_alias = $request->customer_alias;
-                $relationship->customer_address = $request->customer_address;
-                $relationship->customer_telephone = $request->customer_telephone;
-                $relationship->customer_email = $request->customer_email;
+                $relationship->customer_taxid = $request->taxid;
+                $relationship->customer_alias = $request->alias;
+                $relationship->customer_address = $request->address;
+                $relationship->customer_telephone = $request->telephone;
+                $relationship->customer_email = $request->email;
                 $relationship->credit_limit = $request->credit_limit ?? 0;
                 $relationship->contract_ref = $request->contract_ref ?? 0;
 
@@ -89,7 +91,7 @@ class CustomerController extends Controller
         }
 
         //TODO: Fix Names, example => customer_taxid -> TaxID
-        $customerData = APICustomerResource::collection(
+        $customerData = Customer::collection(
             Relationship::whereIn('id', $customerData)
             ->select('customer_alias',
             'customer_taxid',
@@ -107,7 +109,7 @@ class CustomerController extends Controller
     public function download(Request $request,Profile $profile)
     {
         //Return a HTTP Resource from Laravel.
-        return  APICustomerResource::collection(Relationship::GetCustomers()
+        return  Customer::collection(Relationship::GetCustomers()
         ->get());
     }
 }

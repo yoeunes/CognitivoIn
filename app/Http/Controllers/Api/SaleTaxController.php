@@ -7,7 +7,7 @@ use App\Vat;
 use App\VatDetail;
 use Carbon\Carbon;
 use DateTime;
-use App\Http\Resources\APIVatResource;
+use App\Http\Resources\Vat;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\AccountMovementController;
@@ -38,11 +38,11 @@ class SaleTaxController extends Controller
 
     foreach ($collection as $key => $data)
     {
-      $vat = Vat::where('id', $data->cloud_id)->first() ?? new Vat();
-      if ($vat->updated_at < $this->convert_date($data->updated_at))
+      $vat = Vat::where('id', $data->cloudId)->first() ?? new Vat();
+      if ($vat->updated_at < $this->convert_date($data->updatedAt))
       {
 
-        $vat->ref_id=$data->local_id;
+        $vat->ref_id=$data->localId;
         $vat->profile_id = $profile->id;
         $vat->name = $data->name;
         $vat->country = $data->country ?? $profile->country;
@@ -76,7 +76,7 @@ class SaleTaxController extends Controller
 
   public function download(Request $request,Profile $profile)
   {
-    return APIVatResource::collection(
+    return Vat::collection(
       Vat::with('details')->get());
 
     //return response()->json($vats);

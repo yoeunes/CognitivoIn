@@ -14,6 +14,15 @@ class VatDetail extends JsonResource
      */
     public function toArray($request)
     {
-        return parent::toArray($request);
+      return [
+             'localId' => $this->localId,
+             'cloudId' => $this->id,
+
+             'name' => $this->name,
+             'coefficient' => $this->coefficient,
+             'percentage' => $this->percentage,
+
+             'updatedAt' => $this->updated_at,
+         ];
     }
 }

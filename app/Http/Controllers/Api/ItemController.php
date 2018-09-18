@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Profile;
 use App\Item;
 use Carbon\Carbon;
-use App\Http\Resources\APIItemResource;
+use App\Http\Resources\Item;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\AccountMovementController;
@@ -69,17 +69,16 @@ class ItemController extends Controller
     foreach ($collection as $data)
     {
 
-      $item = Item::where('id', $data->cloud_id)->first() ?? new Item();
-      if ($item->updated_at < $this->convert_date($data->updated_at))
+      $item = Item::where('id', $data->cloudID)->first() ?? new Item();
+      if ($item->updated_at < $this->convert_date($data->updatedAt))
       {
 
         $item->profile_id = $profile->id;
-        $item->ref_id=$data->local_id;
-        $item->sku = $data->code;
+        $item->ref_id=$data->localId;
+        $item->sku = $data->sku;
         $item->name = str_limit($data->name,100,' (...) ');
-        $item->short_description = $data->comment;
-        $item->unit_price = $data->unit_price;
-        $item->currency = $data->currency_code ?? $profile->currency;
+        $item->unit_price = $data->price;
+        $item->currency = $data->currencyCode ?? $profile->currencyCode;
         $item->save();
 
 
@@ -97,7 +96,7 @@ class ItemController extends Controller
   {
 
     //Return a HTTP Resource from Laravel.
-    return  APIItemResource::collection(Item::where('profile_id',$profile->id)
+    return  Item::collection(Item::where('profile_id',$profile->id)
     ->get());
 
 

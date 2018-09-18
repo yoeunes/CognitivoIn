@@ -40,10 +40,10 @@ class ContractController extends Controller
 
     foreach ($collection as $key => $data)
     {
-      $contract = Contract::where('id',$data->cloud_id)->first() ?? new Contract();
-      if ($contract->updated_at < $this->convert_date($data->updated_at))
+      $contract = Contract::where('id',$data->cloudId)->first() ?? new Contract();
+      if ($contract->updated_at < $this->convert_date($data->updatedAt))
       {
-        $contract->ref_id=$data->local_id;
+        $contract->ref_id=$data->localId;
         $contract->name =$data->name;
         $contract->profile_id = $profile->id;
         $contract->country = $profile->country;

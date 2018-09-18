@@ -33,7 +33,7 @@ class LocationController extends Controller
 
         foreach ($collection as $key => $data)
         {
-            $location = Location::where('id', $data->cloud_id)->first() ?? new Location();
+            $location = Location::where('id', $data->cloudId)->first() ?? new Location();
 
             $location->profile_id = $profile->id;
 
