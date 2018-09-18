@@ -40,10 +40,13 @@ class UpdateApiTables extends Migration
             $table->dropColumn('lead_time');
         });
 
-        Schema::table('relationships', function (Blueprint $table)
+        Schema::table('items', function (Blueprint $table)
         {
             $table->int('ref_id')->unsigned();
             $table->dropColumn('barcode');
+            $table->dropColumn('weight');
+            $table->dropColumn('volume');
+            $table->dropColumn('use_scale');
         });
     }
 }
