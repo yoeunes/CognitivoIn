@@ -16,7 +16,7 @@ class CreateTable extends Migration
         Schema::create('item_pricelist', function (Blueprint $table) {
             $table->increments('id');
 
-            $table->integer('item_id')->unsigned()
+            $table->integer('item_id')->unsigned();
             $table->foreign('item_id')->references('id')->on('items')->onDelete('cascade');
 
             $table->string('currency');
