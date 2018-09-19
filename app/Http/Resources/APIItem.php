@@ -23,11 +23,11 @@ class APIItem extends JsonResource
             'barCode' => $this->barcode,
             'vatId' => $this->vat_id,
             'currencyCode' => $this->currency,
-            'price' => $this->price,
-            'cost' => $this->cost,
-            'weighWithScale' => $this->weigh_with_scale,
-            'weight' => $this->weight,
-            'volume' => $this->volume,
+            'price' => $this->price??0,
+            'cost' => $this->cost??0,
+            'weighWithScale' => $this->weigh_with_scale??0,
+            'weight' => $this->weight??0,
+            'volume' => $this->volume??0,
             'updatedAt' => $this->updated_at,
         ];
     }
