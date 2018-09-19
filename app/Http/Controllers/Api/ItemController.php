@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Profile;
 use App\Item;
 use Carbon\Carbon;
-use App\Http\Resources\Item;
+use App\Http\Resources\APIItem;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\AccountMovementController;
@@ -87,7 +87,7 @@ class ItemController extends Controller
       $i=$i+1;
 
     }
-    $itemData=APIItemResource::collection(Item::whereIn('id',$itemData)->get());
+    $itemData=APIItem::collection(Item::whereIn('id',$itemData)->get());
     return response()->json($itemData,200);
 
   }
@@ -96,7 +96,7 @@ class ItemController extends Controller
   {
 
     //Return a HTTP Resource from Laravel.
-    return  Item::collection(Item::where('profile_id',$profile->id)
+    return  APIItem::collection(Item::where('profile_id',$profile->id)
     ->get());
 
 

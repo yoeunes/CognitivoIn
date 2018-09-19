@@ -1,4 +1,4 @@
-$table->int('lead_time')->unsigned();<?php
+<?php
 
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
