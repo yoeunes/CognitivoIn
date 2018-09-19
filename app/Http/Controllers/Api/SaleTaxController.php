@@ -7,7 +7,7 @@ use App\Vat;
 use App\VatDetail;
 use Carbon\Carbon;
 use DateTime;
-use App\Http\Resources\Vat;
+use App\Http\Resources\APIVat;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\AccountMovementController;
@@ -76,7 +76,7 @@ class SaleTaxController extends Controller
 
   public function download(Request $request,Profile $profile)
   {
-    return Vat::collection(
+    return APIVat::collection(
       Vat::with('details')->get());
 
     //return response()->json($vats);

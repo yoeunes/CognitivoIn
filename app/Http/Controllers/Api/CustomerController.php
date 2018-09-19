@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Profile;
 use App\Relationship;
 use Carbon\Carbon;
-use App\Http\Resources\Customer;
+use App\Http\Resources\APICustomer;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Swap\Laravel\Facades\Swap;
@@ -91,7 +91,7 @@ class CustomerController extends Controller
         }
 
         //TODO: Fix Names, example => customer_taxid -> TaxID
-        $customerData = Customer::collection(
+        $customerData = APICustomer::collection(
             Relationship::whereIn('id', $customerData)
             ->select('customer_alias',
             'customer_taxid',
@@ -109,7 +109,7 @@ class CustomerController extends Controller
     public function download(Request $request,Profile $profile)
     {
         //Return a HTTP Resource from Laravel.
-        return  Customer::collection(Relationship::GetCustomers()
+        return  APICustomer::collection(Relationship::GetCustomers()
         ->get());
     }
 }

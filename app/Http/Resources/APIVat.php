@@ -3,8 +3,9 @@
 namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
+use App\Http\Resources\APIVatDetail as VatDetailResource;
 
-class Vat extends JsonResource
+class APIVat extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -19,7 +20,7 @@ class Vat extends JsonResource
           'cloudId' => $this->id,
 
           'name' => $this->name,
-          'details' => VatDetail::collection($this->whenLoaded('details')),
+          'details' => VatDetailResource::collection($this->whenLoaded('details')),
 
           'updatedAt' => $this->updated_at,
       ];

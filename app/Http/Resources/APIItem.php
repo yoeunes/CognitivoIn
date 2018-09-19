@@ -15,7 +15,7 @@ class APIItem extends JsonResource
     public function toArray($request)
     {
         return [
-            'localId' => $this->localId,
+            'localId' => $this->ref_id,
             'cloudId' => $this->id,
 
             'name' => $this->name,

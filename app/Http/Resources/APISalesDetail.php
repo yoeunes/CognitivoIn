@@ -4,7 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class Location extends JsonResource
+class APISalesDetail extends JsonResource
 {
     /**
     * Transform the resource into an array.
@@ -18,12 +18,14 @@ class Location extends JsonResource
             'localId' => $this->localId,
             'cloudId' => $this->id,
 
-            'name' => $this->name,
-            'address' => $this->address,
-            'telephone' => $this->telephone,
-            'email' => $this->email,
-            'vatCloudId' => $this->vat_id,
-            'currencyCode' => $this->currency,
+            'purchaseCloudId' => $this->order_id,
+            'vatCloudId' => $this->payment_contract_id,
+            'itemCloudId' => $this->location_id,
+
+            'itemDescription' => $this->description,
+            'cost' => $this->cost,
+            'quantity' => $this->quantity,
+            'price' => $this->price,
 
             'updatedAt' => $this->updated_at,
         ];

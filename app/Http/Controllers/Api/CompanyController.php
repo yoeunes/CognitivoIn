@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Profile;
 use Carbon\Carbon;
-use App\Http\Resources\Company;
+use App\Http\Resources\APICompany;
 use Illuminate\Http\Request;
 use DB;
 use Swap\Laravel\Facades\Swap;

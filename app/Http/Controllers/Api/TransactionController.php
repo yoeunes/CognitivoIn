@@ -10,7 +10,7 @@ use App\Vat;
 use App\VatDetail;
 use App\OrderDetail;
 use Carbon\Carbon;
-use App\Http\Resources\APITransactionResource;
+use App\Http\Resources\APITransaction;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\AccountMovementController;
@@ -136,7 +136,7 @@ class TransactionController extends Controller
     }
 
     //TODO return values with created cloud_id back to client.
-    $salesData=APITransactionResource::collection(
+    $salesData=APITransaction::collection(
       Order::whereIn('id',$salesData)
       ->with('details')
       ->get());
@@ -146,7 +146,7 @@ class TransactionController extends Controller
 
   public function download(Request $request, Profile $profile)
   {
-    return APITransactionResource::collection(
+    return APITransaction::collection(
       Order::mySales()
       ->with('details')
       ->get());

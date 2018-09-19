@@ -4,7 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class ItemMovement extends JsonResource
+class APISupplier extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -18,11 +18,14 @@ class ItemMovement extends JsonResource
             'localId' => $this->localId,
             'cloudId' => $this->id,
 
-            'locationCloudId' => $this->location_id,
-            'date' => $this->date,
-            'debit' => $this->debit,
-            'credit' => $this->credit,
-            'comment' => $this->comment,
+            'name' => $this->supplier_alias,
+            'taxId' => $this->supplier_taxid,
+            'address' => $this->supplier_address,
+            'telephone' => $this->supplier_telephone,
+            'email' => $this->supplier_email,
+
+            'leadTime' => $this->lead_time,
+            'creditLimit' => $this->credit_limit,
 
             'updatedAt' => $this->updated_at,
         ];

@@ -137,4 +137,51 @@ class AccountController extends Controller
     }
     return response()->json($data['total_amount'] , '200');
   }
+
+  public function convert_date($date)
+  {
+    return Carbon::createFromFormat('Y-m-d H:i:s', $date);
+  }
+  public function sync(Request $request, Profile $profile)
+  {
+    $this->upload($request, $profile);
+    $data=$this->download($request, $profile);
+    return response()->json($data,200);
+  }
+
+  public function Upload(Request $request,Profile $profile)
+  {
+    $data = collect();
+
+    if ($request->all() != [])
+    {
+      $data = collect($request->all());
+    }
+
+    $collection = json_decode($data->toJson());
+
+    foreach ($collection as $key => $data)
+    {
+      $account = Account::where('slug',$data->CloudId)->first() ?? new Profile();
+      if ($account->updated_at < $this->convert_date($data->updatedAt))
+      {
+
+        $account = new Account();
+        $account->profile_id = $profile->id;
+        $account->name = "Cash Account for " . $data->name;
+        $account->number = "...";
+        $account->currency = $profile->currency;
+        $account->save();
+
+      }
+
+    }
+    return response()->json('sucess',200);
+  }
+
+  public function Download(Request $request,Profile $profile)
+  {
+    return APIAccount::collection(Account::get());
+
+  }
 }

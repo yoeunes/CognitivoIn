@@ -3,9 +3,9 @@
 namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
-use App\Http\Resources\SalesDetail as SalesDetailResource;
+use App\Http\Resources\APIPurchaseDetail as PurchaseDetailResource;
 
-class Sales extends JsonResource
+class APIPurchase extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -21,7 +21,7 @@ class Sales extends JsonResource
 
             'locationCloudId' => $this->location_id,
             'paymentContractCloudId' => $this->payment_contract_id,
-            'customerCloudId' => $this->relationship_id,
+            'supplierCloudId' => $this->relationship_id,
 
             'date' => $this->date,
             'status' => $this->status,
@@ -32,7 +32,7 @@ class Sales extends JsonResource
             'currencyCode' => $this->currency,
             'currencyRate' => $this->rate,
 
-            'details' => SalesDetailResource::collection($this->whenLoaded('details')),
+            'details' => PurchaseDetailResource::collection($this->whenLoaded('details')),
 
             'isArchived' => $this->is_archived,
             'updatedAt' => $this->updated_at,

@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Profile;
 use App\Relationship;
 use Carbon\Carbon;
-use App\Http\Resources\Supplier;
+use App\Http\Resources\APISupplier;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Swap\Laravel\Facades\Swap;
@@ -90,7 +90,7 @@ class SupplierController extends Controller
       }
 
       //TODO: Fix Names, example => customer_taxid -> TaxID
-      $supplierData = Supplier::collection(
+      $supplierData = APISupplier::collection(
           Relationship::whereIn('id', $customerData)
           ->select('customer_alias',
           'customer_taxid',
@@ -108,7 +108,7 @@ class SupplierController extends Controller
   public function download(Request $request,Profile $profile)
   {
       //Return a HTTP Resource from Laravel.
-      return  Supplier::collection(Relationship::GetSuppliers()
+      return  APISupplier::collection(Relationship::GetSuppliers()
       ->get());
   }
 }

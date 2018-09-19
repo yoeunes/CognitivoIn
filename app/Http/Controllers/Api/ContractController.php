@@ -6,7 +6,7 @@ use App\Profile;
 use App\Contract;
 use App\ContractDetail;
 use Carbon\Carbon;
-use App\Http\Resources\APIContractResource;
+use App\Http\Resources\APIContract;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\AccountMovementController;
@@ -82,7 +82,7 @@ class ContractController extends Controller
 
   public function Download(Request $request,Profile $profile)
   {
-    return APIContractResource::collection(Contract::where('profile_id',$profile->id)->
+    return APIContract::collection(Contract::where('profile_id',$profile->id)->
     with('details')
     ->get());
 
