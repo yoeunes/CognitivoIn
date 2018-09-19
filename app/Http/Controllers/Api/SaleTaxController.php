@@ -59,7 +59,7 @@ class SaleTaxController extends Controller
           ->first() ?? new VatDetail();
 
           $detail->vat_id = $vat->id;
-          $detail->percent = $row->percent;
+          $detail->percent = $row->percentage;
           $detail->coefficient = $row->coefficient;
           $detail->save();
 

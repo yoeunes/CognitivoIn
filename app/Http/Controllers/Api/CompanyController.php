@@ -56,7 +56,7 @@ class CompanyController extends Controller
 
   public function Download(Request $request,Profile $profile)
   {
-    return Company::collection(Profile::get());
+    return APICompany::collection(Profile::get());
 
   }
 
