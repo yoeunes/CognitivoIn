@@ -17,7 +17,7 @@ class ItemController extends Controller
 {
   public function convert_date($date)
   {
-    return Carbon::createFromFormat('Y-m-d H:i:s', $date);
+    return Carbon::createFromFormat('Y-m-d H:i:s', $date->date);
   }
   public function search(Profile $profile, $query)
   {
