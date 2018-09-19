@@ -69,7 +69,7 @@ class ItemController extends Controller
     foreach ($collection as $data)
     {
 
-      $item = Item::where('id', $data->cloudID)->first() ?? new Item();
+      $item = Item::where('id', $data->cloudId)->first() ?? new Item();
       if ($item->updated_at < $this->convert_date($data->updatedAt))
       {
 
